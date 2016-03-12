@@ -1,21 +1,13 @@
-<html>
-Hi there,
+---
+layout: index
+title: blog
+---
 
-<p>
-My name is Alex. This is my blog.
-
-<p>
-
-I anticipate writing down:
 <ul>
-<li>Opinions on things</li>
-<li>Somewhat original research / summarizing articles on math, computer science, physics, etc</li>
-<li>Caches and outlines of subjects I've learned</li>
-<li>Things I've figured out that might be useful to other people</li>
-<li>Links to things I've worked on</li>
+  {% for post in site.posts %}
+    <li>
+      <a href="{{ post.url }}">{{ post.title }}</a>
+
+    </li>
+  {% endfor %}
 </ul>
-
-Though who can say really.
-<p>
-
-<html>

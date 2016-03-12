@@ -1,0 +1,6 @@
+name: Alex
+markdown: kramdown
+timezone: utc
+kramdown:
+ parse_block_html: true
+ input: GFM
