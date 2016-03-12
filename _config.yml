@@ -1,6 +1,16 @@
-name: Alex
+name: alexkritchevsky
+description: a blog
 markdown: kramdown
 timezone: utc
 kramdown:
  parse_block_html: true
  input: GFM
+
+gems: [jekyll-sitemap]
+
+sass:
+ sass_dir: _sass
+
+google_analytics: UA-75007391-1
+
+exclude: [Gemfile,CNAME,README.md]
