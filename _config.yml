@@ -5,6 +5,7 @@ timezone: utc
 kramdown:
  parse_block_html: true
  input: GFM
+ math_engine: mathjax
 
 gems: [jekyll-sitemap]
 
@@ -14,3 +15,7 @@ sass:
 google_analytics: UA-75007391-1
 
 exclude: [Gemfile,CNAME,README.md]
+
+collections:
+  cache:
+    output: true

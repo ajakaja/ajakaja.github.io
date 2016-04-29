@@ -1,1 +1,1 @@
-Here be a blahg
+Here's a blog.
