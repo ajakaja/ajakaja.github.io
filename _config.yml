@@ -1,5 +1,6 @@
 name: alexkritchevsky
-description: a blog
+description: A Blog
+author: Alex Kritchevsky
 markdown: kramdown
 timezone: utc
 kramdown:
