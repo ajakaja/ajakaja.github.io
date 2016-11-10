@@ -237,6 +237,19 @@ nav {
   }
 }
 
+article {
+  figure {
+    img {
+      display: block;
+      margin: 0 auto;
+    }
+  }
+  img {
+    display: block;
+    margin: 0 auto;
+  }
+}
+
 //
 // .main
 //
@@ -280,7 +293,14 @@ nav {
 
 footer {
   padding: 20px 0;
-  text-align: center;
+  text-align: left;
+  font-style: italic;
+  font-size: 12px
+}
+
+div .footnotes {
+  font-size: 0.8em;
+  color: $gray;
 }
 
 @import "highlights";

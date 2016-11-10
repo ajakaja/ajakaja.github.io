@@ -37,6 +37,7 @@
 <div class="wrapper-footer">
     <div class="container">
         <footer class="footer">
+          Corrections and comments much appreciated at &lt;my.name@gmail&gt;.
         </footer>
     </div>
 </div>
@@ -46,9 +47,12 @@
   });
 </script>{% endif %}
 {% if page.math %}
+<!-- hacks to easily use KateX instead of MathJax because it's smaller and doesn't reflow the page. Can't vouch for these really -->
 <script>$("script[type='math/tex']").replaceWith(
   function(){
-    var tex = $(this).text();
+    var tex = $(this).text()
+      .replace("% <![CDATA[", "")
+      .replace("%]]>", "");
     return "<span class=\"inline-equation\">" + 
            katex.renderToString(tex) +
            "</span>";
@@ -56,7 +60,9 @@
 
 $("script[type='math/tex; mode=display']").replaceWith(
   function(){
-    var tex = $(this).text();
+    var tex = $(this).text()
+      .replace("% <![CDATA[", "")
+      .replace("%]]>", "");
     return "<div class=\"equation\">" + 
            katex.renderToString("\\displaystyle "+tex) +
            "</div>";
