@@ -248,6 +248,12 @@ article {
     display: block;
     margin: 0 auto;
   }
+  p {
+    text-indent: 0em;
+  }
+  div.entry > p {
+    text-indent: 1em;
+  }
 }
 
 //
