@@ -7,7 +7,7 @@ excerpt_separator: <!--more-->
 ---
 
 
-I've been trying to start blogging for years, where the type of "try" in question is the one that's more like "wanting to, performing gestures in the direction of, and never following through". The Akrasiac's Try.
+I've been trying to start blogging for years, where the type of "try" in question is the one that's more like "wanting to, performing gestures in the direction of, and never following through": the Akrasiac's Try.
 
 It's never been hard to have ideas that feel worth sharing. But it's never been easy to turn them into long-form writing. One problem: my favorite bloggers are producing well-crafted, seemingly important essays on a weekly basis -- so it feels like that's 'what the job is', even if I have no history of ever succeeding at that. Another problem: I've never learned to get anything done (painfully aware of this). I'm a middle class white guy who was good at math, stumbled forward into a tech job and a video game addiction (recently wrangled) without having to work very hard. One of millions.
 
@@ -17,13 +17,11 @@ And why should anyone care what I have say? No reason. The hunch (capitalized? T
 
 <!--more-->
 
-A dilemma: how to post candidly on a blog? The way my family dynamics work, I never want to project my personality into the world. There's a mysterious pressure -- nobody's fault -- not to stand out, never to dare earn pride, never to be ostentatious. To act mature is somehow embarrassing. I have to ignore that if I'm going to write using possibly-judgeable turns of phrase, much less profess any beliefs or reveal any passion or do anything vulnerable. I wonder if everyone feels this way and ignores it, or if it's pretty unique to us? I think the unusual magnitude of it is correlated with growing up with a twin.
-
-I have to put this aside to get anything done, it seems. That's a recent revelation.
+A dilemma: how to post candidly on a blog? The way my family dynamics work, I never want to project my personality into the world. There's a mysterious pressure -- nobody's fault -- not to stand out, never to dare earn pride, never to be ostentatious. To act mature is somehow embarrassing. I have to ignore that if I'm going to write using possibly-judgeable turns of phrase, much less profess any beliefs or reveal any passion or do anything vulnerable. I wonder if everyone feels this way and ignores it, or if it's pretty unique to us? I think the unusual magnitude of it is correlated with growing up with a twin. A recent revelation: that I have to put this aside to get anything done.
 
 #### On Wizardry:
 
-Very typically millennial, I had a comfortable tech job a while ago, quit it, and am now coasting on savings while ostensibly trying to, like, self-actualize. Which hasn't happened, and that's Fine (and I even believe that, most days). My initial plan after quitting was to buckle down for a month and start spitting out brilliant essays. I realized recently -- not long after my one-year anniversary of (ahem) dicking around -- that it might be better to do reports 'from the trenches' (these being the trenches of self-study, self-motivation, and self-actualization). Just write what I know. If what I have to talk about is going to be useful to someone else, it'll probably be useful without being carefully bundled into persuasive longform. For now.
+I had a comfortable tech job a while ago, quit it, and am now coasting on savings while ostensibly trying to, like, self-actualize. Very typically millennial. Self-actualizing -- whatever that means -- hasn't happened, and that's Fine (and I even believe that, most days). My initial plan after quitting was to buckle down for a month and start spitting out brilliant essays. I realized recently (not long after my one-year anniversary of (ahem) dicking around) that it might be better to do reports 'from the trenches' (these being the trenches of self-study, self-motivation, and self-actualization). Just write what you know, that sort of thing. If what I have to talk about is going to be useful to someone else, it'll probably be useful without being carefully bundled into persuasive longform. For now.
 
 I imagine, quite vicariously, that the path to self-actualization is something like becoming a wizard (cf your favorite coming-of-age fantasy novel). Certain figures worthy of admiration (emulation) -- Richard Feynman and Elon Musk are my go-tos -- are something like wizards, in some modern sense of the word. This metaphor is a thrill to overuse. Sure, those two showed every sign of magical affinity from a young age, more than I ever did. But that just means I'm shooting for the "brooding adult who learns the arts on his own in his basement lab out of dusty old tomes" archetype instead of the "Precocious Chosen One". So what if the former narrative is usually how dark wizards come about?
 
