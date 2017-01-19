@@ -274,8 +274,12 @@ article {
     border-left: 2px solid $gray;
     padding: 0.1em 1em;
     color: $gray;
-    font-size: 22px;
+    font-size: 1em;
     font-style: italic;
+  }
+
+  blockquote > p {
+    margin: 0px;
   }
 
   .comments {
@@ -305,6 +309,13 @@ footer {
 div .footnotes {
   font-size: 0.8em;
   color: $gray;
+}
+
+.box {
+  margin: 1.8em .8em;
+  border: 1px solid $gray;
+  padding: 0.5em 0.5em;
+  font-size: 1em;
 }
 
 @import "highlights";
