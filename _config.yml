@@ -17,6 +17,8 @@ google_analytics: UA-75007391-1
 
 exclude: [Gemfile,CNAME,README.md]
 
+excerpt_separator: <!--more-->
+
 collections:
   cache:
     output: true

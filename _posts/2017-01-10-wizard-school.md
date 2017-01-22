@@ -3,7 +3,6 @@ layout: blog
 title: "Day 1: Wizard School"
 math: true
 footnotes: true
-excerpt_separator: <!--more-->
 ---
 
 

@@ -1,7 +1,6 @@
 ---
 layout: blog
 title: "Day 3: Notes on Habits and Discipline"
-excerpt_separator: <!--more-->
 ---
 
 I want to blog every day, now, as promised. I also already wanted to 'work' every day, and I've felt that way for at least a year (probably more like 8). It never sticks, because doing that *isn't me* -- in a sense. But in what sense? Can it be changed?
@@ -14,7 +13,7 @@ I want to blog every day, now, as promised. I also already wanted to 'work' ever
 
 Confession: I didn't blog every day. I failed by day 3. At least three reasons:
 
-* For the first 2.5 days, I did successfully a "this is what I do now" feeling to working on writing. I'm familiar with this (more later). It was gone by the end of day 3.
+* For the first 2.5 days, I did successfully maintain a "this is what I do now" feeling to working on writing. I'm familiar with this (more later). It was gone by the end of day 3.
 * I became quite sick on day 3 and that severely dampered my ability to keep working. The illness has been on and off for a week but it's wrong to say that it has totally prevented work on this. I could've been back to work after a couple of days.
 * The actual reason for stopping: the thing I tried to write about on Day 3 wasn't as fully-formed as the first two, but I didn't want to skip it to get to more fully-formed ideas. I stared at it and typed lots of things I didn't like and gave up.
 
