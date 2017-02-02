@@ -1,9 +1,9 @@
 ---
 layout: blog
-title: "Day 3: Notes on Habits and Discipline"
+title: "Notes on Habits and Discipline"
 ---
 
-I want to blog every day, now, as promised. I also already wanted to 'work' every day, and I've felt that way for at least a year (probably more like 8). It never sticks, because doing that *isn't me* -- in a sense. But in what sense? Can it be changed?
+I'd like to be able to work on this blog every day. I also already wanted to 'work' every day, and I've felt that way for at least a year (probably more like 8). It never sticks, because doing that *isn't me* -- in a sense. But in what sense? Can it be changed?
 
 <!--more-->
 
