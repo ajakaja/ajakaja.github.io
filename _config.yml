@@ -7,6 +7,7 @@ kramdown:
  parse_block_html: true
  input: GFM
  math_engine: mathjax
+ hard_wrap: true
 
 gems: [jekyll-sitemap]
 

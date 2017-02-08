@@ -20,9 +20,7 @@
         <header class="masthead clearfix">
         <div class="site-info">
             <h1 class="site-name"><a href="/">{{ site.name }}</a>
-              <svg xmlns="http://www.w3.org/2000/svg" height="20" width="20" style="position:relative;left:-4px;">
-                <polygon style="cursor:auto;" fill="#c3e281" stroke="#c3e281" stroke-width="0" points="0,5.5 3,20 13,8.5"/>
-              </svg>
+            {% include triangle.html %}
             </h1>
             <p class="site-description" style="text-transform:lowercase">[{{ site.description }}]</p>
         </div>
