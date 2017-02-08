@@ -75,6 +75,7 @@ a {
   &:hover, &:active {
     color: $blue;
   }
+  text-decoration: none;
 }
 
 ul, ol {
@@ -96,6 +97,10 @@ ol ul, ul ol, ul ul, ol ol {
 
 ul ul, ol ul {
   list-style-type: circle;
+}
+
+li br {
+  line-height: 2
 }
 
 em, i {
@@ -321,5 +326,24 @@ div .footnotes {
 .equation {
   text-indent: 40px;
 }
+
+.pagenavigation {
+  font-size: 14px;
+  display: block;
+  width: auto;
+  overflow: hidden;
+}
+
+.pagenavigation a {
+  display: block;
+  width: 50%;
+  float: left;
+  margin: 1em 0;
+}
+
+.pagenavigation .next {
+  text-align: right;
+}
+
 
 @import "highlights";

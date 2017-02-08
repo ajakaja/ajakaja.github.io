@@ -4,11 +4,7 @@ title: "Infinite Summations: A Rationality Litmus Test"
 math: true
 ---
 
-(copied from my [LessWrong](http://lesswrong.com/r/discussion/lw/oht/infinite_summations_a_rationality_litmus_test/) post for posterity)
-
------
-
-You may have seen that Numberphile video that circulated the social media world a few years ago. It showed the 'astounding' mathematical result:
+You may have seen that [Numberphile video](https://www.youtube.com/watch?v=w-I6XTVZXww) that circulated the social media world a few years ago. It showed the 'astounding' mathematical result:
 
 $$1+2+3+4+5+\ldots = -\frac{-1}{12}$$
 
@@ -94,14 +90,19 @@ There's no shortage of explanations of this online, and a mountain of them emerg
 
 It turns out that there is a sense in which those summations are valid, but it's not the sense you're using when you perform ordinary addition. It's also true that the summations emerge in physics. It's also true that the validity of these summations is *in spite of* the rules of "you can't add, subtract, or otherwise deal with infinities, and yes all these sums diverge" that you learn in introductory calculus; it turns out that those rules are also elementary and there are ways around them but you have to be very rigorous to get them right.
 
-An elementary explanation of what happened in the proof is that, in all three infinite sum cases, it is possible to interpret the infinite sum as a more accurate form (but STILL not precise enough to use for regular arithmetic, because infinities are very much not valid, still, we're serious):
+An elementary explanation of what happened in the proof is that, in all three infinite sum cases, it is possible to interpret the infinite sum in a more accurate form (but STILL not precise enough to use for regular arithmetic, because infinities are very much not valid, still, we're serious):
 
 $$S(\infty) = 1+2+3+4+5\ldots \approx \frac{-1}{12} + O(\infty)$$
 
 Where $$S(n)$$ is a function giving the n'th partial sum of the series, and $$S(\infty)$$ is an analytic continuation (basically, theoretical extension) of the function to infinity. (The $$O(\infty)$$ part means "something on the order of infinity")
 
-Point is, that $$O(\infty)$$ bit hangs around, but doesn't really disrupt math on the finite part, which is why algebraic manipulations still seem to work. (Another cute fact: the curve that fits the partial sum function also non-coincidentally takes the value $$\frac{-1}{12}$$ at $$n=0$$.)
+Point is, that $$O(\infty)$$ bit hangs around, but doesn't necessarily disrupt arithmetic on the finite part, which is why algebraic manipulations still seem to work. (Another cute fact: the curve that fits the partial sum function also non-coincidentally takes the value $$\frac{-1}{12}$$ at $$n=0$$.)
 
-And it's true that this series always associates with the finite part $$\frac{-1}{12}$$; even though there are some manipulations that can get you to other values, there's a list of 'valid' manipulations that constrains it. (Well, there are other kinds of summations that I don't remember that might get different results. But this value is not accidentally associated with this summation.)
+And it's true that this series always associates with the finite part $$\frac{-1}{12}$$; even though there are some manipulations that can get you to other values, there's a list of 'valid' manipulations that constrains it. (Well, there may be other kinds of summation techniques that I don't know about that get different results. But this value is not just randomly one among many associated with this summation; you can get this same answer in different ways.)
 
 And the fact that the series emerges in physics is complicated but amounts to the fact that, in the particular way we've glued math onto physical reality, we've constructed a framework that also doesn't care about the infinity term (it's rejected as "nonphysical"!), and so we get the right answer despite dubious math. But physicists are fine with that, because it seems to be working and they don't know a better way to do it yet.
+
+
+-----
+
+(Originally posted on [LessWrong](http://lesswrong.com/r/discussion/lw/oht/infinite_summations_a_rationality_litmus_test/). Copied here for posterity / keeping everything in one place.)
