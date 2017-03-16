@@ -123,6 +123,11 @@ img {
   max-width: 100%;
 }
 
+p.noscript {
+  padding: 0px 1em;
+  font-style: italic;
+}
+
 // Fixes images in popup boxes from Google Translate
 .gmnoprint img {
   max-width: none;
