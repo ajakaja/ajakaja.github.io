@@ -23,3 +23,5 @@ excerpt_separator: <!--more-->
 collections:
   cache:
     output: true
+  misc:
+    output: true

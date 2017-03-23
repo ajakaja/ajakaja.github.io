@@ -1,0 +1,170 @@
+---
+title: "Cards"
+category: misc
+---
+
+<!DOCTYPE html>
+<html>
+<head>
+
+<style>
+
+#container {
+    position: absolute;
+    left: 100px;
+    top: 50px;
+}
+.card {
+    height: 400px;
+    width: 280px;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 5px 5px 5px gray;
+    display: flex;
+    flex-direction: column;
+}
+.card > div {
+    padding-right: 5px;
+    padding-left: 5px;
+}
+
+.ctopbar {
+    width: 100%;
+    box-sizing: border-box;
+    border: 1px solid;
+    position: relative;
+}
+.ctopleft {
+    text-align: left;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 1.5em;
+    float: left;
+}
+.ctopright {
+    text-align: right;
+    bottom: 0px;
+    right: 5px;
+    position: absolute;
+}
+
+.cbody {
+    border: 1px solid;
+    border-radius: 5px;
+    box-sizing: border-box;
+    height: 100%;
+}
+.ctype {
+    border: 1px solid;
+    text-align: right;
+    padding-right: 5px;
+}
+.cimage {
+    height: 50%;
+    box-sizing: border-box;
+    border: 2px solid;
+    background: linear-gradient(to bottom right, green, purple);
+}
+.cdesc {
+    padding: 3px;
+}
+.cbottombar {
+    position: relative;
+}
+.cbottomright {
+    text-align: right;
+    bottom: 0px;
+    right: 5px;
+    position: absolute;
+}
+.cbottomleft {
+}
+#input {
+    width: 30em;
+    height: 14em;
+    border: 2px solid grey;
+}
+#error {
+    color: red;
+    margin-top: 10px;
+    font-size: 0.8em;
+}
+
+</style>
+</head>
+
+<body>
+<div id="container">
+    <div class="card" id="card">
+        <div class="ctopbar">
+            <div class="ctopleft" contenteditable="true">Haste</div>
+            <div class="ctopright" contenteditable="true">Cast: 10</div>
+        </div>
+        <div class="cbody">
+            <div class="cimage"></div>
+            <div class="ctype" contenteditable="true">Spell - Enchantment (V)</div>
+            <div class="cdesc" contenteditable="true">Target's Speed costs are lower by 1 for 5 turns.<br><em>(Costs can't go lower than 1.)</em><br></div>
+        </div>
+        <div class="cbottombar">
+            <div class="cbottomleft" contenteditable="true"></div>
+            <div class="cbottomright" contenteditable="true">Level 1</div>
+        </div>
+    </div>
+    <br/><br/>
+    <textarea id="input" placeholder="Enter JSON (or type into the card directly)"></textarea>
+    <br/>
+    <button id="renderbutton">Render JSON</button>
+    <button id="parsebutton">Get JSON</button>
+    <div id="error"></div>
+</div>
+</body>
+
+<script type="text/javascript">
+    var card = document.getElementById("card");
+    var title = card.querySelector('div.ctopleft');
+    var cost = card.querySelector('div.ctopright');
+    var type = card.querySelector('div.ctype');
+    var desc = card.querySelector('div.cdesc');
+    var bottomright = card.querySelector('div.cbottomright');
+    var bottomleft = card.querySelector('div.cbottomleft');
+    var inputfield = document.getElementById("input");
+    var error = document.getElementById("error");
+    parse = function() {
+        var ret = {};
+        ret.title = title.innerHTML;
+        ret.cost = cost.innerHTML;
+        ret.type = type.innerHTML;
+        ret.desc = desc.innerHTML;
+        ret.bottomright = bottomright.innerHTML;
+        ret.bottomleft = bottomleft.innerHTML;
+        return ret;
+    };
+    render = function(json) {
+        title.innerHTML = json.title ? json.title : "";
+        cost.innerHTML = json.cost ? json.cost : "";
+        type.innerHTML = json.type ? json.type : "";
+        desc.innerHTML = json.desc ? json.desc : "";
+        bottomright.innerHTML = json.bottomright ? json.bottomright : "";
+        bottomleft.innerHTML = json.bottomleft ? json.bottomleft : "";
+    };
+    document.getElementById("renderbutton").onclick = function(){
+        var text = inputfield.value;
+        if(!text) {
+            error.innerText = "Error: No JSON entered.";
+        }
+        try {
+            var json = JSON.parse(text);
+        } catch (e){
+            error.innerText = "Error: " + e.name + " " + e.message;
+            return;
+        } 
+        error.innerText = "";
+        render(json);
+    };
+    document.getElementById("parsebutton").onclick = function() {
+        var json = parse();
+        inputfield.value = JSON.stringify(json, null, 2);
+    };
+</script>
+</html>
