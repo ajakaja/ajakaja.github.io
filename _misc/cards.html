@@ -130,6 +130,8 @@ category: misc
     var bottomleft = card.querySelector('div.cbottomleft');
     var inputfield = document.getElementById("input");
     var error = document.getElementById("error");
+    var renderButton = document.getElementById("renderbutton");
+    var parseButton = document.getElementById("parsebutton");
     parse = function() {
         var ret = {};
         ret.title = title.innerHTML;
@@ -148,7 +150,16 @@ category: misc
         bottomright.innerHTML = json.bottomright ? json.bottomright : "";
         bottomleft.innerHTML = json.bottomleft ? json.bottomleft : "";
     };
-    document.getElementById("renderbutton").onclick = function(){
+    updateUrl = function() {
+        var base64 = btoa(inputfield.value);
+        var newurl = window.location.origin + window.location.pathname + "?" + base64;
+        if(history.pushState) {
+            window.history.pushState({path:newurl},'',newurl);
+        } else {
+            window.location.href = newurl;
+        }
+    }
+    renderButton.onclick = function(){
         var text = inputfield.value;
         if(!text) {
             error.innerText = "Error: No JSON entered.";
@@ -161,10 +172,24 @@ category: misc
         } 
         error.innerText = "";
         render(json);
+        updateUrl();
     };
-    document.getElementById("parsebutton").onclick = function() {
+    parseButton.onclick = function() {
         var json = parse();
-        inputfield.value = JSON.stringify(json, null, 2);
+        var text = JSON.stringify(json, null, 2);
+        inputfield.value = text;
+        updateUrl();
     };
+
+    (function() {
+        var base64 = window.location.search;
+        if(base64.length > 1) {
+            base64 = base64.substring(1); //remove ?
+            text = atob(base64);
+            render(JSON.parse(text));
+            inputfield.value = text;
+        }
+
+    })();
 </script>
 </html>
