@@ -2,8 +2,8 @@
 layout: default
 title: "Cache"
 ---
-
-Caches of thoughts.
+<!--
+Cached thoughts:
 
 <div class="posts">
 <ul class="list">
@@ -14,3 +14,4 @@ Caches of thoughts.
   {% endfor %}
 </ul>
 </div>
+-->

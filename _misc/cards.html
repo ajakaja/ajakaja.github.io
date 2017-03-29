@@ -188,6 +188,8 @@ category: misc
             text = atob(base64);
             render(JSON.parse(text));
             inputfield.value = text;
+        } else {
+            inputfield.value = parse();
         }
 
     })();
