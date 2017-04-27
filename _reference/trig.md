@@ -48,7 +48,7 @@ Shifting $$\sin \theta$$ or $$\cos \theta$$ by quarter turns $$\theta \rightarro
 
 $$\sin \theta = \cos (\theta - \frac{\pi}{2}) = -\sin (\theta - \pi) = -\cos (\theta- \frac{3\pi}{2})$$
 
-Shifting $$\sin -\theta$$ or $$\cos \theta$$ by quarter turns traverses the list in the opposite direction:
+Shifting $$\sin -\theta$$ or $$\cos -\theta$$ by quarter turns traverses the list in the opposite direction:
 
 $$\sin (-\theta) = -\cos (-\theta - \frac{\pi}{2}) = -\sin (-\theta - \pi) = \cos (-\theta - \frac{3\pi}{2})$$
 
@@ -303,7 +303,6 @@ $$\cosh \phi = \cos ix = \sum \frac{x^{2n}}{(2n)!}$$
 
 $$\sinh \phi = -i \sin ix = \sum \frac{x^{2n+1}}{(2n+1)!}$$
 
-And you can just grab the rest [here](https://en.wikipedia.org/wiki/Hyperbolic_function).
-
-
 $$\tanh \phi = -i \tan i\phi$$
+
+And you can just grab the rest [here](https://en.wikipedia.org/wiki/Hyperbolic_function).
