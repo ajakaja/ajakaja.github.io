@@ -39,6 +39,10 @@ body {
   flex: 1;
 }
 
+hr {
+   border: 1px solid $lightGray;
+}
+
 h1, h2, h3, h4, h5, h6 {
   font-family: $helveticaNeue;
   color: $darkerGray;
