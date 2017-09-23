@@ -37,10 +37,7 @@ body {
   padding: 0 10px;
   width: 100%;
   flex: 1;
-}
-
-hr {
-   border: 1px solid $lightGray;
+  position: relative;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -375,6 +372,13 @@ div .footnotes {
 
 .texerror {
   color: red;
+}
+
+svg#b {
+  position: absolute;
+  left: 110%;
+  bottom: 0;
+  opacity: 0.08;
 }
 
 @import "highlights";
