@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>{{ page.title }}</title>
+{% include meta.html %}
+<style>
+body{
+  background: white;
+  font-size: 14px;
+  font-family: helvetica;
+  color: #222;
+  height: 100%;
+}
+div#main{
+  width: 80%;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  max-width: 740px;
+  margin: 0 auto;
+}
+hr{
+}
+</style>
+
+</head>
+<body>
+
+  <div id="main" role="main" class="container">
+      {{ content }}
+ </div>
+</body>
+</html>
