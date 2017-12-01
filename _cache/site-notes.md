@@ -29,10 +29,16 @@ If you have use the same footnote twice, (undefined) appears in the margin, the 
 
 Might be missing a module.
 
-Katex puts commas on the next line after math, which is bad.
-
 For now I've copied the JS, CSS, and font files for these plugins over. What I'd prefer to do is have them included as Git submodules, but, as far as I know I would need a build or deployment script that then copies them into the correct /css, /js, etc folders before running the site. I'd rather not do that (definitely because Github Pages won't let me, but also because it's annoying.)
 
 Kramdown + MathJax with KateX as the actual parser has some weird effects. Namely, MathJax creates script tags where KateX creates spans; I've got some JS that runs on the page to rewrite MathJax output into KateX input. Also, MathJax puts CDATA tags around math that includes, among other things, < and > signs. I haven't figured out how to disable this, so I've instead got the JS just deleting the CDATA tags using the worst method, string.replace() calls. This witchcraft is to avoid figuring out a more elegant way to handle Katex + Kramdown until someone (maybe me?) makes a plugin for it.
 
 I figured out, mostly, how to do image includes in Jekyll from [this article](https://eduardoboucas.com/blog/2014/12/07/including-and-managing-images-in-jekyll.html). I had some issues with included HTML being escaped, though.
+
+----------
+
+Issues with KateX:
+* commas after equations often flow onto the next line
+* fraction lines disappear randomly depending on the zoom. It's subpixel something or another in Chrome, but, yeah, it's pretty annoying.
+* macros would be *super useful*, since I write \mathbf{} 100x a page.
+* as mentioned above, the KateX integration with MathJax is wonky. But it still looks pretty good.

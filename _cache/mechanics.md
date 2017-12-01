@@ -6,7 +6,7 @@ footnotes: true
 category: cache
 ---
 
-*I started trying figure out how [symplectic integrators](https://en.wikipedia.org/wiki/Symplectic_integrator) give better (roughly energy-preserving) solutions to differential equations, making them preferable for implementing physics simulations in games, and got lost in a rabbithole of 'trying to actually understand classical mechanics'. (Partly because this really needs to be solid to make better sense of QM.) Here are some notes.*
+*I started trying to figure out how [symplectic integrators](https://en.wikipedia.org/wiki/Symplectic_integrator) give better (roughly energy-preserving) solutions to differential equations, making them preferable for implementing physics simulations in games, and got lost in a rabbithole of 'trying to actually understand classical mechanics'. (Partly because this really needs to be solid to make better sense of QM.) Here are some notes.*
 
 (work in progress)
 
@@ -107,7 +107,7 @@ If *V* depends on something other than *x*, it isn't a 'potential energy' anymor
 
 And it's apparently never true in special relativity and above. Or rather, it's only true on a Riemannian manifold, and not the pseudo-riemannian $$(-,+,+,+)$$ manifold of relativity.
 
-(For example, you might expect the Lagrangian for a free relativistic particle to be the kinetic energy $$\mathcal{L} = (\gamma - 1)mc^{2}$$, but it's actually $$\mathcal{L} = -\frac{mc^2}{\gamma} = -mc^{2}\sqrt{1 - \beta^{2}} \approx mc^{2}(-1 + frac{1}{2}\beta^{2}) = -mc^{2} + \frac{1}{2}mv^{2}$$. (Actually, I wouldn't expect the naive form at all, but Wiki thinks you might.))
+(For example, you might expect the Lagrangian for a free relativistic particle to be the kinetic energy $$\mathcal{L} = (\gamma - 1)mc^{2}$$, but it's actually $$\mathcal{L} = -\frac{mc^2}{\gamma} = -mc^{2}\sqrt{1 - \beta^{2}} \approx mc^{2}(-1 + \frac{1}{2}\beta^{2}) = -mc^{2} + \frac{1}{2}mv^{2}$$. (Actually, I wouldn't expect the naive form at all, but Wiki thinks you might.))
 
 The reason the classical mechanics form $$\mathcal{L} = T - V$$ is unsettling is that it doesn't seem to correspond to anything that's, like, 'physical' about a system. (I guess that's also the objection to $$S = \int \mathcal{L} dt$$). Granted, since many Lagrangians describe the same system, it makes sense that it would only describe the system up to isomorphism, but still: what is the point of subtracting energies; what does that do?
 
@@ -167,7 +167,7 @@ Couple notes:
 
 * The $$(-2)$$ factor doesn't really matter; as we have already seen, $$\mathcal{L}$$ can be multiplied by scalars (and changed in other ways) without changing the equations of motion. Because, ultimately, $$S$$ is kind of meaningless, I guess?
 
-I think the right interpretation of this, at least for now, is purely as a *clever differential equation-solving technique*. Here's the same technique if you were just working with matrices: in order to solve $$A\mathbf{x} = 0$$, you:
+I think the right interpretation of this, at least for now, is as a *clever differential equation-solving technique*. Here's the same technique if you were just working with matrices: in order to solve $$A\mathbf{x} = 0$$, you:
 
 * instead solve $$\Rightarrow \mathbf{x} \cdot A\mathbf{x} = 0$$
 * find a way to factor $$A = B^{*}B$$ (always possible if A is positive-semidefinite)
@@ -180,14 +180,14 @@ I think the right interpretation of this, at least for now, is purely as a *clev
 
 * this still feels mysterious, but less so.
 
-nb. Lagrangians work for plenty of things that are more complex than just (N2) applications. But I think this is where the idea comes from. I like this a lot better than taking $$\delta S = 0$$ as a *postulate* -- even if that works. I'd rather see it as a 'clever solution technique that generalizes well' than a 'postulate about reality'. (I'll dig more into whether it's really fundamental from QM another time, I guess...).
+nb: Lagrangians work for plenty of things that are more complex than just (N2) applications. But I think this is where the idea comes from. I like this a lot better than taking $$\delta S = 0$$ as a *postulate* -- even if that works. I'd rather see it as a 'clever solution technique that generalizes well' than a 'postulate about reality'. (I'll dig more into whether it's really fundamental from QM another time, I guess...).
 
 This derivation also explains why the requirement is that the action be stationary, not minimized: basically because its actual value is pretty meaningless; the fact that $$ S = (constant)$$ (well, a function of the bounds only, not the rest of the path, so constant ever) and therefore $$\delta S = 0$$ is a product of the fact that the differential equation of the system is 0 at all times on physically valid paths.
 
 
 ### 2.2 Functional Derivatives
 
-Completely without mention of Lagrangians, let's just talk about defining a derivative operator on functionals.
+Completely without mention of Lagrangians, let's just talk about defining a derivative [operator](https://en.wikipedia.org/wiki/Functional_derivative) on functionals.
 
 We want an analogy:
 
@@ -195,7 +195,7 @@ $$\frac{\delta F[x(t)]}{\delta x(t)} \Leftrightarrow \frac{\partial f(x)}{\parti
 
 and a differential analogous to $$df = f(x + \epsilon) - f(x)$$:
 
-$$\delta F[x(t)] = F(x(t) + \delta x(t)) - F[x(t)] $$
+$$\delta F[x(t)] = F[x(t) + \delta x(t)] - F[x(t)] $$
 
 and a directional derivative analogous to $$\nabla_{\mathbf{v}} f = df \cdot \mathbf{v} = \sum v^{i} \partial_{i}f$$:
 
@@ -207,7 +207,7 @@ We define $$\frac{\delta F[x]}{\delta x}$$ in terms of (omitting a lot of $$(t)$
 
 $$\langle \frac{\delta F[x]}{\delta x}, \phi \rangle = \frac{F[x + \epsilon \phi]}{d\epsilon} = \frac{d}{d\epsilon} \int \delta F(x + \epsilon \phi) dt$$
 
-And if that sounds arcane, it really isn't. Check it out on $$F(x) = x^{2}$$ and $$G(x) = \dot{x}^{2}$$:
+And if that sounds arcane, it really isn't. Check it out on $$F(x) = x^{2}$$ and $$G(x) = \dot{x}$$:
 
 $$\frac{d}{d\epsilon} \int \delta F(x + \epsilon \phi) dt = \frac{d}{d\epsilon} \int (x + \epsilon \phi)^{2} dt =  \int 2x \phi dt \Rightarrow \frac{\delta F(x)}{\delta x} = 2x$$
 
@@ -219,13 +219,13 @@ The somewhat simpler way to write these is:
 
 $$\delta G = G[x+\delta x] - G[x] = \partial_{t} (x + \delta x) - \partial_{t} x = \partial_{t} (\delta x)$$
 
-But you have to interpret $$\partial_{t} \delta x$$ interestingly, because $$\frac{\partial_{t}(\delta x)}{\delta x}$$ in some sense is supposed to equal $$\partial_{t}$$. I believe the explanation is that, because we're working on the space of functions instead of simpler vectors, the notation $$\frac{\delta {G(x(t)})}{\delta x(t)} := (\delta x(t))^{-1} \circ \delta G[x(t)] = (\delta x)^{-1} \circ (\partial_{t} \delta x) = \partial_{t}$$, *the operator*. That is, it's the 'multiplicative inverse of function composition', rather than *literal division*.
+But this term isn't quite valid: we only defined $$\frac{\partial_{t}(\delta x)}{\delta x}$$ in terms of its inner product with a test function $$\phi$$:
 
-Or, a cleaner interpretation: this term isn't quite valid; we only defined $$\frac{\partial_{t}(\delta x)}{\delta x}$$ in terms of its inner product with a test function $$\phi$$:
-
-$$\langle \frac{\partial_{t}(\delta x)}{\delta x},\phi \rangle = \int \partial_{t} (\delta x) \phi dt = \int \delta x (- \partial_{t} \phi) dt \Rightarrow \frac{\partial_{t}(\delta x)}{\delta x} := \partial_{t}$$
+$$\langle \frac{\partial_{t}(\delta x)}{\delta x},\phi \rangle = \int \partial_{t} (\delta x) \phi dt = \int \delta x (- \partial_{t} \phi) dt \Rightarrow \frac{\partial_{t}(\delta x)}{\delta x} := -\partial_{t} = \partial_{t}^{*}$$
 
 (As long as $$\delta{x}$$ vanishes on the integration boundaries!)
+
+(I wonder if it's interesting that the derivative of $$\partial_{t} x$$ is $$-\partial_{t}$$?)
 
 Note: if we *additionally* define that our functions are functions of only $$t$$ and not also some intermediate functions $$y(t)$$ or something, then it's okay to turn that into a total derivative $$\frac{d}{dt}$$. (Well... I think. I hope I've got that right!)
 
@@ -258,7 +258,7 @@ By the way, this is basically, at a marginally higher abstraction, the approach 
 
 To solve for the potential from a charge distribution $$\rho$$:
 
-$$\nabla^{2} \phi = -frac{\rho}{\epsilon_{0}}$$
+$$\nabla^{2} \phi = -\frac{\rho}{\epsilon_{0}}$$
 
 For $$\phi$$, you can find a stationary point of the integral
 
@@ -272,9 +272,9 @@ $$ = \int \epsilon_{0}\nabla (\phi \nabla f) - \epsilon_{0}f \nabla^{2}\phi - \r
 
 (The first term is a total derivative, so can be pulled out, and if we integrate over all space it vanishes.)
 
-$$ = \int - \epsilon_{0} f \nabla^{2}\phi - \rho f dV = -\int (\epsilon_{0} \nabla^{2} \phi - \rho)f dV$$
+$$0 = \int - \epsilon_{0} f \nabla^{2}\phi - \rho f dV = -\int (\epsilon_{0} \nabla^{2} \phi - \rho)f dV$$
 
-Which just gives the original equation again. (I guess there are points in there where this might be more useful than the differential version, depending on what information you're working with!)
+Which just enforces the original differential equation again. I guess there are points in there where this might be more useful than the differential version, depending on what information you're working with!
 
 
 -------------------
