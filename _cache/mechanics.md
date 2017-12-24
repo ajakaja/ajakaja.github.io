@@ -14,76 +14,33 @@ category: cache
 
 <!--more-->
 
-## 1. Newton's Laws
+## 1. Newton's Laws (rehash)
 
 L1. Objects move at constant velocity unless acted upon by a force (in an inertial reference frame)
-L2. $$\mathbf{F} = m\mathbf{a}$$
+L2. $$\mathbf{F} = m\mathbf{a}$$. That is, $$-\nabla U(\mathbf{x}) = \dot{\mathbf{p}} = \frac{dE}{dv}$$.
 L3. Actions have equal/opposite reactions: $$F_{ab} = -F_{ba}$$.
 
-A bunch of comments:
-
-* If you have already assumed 'momentum' as a concept, (L1) is basically $$\frac{dp}{dt} = 0$$, ie, conservation of momentum. But it's not general enough to apply in interactions.
-* (L2) is probably more natural as $$\mathbf{F} = \dot{\mathbf{p}}$$, which is important if $$m$$ is time-dependent.
-* ... and is actually more natural as $$\mathbf{F} = D_{t}(m\mathbf{v}) = D_{t}\mathbf{p}$$, which is important if $$D$$ is a covariant derivative.
-* Forces $$\mathbf{F}$$ are... sort of... a fictitious concept. Or rather, they're a way of factoring systems:
-	* if you have an energy-changing interaction that you don't want to describe in your system, you describe it as an external 'thing' parameterized by internal variables -- usually a potential $$U(\mathbf{x})$$, so that $$\mathbf{F} = -\nabla U$$.
-	* this is especially necessary for describing force fields if you're just doing mechanics. An object moving in gravity could only exchange energy with the gravitational field at the point it's at, and then that energy would have to travel through the field to get to wherever it's going.
-	* it amounts to finding a way to parameterize an external system with variables our model *has* ($$\mathbf{x}$$).
-* If forces are our abstractions of other systems, (L3) is the constraint that makes sure we're talking about the same things.
-* Since $$\mathbf{F} = \dot{\mathbf{p}}$$, (L3) says that changes in momentum in one system negate changes in momentum in the other: that is, $$d_{t} \sum \mathbf{p_{i}} = 0$$.
-
-### 1.1 Energy
-
-**Q**: How do we initially introduce energy? Even before we talk about potential energies via $$\mathbf{F} = -\nabla U(\mathbf{x})$$, we might realize that $$T = \sum \frac{1}{2}m\mathbf{v}^{2}$$ is preserved by, like, elastic collisions: $$d_{t} T = 0$$. Why would this be... true? And why would it be natural to take this form?[^justify]
+**Q**: How do we initially introduce energy? Even before we talk about potential energies we might realize that $$T = \sum \frac{1}{2}m\mathbf{v}^{2}$$ is preserved by, like, elastic collisions: $$d_{t} T = 0$$. Why would this be... true? And why would it be natural to take this form?[^justify] And it's not fair to run ahead and invoke Noether's theorem and say 'time invariance implies energy conservation'.
 
 [^justify]: aside: If you google, like, "how would you derive conservation of energy", people like to remind other people that we don't **derive** things in physics; we believe them if they correspond to the behavior of nature. Well, that's not interesting and tends to miss the point that much of physics is derived from simple physical insights instead of *entirely* being pattern-matching to how reality imperically behaves. Well, that's annoying. I feel we need a better word for 'derive' when talking about motivation of aspects of theories, so that people stop saying that. Something like **reduce**?...
 
-(It's not fair to run ahead and invoke Noether's theorem and say 'time invariance implies energy conservation'. It feels like we can say something before we get there.)
+We can find energy conservation inside Newton:
 
-Put differently: why is E, with units of $$mass \times velocity^{2}$$, the thing that is preserved both in kinetic and potential-field interactions?
+$$\frac{d}{dt}U(\mathbf{x}(t)) = \frac{d\mathbf{x}}{dt} \nabla U(\mathbf{x}(t)) = \mathbf{v}\cdot \nabla U$$
 
-We write potentials and their forces as $$\mathbf{F} = -\nabla U(\mathbf{x})$$, because all we can generically say about all fields is that, for a particle to move from $$x \rightarrow y$$, the energy delta $$U\vert^{y}_{x}$$ must be expended. (which amounts to the observation, I suppose, that "fields create geometries on space", or something?) (By the way, note the $$U\vert^{b}_{a}$$: all energies are actually energy deltas, meaning that they're the result of integrals between two places.) (Only speaking of conservative potentials, here, since those seem to be 'realistic' ones.)
+So dotting with $$\mathbf{v}$$ makes $$\mathbf{v} \cdot F = d_{t}U$$. On the other side, the same operation gives:
 
-Inverting this, it might be cleaner to think of (some) (conservative) forces as energy gradients: a statement of the differential energy 'price' to move in a certain direction.
-
-But, still, why $$\frac{1}{2}m \vert \mathbf{v} \vert^{2}$$ (or if you prefer $$= \frac{1}{2m}\vert \mathbf{p} \vert^{2}$$)?
-
-It makes some sense that scalars are $$\propto (\mathbf{v}^{2})$$, because to take the length of a vector you have to compose it with a linear map: $$\langle \mathbf{v}, \mathbf{v} \rangle = \vert v \vert^{2} = g(\mathbf{v}, \mathbf{v}) = g_{ij}v^{i}v^{j}$$.
-
-We *can* just find energy conservation inside Newton. In $$-\nabla U(\mathbf{x}) = D_{t} (m\mathbf{v})$$ one side is a spatial derivative and the other is a time derivative. If we want to look for conserved quantities, the left side is good for talking about things conserved in time, while the right is better for things conserved in space. We can dot both sides with $$\mathbf{v}$$:
-
-* $$\nabla U$$ is a gradient, so $$\nabla U \cdot \mathbf{v}$$ is a directional derivative: it's the amount of energy that's changing in time.
-* (It's also just $$\frac{d}{dt}U(\mathbf{x}(t))$$. If we parameterize our position by *t*, U becomes a function U(t) such that we can talk about its time-variance.)
-* and $$m\frac{d}{dt}(\mathbf{v}) \cdot \mathbf{v} = \frac{1}{2} m\frac{d}{dt} (\mathbf{v \cdot v})$$
+$$\mathbf{v} \cdot m\ddot{\mathbf{x}} = m\dot{\mathbf{x}} \cdot \ddot{\mathbf{x}} =  \frac{1}{2} m\frac{d}{dt} (\mathbf{v \cdot v}) = d_{t}T$$
 
 Therefore:
 
-$$[\mathbf{F} = m\mathbf{a}] \cdot \mathbf{v} \Rightarrow -d_{t} U = d_{t} T$$
+$$\mathbf{v} \cdot [\mathbf{F} = m\mathbf{a}] \Rightarrow -d_{t} U = d_{t} T$$
 
-The momentum 'vector' is conserved in each direction, including time. Actually, the better 'law' is $$U + T = 0$$, and then taking time derivatives gives $$U_{t} + E_{t} = 0 \Rightarrow \mathbf{F} = m\mathbf{a}$$. I guess that's not that enlightening.
+The momentum 'vector' is conserved in each direction, including time. Actually, the better 'law' is $$U + T = 0$$, and then taking time derivatives gives $$U_{t} + E_{t} = 0 \Rightarrow \mathbf{F} = m\mathbf{a}$$. I guess that's not that enlightening, though.
 
-------
+**Conclusion**: Newton's laws directly state conservation of momentum, and conservation of energy is a short algebraic manipulation away.
 
-Musing:
-
-Maybe there is some sort of 'abstract' conservation law, which, when projected onto a spatial direction gives (each coordinate of) $$\mathbf{F} = m\mathbf{a}$$, and when projected onto time gives conservation of energy. That is, it'd be neat if there's some sense in which an equation like:
-
-$$-U \cdot \hat{\mathbf{x}} = \dot{\mathbf{p}} \cdot \hat{\mathbf{x}} \Rightarrow F_{x} = \dot{p}_{x}$$
-
-$$-U \cdot \hat{\mathbf{t}} = \dot{\mathbf{p}} \cdot \hat{\mathbf{t}} \Rightarrow -\dot{U} = \dot{T}$$
-
-(By the way, the main reason I'm thinking about this is to try to make Newtonian physics feel 'less far away' from SR, Lagrangian, or QM physics, so that intuition carries over more.)
-
-Comparing those equations to the above 'actual' conservation of energy via $$\cdot \mathbf{v}$$, it seems odd that we dot with $$\mathbf{v}$$ to 'extract' energy. Is $$\mathbf{v}$$ the 'tangent vector' direction -- the reference frame in which we see only energy conservation (like it is in SR)? It seems strange in classical mechanics to be *forced* to talk about reference frames, since everything should be true in any frame.
-
-Well, also: we dot with $$\mathbf{v}$$ to extract Energy conservation from (N2), and we take time derivatives (on a path) of energy conservation to get (N2). Actually, we could just project with $$\hat{\mathbf{v}}$$; what's important is the direction!
-
-
-
--------------
-
-Nevertheless, the question **What the hell is energy** is still enticing, but it's possible (?) that it's only emergent from quantum mechanics. Right?
-
+Moving on...
 
 ## 2. Lagrangians & Functional Calculus
 
@@ -93,143 +50,136 @@ Nevertheless, the question **What the hell is energy** is still enticing, but it
 
 Jumping into this ahead of everything else to get it out of the way:
 
-The Lagrangian in classical mechanics is *usually*
+The Lagrangian in classical mechanics is usually
 
 $$\mathcal{L(t, x, \dot{x})} = T - V$$
 
-When is that valid? Well, never, exactly, because you can always add a total time derivative $$f(t)$$ to $$\mathcal{L}$$, or scale $$\mathcal{L} \rightarrow c\mathcal{L}$$, without changing the solutions of the E-L equations, $$\mathcal{L}_{x} - d_{t} \mathcal{L}_{\dot{x}} = 0$$.
+When is that valid? Well, never, exactly, because you can always add a total time derivative $$f(t)$$ to $$\mathcal{L}$$, or scale $$\mathcal{L} \rightarrow c\mathcal{L}$$, without changing the solutions of the E-L equations, $$\mathcal{L}_{x} - d_{t} \mathcal{L}_{\dot{x}} = 0$$. And it has to be true that $$\mathcal{L(t, x, \dot{x})} = T(\dot{x}) - V(x)$$, so if *V* depends on something other than *x*, it isn't a 'potential energy' anymore (it's not from a conservative force) and the form is likely not correct.
 
-But also, it's only when you can write:
+And it's not true in special relativity and above. For example, the Lagrangian for a free relativistic particle is  $$\mathcal{L} = -\frac{mc^2}{\gamma} = -mc^{2}\sqrt{1 - \beta^{2}} \approx mc^{2}(-1 + \frac{1}{2}\beta^{2}) = -mc^{2} + \frac{1}{2}mv^{2}$$.
 
-$$\mathcal{L(t, x, \dot{x})} = T(\dot{x}) - V(x)$$
-
-If *V* depends on something other than *x*, it isn't a 'potential energy' anymore (it's not from a conservative force) and the form is likely not correct.
-
-And it's apparently never true in special relativity and above. Or rather, it's only true on a Riemannian manifold, and not the pseudo-riemannian $$(-,+,+,+)$$ manifold of relativity.
-
-(For example, you might expect the Lagrangian for a free relativistic particle to be the kinetic energy $$\mathcal{L} = (\gamma - 1)mc^{2}$$, but it's actually $$\mathcal{L} = -\frac{mc^2}{\gamma} = -mc^{2}\sqrt{1 - \beta^{2}} \approx mc^{2}(-1 + \frac{1}{2}\beta^{2}) = -mc^{2} + \frac{1}{2}mv^{2}$$. (Actually, I wouldn't expect the naive form at all, but Wiki thinks you might.))
-
-The reason the classical mechanics form $$\mathcal{L} = T - V$$ is unsettling is that it doesn't seem to correspond to anything that's, like, 'physical' about a system. (I guess that's also the objection to $$S = \int \mathcal{L} dt$$). Granted, since many Lagrangians describe the same system, it makes sense that it would only describe the system up to isomorphism, but still: what is the point of subtracting energies; what does that do?
-
-Even if this does not turn out to be the 'true' general form, any form that reduces to $$T-V$$ has the same unsettling quality: it seems meaningless.
+The reason the classical mechanics form $$\mathcal{L} = T - V$$ is unsettling is that it doesn't seem to correspond to anything that's, like, 'physical' about a system. Even if this does not turn out to be the 'true' general form, any form that reduces to $$T-V$$ has the same unsettling quality: it seems meaningless. So I want to figure out where it comes from and what it means.
 
 ---------------
 
 I went and scoured a bunch of sources to try to figure out the 'true' reason for this form, and this is the best I've got:
 
-**Explanation**: ([source](https://physics.stackexchange.com/questions/86008/motivation-for-form-of-lagrangian/357476#357476)) The minus sign appears because the adjoint of the derivative operator $$\partial_{t}$$, on suitable spaces, is $$\partial_{t}^{*} = -\partial_{t}$$.
+**Explanation**: ([source](https://physics.stackexchange.com/questions/86008/motivation-for-form-of-lagrangian/357476#357476)) The minus sign appears because the **adjoint** of the derivative operator $$\partial_{t}$$, on suitable spaces, is $$\partial_{t}^{*} = -\partial_{t}$$.
 
-This is why integration by parts works: because $$\langle f , \partial_{t} g \rangle = \langle \partial_{t}^{*} f \vert g \rangle = -\langle f , g \rangle = \int f(t)g(t)dt$$. (Only if at least one of *f* and *g* has compact support; that is, vanishes outside a radius; that is, the bounds of the integral go to zero.) (Or, I suppose, if the inner product we're using $$\langle , \rangle$$ is, instead, defined to go to zero through a weight function or something. Basically, the functions have to vanish on the boundary.)
+The adjoint, as a reminder, is the generalization of the matrix transpose. In this case we're talking about the infinite-dimensional vector space of functions with inner product $$\langle f,g \rangle = \int_{i}^{f} fg dt$$.
 
-I'm pretty sure that at some level this is the *true* reason, and the trick is just figuring out how it gets into $$T-V$$.
+The fact that $$\partial_{t}^{*} = -\partial_{t}$$ is conceptually how integration by parts works: because $$\int f \partial_{t}g dt = \langle f , \partial_{t} g \rangle = \langle \partial_{t}^{*} f \vert g \rangle = -\langle \partial_{t}f , g \rangle = (bounds) -\int f_{t}g dt $$. This also seems to mean that it's intrinisically connected to the concept of a derivation, since it basically follows from $$D(fg) = (Df)g + f(Dg)$$. Also, in QM, adjoint operations also include Hermitian conjugates of matrices $$A^{\dagger}$$, which also take $$i \rightarrow -i$$. This is mysterious, but no more than the whole Hilbert space structure is to begin with.
 
-The example from the source is of a simple harmonic oscillator. Consider the *differential* equation:
+At some level this is the *true* reason for $$\mathcal{L} = T-V$$, and we just need to find the derivation. We can make a lot more sense of Lagrangian mechanics in the process, also.
 
-$$(\partial_{t}^{2} + \omega^{2})x = 0$$
+----------
 
-but then write the $$\partial_{t}$$ like this:
+The example from the source is of a simple harmonic oscillator ($$V = \frac{1}{2}\omega^{2} x^{2}$$). Start from the differential equation:
 
-$$(-\partial_{t}^{*}\partial_{t} + \omega^{2})x = 0$$
+$$(m\partial_{t}^{2} + \omega^{2})x = 0$$
 
-And inner-product (which one unspecified for now...) by $$-\frac{1}{2}x$$ on the left:
+but then split the $$\partial_{t}$$ like this:
 
-$$-\frac{1}{2}x \cdot (-\partial_{t}^{*}\partial_{t} + \omega^{2})x = \frac{1}{2}\langle \partial_{t} x , \partial_{t} x \rangle - \frac{1}{2} \langle \omega x , \omega x \rangle = 0 = T - V$$
+$$(-m\partial_{t}^{*}\partial_{t} + \omega^{2})x = 0$$
 
-(Recall that for a SHO, $$V = \frac{1}{2}k x^{2} = \frac{1}{2} \omega^{2}x^{2}$$.)
+And inner-product by $$x$$ on the left:
 
-Interesting: $$T - V$$ has appeared. But that's confusing: because $$(\partial_{t}^{2} + \omega^{2})x = 0$$ is derived from substituting $$U = \frac{1}{2}\omega^{2}x^{2}$$ and $$T = \frac{1}{2}m \dot{x}^{2}$$ into $$F = ma$$ in the first place, so why did I think I transformed (N2) into $$d_{t}(T+V) = 0$$ up above?
+$$\langle x,  (-m\partial_{t}^{*}\partial_{t} + \omega^{2})x \rangle = - m\langle \partial_{t} x , \partial_{t} x \rangle + \langle \omega x , \omega x \rangle$$
 
-The minus sign appears, in short, from the identity $$\ddot{x} = -\dot{x}^{2}$$, when integration by parts is valid. But integration by parts is only valid under a suitable inner product where the boundary term $$\int d_{t} (x \dot{x}) dt = x\dot{x}\vert^{b}_{a}$$ vanishes. Viewing this all as simple algebraic manipulation, I think we get to choose the inner product when we do $$\langle x , (\partial_{t}^{2} - \omega^{2})x$$, so I wonder: which inner products are valid for this?
+Note that this isn't equal to 0 anymore, because a boundary term appears when we take $$x \partial_{t}^{*} = \partial_{t} x$$. Writing things out explicitly, we have:
 
-If we inner product with $$\langle \partial_{t} x, \cdot\rangle$$ instead, we just get $$d_{t} (T + U) = 0$$, as above.
+$$\langle x, (-m\partial_{t}^{2} + \omega^{2})x \rangle = \int_{i}^{f} x\partial_{t}^{2}x - \omega^{2} x^{2} dt = m(x \dot{x})\vert_{i}^{f} + \int - m \dot{x}^{2} + \omega^{2}x^{2} dt$$
 
-If we choose the inner product $$\langle f, g \rangle = \int f g dt$$, we end up with (voilá) $$S = \int \mathcal{L} dt$$. I wonder if others are valid? The vector dot product doesn't, at least not on regular $$\mathbb{R}^{2}$$, because $$x \cdot a \neq -v \cdot v$$. Really, it has to be under some sort of time integral, because we're shifting around time integrals in the integration by parts step.
+$$= m(x \dot{x})\vert_{i}^{f} - 2\int_{i}^{f} (T - V) dt = 0 $$
 
-The bigger constraint seems to be that the boundary term $$x \dot {x} \vert^{b}_{a}$$ vanishes. I'm not sure what that means because I'm not really sure what we're integrating. Let's go back to the derivation:
+$$\frac{1}{2}m(x \dot{x})\vert_{i}^{f} = \int \mathcal{L} dt$$
 
-* First, we have a differential equation $$Dx = (m\partial_{t}^{2} + \omega^{2})x = 0$$ that holds true at all times on the physically valid paths of the system. Solutions $$x(t)$$ with initial conditions give the paths of the systems under time evolution.
+Why $$=0$$? We started out saying that $$(m\ddot{x} - F) = (m\partial_{t}^{2} + \omega^{2})x = 0$$ on the path of the system. So $$\langle x, m\ddot{x} - F \rangle = \langle x, 0 \rangle = 0$$. 
 
-* Then, we inner product with $$\langle x,\cdot \rangle$$ to get $$\langle x, Dx \rangle = \int x Dx dt = 0$$. This also vanishes, since at all times the the value of Dx is zero. But, strangely, it works out to be $$ = \int -2(T-V) dt = -2\int \mathcal{L} dt = -2S = 0$$, and it's not true that the *action* equals 0 at all times, right?
+Note that the resulting term has two parts: a term dependent on **boundary conditions only**, $$\frac{1}{2}m(x \dot{x})\vert_{i}^{f}$$, and a term that's an **integral of a scalar quantity over time**, $$\int_{i}^{f} T-V dt$$.
 
-* Maybe we suppose the conditions $$Dx = 0$$ and $$x\dot{x}\vert_{i}^{f}$$ aren't necessarily satisfied. So this is a functional that takes *any old path* $$x(t)$$ to $$F[x(t)] = \int_{i}^{f} x(t) Dx(t) dt = x(t)\dot{x}(t)\vert^{f}_{i} + (-2)\int_{i}^{f} \mathcal{L} dt = (bounds) + (-2)S$$.
+(Aside: If we use $$\dot{\mathbf{x}}\cdot$$ instead, we just get $$d_{t} (T + U) = 0$$, as derived above. I wonder if others are valid? I wonder if other conservation laws are derived by inner-producting with other things? Newton's 2nd law is just momentum conservation, anyway. And $$\mathbf{r} \wedge (F-m\ddot{\mathbf{x}}) = \tau - m\ddot{\theta} = 0$$ gives angular momentum conservation. I wonder if any differential has conserved quantities that can be found with a process like this?)
 
-* So this is an functional that applies to *any path* $$x(t)$$. Let's call it $$S'[x(t)]$$, to indicate that it's not exactly the action, though it's closely related to it.
+------------
 
-* And we know that *for the path the system actually takes*, for $$t \in (i, f)$$, the equation $$Dx = 0$$ holds at all times, meaning $$S'[x(t)] = (bounds)$$, which is constant.
+And how do you get closer to solving $$S[x(t)] = \frac{-1}{2}m(x \dot{x})\vert_{i}^{f}$$ for $$x(t)$$? You naively proceed like you would in single variable calculus to solve $$f(x) = c(y)$$: by calculating $$f'(x) = 0$$ to eliminate $$c$$.
 
-* So then we solve this equation, $$S'[x(t)] = b + cS[x(t)] = b + c(0) = b$$, with a method for solving any equation that equals a constant: by solving $$\frac{\partial S'}{\partial{x(t)}} = 0$$, except that, *since S' is an equation of a function*, we have to take the functional derivative $$\frac{\delta S'[x(t)]}{\delta x(t)} = \frac{\delta S[x(t)]}{\delta x(t)} = 0$$ (and, for variations of $$x(t)$$ with the endpoints held constant, we *can* assume the boundary term vanishes).
+Or in this case, $$\frac{\delta S_{1}}{\delta x(t)} = 0$$, a functional derivative where we perturb the path without changing the value of $$(x \dot{x})\vert_{i}^{f}$$, by varying $$x(t) \rightarrow x(t) + \phi(t)$$, with $$\phi(i) = \phi(f) = 0$$ and $$\dot{\phi}(i) = \dot{\phi}(f) = 0$$. By doing this we're no longer getting a path where $$S[x(t)] = 0$$, but rather one where $$\frac{\delta S}{\delta x} = 0$$, so we're instead only *extremizing* the action instead of setting it to 0.
 
-This feels to me like an actually valid motivation for $$\delta S = 0$$. But I also have a feeling it might be wrong somehow, because I've never seen it explicitly before.
+Note: somehow our choices of $$i$$ and $$f$$ don't matter very much. These derivations hold for any two times, so you set $$i$$ as your initial condition, or whatever, and then this tells you the equations of motion that lead forward to $$f$$. Since it applies over any $$(i,f)$$, even vanishingly small ranges, the identity $$\frac{\delta S[x(t)]}{\delta x} = 0$$ ends up holding at all time.
 
-Couple notes:
+--------
 
-* $$\mathcal{L} = T-V$$ will only make sense in this derivation if you can actually describe the system with a conservative potential. For interactions like friction where you totally ignore the energy exchange, it's pretty much irrelevant. The general idea of a Lagrangian can still be used, but the exact equation $$T-V$$ is no longer relevant.
+Why would you want to do any of this? What the hell is the action?
 
-* The $$(-2)$$ factor doesn't really matter; as we have already seen, $$\mathcal{L}$$ can be multiplied by scalars (and changed in other ways) without changing the equations of motion. Because, ultimately, $$S$$ is kind of meaningless, I guess?
+I think the answer is: the result is a differential equation of scalar functions instead of vectors, and scalars are way easier to solve for (and compose over multiple component systems much, much, _much_ more cleanly).
 
-I think the right interpretation of this, at least for now, is as a *clever differential equation-solving technique*. Here's the same technique if you were just working with matrices: in order to solve $$A\mathbf{x} = 0$$, you:
+**Conclusion**: The Lagrangian formulation of classical mechanics is best thought of as: a *clever differential equation-solving technique*. Given Newton's laws, it's a set of obscure but ultimately mundane algebraic manipulations to get a **differential equation in conserved scalar quantities of the path**.
 
-* instead solve $$\Rightarrow \mathbf{x} \cdot A\mathbf{x} = 0$$
-* find a way to factor $$A = B^{*}B$$ (always possible if A is positive-semidefinite)
-* rewrite $$\mathbf{x} \cdot A \mathbf{x} = (B^{*}\mathbf{x}) \cdot (B \mathbf{x}) = \vert B\mathbf{x}\vert^{2} = 0$$
-* now solve $$S(\mathbf{x}) = \vert B\mathbf{x}\vert^{2} = 0$$ by solving $$\frac{dS(\mathbf{x})}{d\mathbf{x}} = \nabla S(\mathbf{x}) = 0$$ and trying to solve *that* differential equation.
-* but $$\partial_{\mathbf{x}} \vert B \mathbf{x} \vert^{2} = 2 B\mathbf{x} B$$ = $$2A\mathbf{x}$$, so that's not too interesting; we're just back where we started.
-* but with functionals, this step eliminates the bounds from the integral and gives us a differential equation only in the scalars of the system. So I guess that's the reason it works?
+Well, this still feels mysterious, but less so.
 
-....
+Lagrangians work for plenty of things that are more complex than just (N2) applications. But I think this is where the idea comes from. I like this a lot better than taking $$\delta S = 0$$ as a *postulate* -- even if that works. Instead, we just have an elaborate restatement of "energy is conserved".
 
-* this still feels mysterious, but less so.
-
-nb: Lagrangians work for plenty of things that are more complex than just (N2) applications. But I think this is where the idea comes from. I like this a lot better than taking $$\delta S = 0$$ as a *postulate* -- even if that works. I'd rather see it as a 'clever solution technique that generalizes well' than a 'postulate about reality'. (I'll dig more into whether it's really fundamental from QM another time, I guess...).
-
-This derivation also explains why the requirement is that the action be stationary, not minimized: basically because its actual value is pretty meaningless; the fact that $$ S = (constant)$$ (well, a function of the bounds only, not the rest of the path, so constant ever) and therefore $$\delta S = 0$$ is a product of the fact that the differential equation of the system is 0 at all times on physically valid paths.
+Anyway, I'd rather see this whole messy framework as a 'clever solution technique that generalizes well' than a 'postulate about reality'. Of course it may end up being more fundamental in QM -- but there's no point in confusing things now when the derivation can be made unmysterious, in terms of what we already know.
 
 
 ### 2.2 Functional Derivatives
 
-Completely without mention of Lagrangians, let's just talk about defining a derivative [operator](https://en.wikipedia.org/wiki/Functional_derivative) on functionals.
+Let's go over how to define the derivative [operator](https://en.wikipedia.org/wiki/Functional_derivative) on functionals.
 
 We want an analogy:
 
-$$\frac{\delta F[x(t)]}{\delta x(t)} \Leftrightarrow \frac{\partial f(x)}{\partial x}$$
+$$\frac{\delta F[x]}{\delta x} \Leftrightarrow \frac{d f(\mathbf{x})}{d \mathbf{x}}$$
 
-and a differential analogous to $$df = f(x + \epsilon) - f(x)$$:
+It probably looks similar: 
 
-$$\delta F[x(t)] = F[x(t) + \delta x(t)] - F[x(t)] $$
+$$\frac{\delta F[x]}{\delta x} = \lim_{\epsilon \rightarrow 0} \frac{F[x + \epsilon\delta x] - F[x]}{\epsilon} $$ 
 
-and a directional derivative analogous to $$\nabla_{\mathbf{v}} f = df \cdot \mathbf{v} = \sum v^{i} \partial_{i}f$$:
+$$\Leftrightarrow \frac{d f(\mathbf{x})}{d\mathbf{v}} = \lim_{\epsilon \rightarrow 0} \frac{f(\mathbf{x} + \epsilon \mathbf{v}) - f(\mathbf{x})}{\epsilon}$$
 
-$$\nabla_{\phi(t)}F[x(t)] = \frac{\delta F[x(t)]}{\delta x(t)} \cdot \phi(t) = \partial_{\epsilon} F[x(t) + \epsilon \phi(t)] \vert_{\epsilon = 0} = \frac{F[x(t) + \epsilon \phi(t)] - F[x(t)]}{\epsilon}$$
+With:
 
-... and in fact I'm pretty sure everything 'just works' if we just use the inner product $$\langle f, g\rangle = \int fg dt$$ instead of the vector dot product.
+$$f(\mathbf{x} + \epsilon \mathbf{v}) \approx f(\mathbf{x}) + \epsilon \frac{df(\mathbf{x})}{d\mathbf{x}} \cdot \mathbf{v} + o(\epsilon^{2})$$
 
-We define $$\frac{\delta F[x]}{\delta x}$$ in terms of (omitting a lot of $$(t)$$s for clarity):
+$$\Leftrightarrow F(x + \epsilon \phi) \approx F(x) +  \epsilon\langle \frac{\delta F[x]}{\delta x}, \phi \rangle + o(\epsilon^{2})$$
 
-$$\langle \frac{\delta F[x]}{\delta x}, \phi \rangle = \frac{F[x + \epsilon \phi]}{d\epsilon} = \frac{d}{d\epsilon} \int \delta F(x + \epsilon \phi) dt$$
+Except that we use 
 
-And if that sounds arcane, it really isn't. Check it out on $$F(x) = x^{2}$$ and $$G(x) = \dot{x}$$:
+$$\langle \frac{\delta F[x]}{\delta x}, \phi \rangle = \int \frac{\delta F[x]}{\delta x} \phi dx$$
 
-$$\frac{d}{d\epsilon} \int \delta F(x + \epsilon \phi) dt = \frac{d}{d\epsilon} \int (x + \epsilon \phi)^{2} dt =  \int 2x \phi dt \Rightarrow \frac{\delta F(x)}{\delta x} = 2x$$
+So the directional derivative
 
-$$\frac{d}{d\epsilon} \int \delta G(x + \epsilon \phi) dt = \frac{d}{d\epsilon} \int (\dot{x} + \epsilon \dot{phi}) dt =  \int \dot{\phi} dt \Rightarrow \frac{\delta G(x)}{\delta x} = \partial_{t}$$
+$$\nabla_{\mathbf{v}} f(\mathbf{x}) = f(\mathbf{x} + \epsilon \mathbf{v}) - f(\mathbf{x}) = \frac{df(\mathbf{x})}{d\mathbf{x}} \cdot \mathbf{v}$$
 
-Those make tons of sense: $$\delta(x^{2}) = 2x \delta{x}$$; $$\delta(\dot{x}) = \partial_{t} \delta{x}$$. They make *so* much sense that we should just write them without fancy $$\delta$$s: $$d(x(t)^{2}) = 2x(t)dx(t)$$ and $$d(\dot{x}) = \partial_{t} dx(t)$$, if that's not confusing.
+Becomes:
 
-The somewhat simpler way to write these is:
+$$\nabla_{\phi} F[x] = (\frac{1}{\epsilon} (F[x + \epsilon \phi] - F[x]) = \langle \frac{\delta F[x]}{\delta x}, \phi \rangle$$
 
-$$\delta G = G[x+\delta x] - G[x] = \partial_{t} (x + \delta x) - \partial_{t} x = \partial_{t} (\delta x)$$
+---------
 
-But this term isn't quite valid: we only defined $$\frac{\partial_{t}(\delta x)}{\delta x}$$ in terms of its inner product with a test function $$\phi$$:
+The procedure to compute them on Wikipedia (well, by definition) is:
 
-$$\langle \frac{\partial_{t}(\delta x)}{\delta x},\phi \rangle = \int \partial_{t} (\delta x) \phi dt = \int \delta x (- \partial_{t} \phi) dt \Rightarrow \frac{\partial_{t}(\delta x)}{\delta x} := -\partial_{t} = \partial_{t}^{*}$$
+* To calculate $$\frac{\delta F[x]}{\delta x} = \delta_{x} F[x]$$ (simpler notation!), compute:
 
-(As long as $$\delta{x}$$ vanishes on the integration boundaries!)
+$$\frac{d}{d \epsilon} F[x + \epsilon \phi]_{\epsilon = 0}$$
 
-(I wonder if it's interesting that the derivative of $$\partial_{t} x$$ is $$-\partial_{t}$$?)
+* and then match it to $$\int \delta_{x} F[x] \phi(t) dt$$.
 
-Note: if we *additionally* define that our functions are functions of only $$t$$ and not also some intermediate functions $$y(t)$$ or something, then it's okay to turn that into a total derivative $$\frac{d}{dt}$$. (Well... I think. I hope I've got that right!)
+**Example 0?** For example, if $$F[x] = \int \dot{x}(t) dt$$, then 
 
----------------
+$$\partial_{\epsilon} F[x + \epsilon \phi]_{\epsilon = 0} = \frac{1}{\epsilon}\int \dot{x}(t) + \epsilon \dot{\phi}(t) - \dot{x}(t) dt = \int \dot{\phi}(t)dt $$
+
+So $$\int \delta_{x} F[x] \phi(t) dt = \int \dot{\phi}(t)dt $$, so $$\delta_{x} F[x] = \frac{d}{dt}$$. Right? Well, I'm not sure if they're supposed to be operators. Seems intuitive to me, but, these things are usually done with more complicated functions...
+
+**Example 1.** If $$F[x] = \int f(x(t)) dt$$, then 
+
+$$\partial_{\epsilon} F[x + \epsilon \phi]_{\epsilon = 0} = \frac{1}{\epsilon} \int f(x + \epsilon \phi) - f(x) dt) = \int \partial_{x} f(x(t)) \phi(t) dt$$
+
+So: $$\delta_{x} F[x(t)] = \partial_{x} f(x(t))$$.
+
+We can also write $$\delta F = F[x + \delta x] - F[x]$$, where $$\delta x$$ is understood to be an 'infinitesimal' function variation.
+
+**Example 2: Euler-Lagrange**
 
 And now we just follow the same procedure for the somewhat more interesting functional $$S[x] = \int \mathcal{L}(t, x, \dot{x}) dt$$:
 
@@ -237,49 +187,165 @@ $$\delta S = S[x + \delta x] - S[x] = \int \mathcal{L}(t, x + \delta x, \dot{x} 
 
 $$\Rightarrow \delta S = \int (\mathcal{L} + \delta x (\partial_{x} \mathcal{L}) + \delta \dot{x} (\partial_{\dot{x}} \mathcal{L})) - (\mathcal{L})dt = \int \delta x (\partial_{x} \mathcal{L}) + \delta \dot{x} (\partial_{\dot{x}} \mathcal{L}) dt$$
 
-The (total) time derivative $$\int \partial_{t}(\delta x) \mathcal{L}_{\dot{x}} dt$$ integrates by parts as earlier into $$\int \frac{d}{dt} (\delta x \mathcal{L}_{\dot{x}}) - \delta x\frac{d}{dt}(\mathcal{L}_{\dot{x}}) dt$$, and, for suitable $$\delta x$$, the first term vanishes on the boundary of the integral, giving: 
+The (total) time derivative $$\int \partial_{t}(\delta x) \mathcal{L}_{\dot{x}} dt$$ integrates by parts into $$\int \frac{d}{dt} (\delta x \mathcal{L}_{\dot{x}}) - \delta x\frac{d}{dt}(\mathcal{L}_{\dot{x}}) dt$$, and, for suitable $$\delta x$$ (if $$\delta x$$ is zero and $$\delta \dot{x}$$ is zero at the endpoints), the first term vanishes on the boundary of the integral, giving: 
 
 
 $$\delta S = \int \delta x \cdot (\mathcal{L}_{x} - \frac{d}{dt}\mathcal{L}_{\dot{x}}) dt$$
 
-Which, in order to hold for all $$\delta(x)$$ (or when composed with $$(\delta x)^{-1}$$?), gives, of course, the Euler-Lagrange equation(s):
+Which, in order to hold for all $$\delta(x)$$, gives, of course, the Euler-Lagrange equation(s):
 
 $$\mathcal{L}_{x} - \frac{d}{dt}\mathcal{L}_{\dot{x}} = 0$$.
 
-The grand point is this:
+So, to return to mechanics, we found that
 
-**Grand Point**:
+$$S_{1}[x] = \frac{1}{2}m(x \dot{x})\vert_{i}^{f} - \int \mathcal{L(t, x, \dot{x})} dt  = 0$$
 
-Functional derivatives (ie variations) are a mundane calculus procedure, which, when they *happen to be applied to the action functional*, specifically *as a tool for solving differential equations*, give the Euler-Lagrange equations in mechanics. But both the idea of 'solving a differential equation with a variation' and 'deriving the E-L relation from the variation' are independently 'mundane' concepts, and the only interesting physical content is (I think ... at this point...) the fact that the equilibrium solution of a mechanical problem is described by the differential equation / Lagrangian *in the first place*.
+in the previous section. And now we proceed to eliminate the boundary term via 'a (simple) calculus procedure', solving $$\delta_{x}S[x] = 0$$, to find 
 
-------------------
+$$\mathcal{L}_{x} - \frac{d}{dt}\mathcal{L}_{\dot{x}} = 0$$
 
-By the way, this is basically, at a marginally higher abstraction, the approach Feynman describes [here](http://yima.csl.illinois.edu/psfile/ECE553/FeynmanLecturesOnPhysicsChapter2-19.pdf). He also mentions that stationary points of functionals can be used to solve other equations. It's worth showing an example to prove that this method is general:
+Which is the Euler-Lagrange equations.
 
-To solve for the potential from a charge distribution $$\rho$$:
+And the grand point is:
 
-$$\nabla^{2} \phi = -\frac{\rho}{\epsilon_{0}}$$
+**The Grand Point** _This is not that amazing_. The **principle of stationary action**, which takes a postulate / assumption that $$\delta S = 0$$ for the 'phyical path', is the application of a mechanical procedure to solving a differential equation. It just turns out to be 
 
-For $$\phi$$, you can find a stationary point of the integral
 
-$$U(\phi) = \frac{1}{2}\int (\epsilon_{0}\nabla \phi)^{2} - \rho \phi dV$$
+By the way, this is basically, at a marginally higher abstraction, the approach Feynman describes [here](http://yima.csl.illinois.edu/psfile/ECE553/FeynmanLecturesOnPhysicsChapter2-19.pdf). He also mentions that stationary points of functionals can be used to solve other equations.
 
-We can vary $$\phi$$ by infinitesimal $$f$$ to calculate:
+### 2.3 Functional Derivatives 2
 
-$$U(\phi + f) = \int \epsilon_{0}\nabla \phi\nabla f - \rho f dV$$
+There is something about this treatment of functional derivatives that really irritates me.
 
-$$ = \int \epsilon_{0}\nabla (\phi \nabla f) - \epsilon_{0}f \nabla^{2}\phi - \rho f dV$$
+**Complaint**: Why is $$\delta_{x}(\int \dot{x} dt) = \partial_{t}$$, rather than $$\delta_{x}(\dot{x}) = \partial_{t}$$?
 
-(The first term is a total derivative, so can be pulled out, and if we integrate over all space it vanishes.)
+All of the example of functional derivatives are inside integrals. Well, there's one that's a summation from Wikipedia, for entropy of a probability distribution:
 
-$$0 = \int - \epsilon_{0} f \nabla^{2}\phi - \rho f dV = -\int (\epsilon_{0} \nabla^{2} \phi - \rho)f dV$$
+$$H[p(x)] = - \sum p(x) \log p(x)$$
 
-Which just enforces the original differential equation again. I guess there are points in there where this might be more useful than the differential version, depending on what information you're working with!
+$$\delta_{p} H[p(x)] = -\sum 1 + \log p(x)$$
 
+(Using the same procedure except that $$\sum$$ is used instead of $$\int$$ everywhere.)
+
+**Complaint** But if you just *directly* differentiate $$\partial_{p} H(p) = \partial_{p} (- \sum p(x) \log p(x)) = - \sum 1 + \log p(x)$$ you get the same result! So why a) does it give the result you'd expect here and b) why bother with the functional definition in the first place, here?
+
+---
+
+I can tell that there are two kinds of functionals on a space $$M$$ of functions. Consider the difference in type between $$F[x] = \int \dot{x} dt$$ and $$G[x] = \dot{x}$$:
+
+$$F: M \rightarrow \mathbb{R}$$
+
+$$G: M \rightarrow M$$
+
+In general on *any* smooth manifold, smooth maps $$Q: M \rightarrow N$$ have, at a point *p*, a differential map: $$dQ: T_{p}M \rightarrow T_{Q(p)}N$$, which encodes the first-order change in $$Q$$. 
+
+The differential map at *p* gives an element of $$T^{*}_{p}M$$, the dual space of $$T_{p}M$$ vectors at $$p$$. For a given displacement $$\mathbf{v} \in T_{p}M$$, we have $$\langle dF, \mathbf{v} \rangle$$
+
+So for a functional $$F: M\rightarrow \mathbb[R]$$, we should be getting something like $$dF : TM \rightarrow T\mathbb{R}$$, which, in coordinates, should look like $$dF = (something)ds$$. What's the relationship between $$\delta F and dF$$? Not sure; let's try working through it.
+
+If
+
+$$F[x] = \int f(x(t)) dt$$
+
+Then
+
+$$dF[x] = d\int f(x(t)) dt = F[x + \delta x] - F[x] = \int f(x(t) + \delta(t)) - f(x(t)) dt$$
+
+$$= \int \partial_{x} f(x(t)) \delta x(t) dt$$
+
+Which is, indeed, still a functional on $$x(t)$$. How do we extract a $$ds$$ term? We would have to _integrate_ $$\delta x(t)$$. But I don't think we can without knowing more about $$f(x)$$.
+
+$$= \int \partial_{x} f(x(t)) \delta x(t) dt \stackrel{?}{=} (something) ds \in T_{F(p)}\mathbb{R}$$
+
+**So**, because we *can't* compute $$\frac{dF}{ds}$$, we have to look for what we *can* compute -- staying inside the integral. And that's where we conceive of something else: the functional / variational derivative.
+
+Because for any (suitable) function $$Q[x] = \int q(x(t)) dt$$, we *do* have the fact that the differential $$dQ[x]$$ has the form:
+
+$$dQ[x] = \int \frac{\delta Q[x]}{\delta x}(t) \delta x(t) dt$$
+
+So a functional derivative is "a way to take derivatives of functionals that actually leads to something"?
+
+### Functional Derivatives 3
+
+There *is* a way to take a real derivative of $$G[x] : M \rightarrow M$$, such as $$G[x] = \dot{x}$$. Of course there is -- it's a mapping between manifolds and there ought to be a generated differential map on whatever coordinates we have.
+
+Clearly it should be true that
+
+$$G[x + \epsilon \phi] \approx G[x] + \epsilon dG \cdot \phi + o(\epsilon^{2})$$
+
+But in this case, $$dG \cdot \phi$$ gives *another function*, not a scalar -- so it's not $$\int_{i}^{f} \frac{\delta G}{\delta x}(t) \phi(t) dt$$.
+
+Since we know that $$G[x + \epsilon \phi] = G[x] = \epsilon \dot{\phi} = dG \cdot \phi$$, we need to find a way to make $$dG \cdot \phi = \dot{\phi}$$. How? The **Dirac Delta Function** -- except now we're, oh god, overloading the symbol $$\delta$$. I'm so sorry.
+
+**Notation**: to avoid ambiguity I'll be referring to the Dirac Delta function (distribution) as $$J$$, so $$\int J(t) f(t) dt = f(0)$$.
+
+Here's the useful identity for **Computing a derivative via an integral**:
+
+$$\int -\dot{J}(t-t_{0}) f(t) dt = \int J(t - t_{0}) \dot{f}(t) dt = f(t_{0})$$
+
+And so we see that something like $$dG = -\dot{J}$$ should hold, so we can keep using our integral inner product:
+
+$$dG \cdot \phi = -\dot{J} \cdot \phi = \int -\dot{J}(t' - t) \phi(t') dt' = \dot{\phi}(t)$$
+
+(Glossing over some details about what space $$J$$ and $$\phi$$ live in..). We have:
+
+$$G[x + \epsilon \phi] = \partial_{t}(x + \epsilon \phi) = \partial_{t}x + \epsilon \partial_{t} \phi \stackrel{?}{=} \partial_{t}x + \epsilon (-\dot{J}) \cdot \phi$$
+
+Clearly there's something still confusing here. I think it basically amounts to: if you're requiring you do everything 'under an integral sign', you perform $$x \mapsto \dot{x}$$ via $$x \mapsto (-\dot{J}\cdot x)$$. If you're not, you perform it via left-multiplication by $$\partial_{t}$$. In some sense these are different representations of the same operation.
+
+Anyway, this does resolve why $$\delta_{x} \int \dot{x} dt = \partial_{t}$$, because $$\delta_{x} \dot{x} = -\dot{J}$$ instead.
+
+----------
+
+### Functional Derivatives 4
+
+This does get you wondering if there's a clean calculus on non-commutative variables $$(D,x)$$ with $$[D,x] = Dx - xD = 1$$, such that 
+
+$$\partial_{x}x = 1$$
+
+$$\partial_{x} (Dx) = D$$
+
+$$\partial_{D} (Dx) = x$$
+
+It sounds kinda nice. Some other computations...:
+
+$$\partial_{D} (Dx) = D \partial_{D} x + (\partial_{D} D) x = D (0) + x = x \checkmark$$
+
+**Let's calculate the E-L equations!** Here $$x = x(t)$$ and $$D = \frac{d}{dt}$$.
+
+$$S[\mathcal{L}] = \int \mathcal{L}(t, x, D x) dt$$
+
+$$dS = d \int \mathcal{L}(t, x, D x) dt$$
+
+If (not sure) we can commute $$d$$ into the integral...
+
+$$\rightarrow \int d \mathcal{L}(t, x, D x) dt$$ 
+
+$$= \int (\partial_{x} \mathcal{L}) dx + (\partial_{D x} \mathcal{L}) d (D x) dt$$
+
+If $$d (Dx) = D dx$$ (does it? yes, I think so. This $$d$$ is only a differential in $$x(t)$$, not $$D = \frac{d}{dt}$$, so $$d(x) = dx$$ and $$d(D) = 0$$.
+
+$$d S = [\int (\partial_{x} \mathcal{L}  + (\partial_{D x} \mathcal{L}) \overrightarrow{D}) dt ]dx$$
+
+And **if** we have a suitable integral / this whole thing is operating on a suitable target function $$\phi$$ whose bounds we know vanished, we could integrate by parts (= take the adjoint):
+
+$$\int (\partial_{D x} \mathcal{L}) \overrightarrow{D}) \phi(t) dt$$
+
+into
+
+$$\int -D(\partial_{D x} \mathcal{L}) \phi(t) dt$$
+
+Which is how we get to the E-L form:
+
+$$dS = \int \mathcal{L}_{x} - D (\mathcal{L}_{Dx}) dt$$
+
+$$\frac{\delta S}{\delta x} = \mathcal{L}_{x} - D (\mathcal{L}_{Dx})$$
+
+This is so much easier to use than the test-function version up above.
 
 -------------------
 
-### 2.3 Lagrangians
+## 3. More Physics with Lagrangians
 
 1. virtual work + 'inertia force' equilibrium + D'Alambert principle
 2. imaginary time / stati equilibrium
