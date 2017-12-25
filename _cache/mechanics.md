@@ -68,7 +68,7 @@ I went and scoured a bunch of sources to try to figure out the 'true' reason for
 
 The adjoint, as a reminder, is the generalization of the matrix transpose. In this case we're talking about the infinite-dimensional vector space of functions with inner product $$\langle f,g \rangle = \int_{i}^{f} fg dt$$.
 
-The fact that $$\partial_{t}^{*} = -\partial_{t}$$ is conceptually how integration by parts works: because $$\int f \partial_{t}g dt = \langle f , \partial_{t} g \rangle = \langle \partial_{t}^{*} f \vert g \rangle = -\langle \partial_{t}f , g \rangle = (bounds) -\int f_{t}g dt $$. This also seems to mean that it's intrinisically connected to the concept of a derivation, since it basically follows from $$D(fg) = (Df)g + f(Dg)$$. Also, in QM, adjoint operations also include Hermitian conjugates of matrices $$A^{\dagger}$$, which also take $$i \rightarrow -i$$. This is mysterious, but no more than the whole Hilbert space structure is to begin with.
+The fact that $$\partial_{t}^{*} = -\partial_{t}$$ is conceptually how integration by parts works: because $$\int f \partial_{t}g dt = \langle f , \partial_{t} g \rangle = \langle \partial_{t}^{*} f \vert g \rangle = -\langle \partial_{t}f , g \rangle = (bounds) -\int (\partial_{t}f) g dt $$. This also seems to mean that it's intrinisically connected to the concept of a derivation, since it basically follows from $$D(fg) = (Df)g + f(Dg)$$. Also, in QM, adjoint operations also include Hermitian conjugates of matrices $$A^{\dagger}$$, which also take $$i \rightarrow -i$$. This is mysterious, but no more than the whole Hilbert space structure is to begin with.
 
 At some level this is the *true* reason for $$\mathcal{L} = T-V$$, and we just need to find the derivation. We can make a lot more sense of Lagrangian mechanics in the process, also.
 
@@ -98,7 +98,7 @@ Why $$=0$$? We started out saying that $$(m\ddot{x} - F) = (m\partial_{t}^{2} + 
 
 Note that the resulting term has two parts: a term dependent on **boundary conditions only**, $$\frac{1}{2}m(x \dot{x})\vert_{i}^{f}$$, and a term that's an **integral of a scalar quantity over time**, $$\int_{i}^{f} T-V dt$$.
 
-(Aside: If we use $$\dot{\mathbf{x}}\cdot$$ instead, we just get $$d_{t} (T + U) = 0$$, as derived above. I wonder if others are valid? I wonder if other conservation laws are derived by inner-producting with other things? Newton's 2nd law is just momentum conservation, anyway. And $$\mathbf{r} \wedge (F-m\ddot{\mathbf{x}}) = \tau - m\ddot{\theta} = 0$$ gives angular momentum conservation. I wonder if any differential has conserved quantities that can be found with a process like this?)
+(Aside: If we use $$\dot{\mathbf{x}}\cdot$$ instead, we just get $$d_{t} (T + U) = 0$$, as derived above. I wonder if others are valid? I wonder if other conservation laws are derived by inner-producting with other things? Newton's 2nd law is just momentum conservation, anyway. And $$\mathbf{r} \wedge (F-m\ddot{\mathbf{x}}) = \tau - m\ddot{\theta} = 0$$ gives angular momentum conservation. I wonder if any differential equation has conserved quantities that can be found with a process like this? It's a lot easier than using Noether's Theorem...)
 
 ------------
 
@@ -177,7 +177,7 @@ $$\partial_{\epsilon} F[x + \epsilon \phi]_{\epsilon = 0} = \frac{1}{\epsilon} \
 
 So: $$\delta_{x} F[x(t)] = \partial_{x} f(x(t))$$.
 
-We can also write $$\delta F = F[x + \delta x] - F[x]$$, where $$\delta x$$ is understood to be an 'infinitesimal' function variation.
+We can also write $$\delta F[x] = F[x + \delta x] - F[x]$$, where $$\delta x$$ is understood to be an 'infinitesimal' function variation.
 
 **Example 2: Euler-Lagrange**
 
@@ -208,7 +208,7 @@ Which is the Euler-Lagrange equations.
 
 And the grand point is:
 
-**The Grand Point** _This is not that amazing_. The **principle of stationary action**, which takes a postulate / assumption that $$\delta S = 0$$ for the 'phyical path', is the application of a mechanical procedure to solving a differential equation. It just turns out to be 
+**The Grand Point** _This is not that amazing_. The **principle of stationary action**, which takes a postulate / assumption that $$\delta S = 0$$ for the 'phyical path', is the application of a mechanical procedure to solving a differential equation. It just turns out a good technique for solving the kinds of differential equations we get in physics, primarily because it ends up giving the solutions via scalar differnetial equations over the whole system instead of vector differential equations over each component separately.
 
 
 By the way, this is basically, at a marginally higher abstraction, the approach Feynman describes [here](http://yima.csl.illinois.edu/psfile/ECE553/FeynmanLecturesOnPhysicsChapter2-19.pdf). He also mentions that stationary points of functionals can be used to solve other equations.
@@ -217,7 +217,7 @@ By the way, this is basically, at a marginally higher abstraction, the approach 
 
 There is something about this treatment of functional derivatives that really irritates me.
 
-**Complaint**: Why is $$\delta_{x}(\int \dot{x} dt) = \partial_{t}$$, rather than $$\delta_{x}(\dot{x}) = \partial_{t}$$?
+**Complaint 1:**: Why is $$\delta_{x}(\int \dot{x} dt) = \partial_{t}$$, rather than $$\delta_{x}(\dot{x}) = \partial_{t}$$?
 
 All of the example of functional derivatives are inside integrals. Well, there's one that's a summation from Wikipedia, for entropy of a probability distribution:
 
@@ -227,7 +227,7 @@ $$\delta_{p} H[p(x)] = -\sum 1 + \log p(x)$$
 
 (Using the same procedure except that $$\sum$$ is used instead of $$\int$$ everywhere.)
 
-**Complaint** But if you just *directly* differentiate $$\partial_{p} H(p) = \partial_{p} (- \sum p(x) \log p(x)) = - \sum 1 + \log p(x)$$ you get the same result! So why a) does it give the result you'd expect here and b) why bother with the functional definition in the first place, here?
+**Complaint 2:** But if you just *directly* differentiate $$\partial_{p} H(p) = \partial_{p} (- \sum p(x) \log p(x)) = - \sum 1 + \log p(x)$$ you get the same result! So why a) does it give the result you'd expect here and b) why bother with the functional definition in the first place, here?
 
 ---
 
@@ -311,11 +311,11 @@ It sounds kinda nice. Some other computations...:
 
 $$\partial_{D} (Dx) = D \partial_{D} x + (\partial_{D} D) x = D (0) + x = x \checkmark$$
 
-**Let's calculate the E-L equations!** Here $$x = x(t)$$ and $$D = \frac{d}{dt}$$.
+**What about the Euler-Lagrange equations?** Sure, no problem. Remember that $$x = x(t)$$ and $$D = \frac{d}{dt}$$:
 
-$$S[\mathcal{L}] = \int \mathcal{L}(t, x, D x) dt$$
+$$S[x] = \int \mathcal{L}(t, x, D x) dt$$
 
-$$dS = d \int \mathcal{L}(t, x, D x) dt$$
+$$dS[x] = d \int \mathcal{L}(t, x, D x) dt$$
 
 If (not sure) we can commute $$d$$ into the integral...
 
@@ -339,9 +339,9 @@ Which is how we get to the E-L form:
 
 $$dS = \int \mathcal{L}_{x} - D (\mathcal{L}_{Dx}) dt$$
 
-$$\frac{\delta S}{\delta x} = \mathcal{L}_{x} - D (\mathcal{L}_{Dx})$$
+$$\frac{\delta S}{\delta x} = \mathcal{L}_{x} - D (\mathcal{L}_{Dx}) \checkmark$$
 
-This is so much easier to use than the test-function version up above.
+This is so much easier to use than the test-function version up above. And it also clearly still gives $$\frac{d}{dx}(\dot{x}) = \partial_{t}$$. Of course it's not *quite* the usual space we work in in calculus -- but it's not far off either, and feels extremely suggestive and comprehensible compared to, say, the usually arcane commutators $$[x,p] = i\hbar$$ of quantum mechanics...
 
 -------------------
 
