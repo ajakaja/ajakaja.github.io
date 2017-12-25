@@ -299,23 +299,29 @@ Anyway, this does resolve why $$\delta_{x} \int \dot{x} dt = \partial_{t}$$, bec
 
 ### Functional Derivatives 4
 
-This does get you wondering if there's a clean calculus on non-commutative variables $$(D,x)$$ with $$[D,x] = Dx - xD = 1$$, such that 
+This does get you wondering if there's a clean calculus on non-commutative variables $$(D = \frac{d}{dt},t)$$ with $$[D,t] = Dt - tD = 1$$, such that 
 
-$$\partial_{x}x = 1$$
+$$\partial_{t}t = 1$$
 
-$$\partial_{x} (Dx) = D$$
+$$\partial_{t} (Dt) = D$$
 
-$$\partial_{D} (Dx) = x$$
+$$\partial_{D} (Dt) = t$$
 
-It sounds kinda nice. Some other computations...:
+It sounds kinda nice. We can do:
 
-$$\partial_{D} (Dx) = D \partial_{D} x + (\partial_{D} D) x = D (0) + x = x \checkmark$$
+$$\partial_{D} (Dt) = D \partial_{D} t + (\partial_{D} D) t = D (0) + t = t \checkmark$$
 
-**What about the Euler-Lagrange equations?** Sure, no problem. Remember that $$x = x(t)$$ and $$D = \frac{d}{dt}$$:
+And see that for $$x(t)$$, if $$D = \frac{d}{dt}$$,
+
+$$[D, x(t)]f = D(xf) - x(Df) = f(Dx) + x(Df) - x(Df) = f(Dx) = \dot{x}f$$
+
+$$\rightarrow [D, x(t)] = Dx(t) = \dot{x}$$
+
+What about the Euler-Lagrange equations? Sure, no problem:
 
 $$S[x] = \int \mathcal{L}(t, x, D x) dt$$
 
-$$dS[x] = d \int \mathcal{L}(t, x, D x) dt$$
+$$dS[x] = \frac{\partial S}{\partial x}dx = d \int \mathcal{L}(t, x, D x) dt$$
 
 If (not sure) we can commute $$d$$ into the integral...
 
@@ -323,13 +329,13 @@ $$\rightarrow \int d \mathcal{L}(t, x, D x) dt$$
 
 $$= \int (\partial_{x} \mathcal{L}) dx + (\partial_{D x} \mathcal{L}) d (D x) dt$$
 
-If $$d (Dx) = D dx$$ (does it? yes, I think so. This $$d$$ is only a differential in $$x(t)$$, not $$D = \frac{d}{dt}$$, so $$d(x) = dx$$ and $$d(D) = 0$$.
+Does $$d (Dx) = dx D$$? I think so -- if this treatment as separate variables is valid. This $$d$$ is only a differential in $$x(t)$$, not $$D = \frac{d}{dt}$$, since we are treating them as unrelated variables other than their non-commutativity.
 
 $$d S = [\int (\partial_{x} \mathcal{L}  + (\partial_{D x} \mathcal{L}) \overrightarrow{D}) dt ]dx$$
 
 And **if** we have a suitable integral / this whole thing is operating on a suitable target function $$\phi$$ whose bounds we know vanished, we could integrate by parts (= take the adjoint):
 
-$$\int (\partial_{D x} \mathcal{L}) \overrightarrow{D}) \phi(t) dt$$
+$$\int (\partial_{D x} \mathcal{L}) D \phi(t) dt$$
 
 into
 
@@ -339,9 +345,11 @@ Which is how we get to the E-L form:
 
 $$dS = \int \mathcal{L}_{x} - D (\mathcal{L}_{Dx}) dt$$
 
-$$\frac{\delta S}{\delta x} = \mathcal{L}_{x} - D (\mathcal{L}_{Dx}) \checkmark$$
+$$\frac{\delta S}{\delta x} = \mathcal{L}_{x} - D (\mathcal{L}_{Dx}) = \checkmark$$
 
-This is so much easier to use than the test-function version up above. And it also clearly still gives $$\frac{d}{dx}(\dot{x}) = \partial_{t}$$. Of course it's not *quite* the usual space we work in in calculus -- but it's not far off either, and feels extremely suggestive and comprehensible compared to, say, the usually arcane commutators $$[x,p] = i\hbar$$ of quantum mechanics...
+This is so much easier to use than the test-function version up above. If it's valid. Not sure.
+
+And it also clearly still gives $$\frac{d}{dx}(\dot{x}) = \partial_{t}$$. Of course it's not *quite* the usual space we work in in calculus -- but it's not far off either, and feels extremely suggestive and comprehensible compared to, say, the usually arcane commutators $$[x,p] = i\hbar$$ of quantum mechanics...
 
 -------------------
 
