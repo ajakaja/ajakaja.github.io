@@ -3,7 +3,7 @@ layout: article
 title: "Mechanics (digression)"
 math: true
 footnotes: true
-category: cache
+category: notes
 ---
 
 *I started trying to figure out how [symplectic integrators](https://en.wikipedia.org/wiki/Symplectic_integrator) give better (roughly energy-preserving) solutions to differential equations, making them preferable for implementing physics simulations in games, and got lost in a rabbithole of 'trying to actually understand classical mechanics'. (Partly because this really needs to be solid to make better sense of QM.) Here are some notes.*

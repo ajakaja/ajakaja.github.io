@@ -7,7 +7,7 @@ Cached thoughts:
 
 <div class="posts">
 <ul class="list">
-  {% for post in site.cache %}
+  {% for post in site.notes %}
     <li>
       <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
     </li>
