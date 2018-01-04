@@ -20,7 +20,7 @@ html {
 
 body {
   background: $white;
-  font: 14px/1.4 $helvetica;
+  font: 14px/1.4 Times New Roman;
   color: $darkGray;
   height: 100%;
 }
@@ -46,7 +46,6 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: bold;
 
   line-height: 1.7;
-  margin: 0 0 15px;
   padding: 0;
 
   @include mobile {
@@ -316,7 +315,7 @@ article {
   }
 
   .read-more {
-    text-transform: uppercase;
+  font-style: italic;
     font-size: 15px;
   }
 }
