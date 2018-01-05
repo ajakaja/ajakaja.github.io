@@ -10,13 +10,13 @@ It is *so good*.
 
 It is so good it makes me want to go comb through everything else on his blog for insights.
 
-It is so good that when I realized I couldn't remember why it was so good, I decided to go reread it.
+It is so good that, when I realized I couldn't remember why it was so good, I had to go reread it.
 
-... It's also so long that by the time I finish it I can't remember half of the things I liked. And it, well, rambles incoherently sometimes, also. It's not perfect. So I'm going to actually write down in article form what its main insights are, to make them easier to re-access. That's what this is.
+... It's also so *long* that by the time I finish it I can't remember half of the things I liked. And it, well, rambles incoherently sometimes, also. It's not perfect. So I'm going to actually write down in article form what its main insights are, to make them easier to re-access. That's what this is.
 
 (It's also available with better UX [here](https://blogs.spectator.co.uk/2017/01/dominic-cummings-brexit-referendum-won/), but I figure it's most noble to link to the original source.)
 
-Admittedly, the author seems somewhat cold / calculating / psychopathic (and apparently the UK media loves to [call him that](https://www.theguardian.com/politics/shortcuts/2017/jul/18/dominic-cummings-career-psychopath-david-davis-thick-as-mince)), so perhaps it's not best to aspire to think like him. But I'm praising him for his intellectual qualities, not his empathy. Maybe only the rest of us should focus on both.
+(Admittedly, the author seems somewhat cold / calculating / psychopathic (and apparently the UK media loves to [call him that](https://www.theguardian.com/politics/shortcuts/2017/jul/18/dominic-cummings-career-psychopath-david-davis-thick-as-mince)), so perhaps it's not best to aspire to think like him. But I'm praising him for his intellectual qualities, not his empathy. Maybe only the rest of us should focus on both.)
 
 <!--more-->
 
@@ -37,7 +37,7 @@ And it strongly corroborates, and is corroborated by, my own model of the world 
 
 So, it's the kind of writing that makes you feel abundantly smarter reading it, *and* it's an unusually lengthy example of that so it's got a lot of meat, *and* it's about politics which is already a frustratingly incomprehensible area that's going through an especially incomprehensible era.
 
-My one concern in praising this article is: *I don't understand why he wrote this*, (reminder: it's not that it might all be fictional and I wouldn't be able to tell; that doesn't matter here.) What does he gains from trying to dispel ignorance around how Brexit went through or how the world works? Since I can't see his agenda, I feel like I'm lapping up his thoughts uncritically. 
+My one concern in praising this article is: *I don't understand why he wrote this*. (reminder: it's not that it might all be fictional and I wouldn't be able to tell; that doesn't matter here.) What does he gains from trying to dispel ignorance around how Brexit went through or how the world works? Since I can't see his agenda, I feel like I'm lapping up his thoughts uncritically. 
 
 Maybe it would be more obvious what Dominic's goals are if I was British or knew of his other work. Maybe he's a pure-minded idealist who's trying to fix the world, decency be damned (from skimming his other work I think this might possibly be right). Maybe he just relishes telling people they're wrong or in sounding smart. Not sure.
 
@@ -59,7 +59,7 @@ So: here is an outline with comment and important points highlighted. It's for m
 3. And people want me to write about it. I was avoiding it because thinking about it made me sick, because
 4. ... every waking moment of a year of my life was spent on it, mostly dealing with frustrating bullshit.
 	* Most people on our side were useless and thought of *Vote Leave* as the enemy.
-	* **Note** *Vote Leave* was Dominic's campaign. There were others (*Leave.EU* the main one), but they were selected as the 'official' campaign, eventually, and did most of the effective work.
+	* **Note**: *Vote Leave* was Dominic's campaign. There were others (*Leave.EU* being the main alternative), but *Vote Leave* was the most competent, was eventually selected as the 'official' campaign, and did most of the effective work.
 5. SW1 is deranged.
 	* **Note**: SW1 is the postal code for most of the UK government in London, and is used as a metonym for the whole government. It is like saying "Washington" in the US.
 	* Politics reflects human nature: fear, self-interest, vanity.
@@ -67,7 +67,7 @@ So: here is an outline with comment and important points highlighted. It's for m
 	* **Highlight**: "Progress, when it comes, is driven by the error-correcting institutions of science and markets..."
 	* "It rarely comes from [leaders / decision makers], and, when it does, it is usually accidental or incidental to their motives."
 		* **Comment**: This is also my model of the world. It is why I am not bothered by Trump so much as by the America that elected him.
-			* However, I think there are a couple more main cogs in the '[psychohistory](https://en.wikipedia.org/wiki/Psychohistory_(fictional))' of the world. I'd estimate the world also changes most macroscopically on some other key axes: Wisdom vs. Reactionism, Humility vs Elitism, and Pragmatism vs Nihilism. These should factor in somehow.
+			* However, I think there are a few more major cogs in the '[psychohistory](https://en.wikipedia.org/wiki/Psychohistory_(fictional))' of the world. I'd estimate the world also changes most macroscopically on some other key axes: Wisdom vs Reactionaryism, Humility vs Elitism, and Pragmatism vs Nihilism. These should factor in somehow.
 6. Questions like "Why did X win/lose" are misleading; people tend to make fallacious *post facto* stories.
 7. **Highlight**: "I’ve learned over the years that ‘rational discussion’ accomplishes almost nothing in politics."" BUT, things you say or write can have subtle network effects that do good things later
 8. Politics is not a field that meets the criteria for expertise
@@ -88,7 +88,7 @@ So: here is an outline with comment and important points highlighted. It's for m
 		* IMO, most of America looks at Trump's election this way. "Trump won because X"! Well, you would have been saying "Trump lost because Y!" if he had lost. That doesn't work. Instead, talk about the thing that's true either way: how did he get within 5% of winning, instead of being at 10% of the national vote? Talk about the macroscopic trend, instead of trying to write a narrative about a coin flip.
 			* and yes, the events of the last few weeks of a campaign -- "who voted", "who got pissed in the last week", "who gaffed", "how effective an ad campaign was", are essentially coin flips, though possibly slightly weighted ones.
 	* "Soon our actual history seems like the only way things could have played out. Brexit had to happen. Trump had to win."
-	* **Comment**: this point, more than any other, is the reason I believe Dominic's opinions about how the world works. Understanding this is a requirement to being able to "get" how the world works, and so anyone who signals knowing this is probably capable of "getting it", and anyone who doesn't signal it may not be capable of "getting it" at all, so their opinions are much more suspect.
+	* **Comment**: This point, more than any other, is the reason I believe Dominic's opinions about how the world works. Understanding this is a requirement to being able to "get" how the world works, and so anyone who signals knowing this is probably capable of "getting it", and anyone who doesn't signal it may not be capable of "getting it" at all, so their opinions are much more suspect.
 		* this is also why I think that everyone in the world needs much much much more mathematical literacy. Because without it, you can't know what you don't know -- and with it, it's obvious how much everyone else is missing.
 			* of course, that's just my impression; maybe I'm clueless and everyone actually does get this.
 2. Historical examples of this happening
@@ -145,7 +145,7 @@ So: here is an outline with comment and important points highlighted. It's for m
 			* and competence, true *Wanting*, looks like -- building a data science team, bringing in Actual Smart People instead of Seeming Smart People, punching through false and dated models, etc. There is a purity to it.
 				* Why? because purity of thought, 'true rationality', wins, all other things being equal. It wins *by definition* -- towards whatever goal you have, being "maximally rational" should be defined as "choosing the path that most probably wins". It means finding the best models, best tactics, best people, making right choices, whatever.
 		* this is why so many New Years' Resolutions fail. Because people "want" to change, but they don't *Want* to.
-		* And it sounds like Brexit was won by the side and people who most *Wanted* to win. Namely, Dominic&co.
+		* And it sounds like Brexit was won by the side and people who most *Wanted* to win. Namely, Dominic & co.
 15. **Highlight**: People are happy to fail if they fail conventionally.
 	* people in politics mostly would rather do a normal thing and fail than do an unconventional thing and be stigmatized when they fail.
 	* "They did not mind losing so much as being embarrassed"
@@ -241,7 +241,7 @@ So: here is an outline with comment and important points highlighted. It's for m
 	* "They suckered themselves into over-prioritising their coalition versus message."
 		* example: saying that *Leave* had no good people on its side. Basically a weird sort of ignorant *ad hominem* instead of engaging with issues people cared about.
 	* Steered by pundit, not actual people.
-		* focus groups showed that opinions, especially outside London, were extremely different, and Cameron&Co missing them entirely.
+		* focus groups showed that opinions, especially outside London, were extremely different, and Cameron & Co missing them entirely.
 2. Some critics said they should have been a positive campaign about the EU, and they're wrong.
 	* Cameron & Osborne were right about this. Not enough time/money to change sentiment
 3. **Highlight**: "I suspect that in general big mistakes cause defeat much more often than excellent moves cause victory"
@@ -486,7 +486,7 @@ Also:
 * And it requires being *rational*: having a model of the world that gets you closer to thinking clearly. Dominic Cummings is a rare example of this. Cameron + Osborne were not. Other OUT MPs/figures were not.
 
 * Understanding Brexit, Trump, Hitler, or Stalin requires being smarter than this and seeing how the world actually works, outside of the filter bubble.
-* How to actually learn: make concerted effort to get outside your bubble and understand diverse viewpoints. And especially, make an honest effort to refute your own position.
+* How to actually be smart on politics: make concerted effort to get outside your bubble and understand diverse viewpoints. And especially, make an honest effort to refute your own position.
 
 ### 3. What's wrong with the world / what's required to understand Brexit and Trump
 
