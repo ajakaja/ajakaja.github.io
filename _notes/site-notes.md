@@ -39,6 +39,6 @@ I figured out, mostly, how to do image includes in Jekyll from [this article](ht
 
 Issues with KateX:
 * commas after equations often flow onto the next line
-* fraction lines disappear randomly depending on the zoom. It's subpixel something or another in Chrome, but, yeah, it's pretty annoying.
+* fraction lines disappear randomly depending on the zoom. It's subpixel something or another in Chrome, but, yeah, it's pretty annoying. It's an [open bug](https://github.com/Khan/KaTeX/issues/824) in KateX)
 * macros would be *super useful*, since I write \mathbf{} 100x a page.
 * as mentioned above, the KateX integration with MathJax is wonky. But it still looks pretty good.

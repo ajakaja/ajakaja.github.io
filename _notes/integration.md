@@ -3,7 +3,7 @@ layout: article
 title: "Integration by Differentiation"
 math: true
 footnotes: true
-category: cache
+category: notes
 ---
 
 I found this [paper](https://arxiv.org/pdf/1610.09702.pdf), entitled "Integration by differentiation: new proofs, methods and examples", by Jia, Tang, and Kempf.
