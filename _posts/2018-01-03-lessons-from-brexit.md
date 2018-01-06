@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "Lessons from Dominic Cummings on Brexit"
+title: "Lessons from the Architect of Brexit"
 footnotes: true
 ---
 
@@ -22,35 +22,56 @@ It is so good that, when I realized I couldn't remember why it was so good, I ha
 
 ---
 
-It's not that Dominic Cummings is *right*. I have no idea if he's right. I don't know anything about Brexit, and I definitely haven't read any critical responses to the piece that would put it in larger context. But his article has that insight-porn 'rightness' quality to it, wherein:
+It's not that Cummings is *right*. I have no idea if he's right. I don't know anything about Brexit, and I definitely haven't read any critical responses to the piece that would put it in larger context. 
 
-1. The points 'seem' right, in that they're consistent, coherent, and 'palatable' in my model of the world
-2. The writer seems intellectually pure, by:
-	1. seeming to reasoning clearly and mathematically-soundly
-	2. concerned with truth-seeking and accurate modeling of the world
-	3. not concerned with a motive to distort the truth somehow (indeed, it seems very much like he doesn't care what anyone thinks of him and that he just doesn't want the world to be wrong without his having said something)
-2. It sets up a framework in which it is *obvious*:
-	1. *why* the points are right and 
-	2. *why* I/other people haven't already realized the points are right, due to our deficiencies in our models for reasoning about the world
+What I'm captivated by is how his article has this insight-porn 'rightness' quality to it, where I immediately find credible his ideas. So I'm both interested in "what he has to say" and "how it's so compelling".
 
-And it strongly corroborates, and is corroborated by, my own model of the world and how people completely misunderstand how it works. Of course my model might be dead wrong also, but mutual corroboration means that we're probably right or wrong together. And I tend to think mine isn't, anyway, because that's more fun and more useful to me, and lets me spend less time plagued by existential self-doubt.
+The components of this quality of Right-Seeming-ness are:
 
-So, it's the kind of writing that makes you feel abundantly smarter reading it, *and* it's an unusually lengthy example of that so it's got a lot of meat, *and* it's about politics which is already a frustratingly incomprehensible area that's going through an especially incomprehensible era.
+1. The points themselves 'seem' correct, in that:
+	* They explain things I didn't understand in a way that my brain logically and eagerly accepts.
+	* They don't explain things that seem false ([prove too much](https://en.wikipedia.org/wiki/Proving_too_much))
+		* [this, IMO, is the most sound technique 'identify bullshit without data'. Most false claims are obviously false because of what they imply -- what would be true if they were true -- rather than what they claim.]
+2. The writer seems intellectual pure:
+	* He seems concerned with reasoning clearly, more than social or political goals
+		* He criticizes *models* of thought that lead to false claims, not just the claims themselves
+	* He seems to think mathematically and rationally
+		* He includes pseudo-confidence intervals ("they would have won (>95% confidence)") on some claims instead of asserting their truth
+		* He recognizes and *signals recognizing* mathematical legitimacy in claims / models
+		* He seem (dangerous...) not to be writing with a hidden agenda. Of course that could be faked, but:
+			* He does socially abnormal things like specifically name-and-shaming people for their incompetence, which a polically manipulative person would... probably... not do?
+			* He seems unconcerned with defending / praising himself, and eagerly describes his own failures and how people's praises of him are wrong. (Indeed, it seems very much like he doesn't care what anyone thinks of him and that he just doesn't want the world to be wrong without his having said something!)
+		* He seems (again, dangerous) primarily concerned and motivated by truth-seeking and accurate modeling of the world
+			* There are myriad things that would be different, I think, in his writing if he *wasn't*. So the negation of this ("he's concerned with something other htan truth-seeking...") would 'prove too much'.
+	* He has clout. (Of course -- his people did win an election no one thought he would win, and his behavior is evidence he thought it was winnable when mostly no one else did. But we can't give that too much credit: he also condemns believing winners just because they won!)
+3. Most importantly, he writes about *frameworks* that fit around his claims, which is much more powerful than just "claiming correct facts":
+	* He provides models for understanding politics in which it's clear *why* his points are right., and
+	* He provides models of how most people think that makes it clear *why they were wrong*
+		So we come out feeling like we see not only "how things are" but also "why we couldn't see that before".
 
-My one concern in praising this article is: *I don't understand why he wrote this*. (reminder: it's not that it might all be fictional and I wouldn't be able to tell; that doesn't matter here.) What does he gains from trying to dispel ignorance around how Brexit went through or how the world works? Since I can't see his agenda, I feel like I'm lapping up his thoughts uncritically. 
+The result is set of ideas I find myself strongly *wanting to believe*: of what happened, why I didn't get it, why almost no one got it, what he did that people didn't predict, and why it worked. 
 
-Maybe it would be more obvious what Dominic's goals are if I was British or knew of his other work. Maybe he's a pure-minded idealist who's trying to fix the world, decency be damned (from skimming his other work I think this might possibly be right). Maybe he just relishes telling people they're wrong or in sounding smart. Not sure.
+This is far more compelling than a series of facts that could be true or false. This is (I think) how all arguments for 'new models of reality' must be wrirten if they are to succeed. (And I suspect most people aren't capable of doing this successfully.)
 
-But -- I still think the insights mostly, even without the context of his agenda.
+It helps, also, that his models seem to either agree or expand, instead of refute, my own. So of course I like someone who seems to agree with me. Of course my model might be dead wrong also, but mutual corroboration means that we're probably right or wrong together. And I tend to think mine isn't, anyway, because that's more fun and more useful to me, and lets me spend less time plagued by existential self-doubt.
 
-So: here is an outline with comment and important points highlighted. It's for me, mostly, to help me remember the salient points about how the world works. But you can read it too.
+------------
+
+So, it's the kind of writing that makes you feel abundantly smarter reading it, *and* it's an unusually lengthy example of that so it's got a lot of meat, *and* it's about politics which is already a frustratingly incomprehensible area, that's going through an especially incomprehensible phase.
+
+My one concern in praising this article is: I don't really get *why* he wrote this. (reminder: it's not that it might all be fictional and I wouldn't be able to tell; that doesn't matter much.) What does he gains from trying to dispel ignorance around how Brexit went through or how the world works? Since I can't see his agenda, I feel like I'm lapping up his thoughts uncritically. 
+
+Maybe it would be more obvious what Dominic's goals are if I was, well, British, or knew of his other work. Maybe he's actually pure-minded idealist who's trying to fix the world, decency be damned. Maybe he just relishes telling people they're wrong or in sounding smart. Not sure.
+
+But -- I still think the insights in this article are compelling, even without the context of understanding his agenda.
+
+So: here is an outline with commentary and important points highlighted. It's mostly for me, to help me remember what I liked in a briefer and more referenceable format. But you can read it too.
 
 ## A Massive Outline
 
 (One # = One Paragraph)
 (First person = Dominic Cummings, not me)
-(Annotated with some context for Americans, when it matters, with what I could figure out.)
-(Feel free to skip all of this... the main ideas are at the end.)
+(Annotated with some context for Americans, when it matters, with what I could quickly figure out.)
 
 ### 1. Intro 
 
@@ -67,7 +88,9 @@ So: here is an outline with comment and important points highlighted. It's for m
 	* **Highlight**: "Progress, when it comes, is driven by the error-correcting institutions of science and markets..."
 	* "It rarely comes from [leaders / decision makers], and, when it does, it is usually accidental or incidental to their motives."
 		* **Comment**: This is also my model of the world. It is why I am not bothered by Trump so much as by the America that elected him.
-			* However, I think there are a few more major cogs in the '[psychohistory](https://en.wikipedia.org/wiki/Psychohistory_(fictional))' of the world. I'd estimate the world also changes most macroscopically on some other key axes: Wisdom vs Reactionaryism, Humility vs Elitism, and Pragmatism vs Nihilism. These should factor in somehow.
+			* However, I think there are a few more major forces in the '[psychohistory](https://en.wikipedia.org/wiki/Psychohistory_(fictional))' of the world. I'd estimate the world also changes most macroscopically on a few other key axes: Wisdom vs Reactionaryism, Humility vs Elitism, and Pragmatism vs Nihilism. These should factor in somehow.
+			* Not to get sidetracked, but... I'm really interested in understanding the significant cogs in the, uh, global socioeconomic machine, based on the postule that change is almost always a gradual, 'tidal' effect, and policy changes / major events like Brexit / Trump / etc are just the easily trackable markers of those currents. 
+			* And I think that science and market forces alone don't cover it, because there are other social / philosophical undercurrents that have led to change and progress, even in my lifetime, on their own -- currents which must be understood to answer questions like "why are Americans moving back to cities?" or "Why did Trump win?".
 6. Questions like "Why did X win/lose" are misleading; people tend to make fallacious *post facto* stories.
 7. **Highlight**: "I’ve learned over the years that ‘rational discussion’ accomplishes almost nothing in politics."" BUT, things you say or write can have subtle network effects that do good things later
 8. Politics is not a field that meets the criteria for expertise
@@ -104,6 +127,7 @@ So: here is an outline with comment and important points highlighted. It's for m
 4. Example of Andrew Marr with a classical *post facto* explanation of "Why did the referendum win?" that is obviously wrong.
 5. The "Big Why?" model is the wrong way to look at history.
 	* if it were right, the referendum would have passed by *much* more than 1.9%.
+	* **comment**: to be precise: we can give 'Why?' stories to "how did we end up with Brexit being competitive?" -- how did it get even within 10% of winning? That's the kind of macroscopic story that isn't glossing over the coin-flips of the actual vote. What we must reject is attempts at giving a simple explanation to why the number 51.9% was not 49.9%.
 
 ### 3. Three Powerful Forces [Dominic's model of what actually happened]
 
@@ -151,7 +175,7 @@ So: here is an outline with comment and important points highlighted. It's for m
 	* "They did not mind losing so much as being embarrassed"
 	* **Comment**: another point I think underlies much of how society works. Everyone's looking to do "normal-enough" seeming things that they avoid stigma. This leaves holes for people like, say, Elon Musk to come in any "play to win", as it were, and that's where actual change comes from.
 		* this is what people mean when they talk about a willingness to take risks. If you try something that wouldn't be stigmatized if you failed, you haven't really taken a risk at all.
-		* this means, I think, that getting over self-consciousness is the most important self-development. At least it is for me.
+		* this means, I think, that getting over self-consciousness (fear of judgment from others, or judging yourself even without others involved) is the most important self-development. At least it is for me.
 16. The *Leave* campaign was happy to fail unconventionally, and were incredibly devoted as a result.
 17. Example: they ignored everyone's suggestions to hire big ad firms to do big conventional campaigns.
 	* They knew that one truth of advertising is it's most effective the closer to the decision point it is.
@@ -288,10 +312,26 @@ So: here is an outline with comment and important points highlighted. It's for m
 
 1. Quote about people characterizing the referendum as being about Good vs Evil, Racist vs Not.
 2. Why does political discussion have to be so depressing and fruitless?
-3. The better educated are more prone to irrational political opinions
-	* more driven by fashion/groupthink/moralizing
-	* less wealthy people are less likely to send signals
-	* more wealthy consider things more abstractly, in moral and emotional terms. Don't need to be pragmatic.
+	* "I think much has to do with the delusions of better educated people. It is easier to spread memes in SW1, N1, and among Guardian readers than in Easington Colliery." [a blue-collar coal mining town]
+3. "Generally the better educated are more prone to *ir*rational political opinions and political hysteria"
+	* more driven by fashion/gang mentality, which exacerbates groupthink and cognitive biases
+	* less wealthy people are less likely to send signals; they think in more concrete terms
+	* more wealthy consider things more abstractly, in moral and emotional terms. Don't need to be pragmatic -- insulated from, say, worrying about money.
+	* **comments and more comments**: This is pretty contentious. I happen to agree with it, so I'll defend it. My mental model agrees that the better educated, while capable of, perhaps, more abstract thought and better research, tend to think more based on emotional currents, memetic ideas, and things required for social signalling with other elite.
+		* For examples of this, I would point to: anytime the "middle class and up" has been shocked by something happening because they don't understand it. Who saw Trump coming? Or Brexit? Well, if you spent *any time* in poor Ameica, you would not be the slightest bit surprised that Trump won, even months before that election. So what did everyone else miss, if they're better educated?
+			1. people don't *really* do research. They go looking to confirm what they already think, and they find it, because there's no shortage of explanations for it.
+			2. And many politic stances are more questions of ethics or propriety anyway. The big shock with Trump was "that people would be willing to support such a jackass at all, *regardless* of his message." But in fact, that was fine with millions of people, because being appealed to and feeling 'represented' was far more important than decency for them. (Okay, that's my narrative; take it as you will.)
+		* By the way, the point of this section is that the better educated are more likely to have 'irrational politic opinions'. What's an example of an irrational political opinion? The rationality of "membership in the EU is good for the UK" is pretty arbitrary and depends on a personal value system anyway. But "the UK would never vote for something like this" is a fact-checkable opinion that's now provably false. And yet it was common. 
+		* I personally think that many of the ethical questions that American middle-class-and-up take as pretty cut-and-dry are not as unambiguous as they think, and that their opinions come more from tribalism than an actual reasoned or researched opinion. (I still *agree* with them on most of these things; I just think their opinions aren't coming from where they *think* they are.) 
+		* Cummings talks later about this: how the platforms of major political parties can be *completely insane*, and because they are normalized they seem reasonable until closely inspected. 
+			* How do you tell if a platform is insane? Well, perhaps it changes based on what seems advantageous:
+				* example: marijuana legalization was, like, a ~Antifederalist position when the national government was largely against it and a Federalist position when the national government mostly supported it.
+			* Or perhaps it's *obviously not working for its own stated goals*
+				* cf. immigration and crime problems that the EU is failing to solve in a way that satisfies, say, most of the UK, (Cummings mentions that focus groups wanted to talk only about immigration, and the media/London didn't have any idea of that)
+				* 'trickle-down' economics
+				* the Drug War
+				* banks being too big to fail, and neither party making it their platform to *do something about that*
+			* These are the kinds of things that a *sane* platform would address directly, and an *insane* platform would skirt around, dodge, vaguely pay lip service to, etc: because they're not actually representing the interests of the people, and deserve to lose, badly, as soon someone who shows up and *does* represent everyone joins the race*
 4. And also, the people explaining politics (pundits etc) don't really understand it
 	* don't get dysfunctional bureaucracies work
 	* or how decision making ... isn't really being done by experts at all
@@ -469,22 +509,24 @@ Here are the key ideas, distilled. I think a book could be written about each of
 
 Things happen due to a combination of random events. Thinking in *post facto* 'Why?' stories is wrong and anyone telling them doesn't get it. Pundits/experts are largely clueless, and aren't experts at all, and that will remain true until there's a way to tell who the experts are.
 
-Brexit passed due to:
+The complicated, not Just-So story of how Brexit passed is approximately:
 
 1. Longstanding tension from Immigration, Euro, and Financial crises.
 2. The *Leave* campaign effectively capitalizing on these, with an effective message.
 3. ... the *Remain* campaign failing to find a good message and being run incompetently.
-4. Good management in the *Leave* campaign having a good understanding of how to win, an actual scientific approach, and preventing their own side from imploding their efforts.
-5. Luck
+4. Good management in the *Leave* campaign having a good understanding of how to win, an actual scientific approach, and preventing their own side from imploding their efforts -- all got them in the ballpark of winning.
+5. Luck did the rest
 
 ### 2. People in media/politics are unrational, delusional, ineffective
 
-Thought-bubbles / groupthink are pervasive, especially among the well-educated and wealthy who are more prone to fashions, signalling, and being Oblonskys. They have no need to be pragmatic. They frame things in 'good vs evil' tribalism and don't even bother to see if that's what the rest of the voters think. And they'd rather fail conventionally than take real risks to win -- especially *social* risks.
+Thought-bubbles / groupthink are pervasive, especially among the well-educated and wealthy who are more prone to fashionable opinions, signalling, and generally being Oblonskys. They tend to not have to consider pragmatic viewpoints and to frame things in detached moral terms. 
+
+Eg they might think "immigration should be open and if you disagree you're racist" and reject out-of-hand "there's something seriously wrong with immigration right now and we need to action" (when the latter should be almost indisputable, *even* if you agree with the former). The less-educated / lower class would just adopt the second viewpoint directly, having no need for the moral stance.
 
 Also:
+* Politics/media people would rather fail conventionally than take real risks to win -- especially *social* risks.
 * *Wanting* to win means *actually trying* -- working weekends, for starters, but also using actual data, hiring actually smart people, not caving to social pressures, scientifically evaluating your own tactics from first principles (ie not using the wrong message on purpose), and tossing out preexisting assumptions that don't stand up.
 * And it requires being *rational*: having a model of the world that gets you closer to thinking clearly. Dominic Cummings is a rare example of this. Cameron + Osborne were not. Other OUT MPs/figures were not.
-
 * Understanding Brexit, Trump, Hitler, or Stalin requires being smarter than this and seeing how the world actually works, outside of the filter bubble.
 * How to actually be smart on politics: make concerted effort to get outside your bubble and understand diverse viewpoints. And especially, make an honest effort to refute your own position.
 
