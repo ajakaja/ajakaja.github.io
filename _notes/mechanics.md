@@ -204,11 +204,11 @@ in the previous section. And now we proceed to eliminate the boundary term via '
 
 $$\mathcal{L}_{x} - \frac{d}{dt}\mathcal{L}_{\dot{x}} = 0$$
 
-Which is the Euler-Lagrange equations.
+Which is the Euler-Lagrange equation.
 
 And the grand point is:
 
-**The Grand Point** _This is not that amazing_. The **principle of stationary action**, which takes a postulate / assumption that $$\delta S = 0$$ for the 'phyical path', is the application of a mechanical procedure to solving a differential equation. It just turns out a good technique for solving the kinds of differential equations we get in physics, primarily because it ends up giving the solutions via scalar differnetial equations over the whole system instead of vector differential equations over each component separately.
+**The Grand Point**: _This is not that amazing_. The **principle of stationary action**, which takes a postulate / assumption that $$\delta S = 0$$ for the 'physical path', is the application of a mechanical procedure to solving a differential equation. It just turns out a good technique for solving the kinds of differential equations we get in physics, primarily because it ends up giving the solutions via scalar differnetial equations over the whole system instead of vector differential equations over each component separately.
 
 
 By the way, this is basically, at a marginally higher abstraction, the approach Feynman describes [here](http://yima.csl.illinois.edu/psfile/ECE553/FeynmanLecturesOnPhysicsChapter2-19.pdf). He also mentions that stationary points of functionals can be used to solve other equations.
@@ -239,9 +239,9 @@ $$G: M \rightarrow M$$
 
 In general on *any* smooth manifold, smooth maps $$Q: M \rightarrow N$$ have, at a point *p*, a differential map: $$dQ: T_{p}M \rightarrow T_{Q(p)}N$$, which encodes the first-order change in $$Q$$. 
 
-The differential map at *p* gives an element of $$T^{*}_{p}M$$, the dual space of $$T_{p}M$$ vectors at $$p$$. For a given displacement $$\mathbf{v} \in T_{p}M$$, we have $$\langle dF, \mathbf{v} \rangle$$
+The differential map at *p* gives an element of $$T^{*}_{p}M$$, the dual space of $$T_{p}M$$ vectors at $$p$$. For a given displacement $$\mathbf{v} \in T_{p}M$$, we have $$\langle dF, \mathbf{v} \rangle = \nabla_{\b{v}} F$$.
 
-So for a functional $$F: M\rightarrow \mathbb[R]$$, we should be getting something like $$dF : TM \rightarrow T\mathbb{R}$$, which, in coordinates, should look like $$dF = (something)ds$$. What's the relationship between $$\delta F and dF$$? Not sure; let's try working through it.
+So for a functional $$F: M\rightarrow \mathbb[R]$$, we should be getting something like $$dF : TM \rightarrow T\mathbb{R}$$, which, in coordinates, should look like $$dF = (something)ds$$. What's the relationship between $$\delta F$$ and $$dF$$? Not sure; let's try working through it.
 
 If
 

@@ -26,6 +26,60 @@ $$d(u v^{-1}) = (du) v^{-1} + u (d v^{-1}) $$
 
 $$= (du) v^{-1} + -u (dv) v^{-2} = \frac{(du) v - u (dv)}{v^{2}}$$
 
+## 0.5) Derivatives wrt. functions
+
+**todo**:
+
+* can we use this to solve equations?
+* is it exactly the same as U-substitution?
+* what if $$g^{-1}$$ doesn't exist? can we 'project' onto it?
+* is that similar to $$\nabla_{\b{v}}$$?
+
+What does
+
+$$\p_{2x} x^{2}$$
+
+equal?
+
+Well, it's easy to compute, by changing variables;
+
+$$\p_{2x} (\frac{1}{2} 2 x)^{2} = \p_{y} \frac{1}{4} y^{2} = \frac{1}{2} y = x$$
+
+I'm surprised that I've almost never seen this kind of thing discussed directly. Because:
+
+a) it's exactly what we're 'undoing' when we do U-substitutions inside integrals
+b) it's what we're doing, in a sense, when we take a directional derivative $$\nabla_{\mathbf{v}}$$
+
+More generally, for any (left-) invertible function $$g(x)$$:
+
+$$\p_{g(x)} f(x) = \p_{g(x)} f(g^{-1} g(x)) = \p_{y} f(g^{-1}(y)) $$
+
+$$= f'(g^{-1}(y)) \frac{ \p g^{-1}(g(x))}{\p g}$$
+
+$$\p_{g} f(x) = f'(x) \p_{g} g^{-1}(g(x))$$
+
+For the above example, $$g(x) = 2x$$, $$g^{-1}(y) = \frac{1}{2}y$$, and $$\p_{y}g^{-1} = \frac{1}{2}$$, so:
+
+$$\p_{2x} x^{2} = 2x \p_{2x} \frac{1}{2}(2x) = 2x \cdot \frac{1}{2} = x$$
+
+This gives an interesting algebraic manipulation that I don't think I've ever seen before: it could be used to simplify equations of the form:
+
+$$g'(x) f'(x) $$
+
+For example:
+
+$$e^{ax} \cos x = \partial_{x} (\sin x) \partial_{x}(\frac{1}{a} e^{ax})$$
+
+So we need to write
+
+$$\partial_{g} g^{-1}(g) =  \partial_{x} (\frac{1}{a} e^{ax})$$
+
+**todo**: is $$\frac{d}{dg(x)}$$ just equal to $$\frac{1}{g'(x) dx}$$? when is it?
+
+$$\partial_{2x} x^{2} = \frac{1}{2 \partial_{x}} x^{2} = \frac{1}{2} 2x = x$$
+
+
+
 ## 1) Leibniz rule for Derivatives
 
 Differentials $$Df$$ in physics seem to always have the 'product rule' / 'Leibniz rule' as their 'defining' property:
@@ -198,9 +252,9 @@ $$f(z + d\bar{z}) = f(z) + f_{\bar{z}} \bar{z} $$
 
 $$= (x + dx + i y - i dy)^{2}$$
 
-$$= f(z) + 2( x dx -  i x dy +  i y dx + i y dy) + o(d^{2})$$
+$$= f(z) + 2( x (dx) -  i x (dy) +  i y (dx) + i y (dy)) + o(d^{2})$$
 
-Now, what the heck is that? Well -- if we define (see later) $$ i dy = dx$$ and $$i dx = - dy$$, then that's:
+Now, what the heck is that? Well -- if we define (see later) $$ i (dy) = dx$$ and $$i (dx) = - dy$$, then that's:
 
 $$= f(z) + 2 (0) + o(d^{2})$$
 
@@ -220,7 +274,7 @@ $$f(z + a) = \sum \binom{n}{k} \frac{1}{n!} a^{k} \bar{a}^{n-k} \p_{z}^{k} \p_{\
 
 or something like that. A better notation:
 
-$$f(z + a) = \sum \frac{ (a \p_{z} + \bar{a} \p_{\bar{z}})^{n}}{n!} f(z) = \sum \frac{(a\nabla)^{n}}{n!} f(z) = e^{a \nabla} f(z)$$
+$$f(z + a) = \sum \frac{ (a \p_{z} + \bar{a} \p_{\bar{z}})^{n}}{n!} f(z) = \sum \frac{((a, \bar{a}) \cdot \nabla)^{n}}{n!} f(z) = e^{a \nabla} f(z)$$
 
 Ah, it's so nice. (nb haven't checked that's right but it makes so much sense!)
 
@@ -229,7 +283,7 @@ Laurent series, I'm sure, can be handled similarly.
 
 ### 3c) Normalization
 
-By the way: the factor of $$\frac{1}{2}$$ in $$\p_{z}$$ could have been spread amount $$dz$$ and $$\p_{z}$$ by making it a factor of $$\frac{1}{\sqrt{2}}$$ on each. Because it's not, in the $$x,y$$ basis $$\vert z \vert = 2$$. Which seems weird, and might make random $$2$$s appear in other place. Oh well. I don't know which is preferable.
+By the way: the factor of $$\frac{1}{2}$$ in $$\p_{z}$$ could have been spread amount $$dz$$ and $$\p_{z}$$ by making it a factor of $$\frac{1}{\sqrt{2}}$$ on each. Because it's not, we find that in the $$x,y$$ basis $$\vert z \vert = 2$$. Which seems weird, and might make random $$2$$s appear in other place. Oh well. I don't really know which is preferable.
 
 ### 3d) Contour Integrals
 
@@ -241,7 +295,9 @@ Almost all of the funny business about Contour integrals follows from the observ
 
 * Everything else follows from this.
 
-It's probably worth adding: "you can also make a Laurent series around infinity via $$z \mapsto \frac{1}{z}$$".
+Well, we should also add:
+
+* you can also make a Laurent series around infinity via $$z \mapsto \frac{1}{z}$$ and then computing it around 0 instead
 
 Point is, the 'full mystery' is in the mysterious behavior of $$\oint \frac{1}{z} dz$$. It's then easy to show that for analytic-inside-*C* $$f(z)$$, $$\oint_{C} \frac{f(z)}{z-a} dz = 2 \pi i f(a)$$ and the like.
 
@@ -315,7 +371,7 @@ $$ \p_{\bar{z}} \frac{1}{z} = - \pi \d^{2}(z)$$
 
 So, for whatever reason, that one factor of Laurent series diverges, and thus you get lots of strange behavior in contour integrals.
 
-By the way, Wikipedia tells me you can generalize Cauchy's integral formula to the Cauchy-Pompeii formula, which is basically just Stokes' theorem in 2d, but pretending to be on complex numbers:
+By the way, Wikipedia tells me you can generalize Cauchy's integral formula to the Cauchy-Pompeiu formula, which is basically just Stokes' theorem in 2d, but pretending to be on complex numbers:
 
 $$f(a) = \frac{1}{2 \pi i} \oint_{\partial D} \frac{f(z)}{z - a} dz - \frac{1}{\pi} \iint_{D} \frac{\partial_{\bar{z}} f}{z-a} dz \wedge d\bar{z}$$
 
@@ -326,6 +382,8 @@ That seems pretty obvious to me after this discussion. This holds for a more gen
 ### 3e) Cauchy Principal Value
 
 ### 3f) Divergence of Polar Coordinates
+
+### 3g) Bivector *i*
 
 ## 5) Taylor Series; Functions of Partial Derivatives
 ## 6) L'Hopitals

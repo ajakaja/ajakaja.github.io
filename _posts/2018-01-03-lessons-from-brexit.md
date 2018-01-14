@@ -51,9 +51,9 @@ The components of this quality of Right-Seeming-ness are:
 
 The result is set of ideas I find myself strongly *wanting to believe*: of what happened, why I didn't get it, why almost no one got it, what he did that people didn't predict, and why it worked. 
 
-This is far more compelling than a series of facts that could be true or false. This is (I think) how all arguments for 'new models of reality' must be wrirten if they are to succeed. (And I suspect most people aren't capable of doing this successfully.)
+To me this is far more compelling than a series of facts that could be true or false. It is (I think) how all arguments for 'new models of reality' must be written if they are to succeed. (And I suspect most people aren't capable of doing this successfully.)
 
-It helps, also, that his models seem to either agree or expand, instead of refute, my own. So of course I like someone who seems to agree with me. Of course my model might be dead wrong also, but mutual corroboration means that we're probably right or wrong together. And I tend to think mine isn't, anyway, because that's more fun and more useful to me, and lets me spend less time plagued by existential self-doubt.
+It helps, also, that his models seem to either agree or expand, instead of refute, my own. So of course I like someone who seems to agree with me. My model might be dead wrong also, but mutual corroboration means that we're probably right or wrong together. And I tend to think mine isn't, anyway, because that's more fun and more useful to me, and lets me spend less time plagued by existential self-doubt.
 
 ------------
 
@@ -89,7 +89,7 @@ So: here is an outline with commentary and important points highlighted. It's mo
 	* "It rarely comes from [leaders / decision makers], and, when it does, it is usually accidental or incidental to their motives."
 		* **Comment**: This is also my model of the world. It is why I am not bothered by Trump so much as by the America that elected him.
 			* However, I think there are a few more major forces in the '[psychohistory](https://en.wikipedia.org/wiki/Psychohistory_(fictional))' of the world. I'd estimate the world also changes most macroscopically on a few other key axes: Wisdom vs Reactionaryism, Humility vs Elitism, and Pragmatism vs Nihilism. These should factor in somehow.
-			* Not to get sidetracked, but... I'm really interested in understanding the significant cogs in the, uh, global socioeconomic machine, based on the postule that change is almost always a gradual, 'tidal' effect, and policy changes / major events like Brexit / Trump / etc are just the easily trackable markers of those currents. 
+			* I'm really interested in understanding the significant cogs in the, uh, 'global socioeconomic machine', based on the postulate that change is almost always a gradual, 'tidal' effect, and policy changes / major events like Brexit / Trump / etc are just the easily trackable markers of those currents. 
 			* And I think that science and market forces alone don't cover it, because there are other social / philosophical undercurrents that have led to change and progress, even in my lifetime, on their own -- currents which must be understood to answer questions like "why are Americans moving back to cities?" or "Why did Trump win?".
 6. Questions like "Why did X win/lose" are misleading; people tend to make fallacious *post facto* stories.
 7. **Highlight**: "I’ve learned over the years that ‘rational discussion’ accomplishes almost nothing in politics."" BUT, things you say or write can have subtle network effects that do good things later
