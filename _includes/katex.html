@@ -1,6 +1,7 @@
 
-<!-- hacks to easily use KateX instead of MathJax because it's smaller and doesn't reflow the page. Can't vouch for these really -->
+
 <script>
+/*hacks to easily use KateX instead of MathJax because it's smaller and doesn't reflow the page. Can't vouch for these really */
 function renderWithErrors(tex, displayMode) {
   try { 
     return katex.renderToString(tex, {
@@ -20,7 +21,7 @@ function renderWithErrors(tex, displayMode) {
         "\\lra": "\\leftrightarrow",
         "\\Ra": "\\Rightarrow",
         "\\Lra": "\\Leftrightarrow",
-        "\\tr" : "\\text{tr}"
+        "\\tr" : "\\text{tr}",
       }
     }); 
 

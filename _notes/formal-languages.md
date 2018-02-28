@@ -1,5 +1,5 @@
 ---
-layout: blog
+layout: article
 title: "Formal Languages Rehash"
 math: true
 footnotes: true
@@ -30,13 +30,13 @@ Some examples of languages:
 * The language of "PGN notations for chess positions"
 * The language of "Chess positions in which white can win with perfect play in PGN notation"
 
-Clearly it is possible for 'testing for membership in a language' to be *as algorithmically complex* as any decision problem, since you can ask for 'the language which describes inputs which produce `T` from any given boolean function'!
+Clearly it is possible for 'testing for membership in a language' to be *as algorithmically complex as any decision problem*, since for any boolean function `f -> T|F` you can ask for "the language of `x` such that `f(x) = T`"!
 
 --------
 
 Languages can be represented in many ways. The usual methods are:
 * A string from a higher level language, like `(a+)` to represent the language 'strings of at least one `a`' (plus, implicitly, a mapping between the higher-level description language and the lower level 'actual' language!)
-* A hand-wavey description, like "syntactically valid Java programs", with details omitted because they're rarely important.
+* A handwavey description, like "syntactically valid Java programs", with details omitted because they're rarely important.
 * A **formal grammar**, consisting of a start symbol `S` and a series of _production rules_ through which S can be translated into all possible valid strings in the language.
 	* `S -> H | T` trivially describes the language `(H|T)`
 	* `S -> aS | a` describes the language `(a+)`
@@ -68,7 +68,7 @@ Important classes are:
 * **Finite Languages**: all words are finite length, so can simply be enumerated. 
 * **Regular Languages**: languages with no 'memory'. They can represent strings like $$\tt{a}^{n}\tt{b}^{m}$$ amd $$(\tt{ab})^{n}$$ and $$(\tt{a}\vert \tt{b})^{n}$$, but _not_ $$\tt{a}^{n}\tt{b}^{n}$$ -- they have no mechanism to 'store the value $$n$$ while parsing the $$\tt{b}$$s'.
 	* [Regular expressions](https://en.wikipedia.org/wiki/Regular_expression), such as "`\a+b(cd)+\`"" available in almost every programming language take their name from (originally) being shorthands for representing regular languages. Real-life implementations are considerable more powerful than regular languages, though.
-	* Regular languages correspond to representations by **finite state automata**(https://en.wikipedia.org/wiki/Finite-state_machine).
+	* Regular languages correspond to representations by [finite state automata](https://en.wikipedia.org/wiki/Finite-state_machine).
 		* It is pretty easy to see that the automaton would have become _non_-finite in order to represent arbitrary memory, such as a previously seen number of `a`s in $$\tt{a}^{n}\tt{b}^{n}$$: one copy of the graph would be needed for each possible value of *n*.
 	* Regular grammars have productions like `S -> aA` and `S -> Bb`, which require you to see an `a` or `b` but don't require you remember that fact as parsing continues inside `A` or `B`.
 * **Context-Free Languages**: a superset of regular languages, which have 'local' but not 'global' memory: for instance, the language of nested parens `S -> S S | (S) | "")` works, because you have to remember that you're 'inside a paren' -- a local fact), but the language of non-interacting parens and braces, with strings like `([)]`, does not. The language of equal-numbers-of-two-variables $$(\tt{a}^{n}\tt{b}^{n})$$ works, but three variables does not.

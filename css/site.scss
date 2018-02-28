@@ -285,6 +285,21 @@ article {
   }
 }
 
+aside {
+  margin: 20px;
+  border: 1px double #999;
+  border-radius: 5px;
+  padding: 5px 10px;
+  overflow: hidden;
+  height: auto;
+}
+
+aside.hidden {
+  height: 2em;
+  transition: height 400ms linear;
+}
+
+
 //
 // .main
 //

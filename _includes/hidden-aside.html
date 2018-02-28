@@ -1,0 +1,13 @@
+<script>
+$(() => {
+	$("aside.toggleable").each((i, el) => {
+		let $el = $(el).addClass("hidden");
+		let $title = $("<div/>")
+			.html($el.attr("placeholder"))
+			.prependTo($el)
+			.click(e => {
+				$el.toggleClass("hidden");
+			});
+	});
+});
+</script>
