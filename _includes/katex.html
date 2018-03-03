@@ -8,7 +8,8 @@ function renderWithErrors(tex, displayMode) {
       displayMode: displayMode,
       throwOnError: false,
       macros: {
-        "\\d": "\\delta",
+        "\\d": "\\text{d}",
+        "\\var": "\\delta",
         "\\D": "\\Delta",
         "\\p": "\\partial",
         "\\b": "\\mathbf",
@@ -22,6 +23,9 @@ function renderWithErrors(tex, displayMode) {
         "\\Ra": "\\Rightarrow",
         "\\Lra": "\\Leftrightarrow",
         "\\tr" : "\\text{tr}",
+        "\\<": "\\langle",
+        "\\>": "\\rangle",
+        "\\e": "\\epsilon"
       }
     }); 
 
