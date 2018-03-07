@@ -359,6 +359,10 @@ div .footnotes {
   color: $gray;
 }
 
+span .inline-footnote .closed {
+  font-size: 1em;
+}
+
 .box {
   margin: 1.8em .8em;
   border: 1px solid $gray;
