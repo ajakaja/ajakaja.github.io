@@ -10,6 +10,8 @@ I want to write an RPG that feels more like a living world than what I've experi
 
 For inspiration, check out the demo game [Insignificant Little Vermin](https://egamebook.com/vermin/v/latest/). Play it. It takes an hour.
 
+Also read [this blog post](https://medium.com/@filiph/skyrim-rendered-in-text-1899548ab2c4) about it. It's really good.
+
 Insignificant Little Vermin is cool because it does something like Skyrim-style [Radiant AI](https://en.wikipedia.org/wiki/Radiant_AI), except that it kinda... works? (For what it's worth, I thought Skyrim failed pretty badly at this. But I should probably play Fallout 4 to see if it does better, since it's more modern.)
 
 Or at least, it distills Radiant AI to its essence: rather than simulating the physics of a 3D world and then, in the background, running scripts for characters that say things like "go pick up that sword and fight", ILV just does it all in text -- there's a sword on the ground and a character will simply, in text, "go pick up that sword and fight".
@@ -20,24 +22,22 @@ I want to do exactly this, except also, maybe, put the physical aspect back in. 
 
 ## 1. Ontological Programming
 
-I want to riff on this idea of separating "physical simulation" from "conceptually storytelling". Here's why:
-
 I want to be able to write the story of a game entirely in the 'conceptual story' layer, and, perhaps, if it suits me, 'implement' it on the physical simulation layer -- rather than having to do both at once.
 
-I use the word [ontology](https://en.wikipedia.org/wiki/Ontology_(information_science)) to describe "a language system that attempts to model knowledge". Therefore, the goal is to make a game that can be authored at the concept-knowledge level _separately_ from its implementation on a physics engine.
+I'm using the word [ontology](https://en.wikipedia.org/wiki/Ontology_(information_science)) to describe "a language system that attempts to model knowledge". Therefore, the goal is to make a game that can be authored at the concept-knowledge level _separately_ from its implementation on a physics engine.
 
 (Really, any language system does this, but the higher our level of abstraction the more it becomes similar to the philosophical notion of Ontology). In order to do this idealized conceptual programming, we need a type system that can expression _conceptual relationships_ accurately.
 
-Particularly, I would love to be able to write the game in a 'top-down' conceptual style. I'd like to be able to write "there's a town called Goldshire at position X", and provide basic facts about it, such as its size -- and then:
+Particularly, I would love to be able to write the game in a 'top-down' conceptual style. That means, say, being able to write "there's a town called Goldshire at position X", and provide basic facts about it, such as its size -- and then:
 
 * have a placeholder for a town added, such that, if I go there, I just see the placeholder (until I tell the physical simulation how to make a town, or elaborate on the conceptual description), or 
 * write an algorithm that randomly generates the town's layout for me
 	* and save the outputs as a physical model so this work doesn't have to be redone (ie: random generation as a compile step, not a runtime step)
 	* and let me press "try again", while looking at the outputs of the algorithm _in the physical simulation_, if I don't like what it came up with, until I get a result I'm happy with.
 * and, even before the physical town is created, I could make a world map that draws all the towns on the map for me, and it would automatically include the (not-yet-physically-realized) town at the correct position.
-* and if I try to 'publish' my game I would be reminded that there are unrealized physical models, because I haven't implemented how to make towns yet
+* and if I try to 'publish' my game I would be reminded that there are unrealized physical models, because I haven't implemented how to make towns yet.
 
-This seems like the most efficient possible way to author a living game world: top-down drawing while looking at the game world as a player would, which gets saved into assets to cache work -- but could, in principle, be done live.
+This seems like the most efficient possible way to author a dynamic game world: top-down drawing while looking at the game world as a player would, which gets saved into assets to cache work -- but could, in principle, be done live.
 
 Besides the fact that this just sounds extremely comfortable, it also has the benefit that, once you've made all the ontological definitions ("what's a town" "what's a building" "what's a tree"), and written the algorithms for generating these things once, you can go on to quickly expand on the world reusing old definitions, or just go write a new game world from scratch doing no additional work.
 
@@ -96,7 +96,7 @@ And consider the following 'commutative diagram':
 
 Physical changes in the world -- like, say `the player literally physically walks to Goldshire` -- correspond to ontological changes `<The player walks to Goldshire>`.
 
-That is, our job is implement `f` that maps physical states to knowledge and back, AND `g`, which maps physical _changes_ to _knowledge changes_, and back.
+That is, our job is implement `f`, which maps physical states to knowledge states and back, AND `g`, which maps physical _changes_ to _knowledge changes_, and back.
 
 * if you walk to Goldshire, `g` updates `Q -> Q'` to say where the game knows you are.
 * but also, you could 'instruct your character to `walk to Goldshire`'. Perhaps you want to walk there while you watch. Or the game supports fast travel and you teleport there. Or slow travel: the AI walks you there while you're offline. Or the game author writes a script which tells an NPC to walk to Goldshire. All of these are the same concept and need _both_ a physical and ontological expression, and a mapping between the two.
@@ -139,7 +139,7 @@ It seems necessarily true that a neural network has an Ontology/Type/Language (w
 
 By this I mean: a normal human brain would never mistake, say, an image that's a mesh of fur and eyes as a dog. But a NN happily will.
 
-That's because the human model of dogs is very similar to _actual dogs_: it requires the parts of a dog, or an understanding of why some of the parts aren't visible, plus recognizing something like the right relative dimensions between dog parts. Our model of 'dog-ness' is _a lot like actual dogs_, while a NN for processing images and identifying dogs has _nothing like an actual concept of a dog_. 
+That's because the human model of dogs is very similar to _actual dogs_: it requires the parts of a dog, or an understanding of why some of the parts aren't visible, plus recognizing something like the right relative dimensions between dog parts. Our model of 'dog-ness' is _a lot like actual dogs_, while a NN for processing images and identifying dogs has _nothing like an actual concept of a dog_. Instead it has a weird medley type of "patterns that were common among its training images of dogs".
 
 (I would say that NN's capabilities today are approximately like those of "humans, but only getting to look at the picture for a quarter of a second out of the peripheral vision", such that _only_ rapid-fire image processing gets to work, instead of conceptual mapping!)
 
