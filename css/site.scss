@@ -407,5 +407,12 @@ svg#b {
   overflow: hidden !important;
 }
 
+pre.highlight {
+  border: none;
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  margin: 0px;
+}
+
 @import "highlights";
 

@@ -3,12 +3,13 @@ description: A Blog
 author: Alex Kritchevsky
 markdown: kramdown
 timezone: utc
+highlighter: rouge
 kramdown:
  parse_block_html: true
  input: GFM
  math_engine: mathjax
  hard_wrap: true
-
+ syntax_highlighter: rouge
 
 plugins: [jekyll-sitemap]
 

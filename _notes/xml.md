@@ -32,7 +32,7 @@ copy.setFileset(fileset);
 copy.execute();
 ```
 
-And the article says that ouught to correspond, if Java supported it, to:
+And the article says that ought to correspond, if Java supported it, to:
 
 ```java
 copy("../new/dir")
@@ -41,7 +41,7 @@ copy("../new/dir")
 }
 ```
 
-(Thought if you ask me it's really just that one of `Copy`'s arguments is a string, while the other is an structure, and you have to nest structure declarations in XML, so the _actual_ version should be:
+(Thought if you ask me it's really just that one of `Copy`'s arguments is a string, while the other is a `fileset` structure, and you have to nest structure declarations, so the _actual_ version should be:
 
 ```java
 copy("../new/dir", fileset("src_dir"));
@@ -49,11 +49,17 @@ copy("../new/dir", fileset("src_dir"));
 
 which, of course, Java totally does support.)
 
-But also, in XML you're free to define your own funny structures like `<unless>`, which would require syntax extension in Java and are thus not available to you.
+But also, in XML you're free to define your own funny structures like `<unless>`, which would require syntax extension in Java and are thus not available to you. It's true that Java can't do this: you can't pass a function a block that it can optionally execute. Wait, yes, you can:
+
+```java
+unless(condition, () -> {...stuff...})
+```
+
+(in Java 8, at least. But, sure, it's not quite the same. That `() =>` is definitely clunky.)
 
 Lisp, of course, lets you define `unless` if you want, no problem.
 
-In Lisp this gets slightly reformatted to:
+In Lisp the earlier example gets slightly reformatted to:
 
 ```lisp
 (copy
@@ -61,7 +67,9 @@ In Lisp this gets slightly reformatted to:
     (fileset (dir "src_dir")))
 ```
 
-And all is well. It is, I think, undeniably true that Lisp is better than XML in every possible way and if XML was deleted in favor of Lisp the world would come out ahead. Closing tags are moronic.
+And all is well. That is so incredibly nicer than using Ant in XML because... well... it's a programming language, not XML, and you're writing code, so you want a programming language. Yeah, if XML was deleted in favor of Lisp the world would come out ahead. Closing tags are awful.
+
+...Except... 
 
 **Key point**: As far as I can tell there is nothing about Lists and endless parens that is necessary for this benefit of Lisp to be realized. It's this fluidity between data<->code and language constructs<->user-defined constructs that's important. No reason that couldn't be done in a C-like syntax, I think.
 
@@ -97,13 +105,13 @@ The article says that:
 
 This is good.
 
-Then it talks a bunch about how Lisp works. I don't care about that at all. The internal implementation of Lisp is (imo) forgettable. But this part is great. I want to build on that.
+Then it talks a bunch about how Lisp works. I don't care about that.
 
 ## 2 My own example
 
-I got sidetracked this week trying to create, for my Lagrangian post, some physics drawings. These are embedded in a website so the options are: static graphics (bad -- I _never_ want to import something that was made in an editor), or programmed graphics (ie with LaTeX plugins) (should not be necessary in 2018), or drawing in JS (Canvas or WebGL) or drawing in HTML (CSS (no!) or SVG).
+I got sidetracked this week trying to create, for my Lagrangian post, some physics drawings. These are embedded in a website so the options are: static graphics (bad -- I _never_ want to import something that was made in an editor), or offline-programmed graphics (ie with LaTeX plugins) (should not be necessary in 2018), or drawing in JS (Canvas or WebGL) or drawing in HTML with CSS (no!) or SVG.
 
-The obviosu example should be SVG, except that:
+The obvious choice should be SVG, I think, except that:
 
 ```xml
 <svg version="1.1"
@@ -116,17 +124,17 @@ The obviosu example should be SVG, except that:
 </svg>
 ```
 
-is obviously a moronic way to draw.
+is a moronic way to 'draw'.
 
 To be specific:
-1. you can't debug it; there's no way run code incrementally
+1. you can't debug it; I know of no way run SVG code incrementally
 2. it's a data format, rather than a programming language. You would need to draw in an editor for this to be casually usable
-3. there's no reason this *should* not be comfortably doable in an editor (and, admittedly, you can make vector drawings in like Gimp and save them as SVG, no problem)
+3. there's no reason this *should* not be comfortably doable in an editor (and, admittedly, you can make vector drawings in like Gimp and save them as SVG, no problem -- 
 4. there is a specialized syntax for everything you could possible do, which you have to go find yourself
 5. it's stringly typed, so half your time is spent finding out that arguments did not work where they should have if you're writing by hand
 6. it gets awful quickly when structures are referenced... (coming up next)
 
-next I tried to add an SVG filter to make my drawings look hand-drawn. Check out this example from the SVG filter docs:
+Next I tried to add an SVG filter to make my drawings look hand-drawn. Check out this example from the SVG filter docs:
 
 ```xml
 <filter id="MyFilter" filterUnits="userSpaceOnUse" x="0" y="0" width="200" height="120">
@@ -171,9 +179,9 @@ I strongly believe that the XML version should be purged with fire and replaced 
 
 
 <aside class="toggleable" placeholder="<b>Aside</b>: Project idea 1">
-(The closest thing to this is the library [SVG.js](http://svgjs.com/) and for filters [SVG.filter.js](https://github.com/svgdotjs/svg.filter.js))
+The closest thing to this for the browser is the library [SVG.js](http://svgjs.com/) and for filters [SVG.filter.js](https://github.com/svgdotjs/svg.filter.js).
 
-Unfortunately both seem to assume you already know SVG to use them, and (additionally) do a crappy job of documenting how to do SVG things (like named arguments) correctly in their method-parameter-version of calling things. But it's right idea.
+Unfortunately both seem to assume you already know SVG to use them, and (additionally) do a crappy job of documenting how to do SVG things (like named arguments) correctly in their method-parameter-version of calling things. And neither is strongly typed. But it's the right direction.
 
 It would be a productive thing for the world if:
 
@@ -249,10 +257,10 @@ Project idea:
 
 ## 4 Nested Languages
 
-Suppose we have a function signature in... something Java-like.
+Suppose we have a function signature in some Java-like language:
 
 ```java
-function f(Int x)
+Int f(Int x)
 ```
 
 This is a function that, when used in a larger program, should be passed a value of type `Int`. right?
@@ -264,7 +272,7 @@ console.log(2 + f(3))
 So I wonder: what would it look like to define the `<script>` tag from HTML, except as a function that takes Javascript code? Remember, XML is a data format from _describing a syntax tree_, when used to express a programming language (like in the JS example above). So perhaps it's something like:
 
 ```
-function script(Javascript js)
+Html script(Javascript js)
 ```
 
 You would then go write HTML code in this Java-like language, which would include, somewhere inside:
@@ -272,7 +280,7 @@ You would then go write HTML code in this Java-like language, which would includ
 ```js
 div(
 	script(
-		console.log(5)//javascript code
+		console.log(5); //javascript code
 	)
 )
 ```
@@ -282,12 +290,12 @@ Or if you prefer a Lispy version, to make it more obvious that _the outer and in
 ```
 (div
 	(script
-		"console.log(5) //javascript code"
+		"console.log(5); //javascript code"
 	)
 )
 ```
 
-This is, essentially, what's already being done in HTML, albeit in a less user-friendly and self-aware way.
+This is, essentially, what's already being done in HTML, albeit in a less user-friendly and self-aware way. Is this what HTML should look like? I'm not sure.
 
 I wonder if this is _good_?
 
@@ -298,7 +306,7 @@ Consider a language that considers function invocations `f(args...)`, mathematic
 Suppose we viewed these as _three different languages_: ie, every place that expects a function expects an instance of type
 
 ```
-expression ::= functionLang | expressionLang | arrayLang
+expression -> functionLang | expressionLang | arrayLang
 ```
 
 where each of those is the language of expressions in their respective syntaxes.
@@ -307,7 +315,7 @@ Well! That's just a formal grammar, isn't it?
 
 Is there _any_ difference between a grammar for a single language, and supporting multiple nested languages?
 
-There are a couple:
+There are a couple, I think:
 
 1. nested languages rarely or _never_ let you debug both the inside and outside langauges simultaneously
 2. or use any of the same APIs without considerable shimming 
