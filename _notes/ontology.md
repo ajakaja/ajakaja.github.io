@@ -112,7 +112,7 @@ And consider the following 'commutative diagram':
 <Current knowledge Q> <-----f-----> <Physical world P>
            |                                   |
            |                                   |
-           dQ         <-----g----->            dP
+           dQ         <----df----->            dP
            |                                   |
            |                                   |
            V                                   V
@@ -121,9 +121,9 @@ And consider the following 'commutative diagram':
 
 Physical changes in the world -- like, say `the player literally physically walks to Goldshire` -- correspond to ontological changes `<The player walks to Goldshire>`.
 
-That is, our job is implement `f`, which maps physical states to knowledge states and back, AND `g`, which maps physical _changes_ to _knowledge changes_, and back.
+That is, our job is implement `f`, which maps physical states to knowledge states and back, AND `df`, which maps physical _changes_ to _knowledge changes_, and back.
 
-* if you walk to Goldshire, `g` updates `Q -> Q'` to say where the game knows you are.
+* if you walk to Goldshire, `df` updates `Q -> Q'` to say where the game knows you are.
 * but also, you could 'instruct your character to `walk to Goldshire`'. Perhaps you want to walk there while you watch. Or the game supports fast travel and you teleport there. Or slow travel: the AI walks you there while you're offline. Or the game author writes a script which tells an NPC to walk to Goldshire. All of these are the same concept and need _both_ a physical and ontological expression, and a mapping between the two.
 
 ------
