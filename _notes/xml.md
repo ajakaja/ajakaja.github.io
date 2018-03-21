@@ -221,7 +221,7 @@ I would say "not very much". It happens that in the first example, the code insi
 
 So I wonder: what could we do with a programming language that lets you embed syntax from other languages within it? Well.. we already have one (HTML), but it only supports a few other languages. Which is almost amusing, because XML, which it's some kind of subtype of, in principle supports _arbitrary_ sub-languages -- as long as they're constrained to writing in an XML-like syntax.
 
-(See, XML is like a meta language for writing languages. It's just a...shitty one. String types and no debuggin? Why would anyone... ever... want that?)
+(See, XML is like a meta language for writing languages. It's just a...shitty one. String types and no debugging? Why would anyone... ever... want that?)
 
 HTML is also XML-based and also seems like a terrible way to write code (hence why half of JS frameworks extend it with `data-` tags or JSX-type templating). Whenever you actually want to do anything programmatic with it you delegate to another language -- but you leave the XML world, even though XML can in principle express everything you want!
 
