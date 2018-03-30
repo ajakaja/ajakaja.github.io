@@ -25,6 +25,10 @@ body {
   height: 100%;
 }
 
+small {
+  font-size: 0.85em;
+}
+
 .outer {
   display: flex;
   flex-direction: column;
