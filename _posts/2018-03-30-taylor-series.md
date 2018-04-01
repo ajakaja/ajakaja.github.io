@@ -6,11 +6,15 @@ category: notes
 footnotes: true
 ---
 
+*(Notes. Definitely not interesting unless, at minimum, you really like calculus.)*
+
 ## 1
 
-Recall that we can often rewrite a differentiable function $$f(x)$$ as a [Taylor series](https://en.wikipedia.org/wiki/Taylor_series) around a point $$x$$, in order to approximate it in terms of its derivatives at that point:
+We can often write a differentiable function $$f(x)$$ as a [Taylor series](https://en.wikipedia.org/wiki/Taylor_series) around a point $$x$$, approximating it in terms of its derivatives at that point:
 
 $$f(x+a) = \sum_{0}^{\infty} \frac{a^{n} f^{(n)}(x) }{n!}$$
+
+And, under certain conditions, this series will converge exactly to the values of the function at nearby points.
 
 <small>(It may be that there is a certain radius of convergence around $$x$$ in which this approximation is valid. For the remainder of this page, assume we're dealing with $$f$$ and $$x$$ such that $$f$$ has a series which is convergent around $$x$$ and we're staying close enough for that to be valid.)</small>
 

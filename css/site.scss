@@ -20,9 +20,19 @@ html {
 
 body {
   background: $white;
-  font: 14px/1.4 Times New Roman;
+  font-size: 14px;
+  font-family: Verdana;
+  font-weight: normal;
   color: $darkGray;
   height: 100%;
+}
+
+hr {
+  border-width: 0px;
+  border-style: none;
+  height: 1em;
+  border-bottom-width: 1px;
+  border-bottom-style: inset;
 }
 
 small {
@@ -235,13 +245,20 @@ p.noscript {
   letter-spacing: 1px;
 }
 
-.site-description {
+.subheader {
   margin: -5px 0 0 0;
   color: $gray;
   font-size: 14px;
+  font-family: $helveticaNeue;
+  font-weight: 300;
+
 
   @include mobile {
     margin: 3px 0;
+  }
+
+  a {
+      color: $gray;
   }
 }
 

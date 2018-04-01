@@ -6,11 +6,9 @@ footnotes: true
 
 [This](https://dominiccummings.com/2017/01/09/on-the-referendum-21-branching-histories-of-the-2016-referendum-and-the-frogs-before-the-storm-2/) January 2017 post, by Dominic Cummings, the architect/manager of Brexit, on 'how it happened' and 'why no one understands how it happened', is the most insightful thing I read last year.
 
-It is *so good*.
+It is *so interesting*.
 
-It is so good it makes me want to go comb through everything else on his blog for insights.
-
-It is so good that, when I realized I couldn't remember why it was so good, I had to go reread it.
+It is so good that, when I realized I couldn't remember why I thought it was so good, I had to go reread it.
 
 ... It's also so *long* that by the time I finish it I can't remember half of the things I liked. And it, well, rambles incoherently sometimes, also. It's not perfect. So I'm going to actually write down in article form what its main insights are, to make them easier to re-access. That's what this is.
 
