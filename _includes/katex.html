@@ -1,7 +1,4 @@
-
-
 <script>
-/*hacks to easily use KateX instead of MathJax because it's smaller and doesn't reflow the page. Can't vouch for these really */
 function renderWithErrors(tex, displayMode) {
   try { 
     return katex.renderToString(tex, {
@@ -33,7 +30,7 @@ function renderWithErrors(tex, displayMode) {
   } catch (e) {
     return "<span class='texerror'>" + e.message + "</span>";
   }
-};
+}
 $("script[type='math/tex']").replaceWith(
   function(){
     var tex = $(this).text()
