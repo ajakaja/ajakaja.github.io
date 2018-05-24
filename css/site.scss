@@ -28,9 +28,11 @@ body {
 }
 
 hr {
-  border-width: 0px;
+  border-width: 1px;
   border-style: none;
+  width: 90%;
   height: 1em;
+  border-color: #333333;
   border-bottom-width: 1px;
   border-bottom-style: inset;
 }

@@ -1,10 +1,5 @@
 <script>
-function renderWithErrors(tex, displayMode) {
-  try { 
-    return katex.renderToString(tex, {
-      displayMode: displayMode,
-      throwOnError: false,
-      macros: {
+const macros = {
         "\\d": "\\text{d}",
         "\\var": "\\delta",
         "\\D": "\\Delta",
@@ -24,10 +19,16 @@ function renderWithErrors(tex, displayMode) {
         "\\>": "\\rangle",
         "\\e": "\\epsilon",
         "\\1": "\\mathbf{1}",
-        "\\such": "\\, \\vert \\,"
-        }
+        "\\mrm": "\\mathrm",
+        "\\del": "\\nabla",
+        "\\such": "\\, \\vert \\,"};
+function renderWithErrors(tex, displayMode) {
+  try { 
+    return katex.renderToString(tex, {
+      displayMode: displayMode,
+      throwOnError: false,
+      macros: macros
     }); 
-
   } catch (e) {
     return "<span class='texerror'>" + e.message + "</span>";
   }
