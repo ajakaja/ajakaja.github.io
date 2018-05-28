@@ -1,13 +1,35 @@
 <script>
 $(() => {
 	$("aside.toggleable").each((i, el) => {
-		let $el = $(el).addClass("hidden");
+		let hash = window.location.hash;
+		let $el = $(el);
+		let id = $el.attr("id");
+		if(hash) {
+			hash = hash.substring(1);
+		}
+		if(hash && id && hash == id) {
+			console.log("test");
+		} else {
+			console.log(hash);
+			console.log(id);
+			$el.addClass("hidden");
+		}
+
 		let $title = $("<div/>")
 			.html($el.attr("placeholder"))
 			.prependTo($el)
 			.click(e => {
-				$el.toggleClass("hidden");
+				if($el.hasClass("hidden")) {
+					if(id) {
+						window.location.hash = id;
+					}
+					$el.removeClass("hidden");
+				} else {
+					window.location.hash = "";
+					$el.addClass("hidden");
+				}
 			});
+
 	});
 });
 </script>
