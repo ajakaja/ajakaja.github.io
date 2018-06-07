@@ -54,7 +54,7 @@ The simplest example of where a geometric mean make sense: if something increase
 
 In practice, many quantities vary this way. Probably many more than are being currently summarized using geometric means!
 
-I'd say a general rule is: if you feel like, for your data, a reasonable average of $$10^8$$ and $$10^-8$$ is $$1$$, rather than $$\frac{10^8}{2}$$, use a geometric mean.
+I'd say a general rule is: if you feel like, for your data, a reasonable average of $$10^8$$ and $$10^{-8}$$ is $$1$$, rather than $$\frac{10^8}{2}$$, use a geometric mean.
 
 ## 1b. Note on zeroes
 
@@ -80,13 +80,15 @@ The **geometric standard deviation** GSD is the same concept:
 
 $$GSD[x] = \exp(SD[\log x])$$
 
-This is only meaningful when the data is _fundamentally_ logarithmic, so that the central limit theorem will cause `log x` to become normally distributed, rather than `x`. Particularly, after log-transforming back, it does not equal the same things on each side of the mean:
+This is going to be useful if and only if the data is really skewed, such that saying that (for instance) "68.2% of values fall within one standard deviation of the mean" is _really disingenuous_, because far more of them fall on one side than the other. (For non-skewed data, like a regular normal distribution, consider how weird it would be to say that "X% of the data falls within $$\frac{\mu}{2}$$ and $$2 \mu$$"!)
+
+The GSD, instead of giving an equal range on either side of the mean, gives an equal _factor_:
 
 $$\begin{aligned} \exp{AM \pm SD} &= e^{AM}e^{\pm SD} \\
   &= GM[x] GSD[x]^{\pm 1} \\
   & \stackrel{!}{\neq} GM[x] \pm GSD[x] \end{aligned} $$
 
-Note that $$ GM[x] GSD[x]^{\pm 1}$$ means the two values are $$(GM[x] GSD[x], \frac{GM[x]}{GSD[x]})$$. Clearly the $$GSD$$ is a ratio that should be _pretty close to 1_, such that (for a large enough sample) $$68.2\%$$ of values fall in the range of $$GSD[x]^{\pm 1}$$. If that's not true for your large-enough dataset, you did something wrong.
+Note that $$ GM[x] GSD[x]^{\pm 1}$$ means the two values are $$(GM[x] GSD[x], \frac{GM[x]}{GSD[x]})$$. Clearly the $$GSD$$ is a ratio that should be pretty close to 1, such that (for a large enough sample) $$68.2\%$$ of values fall in the range of $$GSD[x]^{\pm 1}$$. If that's not true for your sufficiently-large dataset, you did something wrong.
 
 If reporting confidence intervals for a given $$P$$-value, using geometric statistics, they will also not be the same distance from the geometric mean. For $$P=0.95$$, with z-score $$z = 1.96$$ (ie laughably permissible, false positives everywhere), the confidence intervals are:
 
@@ -127,7 +129,7 @@ Which makes the result obvious.)
 
 </aside>
 
-I did some research to figure out what this means for geometric distributions. This derivation is adapted from [Norris](https://projecteuclid.org/download/pdf_1/euclid.aoms/1177731830) with some jargon and theory removed.
+I did some research to figure out how to use this on geometric distributions. This derivation is adapted from [Norris](https://projecteuclid.org/download/pdf_1/euclid.aoms/1177731830) with some jargon and theory removed.
 
 Writing $$\mu_G = GM[y] = e^{\E [\log y]}$$, the true geometric mean of the distribution (assuming our data's logarithm is normally distributed, as above):
 
@@ -139,7 +141,7 @@ First we simplify the first term in the expectation:
 
 $$\frac{GM[y_i]}{\mu_G} = \frac{e^{\frac{1}{N} \sum \log y_i }}{e^{\E [\log y]}} = e^{\frac{1}{N} \sum \log y_i - \E[\log y]}$$
 
-Next we argue that, because for sufficiently large $$N$$, $$\frac{1}{N} \sum \log y_i - \E[\log y] \Ra 0$$, ie, as the sample log mean approaches the true log mean, we can approximate the exponential with its Taylor series $$e^x \approx 1 + x + O(x^2)$$. 
+Next we argue that, because for sufficiently large $$N$$, $$\frac{1}{N} \sum \log y_i - \E[\log y] \Ra 0$$, ie, as the sample log mean approaches the true log mean, we can approximate the exponential with its Taylor series $$e^x \approx 1 + x$$. 
 
 
 To first order this gives:
@@ -204,14 +206,16 @@ Until now we have been computing statistics on the log transformed data and then
 
 ## Other Means
 
-By the way, there are other means than AM and GM. You can create all sorts of means using the same formula:
+By the way, there are other ways to summarize data than AM and GM. You can create all sorts of means using the same formula:
 
 $$\E_f [ X ] = f^{-1} \E [ f(X) ]$$
+
+For instance:
 
 * AM: $$f(x) = x$$
 * GM: $$f(x) = \log x$$
 * [Harmonic Mean](https://en.wikipedia.org/wiki/Harmonic_mean): $$f(x) = x^{-1}$$
-	* Good for averaging _rates_ of things, like the rates of a car over different legs of a trip. (cf those tricky math questions like "a car travels 40 mph one way and 60 mph the other, what is it's average speed?")
+	* Good for averaging _rates_ of things, like the rates of a car over different legs of a trip. (cf those tricky math questions like "a car travels 40 mph one way and 60 mph the other, what's its average speed?")
 * [Root Mean Square](https://en.wikipedia.org/wiki/Root_mean_square): $$f(x) = x^2$$
 	* Used in electrical engineering, especially to average the strength of signals. For an alternating current, with $$AM=0$$, then $$RMS(x) = \sigma_x$$, the standard deviation.
 * [Generalized means](https://en.wikipedia.org/wiki/Generalized_mean): screw it, $$f(x) = x^p$$ for any $$p$$.
@@ -220,5 +224,5 @@ $$\E_f [ X ] = f^{-1} \E [ f(X) ]$$
 	* basically turn $$p$$ up to get more contributions from higher values and turn it down to get more contributions from lower ones.
 	* just kidding, don't actually use anything except the first four, no one will know what you're talking about.
 
-Generally speaking if you find yourself with data of the form $$y = f(x)$$, and you _know_ it's of the form $$y =f(x)$$, it probably will be a good idea to summarize it with statistics on $$f^{-1} y$$. These are just specific implementations of that idea.
+Generally speaking if you find yourself with data of the form $$y = f(x)$$, and you _know_ it's of the form $$y =f(x)$$, it probably will be a good idea to summarize it with statistics on $$f^{-1} (y)$$. These are just specific implementations of that idea.
 
