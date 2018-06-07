@@ -1,17 +1,22 @@
 <script>
+function removeHash() { 
+    history.replaceState("", document.title, window.location.pathname);
+}
+function addHash(hash) {
+    history.replaceState("", document.title, window.location.pathname + "#" + hash);
+}
 $(() => {
+	let hash = window.location.hash;
+	if(hash) {
+		hash = hash.substring(1);
+	}
 	$("aside.toggleable").each((i, el) => {
-		let hash = window.location.hash;
 		let $el = $(el);
 		let id = $el.attr("id");
-		if(hash) {
-			hash = hash.substring(1);
-		}
+
 		if(hash && id && hash == id) {
-			console.log("test");
+			;
 		} else {
-			console.log(hash);
-			console.log(id);
 			$el.addClass("hidden");
 		}
 
@@ -21,11 +26,11 @@ $(() => {
 			.click(e => {
 				if($el.hasClass("hidden")) {
 					if(id) {
-						window.location.hash = id;
+						addHash(id)
 					}
 					$el.removeClass("hidden");
 				} else {
-					window.location.hash = "";
+					removeHash();
 					$el.addClass("hidden");
 				}
 			});
