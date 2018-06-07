@@ -84,7 +84,7 @@ This is going to be useful if and only if the data is really skewed, such that s
 
 The GSD, instead of giving an equal range on either side of the mean, gives an equal _factor_:
 
-$$\begin{aligned} \exp{AM \pm SD} &= e^{AM}e^{\pm SD} \\
+$$\begin{aligned} \exp(AM \pm SD) &= e^{AM}e^{\pm SD} \\
   &= GM[x] GSD[x]^{\pm 1} \\
   & \stackrel{!}{\neq} GM[x] \pm GSD[x] \end{aligned} $$
 
@@ -159,33 +159,39 @@ $$\begin{aligned} GSE^2
 
 When $$f(X)$$ is analytic over the range of $$X$$ we can compute $$\E[f(X)]$$ by writing it as a Taylor series around the mean $$\E[X] = \bar{X}$$:
 
-$$\E[f(X)] \approx \E[f(\bar{X}) + f'(\bar{X}) (X - \bar{X})) + f''(\bar{X}) (X - \bar{X})^2 + \ldots]$$
+$$\E[f(X)] \approx \E[f(\bar{X}) + f'(\bar{X}) (X - \bar{X})) + \frac{f''(\bar{X})}{2}  (X - \bar{X})^2 + \ldots]$$
 
 But since expectations are linear we can write this as:
 
-$$\E[f(X)] \approx f(\bar{X}) + 0 + f''(\bar{X}) \sigma^2_X + \ldots$$
+$$\E[f(X)] \approx f(\bar{X}) + 0 + \frac{f''(\bar{X})}{2}  \sigma^2_X + \ldots$$
 
 (Where the second term disappeared because $$\E[X - \bar{X}] = \E[X] - \E[X] = 0$$.)
 
 But it is _not_ always valid to truncate this expression at the second-order term. The higher order terms each have a factor of $$\E[(X- \bar{X})^n]$$, and there is no particular reason this should not be huge or even infinite. For $$\E[f(X)] \approx f(\bar{X}) + f''(\bar{X}) \sigma^2_X$$, we require that the remaining terms in the series be small enough to ignore:
 
-$$\frac{f^{(n)}}{n!}(\bar{X}) \E[(X - \bar{X})^n] \ra 0 $$
+$$\frac{f^{(n)}}{n!}(\bar{X}) \E[(X - \bar{X})^n] \approx 0 \; [\text{ for } n > 2] $$
 
 
 
 ---------
 
-In our case, let's write the exponent as $$\D = \frac{1}{N} \sum_N (\log y_i - \E[\log y])$$. By the [Central Limit Theorem](https://en.wikipedia.org/wiki/Central_limit_theorem), as $$N \ra \infty$$, $$\D$$ converges to a normal distribution with $$\mu = 0$$, $$\sigma_{\D}^2 = \frac{\sigma^2}{N}$$, even if $$\log y$$ is not normally distributed, as long as $$\sigma_{\log y}^2$$ is finite.
+In our case, let's write the exponent as $$\D = \frac{1}{N} \sum_N (\log y_i - \E[\log y])$$, and use $$\sigma$$ for the standard deviation of $$\log y$$. By the [Central Limit Theorem](https://en.wikipedia.org/wiki/Central_limit_theorem), as $$N \ra \infty$$, $$\D$$ converges to a normal distribution with $$\mu = 0$$, $$\sigma_{\D}^2 = \frac{\sigma^2}{N}$$, even if $$\log y$$ is not normally distributed, as long as $$\sigma^2$$ is finite.
 
-As it happens, for a normal distribution $$X \sim \cal{N}(0, \sigma^2)$$, the [moments](https://en.wikipedia.org/wiki/Normal_distribution#Moments) $$\E[X^n]$$ are given by $$\sigma^n n!!$$ when $$n$$ is even (and $$0$$ if $$n$$ is odd), making the condition on our Taylor series terms be that $$\frac{\sigma^n f^{(n)} n!! }{n!} \ra 0 \; [n \text{ even}]$$ .
+In this case, is it reasonable to truncate $$\E[f(\D)] = \E[(e^\D - 1)^2]$$ to its first-order Taylor series $$\E[f(\D)] \approx f(\bar{\D}) + \frac{f''(\bar{\D})}{2} \frac{\sigma^2}{N} = \frac{\sigma^2}{N}$$?
 
-Finally, we have $$f(\D) = (e^\D - 1)^2 = (\D + \frac{\D^2}{2!} + \frac{\D^3}{3!} + \ldots)^2$$, which shows that $$f''(\D) = f'''(\D) = 1$$ and all higher-order terms have coefficients $$< 1$$. This means our even Taylor series terms go as:
+I tried to work this out for a while, but realized that we don't necessarily know _how_ fast the distribution of $$\D y$$ converges to $$\cal{N}(0, \frac{\sigma^2}{N})$$, so we can't say what the error is for a particular value of $$N$$. However, if $$\log y$$ is already normally distributed (ie, we are dealing with truly lognormal data), then we can compute the size of the terms of we are dropping using the equation for the [moments](https://en.wikipedia.org/wiki/Normal_distribution#Moments) of a normal distribution:
 
-$$(\frac{\sigma}{\sqrt{N}})^n \frac{f^{(n)} n!!}{n!} < (\frac{\sigma}{\sqrt{N}})^n = \sigma^n N^{\frac{-n}{2}} $$
+$$\E[X^n]= \sigma^n n!! \; [n \text{ even}]$$
 
-Therefore the higher-order terms rapidly become 0, and the lowest order term $$n=2$$ is proportional to $$\frac{\sigma^2}{N}$$.
+$$\Ra \E[\D^n] = (\frac{\sigma}{\sqrt{N}})^n n!! \; [n \text{ even}]$$
 
-... This is not entirely precise because I'm bad at this asymptotic analysis stuff, but it's good enough for me. I did not follow the argument in my source at all so I needed my own version.
+And because $$\bar{\D} = 0$$, $$f(\bar{\D}) = 0$$ and $$f^{(n)}{(\bar{\D})} = 2^n - 2$$. Writing $$n = 2k$$ :
+
+$$f(\D) \approx \sum_{n \geq 2, \text{ even}} \frac{(2^{n} - 2) n!!}{n!} (\frac{\sigma}{\sqrt{N}})^n < \sum_{n \geq 2, \text{ even}} \frac{2^n n!!}{n!} (\frac{\sigma}{\sqrt{N}})^n $$
+
+The ratio between successive terms is $$\frac{f_{n+2}}{f_n} = \frac{1}{n+1}(\frac{2\sigma}{\sqrt{N}})^2$$ so the series requires $$N > 4 \sigma^2$$ to converge and $$N \gg 4 \sigma^2$$ to converge rapidly enough to ignore later terms. Specifically, the first term we are dropping is $$n=4$$, which is $$\frac{16}{3} (\frac{\sigma^{2}}{N})^2$$, in case you want to compute an exact value to be sure it's trivial. Which I guess doesn't tell us much more: just that we need $$N \gg \sigma^2$$.
+
+I wonder how an, er, actual mathematician would analyze this!
 
 </aside>
 
@@ -195,8 +201,6 @@ Giving:
 $$GSE = \mu_G  \frac{\sigma_{\log y}}{\sqrt{N}}$$
 
 Where $$\sigma_{\log y}$$ is the standard deviation of $$\log y$$, _not_ the 'geometric standard deviation'. 
-
-
 
 On the one hand, this is weird to compute. Until now we did not care about $$\sigma_{\log y}$$. But it does, for sufficiently high $$N$$, give the correct numerical difference between $$GM[y_i]$$ and the true $$GM[y]$$. 
 
