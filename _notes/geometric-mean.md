@@ -64,7 +64,9 @@ But wait. Lots of people are ... [working around this](http://www.arpapress.com/
 
 It is _possibly_ reasonable to do this. Particularly if your measurements are not sensitive to the smallest realistic inputs and report 0, you may want to just consider them as "something very small that it is not 0", like $$10^{-10}$$ or $$1$$ or whatever is much smaller than the other inputs. But if there are enough points like this that your choice of exponent is changing the result, you are probably doing something wrong.
 
-By the way: if you are geometric-meaning a bunch of annual growth rates, like $$(-20\%, 0\%, 50\%, 120\%)$$, your 0s are wrong -- those are actually (as multiplicative factors) $$(0.8, 1.0, 1.5, 2.2)$$, which has no zeroes.
+This is pretty confusing. People use geometric means all the time with data that can be zero.
+
+By the way: if you are geometric-meaning a bunch of, say, annual growth rates, like $$(-20\%, 0\%, 50\%, 120\%)$$, your 0s are wrong -- those are actually (as multiplicative factors) $$(0.8, 1.0, 1.5, 2.2)$$, which has no zeroes.
 
 ## 2. Statistics
 
@@ -179,7 +181,7 @@ In our case, let's write the exponent as $$\D = \frac{1}{N} \sum_N (\log y_i - \
 
 In this case, is it reasonable to truncate $$\E[f(\D)] = \E[(e^\D - 1)^2]$$ to its first-order Taylor series $$\E[f(\D)] \approx f(\bar{\D}) + \frac{f''(\bar{\D})}{2} \frac{\sigma^2}{N} = \frac{\sigma^2}{N}$$?
 
-I tried to work this out for a while, but realized that we don't necessarily know _how_ fast the distribution of $$\D y$$ converges to $$\cal{N}(0, \frac{\sigma^2}{N})$$, so we can't say what the error is for a particular value of $$N$$. However, if $$\log y$$ is already normally distributed (ie, we are dealing with truly lognormal data), then we can compute the size of the terms of we are dropping using the equation for the [moments](https://en.wikipedia.org/wiki/Normal_distribution#Moments) of a normal distribution:
+I tried to work this out for a while, but realized that we don't necessarily know _how_ fast the distribution of $$\D$$ converges to $$\cal{N}(0, \frac{\sigma^2}{N})$$, so we can't say what the error is for a particular value of $$N$$. However, if $$\log y$$ is already normally distributed (ie, we are dealing with truly lognormal data), then we can compute the size of the terms of we are dropping using the equation for the [moments](https://en.wikipedia.org/wiki/Normal_distribution#Moments) of a normal distribution:
 
 $$\E[X^n]= \sigma^n n!! \; [n \text{ even}]$$
 
@@ -191,7 +193,7 @@ $$f(\D) \approx \sum_{n \geq 2, \text{ even}} \frac{(2^{n} - 2) n!!}{n!} (\frac{
 
 The ratio between successive terms is $$\frac{f_{n+2}}{f_n} = \frac{1}{n+1}(\frac{2\sigma}{\sqrt{N}})^2$$ so the series requires $$N > 4 \sigma^2$$ to converge and $$N \gg 4 \sigma^2$$ to converge rapidly enough to ignore later terms. Specifically, the first term we are dropping is $$n=4$$, which is $$\frac{16}{3} (\frac{\sigma^{2}}{N})^2$$, in case you want to compute an exact value to be sure it's trivial. Which I guess doesn't tell us much more: just that we need $$N \gg \sigma^2$$.
 
-I wonder how an, er, actual mathematician would analyze this!
+... So that's my effort at analyzing this. I am not sure how correct it is.
 
 </aside>
 

@@ -37,6 +37,10 @@ hr {
   border-bottom-style: inset;
 }
 
+sup, sub {
+  position: relative;
+}
+
 small {
   font-size: 0.85em;
 }
