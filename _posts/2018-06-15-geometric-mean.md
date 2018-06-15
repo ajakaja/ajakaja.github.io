@@ -121,7 +121,7 @@ Oh, and by the way: if you are geometric-meaning a bunch of, say, annual company
 
 Once again, the **geometric mean** is the log-transformed arithmetic mean:
 
-$$\GM[x] = e^{\AM[\log x]} = \sqrt[n]{\prod_i x_i} = \prod \sqrt[n]{x_i}$$
+$$\GM[x] = e^{\AM[\log x]} = \sqrt[n]{\prod_i x_i} = \prod_i \sqrt[n]{x_i}$$
 
 (I've seen a lot of different symbols for these things. For clarity, since we're talking about multiple means at once, I'll just keep writing $$GM$$ and $$AM$$).
 
@@ -139,7 +139,7 @@ $$\GM[\frac{x_i}{y_i}] = \frac{\GM[x_i]}{\GM[y_i]}$$
 
 **Important note on doing statistics with a computer**:
 
-For the love of all things that are good, _do not program the formula "$$\GM[x] = \sqrt[n]{\prod_i x_i}$$" into a computer if you do not know what you are doing_. Use a built-in library for it, or use one of the other two formulas ($$= \exp(\AM[\log x])$$ or $$= \prod \sqrt[n]{x_i}$$). Multiplying arbitrarily long lists of numbers together can overflow the data values in some programming languages, causing them to wrap around to negative numbers, rendering all your math utterly wrong.
+For the love of all things that are good, _do not program the formula "$$\GM[x] = \sqrt[n]{\prod x_i}$$" into a computer if you do not know what you are doing_. Use a built-in library for it, or use one of the other two formulas ($$= e^{\AM[\log x]}$$ or $$= \prod \sqrt[n]{x_i}$$). Multiplying arbitrarily long lists of numbers together can overflow the data values in some programming languages, causing them to wrap around to negative numbers, rendering all your math utterly wrong.
 
 (If you're in a data-science-oriented language like R, you'll probably get away with it, cause they tend to avoid including [footguns](https://en.wiktionary.org/wiki/footgun). If you're in C, you won't.)
 
@@ -187,13 +187,13 @@ Where $$\sigma_{\log x}$$ is the standard deviation of $$\log x$$, _not_ the 'ge
 
 Since you don't normally know $$\mu_G$$, you can use the sample mean $$\GM[x]$$, but then, like with the regular standard deviation and error formulas, you have to [change](https://en.wikipedia.org/wiki/Bessel%27s_correction) $$N \ra N-1$$:
 
-$$\text{GSE}[x, N] =  \frac{\GM[x]}{\sqrt{N-1}} \sigma_{\log x}$$
+$$\text{GSE}[x, N] =  \frac{\GM[x]}{\sqrt{N-1}} \text{SD}[\log x]$$
 
 
 
 
 
-<aside class="toggleable" id="analysis" placeholder="<b>Aside</b>: Derivation of GSE"> 
+<aside class="toggleable" id="analysis" placeholder="<b>Aside</b>: Derivation of Geometric Standard Error"> 
 
 This derivation is adapted from [Norris](https://projecteuclid.org/download/pdf_1/euclid.aoms/1177731830) with some jargon and theory removed, and replaced with my inexpert and likely faulty analysis.
 
@@ -262,7 +262,9 @@ Disclaimer: I am not a mathematician. Please don't trust me.
 
 What this means is that the distribution for "our calculation of $$\GM[x]$$ from $$N$$ samples" has probability distribution:
 
-$$\GM_N[x] \sim \cal{N}[\mu_G, \frac{\GM[x]}{\sqrt{N-1}} \sigma_{\log x}]$$
+$$\GM_N[x] \sim \cal{N}[\mu_G, \frac{\mu_G}{\sqrt{N}} \sigma_{\log x}]$$
+
+And the previous formula is our best estimate of it, given a sample of $$N$$ values.
 
 On the one hand, this is weird to compute. Until now we did not care about $$\sigma_{\log x}$$. (And I assume, but am actually not sure, that $$\sigma_{\log x}$$ has another factor of $$\frac{1}{n-1}$$ in it, since it's _also_ computed from the sample?) But it should, for sufficiently high $$N$$, give the correct numerical difference between $$\GM[x]$$ and the true $$\mu_x$$. 
 
