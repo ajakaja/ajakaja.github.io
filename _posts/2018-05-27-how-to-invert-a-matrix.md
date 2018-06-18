@@ -34,25 +34,26 @@ B_\b{z} \cdot A_\b{x} & B_\b{z} \cdot A_{\b{y}} & B_\b{z} \cdot A_{\b{z}} \end{p
 
 This picture is generally useful for intuitively understanding matrix multiplication.
 
-<br/>
+----
 
 Ok, now suppose we'd like to invert $$A$$, ie to find a matrix $$A^{-1}$$ such that $$A^{-1} A = I$$.
 
 Recalling that for any two vectors, $$\b{a} \times \b{b}$$ produces a vector orthogonal to _both_, I claim that this is the inverse (if $$\det A \neq 0$$):
 
-$$B = \frac{1}{\det A} \begin{pmatrix} A_\b{y} \times A_{\b{z}} \\  A_\b{z} \times A_{\b{x}} \\  A_\b{x} \times A_{\b{y}} \end{pmatrix}^T$$
+$$B = \frac{1}{\det A} \begin{pmatrix} A_\b{y} \times A_{\b{z}} \\  A_\b{z} \times A_{\b{x}} \\  A_\b{x} \times A_{\b{y}} \end{pmatrix}$$
 
 Because $$\det A = (A_{\b{y}}\times A_{\b{z}}) \cdot A_{\b{x}} = (A_{\b{z}}\times A_{\b{x}}) \cdot A_{\b{y}} = (A_{\b{x}}\times A_{\b{y}}) \cdot A_{\b{z}} $$, and therefore:
 
-$$\begin{aligned} BA &= \frac{1}{\det A} \begin{pmatrix} A_\b{y} \times A_{\b{z}} \\  A_\b{z} \times A_{\b{x}} \\  A_\b{x} \times A_{\b{y}} \end{pmatrix}^T \begin{pmatrix} A_\b{x} & A_{\b{y}} & A_{\b{z}} \end{pmatrix} \\
+$$\begin{aligned} BA &= \frac{1}{\det A} \begin{pmatrix} A_\b{y} \times A_{\b{z}} \\  A_\b{z} \times A_{\b{x}} \\  A_\b{x} \times A_{\b{y}} \end{pmatrix} \begin{pmatrix} A_\b{x} & A_{\b{y}} & A_{\b{z}} \end{pmatrix} \\
 &= \frac{1}{\det A} \begin{pmatrix} (A_{\b{y}}\times A_{\b{z}}) \cdot A_{\b{x}} & 0 & 0 \\ 
 0 & (A_{\b{z}}\times A_{\b{x}}) \cdot A_{\b{y}} & 0 \\
 0 & 0 & (A_{\b{x}}\times A_{\b{y}}) \cdot A_{\b{z}} \end{pmatrix} \\&= \begin{pmatrix} 1&0&0\\0&1&0\\0&0&1\end{pmatrix} \end{aligned}$$
 
-This formula makes _way_ more sense than the crap that I learned in my college linear algebra class.
+This formula makes _way_ more sense to me than what I was taught in my college linear algebra class.
 
 -----
 
+Now, the same thing, more generically:
 
 <!--more-->
 
