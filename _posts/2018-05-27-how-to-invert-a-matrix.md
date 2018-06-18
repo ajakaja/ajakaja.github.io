@@ -38,6 +38,18 @@ This picture is generally useful for intuitively understanding matrix multiplica
 
 Ok, now suppose we'd like to invert $$A$$, ie to find a matrix $$A^{-1}$$ such that $$A^{-1} A = I$$.
 
+Recalling that for any two vectors, $$\b{a} \times \b{b}$$ produces a vector orthogonal to _both_, I claim that this is the inverse (if $$\det A \neq 0$$):
+
+$$B = \frac{1}{\det A} \begin{pmatrix} A_\b{y} \times A_{\b{z}} \\  A_\b{z} \times A_{\b{x}} \\  A_\b{x} \times A_{\b{y}} \end{pmatrix}^T$$
+
+Because $$\det A = (A_{\b{y}}\times A_{\b{z}}) \cdot A_{\b{x}} = (A_{\b{z}}\times A_{\b{x}}) \cdot A_{\b{y}} = (A_{\b{x}}\times A_{\b{y}}) \cdot A_{\b{z}} $$, and therefore:
+
+$$\begin{aligned} BA &= \frac{1}{\det A} \begin{pmatrix} A_\b{y} \times A_{\b{z}} \\  A_\b{z} \times A_{\b{x}} \\  A_\b{x} \times A_{\b{y}} \end{pmatrix}^T \begin{pmatrix} A_\b{x} & A_{\b{y}} & A_{\b{z}} \end{pmatrix} \\
+&= \frac{1}{\det A} \begin{pmatrix} (A_{\b{y}}\times A_{\b{z}}) \cdot A_{\b{x}} & 0 & 0 \\ 
+0 & (A_{\b{z}}\times A_{\b{x}}) \cdot A_{\b{y}} & 0 \\
+0 & 0 & (A_{\b{x}}\times A_{\b{y}}) \cdot A_{\b{z}} \end{pmatrix} \\&= \begin{pmatrix} 1&0&0\\0&1&0\\0&0&1\end{pmatrix} \end{aligned}$$
+
+This formula makes _way_ more sense than the crap that I learned in my college linear algebra class.
 
 -----
 
@@ -71,7 +83,7 @@ The resulting vector is orthogonal to both inputs (so $$\b{u} \cdot \star(\b{u} 
 
 The wedge product between a vector and a bivector gives the volume of the figure they outline, another type of scalar. If we pretend the bivector is a vector, this is the same as the vector dot product $$\cdot$$:
 
-$$\b{u} \cdot \b{v} \equiv \star(\b{u}) \wedge \b{v}$$
+$$\b{u} \cdot \b{v} \equiv \b{u} \wedge \star(\b{v})$$
 
 The wedge product of three vectors together therefore may be seen as a dot product and a cross product:
 
@@ -152,11 +164,11 @@ $$A^{-1}\:_{\b{x}_i} = \frac{(-1)^{(N-1)i}}{\det A} \star  \bigwedge_{j \neq i} 
 
 Clearly for odd $$N$$ the exponent is always even and in even dimensions it alternates along the diagonal, starting with $$-1$$.
 
-Also, this construction acts a little differently when $$N=2$$. In $$2D$$, with a matrix like
+Also, we have to be careful when applying this construction in $$2D$$. When inverting a matrix like
 
 $$A = \begin{pmatrix} a & b \\ c & d \end{pmatrix}$$
 
-the 'wedge products of every other column' are just... _the other column_, as a vector. In this case the $$\star$$ does all the work, by using $$\star$$, with $$\star(x,y) = (-y, x)$$. 
+the 'wedge products of every other column' are just... _the other column_, as a vector. In this case the $$\star$$ does all the work, because $$\star(x,y) = (-y, x)$$. 
 
 $$A^{-1} = \frac{1}{\det A} \begin{pmatrix} (-1) \star (b,d) \\  \star (a,c) \end{pmatrix} = \frac{1}{ad - bc}\begin{pmatrix} d & -b \\ -c & a \end{pmatrix} $$
 
@@ -164,15 +176,15 @@ $$A^{-1} = \frac{1}{\det A} \begin{pmatrix} (-1) \star (b,d) \\  \star (a,c) \en
 
 This generalization is clunky, but I'm pretty sure it's clunky because of my way of 'omitting' a vector from the wedge product isn't perfect. I think it suffices for intuition, though. 
 
-There is a better way to do it, using the [interior product](https://en.wikipedia.org/wiki/Interior_product), but I don't want to introduce any more machinery here.
+There is, I think, a better way to do it, using the [interior product](https://en.wikipedia.org/wiki/Interior_product), but I don't want to introduce any more machinery here.
 
 --------
 
 The matrix $$A^{-1}$$ without the determinant factor ($$= (\det A) A^{-1}$$) is called the [*adjugate matrix*](https://en.wikipedia.org/wiki/Adjugate_matrix) and can be written as $$\wedge^{N-1} A$$ (the matrix of wedges of $$N-1$$ columns of $$A$$). Its transpose is called the _cofactor matrix_. 
 
-In $$N$$ dimensions, most of the multivectors cannot be written as regular vectors because they have different numbers of components than $$N$$ (specifically $$\binom{N}{k}$$). The rows of the adjugate matrix always can, though. They are wedge products of $$N-1$$ vectors and $$\binom{N}{N-1} = N$$. $$\wedge^{N-1}$$ elements are called _pseudovectors_.
+In $$N$$ dimensions, most of the multivectors cannot be written as regular vectors because they have different numbers of components than $$N$$ (specifically $$\binom{N}{k}$$). The rows of the adjugate matrix always can be, though. They are wedge products of $$N-1$$ vectors (called *pseudovectors*) and they can be mapped back to vectors because $$\binom{N}{N-1} = N$$.
 
-----------
+-----
 
-I un-fondly recall the learning how to invert a matrix in a linear algebra course in college, via pulling the cofactor matrix construction out of thin air. This version is so much simpler to understand.
+I am far from the only person saying that determinants and inverses should be taught with wedge products. I just wanted to write a (relatively) simple, link-able resource.
 
