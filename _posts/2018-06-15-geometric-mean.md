@@ -6,9 +6,11 @@ math: true
 aside: true
 ---
 
-A friend is writing her master's thesis in a subfield where all the statistics are reported in geometric means and geometric standard deviations (GSD), or even in geometric standard... errors? whatever those are. Or sometimes in confidence intervals, and sometimes in, heck, interquartile ranges. All of which are (a) not something anyone really has intuition for and (b) hard to find references for online, compared to regular 'arithmetic' statistics.
+A friend is writing her master's thesis in a subfield where all the statistics are reported in geometric means and geometric standard deviations (GSD), or even in geometric standard... errors? whatever those are. Or sometimes in confidence intervals, and sometimes in, heck, interquartile ranges.
 
-I tried to help her normalize these all into GSDs, for the literature-review part of the paper, but finding documentation has been a nightmare and I really couldn't find an easily-accessible reference online, so I'm writing one, I guess.
+Most of which are (a) not something anyone really has intuition for and (b) hard to find references for online, compared to regular 'arithmetic' statistics.
+
+I was trying to help her understand these, but I really couldn't find an easily-accessible reference online, so I guess I'm writing one.
 
 <!--more-->
 
@@ -19,23 +21,30 @@ The [geometric mean](https://en.wikipedia.org/wiki/Geometric_mean) of a dataset 
 
 $$\GM[\b{x}] = (\prod x_i)^{\frac{1}{n}}$$ 
 
-Though it is better understood through this equation:
+Though it is easier to understand through this equation:[^log]
+
+[^log]: I'm using $$\log x\equiv \log_e x \equiv \ln x$$ throughout this page. This is normal in some fields and totally weird in others. Sorry if it's weird.
 
 $$\GM[\b{x}] = e^{\AM[\log \b{x}]}$$
 
-(The base of the exponent and logarithm can be anything. It cancels out -- if you use $$log_b$$, you raise $$b$$ to the power afterwards: $$\GM[\b{x}] = b^{\AM[\log_b \b{x}]}$$)
+(The base of the exponent and logarithm can be anything. It cancels out -- if you use $$\log_b$$, you raise $$b$$ to the power afterwards: $$\GM[\b{x}] = b^{\AM[\log_b \b{x}]}$$.)
 
-(By the way: I am using $$\GM$$ and $$\AM$$ as notations for these things, which is definitely not conventional, but I think it makes it easiest to read in settings where you're using both, compared to the alternatives.)
 
-This means that you compute the average of the _logarithms_ of your data, and then just rescale it back so that the units work out.
+(By the way: I am using $$\GM[]$$ and $$\AM[]$$ as notations for these things, which is definitely not conventional, but I think it makes it easiest to read in settings where you're using both, compared to the alternatives.)
 
-And, in fact, all of the geometric statistics (except one...) are just the _regular_ statistics, but applied after a log transform $$y \mapsto \log x$$, _but then_ rescaled back to the units of $$x$$ via $$x \mapsto e^y$$. So geometric mean = $$e^{\AM[\log x]}$$, geometric standard deviation = $$e^{\text{SD}[\log x]}$$, etc.
+This formulas means that you are computing the average of the _logarithms_ of your data, and then rescaling them back so the units work. For example:
 
-The simplest case where this is useful is if we are dealing with data where logarithm of the data is more meaningful than the value itself, which is the case when our data's values range over many orders of magnitudes. This is true are for things that we already use logarithmic scales for, like [brightness of stars](https://en.wikipedia.org/wiki/Apparent_magnitude), [loudness of sounds](https://en.wikipedia.org/wiki/Decibel), [acidity/basicity of solutions](https://en.wikipedia.org/wiki/PH), [sound frequency](https://en.wikipedia.org/wiki/Octave), or [power of earthquakes](https://en.wikipedia.org/wiki/Richter_magnitude_scale). 
+$$\GM[1,2,3,4,5] = \sqrt[5]{1\cdot 2 \cdot 3 \cdot 4 \cdot 5} = e^{\frac{1}{n}(\log 1 + \log 2 + \log 3 + \log 4 + \log 5)} \approx 2.61 $$
 
-In all these cases, notice that you don't really know what the original measurements were. Like, presumably Richter measures the energy of the earthquake, but who knows what the values actually look like. Is a 7.5 Richter earthquake $$10^{15} J$$ of energy? $$10^{20} J$$? Who knows?[^richter]
+A more meaningful example: if something increases by $$x_i$$ percents for $$i = (1 \ldots 10)$$, then its total increase is by $$\GM(x_i)^{10}$$. So: multiplying by 10 different numbers gives the same result as multiplying by their geometric mean ten times.
 
-These scales give logarithms of _something_, but for reporting data we don't care as much what the 'something' is. If that's the case, I think you may as well just log-transform all your data and then be done with it. Don't worry about geometric means, just logarithm everything and take arithmetic means.
+The same process is used for the geometric standard deviation / confidence intervals / interquartile ranges / whatever: (a) calculate the regular statistic on the log data, like $$\text{SD}[\log x]$$, then rescale back: $$\text{GSD}[x] = e^{SD[\log x]}$$.
+
+The simplest case where log-transformed statistics are more useful is if we are dealing with data whose values range over many orders of magnitudes. This is true for things that we already use logarithmic scales for, like [brightness of stars](https://en.wikipedia.org/wiki/Apparent_magnitude), [loudness of sounds](https://en.wikipedia.org/wiki/Decibel), [acidity/basicity of solutions](https://en.wikipedia.org/wiki/PH), [sound frequency](https://en.wikipedia.org/wiki/Octave), or [power of earthquakes](https://en.wikipedia.org/wiki/Richter_magnitude_scale).
+
+In all these cases, notice that you don't really know what the original measurements were. Like, presumably Richter measures the energy of the earthquake, but who knows what the values actually look like. Is a 7.5 Richter earthquake $$10^{15} J$$ of energy? $$10^{20} J$$? Who knows?[^richter] If we did statistics on the non-transformed values themselves, a single huge value like $$10^20$$ would become the mean of any data set, so our summary statistics would not summarize much of anything.
+
+Basically, each of these scales is measuring the logarithms of _something_, but for reporting data we don't care as much what the 'something' is. If that's the case, I think you may as well just log-transform all your data and then be done with it. Don't worry about geometric means, just logarithm everything and take arithmetic means.
 
 [^richter]: Actually I looked this up and Richter is totally different: it measures the _amplitude of the local tremor_, as recorded on a seismograph (the displacement of a needle, or whatever) which is then normalized based on the distance from the measurement to the epicenter of the earthquake. It turns out there are [tons of](https://en.wikipedia.org/wiki/Seismic_magnitude_scales) other scales, and some of them do a better job of measuring the actual energy of the earthquake.
 
@@ -47,7 +56,7 @@ The geometric mean and related statistics are for when you log-transform your da
 
 ## 1b. But actually: when do you use it?
 
-It turns out to be... surprisingly tricky... to get a precise explanation of _when_ the geometric mean is more appropriate for summarizing data. [Some people](https://medium.com/@JLMC/understanding-three-simple-statistics-for-data-visualizations-2619dbb3677a) think the answer is 'almost always'. But it appears to be pretty subjective. 
+It's turning out to be surprisingly tricky to get a straight answer. [Some people](https://medium.com/@JLMC/understanding-three-simple-statistics-for-data-visualizations-2619dbb3677a) think the answer is 'almost always'. But it appears to be pretty subjective. 
 
 Here's the basic reason, though:
 
@@ -57,21 +66,20 @@ Here's the basic reason, though:
 
 Here are some signs that this might be true:
 
-- the factors that cause your data to be different apply 'multiplicatively', instead of 'additively'
+- the factors that cause your data to vary at all apply 'multiplicatively', instead of 'additively'
 	* that is, a factor's effect is proportional to the size of your data. This would be anything like an 'increase in efficiency' or an 'increased rate of occurrence'
 	* in practice _most things_, apparently, work this way. Growth rates, heights, densities, power outputs, dollar amounts, disease rates, ...
-* and a corollary: the logarithm of the data looks more like a normal distribution than the data itself (ie your data is [lognormal](https://en.wikipedia.org/wiki/Log-normal_distribution))
+	* but generally you may not be sure, or able to tell, if this is true, so here are some more signs:
+* corollary: the logarithm of the data looks more like a normal distribution than the data itself (ie your data is [log-normal](https://en.wikipedia.org/wiki/Log-normal_distribution))
 * the data definitely cannot go below 0, by definition of what you're measuring
-* and effectively never goes _to_ 0, either, since that would make the geometric mean $$=0$$ (though see note, below)
-* the data do not have a constant translation factor (ie, if you could just as easily have measured "`x + 50`"" instead of "`x`", then the logarithm is going to be meaningless.)
+* and effectively never goes _to_ 0, either, since that would make the geometric mean 0 also (though see note, below)
+* the data do not have a constant translation factor (ie, if you could just as easily have measured $$x + 50$$ instead of $$x$$, then the logarithm is going to be meaningless.)
 	* so don't take the GM of temperature scales, unless you translate them to Kelvin first
-* the data _do_ have an arbitrary multiplicative factor (if you could have just as easily measured "`50x`" instead of "`x`", by changing units)
+* the data _do_ have an arbitrary multiplicative factor (if you could have just as easily measured $$50x$$ instead of $$x$$, by changing units)
 * the data are normalized against some constant value (so, if it is a % of _anything_)
 * or, generally, the data are ratios, such as concentrations of a substance, rates of occurrence of an event, or changes in a value per some unit of time.
 
-The most obvious example of where a geometric mean make sense is this: if something increases by $$x_i$$ percents for $$i = (1 \ldots 10)$$, then its total increase is by $$GM(x_i)^{10}$$, ten times. So: multiplying by 10 different numbers gives the same result as multiplying by their geometric mean ten times.
-
-People online seem to thinkthat many -- maybe even __most__ -- quantities turn out to vary multiplicatively, more or less. Probably many more than are being currently summarized using geometric means! So look, you and I are in the know. Neat.
+People online seem to think that many -- maybe even __most__ -- quantities turn out to vary multiplicatively, more or less. Probably many more than are being currently summarized using geometric means!
 
 I'd say a general rule of thumb is: if you feel, for your type of data and some value of $$N$$, that a reasonable average of $$10^N$$ and $$10^{-N}$$ is $$1$$ rather than $$\frac{10^N}{2}$$, you should use a geometric mean. 
 
@@ -85,8 +93,6 @@ I'd say a general rule of thumb is: if you feel, for your type of data and some 
 * Split times on a 10km race? _Arithmetic_, you almost certainly want the mean to be one tenth of the total time.
 * Speeds on each leg of a road trip, like $$60$$ mph and $$45$$ mph. Trick question, _neither_, you want the harmonic mean, which is pretty much only for speeds; see the end of this article.
 
-
-
 Put differently: if massive values that are many orders of magnitude higher than others are _expected_ and should not basically delete all your other data, then use a geometric mean.
 
 --------
@@ -97,7 +103,7 @@ If your data includes $$0$$, then the geometric mean is 0.
 
 But wait. What if you measure, like, bacteria concentration in a lake (a definitely order-of-magnitude-based value), and get 0 because you don't detect anything? Or you detect 'no earthquakes' on some particular day?
 
-And indeed, it turns out lots of scientists have data with 0s in it, and they're just ... [working around that](http://www.arpapress.com/Volumes/Vol11Issue3/IJRRAS_11_3_08.pdf)?
+And indeed, it turns out lots of scientists have data with 0s in it, and they're just ... [working around it?](http://www.arpapress.com/Volumes/Vol11Issue3/IJRRAS_11_3_08.pdf)
 
 Okay. It is _possibly_ reasonable to either:
 * delete 0 values from your data, or 
@@ -123,17 +129,13 @@ Once again, the **geometric mean** is the log-transformed arithmetic mean:
 
 $$\GM[x] = e^{\AM[\log x]} = \sqrt[n]{\prod_i x_i} = \prod_i \sqrt[n]{x_i}$$
 
-(I've seen a lot of different symbols for these things. For clarity, since we're talking about multiple means at once, I'll just keep writing $$GM$$ and $$AM$$).
-
 By the [AM-GM inequality](https://en.wikipedia.org/wiki/Inequality_of_arithmetic_and_geometric_means), which is often just referred to as AM-GM, the geometric mean is _always_ less than the arithmetic mean (if the inputs are all positive. Otherwise all bets are off. Don't use GM on negative numbers!):
 
 $$\AM[x] \geq \GM[x]$$
 
-This is good to keep in mind if, say, comparing the two.
+Another important relationship, which explains why GM works so well for _ratios_:
 
-Another important relationship, which explains why the $$GM$$ works so well for _ratios_:
-
-$$\GM[\frac{x_i}{y_i}] = \frac{\GM[x_i]}{\GM[y_i]}$$
+$$\GM \Big[ \frac{x_i}{y_i} \Big] = \frac{\GM[x_i]}{\GM[y_i]}$$
 
 <div class="box">
 
@@ -146,7 +148,7 @@ For the love of all things that are good, _do not program the formula "$$\GM[x] 
 </div>
 
 
-The **geometric standard deviation** GSD is the same transformation, applied to the regular standard deviation.
+The **geometric standard deviation** (GSD) is the same transformation, applied to the regular standard deviation.
 
 $$\text{GSD}[x] = e^{\text{SD}[\log x]}$$
 
@@ -159,9 +161,9 @@ $$\begin{aligned} e^{AM \pm SD} &= e^{AM}e^{\pm SD} \\
   &= \GM[x] \; {}_{\div}^{\times} \; \text{GSD}[x] \\ 
   & \stackrel{!}{\neq} \GM[x] \pm \text{GSD}[x] \end{aligned} $$
 
-Note that $$ \GM[x] \text{GSD}[x]^{\pm 1}$$ means the two values are $$(\GM[x] \text{GSD}[x], \frac{\GM[x]}{\text{GSD}[x]})$$. Clearly the $$GSD$$ is a ratio that should be pretty close to 1, such that (for a large enough sample) $$68.2\%$$ of values fall in the range of $$\text{GSD}[x]^{\pm 1}$$. If that's not true for your sufficiently-large dataset, you did something wrong.
+Note that $$ \GM[x] \text{GSD}[x]^{\pm 1}$$ means the two values are $$(\GM[x] \text{GSD}[x], \frac{\GM[x]}{\text{GSD}[x]})$$. Clearly the GSD should be not too different from $$1$$, such that 68.2% of values fall in the range of $$\text{GSD}[x]^{\pm 1}$$.
 
-Analogously, if your data is well-described by a GM + GSD, it's _not_ well-described by an AM + SD, because it should be positively skewed, so your SD will falsely suggest that the data is spread evenly around the mean. (For non-skewed data, like a regular normal distribution, consider how weird it would be to say that "X% of the data falls within $$\frac{\mu}{2}$$ and $$2 \mu$$"!)
+Analogously, if your data is well-described by a GM + GSD, it's _not_ well-described by an AM + SD, because it should be positively skewed, while your SD would suggest that the data is spread evenly around the mean. (Consider how weird it would be to say that "X% of the data falls within $$\frac{\mu}{2}$$ and $$2 \mu$$" for non-skewed data like a normal distribution!)
 
 If reporting confidence intervals for a given $$P$$-value, using geometric statistics, they will also not be the same distance from the geometric mean. For $$P=0.95$$, with z-score $$z = 1.96$$ (ie laughably permissible, false positives everywhere), the confidence intervals are:
 
@@ -176,22 +178,14 @@ $$\text{IQR} = \GM[x] e^{\pm 0.67 \text{SD}[x]} = \GM[x] GSD^{\pm 0.67}$$
 
 What about **geometric standard error**? This would say "how far is the sample geometric mean $$\GM[x_i]$$ from the true geometric mean of the data $$\GM[\b{x}]$$?"
 
-Reminder, since this one is a little less common: the **standard error** (or more precisely, the "standard error of the mean") of a set of $$N$$ samples drawn from a normal distribution, $$SE = \frac{\sigma}{N}$$, is the "standard deviation of the mean of $$N$$ values from the _true_ mean of the distribution_". Intuitively, as we sample more values from a normal distribution $$\cal{N}(\mu, \sigma^2)$$, the expected distance from the true mean $$\| \bar{x} - \mu \|$$ is also normally distributed, but has a _smaller_ standard deviation, by a factor of $$\frac{1}{\sqrt{N}}$$.
+Reminder, since this one is a little less common: the [standard error](https://en.wikipedia.org/wiki/Standard_error) (or more precisely, the "standard error of the mean") of a set of $$N$$ samples drawn from a normal distribution $$\cal{N}(\mu, \sigma^2)$$ is the "standard deviation of the mean of $$N$$ values from the _true_ mean of the distribution" and is given by $$\text{SE}[x,N] = \frac{\sigma_x}{\sqrt{N}}$$. Intuitively, as we sample more values from the normal distribution, our computed mean is also a normally distributed random variable, but has a _smaller_ standard deviation, by a factor of $$\frac{1}{\sqrt{N}}$$.
 
 
 This measurement is actually reported in papers sometimes (apparently), but hard to find a good equation for online. It turns out that it's given by:
 
 $$\text{GSE}[x, N] = \frac{\mu_G}{\sqrt{N}} \sigma_{\log x}$$
 
-Where $$\sigma_{\log x}$$ is the standard deviation of $$\log x$$, _not_ the 'geometric standard deviation', and $$\mu_G$$ is the _true_ geometric mean of $$x$$ (or at least, one that you have _way_ more confidence in). 
-
-Since you don't normally know $$\mu_G$$, you can use the sample mean $$\GM[x]$$, but then, like with the regular standard deviation and error formulas, you have to [change](https://en.wikipedia.org/wiki/Bessel%27s_correction) $$N \ra N-1$$:
-
-$$\text{GSE}[x, N] =  \frac{\GM[x]}{\sqrt{N-1}} \text{SD}[\log x]$$
-
-
-
-
+Where $$\sigma_{\log x}$$ is the standard deviation of $$\log x$$, _not_ the 'geometric standard deviation', and $$\mu_G$$ is the _true_ geometric mean of $$x$$ (or at least, one that you have _way_ more confidence in, like from a separate and much larger study). 
 
 <aside class="toggleable" id="analysis" placeholder="<b>Aside</b>: Derivation of Geometric Standard Error"> 
 
@@ -259,6 +253,9 @@ Disclaimer: I am not a mathematician. Please don't trust me.
 
 </aside>
 
+Since you don't normally know $$\mu_G$$, you can use the sample mean $$\GM[x]$$, but then, like with the regular standard deviation and error formulas, you have to [change](https://en.wikipedia.org/wiki/Bessel%27s_correction) $$N \ra N-1$$:
+
+$$\text{GSE}[x, N] =  \frac{\GM[x]}{\sqrt{N-1}} \text{SD}[\log x]$$
 
 What this means is that the distribution for "our calculation of $$\GM[x]$$ from $$N$$ samples" has probability distribution:
 
@@ -266,11 +263,10 @@ $$\GM_N[x] \sim \cal{N}[\mu_G, \frac{\mu_G}{\sqrt{N}} \sigma_{\log x}]$$
 
 And the previous formula is our best estimate of it, given a sample of $$N$$ values.
 
-On the one hand, this is weird to compute. Until now we did not care about $$\sigma_{\log x}$$. (And I assume, but am actually not sure, that $$\sigma_{\log x}$$ has another factor of $$\frac{1}{n-1}$$ in it, since it's _also_ computed from the sample?) But it should, for sufficiently high $$N$$, give the correct numerical difference between $$\GM[x]$$ and the true $$\mu_x$$. 
+On the one hand, this is weird to compute. Until now we did not care about $$\sigma_{\log x}$$. (And I assume, but am actually not sure, that $$\sigma_{\log x}$$ has another factor of $$\frac{1}{N-1}$$ in it, since it's _also_ computed from the sample?) But it should, for sufficiently high $$N$$, give the correct numerical difference between $$\GM[x]$$ and the true $$\mu_x$$. 
 
-I do not recommend using this formula. It is a bit unintuitive: it is the only statistic we've talked about that is _additive_ (so it's talking about the difference between $$\GM_N[x] - \mu_G$$). It's based on the idea that, even for lognormal data, the sample geometric mean $$\GM_N[x]$$ is normally distributed (notice that I did not say _log_-normal, though it may also be that! Even log-normal distribution samples are normally distributed for high-enough $$N$$!)
+I'm not sure it's a good idea to use the GSE, because I don't think people will know how to think about it. It is a bit unintuitive: it is the only statistic we've talked about that is _additive_ (so it's talking about the difference between $$\GM_N[x] - \mu_G$$, rather than $$\frac{GM_N[x]}{\mu_G}$$). It's based on the idea that, even for log-normal data, the sample geometric mean $$\GM_N[x]$$ is normally distributed (notice that I did not say _log_-normal, though it may also be that! Even log-normal distribution samples are normally distributed for high-enough $$N$$! They are just also massively skewed). Maybe some subfield thinks this makes perfect sense as a summary statistic -- I don't know. I'd avoid it.
 
-Until now we have been computing statistics on the log transformed data and then just exponentiating. It seems to me that it would make a lot more sense to define the geometric standard error as the expected _ratio_ between $$\GM[y_i]$$ and $$\GM[y]$$, which would just be $$=e^{SE[\log y]}$$, instead of the expected _difference_. But I don't get to choose. Suffice to say, it strikes me as a bit weird.
 
 ## Trivia: Some Other Means
 
