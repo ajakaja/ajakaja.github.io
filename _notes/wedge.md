@@ -142,7 +142,7 @@ Maybe we can say more, though, if we can study non-commutative determinants more
 
 Also, the [matrix determinant lemma](https://en.wikipedia.org/wiki/Matrix_determinant_lemma):
 
-$$\det(\b{A} + \b{u} \otimes \b{v}) = (1 + v \b{A}^{-1} u) \det (A)$$
+$$\det(\b{A} + \b{u} \otimes \b{v}) = (1 + \b{v} \b{A}^{-1} \b{u}) \det (\b{A})$$
 
 -------
 

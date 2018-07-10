@@ -236,7 +236,7 @@ Which is much easier to work with if we write it as:
 $$\begin{aligned} &= (A^{\^2} + A \wedge C + C^{\^ 2}) \wedge (B^{\^2} + B \wedge D + D^{\^ 2}) \\
 &= \cancel{A^{\^2} B^{\^2}} + \cancel{A^{\^2} (B \wedge D)} + A^{\^2} D^{\^2} \\
 &+ \cancel{A \^ C B^{\^2}} + A \^ C \^ B \^ D + \cancel{(A \^ C) D^{\^2}} \\
-&=  C^{\^2} B^{\^2} + \cancel{C^{\^2} (B \wedge D)} + \cancel{C^{\^2} D^{\^2}} \\
+&+  C^{\^2} B^{\^2} + \cancel{C^{\^2} (B \wedge D)} + \cancel{C^{\^2} D^{\^2}} \\
 &= A^{\^2} D^{\^2} + A \^ C \^ B \^ D  + C^{\^2} B^{\^2}
 \end{aligned}$$
 
