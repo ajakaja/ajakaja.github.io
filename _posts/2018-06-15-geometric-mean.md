@@ -6,49 +6,48 @@ math: true
 aside: true
 ---
 
-A friend is writing her master's thesis in a subfield where all the statistics are reported in geometric means and geometric standard deviations (GSD), or even in geometric standard... errors? whatever those are. Or sometimes in confidence intervals, and sometimes in, heck, interquartile ranges.
+A friend is writing her master's thesis in a subfield where data is typically summarized using _geometric_ statistics: geometric means and geometric standard deviations (GSD), and sometimes even geometric standard errors -- whatever those are. And occasionally 'geometric confidence intervals' and 'geometric interquartile ranges'.
 
-Most of which are (a) not something anyone really has intuition for and (b) hard to find references for online, compared to regular 'arithmetic' statistics.
+Most of which are (a) not something anyone really has intuition for and (b) surprisingly hard to find references for online, compared to regular 'arithmetic' statistics.
 
-I was trying to help her understand these, but I really couldn't find an easily-accessible reference online, so I guess I'm writing one.
+I was trying to help her understand these, but it took a lot of work to find easily-readable references online, so I wanted to write down what I figured out.
 
 <!--more-->
 
 
-## 1. When do you use geometric means, anyway?
+## 1. What is the point using a Geometric Mean?
 
 The [geometric mean](https://en.wikipedia.org/wiki/Geometric_mean) of a dataset $$\b{x} = \{x_i\}$$ is given by:
 
 $$\GM[\b{x}] = (\prod x_i)^{\frac{1}{n}}$$ 
 
-Though it is easier to understand through this equation:[^log]
+Though it is easier to understand through this equation[^log]:
 
 [^log]: I'm using $$\log x\equiv \log_e x \equiv \ln x$$ throughout this page. This is normal in some fields and totally weird in others. Sorry if it's weird.
 
 $$\GM[\b{x}] = e^{\AM[\log \b{x}]}$$
 
-(The base of the exponent and logarithm can be anything. It cancels out -- if you use $$\log_b$$, you raise $$b$$ to the power afterwards: $$\GM[\b{x}] = b^{\AM[\log_b \b{x}]}$$.)
-
-
-(By the way: I am using $$\GM[]$$ and $$\AM[]$$ as notations for these things, which is definitely not conventional, but I think it makes it easiest to read in settings where you're using both, compared to the alternatives.)
-
-This formulas means that you are computing the average of the _logarithms_ of your data, and then rescaling them back so the units work. For example:
+For example:
 
 $$\GM[1,2,3,4,5] = \sqrt[5]{1\cdot 2 \cdot 3 \cdot 4 \cdot 5} = e^{\frac{1}{n}(\log 1 + \log 2 + \log 3 + \log 4 + \log 5)} \approx 2.61 $$
 
-A more meaningful example: if something increases by $$x_i$$ percents for $$i = (1 \ldots 10)$$, then its total increase is by $$\GM(x_i)^{10}$$. So: multiplying by 10 different numbers gives the same result as multiplying by their geometric mean ten times.
+A more meaningful example: if something increases by $$x_i$$ percents for $$i = (1 \ldots 10)$$, then its total increase is by $$\GM(x_i)^{10}$$. Multiplying by 10 different numbers gives the same result as multiplying by their geometric mean ten times.
 
-The same process is used for the geometric standard deviation / confidence intervals / interquartile ranges / whatever: (a) calculate the regular statistic on the log data, like $$\text{SD}[\log x]$$, then rescale back: $$\text{GSD}[x] = e^{SD[\log x]}$$.
+(The base of the exponent and logarithm can be anything. It cancels out -- if you use $$\log_b$$, you raise $$b$$ to the power afterwards: $$\GM[\b{x}] = b^{\AM[\log_b \b{x}]}$$.)
+
+(By the way: using $$\GM[]$$ and $$\AM[]$$ as notations for these things is definitely not conventional, but I think it makes it easier to read in settings where you're using both.)
+
+This formula means that you are computing "the average of the _logarithms_ of your data", and then rescaling that back so the units work out. The same process is used for the geometric standard deviation / confidence intervals / interquartile ranges / whatever: (a) calculate the regular statistic on the log data, like $$\text{SD}[\log x]$$, then rescale back: $$\text{GSD}[x] = e^{SD[\log x]}$$.
 
 The simplest case where log-transformed statistics are more useful is if we are dealing with data whose values range over many orders of magnitudes. This is true for things that we already use logarithmic scales for, like [brightness of stars](https://en.wikipedia.org/wiki/Apparent_magnitude), [loudness of sounds](https://en.wikipedia.org/wiki/Decibel), [acidity/basicity of solutions](https://en.wikipedia.org/wiki/PH), [sound frequency](https://en.wikipedia.org/wiki/Octave), or [power of earthquakes](https://en.wikipedia.org/wiki/Richter_magnitude_scale).
 
-In all these cases, notice that you don't really know what the original measurements were. Like, presumably Richter measures the energy of the earthquake, but who knows what the values actually look like. Is a 7.5 Richter earthquake $$10^{15} J$$ of energy? $$10^{20} J$$? Who knows?[^richter] If we did statistics on the non-transformed values themselves, a single huge value like $$10^20$$ would become the mean of any data set, so our summary statistics would not summarize much of anything.
+In all these cases, notice that you don't really know what the original measurements were. Like, presumably Richter measures the energy of the earthquake, but who knows what the values actually look like. Is a 7.5 Richter earthquake $$10^{15} J$$ of energy? $$10^{20} J$$? Who knows?[^richter] If we did statistics on the non-transformed values themselves, a single huge value like $$10^{20}$$ would become the mean of any data set, so our summary statistics would not summarize much of anything.
 
 Basically, each of these scales is measuring the logarithms of _something_, but for reporting data we don't care as much what the 'something' is. If that's the case, I think you may as well just log-transform all your data and then be done with it. Don't worry about geometric means, just logarithm everything and take arithmetic means.
 
 [^richter]: Actually I looked this up and Richter is totally different: it measures the _amplitude of the local tremor_, as recorded on a seismograph (the displacement of a needle, or whatever) which is then normalized based on the distance from the measurement to the epicenter of the earthquake. It turns out there are [tons of](https://en.wikipedia.org/wiki/Seismic_magnitude_scales) other scales, and some of them do a better job of measuring the actual energy of the earthquake.
 
-The geometric mean and related statistics are for when you log-transform your data for analysis, and then want to transform it _back_. For instance, if you wanted to report the power of an earthquake in _Joules_, not in Richter, maybe because you're comparing it to other numbers reporting in Joules. Or, say, if the original data came in very sensible units like "parts per million" or "growth % year-over-year", and you don't want to report a value that's been log-transformed to be unrecognizable.
+The geometric mean and related statistics are for when you log-transform your data for analysis, and then want to transform it _back_. For instance, if you wanted to report the power of an earthquake in _Joules_, not in Richter, maybe because you're comparing it to other numbers reporting in Joules. Or, say, if the original data came in very sensible units like `parts per million` or `growth % year-over-year`, and you don't want to report a value that's been log-transformed to be unrecognizable.
 
 
 ---------
@@ -60,7 +59,7 @@ It's turning out to be surprisingly tricky to get a straight answer. [Some peopl
 
 Here's the basic reason, though:
 
-* You want to use a geometric mean (or to log-transform, in general) is if it makes more sense for your data to be multiplied together, rather than added together.
+* You want to use a geometric mean if it makes more sense for your data to be multiplied together, rather than added together.
 
 (In fact, it may as well just be called a 'multiplicative mean', and then let's call the arithmetic mean the 'additive mean' at the same time.)
 
@@ -103,23 +102,21 @@ If your data includes $$0$$, then the geometric mean is 0.
 
 But wait. What if you measure, like, bacteria concentration in a lake (a definitely order-of-magnitude-based value), and get 0 because you don't detect anything? Or you detect 'no earthquakes' on some particular day?
 
-And indeed, it turns out lots of scientists have data with 0s in it, and they're just ... [working around it?](http://www.arpapress.com/Volumes/Vol11Issue3/IJRRAS_11_3_08.pdf)
+And indeed, it turns out lots of scientists have data with 0s in it, and they've just been ... [working around it?](http://www.arpapress.com/Volumes/Vol11Issue3/IJRRAS_11_3_08.pdf)
 
-Okay. It is _possibly_ reasonable to either:
+Okay. Maybe it is _possibly_ reasonable to either:
 * delete 0 values from your data, or 
 * replace 0s with 'very small numbers that aren't 0', such as $$\e = 10^{-k}$$ for some $$k$$ that makes them smaller than all your non-zero values
 
-...in order to keep your geometric mean from being literally 0. 
-
-Why: maybe your instruments aren't sensitive to detect values that are very near 0 and just report 0 instead. Or maybe your data is a ratio like 'counts of a molecule per million liters', and it is assumed that, no matter what, if you sampled _enough_, the thing you're counting would show up at least once, if you kept looking, so it can't 'really' be 0.
+...in order to keep your geometric mean from being literally 0. Why: maybe your instruments aren't sensitive to detect values that are very near 0 and just report 0 instead. Or maybe your data is a ratio like 'counts of a molecule per million liters', and it is assumed that, no matter what, if you sampled _enough_, the thing you're counting would show up at least once, if you kept looking, so it can't 'really' be 0.
 
 But, and **this is important**: if there are enough zero data points that your _choice of $$\e$$_ for rounding is changing your geometric mean significantly, you are probably doing something wrong.
 
-And if you decide instead of _delete_ the 0 values, you better report the result as "the average X when X was present", rather than just "the average X", or you've found another way to [lie with statistics](https://www.amazon.com/How-Lie-Statistics-Darrell-Huff/dp/0393310728).
+And if you decide instead of _delete_ the 0 values, you better report the result as "the average X when X was present", rather than just "the average X", or you're just [lying with statistics](https://www.amazon.com/How-Lie-Statistics-Darrell-Huff/dp/0393310728).
 
 It's pretty confusing, though. You aren't wrong for being unsure. People use geometric means all the time with data that can be zero, maybe doing one of the above workarounds, and I _really_ doubt they're all handling it correctly or reporting it correctly afterwards.
 
-Oh, and by the way: if you are geometric-meaning a bunch of, say, annual company growth percentages, and getting 0 -- say, for example, the data $$x = (-20\%, 0\%, 50\%, 120\%)$$, you're doing it wrong. Those growth rates are percentages and need to be changed to actual multiplicative factors $$x = (0.8, 1.0, 1.5, 2.2)$$, which gets rid of the zeroes. The only zero growth rate is your company going out of business.
+Oh, and by the way: if you are geometric-meaning a bunch of, say, annual company growth percentages, and getting 0 -- say, for example, the data $$x = (-20\%, 0\%, 50\%, 120\%)$$ -- you're doing it wrong. Those growth rates are percentages and need to be changed to actual multiplicative factors $$x = (0.8, 1.0, 1.5, 2.2)$$, which gets rid of the zeroes. The only $$0\%$$ growth is your company going out of business.
 
 ----------
 
@@ -141,7 +138,7 @@ $$\GM \Big[ \frac{x_i}{y_i} \Big] = \frac{\GM[x_i]}{\GM[y_i]}$$
 
 **Important note on doing statistics with a computer**:
 
-For the love of all things that are good, _do not program the formula "$$\GM[x] = \sqrt[n]{\prod x_i}$$" into a computer if you do not know what you are doing_. Use a built-in library for it, or use one of the other two formulas ($$= e^{\AM[\log x]}$$ or $$= \prod \sqrt[n]{x_i}$$). Multiplying arbitrarily long lists of numbers together can overflow the data values in some programming languages, causing them to wrap around to negative numbers, rendering all your math utterly wrong.
+For the love of all things that are good, _do not program the formula $$\GM[x] = \sqrt[n]{\prod x_i}$$ into a computer (if you do not know what you are doing)_. Use a built-in library for it, or use one of the other two formulas ($$= e^{\AM[\log x]}$$ or $$= \prod \sqrt[n]{x_i}$$). Multiplying arbitrarily long lists of numbers together can overflow the data values in some programming languages, causing them to wrap around to negative numbers, rendering all your math utterly wrong. In particularly unfortunate cases, the resulting value will look _close_ to what it should be, yet have been computed an entirely incorrect way.
 
 (If you're in a data-science-oriented language like R, you'll probably get away with it, cause they tend to avoid including [footguns](https://en.wiktionary.org/wiki/footgun). If you're in C, you won't.)
 
