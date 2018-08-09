@@ -11,7 +11,7 @@ kramdown:
  hard_wrap: true
  syntax_highlighter: rouge
 
-plugins: [jekyll-sitemap]
+plugins: []
 
 sass:
  sass_dir: _sass
