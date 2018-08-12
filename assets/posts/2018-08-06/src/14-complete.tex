@@ -1,0 +1,24 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{tikz}
+\usepackage{anyfontsize}
+
+\usetikzlibrary{bending}
+\usetikzlibrary{arrows.meta}
+\begin{document}
+
+
+\begin{tikzpicture}[dash1/.style={dashed,dash pattern=on 1pt off 1pt, dash phase=1pt}]
+
+\foreach \a in {0,60,...,300} { 
+	\draw[fill] (\a:2) circle (1pt);
+	\draw (\a:2) -- (\a+60: 2);
+	\draw[dash1] (\a:2) -- ([shift=(\a+60:0.4)]\a:2);
+	\draw [arrows = {-Latex[scale length=0.5]}] ([shift=(\a+60:0.25)]\a:2) arc [radius=0.25, start angle=\a+60, end angle= \a+120];
+}
+
+\node (above) at (2,0.45) {$\theta$};
+
+\end{tikzpicture}
+
+\end{document}

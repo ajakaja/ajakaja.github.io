@@ -1,0 +1,30 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{tikz}
+\usepackage{anyfontsize}
+
+\usetikzlibrary{decorations.pathreplacing,bending,arrows.meta}
+
+\begin{document}
+
+\begin{tikzpicture}
+
+\foreach \a in {0,60,...,300} { 
+	\draw[fill] (\a:2) circle (1pt);
+	\draw (\a:2) -- (\a+60: 2);
+}
+\draw[fill] (0,0) circle(1pt);
+\draw [arrows = {-Latex[scale length=0.5]}] ([shift=(120:0.25)]2,0) arc [radius=0.25, start angle=120, end angle= 180];
+\node[left] at (1.75,0.25) {$\frac{\alpha}{2}$};
+\draw (0,0) -- ([shift=(120:1)]2,0);
+\draw (0,0) -- (2,0);
+
+\node (above) at ([shift=(30:1)]0,0.2) {$s$};
+\node (below) at (1,-0.2) {$r$};
+
+\draw[decoration={brace,mirror,raise=5pt},decorate] (2,0) -- node[right=6pt] {} ([shift=(120:2)]2,0);
+\node at ([shift=(30:2.2)]0,0) {$L$};
+
+\end{tikzpicture}
+
+\end{document}

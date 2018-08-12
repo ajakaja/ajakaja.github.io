@@ -1,0 +1,22 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{tikz}
+\usepackage{anyfontsize}
+
+\usetikzlibrary{bending}
+\usetikzlibrary{arrows.meta}
+\begin{document}
+
+\begin{tikzpicture}
+\draw [fill=red!15] (0,0) rectangle ++(3,2);
+\draw [fill=white!20] (1,1) circle [radius=0.5];
+\node at (4,1) {$=$};
+\draw [fill=red!15] (5,0) rectangle ++(3,2);
+\draw [-Latex] ([shift=(0:0.2)]6.5,1) arc [radius=0.2, start angle=0, end angle= 270];
+
+\node at (8.5,1) {$+$};
+\draw [fill=gray!10] (9.5,1) circle [radius=0.5];
+\draw [Latex-] ([shift=(0:0.2)]9.5,1) arc [radius=0.2, start angle=0, end angle= 270];
+\end{tikzpicture}
+
+\end{document}

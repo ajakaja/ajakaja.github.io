@@ -1,0 +1,15 @@
+set -u
+set -e
+if [ $# -ne 1 ]; then
+    echo "missing .tex file argument"
+    exit 1
+fi
+name="$1"
+base=$(basename "$name" .tex)
+
+mkdir -p "/tmp/2018-08-06"
+echo "Compiling .tex ..."
+latex -interaction=batchmode -output-directory=/tmp/2018-08-06 "$1"
+cd ..
+echo "Rendering .dvi to .svg ..."
+dvisvgm --libgs=/usr/local/lib/libgs.dylib --font-format=woff --exact /tmp/2018-08-06/"$base".dvi

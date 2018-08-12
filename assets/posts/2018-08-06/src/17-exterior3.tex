@@ -1,0 +1,24 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{tikz}
+\usepackage{anyfontsize}
+
+\usetikzlibrary{bending}
+\usetikzlibrary{arrows.meta}
+\begin{document}
+
+\begin{tikzpicture}
+
+\node [below] at (0.7,0.25) {$\bf{d}_{i-1}$};
+\draw [-Latex] (0,0) -- (1.5,0.5);
+\node [left] at (1.75, 1.25) {$\bf{d}_i$};
+\draw [-Latex] (1.5,0.5) -- (2,2);
+
+
+\draw[dashed, shorten <=3] (1.5,0.5) -- (2.1, 0.7);
+\draw [arrows = {-Latex[scale length=0.5]}] ([shift=(18.5:0.5)]1.5,0.5) arc [radius=0.5, start angle=18.5, end angle= 71.5];
+\node [above] at (2.1, 0.7) {$\theta_i$};
+
+\end{tikzpicture}
+
+\end{document}

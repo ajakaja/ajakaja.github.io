@@ -1,0 +1,25 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{tikz}
+\usepackage{anyfontsize}
+
+\usetikzlibrary{bending}
+\usetikzlibrary{arrows.meta}
+\begin{document}
+
+\begin{tikzpicture}
+
+\draw (0,0) -- (3,0) -- (2,2) -- cycle;
+\draw (-1,0) -- (0,0) -- (2,2) -- cycle;
+\node [below] at (0,0) {$B$};
+\node [above] at (2,2) {$A$};
+\node [below] at (-1,0) {$A'$};
+\node [right] at (3,0) {$C$};
+
+\draw [-Latex] ([shift=(45:0.2)]1.75,0.5) arc [radius=0.2, start angle=45, end angle= 315];
+\draw [arrows = {-Stealth[scale=0.75]}]  ([shift=(315:0.13)]-0.2,0.25) arc [radius=0.13, start angle=315, end angle= 45];
+
+
+\end{tikzpicture}
+
+\end{document}

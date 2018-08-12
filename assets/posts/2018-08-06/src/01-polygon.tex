@@ -1,0 +1,21 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{tikz}
+\usepackage{anyfontsize}
+
+\usetikzlibrary{bending}
+\usetikzlibrary{arrows.meta}
+\begin{document}
+
+\begin{tikzpicture}
+\draw[fill=gray!10] (0,0.5) -- (2, 0) -- (3, 1) -- (2.5, 2) -- (1, 2) -- cycle;
+\draw [-Latex] ([shift=(45:0.2)]1.6, 1.0) arc [radius=0.2, start angle=45, end angle= 315];
+\node [left] at (1,2) {$p_5$};
+\node [left] at (0,0.5) {$p_1$};
+\node [below] at (2,0) {$p_2$};
+\node [right] at (3,1) {$p_3$};
+\node [above] at (2.5,2) {$p_4$};
+\node at (1.6, 1.5) {$P$};
+\end{tikzpicture}
+
+\end{document}
