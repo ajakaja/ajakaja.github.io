@@ -16,11 +16,11 @@ $$f(x+a) = \sum_{0}^{\infty} \frac{a^{n} f^{(n)}(x) }{n!}$$
 
 And, under certain conditions, this series will converge exactly to the values of the function at nearby points.
 
+<!--more-->
+
 <small>(It may be that there is a certain radius of convergence around $$x$$ in which this approximation is valid. For the remainder of this page, assume we're dealing with $$f$$ and $$x$$ such that $$f$$ has a series which is convergent around $$x$$ and we're staying close enough for that to be valid.)</small>
 
 <small>(You may be more used to seeing this as $$f(x) = \sum \frac{(x - x_0)^{n} f^{(n)}(x_0)}{n!}$$. They're equivalent, of course, but for our purposes it will be cleaner to write out it as an approximation for a displacement $$a$$ from a point $$x$$, rather than having to write the displacement as $$(x - x_0)$$.)</small>
-
-<!--more-->
 
 This can be written in a cleaner notation if we let ourselves treat the derivative operator $$\p_{x}$$ as a variable (sometimes we will omit the subscript $$x$$ to keep things uncluttered) and then treat the whole summation as an operator acting on *f*:
 
@@ -62,7 +62,7 @@ So it's just all really great, when it works and the series converge and everyth
 
 <small>(In physics we tend to, instead of carefully proving things converge, just do the calculations and *see* if they match what they should be afterwards, and then wave our hands and conclude that it works, because it's easier that way and because (I suspect) getting a coherent calculus of operators is an analytical nightmare, and definitely not in immediate reach of the curious undergraduate.)</small>
 
-## 2 Going further
+## 2
 
 Assume $$F(x) = \int f(x) dx$$ exists, and consider antidifferentiation as a left inverse of the differentation operator:
 

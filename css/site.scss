@@ -30,11 +30,9 @@ body {
 hr {
   border-width: 1px;
   border-style: none;
-  width: 90%;
+  width: 100%;
   height: 1em;
-  border-color: #333333;
-  border-bottom-width: 1px;
-  border-bottom-style: inset;
+  border-bottom: 1px inset #ccc;
 }
 
 sup, sub {
@@ -67,7 +65,7 @@ pre {
 h1, h2, h3, h4, h5, h6 {
   font-family: $helveticaNeue;
   color: $darkerGray;
-  font-weight: bold;
+  font-weight: 500;
 
   line-height: 1.7;
   padding: 0;
@@ -90,7 +88,8 @@ h1 {
 }
 
 h2 {
-  font-size: 18px;
+  padding-left: 1px;
+  font-size: 20px;
 }
 
 h3 {
@@ -444,6 +443,8 @@ pre.highlight {
 figcaption {
   text-align: center;
   font-size: 0.8em;
+  width: 80%;
+  margin: 0px auto;
 }
 
 @import "highlights";

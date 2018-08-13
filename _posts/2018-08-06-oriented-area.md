@@ -16,7 +16,7 @@ Second, because some resources (including Wikipedia) cite a 1959 monograph title
 
 First, a summary of the concept of oriented area and the "shoelace formula", and some equations I found playing while around with it that turned out not to be novel.
 
----------
+<!--more-->
 
 ## 1
 
@@ -25,8 +25,6 @@ Let $$P$$ be a polygon with vertices $$\{p_0, p_1, p_2, \ldots p_n\}$$. Sometime
 Here's a $$P$$ with $$n=5$$:
 
 {% include image.html filename="2018-08-06/01-polygon.svg" width="200px" %}
-
-<!--more-->
 
 The _signed_ or _oriented_ area of $$P$$ is given by the so-called "[shoelace formula](https://en.wikipedia.org/wiki/Shoelace_formula)":
 
@@ -58,17 +56,14 @@ This becomes more useful in more complicated figures, because it lets us build t
 
 But with signed areas mean that this construction works even if the origin is outside the polygon, with the triangles overlapping, because their overlapping parts cancel perfectly:
 
-{% include image.html filename="2018-08-06/06-triangles2.svg" width="200px" %}
-
-The dark areas cancel out of the total sum, because the (negative) area of $$p_1 p_2\mathcal{O}$$ exactly cancels the excess positive areas in each of the other triangles ($$p_2 p_3 \mathcal{O}, p_3 p_4 \mathcal{O}, p_4 p_0 \mathcal{O}$$, and $$p_0 p_1 \mathcal{O}$$).
+{% include image.html filename="2018-08-06/06-triangles2.svg" width="200px" caption="The dark areas cancel out of the total sum, because the (negative) area of $$p_1 p_2\mathcal{O}$$ exactly cancels the excess positive areas in each of the other triangles $$p_2 p_3 \mathcal{O}, p_3 p_4 \mathcal{O}, p_4 p_0 \mathcal{O}$$, and $$p_0 p_1 \mathcal{O}$$."%}
 
 The coordinate-invariance of this formula (that it works regardless of where $$\mathcal{O}$$ is) should be enough to motivate it as mathematically valuable. We like formulas that don't care about specific coordinate systems.
 
 We're used to dealing with what are called _simple_ polygons -- polygons whose sides never overlap, so they surround a single region of space without any intersections. We can also consider _non-simple_ polygons, which are allowed to have their vertices or edges overlap or intersect. The shoelace formula continues to work if the polygon is _non-simple_, except we must understand that negatively-oriented regions subtract from the total sum instead of adding, which may not be totally intuitive:
 
-{% include image.html filename="2018-08-06/07-nonsimple.svg" width="250px" %}
+{% include image.html filename="2018-08-06/07-nonsimple.svg" width="250px" caption="The total signed area here is _zero_, because the two oppositely-oriented components have the same magnitudes of areas, but opposite signs, so they cancel out."%}
 
-The total signed area of this figure is _zero_, because the two oppositely-oriented components are congruent and thus have the same magnitudes of areas, but opposite signs, so they cancel out.
 
 ---------
 
@@ -98,7 +93,7 @@ The shoelace formula can be massaged into some other forms. Defining $$\b{d}_i$$
 
 $$\b{d}_i = p_{i+1} - p_i$$
 
-Which describes the same polygon, labelled differently and in a translation-invariant way:
+Which is just the same polygon labelled differently:
 
 {% include image.html filename="2018-08-06/10-displacements.svg" width="150px" %}
 
@@ -115,20 +110,14 @@ The $$\b{d}_i$$ vectors traverse the polygon starting at $$p_0$$:
 $$p_j = p_0 + \sum_{i = 0}^{j-1} \b{d}_i$$
 
 
-And they form a closed loop:
-
-$$\sum_{i=0}^{n} \b{d}_i = \b{0}$$
-
-Therefore we can eliminate the $$p_i$$ terms from the area formula entirely by writing them as sums of displacements:
+They form a closed loop ($$\sum_{i=0}^{n} \b{d}_i = \b{0}$$). Therefore we can eliminate the $$p_i$$ terms from the area formula entirely by writing them as sums of displacements (recalling that $$\sum_{i} p_0 \times \b{d}_i$$ cancels out because it equals $$ p_0 \times  \sum_{i} \b{d}_i = p_0 \times \b{0} = 0$$):
 
 $$\begin{aligned} Area(P) &= \frac{1}{2} \sum_{i} (p_0 + \sum_{j < i} \b{d}_j) \times \b{d}_i \\
 &=\frac{1}{2} [ \sum_{i} p_0 \times \b{d}_i + \sum_{i}\sum_{j < i} \b{d}_j \times \b{d}_i ]\end{aligned}$$
 
 $$ Area(P) = \frac{1}{2} \sum_{i}\sum_{j < i} \b{d}_j \times \b{d}_i \tag{3} $$
 
-($$\sum_{i} p_0 \times \b{d}_i$$ cancels out because it equals $$ p_0 \times  \sum_{i} \b{d}_i = p_0 \times \b{0} = 0$$.)
-
-
+This is the shoelace formula, rewritten to only use the vector displacements of the figure.
 
 ---------
 
@@ -149,19 +138,19 @@ $$\sum \theta_i = \b{0}$$
 {% include image.html filename="2018-08-06/14-complete.svg" width="250px" %}
 
 
-In a regular $$n$$-gon, each exterior angle must be equal, so $$\theta_i = \frac{2 \pi}{n}$$, which means the interior angles are $$\alpha = \pi - \frac{2 \pi}{n}$$ and the sum of the interior angles is $$n \alpha = n(\pi - \frac{2 \pi}{n}) = \pi (n-2)$$.
+In a regular $$N$$-gon, each exterior angle must be equal, so $$\theta_i = \frac{2 \pi}{N}$$, which means the interior angles are $$\alpha = \pi - \frac{2 \pi}{N}$$ and the sum of the interior angles is $$N \alpha = N(\pi - \frac{2 \pi}{N}) = \pi (N-2)$$.
 
-The area of an $$n$$-gon is $$2n$$ copies of the right triangle that has half that, $$\frac{\pi (n-2)}{2}$$, as one of its angles, which gives various formulas for computing their area depending on what lengths you have:
+The area of a regular $$N$$-gon is created from $$2N$$ copies of the right triangle that has $$\frac{\alpha}{2}$$ as one of its angles, which gives various formulas for computing their area depending on what lengths you have:
 
 {% include image.html filename="2018-08-06/15-regular.svg" width="200px" %}
 
-Evidently these relationships are true, if you'd like to go calculating some values from the others:
+We can see that these relationships should hold, in case you'd like to go calculating some values from the others:
 
 $$\begin{aligned} \frac{L}{2} &= r \cos \frac{\alpha}{2}  \\
 s &= r \sin \frac{\alpha}{2} \\
 &= \frac{L}{2} \tan \frac{\alpha}{2} \\
-Perimeter &= nL = 2 n r \cos \frac{\alpha}{2} \\ 
-Area &= \frac{1}{2} nsL \\
+Perimeter &= NL = 2 n r \cos \frac{\alpha}{2} \\ 
+Area &= \frac{1}{2} NsL \\
 &= \frac{1}{2} s \cdot Perimeter
 \end{aligned}$$
 
@@ -169,9 +158,9 @@ Area &= \frac{1}{2} nsL \\
 
 For a simple, positively-oriented polygon, the exterior angles add up to exactly $$2 \pi$$ radians. For non-simple polygons they may add up to any multiple of $$2 \pi$$ depending on how many clockwise or counterclockwise loops there are:
 
-{% include image.html filename="2018-08-06/16-exterior2.svg" width="500px" %}
+{% include image.html filename="2018-08-06/16-exterior2.svg" width="500px" caption="The first figure has $$\sum \theta_i = 2\pi$$, the second has $$\sum \theta_i = -2 \pi$$, and the third has $$\sum \theta_i = 0$$."%}
 
-Here, the first figure has $$\sum \theta_i = 2\pi$$, the second has $$\sum \theta_i = -2 \pi$$, and the third has $$\sum \theta_i = 0$$.
+
 
 Each adjacent displacement vector $$\b{d}_i$$ differs from the previous vector $$\b{d}_{i-1}$$ by the exterior angle between them $$\theta_i$$.
 
@@ -198,18 +187,17 @@ $$\begin{aligned} Area(P) &= \frac{1}{2} (a_1 [a_2 \sin (\theta_1) + a_3 \sin (\
 &+ \dots + a_{n-2} \sin (\theta_{n-1})) \tag{5}
 \end{aligned}$$
 
-But I think my version is better. It's certainly more compact. Doesn't matter, though; you can translate these formulas into any of various forms depending on which angles you would prefer to use.
+This and (4) are two ways of expressing the same idea: the area of a polygon in terms of scalar lengths and angles. I am not sure when you would ever want to use these, though -- these loops have $$O(N^2)$$ steps in them, while the original formula (1) involved only $$N$$.
 
 --------
 
 ## 3
 
+As I'vementioned, the Wikipedia article on [polygons](https://en.wikipedia.org/wiki/Polygon) sources formula (5) from *Computation of Areas of Oriented Figures* by A.M. Lopshits, published 1959. It turns out some other people have chased that link and also cited this text, but I could not get my hands on a .pdf version, so I got it from the university library.
 
-The Wikipedia article on [polygons](https://en.wikipedia.org/wiki/Polygon) sources formula (5) from *Computation of Areas of Oriented Figures* by A.M. Lopshits, published 1959. It turns out some other people have chased that link and also cited this text, but I could not get my hands on a .pdf version, so I got it from the university library.
+If you are curious what it contains, here's an outline. The short version is: not much. I wanted more formulas and ideas in the vein of (5), but much deeper. Turns out, though, that's it's a mostly pedagogical text that reaches that formula as its final result after spending 40 pages on the concept of oriented area and related (elementary) geometric proofs.
 
-If you are curious what it contains, here's an outline. The short version is: not much. I wanted more formulas and ideas in the vein of (5), but much deeper. Turns out, though, that's it's a largely pedagogical text that reaches that formula as its final result after spending 40 pages on the concept of oriented area and related (elementary) geometric proofs.
-
-### Outline of *Computation of Areas of Oriented Figures* by AM Lopshits:
+<span style="text-decoration:underline;">Outline of *Computation of Areas of Oriented Figures* by AM Lopshits</span>
 
 **Chapter 1. Measurement of the Area of an Oriented Figure**
 1. Oriented triangles are a lot like regular triangles, but oriented.
@@ -224,22 +212,24 @@ If you are curious what it contains, here's an outline. The short version is: no
 	* this is also carefully proven using previous theorems.
 5. Some examples and exercises. The most interesting set is like this (for $$N=8,12,20$$):
 
-	"A regular dodecagon $$A_1A_2 \ldots A_{12}$$ is inscribed in a circle. The polygon $$A_1 A_6 A_5 A_10 A_9 A_2$$ has three points of self-intersection, $$C_1$$, $$C_2$$, $$C_3$$. Prove that the area of the triangle $$C_1 C_2 C_3$$ is three times the area of the triangle $$A_1 A_2 C_1$$.<br/>{% include image.html filename="2018-08-06/20-dodecagon.svg" width="250px" %}
+	"A regular dodecagon $$A_1A_2 \ldots A_{12}$$ is inscribed in a circle. The polygon $$A_1 A_6 A_5 A_10 A_9 A_2$$ has three points of self-intersection, $$C_1$$, $$C_2$$, $$C_3$$. Prove that the area of the triangle $$C_1 C_2 C_3$$ is three times the area of the triangle $$A_1 A_2 C_1$$."<br/>{% include image.html filename="2018-08-06/20-dodecagon.svg" width="250px" %}
 
-	(Solution: the total signed area of the inner polygon, noting that $$\mathcal{O} A_1 A_6$$ has the opposite orientation of $$\mathcal{O} A_1 A_2$$, is:
+<aside class="toggleable" placeholder="<b>Solution</b> <em>(click to expand)</em>">
+The total signed area of the inner polygon, noting that $$\mathcal{O} A_1 A_6$$ has the opposite orientation of $$\mathcal{O} A_1 A_2$$, is:
 
-	$$\begin{aligned} S &= 3[area(\mathcal{O}A_1 A_6) + area(\mathcal{O} A_2 A_1)] \\
-	&= 3 \frac{R^2}{2} [ -\sin 150 \degree +\sin 30 \degree ] \\
-	&= 0 \end{aligned}$$
+$$\begin{aligned} S &= 3[area(\mathcal{O}A_1 A_6) + area(\mathcal{O} A_2 A_1)] \\
+&= 3 \frac{R^2}{2} [ -\sin 150 \degree +\sin 30 \degree ] \\
+&= 0 \end{aligned}$$
 
-	But it can also be written as 
+But it can also be written as 
 
-	$$S = area(C_1 C_2 C_3) + 3 \cdot area(C_1 A_1 A_2)$$, so $$3 \cdot area(C_1 A_1 A_2) = -area(C_1 C_2 C_3)$$
+$$S = area(C_1 C_2 C_3) + 3 \cdot area(C_1 A_1 A_2)$$, so $$3 \cdot area(C_1 A_1 A_2) = -area(C_1 C_2 C_3)$$
 
-	So the magnitude of the two sides' areas are equal.)
+So the magnitudes of the two parts' areas are equal.
+</aside>
 
 **Chapter 2. The Planimeter**
-1. This chapter entirely describes the workings of the device called the *planimeter*, which is used to measured (oriented) areas of printed curves via, essentially, the shoelace formula acting on a polygonal approximation.
+1. This chapter entirely describes the workings of a device called the *planimeter*, which is used to measure [signed] areas of printed curves via, essentially, the shoelace formula acting on a polygonal approximation.
 I do not care about planimeters, though I'm sure this was interesting in 1959.
 In fact it turns out there are multiple kinds of planimeters out there, each of which the reader is invited to deeply contemplate.
 There is one theorem I found interesting, though:
@@ -297,7 +287,7 @@ I'm sure there is some reason why this is not entirely rigorous, but it explains
 
 While we're at it, maybe we can come up with an 'integral form' of (3) or (4). Naively, it should look something like this, right?
 
-$$area(D) = \frac{1}{2} \sum_i \sum_{j < i} \b{d}_j \times \b{d}_i \Lra \frac{1}{2} \int_0^1 dt \int_0^t ds \; \dot{\vec{\gamma}}(s) \times \dot{\vec{\gamma}} (t)$$
+$$area(D) = \frac{1}{2} \sum_i \sum_{j < i} \b{d}_j \times \b{d}_i \Lra \frac{1}{2} \int_0^1 \int_0^t \; \dot{\vec{\gamma}}(s) \times \dot{\vec{\gamma}} (t) \, ds \, dt$$
 
 Where we parameterize the curve $$C$$ enclosing our region as $$\vec{\gamma}(t)$$ for $$t \in [0, 1]$$.
 
@@ -337,15 +327,21 @@ By taking the magnitude, you've lost the sign, though. This is because the direc
 
 Instead we can just talk about how things are oriented _relative_ to each other. A figure on the $$XY$$ plane is either oriented in the $$\b{z}$$ direction or the $$-\b{z}$$ direction. In 2D we drop the $$\b{z}$$'s and just call this positive and negative. In 3D, though, _volumes_ have an absolute concept of orientation, but in 4D they would not -- they would just end up oriented to the, say, $$+\b{w}$$ or $$-\b{w}$$ axes!
 
+
+
+The shoelace formula used on a general polygon in 3D will work the same way, giving a vector. Note that this does require the polygon to be already known to be _planar_, or the answer you get will be meaningless.
+
+<aside class="toggleable" placeholder="<b>Aside</b>: Note on coplanarity <em>(click to expand)</em>">
+
+How do you tell if a list of points $$\{p_i\}$$ is coplanar? 
+
+Well, non-degenerate triangles always are, because it takes three points to define a plane. But it's easy in general: since the line between any pair of the points $$(p_i, p_j)$$ should fall on that plane, all of those lines should have cross products with each other that point _out_ of the plane. 
+
+So: first, find any three points $$(a,b,c)$$ from the set which are not co*linear*, and compute $$\b{q} = (b-a)\times (c-a)$$. This vector $$\b{q}$$ definitely points out of the plane, so it should be orthogonal to any vector _on_ the plane -- such as the vector from $$a$$ to any other point, $$(p_i - a)$$. So check that $$\b{q} \times (p_i - a) =0$$ for every $$i$$. That's O(N) computations in total, no problem.
+
+</aside>
+
 By the way -- if you want to compute the surface area of a figure by summing the areas of each side, go right ahead, but make sure you normalize each side's area to be positive first. The surface area _vectors_ of a closed figure in 3D will always cancel out to $$\b{0}$$. (Why? Because of Stoke's theorem: $$\iint_{S} 1 \, d\b{S} = \iiint_V d(1) dV = 0 $$.)
-
-**Note on Coplanarity:**
-
-When computing areas of general polygons, rather than triangles, in 3D, it's important that our polygons already be _coplanar_, or our answer will be meaningless!
-
-How do you tell if a list of points $$\{p_i\}$$ is coplanar? Well, non-degenerate triangles always are, because it takes three points to define a plane. But it's easy in general: since the line between any pair of the points $$(p_i, p_j)$$ should fall on that plane, all of those lines should have cross products with each other that point _out_ of the plane. So first, find any three points $$(a,b,c)$$ from the set which are not co*linear*, and compute $$\b{q} = (b-a)\times (c-a)$$. This vector $$\b{q}$$ definitely points out of the plane, so it should be orthogonal to any vector _on_ the plane -- such as the vector from $$a$$ to any other point, $$(p_i - a)$$. So check that $$\b{q} \times (p_i - a) =0$$ for every $$i$$. That's O(N) computations in total, no problem.)
-
-
 
 ------
 

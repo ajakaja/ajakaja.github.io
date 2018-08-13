@@ -38,6 +38,8 @@ This picture is generally useful for intuitively understanding matrix multiplica
 
 Ok, now suppose we'd like to invert $$A$$, ie to find a matrix $$A^{-1}$$ such that $$A^{-1} A = I$$.
 
+<!--more-->
+
 Recalling that for any two vectors, $$\b{a} \times \b{b}$$ produces a vector orthogonal to _both_, I claim that this is the inverse (if $$\det A \neq 0$$):
 
 $$B = \frac{1}{\det A} \begin{pmatrix} A_\b{y} \times A_{\b{z}} \\  A_\b{z} \times A_{\b{x}} \\  A_\b{x} \times A_{\b{y}} \end{pmatrix}$$
@@ -54,8 +56,6 @@ This formula makes _way_ more sense to me than what I was taught in my college l
 -----
 
 Now, the same thing, more generically:
-
-<!--more-->
 
 If you're lucky, you might already know about the [*wedge product*](https://en.wikipedia.org/wiki/Exterior_algebra), which is what you should have learned when you learned about the cross product.
 
