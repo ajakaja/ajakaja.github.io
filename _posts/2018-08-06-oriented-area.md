@@ -193,7 +193,7 @@ This and (4) are two ways of expressing the same idea: the area of a polygon in 
 
 ## 3
 
-As I'vementioned, the Wikipedia article on [polygons](https://en.wikipedia.org/wiki/Polygon) sources formula (5) from *Computation of Areas of Oriented Figures* by A.M. Lopshits, published 1959. It turns out some other people have chased that link and also cited this text, but I could not get my hands on a .pdf version, so I got it from the university library.
+As mentioned, the Wikipedia article on [polygons](https://en.wikipedia.org/wiki/Polygon) sources formula (5) from *Computation of Areas of Oriented Figures* by A.M. Lopshits, published 1959. It turns out some other people have chased that link and also cited this text, but I could not get my hands on a .pdf version, so I got it from the university library.
 
 If you are curious what it contains, here's an outline. The short version is: not much. I wanted more formulas and ideas in the vein of (5), but much deeper. Turns out, though, that's it's a mostly pedagogical text that reaches that formula as its final result after spending 40 pages on the concept of oriented area and related (elementary) geometric proofs.
 
@@ -323,7 +323,7 @@ The answer is that this the area of $$T$$ represented as a _vector_, which is no
 
 $$area(T) = | \frac{1}{2} (t_2 t_3, t_3 t_1, t_1 t_2) | = \frac{1}{2} \sqrt{t_2^2 t_3^2 + t_3^2 t_1^2 + t_1^2 t_2^2}$$
 
-By taking the magnitude, you've lost the sign, though. This is because the direction of that vector was what was telling us the orientation. In 3D, it's meaningless to say that a surface is 'positively' oriented -- what if it's orthogonal to the $$XY$$ plane? Should that be positive or negative? What if we flip it over? Orientation cannot be an intrinsic property of a shape if it changes as we rotate things!
+But you lose the sign when taking the magnitude -- the direction of that vector was what was telling us the orientation. In 3D, it's meaningless to say that a surface is 'positively' oriented -- what if it's orthogonal to the $$XY$$ plane? Should that be positive or negative? What if we flip it over? Orientation cannot be an intrinsic property of a shape if it changes as we rotate things!
 
 Instead we can just talk about how things are oriented _relative_ to each other. A figure on the $$XY$$ plane is either oriented in the $$\b{z}$$ direction or the $$-\b{z}$$ direction. In 2D we drop the $$\b{z}$$'s and just call this positive and negative. In 3D, though, _volumes_ have an absolute concept of orientation, but in 4D they would not -- they would just end up oriented to the, say, $$+\b{w}$$ or $$-\b{w}$$ axes!
 
@@ -364,8 +364,6 @@ $$volume(F) = \sum volume(F_i)$$
 
 ## 6
 
-That's all I've got, for now. Hope it's useful, interesting, or otherwise not a total waste of time. I hope to revisit higher-dimensional shoelace-type formulas at some point, but -- another time. This was exhausting (well, making it pretty was).
+That's all I've got, for now. Hope it's useful, interesting, or otherwise not a total waste of time. I hope to revisit higher-dimensional shoelace-type formulas at some point, but it'll have to wait. This was exhausting (well, making it pretty was).
 
 I made the diagrams using [Tikz](https://en.wikipedia.org/wiki/PGF/TikZ), which is what all those fancy diagrams in LaTeX documents and textbooks are made in, and it was a lot of work but I'm glad I've started to learn how to do it. The process of conveniently importing Tikz images into websites, though, is ... not enjoyable. I would be so excited if there was a project like [Mathjax](https://www.mathjax.org/) that extracted a subset of Tikz for inline web-document creation. 
-
-As far as I can tell no current JS framework implements a math library that looks as professional as Tikz does -- but maybe I'm biased. I saw so many quality Tikz diagrams in my undergraduate classes that it has become my definition of professional. Unclear.
