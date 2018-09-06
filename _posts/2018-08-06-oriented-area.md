@@ -14,9 +14,11 @@ Second, because some resources (including Wikipedia) cite a 1959 monograph title
 
 (Also, because I wanted to practice making beautiful math diagrams. Which succeeded, mostly, but my god is it ever not worth the effort.)
 
-First, a summary of the concept of oriented area and the "shoelace formula", and some equations I found playing while around with it that turned out not to be novel.
+First, a summary of the concept of oriented area and the "shoelace formula", and some equations I found while playing around with it that turned out not to be novel.
 
 <!--more-->
+
+-----------
 
 ## 1
 
@@ -44,7 +46,7 @@ $$Area(-P) = Area(\{p_n, p_{n-1}, \ldots p_0\}) = -Area(P)$$
 
 You can remember which is which because counterclockwise / positive is also the direction that positive radians go, by convention. This is arbitrary, and we could have defined it the other way. If you just want the unsigned area of a region, you can always take the absolute value of this, so the signed area is strictly more powerful than the unsigned version.
 
-Signed areas are useful because they are better-behaved than regular areas in several ways. The signed area of a shapes is preserved under any decomposition into component shapes, with negatively-oriented components subtracting from the total area:
+Signed areas are useful because they are better-behaved than regular areas in several ways. The signed area of a shape is preserved under any decomposition into component shapes, with negatively-oriented components subtracting from the total area:
 
 {% include image.html filename="2018-08-06/04-subtraction.svg" width="500px" %}
 
@@ -212,7 +214,7 @@ If you are curious what it contains, here's an outline. The short version is: no
 	* this is also carefully proven using previous theorems.
 5. Some examples and exercises. The most interesting set is like this (for $$N=8,12,20$$):
 
-	"A regular dodecagon $$A_1A_2 \ldots A_{12}$$ is inscribed in a circle. The polygon $$A_1 A_6 A_5 A_10 A_9 A_2$$ has three points of self-intersection, $$C_1$$, $$C_2$$, $$C_3$$. Prove that the area of the triangle $$C_1 C_2 C_3$$ is three times the area of the triangle $$A_1 A_2 C_1$$."<br/>{% include image.html filename="2018-08-06/20-dodecagon.svg" width="250px" %}
+	"A regular dodecagon $$A_1A_2 \ldots A_{12}$$ is inscribed in a circle. The polygon $$A_1 A_6 A_5 A_{10} A_9 A_2$$ has three points of self-intersection, $$C_1$$, $$C_2$$, $$C_3$$. Prove that the area of the triangle $$C_1 C_2 C_3$$ is three times the area of the triangle $$A_1 A_2 C_1$$."<br/>{% include image.html filename="2018-08-06/20-dodecagon.svg" width="250px" %}
 
 <aside class="toggleable" placeholder="<b>Solution</b> <em>(click to expand)</em>">
 The total signed area of the inner polygon, noting that $$\mathcal{O} A_1 A_6$$ has the opposite orientation of $$\mathcal{O} A_1 A_2$$, is:
@@ -293,6 +295,8 @@ Where we parameterize the curve $$C$$ enclosing our region as $$\vec{\gamma}(t)$
 
 This is just taking the integral formula $$\frac{1}{2} \oint_C \vec{\gamma}(t) \wedge \dot{\vec{\gamma}(t)} dt$$ and replacing $$\vec{\gamma}(t)$$ with $$\int_0^t \dot{\vec{\gamma}}(s) ds$$, which should be fine as long as [*mumbled analytical argument*]. If we separate $$\vec{\gamma}(t)$$ into $$r(t)$$ and $$\theta(t)$$ we should get a version of (5), also.
 
+-------
+
 ## 5
 
 The fact that the shoelace formula is a consequence of Green's theorem means that there should be a way to take it to higher dimensions. Green's theorem readily generalizes to [Stoke's Theorem](https://en.wikipedia.org/wiki/Stokes%27_theorem) in arbitrary spaces, which says that the integral of a function (or differential form) over a closed surface can be equated to the integral of its derivative through the enclosed volume:
@@ -319,7 +323,7 @@ $$\begin{aligned} area(T) &= \frac{1}{2} \big[ (t_1,0,0) \times (0,t_2,0) + (0,t
 
 But that's... not a scalar. What went wrong?
 
-The answer is that this the area of $$T$$ represented as a _vector_, which is normal to the plane of $$T$$. It tells you _more_ than the area -- it also tells you what direction the area faces. To get to the _scalar_ area, though, you have to normalize it:
+The answer is that this the area of $$T$$ represented as a _vector_, which is normal to the plane of $$T$$. It tells you _more_ than the area -- it also tells you what direction the area faces. To get to the _scalar_ area, though, you have to take its magnitude:
 
 $$area(T) = | \frac{1}{2} (t_2 t_3, t_3 t_1, t_1 t_2) | = \frac{1}{2} \sqrt{t_2^2 t_3^2 + t_3^2 t_1^2 + t_1^2 t_2^2}$$
 

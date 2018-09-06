@@ -113,7 +113,7 @@ It is possible to define a concept that works like a metric but is _not_ symmetr
 
 An example from Wikipedia is the graph of the amount of time it takes to walk somewhere, including the fact that it's faster to go downhill than up.
 
-But even if we're not intereste in quasi-metric spaces, it can be instructive to be forced to keep track what 'directions' our measurements go; maybe it will reveal some geometric intuition.
+But even if we're not interested in quasi-metric spaces, it can be instructive to be forced to keep track what 'directions' our measurements go; maybe it will reveal some geometric intuition.
 
 This means the axioms of a quasimetric are:
 
