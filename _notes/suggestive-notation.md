@@ -7,7 +7,7 @@ math: true
 
 ... of multilinear algebra.
 
-Most examples will assume $$3D$ space spanned by $$\{\hat{x}, \hat{y}, \hat{z}\}$$ for simplicity.
+Most examples will assume $$\bb{R}^3$$ space spanned by $$\{\hat{x}, \hat{y}, \hat{z}\}$$.
 
 ## 1 vectors
 
