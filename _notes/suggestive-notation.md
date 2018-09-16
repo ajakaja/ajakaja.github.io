@@ -1,5 +1,5 @@
 ---
-layout: blog
+layout: article
 title: "Suggestive Notations"
 footnotes: true
 math: true

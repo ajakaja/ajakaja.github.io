@@ -1,5 +1,5 @@
 ---
-layout: blog
+layout: article
 title: "The Reverse Triangle Inequality"
 footnotes: true
 math: true

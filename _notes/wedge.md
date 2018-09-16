@@ -224,7 +224,7 @@ $$Vol(P) = \frac{1}{2}\sum p_i \wedge p_{i+1}$$
 
 where the sum wraps around so the last term is $$p_n \wedge p_0$$
 
-It's almost certainly not correct to consider the _list_ $$P$$ as a _matrix_ P_{ij}$$ -- since, like, its size can be expanded to anything, so what is the 'basis'?
+It's almost certainly not correct to consider the _list_ $$P$$ as a _matrix_ $$P_{ij}$$ -- since, like, its size can be expanded to anything, so what is the 'basis'?
 
 But it might be some 'other kind' of object, such that the formula for $$Vol(P)$$ would be given by $$P \wedge P$$ (or, in $$N$$ dimensions, $$\wedge^N P$$). The difference is that we only wedge _adjacent_ elements of the matrix, instead of every pair-wise combination.
 
