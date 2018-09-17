@@ -68,7 +68,7 @@ Double-angle formulas:
 
 $$\sin 2a = 2\sin a \cos a$$
 
-$$\cos 2a = cos^{2} a - \sin^{2} a$$
+$$\cos 2a = \cos^{2} a - \sin^{2} a$$
 
 $$\tan 2a = \frac{2 \tan a}{1 - \tan^{2} a}$$
 

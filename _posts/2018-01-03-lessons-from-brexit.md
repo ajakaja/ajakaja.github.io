@@ -4,17 +4,15 @@ title: "Lessons from the Architect of Brexit"
 footnotes: true
 ---
 
-[This](https://dominiccummings.com/2017/01/09/on-the-referendum-21-branching-histories-of-the-2016-referendum-and-the-frogs-before-the-storm-2/) January 2017 post, by Dominic Cummings, the architect/manager of Brexit, on 'how it happened' and 'why no one understands how it happened', is the most insightful thing I read last year.
+[This](https://dominiccummings.com/2017/01/09/on-the-referendum-21-branching-histories-of-the-2016-referendum-and-the-frogs-before-the-storm-2/) January 2017 post, by Dominic Cummings, the architect/manager of Brexit, on 'how it happened' and 'why no one understands how it happened', is the most interesting thing I read last year.
 
-It is *so interesting*.
+It is so interesting that, when I realized I couldn't remember why I thought it was so interesting, I had to go reread it.
 
-It is so good that, when I realized I couldn't remember why I thought it was so good, I had to go reread it.
-
-... It's also so *long* that by the time I finish it I can't remember half of the things I liked. And it, well, rambles incoherently sometimes, also. It's not perfect. So I'm going to actually write down in article form what its main insights are, to make them easier to re-access. That's what this is.
+... It's also so *long* that by the time I finish it I can't remember half of it. And it, well, rambles incoherently sometimes, also. It's not perfect. So I'm going to cache the ideas for myself. That's what this is.
 
 (It's also available with better UX [here](https://blogs.spectator.co.uk/2017/01/dominic-cummings-brexit-referendum-won/), but I figure it's most noble to link to the original source.)
 
-(Admittedly, the author seems somewhat cold / calculating / psychopathic (and apparently the UK media loves to [call him that](https://www.theguardian.com/politics/shortcuts/2017/jul/18/dominic-cummings-career-psychopath-david-davis-thick-as-mince)), so perhaps it's not best to aspire to think like him. But I'm praising him for his intellectual qualities, not his empathy. Maybe only the rest of us should focus on both.)
+(Admittedly, the author seems somewhat cold / calculating / psychopathic (and apparently the UK media loves to [call him that](https://www.theguardian.com/politics/shortcuts/2017/jul/18/dominic-cummings-career-psychopath-david-davis-thick-as-mince)), so perhaps it's not best to aspire to think like him. But I like what he wrote anyway.)
 
 <!--more-->
 
