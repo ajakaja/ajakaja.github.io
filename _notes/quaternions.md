@@ -37,7 +37,7 @@ Since this is the right interpretation, we'll want to freely write $$i = y \wedg
 
 Quaternions do a good job of representing rotations in 3d space -- they're faster to compute, only store the necessary information (compared to a $$3 \times 3$$ matrix!), easy to interpolate (because they can be renormalized at each step, whereas matrices have to be made orthogonal), and avoid 'gimbal lock' (in a pitch/yaw/roll system, if you pitch all the way up the other axes do nothing).
 
-The quaternion for a rotation of angle $$\theta$$ around the vector axis $$\bb{n}$$ is given by:
+The quaternion for a rotation of angle $$\theta$$ around the vector axis $$\vec{n}$$ is given by:
 
 $$q = e^{\frac{\theta}{2} \vec{n}} = (\cos \frac{\theta}{2}, \vec{n} \sin \frac{\theta}{2})$$
 
@@ -53,7 +53,7 @@ $$R_2 R_1 (\vec{v}) = (q_2 q_1) v (q_2 q_1)^{-1} = q_2 q_1 v q_1^{-1} q_2^{-1}$$
 
 ---------
 
-The rotation formula is an application of the [exponential map](https://en.wikipedia.org/wiki/Exponential_map_(Lie_theory)) to the conjugation operation $$v \mapsto n v n^{-1}$$.
+The rotation formula is an application of the [exponential map](https://en.wikipedia.org/wiki/Exponential_map_(Lie_theory)) to the conjugation operation with a vector quaternion (no scalar part) $$n$$, via $$v \mapsto n v n^{-1}$$.
 
 To understand $$n v n^{-1}$$, note that if a vector $$u$$ is parallel to $$n$$, then $$un = nu$$, but if it's perpendicular, then $$un = -nu$$. This means:
 
@@ -65,7 +65,7 @@ n v n^{-1} &= n(v_{\parallel} + v_{\perp}) n^{-1} \\
 
 Then the exponential map applies the operation $$v \ra R_{\pi} v$$ gradually, via 
 
-$$(1 + \frac{\theta}{2} \frac{R_{\pi}}{n})^n v \approx e^{\frac{\theta}{2} R_{\pi}} v = R_{\frac{\theta}{2}}(v)$$ 
+$$\lim_{k \ra \infty} (1 + \frac{\theta}{2} \frac{R_{\pi}}{k})^k v \approx e^{\frac{\theta}{2} R_{\pi}} v = R_{\frac{\theta}{2}}(v)$$ 
 
 Among other things, this means one quaternion represention of a $$\frac{\pi}{2}$$ rotation is something like $$1 - xy = 1 - k$$.
 
@@ -77,9 +77,9 @@ I vaguely remember hearing an argument that rotation matrices don't work as well
 
 --------
 
-We could also have defined our rotations with the inverse on the other side: $$v \mapsto n^{-1} v n$$. Since $$n^{-1} = - \frac{\vec{n}}{n}$$, this gives the same result, which is almost weird -- because, which direction does that mean that $$e^{\frac{\theta}{2} \vec{n}} v e^{-\frac{\theta}{2} \vec{n}}$$ goes?
+We could also have defined our rotations with the inverse on the other side: $$v \mapsto n^{-1} v n$$. Since $$\vec{n}^{-1} = - \frac{\vec{n}}{\|n \|^2}$$ (in the sense of inverting quaternions), this gives the same result, which is almost weird -- because, which direction does that mean that $$e^{\frac{\theta}{2} \vec{n}} v e^{-\frac{\theta}{2} \vec{n}}$$ goes?
 
-Well, let's work it out. Note that $$nn = - n \cdot n = -1$$; it's $$n n^*$$ that equals $$1$$.
+Well, let's work it out. Note that $$nn = - n \cdot n = -1$$; it's $$n \bar{n}$$ that equals $$1$$.
 
 $$\begin{aligned}
 e^{\frac{\theta}{2} \vec{n}} v e^{-\frac{\theta}{2} \vec{n}} &= ( \cos \frac{\theta}{2} + \vec{n} \sin \frac{\theta}{2}) v ( \cos \frac{\theta}{2} - \vec{n} \sin \frac{\theta}{2})  \\
@@ -126,7 +126,7 @@ j &\lra -i \sigma_y \\
 k &\lra -i \sigma_x
 \end{aligned}$$
 
-I don't know why the factors of $$-i$$ are in there, but they cause each matrix to square to $$\sigma_i^2 = I$$ instead of $$-1$$.}
+I don't know why the factors of $$-i$$ are in there, but they cause each matrix to square to $$\sigma_i^2 = I$$ instead of $$-I$$.
 
 Anyway, the Pauli matrices' eigenvectors form the basis of spinors, which are vectors in $$\bb{C}^2$$ with $$\| s \| = s \cdot \bar{s} = 1$$:
 
