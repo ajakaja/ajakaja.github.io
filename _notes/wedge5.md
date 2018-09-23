@@ -100,6 +100,8 @@ $$a \wedge b \stackrel{?}{=} (a \otimes b - b \otimes a \; \wedge)$$
 
 Basically it's completely unclear to me whether it's valid to think of $$\wedge$$ as a combination of tensor products. (I know you can treat it as a subalgebra of the tensor algebra, but that doesn't feel _good_.)
 
+It's _not_ the Jacobi identity, by the way, That's the thing that is satisfied if $$a\^ (b\^c)$$ was equal to $$a(bc-cb) - (bc-cb)a$$. 
+
 
 -------
 

@@ -12,9 +12,10 @@ As you may know (...):
 
 [Quaternions](https://en.wikipedia.org/wiki/Quaternion) $$q = q_0 + q_1 i + q_2 j + q_3 k  \in \bb{H}$$ are the 3d analog of $$\bb{C}$$, with such familiar properties as
 
-$$i^2 = j^2 = k^2 = -1$$, $$ij = k \\
-\| q \|^2 = q_0^2 + q_1^2 + q_2^2 + q_3^2 \\
-\bar{q} = q_0 - q_1 i - q_2 j - q_3 k$$
+$$\begin{aligned} i^2 &= j^2 = k^2 = -1 \\
+ij &= k \\
+\| q \|^2 &= q_0^2 + q_1^2 + q_2^2 + q_3^2 \\
+\bar{q} &= q_0 - q_1 i - q_2 j - q_3 k \end{aligned}$$
 
 And the math most works like $$\bb{C}$$, except for the notable difference being the lack of commutative multiplication ($$ij = k = -ji)$$. The non-commutativity means we can define an inverse $$q^{-1} = \frac{q}{\| q \|}$$, but we can't write order-agnostic fractions like $$\frac{s}{q}$$ because $$q^{-1} s \neq s q^{-1}$$.
 
@@ -37,7 +38,7 @@ Since this is the right interpretation, we'll want to freely write $$i = y \wedg
 
 Quaternions do a good job of representing rotations in 3d space -- they're faster to compute, only store the necessary information (compared to a $$3 \times 3$$ matrix!), easy to interpolate (because they can be renormalized at each step, whereas matrices have to be made orthogonal), and avoid 'gimbal lock' (in a pitch/yaw/roll system, if you pitch all the way up the other axes do nothing).
 
-The quaternion for a rotation of angle $$\theta$$ around the vector axis $$\vec{n}$$ is given by:
+The quaternion for a rotation of angle $$\theta$$ around the vector axis $$\vec{n}$$ (a quaternion with no scalar part; I'll also just write it as $$n$$) is given by:
 
 $$q = e^{\frac{\theta}{2} \vec{n}} = (\cos \frac{\theta}{2}, \vec{n} \sin \frac{\theta}{2})$$
 
@@ -53,7 +54,7 @@ $$R_2 R_1 (\vec{v}) = (q_2 q_1) v (q_2 q_1)^{-1} = q_2 q_1 v q_1^{-1} q_2^{-1}$$
 
 ---------
 
-The rotation formula is an application of the [exponential map](https://en.wikipedia.org/wiki/Exponential_map_(Lie_theory)) to the conjugation operation with a vector quaternion (no scalar part) $$n$$, via $$v \mapsto n v n^{-1}$$.
+The rotation formula is an application of the [exponential map](https://en.wikipedia.org/wiki/Exponential_map_(Lie_theory)) to the conjugation operation with a vector quaternion $$n$$, via $$v \mapsto n v n^{-1}$$.
 
 To understand $$n v n^{-1}$$, note that if a vector $$u$$ is parallel to $$n$$, then $$un = nu$$, but if it's perpendicular, then $$un = -nu$$. This means:
 
@@ -67,7 +68,7 @@ Then the exponential map applies the operation $$v \ra R_{\pi} v$$ gradually, vi
 
 $$\lim_{k \ra \infty} (1 + \frac{\theta}{2} \frac{R_{\pi}}{k})^k v \approx e^{\frac{\theta}{2} R_{\pi}} v = R_{\frac{\theta}{2}}(v)$$ 
 
-Among other things, this means one quaternion represention of a $$\frac{\pi}{2}$$ rotation is something like $$1 - xy = 1 - k$$.
+Among other things, this means one quaternion represention of a $$\frac{\pi}{2}$$ rotation is like $$ 1 - k$$.
 
 The conjugation step is the more interesting of the two. It takes the cross product $$n \times v$$ twice, hence the 'double' rotation -- which is, I think, suprising, because it makes the result distinctly different to the rotation matrix formalism.
 
@@ -192,7 +193,7 @@ However... it is suspicious that rotation via quaternion conjugation $$ v \mapst
 
 --------
 
-One of the reasons I am opposed to $$\bb{C}$$ is -- if you use it as a tool to describe every 2D plane you want to do geometry on, you might accidentally conflate the $$i$$s from different planes, when they live in totally different spaces. I am not sure that quantum mechanics doesn't already do this, when they use $$i$$ to represent complex amplitudes (the $$U(1)$$ gauge group?_) _and_ to represent angular momentum. It may be true that $$i_\psi i_L \simeq i_L^2 \simeq i_\psi^2$$, or something, and so we get away with it. But if there were cases where this wasn't true... I would have no idea how to tell. Hence, I don't think it's a good idea to be writing quaternions via Pauli matrices.
+One of the reasons I am opposed to $$\bb{C}$$ is -- if you use it as a tool to describe every 2D plane you want to do geometry on, you might accidentally conflate the $$i$$s from different planes, when they live in totally different spaces. I am not sure that quantum mechanics doesn't already do this, when they use $$i$$ to represent complex amplitudes (the $$U(1)$$ gauge group?) _and_ to represent angular momentum. It may be true that $$i_\psi i_L \simeq i_L^2 \simeq i_\psi^2$$, or something, and so we get away with it. But if there were cases where this wasn't true... I would have no idea how to tell. Hence, I don't think it's a good idea to be writing quaternions via Pauli matrices.
 
 Actually, in a sense $$\bb{H}$$ is just three sets of $$\bb{C}$$ stuck together, with $$i,j,k$$ three different imaginary units, and their real parts identified, and certain multiplication rules between them defined.
 
