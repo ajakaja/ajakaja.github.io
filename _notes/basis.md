@@ -93,7 +93,7 @@ To interpret as a 2d-like operation, we might write it something like this:
 
 $$R(\vec{v}) = \begin{pmatrix} v_x \cos \theta - v_{yz} \vec{\sin} \; \theta \\ v_x \vec{\sin} \; \theta + v_{yz} \stackrel{?}{\vec{\cos} \theta} \theta \end{pmatrix}$$
 
-The $$\vec{\sin} \theta$$ terms are vectors which have $$\| \vec{\sin} \theta \| = \pm \sin \theta$$, so they act like the off-diagonal terms in a 2-dimensional rotation matrix. The matrix term $$\vec{\cos} \theta \stackrel{?}{=} \begin{pmatrix} \cos \theta & 0 \\ 0 & 1 \end{pmatrix}$$ makes less sense, though.
+The $$\vec{\sin} \theta$$ terms are vectors which have $$\| \vec{\sin} \theta \| = \pm \sin \theta$$, so they act like the off-diagonal terms in a 2-dimensional rotation matrix. The matrix term $$\vec{\cos} \; \theta \stackrel{?}{=} \begin{pmatrix} \cos \theta & 0 \\ 0 & 1 \end{pmatrix}$$ makes less sense, though.
 
 One way to understand it might be: suppose we consider $$\sin \theta$$ to be the 'natural' operation, and define $$\cos \theta$$ only in terms of it, as $$\cos \theta = \sqrt{1 - \sin^2 \theta}$$. Then we might imagine that this makes sense (being very sloppy with the signs of the square roots):
 

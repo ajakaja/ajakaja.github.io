@@ -7,7 +7,7 @@ math: true
 
 The [triangle inequality](https://en.wikipedia.org/wiki/Triangle_inequality) for a vector space says that for vectors $$u, v$$:
 
-$$| u + v | \leq | u | + | v |$$
+$$\Vert u + v \Vert \leq \Vert u \Vert + \Vert v \Vert$$
 
 Which, in the simplest case of a literal triangle, just says that the length of each side is less than the length of the other two, added. In the more general case of a metric space, which doesn't have (necessarily) a concept of 'vectors' but still has 'distances between points', this is:
 
@@ -17,7 +17,7 @@ $$d(x,z) \leq d(x,y) + d(y,z)$$
 
 This always comes packaged with the [Reverse triangle inequality](https://en.wikipedia.org/wiki/Triangle_inequality#Reverse_triangle_inequality), which flips things around:
 
-$$ | u - v | \geq | | u | - | v | |$$
+$$ \Vert u - v \Vert \geq \big| \Vert u \Vert - \Vert v \Vert \big|$$
 
 That is: the length of each side of a triangle is _greater than_ the difference of the lengths of the other two sides.
 
@@ -27,15 +27,15 @@ $$d(y,z) \geq | d(y,x) - d(x,z) |$$
 
 And despite being both of the reverse versions being almost trivial to derive, I find them surprisingly unintuitive. Why does the vector version involve vector subtraction, but the metric one doesnt't!? Why is there an absolute value?
 
-I don't like when basic facts are unintuitive; it virtually guarantees that more complicated ones will be. So, I am recording some notes on them here.
+I don't like when basic facts are unintuitive. It virtually guarantees that more complicated ones will be. So, here aresome notes on this one.
 
 <!--more-->
 
 ## 1. Proof
 
-The triangle inequality for the three vectors $$(u, v, u+v)$$ actually has three parts, by applying it to each side compared to the other two[^norm]:
+For the three vectors $$(u, v, u+v)$$ we actually get three triangle inequalities, by comparing each side to the other two:[^norm]
 
-[^norm]: Forgive me for not using $$\Vert u \Vert$$ for the vector norms. I'm opposed to it! I guess.
+[^norm]: Forgive me for not using $$\Vert u \Vert$$ for the rest of the vector norms. I prefer $$\|$$. $$\Vert$$ is useful when you're taking absolute values and norms in the same line, though.
 
 $$\begin{aligned}
 | u + v | &\leq | u | + | v | \\
@@ -70,7 +70,7 @@ d(x,y) &\leq d(x,z) + d(z,y) \\
 d(y,z) &\leq d(y,x) + d(x,z)
 \end{aligned}$$
 
-It is simple enough to arrange the first two into:
+The first two rearrange into:
 
 $$\begin{aligned}
 d(x,z) - d(x,y) &\leq d(y,z) \\
@@ -93,7 +93,7 @@ $$(|u|, |u+v|, |v|) \mapsto (d(x,y), d(y,z), d(x,z))$$
 
 Making:
 
-$$|u+v| \geq  | |u| - |v| |$$
+$$|u+v| \geq  \big| |u| - |v| \big|$$
 
 Which is maybe what we expect without the surprise vector subtraction $$u-v$$:
 
@@ -104,7 +104,7 @@ $$\begin{aligned}
 
 So why does $$u-v$$ ever get involved?
 
-A: I don't know. Since $$u,v$$ are arbitrary, $$u-v$$ and $$u+v$$ are the same expression up to redefinined $$v\mapsto -v$$. It just should just be written in terms of $$u+v$$ in the first place.
+A: I don't know. Since $$u,v$$ are arbitrary, $$u-v$$ and $$u+v$$ are the same expression up to redefined with $$v\mapsto -v$$. It just should just be written in terms of $$u+v$$ in the first place.
 
 
 ## Mention: Quasimetrics
@@ -189,5 +189,5 @@ Evidently $$a\cdot b + b\cdot c + c \cdot a$$ is negative and cancels out the su
 
 ## Afterthought
 
-I know I'm not arguing with anyone about this. Anyone who knows the triangle inequality knows or can immediately derive the reverse version. It's just that the form it's presented in, say, what I was reading earlier today is not useful to me.
+I know I'm not arguing with anyone about this. Anyone who knows the triangle inequality knows or can immediately derive the reverse version. It's just that the form it's presented in (say) what I was reading earlier today is not useful to me.
 
