@@ -15,7 +15,7 @@ I was trying to help her understand these, but it took a lot of work to find eas
 <!--more-->
 
 
-## 1. What is the point using a Geometric Mean?
+## 1. What's the point of using a Geometric Mean?
 
 The [geometric mean](https://en.wikipedia.org/wiki/Geometric_mean) of a dataset $$\b{x} = \{x_i\}$$ is given by:
 
