@@ -1,12 +1,24 @@
 ---
-layout: blog
+layout: article
 title: "Exterior Algebra Notes"
 footnotes: true
 math: true
 aside: true
 ---
 
-#1 Identities
+Reminder to self:
+
+An $$m \times n$$ matrix has $$m$$ **rows** and $$n$$ **columns**, and the rows are indexed first:
+
+$$A_{ij} = \begin{pmatrix} 
+A_{11} & A_{12} & \cdots & A_{1n} \\
+A_{21} & A_{22} & \cdots & A_{2n} \\
+\vdots & \vdots & \ddots & \vdots \\
+A_{m1} & A_{m2} & \cdots & A_{mn} \end{pmatrix}$$
+
+The $$k$$'th column is given by $$\vec{A}_k = A_{ik}$$.
+
+# 1 Identities
 
 One way to define inner products on $$\wedge^k V$$:
 
@@ -14,7 +26,7 @@ $$\< \bigwedge_i a_i , \bigwedge_j b_j \> = \det \< a_i, b_j \> \tag{1}$$
 
 Aside on why, copied from another page:
 
-<aside id="innerproduct" class="toggleable" placeholder="<b>Aside</b>: Explanation of inner products <em>(click to expand)</em>">
+<aside id="innerproduct" class="toggleable hidden" placeholder="<b>Aside</b>: Explanation of inner products <em>(click to expand)</em>">
 
 ------
 
@@ -58,45 +70,9 @@ It's easy to see that this equals $$\det \< x_i, A_j \> = \det A$$. Really, the 
 
 </aside>
 
-Identities:
+Either way, what's key is that $$(x \^ y) \cdot (x \^ y) = 1$$, not $$2$$.
 
-
-[The Binet-Cauchy Identity](https://en.wikipedia.org/wiki/Binet%E2%80%93Cauchy_identity):
-
-To compute the inner (dot) product of cross products of vectors, we pick an argument to antisymmetrize over:
-
-$$\begin{aligned}
-(\b{a} \times \b{b}) \cdot (\b{c} \times \b{d}) &= \star (\b{a} \^ \b{b}) \cdot \star (\b{c} \^ \b{d}) \\
-&= (\b{a} \^ \b{b}) \cdot (\b{c} \^ \b{d}) \\
-&= \b{a} \otimes \b{b}) \cdot (\b{c} \otimes \b{d} - \b{d} \otimes \b{c}) \\
-&= (\b{a} \cdot \b{c}) (\b{b} \cdot \b{d}) - (\b{a} \cdot \b{d}) (\b{b} \cdot \b{c}) 
-\end{aligned}$$
-
--------
-
-Some simple consequences:
-
-[Lagrange's Identity](https://en.wikipedia.org/wiki/Lagrange%27s_identity):
-
-Set $$\b{a} = \b{b}$$, $$\b{c} = \b{d}$$ for a closed form for the magnitude of a cross product:
-
-$$| \b{a} \^ \b{b} |^2 = |\b{a}|^2 |\b{b}|^2 - |\b{a} \cdot \b{b}|^2$$
-
-The left-side is also given by $$\| \sum_{i, j} a_i b_j - a_j b_i \|^2$$, in case that's useful.
-
-Incidentally, this form leads to a series of [interesting statements](https://en.wikipedia.org/wiki/Euler%27s_four-square_identity) about sums of squares of integers.
-
-------
-
-[Cauchy-Schwartz](https://en.wikipedia.org/wiki/Cauchy%E2%80%93Schwarz_inequality):
-
-Drop the cross-term to prove Cauchy-Schwartz on vectors:
-
-$$\begin{aligned}
-| \b{a} \^ \b{b} |^2 + |\b{a} \cdot \b{b}|^2 &= |\b{a}|^2 |\b{b}|^2 \\
-&\Ra \\
-|\b{a} \cdot \b{b}|^2 &\leq |\b{a}|^2 |\b{b}|^2
-\end{aligned}$$
+(identities removed because they're in a blog post)
 
 # 2. Hodge Star
 
@@ -194,24 +170,6 @@ $$\det Q = \det (A) \det (D - C A^{-1} B)$$
 Proof:
 
 $$Q = \begin{pmatrix} A & 0 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} 1 & 0  \\  C & 1 \end{pmatrix} \begin{pmatrix} 1 & A^{-1} B \\ 0 & D - C A^{-1} B \end{pmatrix}$$
-
-------
-
-We should figure out how to take wedge powers of matrices. Suppose:
-
-$$A = \begin{pmatrix} a & b & c \\ d & e & f \end{pmatrix} = \begin{pmatrix} A_1 & A_2 & \ldots & A_k \end{pmatrix}$$
-
-Presumably:
-
-$$\^^2 A = \begin{pmatrix} ae - bd & bf - ce & cd - af \end{pmatrix}$$
-
-Or suppose we transpose it into two 3-component columns, and wedge those as vectors:
-
-$$\^^2 A^T = \begin{pmatrix} ae - bd \\ bf - ce \\ cd - af \end{pmatrix}$$
-
-Is this the same? It seems like we can wedge product rows or columns freely, almost?
-
-(I need to think about whether this makes sense when thinking of the $$\^$$ as $$\otimes$$ with a quotient.)	
 
 -------
 
@@ -320,6 +278,22 @@ $$(\b{A} + \b{B})^{-1} = \b{A}^{-1} - (\b{A} + \b{A}\b{B}^{-1} \b{A})^{-1}$$
 [And](https://en.wikipedia.org/wiki/Sherman%E2%80%93Morrison_formula):
 
 $$(\b{A} + u \otimes v)^{-1} = \b{A}^{-1} + \frac{\b{A}^{-1} (u \otimes v) \b{A}^{-1}}{1 + v\b{A} u}$$
+
+There's also [Dodgson Condensation](https://en.wikipedia.org/wiki/Dodgson_condensation), which is a way of computing determinants using the "Desnanot–Jacobi" identity:
+
+$$\det(M)\det(M^{1,k}_{1,k}) = \det(M^1_1) \det(M^k_k) - \det(M^k_1)\det(M^1_k)$$
+
+Where $$M_{I}^{J}$$, with $$I$$ and $$J$$ lists of indexes, is the matrix $$M$$ with the $$I$$'th rows and $$J$$'th columns deleted.
+
+Also: [Pfaffians](https://en.wikipedia.org/wiki/Pfaffian) are intriguing. Presumably there are higher-order things like that on any antisymmetric $$T \in \o^k V$$. 
+
+In fact I know : an antisymmetric matrix $$\in V^* \otimes V$$ may be considered as an element $$\vec{v} \in \wedge^2 V$$, but the determinant is different. The pffaffian is $$\wedge^{n/2} \vec{v}$$ (which is non-zero because $$\vec$$ is a compound bivector). The trick is sorting out what a determinant is on a matrix -- it's antisymmetric in each index, but NOT in the whole thing, so the unit volume element is $$\wedge^n V^* \otimes \wedge^n V$$. $$\vec{v}$$ is exactly 'half' of this, an element of $$\wedge^n V$$.
+
+possible source for a bunch of stuff re: cauchy-binet? but in theoretic terms: [A multilinear algebra proof of the Cauchy-Binet formula and a multilinear version of Parseval’sidentity](https://arxiv.org/pdf/1305.0644.pdf) (Konstantopoulos).
+
+cauchy-binet-type formulas on matrices in noncommutative rings: [Noncommutative determinants, Cauchy–Binet formulae, and Capelli-type identities](https://arxiv.org/pdf/0809.3516.pdf) (Caracciolo, Sokal, Sportiello).
+
+[other](https://www.researchgate.net/publication/260634228_New_Method_to_Calculate_Determinants_of_nn_n_3_Matrix_by_Reducing_Determinants_to_2nd_Order) determinant methods.
 
 # Reference
 
