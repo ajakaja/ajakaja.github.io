@@ -295,6 +295,13 @@ cauchy-binet-type formulas on matrices in noncommutative rings: [Noncommutative 
 
 [other](https://www.researchgate.net/publication/260634228_New_Method_to_Calculate_Determinants_of_nn_n_3_Matrix_by_Reducing_Determinants_to_2nd_Order) determinant methods.
 
+## Physics things
+
+I need to check that $$F = q v \times B$$ is 'really' $$F = q v \cdot \beta$$.
+
+I need to check that the argument is sound that $$H_q dq + H_p dp = 0 \Lra (dq, dp) = \star (H_q, H_p) = (H_p, - H_q)$$
+
+
 # Reference
 
 
