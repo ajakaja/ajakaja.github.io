@@ -16,7 +16,9 @@ A_{21} & A_{22} & \cdots & A_{2n} \\
 \vdots & \vdots & \ddots & \vdots \\
 A_{m1} & A_{m2} & \cdots & A_{mn} \end{pmatrix}$$
 
-The $$k$$'th column is given by $$\vec{A}_k = A_{ik}$$.
+The $$k$$'th column is given by $$\vec{A}^k = A_{ik}$$.
+
+When we use upper and lower indices: upper picks columns; lower picks rows.
 
 # 1 Identities
 

@@ -29,3 +29,5 @@ collections:
     output: true
   reference:
     output: true
+  cache:
+    output: true

@@ -82,7 +82,7 @@ $$\b{u} \times \b{v} \equiv \star(\b{u} \wedge \b{v})$$
 
 The resulting vector is orthogonal to both inputs (so $$\b{u} \cdot \star(\b{u} \wedge \b{v}) = 0$$). Its magnitude is the area of the parallelogram created by the arguments. Its orientation depends on whether the arguments were given in the positively oriented order (conventionally, this is 'the direction radians go in', so counterclockwise). 
 
-The wedge product between a vector and a bivector gives the volume of the figure they outline, another type of scalar. If we pretend the bivector is a vector, this is the same as the vector dot product $$\cdot$$:
+The wedge product between a vector and a bivector gives the volume of the figure they outline, another type of scalar. If we pretend the bivector is a vector, this is the same as the vector dot product:
 
 $$\b{u} \cdot \b{v} \equiv \b{u} \wedge \star(\b{v})$$
 

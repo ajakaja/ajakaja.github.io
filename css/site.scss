@@ -264,6 +264,9 @@ p.noscript {
 
   a {
       color: $gray;
+    &:hover, &:active {
+      color: $blue;
+    }
   }
 }
 
@@ -398,6 +401,10 @@ span .inline-footnote .closed {
 
 .equation {
   text-indent: 40px;
+}
+
+p.indent {
+  text-indent: 2em;
 }
 
 .pagenavigation {

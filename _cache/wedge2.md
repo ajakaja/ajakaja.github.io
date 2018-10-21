@@ -16,9 +16,11 @@ Term-by-term pseudo-determinants for non-commutative matrices. IE:
 
 $$\begin{vmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{vmatrix}_{11} = a_{11} - a_{12} a_{22}^{-1} a_{21}$$
 
-* Don't reduce to commutative determinants; instead: $$\|A\|_{ij} = (-1)^{i + j} \frac{\det A}{\det A_{\widehat{ij}}}$$
+* Doesn't reduce to commutative determinants; instead: $$\|A\|_{ij} = (-1)^{i + j} \frac{\det A}{\det A_{\widehat{ij}}}$$
 * But clearly related.
-* Note that components of a matrix inverse look like the inverse of this: iirc $$(-1)^{i + j} \frac{\det A_{\widehat{ij}}}{\det A}$$.
+* also related to Partial Pivots (partial inverse) and to Schur complement.
+	* in fact it is just the new value of $$a_{11}$$ after 'inverting' $$a_{22}$$.
+* Note that components of a matrix inverse look like (the transpose of?) this: iirc $$(-1)^{i + j} \frac{\det A_{\widehat{ij}}}{\det A}$$.
 * I expect that you can compute the wedge product of non-commutative vectors, but that it matters 'where you start', ie, cyclic rotations give different values.
 * I expect that you can use this to compute determinants of block matrices, using the fact that no matter what order you do things in, $$\^^n$$ still gives commuting scalars. Given, for instance, commutators between columns, you can probably express intermediate steps?
 
@@ -26,7 +28,7 @@ $$\begin{vmatrix} a_{11} & a_{12} \\ a_{21} & a_{22} \end{vmatrix}_{11} = a_{11}
 
 $$Q = \begin{pmatrix} A & B \\ C & D \end{pmatrix}$$
 
-$$\^^2 Q \stackrel{?}{=} \^^2 \begin{pmatrix} A \\ C \end{pmatrix} + \begin{pmatrix} A \\ C \end{pmatrix} \^ \begin{pmatrix} B \\ D \end{pmatrix} + \^^2 \begin{pmatrix} B \\ D \end{pmatrix}$$
+$$\^^2 Q \stackrel{?}{=} \^^2 \begin{pmatrix} A \\ C \end{pmatrix} + 2 \begin{pmatrix} A \\ C \end{pmatrix} \^ \begin{pmatrix} B \\ D \end{pmatrix} + \^^2 \begin{pmatrix} B \\ D \end{pmatrix}$$
 
 It feels like equations like that should be valid, but it's not clear how they're computationally _useful_.
 
@@ -48,11 +50,18 @@ Proof in matrices (basically, performing Gaussian elimination):
 
 $$Q = \begin{pmatrix} A & 0 \\ 0 & 1 \end{pmatrix} \begin{pmatrix} 1 & 0  \\  C & 1 \end{pmatrix} \begin{pmatrix} 1 & A^{-1} B \\ 0 & D - C A^{-1} B \end{pmatrix}$$
 
+NB: $$A^{-1} \det(A)$$ is (more or less) $$A^{\^n-1}$$.
+
 Related to:
 
 * quasideterminants (note that similarity between $$D - C A^{-1} B$$ and $$a_{11} - a_{12} a_{22}^{-1} a_{21}$$
 * [Dodgson condensation from Schur complementation](https://terrytao.wordpress.com/2017/08/28/dodgson-condensation-from-schur-complementation/) (Terry Tao)
 * [Berenzian](https://en.wikipedia.org/wiki/Berezinian) / 'superdeterminant': determinant over superalgebras, which I ... think... are matrices over $$\^^n V$$, partitioned into even- and odd- basis components? [discussion on SE](https://physics.stackexchange.com/questions/5005/velvet-way-to-grassmann-numbers?noredirect=1&lq=1)
+
+Another odd identity:
+
+$$\det(\begin{pmatrix} A & B \\ B & A \end{pmatrix}) = \det(A + B) \det(A - B)$$
+
 
 ### 4. Desnanot–Jacobi identity and Dodgson Condensation
 
@@ -62,13 +71,22 @@ $$\underset{n}{\det}(M)\underset{n-2}{\det}(M^{1,k}_{1,k}) = \begin{vmatrix} \un
 
 * I suspect some sort of determinant of $$M \o M$$, expanded interestingly.
 * related to hyperdeterminants? $$(\^^n \o \^^{n-2}) (M \o M) \lra (\^^{n-1} \o \^^{n-1}) (M \o M)$$?
- * nested determinants: need to figure out how to handle?
-* [general version](https://terrytao.wordpress.com/2017/08/28/dodgson-condensation-from-schur-complementation/), apparently from Sylvester: $$\underset{n}{\det}(M) \underset{n-k}{\det}(M_S^S)^{k-1} =
- \underset{k}{\det}\big( \underset{n-k+1}{\det}(M_{S / \{j\}}^{S / \{j\}}) \big)$$
+	* nested determinants: need to figure out how to handle?
+* [general version](https://terrytao.wordpress.com/2017/08/28/dodgson-condensation-from-schur-complementation/), apparently from Sylvester: $$\underset{n}{\det}(M) \underset{n-k}{\det}(M_S^S)^{k-1} = \underset{k}{\det}\big( \underset{n-k+1}{\det}(M_{S / \{j\}}^{S / \{j\}}) \big)$$
+	* relations between many identities: ["Can Sylvester’s determinantal identity, equivalently
+Muir’s law of extensible minors be generalized?"](https://sci-hub.tw/https://doi.org/10.1016/j.laa.2015.05.010)
 
 NB: it's probably easier to think about if you move the removed rows to the first two positions:
 
-$$\underset{n}{\det}(M)\underset{n-2}{\det}(M^{n-1,n}_{n-1,n}) = \begin{vmatrix} \underset{n-1}{\det}(M^1_1)  & \underset{n-1}{\det}(M^{n-1}_{n}) \\ \underset{n-1}{\det}(M^n_{n-1}) &  \underset{n-1}{\det}(M^{n-1}_{n-1})\end{vmatrix}$$
+$$\underset{n}{\det}(M)\underset{n-2}{\det}(M^{n-1,n}_{n-1,n}) = \begin{vmatrix} \underset{n-1}{\det}(M^{n-1}_{n-1})  & \underset{n-1}{\det}(M^{n-1}_{n}) \\ \underset{n-1}{\det}(M^n_{n-1}) &  \underset{n-1}{\det}(M^{n}_{n})\end{vmatrix}$$
+
+NB: the general version clearly captures the geometry better.
+
+NB: I suspect this is best written as:
+
+$$A^{\^ n-2} = A^{-1} A^{\^ n-1}$$
+
+And then extracting components. But how does $$A^{-1} = \frac{A^{\^n-1}}{A^{\^n}}^T$$ interact with $$A^{\^ n-1}$$?
 
 
 ### 5. Hyperdeterminants
@@ -108,19 +126,22 @@ $$\Delta^2 A (x \^ y \^ z) = \Delta A (Ax \^ y \^ z + x \^ Ay \^ z + x \^ y \^ A
 * There are multiple places (recall?) where it seems like $$A^T \lra \^^{-n} A$$ and $$A^{-1} \lra \^^{-1} A$$. Is that useful?
 * $$\det(1_n + AB) = \det(1_m + BA)$$ [Sylvester Identity](https://terrytao.wordpress.com/2013/01/13/matrix-identities-as-derivatives-of-determinant-identities/) (another...)
 * trace: $$\det(1 + \e A) = 1 + \tr(A) \e + o(\e^2)$$
+* and $$\det \begin{pmatrix} A & B \\ B & A \end{pmatrix} = \det(A+B)\det(A-B)$$
 * general theory of matrices as expansions of vectors?
 * [Amitsur-Levitzki?](https://en.wikipedia.org/wiki/Amitsur%E2%80%93Levitzki_theorem): $$S = \sum_{\sigma \in S_{2n}} \sgn(\sigma) \prod_i A_{\sigma(i)} = 0$$
 	* proof from [here](https://sci-hub.tw/https://doi.org/10.1007/BF02756797) (Rosset): define a new $$2n$$-dimension exterior algebra $$A = \sum A_i \b{x}_i$$, then $$A^{\^ 2n} = S \bigwedge_i \b{x}_i$$, but $$\tr A^2 = 0$$, and if $$\tr A^i$$ for $$i>0$$ is 0 then $$A^n = 0$$. How odd.
+	* also: fancier related stuff [here](https://arxiv.org/pdf/1404.1980.pdf)
 * Tao on [matrix identities](https://terrytao.wordpress.com/2013/01/13/matrix-identities-as-derivatives-of-determinant-identities/#aeps)
 	* Generally the dream -- I guess -- is to find a way to think about all these doesn't take so many 'tricks', and just makes sense.
 * Matrix reference: [here](http://www2.imm.dtu.dk/pubdb/views/edoc_download.php/3274/pdf/imm3274.pdf)
 * Linear Algebra via Exterior book [here](http://www.math.umaine.edu/~weiss/books/linear_algebra_via_exterior_products.pdf)
-
+* this should be easy, except how can you take wedge products $$>n$$?: $$\det (\text{adj} A) = (\det(A))^{n-1}$$
+* some material ["on the exterior calculus of invariant theory"](http://kalx.net/dsS2011/BarBriRot1985.pdf) (meet and join)
 
 **Proof ideas**:
 
 * [Amitsur-Levitzki?](https://en.wikipedia.org/wiki/Amitsur%E2%80%93Levitzki_theorem): $$S = \sum_{\sigma \in S_{2n}} \sgn(\sigma) \prod_i A_{\sigma(i)} = 0$$
-	* proof from [here](https://sci-hub.tw/https://doi.org/10.1007/BF02756797) (Rosset): define a new $$2n$$-dimension exterior algebra $$A = \sum A_i \b{x}_i$$, then $$A^{\^ 2n} = S \bigwedge_i \b{x}_i$$, but $$\tr A^2 = 0$$, and if $$\tr A^i$$ for $$i>0$$ is 0 then $$A^n = 0$$. How odd.
+	* proof from [here](https://sci-hub.tw/https://doi.org/10.1007/BF02756797) (Rosset): define a new $$2n$$-dimension exterior algebra $$A = \sum A_i \b{x}_i$$, then $$A^{\^ 2n} = S \bigwedge_i \b{x}_i$$, but $$\tr A^{\^ 2} = 0$$, and if $$\tr A^i$$ for $$i>0$$ is 0 then $$A^n = 0$$. How odd.
 
 * Seems like there should be a counting argument: some space is $$2n-1$$ dimensional.
 * $$A_1 A_2 - A_2 A_1$$ is a wedge product, I guess? in a space with non commutative entries?$$= [A_1, A_2] = (A_1 \b{x}_1) \^ (A_2 \b{x}_2)$$
@@ -175,3 +196,34 @@ What is true here?
 6. I still don't see how traces fit into all this, but it would be good to show the trace derivations involving $$\Delta$$?
 	* I still don't understand the interaction between symmetrization and antisymmetrization
 7. K-volumes and projections?
+
+### 13.
+
+To solve an equation:
+
+$$ax + by = 0$$
+
+Write is:
+
+$$(a,b) \cdot (x,y) = (a,b) \^ \star (x,y) = 0$$
+
+Because we know that $$(a,b) \^ (a,b) = 0$$, so 
+
+$$\star(x,y) = (a,b) \lra (x,y) = \star^{-1} (a,b)$$
+
+$$(x,y) \propto (b, -a)$$
+
+Turns out this is powerful?
+
+$$ax + by + cz = d \lra (a,b,c,d)\cdot (x,y,z,-1) = 0$$
+
+$$(x,y,z,-1) = i_{-\b{w}} \star^{-1} (a,b,c,d)$$
+
+To unpack:
+
+$$i_{\b{-w}}  (\star^{-1} a\b{x}) = i_{\b{-w}} (- \b{y \^ z \^ w}) = a\b{y \^ z} \\
+i_{\b{-w}} (\star^{-1} b \b{y}) = i_{\b{-w}}  (-\b{x \^ z \^ w}) = b \b{x \^ z} \\
+i_{\b{-w}} (\star^{-1} c \b{z}) = i_{\b{-w}}  (-\b{x \^ y \^ w}) = c\b{x \^ y} \\
+i_{\b{-w}} (\star^{-1} d \b{w}) = 0$$
+
+Hmm...
