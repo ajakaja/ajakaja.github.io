@@ -36,12 +36,11 @@ As a result, a small startup can take far more risks than a large multinational 
 **2.** Similarly, if the "outcome floor" for your personal finances is filing for bankruptcy, then if you're definitely going to run out of money you can take stupid risks as long as they don't jeopardize your ability to go bankrupt, like making very disadvantageous gambles which will be dropped when you become bankrupt.
 
 But we should also consider how outcome floors interact with human fallibility:
-{: .indent }
 
 If you _think_ the outcome-floor for your personal finances is filing for bankruptcy then you may make decisions which are empirically terrible ideas, because you're confused about the correct utility in the presence of a fictitious outcome floor.
 {: .indent }
 
-Maybe you think that student loans are forgiven by bankruptcy (they're not), and then up impoverished for decades.
+Maybe you think that student loans are forgiven in bankruptcy (they're not, I'm told), and then up impoverished for decades.
 {: .indent }
 
 Or maybe you take a sketchy loan to survive from someone who enforces their loan "extrajudicially", and end up being punished, mafia-style, for the mistake.
@@ -50,7 +49,7 @@ Or maybe you take a sketchy loan to survive from someone who enforces their loan
 Basically you have to be sure you know where the floors _actually_ are, because real-life decisions are made in fuzzy situations where the rules are never black-and-white.
 {: .indent }
 
-**3.** If the death penalty is required for a certain crime, then a criminal who does commits that crime is incentivized to commit _any other crime_ in order to avoid the most extreme outcome.
+**3.** If the death penalty is required for a certain crime, then a criminal who does commits that crime is incentivized to commit basically _any other crime_ in order to avoid the most extreme outcome.
 
 This is especially dire if massive punishments are assigned to things that will inevitably occasionally happen. It may seem rational to a policy-maker to assign a punishment which is proportional to _how much you want to disincentivize a behavior_. But this can get them in trouble:
 {: .indent }
@@ -78,6 +77,7 @@ If your utility function for a decision assigns an "impossibly high magnitude" v
 **5.** If being late for work one more time means you will be unconditionally fired, and that is 'maximally bad' to you, then you should rationally take _any_ action to be on time, including driving massively unsafely or baldly lying about the reason for your tardiness.
 
 Incidentally: take this as an example that treating being late as a dire outcome is a _bad_ idea. I find in life that whenever I'm running late for something, if I take risks to try to get there faster, I invariably end up later, no matter how good of an idea it seemed at the time. In real-life stressful situations it's often best to play to _minimize losses_, rather than _minimize the chance of loss_, and an in fact that's kind of the whole point here: if you optimize for the wrong thing you can do terrible suboptimal things by accident.
+{: .indent }
 
 **6.** If you think of being unemployed as maximally bad, you might stay at a job that is making you miserable because you're not correctly evaluating if the job itself is the optimal 'play' in your situation.
 
@@ -86,7 +86,6 @@ Incidentally: take this as an example that treating being late as a dire outcome
 **8.** If a person's mental biology causes them to massively over-prioritize "avoiding embarrassment", then they might take behaviors which seem superficially to go dramatically against their own interests, like becoming a complete hermit who avoids all human interaction.
 
 Sometimes assigning an impossibly high magnitude to an outcome is a _good_ idea, though, and doing it honestly will give better results than your natural intuition will:
-{: .indent }
 
 **9.** If you are suicidal, but believe that death is the 'maximally bad' outcome (which certainly sounds reasonable!), then you should take _any_ action to avoid dying, including, say, things which seem incredibly uncomfortable according to the other preference-systems in your brain. Like -- I don't know, screaming in public for help, or running away from your life, or being completely honest to everyone despite all social stigmas you may feel.
 
@@ -131,7 +130,7 @@ But at lower levels (where I am), even after a blunder there are going to multip
 
 **2**
 
-Interestingly, the precisely opposite strategy becomes important if you're playing someone who is significantly _better_ than you. A much higher-rated opponent is, presumably, much higher-rated because on average they are going to make much better moves than you. Your best way of playing against a stronger opponent, in terms of "the highest expected value result", is to play for a draw, by eliminating complexity which eliminates situations they can exploit to beat you.
+The precisely opposite strategy becomes important if you're playing someone who is significantly _better_ than you. A much higher-rated opponent is, presumably, much higher-rated because on average they are going to make much better moves than you. Your best way of playing against a stronger opponent, in terms of "the highest expected value result", is to play for a draw, by eliminating complexity which eliminates situations they can exploit to beat you.
 {: .indent}
 
 Even in a game where drawing isn't an option, though, it makes the most sense to play in such a way that they _can't exploit their advantage_. Which means giving them fewer opportunities to make moves which will outsmart you, which means making the game _simple_. So you trade down, play for an endgame, and try not to end up in a situation in which they walk over you.
@@ -171,25 +170,30 @@ With time pressure included, if you're behind you want to make your opponent hav
 Being ahead in material only translates into a win if you do the work to make it win. But time is a 'continuous resource' -- it can pay out in any granularity, rather than only in the binary outcome of "win" or "lose". So one way to play speed chess is to try to balance two algorithms: one of making good moves that gain material advantages, and one that tries to "trade" abstract advantages like position or material for numeric advantages in time -- and part of your skill as a player is the "exchange rate" you can manage to bargain for in this.
 {: .indent}
 
+We might model time pressure as a bound on the computation time of the algorithms being used to make decisions. Then it's interesting and maybe mind-bending to consider: your algorithm has to use the resource of time to make a good decision, but it also has to compute what a reasonable tradeoff between time and move-quality is, plus it has to consider the error in its consideration of time and move-quality, etc. It's a miracle we ever get anything done at all.
+{: .indent}
+
 -----
 
 ## 3. Breaking Through the Floor
 
-It is interesting to think how you would _remove_ an outcome floor's utility-distorting effects.
+It is interesting to think how you would _remove_ (or just lessen) an outcome floor's utility-distorting effects.
 
-For this let's consider the game of Go, which has a binary win-loss outcome like chess, but the outcome is determined by which player has the higher _score_ at the end of the game.
+For this let's consider the game of Go. Go is much more difficult for computers to beat humans at than chess, and it was only in the last couple years that they became able to beat the top humans, while chess computers have beaten humans since the 1990s. 
+
+Part of this is of course because there are many more moves available on each turn, leading to a much higher combinatorial explosion of moves. But another reason (I mean, I assume. I'm a very amateur player) is that Go is won by having a _higher score_ at the end of the game, rather than checkmating the opponent -- and in any situation where the board is still too complex to perfectly compute the final score, the players, human or computer, end up having to use estimations and heuristics to compute whether they are ahead, and to account for the fallibility of their own computations.
 {: .indent}
 
-Go is much more difficult for computers than chess, and it was only in the last couple years that they became able to beat the top humans, while chess computers have beaten humans since the 1990s. Part of this is because there are many more moves on each turn, leading to a much higher combinatorial explosion of moves. But another reason (I suspect -- I am a very amateur player!) is that Go is won by having a higher score at the end of the game, rather than checkmating the opponent. And in any situation where the board is still too complex to perfectly compute the final score, the players -- human or computer -- end up having to use estimations and heuristics to compute whether they are ahead, and to account for the fallibility of their own computations.
+Winning a game of Go means scoring at least 0.5 points more than your opponent (the white-stone player, who moves second in Go, is typically granted a 7.5 point advantage called a _Komi_, which means there are no draws and the smallest victory is by half a point). 
 {: .indent}
 
-Optimal probabilistic play in Go would be making moves which lead to you winning by at least 0.5 points with the higest possible probability (the white-stone player, who moves second in Go, is typically granted a 7.5 point advantage called a _Komi_, which means there are no draws and the smallest victory is by half a point). But until very near the end of the game, your calculation of the final score has some error bars, which means you have to shoot for the highest probability of "winning by 0.5 points or more", rather than the highest probability of "winning by exactly 0.5 points". 
+Optimal probabilistic play in Go would be making moves which lead to you winning by at least 0.5 points with the higest possible probability. But until very near the end of the game, your calculation of the final score has some error bars, which means you have to shoot for moves which seem to have the highest chance of winning by at least 0.5 points, rather than the moves which you are most sure will win by 0.5 points. That is: if some moves were sure to win by exactly 0.5 points, you'd pick those, but if you might be slightly off about the higher score you need to aim higher to give yourself some breathing room.
 {: .indent}
 
-This may very well end up meaning that your best play is one that your own (flawed) utility function actually _predicts_ you winning by 3.5 points, or 20 points, or something, because it's too risky to shoot for being just _slightly_ ahead at the end due to your inherent uncertainty.
+This may very well end up meaning that you compute your best play to be one that your own (flawed) utility function actually _predicts_ you winning by 3.5 points, or 20 points, or something, because it's too risky to shoot for being just _slightly_ ahead at the end due to your inherent uncertainty.
 {: .indent}
 
-In fact, in Go estimating final scores well becomes of utmost importance as you improve at the game; a common lesson which has to be beaten into beginner's heads is "Shut up and Count!" -- to stop guessing whether you've got enough points to win, and _be sure_ by actually, no seriously, counting. And it's no surprise that the best players are impeccable counters, and know far earlier than their weaker opponents if they are coming out ahead.
+In Go estimating final scores well becomes of utmost importance as you improve at the game; a common lesson which has to be beaten into beginner's heads is "Shut up and Count!" -- to stop guessing whether you've got enough points to win, and _be sure_ by actually, no seriously, counting. And it's no surprise that the best players are impeccable counters, and know far earlier than their weaker opponents if they are coming out ahead.
 {: .indent}
 
 And as with chess, if you count and find yourself slightly down, you best behavior is immediately to play more chaotically, because you have to find more points somewhere. In Go you often find yourself playing small battles over multiple moves on one side of the board -- but, well, if you count and realize that _winning the battle will result in losing the game_, then it becomes worth it to jump across the board and try to get more points somewhere else; essentially you end up trading "points over here" with "points over there", in the hopes that the the net gain will be higher than just "taking what you can get" on one side of the board.
