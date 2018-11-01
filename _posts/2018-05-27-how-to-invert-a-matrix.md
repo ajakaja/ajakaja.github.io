@@ -3,11 +3,8 @@ layout: blog
 title: "How to invert a matrix"
 footnotes: true
 math: true
+description: (if you're fancy, or if you want to be)
 ---
-
-*[if you're fancy, or if you want to be]*
-
--------
 
 So you've got a square matrix, like this one:
 

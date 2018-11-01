@@ -3,6 +3,8 @@ layout: blog
 title: "Infinite Summations and You"
 math: true
 footnotes: true
+date: 2018-11-01 14:00
+description: How to disbelieve an expert
 ---
 
 You may have seen that [Youtube video](https://www.youtube.com/watch?v=w-I6XTVZXww) by Numberphile that circulated the social media world a few years ago. It showed the 'astounding' mathematical result:
@@ -16,7 +18,7 @@ $$1+2+3+4+5+\ldots = -\frac{1}{12}$$
 
 The video caused a bit of an uproar at the time, since it was many people's first introduction to the (rather outrageous) idea and they had all sorts of (very reasonable) objections.
 
-I'm interested in talking about something about how mathematicians have shared it with the world _irks_ me. It's fine to get excited about strange mathematical results. But it's not fine to present something that requires a lot of asterixes and disclaimers as "true". The equation is _true_ only in the sense that if you subtly change the meanings of lots of symbols, it can be shown to be true. But that's not the same thing as quotidian, useful, everyday truth.
+I'm interested in talking about this because: something about how mathematicians have shared it with the world _irks_ me. It's fine to get excited about strange mathematical results. But it's not fine to present something that requires a lot of asterixes and disclaimers as "true". The equation is _true_ only in the sense that if you subtly change the meanings of lots of symbols, it can be shown to be true. But that's not the same thing as quotidian, useful, everyday truth.
 {: .indent}
 
 <!--more-->
@@ -154,7 +156,6 @@ And the fact that the series emerges in physics is complicated but amounts to th
 
 So there you go. The sense in which it is true is: when you go mucking about with infinity, you make new rules and new definitions, and weird facts emerge. Until we've got a new theory of infinity, it remains "kind of true" that $$1+2+3+\ldots = - \frac{1}{12}$$, but please don't go telling anyone that to blow their mind, because you'd probably be wrong than right.
 {: .indent}
-
 
 -----
 
