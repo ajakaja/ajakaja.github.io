@@ -4,7 +4,7 @@ title: "Infinite Summations and You"
 math: true
 footnotes: true
 date: 2018-11-01 14:00
-description: How to disbelieve an expert
+description: When to disbelieve an expert
 ---
 
 You may have seen that [Youtube video](https://www.youtube.com/watch?v=w-I6XTVZXww) by Numberphile that circulated the social media world a few years ago. It showed the 'astounding' mathematical result:
