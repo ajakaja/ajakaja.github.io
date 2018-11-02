@@ -4,7 +4,9 @@
 
 
       <h1><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h1>
-
+      {% if post.subtitle %}
+      <h3><em>{{ post.subtitle }}</em></h3>
+      {% endif %}
       <div class="date">
         [{{ post.date | date: "%B %e, %Y" }}]
       </div>
