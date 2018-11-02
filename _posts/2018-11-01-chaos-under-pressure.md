@@ -4,7 +4,6 @@ title: "Chaos Under Pressure"
 math: true
 footnotes: true
 date: 2018-11-01 15:00
-description: Playing optimally when you're already losing
 ---
 
 Here's an effect I've seen in various settings and don't know the name for. It's a property of the game theory of any game in which you can discretely lose but when the players are, well, human, or are otherwise playing imperfectly.
