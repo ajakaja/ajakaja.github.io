@@ -17,7 +17,7 @@ $$1+2+3+4+5+\ldots = -\frac{1}{12}$$
 
 The video caused a bit of an uproar at the time, since it was many people's first introduction to the (rather outrageous) idea and they had all sorts of (very reasonable) objections.
 
-I'm interested in talking about this because: something about how mathematicians have shared it with the world _irks_ me. It's fine to get excited about strange mathematical results. But it's not fine to present something that requires a lot of asterixes and disclaimers as "true". The equation is _true_ only in the sense that if you subtly change the meanings of lots of symbols, it can be shown to be true. But that's not the same thing as quotidian, useful, everyday truth.
+I'm interested in talking about this because: something about how mathematicians have shared it with the world _irks_ me. It's fine to get excited about strange mathematical results. But it's not fine to present something that requires a lot of asterixes and disclaimers as simply "true". The equation is _true_ only in the sense that if you subtly change the meanings of lots of symbols, it can be shown to become true. But that's not the same thing as quotidian, useful, everyday truth.
 {: .indent}
 
 <!--more-->
@@ -26,13 +26,13 @@ I'm interested in talking about this because: something about how mathematicians
 
 My personal anecdote about this equation: 
 
-In college I once found myself at a small event hosted by a Christian group on campus, after we had attended a talk by prominent inflammatory atheist Richard Dawkins. For some reason a friend invited me to be the resident atheist at their discussion, which sounded fun. I don't remember how the event went (besides 'respectfully'), but I distinctly remember talking beforehand to one of the churchgoing fellows, who was a math major, and somehow this identity came up. I hadn't heard of it at the time, but here's a guy (whose ability to only believe things with solid justification I'm already suspicious of, just from the setting) telling me, with no equivocation or disclaimers, that the sum $$1 + 2 + 3 + \ldots$$ "actually is" $$-\frac{1}{12}$$, because he learned that in a lecture.
+In college I once found myself at a small event hosted by a Christian group on campus, after we had attended a talk by prominent inflammatory atheist Richard Dawkins. For some reason a friend invited me to be the resident atheist at their discussion, which sounded fun. I don't remember how the event went (besides 'respectfully'), but I distinctly remember talking beforehand to one of the churchgoing fellows, who was a math major, and somehow this identity came up. I hadn't heard of it at the time, but here's a guy (whose ability to, uh, accurate discern truth from fiction I'm already suspicious of, just from the setting) telling me, with no equivocation or disclaimers, that the sum $$1 + 2 + 3 + \ldots$$ "actually is" $$-\frac{1}{12}$$, because he learned it in a lecture.
 {: .indent}
 
 It struck me as strange, then, that someone would ever get to a place mentally where, upon being told something patently absurd, their first instinct would be to believe it because it came from a position of authority, instead of doubting the claim or at least their understanding. But that's what seemed to be happening, and it stuck with me.
 {: .indent}
 
-Now, any good math major would eventually come to carefully understand the meaning of "equals" in the equation in some rigorous way, and end up not being wrong. But I would think that if you heard this claim offhandedly and didn't remember the argument, then the only response that makes sense is _definitely not believing it_ -- because even though one may not be equipped with the mathematical skills to understand the sense in which it is true, it doesn't take much knowledge to be sure that the statement is necessarily false for any usual definition of $$=$$. That is: even for a layperson, your confidence in your understanding of addition should be sufficient to assume that there anything which dramatically defies it is wrong or being miscommunicated, no matter the status of the source.
+Now, any good math major would eventually come to carefully understand the meaning of "equals" in the equation in some rigorous way and end up not being wrong, and I'm sure he did. But I would think that if you heard this claim offhandedly and didn't remember the argument, then the only response that makes sense is _definitely not believing it_ -- because even though one may not be equipped with the mathematical skills to understand the sense in which it is true, it doesn't take much knowledge to be sure that the statement is necessarily false for any usual definition of $$=$$. That is: even for a layperson, your confidence in your understanding of addition should be sufficient to assume that there anything which dramatically defies it is wrong or being miscommunicated, no matter the status of the source.
 {: .indent}
 
 The Numberphile video came much later and had a bunch of other people "believing" this, or, like, doubting their sanity because they were being told to believe it.
@@ -153,7 +153,7 @@ In fact, if you just graph the partial sums $$S(n)$$, the curve which approximat
 And the fact that the series emerges in physics is complicated but amounts to the fact that, in the particular way we've glued math onto physical reality, we've constructed a framework that also doesn't care about the infinity term (it's rejected as "nonphysical!" and it's a nightmare), and so we get the right answer despite dubious math. But physicists are fine with that, because it seems to be working and they don't know a better way to do it yet.
 {: .indent}
 
-So there you go. The sense in which it is true is: when you go mucking about with infinity, you make new rules and new definitions, and weird facts emerge. Until we've got a new theory of infinity, it remains "kind of true" that $$1+2+3+\ldots = - \frac{1}{12}$$, but please don't go telling anyone that to blow their mind, because you'd probably be wrong than right.
+So there you go. The sense in which it is true is: when you go mucking about with infinity, you make new rules and new definitions, and weird facts emerge. Until we've got a new theory of infinity, it remains "kind of true" that $$1+2+3+\ldots = - \frac{1}{12}$$, but please don't go telling anyone that to blow their mind, because you'd probably be more wrong than right.
 {: .indent}
 
 -----
