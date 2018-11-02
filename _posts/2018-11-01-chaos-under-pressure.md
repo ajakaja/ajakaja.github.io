@@ -59,6 +59,8 @@ Or maybe you take a sketchy loan to survive from someone who enforces their loan
 Basically you have to be sure you know where the floors _actually_ are, because real-life decisions are made in fuzzy situations and if you're wrong you'll make moves which aren't just less-than-perfect but are dramatically terrible.
 {: .indent }
 
+------
+
 It's also important to realize how imposing an outcome floor on someone else changes their behavior:
 
 ### 3
@@ -121,6 +123,8 @@ If a self-driving car (or any AI) is programmed to avoid killing a human at all 
 If a person's mental biology causes them to massively over-prioritize "avoiding embarrassment", then they might take behaviors which seem superficially to go dramatically against their own interests, like becoming a complete hermit who avoids all human interaction.
 {: .indent }
 
+------
+
 Sometimes assigning an impossibly high magnitude to an outcome is a _good_ idea, though, and doing it honestly will give better results than your natural intuition will:
 {: .indent }
 
@@ -129,14 +133,18 @@ Sometimes assigning an impossibly high magnitude to an outcome is a _good_ idea,
 If you are suicidal, but believe that death is the 'maximally bad' outcome (which certainly sounds reasonable), then you should rationally take _any_ action to avoid dying, including, say, things which seem incredibly uncomfortable according to the other preference-systems in your brain. Like -- I don't know, screaming in public for help, or running away from your life, or doing stigmatized things to improve your situation like being completely and utterly honest with everyone you meet.
 {: .indent }
 
+-------
+
 And of course an 'outcome floor' could be an 'outcome ceiling' instead:
 
 ### 10
 
-If you think of winning the lottery as being an "infinite utility" result, and fail to correspondingly think of it as having an "infinitesimally small chance of occurrence", then you may erroneously assign infinite value to the purchasing of lottery tickets with every available dollar, even though the expected value for you is actually (a) finite and (b) negative.
+If you think of winning the lottery as being an "infinite utility" result, and fail to correspondingly think of it as having an "infinitesimally small chance of occurrence", then you may erroneously assign infinite value to the purchasing of lottery tickets with every available dollar, even though the expected value for you is actually (a) finite and (b) negative. (And even if it's a positive return in _dollars_, it may be a negative return in _utility_, due to diminishing returns in the marginal utility of successive dollars.)
 {: .indent }
 
-Basically I think that understanding this effect is a critically important part of human rationality. You _must_ have a grasp on the implications of your own irrationality and fallibility, because the gap between your approximate intuitive utility function and "the function that would actually be optimal for you" can lead to your making _dramatically suboptimal_ decisions in your actual life. And, well, it's pretty likely you're going to want to avoid that if you can see it coming.
+------
+
+Basically I think that understanding this effect is a critically important part of human rationality. Being near an outcome floor can make utility calculations radically different, but you _must_ also consider the implications of your own irrationality and fallibility, because the gap between your approximate intuitive utility function and "the function that would actually be optimal for you" can lead to your making _dramatically suboptimal_ decisions in your actual life. And, well, it's pretty likely you're going to want to avoid that if you can see it coming.
 {: .indent }
 
 --------
