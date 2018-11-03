@@ -22,19 +22,6 @@ I'm interested in talking about this because: something about how mathematicians
 
 <!--more-->
 
---------
-
-My personal anecdote about this equation: 
-
-In college I once found myself at a small event hosted by a Christian group on campus, after we had attended a talk by prominent inflammatory atheist Richard Dawkins. For some reason a friend invited me to be the resident atheist at their discussion, which sounded fun. I don't remember how the event went (besides 'respectfully'), but I distinctly remember talking beforehand to one of the churchgoing fellows, who was a math major, and somehow this identity came up. I hadn't heard of it at the time, but here's a guy (whose ability to, uh, accurate discern truth from fiction I'm already suspicious of, just from the setting) telling me, with no equivocation or disclaimers, that the sum $$1 + 2 + 3 + \ldots$$ "actually is" $$-\frac{1}{12}$$, because he learned it in a lecture.
-{: .indent}
-
-It struck me as strange, then, that someone would ever get to a place mentally where, upon being told something patently absurd, their first instinct would be to believe it because it came from a position of authority, instead of doubting the claim or at least their understanding. But that's what seemed to be happening, and it stuck with me.
-{: .indent}
-
-Now, any good math major would eventually come to carefully understand the meaning of "equals" in the equation in some rigorous way and end up not being wrong, and I'm sure he did. But I would think that if you heard this claim offhandedly and didn't remember the argument, then the only response that makes sense is _definitely not believing it_ -- because even though one may not be equipped with the mathematical skills to understand the sense in which it is true, it doesn't take much knowledge to be sure that the statement is necessarily false for any usual definition of $$=$$. That is: even for a layperson, your confidence in your understanding of addition should be sufficient to assume that there anything which dramatically defies it is wrong or being miscommunicated, no matter the status of the source.
-{: .indent}
-
 The Numberphile video came much later and had a bunch of other people "believing" this, or, like, doubting their sanity because they were being told to believe it.
 
 Some years later I eventually learned more mathematics and went out of my way to understand the real explanation for closure.
