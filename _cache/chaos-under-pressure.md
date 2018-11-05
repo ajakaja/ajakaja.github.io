@@ -34,12 +34,9 @@ This effect is interesting because, I think, it turns up in lots of other places
 
 ### 1
 
-If the worst thing that can happen to a company is going out of business, then if you're doing badly, you can take more risks. Why not? May as well play to get lucky.
+If the worst thing that can happen to a company is going out of business, then if you're doing badly, you can take more risks, since a failure looks the same either way.
 
-As a result, a small startup can take far more risks than a large multinational corporation. The startup can do something insane, like pour resources into a failing project, because when it fails the investors are out their money but the owners are (more-or-less) fine. But if the corporate project is failing, their other businesses can be pulled down with the failure if they overcommit to rescuing it.
-{: .indent }
-
-(Things are further skewed because, as far as I can tell, it tends to be true that the entrepreneurs come out way ahead in this scenario -- they get the prestige and connections and experience from the whole thing, but don't lose out financially. Except for the alternative outcome of making a lot of money in the meantime working somewhere else, maybe, but let's assume the entrepreneurs already decided they don't care so much about that. And of course except for the mental health toll of fighting to keep a sinking ship afloat. Whatever, it's just an example.)
+This means that a small startup and a large company doing the same project can take different actions. The startup can take far more risk, perhaps pouring resources into a failing project, because when it fails the investors are out their money but the owners are fine. But if the corporate project is failing, their other businesses can be pulled down with the failure if they overcommit to rescuing it.
 {: .indent }
 
 ### 2
@@ -209,10 +206,10 @@ I imagine there is some theorem that can be written down which bounds this behav
 
 ### 3
 
-There's yet another facet to this when _time pressure_ comes into play. Chess is usually played with a clock so games don't go on forever; regular tournmanents have time controls like "thirty minutes" or "an hour" for each player, but I mostly play online with about five minutes.
+Chess is usually played with a clock so games don't go on forever; regular tournmanents have time controls like "thirty minutes" or "an hour" for each player, but I mostly play online with about five minutes. And there's yet another facet to this when time pressure comes into play. 
 {: .indent}
 
-When you run out of time, you lose -- even if you're winning by a lot. This changes the "optimal move calculus" once again. Now if you're behind you can try to play moves which _take a long time to deal with_; usually these are the moves which make things more complex. And when time is getting short, it becomes more optimal to _quickly make pretty-good moves_, rather than _slowly make optimal ones_ -- especially because you want to leave time banked up to deal with any surprising complexity later on.
+When you run out of time, you lose, even if your position on the board is winning by a lot. That means that if you're behind you can try to play moves which _take a long time to deal with_; usually these are the moves which make things more complex. And when time is getting short, it becomes more optimal to _quickly make pretty-good moves_, rather than _slowly make optimal ones_ -- especially because you want to leave time banked up to deal with any surprising complexity later on.
 {: .indent}
 
 With time pressure included, if you're behind you want to make your opponent have to think, while leaving yourself time to think when they make suboptimal moves due to running out of time to think. If you're ahead, you want to use your advantage both to make your opponent lose directly, and to use your advantage to force them into using more time. 
