@@ -2,7 +2,6 @@
 layout: blog
 title: "Meditation on Taylor Series"
 math: true
-category: notes
 footnotes: true
 ---
 
