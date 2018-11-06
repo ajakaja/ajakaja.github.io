@@ -27,6 +27,7 @@ category: misc
 .card > div {
     padding-right: 5px;
     padding-left: 5px;
+    font-family: sans-serif;
 }
 
 .ctopbar {
@@ -63,7 +64,6 @@ category: misc
 .cimage {
     height: 50%;
     box-sizing: border-box;
-    border: 2px solid;
     background: linear-gradient(to bottom right, green, purple);
 }
 .cdesc {
@@ -74,7 +74,7 @@ category: misc
 }
 .cbottomright {
     text-align: right;
-    bottom: 0px;
+    bottom: -2px;
     right: 5px;
     position: absolute;
 }
@@ -99,7 +99,7 @@ category: misc
     <div class="card" id="card">
         <div class="ctopbar">
             <div class="ctopleft" contenteditable="true">Haste</div>
-            <div class="ctopright" contenteditable="true">Cast: 10</div>
+            <div class="ctopright" contenteditable="true">Cost: 10</div>
         </div>
         <div class="cbody">
             <div class="cimage"></div>
@@ -189,7 +189,7 @@ category: misc
             render(JSON.parse(text));
             inputfield.value = text;
         } else {
-            inputfield.value = parse();
+            inputfield.value = JSON.stringify(parse(), null, 2);
         }
 
     })();
