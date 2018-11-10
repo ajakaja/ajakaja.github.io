@@ -12,6 +12,8 @@ From basic probability we know that:
 
 $$P(A,B) = P(A | B) P(B) = P(B | A) P(A)$$
 
+(Writing $$P(A,B)$$ for the probability of $$A$$ and $$B$$, because I think $$P(A \cup B)$$ looks funny.)
+
 Giving Bayes' Theorem:
 
 $$P(A | B) = P(A) \frac{P(B | A) }{P(B)} \tag{1}$$
@@ -32,19 +34,19 @@ $$P(A,B) : P(A, \neg B) : P(B, \neg A) : P(\neg B, \neg A)$$
 
 To find the probability of some predicate given some other predicate, such as $$P(x \| y)$$, compute $$P(x \| y) = \frac{P(x, y)}{P(y)}$$.
 
-Note that treating these as ratios eliminates the need for using _probabilities_. They can be abstract _rates_ in any sense in which that makes sense. So we can just write:
+Note that because we are treating these as ratios eliminates the need for using _probabilities_; they can be abstract _rates_ in any sense in which that makes sense. What I mean is that we don't need to normalize them to add up to 1. We can just write this without the $$P$$s:
 
 $$(A, B) : (A,\neg B) : (\neg A,B) : (\neg A, \neg B)$$
 
 ---------
 
-$$P(A)$$ is called the **prior probability** of $$A$$: the probability we assume in a vacuum with no additional knowledge. $$P(A) : P(\neg A)$$ is the **prior odds**.
+When doing Bayesian inference, $$P(A)$$ is called the **prior probability** of $$A$$: the probability we assume in a vacuum with no additional knowledge. $$P(A) : P(\neg A)$$ is the **prior odds**.
 
 $$P(A \| B)$$ is called the **posterior probability** of $$A$$: the probability after we have incorporated our knowledge of $$B$$. $$P(A \| B) : P(\neg A \| B)$$ is the **posterior odds**.
 
 The odd ratio $$P(B \| A) : P(B \| \neg A) $$ is called the **relative likelihood**.
 
-The process of incorporating new information $$B$$ to compute $$P(A \| B)$$ is called a Bayesian Update. In odds form, it looks like that:
+The process of incorporating new information $$B$$ to improve our estimate of the likelihood of $$A$$ $$P(A \| B)$$ is called a Bayesian Update. In odds form, it looks like that:
 
 $$\text{posterior odds} = \text{prior odds } \times \text{ relative likelihood}$$
 
@@ -58,17 +60,20 @@ $$\frac{P(A | B)}{P(A | \neg B)} = \frac{P(A)}{P( \neg A)} \times \frac{P(B | A)
 
 Note that this also equals $$\frac{P(B, A)}{P(B, \neg A)}$$.
 
+(A nice part about odds-ratios is that they're like fractions with $$>2$$ parts. There's no problem with multiplying $$(a:b:c) \times (d:e:f) = (ad : be : cf)$$, whereas that's quite odd to express with fractions.)
+
+
 ------
 
 Classic example:
 
-If people are sick with odds $$1:5$$ and positive results on a test come with rates $$10 : 1$$ then the rate of positive results is $$10 : 5$$, ie a positive result says you have probability $$\frac{2}{3}$$ to be sick. In the above formula:
+If people are sick with odds $$1:5$$ and positive results on a test come with rates $$10 : 1$$ then the rate of positive results is $$10 : 5$$, ie a positive result says you have probability $$\frac{10}{10 + 5} = \frac{2}{3}$$ to be sick. In the above formula:
 
 * $$P(A) : P(\neg A)$$ is $$1:5$$, because there are 5 times as many healthy people as sick.
 * $$P(B \| A) : P(B \| \neg A)$$ is $$10: 1$$, because sick people are 10 times as likely to get positive results.
 * so $$P(A \| B) : P(A \| \neg B)$$ is $$10: 5$$, because $$10:5$$ is the "ratio of positive results from sick people to positive results from healthy people".
 
-You can do it with probabilities, also, but it's clunker: $$P(A) = \frac{1}{6}$$ and $$P(B \| A) = \frac{10}{11}$$ and $$P(B \| \neg A) = \frac{1}{11}$$ so:
+You can do it with probabilities, also, but it's clunkier: $$P(A) = \frac{1}{6}$$ and $$P(B \| A) = \frac{10}{11}$$ and $$P(B \| \neg A) = \frac{1}{11}$$ so:
 
 $$P(A | B) = \frac{\frac{1}{6} \frac{10}{11} } { \frac{1}{6} \frac{10}{11} + \frac{5}{6} \frac{1}{11}  } = \frac{10}{10 + 5} = \frac{2}{3}$$
 
@@ -88,7 +93,7 @@ $$\frac{(H | \vec{O} )}{(\neg H | \vec{O} )} = \frac{(H)}{(\neg H)} \prod_i \fra
 
 Which amounts to:
 
-$$\text{currently belief ratio} = \text{prior} \times \prod_i \text{ratios from } O_i$$
+$$\text{current belief ratio} = \text{prior} \times \prod_i \text{ratios from } O_i$$
 
 Some entailments:
 
@@ -138,7 +143,7 @@ This has been called **conservation of expected evidence**. If seeing $$O$$ make
 
 Of course, if you're _wrong_ about $$P(H)$$, then on average in reality you will change your mind after $$O$$. The point is, though, that if you _expected_ to change your mind upon observing $$O$$ in one direction or another, you could just imagine testing $$O$$ and make the change anyway. You already know enough to update your prior without doing another experiment.
 
-More [here](https://www.lesswrong.com/posts/jiBFC7DcCrZjGmZnJ/conservation-of-expected-evidence), including the delightful real-life example that if living a sinful life makes a medieval woman more likely to be a witch, then living a virtuous life _must_ make a medieval woman _less_ likely to be a witch.
+More [here](https://www.lesswrong.com/posts/jiBFC7DcCrZjGmZnJ/conservation-of-expected-evidence), including the delightful real-life example that if living a sinful life makes a medieval woman more likely to be a witch, then living a virtuous life _must_ make a medieval woman _less_ likely to be a witch, contrary to how some of those medieval trials used to go.
 
 ------
 
