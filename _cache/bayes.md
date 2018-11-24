@@ -6,101 +6,148 @@ aside: true
 footnotes: true
 ---
 
-## 1
+## 1. Bayes
 
 From basic probability we know that:
 
-$$P(A,B) = P(A | B) P(B) = P(B | A) P(A)$$
-
-(Writing $$P(A,B)$$ for the probability of $$A$$ and $$B$$, because I think $$P(A \cup B)$$ looks funny.)
+$$P(A \and B) = P(A | B) P(B) \\
+= P(B | A) P(A)$$
 
 Giving Bayes' Theorem:
 
 $$P(A | B) = P(A) \frac{P(B | A) }{P(B)} \tag{1}$$
 
-We can also expand the $$P(B)$$, giving:
+The first thing I have learned about "Bayesianism" is that it only shares a name with Bayes' Theorem. The theorem is more fundamental than any particular intepretation of probability theory; it is a simple mathematical relationship between formal values.
 
-$$P(A | B) = \frac{P(B | A) P(A)}{P(B | A) P(A) + P(B | \neg A) P(\neg A)}$$
+Another mathematical relationship is that we can expand the $$P(B)$$ term in the denominator via:
 
-It is often convenient to write this as an _odds ratio_:
+$$P(B) = P(B | A) P(A) + P(B | \neg A) P(\neg A)$$
 
-$$P(B | A) P(A) : P(B | \neg A) P(\neg A) = P(B, A) : P(B, \neg A)$$
+This gives:
 
-which gives the ratio between the frequencies of events that $$B$$ happens and $$A$$ happens, versus $$B$$ happens and $$A$$ doesn't.
+$$P(A | B) = \frac{P(B | A) P(A)}{P(B | A) P(A) + P(B | \neg A) P(\neg A)} \tag{Bayes}$$
 
-In fact we could just write out a ratio of all four possibilities:
+----------------
 
-$$P(A,B) : P(A, \neg B) : P(B, \neg A) : P(\neg B, \neg A)$$
+Next, we formulate Bayesian _Inference_.
 
-To find the probability of some predicate given some other predicate, such as $$P(x \| y)$$, compute $$P(x \| y) = \frac{P(x, y)}{P(y)}$$.
+We interpret $$P(A \| B)$$ as "having learned the new information $$B$$, what do we think the probability of $$A$$ is?". Let's relabel: $$A \ra H$$ for 'hypothesis' and $$B \ra E$$ for 'evidence':
 
-Note that because we are treating these as ratios eliminates the need for using _probabilities_; they can be abstract _rates_ in any sense in which that makes sense. What I mean is that we don't need to normalize them to add up to 1. We can just write this without the $$P$$s:
+$$P(H | E) = P(H) \frac{P(E | H) }{P(E)}$$
 
-$$(A, B) : (A,\neg B) : (\neg A,B) : (\neg A, \neg B)$$
+$$P(H)$$ is called the **prior probability** of $$H$$: the probability we assume in a vacuum with no additional knowledge. Sometimes it's just called the **prior**.
+
+$$P(H \| E)$$ is called the **posterior probability** of $$H$$: the probability after we have incorporated our knowledge of $$E$$.
+
+The $$P(E \| H)$$ term is called the **likelihood**: supposing $$H$$ were true, how likely would evidence $$E$$ have been?
+
+The term $$\frac{P(E \| H)}{P(E)}$$ together serves to _update_ the value of $$P(H)$$: formally we thought the probability was $$P(H)$$, now we think it's $$P(H \| E) = P(H) \frac{P(E \| H) }{P(E)}$$.
+
+The process of incorporating this new information $$E$$ to compute $$P(H \| E)$$ is called a Bayesian Update. 
+
+The classical example is in dealing with false positives from a diagnostic test:
+
+If $$\frac{1}{6}$$ of a cohorot of people are sick, and the test identifies sick people as sick $$\frac{10}{11}$$ of the time, but identifies healthy people as sick $$\frac{1}{11}$$ of the time, then if you got a positive test, the probability you actually have are actually sick is:
+
+$$\begin{aligned} 
+P(H | E) &= P(H) \frac{P(E | H) }{P(E)} \\
+&= \frac{1}{6} \frac{\frac{10}{11}}{\frac{1}{6} \frac{10}{11} + \frac{5}{6} \frac{1}{11}} 
+= \frac{10}{10+5} = \frac{2}{3} 
+\end{aligned}$$
+
+But in fact, this turns out to be a fairly unwieldy way of thinking about the process. To my surprise, "odds" work way better.
 
 ---------
 
-When doing Bayesian inference, $$P(A)$$ is called the **prior probability** of $$A$$: the probability we assume in a vacuum with no additional knowledge. $$P(A) : P(\neg A)$$ is the **prior odds**.
+## 2. Odds
 
-$$P(A \| B)$$ is called the **posterior probability** of $$A$$: the probability after we have incorporated our knowledge of $$B$$. $$P(A \| B) : P(\neg A \| B)$$ is the **posterior odds**.
+It is also possible to express probabilities in the form of _Odds_. I have long had trouble understanding why anyone would want to do this, but I might have figured it out: it's because it miraculously makes the Bayesian inference process much simpler.
 
-The odd ratio $$P(B \| A) : P(B \| \neg A) $$ is called the **relative likelihood**.
+If an event $$X$$ occurs with probability $$P(X) = \frac{1}{3}$$, then in $$N$$ tests you would expect (asympotically) to see $$X$$ occur $$\frac{N}{3}$$ times. This is equivalent to saying that the _odds_ of $$X$$ are $$1:2$$, which means that the rates of $$X$$ to $$\neg X$$ happen with a $$1:2$$ ratio -- for every $$X$$ you expect to see (asympotically) $$2$$ instances of $$\neg X$$.
 
-The process of incorporating new information $$B$$ to improve our estimate of the likelihood of $$A$$ $$P(A \| B)$$ is called a Bayesian Update. In odds form, it looks like that:
+In general, an odds $$O(X) = a:b$$ corresponds to a probability $$P(X) = \frac{a}{a+b}$$. $$P(X)$$ measures the rate of $$X$$ compared to _all outcomes_. $$O(X)$$ measures the rate of $$X$$ compared to $$\neg X$$. In a sense they're two versions of the same thing:
+
+$$P(X) \lra  O(X : X \text{ or } \neg X)$$
+
+while if we just talk about the 'odds' of $$X$$, we mean:
+
+$$O(X) \lra O(X : \neg X)$$
+
+The $$\frac{P(E \| H) P(H)}{P(E \| H) P(H) + P(H \| \neg H) P(\neg H)}$$ term in Bayes' theorem can be written as an odds ratio like this: 
+
+$$P(E \| H) P(H) : P(E \| \neg H) P(\neg H)$$
+
+... which actually seems to clean up some of the redundancy in it, our first sign that odds might be useful here. In fact we prefer to factor it into two parts:
+
+$$= \frac{P(E \| H)}{P(E \| \neg H)} P(H) : P(\neg H)$$
+
+Like probabilities, we can divide through by factors without affecting the meaming of the result. In fact, let's do it again to rewrite $$P(H) : P(\neg H)$$ directly as an odds:
+
+$$= \frac{P(E \| H)}{P(E \| \neg H)} O(H : \neg H)$$
+
+This is **Bayes' Theorem, Odds Ratio form**:
+
+$$O(H | E : \neg H \| E) = \frac{P(E | H)} {P(E | \neg H)} O(H : \neg H)$$
+
+Read aloud:
+
+The **posterior odds** $$O(H \| E : \neg H : E) $$ of $$H : \neg H$$ given evidence $$E$$ is equal to the **prior odds** $$O(H : \neg H)$$ times the **relative likelihood** $$\frac{P(E \| H)} {P(E \| \neg H)}$$.
+
+Note: odds, in general, work something like _rates_. The term $$\frac{P(E \| H)} {P(E \| \neg H)}$$ is not exactly interpretable as an odds (the odds of what?), but it's interpretable as a rate: the rate _of_ "the rates of $$E$$ given $$H$$", vs "the rate of $$E$$ given $$\neg H$$". If we allow ourselves to write any ratio of rates as an odds:
+
+$$O(H | E : \neg H \| E) = O (E | H : E | \neg H) O(H : \neg H)$$
+
+Finally, I find it useful to just write odds as fractions anyway:
+
+$$\frac{(H | E)}{(\neg H | E)} = \frac{(E | H)}{(E | \neg H)} \frac{(H)}{(\neg H)}$$
+
+
+
+---------
+
+$$\frac{(H)}{(\neg H)}$$ is the **prior odds**: the relative rates we initially think $$H$$ and $$\neg H$$ take.
+
+$$\frac{(H \| E)}{(\neg H \| E)}$$ is the **posterior odds**: what do we think the rates of $$H : \neg H$$ are, having learned $$E$$?
+
+The ratio $$\frac{(E \| H)}{(E \| \neg H)}$$ is called the **relative likelihood**, and tells us how to update the rates according to the evidence $$E$$.
+
+Because we're using odds, the Bayesian update process is simple multiplication. Bayesian update in Odds form:
 
 $$\text{posterior odds} = \text{prior odds } \times \text{ relative likelihood}$$
 
-The odds ratio form is useful because we can simply... multiply odds together (as odds or as fractions):
+It's easy to do in our heads. The classic example gain:
 
-$$(a:b) \times (c:d) \ra \frac{a}{b} \frac{c}{d} = \frac{ac}{bd} \ra (ac : bd)$$
+$$\frac{1}{6}$$ of people are sick, so $$\frac{(H)}{(\neg H)}$$ = $$\frac{1}{5}$$. The test reports sick people as sick $$\frac{10}{11}$$ of the time, but healthy people as sick $$\frac{1}{11}$$ of the time, so $$\frac{(E \| H)}{(E \| \neg H)} = \frac{10/11}{1/11}$$. Finally:
 
-In probability-ratios:
+$$\frac{(H \| E)}{(\neg H \| E)} = 10 \times \frac{1}{5} = 2$$
 
-$$\frac{P(A | B)}{P(A | \neg B)} = \frac{P(A)}{P( \neg A)} \times \frac{P(B | A)}{P(B | \neg A)}$$
+And $$2:1$$ odds means $$P(H \| E) = \frac{2}{3}$$.
 
-Note that this also equals $$\frac{P(B, A)}{P(B, \neg A)}$$.
-
-(A nice part about odds-ratios is that they're like fractions with $$>2$$ parts. There's no problem with multiplying $$(a:b:c) \times (d:e:f) = (ad : be : cf)$$, whereas that's quite odd to express with fractions.)
-
-
-------
-
-Classic example:
-
-If people are sick with odds $$1:5$$ and positive results on a test come with rates $$10 : 1$$ then the rate of positive results is $$10 : 5$$, ie a positive result says you have probability $$\frac{10}{10 + 5} = \frac{2}{3}$$ to be sick. In the above formula:
-
-* $$P(A) : P(\neg A)$$ is $$1:5$$, because there are 5 times as many healthy people as sick.
-* $$P(B \| A) : P(B \| \neg A)$$ is $$10: 1$$, because sick people are 10 times as likely to get positive results.
-* so $$P(A \| B) : P(A \| \neg B)$$ is $$10: 5$$, because $$10:5$$ is the "ratio of positive results from sick people to positive results from healthy people".
-
-You can do it with probabilities, also, but it's clunkier: $$P(A) = \frac{1}{6}$$ and $$P(B \| A) = \frac{10}{11}$$ and $$P(B \| \neg A) = \frac{1}{11}$$ so:
-
-$$P(A | B) = \frac{\frac{1}{6} \frac{10}{11} } { \frac{1}{6} \frac{10}{11} + \frac{5}{6} \frac{1}{11}  } = \frac{10}{10 + 5} = \frac{2}{3}$$
+This is _much easier_ to do on the fly then the probability version, and much more intuitive -- once you get the hang of thinking in terms of rates, which takes a bit of getting used to.
 
 ------
 
 ## In practice
 
-You usually begin with a guess (a prior) for the likelihood of some hypothesis $$H$$:
+You usually begin with a guess (a prior) for the probability of some hypothesis $$H$$, which you turn into an odds:
 
-$$P(H) : P(\neg H)$$
+$$\frac{(H)}{(\neg H)} = O(H : \neg H) = P(H) : P(\neg H)$$
 
-Since it's a ratio of occurrences we don't care about it being normalized, so we just write this as a ratio $$(H) : (\neg H) = \frac{(H)}{(\neg H)}$$.
+Then you go through your life or experiment or whatever, finding observations $$\vec{E} = \{ E_i \} $$, which have different rates of occurring for $$H$$ vs. $$\neg H$$, causing updates:
 
-Then you go through your life finding observations $$\vec{O} = \{ O_i \} $$, which have different rates of occurring for $$H$$ vs. $$\neg H$$, causing updates:
-
-$$\frac{(H | \vec{O} )}{(\neg H | \vec{O} )} = \frac{(H)}{(\neg H)} \prod_i \frac{(O_i, H)}{(O_i, \neg H)}$$
+$$\frac{(H | \vec{E} )}{(\neg H | \vec{E} )} = \frac{(H)}{(\neg H)} \prod_i \frac{(E_i, H)}{(E_i, \neg H)}$$
 
 Which amounts to:
 
-$$\text{current belief ratio} = \text{prior} \times \prod_i \text{ratios from } O_i$$
+$$\text{currently belief ratio} = \text{prior} \times \prod_i \text{ratios from } E_i$$
 
 Some entailments:
 
 1. If each thing you see occur is more likely to occur for $$H$$ than for $$\neg H$$, then your belief in $$H$$ gets higher and higher, approaching but never reaching infinity.
 2. If you ever see something happen which is _impossible_ if $$H$$, ie has odds $$0: x$$, then you no longer believe in $$H$$, no matter what. 
-3. Your prior permanently weights your resulting probabilities, no matter how many observations you see.
-4. To make an unlikely claim $$H$$ seem _more_ likely than you started out, you need likelihood ratios which at least the inverse of your current believe. IE if you currently think the ratio is $$2:5$$, you need ratios $$> 5:2$$ to start inverting that.
+3. Your prior permanently weights your resulting odds, no matter how many observations you see.
+4. There is no difference between seeing one or many observations if they multiply out to the same rates of occurence for $$H$$ vs $$\neg H$$.
+5. To make an unlikely claim $$H$$ seem _more_ likely than you started out, you need likelihood ratios which at least the inverse of your current believe. IE if you currently think the ratio is $$2:5$$, you need ratios $$> 5:2$$ to start inverting that.
 
 There is no requirement, either, that you only consider $$H$$ and $$\neg H$$. You can have an entire family of (exlcusive) hypotheses $$H_j$$. Fractions are only good at expressing one or the other, but ratios, in general, can be between more than two terms: $$H_1 : H_2 : H_3$$.
 
@@ -110,40 +157,40 @@ The procedure of 'inference' as performed by human intuition is assumed / unders
 
 It can be easier to think in **log odds**, which makes all the math additive:
 
-$$\log (H | \vec{O}) - \log (\neg H | \vec{O}) = \log H - \log \neg H + \sum_i \log(O_i, H) - \log(O_i, \neg H)$$
+$$\log (H | \vec{E}) - \log (\neg H | \vec{E}) = \log H - \log \neg H + \sum_i \log(E_i, H) - \log(E_i, \neg H)$$
 
 This will be easiest is your rates are all given as ratios of powers of the same number. How would that work?
 
-It's not too difficult if you think of counting the number of ways things can happen. If there are $$2$$ ways that $$H$$ can happen and $$4$$ ways that $$\neg H$$ can happen, then $$\log_2 \frac{H}{\neg H} = 
-log 2 - \log 4 = -1$$. To get back to an odds ratio, compute $$2^{-1} = \frac{1}{2} = 1:2 \lra P(H) = \frac{1}{3}$$.
+It's easy if you're counting the number of ways things can happen. If there are $$2$$ ways that $$H$$ can happen and $$4$$ ways that $$\neg H$$ can happen, then $$\log_2 \frac{H}{\neg H} = 
+\log 2 - \log 4 = -1$$. To get back to an odds ratio, compute $$2^{-1} = \frac{1}{2} = 1:2 \lra P(H) = \frac{1}{3}$$.
 
 In log odds, if $$A$$ is "twice as likely as" $$B$$, then $$\log (A) = 1 + \log (B) $$; you're doing something like adding up "how many times is $$A$$ twice as likely as $$B$$", which isn't too bad to do in your head.
 
 -------
 
-## Conservation of Expected Evidence
+## 3. Conservation of Expected Evidence
 
-Given a current belief ratio $$H : \neg H$$, after a test observation in which we see $$O$$ we update the posterior probability to:
+Given a current belief ratio $$H : \neg H$$, after a test observation in which we see $$E$$ we update the posterior probability to:
 
-$$P(H | O) = P(O | H) P(H) + P(O | \neg H) P(\neg H)$$
+$$P(H | E) = P(E | H) P(H) + P(E | \neg H) P(\neg H)$$
 
-If we instead see $$\neg O$$, then we update to:
+If we instead see $$\neg E$$, then we update to:
 
-$$P(H | \neg O) = P(\neg O | H) P(H) + P(\neg O | \neg H) P(\neg H)$$
+$$P(H | \neg E) = P(\neg E | H) P(H) + P(\neg E | \neg H) P(\neg H)$$
 
 We also know, though, that $$P(H)$$ is:
 
-$$P(H) = P(H | O) P(O) + P(H | \neg O) P(\neg O)$$
+$$P(H) = P(H | E) P(E) + P(H | \neg E) P(\neg E)$$
 
-We can interpret this in an interesting way. Since $$P(O)$$ and $$P(\neg O)$$ are fixed constants, this is an expectation value of $$P(H)$$ after the observation of $$O$$ or $$\neg O$$: $$\bb{E}[P(H)]$$. $$P(H)$$, our _prior_ for $$H$$, is also fixed, though. That means that if $$P(H \| O)$$ increases, then $$P(H \| \neg O)$$ _decreases_ proportionally. Specifically:
+We can interpret this in an interesting way. Since $$P(E)$$ and $$P(\neg E)$$ are fixed constants, this is an expectation value of $$P(H)$$ after the observation of $$E$$ or $$\neg E$$: $$\bb{E}[P(H)]$$. $$P(H)$$, our _prior_ for $$H$$, is also fixed, though. That means that if $$P(H \| E)$$ increases, then $$P(H \| \neg E)$$ _decreases_ proportionally. Specifically:
 
-$$\D P(H | O) P(O) = - \D P(H | \neg O) P(\neg O)$$
+$$\D P(H | E) P(E) = - \D P(H | \neg E) P(\neg E)$$
 
-This has been called **conservation of expected evidence**. If seeing $$O$$ makes you think that $$H$$ is _more_ likely, then seeing $$\neg O$$ _must_ make you think that $$H$$ is _less_ likely. Moreover, if you already believe that $$P(H)$$ is the true probability of $$H$$, then you don't _expect_ evidence to change your opinion on that _at all_ -- the expected change $$\D P(H)$$ is $$0$$.
+This has been called **conservation of expected evidence**. If seeing $$E$$ makes you think that $$H$$ is _more_ likely, then seeing $$\neg E$$ _must_ make you think that $$H$$ is _less_ likely. Moreover, if you already believe that $$P(H)$$ is the true probability of $$H$$, then you don't _expect_ evidence to change your opinion on that _at all_ -- the expected change $$\D P(H)$$ is $$0$$.
 
-Of course, if you're _wrong_ about $$P(H)$$, then on average in reality you will change your mind after $$O$$. The point is, though, that if you _expected_ to change your mind upon observing $$O$$ in one direction or another, you could just imagine testing $$O$$ and make the change anyway. You already know enough to update your prior without doing another experiment.
+Of course, if you're _wrong_ about $$P(H)$$, then on average in reality you will change your mind after $$E$$. The point is, though, that if you _expected_ to change your mind upon observing $$E$$ in one direction or another, you could just imagine testing $$E$$ and make the change anyway. You already know enough to update your prior without doing another experiment.
 
-More [here](https://www.lesswrong.com/posts/jiBFC7DcCrZjGmZnJ/conservation-of-expected-evidence), including the delightful real-life example that if living a sinful life makes a medieval woman more likely to be a witch, then living a virtuous life _must_ make a medieval woman _less_ likely to be a witch, contrary to how some of those medieval trials used to go.
+More [here](https://www.lesswrong.com/posts/jiBFC7DcCrZjGmZnJ/conservation-of-expected-evidence), including the delightful real-life example that if living a sinful life makes a medieval woman more likely to be a witch, then living a virtuous life _must_ make a medieval woman _less_ likely to be a witch.
 
 ------
 
@@ -151,41 +198,38 @@ More [here](https://www.lesswrong.com/posts/jiBFC7DcCrZjGmZnJ/conservation-of-ex
 
 Inference is sometimes framed as having two ideological camps: frequentist and Bayesian. Frequentist statistics includes such ideas as $$p$$-values and confidence intervals and the like.
 
-I hold the view (acquired from various more learned sources) that frequentism is more-or just a subset of Bayesianism that says less but doesn't mention priors. That is: there's not really an ideological battle at all; Bayesian is just better and can say anything that frequentist statistics does.
-
-Precisely: frequentist statistics only give the probability of results conditioned on hypotheses, never the _probability of hypotheses_. 
-
-The hypothesis probability is commonly then _deduced via intuition_, which can be dangerous. Bayesian makes this step mathematical.
+Regardless of that ideological battle, it's useful to figure out where frequentist statistics like confidence intervals and P-values fit into the framework of Bayesian inference. I believe the explanation is: frequentist statistics only give the probability of results conditioned on hypotheses, never the _probability of hypotheses_. The hypothesis's probability is commonly then _deduced via intuition_, using the frequentist statistic as the 'experiment'. Bayesianism can make this step mathematical.
 
 Here is how you represent frequentism in light of Bayes:
 
-A $$p$$-value fundamentally says that "Given hypothesis $$H$$, the observed data $$O$$ has probability $$P(O \| H)$$". A study which reports a $$p$$-value implicitly says "see how small that number is? surely that makes you doubt that $$H$$ is true!". In fact, what's omitted is the _explicit_ step of computing, using that value:
+A $$p$$-value fundamentally says that "Given a (null) hypothesis $$H$$, the observed data $$E$$ has probability $$P(E \| H)$$". A study which reports a $$p$$-value implicitly says "see how small that number is? surely that makes you doubt that $$H$$ is true!". In fact, what's omitted is the _explicit_ step of computing, using that value:
 
-$$P(H | O) = P(O | H) \frac{P(H)}{P(O)}$$
+$$P(H | E) = P(E | H) \frac{P(H)}{P(E)}$$
 
-Since this step is omitted, it's not necessary to ever discuss the prior probability $$P(H)$$. Your intuitive inference, upon reading the $$p$$-value $$P(O \| H)$$, is to imagine that $$P(H)$$ is maybe sort of likely, maybe not, but regardless having seen the (hopefully miniscule) value of $$P(O \| H)$$, you certainly should change your perceived value of $$P(H)$$ by that factor.
-
-
-
-Of course, it's enormously important what $$P(O)$$ is. Or rather, it's important how much higher $$P(O \| H)$$ is than $$P(O \| \neg H)$$. If $$P(O \| H) = P(O) = P(O \| \neg H)$$, ie, $$O$$ would be observed whether or not $$H$$ is true, then observing $$O$$ actually tells you nothing. If $$\frac{P(O \| H)}{P(O \| \neg H)} = q$$, though, then:
-
-$$P(H | O) = \frac{ P(O | H) P(H)  }{P(O | H)P(H) + P(O | \neg H) P(\neg H)} = \frac{1}{1 + \frac{P(O \| \neg H)}{P(O \| H)} \frac{P(\neg H)}{P( H)}}$$
-
-The values other than $$P(O \| H)$$ are not usually reported for something like this. But we can imagine: supposing that the $$p$$-value is very low, with some additional assumptions:
-
-1. $$P(O \| \neg H)$$ is not very small compared to $$P(O \| H)$$, so $$\frac{P(O \| \neg H)}{P(O \| H)} \gg 1$$
-2. the prior odds $$ \frac{P(\neg H)}{P( H)}$$ are _not_ small enough to matter, in the sense that $$\frac{P(O \| \neg H)}{P(O \| H)} \frac{P(\neg H)}{P( H)} \gg 1$$.
-
-.. _only then_ is it true that $$P(H \| O) =\frac{1}{1 + \frac{P(O \| \neg H)}{P(O \| H)} \frac{P(\neg H)}{P( H)}} \ll 1$$, from which you conclude that "evidence $$O$$ indicates that $$H$$ is very likely not to be true.
-
-What this shows is that frequentism doesn't manage to _avoid_ dealing with priors; it just avoids the issue entirely by leaving you to do that step in your head. Which is fine if the priors are obvious, or if you collect enough information that $$ \frac{P(O \| \neg H)}{P(O \| H)}$$ is so massive that your prior probability almost doesn't matter at all.
+Since this step is omitted, it's not necessary to ever discuss the prior probability $$P(H)$$. Your intuitive inference, upon reading the $$p$$-value $$P(E \| H)$$, is to imagine that $$P(H)$$ is maybe sort of likely, maybe not, but regardless having seen the (hopefully miniscule) value of $$P(E \| H)$$, you certainly should change your perceived value of $$P(H)$$ by that factor.
 
 
-This is also slightly complicated by the fact that, often $$H$$ is a null hypothesis ($$O$$ is not effected by $$X$$), which means that $$\neg H$$ is just $$O$$ is affected by $$X$$, which _doesn't tell you much_, because a correlation of $$0.001$$ is still $$\neg H$$. Instead, if you want to run Bayesian inference on $$H$$, you'll want to consider a family or distribution of possible hypotheses other than the null $$H$$, and calculate the likelihood of each.
+
+Of course, it's enormously important what $$P(E)$$ is. Or rather, it's important how much higher $$P(E \| H)$$ is than $$P(E \| \neg H)$$. Assuming $$P(E \| H) \neq 0$$ and $$P(H) \neq 0$$:
+
+$$P(H | E) = \frac{ P(E | H) P(H)  }{P(E | H)P(H) + P(E | \neg H) P(\neg H)} = \frac{1}{1 + \frac{P(E \| \neg H)}{P(E \| H)} \frac{P(\neg H)}{P( H)}}$$
+
+This forms makes it somewhat easier to see what's going on. The value $$P(E \|H )$$ is the $$p$$-value; but the other values are not usually available.
+
+But we can imagine: supposing that the $$p$$-value is very low, with some additional assumptions:
+
+1. $$P(E \| \neg H)$$ is not very small compared to $$P(E \| H)$$, so $$\frac{P(E \| \neg H)}{P(E \| H)} \gg 1$$
+2. the prior odds $$ \frac{P(\neg H)}{P( H)}$$ are _not_ small enough to matter, meaning that it's also true that $$\frac{P(E \| \neg H)}{P(E \| H)} \frac{P(\neg H)}{P( H)} \gg 1$$.
+
+.. _only then_ is it true that $$P(H \| E) =\frac{1}{1 + \frac{P(E \| \neg H)}{P(E \| H)} \frac{P(\neg H)}{P( H)}} \ll 1$$, from which you conclude that
+
+> evidence $$E$$ indicates that $$H$$ is very likely not to be true
+
+What this shows is that frequentism doesn't manage to _avoid_ dealing with priors; it just avoids the issue entirely by leaving you to do that step in your head. Which is fine if the priors are obvious, or if you collect enough information that $$ \frac{P(E \| \neg H)}{P(E \| H)}$$ is so massive that your prior probability almost doesn't matter at all.
 
 -------
 
-## Priors
+## 4. Priors
 
 How do you calculate a prior if it _does_ matter?
 
