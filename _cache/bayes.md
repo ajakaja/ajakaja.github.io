@@ -115,7 +115,7 @@ Because we're using odds, the Bayesian update process is simple multiplication. 
 
 $$\text{posterior odds} = \text{prior odds } \times \text{ relative likelihood}$$
 
-It's easy to do in our heads. The classic example gain:
+It's easy to do in our heads. The classic example again:
 
 $$\frac{1}{6}$$ of people are sick, so $$\frac{(H)}{(\neg H)}$$ = $$\frac{1}{5}$$. The test reports sick people as sick $$\frac{10}{11}$$ of the time, but healthy people as sick $$\frac{1}{11}$$ of the time, so $$\frac{(E \| H)}{(E \| \neg H)} = \frac{10/11}{1/11}$$. Finally:
 
@@ -127,7 +127,7 @@ This is _much easier_ to do on the fly then the probability version, and much mo
 
 ------
 
-## In practice
+## 3. In practice
 
 You usually begin with a guess (a prior) for the probability of some hypothesis $$H$$, which you turn into an odds:
 
@@ -168,7 +168,7 @@ In log odds, if $$A$$ is "twice as likely as" $$B$$, then $$\log (A) = 1 + \log 
 
 -------
 
-## 3. Conservation of Expected Evidence
+## 4. Conservation of Expected Evidence
 
 Given a current belief ratio $$H : \neg H$$, after a test observation in which we see $$E$$ we update the posterior probability to:
 
@@ -194,7 +194,7 @@ More [here](https://www.lesswrong.com/posts/jiBFC7DcCrZjGmZnJ/conservation-of-ex
 
 ------
 
-## Frequentism
+## 5. Frequentism
 
 Inference is sometimes framed as having two ideological camps: frequentist and Bayesian. Frequentist statistics includes such ideas as $$p$$-values and confidence intervals and the like.
 
@@ -229,7 +229,7 @@ What this shows is that frequentism doesn't manage to _avoid_ dealing with prior
 
 -------
 
-## 4. Priors
+## 6. Priors
 
 How do you calculate a prior if it _does_ matter?
 
