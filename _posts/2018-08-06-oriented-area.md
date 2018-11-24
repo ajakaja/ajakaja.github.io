@@ -8,11 +8,11 @@ aside: true
 
 This article exists for two reasons:
 
-First, because I wanted to make a reference for myself which collects all of the ideas around _oriented area_, a concept that I find myself studying a lot and which I think deserves to be better popularized. 
+First, because I wanted to make a reference for myself which collects all of the ideas around _oriented area_, a concept that I find myself thinking about a lot, and which I think deserves to be better popularized. 
 
 Second, because some resources (including Wikipedia) cite a 1959 monograph titled *Computation of Areas of Oriented Figures*, by A.M. Lopshits, originally printed in Russian and translated to English by Massalski and Mills, which I have not been able to find online. I did find a copy via university library, and I thought I would summarize its contents in the process to make them more available to a casual Internet observer.
 
-(Also, because I wanted to practice making beautiful math diagrams. Which succeeded, mostly, but my god is it ever not worth the effort.)
+(Also, because I wanted practice making beautiful math diagrams. Which succeeded, mostly, but my god is it ever not worth the effort.)
 
 First, a summary of the concept of oriented area and the "shoelace formula", and some equations I found while playing around with it that turned out not to be novel.
 
@@ -22,7 +22,7 @@ First, a summary of the concept of oriented area and the "shoelace formula", and
 
 ## 1
 
-Let $$P$$ be a polygon with vertices $$\{p_0, p_1, p_2, \ldots p_n\}$$. Sometimes I will refer to $$p_0$$ also, which is defined to equal $$p_n$$, because it makes formulas neater. 
+Let $$P$$ be a polygon with vertices $$\{p_1, p_2, \ldots p_n\}$$. Sometimes I will refer to $$p_0$$ also, which is defined to equal $$p_n$$, because it makes formulas neater. 
 
 Here's a $$P$$ with $$n=5$$:
 
@@ -38,7 +38,7 @@ It's called the shoelace formula because when you write all the coordinates in a
 
 {% include image.html filename="2018-08-06/02-shoelace.svg" width="150px" %}
 
-"Signed" area means that the area is positive if its vertices go _counterclockwuise_, and is negative if its vertices go _clockwise_. 
+"Signed" area means that the area is positive if its vertices go _counterclockwise_, and is negative if its vertices go _clockwise_. 
 
 $$Area(-P) = Area(\{p_n, p_{n-1}, \ldots p_0\}) = -Area(P)$$
 
@@ -52,11 +52,11 @@ Signed areas are useful because they are better-behaved than regular areas in se
 
 I've indicating that the circle is negatively oriented and thus has negative area with an arrow that says it is to be traversed clockwise. Its area is subtracted from the total area of the rectangle, giving the area of the composite shape automatically.
 
-This becomes more useful in more complicated figures, because it lets us build them out of simple parts very cleanly. The shoelace formula works because of the ability to add these oriented areas without having to specify which ones to subtract. It amounts to decomposing a shape into a list of triangles with the origin as the third vertex, and adding their areas. This makes perfect sense if the origin is fully contained within the polygon:
+This becomes more useful in more complicated figures, because it lets us build them out of simple parts very cleanly. The shoelace formula works because of the ability to add these oriented areas without having to specify which ones to subtract. It amounts to decomposing a shape into a list of triangles with the origin as the third vertex, and adding their areas. This is totally natural if the origin is fully contained within the polygon:
 
 {% include image.html filename="2018-08-06/05-triangles.svg" width="200px" %}
 
-But with signed areas mean that this construction works even if the origin is outside the polygon, with the triangles overlapping, because their overlapping parts cancel perfectly:
+But signed areas mean that this construction works even if the origin is outside the polygon, with the triangles overlapping, because their overlapping parts cancel perfectly:
 
 {% include image.html filename="2018-08-06/06-triangles2.svg" width="200px" caption="The dark areas cancel out of the total sum, because the (negative) area of $$p_1 p_2\mathcal{O}$$ exactly cancels the excess positive areas in each of the other triangles $$p_2 p_3 \mathcal{O}, p_3 p_4 \mathcal{O}, p_4 p_0 \mathcal{O}$$, and $$p_0 p_1 \mathcal{O}$$."%}
 
@@ -71,7 +71,7 @@ We're used to dealing with what are called _simple_ polygons -- polygons whose s
 
 
 
-Related to the concept of oriented area is the concept of _oriented angle_, which are a bit more familiar. Oriented angles distinguish between "the angle between $$\b{a}$$ and $$\b{b}$$" and "the angle between $$\b{b}$$ and $$\b{a}$$", by insisting that we only measure _counterclockwise_ angles:
+Related to the concept of oriented area is the concept of _oriented angle_, which is actually a bit more familiar. Oriented angles distinguish between "the angle between $$\b{a}$$ and $$\b{b}$$" and "the angle between $$\b{b}$$ and $$\b{a}$$", by insisting that we specify _counterclockwise_ angles (the way radians go) as positive:
 
 {% include image.html filename="2018-08-06/08-angles.svg" width="250px" %}
 
@@ -91,7 +91,7 @@ $$\b{a} \times \b{b} = |a||b| \sin \phi \\
 
 The shoelace formula can be massaged into some other forms. Defining $$\b{d}_i$$ as the vector displacements of each side[^vector]:
 
-[^vector]: I like to use boldface to refer to things that are definitely _vectors_, as opposed to our $$p_i$$ which are points and cannot be added and subtracted.
+[^vector]: I like to use boldface to refer to things that are definitely _vectors_, as opposed to our $$p_i$$ which are _points_ and cannot be added and subtracted.
 
 $$\b{d}_i = p_{i+1} - p_i$$
 
@@ -216,8 +216,10 @@ If you are curious what it contains, here's an outline. The short version is: no
 
 	"A regular dodecagon $$A_1A_2 \ldots A_{12}$$ is inscribed in a circle. The polygon $$A_1 A_6 A_5 A_{10} A_9 A_2$$ has three points of self-intersection, $$C_1$$, $$C_2$$, $$C_3$$. Prove that the area of the triangle $$C_1 C_2 C_3$$ is three times the area of the triangle $$A_1 A_2 C_1$$."<br/>{% include image.html filename="2018-08-06/20-dodecagon.svg" width="250px" %}
 
-<aside class="toggleable" placeholder="<b>Solution</b> <em>(click to expand)</em>">
-The total signed area of the inner polygon, noting that $$\mathcal{O} A_1 A_6$$ has the opposite orientation of $$\mathcal{O} A_1 A_2$$, is:
+<aside class="toggleable" id="solution" placeholder="<b>Solution</b> <em>(click to expand)</em>">
+Designate the center of the polygon as the origin $$\mathcal{O}$$. Note that the angle between adjacent points is $$\angle \mathcal{O} A_2 A_1 = \frac{360 \degree}{12} = 30 \degree$$, and notice that the area of an angular segment with angle $$\theta$$ of a circle is  $$\frac{R^2}{2} \sin \theta$$.
+
+The total signed area $$S$$ of the figure $$A_1 A_6 A_5 A_{10} A_9 A_2$$ is, noting that $$\mathcal{O} A_1 A_6$$ has the opposite orientation of $$\mathcal{O} A_1 A_2$$:
 
 $$\begin{aligned} S &= 3[area(\mathcal{O}A_1 A_6) + area(\mathcal{O} A_2 A_1)] \\
 &= 3 \frac{R^2}{2} [ -\sin 150 \degree +\sin 30 \degree ] \\
@@ -293,7 +295,7 @@ $$area(D) = \frac{1}{2} \sum_i \sum_{j < i} \b{d}_j \times \b{d}_i \Lra \frac{1}
 
 Where we parameterize the curve $$C$$ enclosing our region as $$\vec{\gamma}(t)$$ for $$t \in [0, 1]$$.
 
-This is just taking the integral formula $$\frac{1}{2} \oint_C \vec{\gamma}(t) \wedge \dot{\vec{\gamma}(t)} dt$$ and replacing $$\vec{\gamma}(t)$$ with $$\int_0^t \dot{\vec{\gamma}}(s) ds$$, which should be fine as long as [*mumbled analytical argument*]. If we separate $$\vec{\gamma}(t)$$ into $$r(t)$$ and $$\theta(t)$$ we should get a version of (5), also.
+This is just taking the integral formula $$\frac{1}{2} \oint_C \vec{\gamma}(t) \wedge \dot{\vec{\gamma}(t)} dt$$ and replacing $$\vec{\gamma}(t)$$ with $$\int_0^t \dot{\vec{\gamma}}(s) ds$$, which should be fine as long as [*mumble*]. If we separate $$\vec{\gamma}(t)$$ into $$r(t)$$ and $$\theta(t)$$ we should get a version of (5), also.
 
 -------
 

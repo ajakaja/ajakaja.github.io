@@ -91,7 +91,7 @@ $$O(H | E : \neg H \| E) = \frac{P(E | H)} {P(E | \neg H)} O(H : \neg H)$$
 
 Read aloud:
 
-The **posterior odds** $$O(H \| E : \neg H : E) $$ of $$H : \neg H$$ given evidence $$E$$ is equal to the **prior odds** $$O(H : \neg H)$$ times the **relative likelihood** $$\frac{P(E \| H)} {P(E \| \neg H)}$$.
+The **posterior odds** $$O(H \| E : \neg H : E) $$ of $$H : \neg H$$ given evidence $$E$$ is equal to the **prior odds** $$O(H : \neg H)$$ times the **relative likelihood** $$\frac{P(E \| H)} {P(E \| \neg H)}$$. It's also called the **Bayes Factor** sometimes.
 
 Note: odds, in general, work something like _rates_. The term $$\frac{P(E \| H)} {P(E \| \neg H)}$$ is not exactly interpretable as an odds (the odds of what?), but it's interpretable as a rate: the rate _of_ "the rates of $$E$$ given $$H$$", vs "the rate of $$E$$ given $$\neg H$$". If we allow ourselves to write any ratio of rates as an odds:
 
@@ -147,7 +147,7 @@ Some entailments:
 2. If you ever see something happen which is _impossible_ if $$H$$, ie has odds $$0: x$$, then you no longer believe in $$H$$, no matter what. 
 3. Your prior permanently weights your resulting odds, no matter how many observations you see.
 4. There is no difference between seeing one or many observations if they multiply out to the same rates of occurence for $$H$$ vs $$\neg H$$.
-5. To make an unlikely claim $$H$$ seem _more_ likely than you started out, you need likelihood ratios which at least the inverse of your current believe. IE if you currently think the ratio is $$2:5$$, you need ratios $$> 5:2$$ to start inverting that.
+5. To make an unlikely claim $$H$$ seem _more_ likely than you started out, you need likelihoods which are at least the inverse of your current belief. IE if you currently think the ratio is $$2:5$$, you need ratios $$> 5:2$$ to start inverting that.
 
 There is no requirement, either, that you only consider $$H$$ and $$\neg H$$. You can have an entire family of (exlcusive) hypotheses $$H_j$$. Fractions are only good at expressing one or the other, but ratios, in general, can be between more than two terms: $$H_1 : H_2 : H_3$$.
 
