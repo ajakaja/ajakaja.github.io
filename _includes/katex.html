@@ -32,7 +32,9 @@ const macros = {
         "\\AM": "\\text{AM}",
         "\\^": "\\wedge",
         "\\such": "\\, \\vert \\,",
-        "\\o": "\\otimes"};
+        "\\o": "\\otimes",
+        "\\and": "\\text{ and }"
+      };
 function renderWithErrors(tex, displayMode) {
   try { 
     return katex.renderToString(tex, {
