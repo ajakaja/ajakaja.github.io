@@ -295,7 +295,7 @@ $$area(D) = \frac{1}{2} \sum_i \sum_{j < i} \b{d}_j \times \b{d}_i \Lra \frac{1}
 
 Where we parameterize the curve $$C$$ enclosing our region as $$\vec{\gamma}(t)$$ for $$t \in [0, 1]$$.
 
-This is just taking the integral formula $$\frac{1}{2} \oint_C \vec{\gamma}(t) \wedge \dot{\vec{\gamma}(t)} dt$$ and replacing $$\vec{\gamma}(t)$$ with $$\int_0^t \dot{\vec{\gamma}}(s) ds$$, which should be fine as long as [*mumble*]. If we separate $$\vec{\gamma}(t)$$ into $$r(t)$$ and $$\theta(t)$$ we should get a version of (5), also.
+This is just taking the integral formula $$\frac{1}{2} \oint_C \vec{\gamma}(t) \times \dot{\vec{\gamma}(t)} dt$$ and replacing $$\vec{\gamma}(t)$$ with $$\int_0^t \dot{\vec{\gamma}}(s) ds$$, which should be fine as long as [*mumbled analytical argument*]. If we separate $$\vec{\gamma}(t)$$ into $$r(t)$$ and $$\theta(t)$$ we should get a version of (5), also.
 
 -------
 

@@ -7,7 +7,6 @@ date: 2018-11-01 14:00
 ---
 
 You may have seen that [Youtube video](https://www.youtube.com/watch?v=w-I6XTVZXww) by Numberphile that circulated the social media world a few years ago. It showed the 'astounding' mathematical result:
-{: .indent}
 
 $$1+2+3+4+5+\ldots = -\frac{1}{12}$$
 
@@ -18,7 +17,7 @@ $$1+2+3+4+5+\ldots = -\frac{1}{12}$$
 The video caused a bit of an uproar at the time, since it was many people's first introduction to the (rather outrageous) idea and they had all sorts of (very reasonable) objections.
 
 I'm interested in talking about this because: something about how mathematicians have shared it with the world _irks_ me. It's fine to get excited about strange mathematical results. But it's not fine to present something that requires a lot of asterixes and disclaimers as simply "true". The equation is _true_ only in the sense that if you subtly change the meanings of lots of symbols, it can be shown to become true. But that's not the same thing as quotidian, useful, everyday truth.
-{: .indent}
+
 
 <!--more-->
 
