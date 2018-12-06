@@ -217,19 +217,22 @@ If you are curious what it contains, here's an outline. The short version is: no
 	"A regular dodecagon $$A_1A_2 \ldots A_{12}$$ is inscribed in a circle. The polygon $$A_1 A_6 A_5 A_{10} A_9 A_2$$ has three points of self-intersection, $$C_1$$, $$C_2$$, $$C_3$$. Prove that the area of the triangle $$C_1 C_2 C_3$$ is three times the area of the triangle $$A_1 A_2 C_1$$."<br/>{% include image.html filename="2018-08-06/20-dodecagon.svg" width="250px" %}
 
 <aside class="toggleable" id="solution" placeholder="<b>Solution</b> <em>(click to expand)</em>">
-Designate the center of the polygon as the origin $$\mathcal{O}$$. Note that the angle between adjacent points is $$\angle \mathcal{O} A_2 A_1 = \frac{360 \degree}{12} = 30 \degree$$, and notice that the area of an angular segment with angle $$\theta$$ of a circle is  $$\frac{R^2}{2} \sin \theta$$.
+Designate the center of the polygon as the origin $$\mathcal{O}$$. The angle between adjacent points is $$\angle \mathcal{O} A_2 A_1 = \frac{360 \degree}{12} = 30 \degree$$. Recall that the area of an angular segment with angle $$\theta$$ of a circle is $$\frac{R^2}{2} \sin \theta$$.
 
-The total signed area $$S$$ of the figure $$A_1 A_6 A_5 A_{10} A_9 A_2$$ is, noting that $$\mathcal{O} A_1 A_6$$ has the opposite orientation of $$\mathcal{O} A_1 A_2$$:
+Noting that $$\mathcal{O} A_1 A_6$$ has the opposite orientation of $$\mathcal{O} A_1 A_2$$, the total signed area $$S$$ of the figure $$A_1 A_6 A_5 A_{10} A_9 A_2$$ is:
 
 $$\begin{aligned} S &= 3[area(\mathcal{O}A_1 A_6) + area(\mathcal{O} A_2 A_1)] \\
 &= 3 \frac{R^2}{2} [ -\sin 150 \degree +\sin 30 \degree ] \\
 &= 0 \end{aligned}$$
 
-But it can also be written as 
+But this can also be written as 
 
-$$S = area(C_1 C_2 C_3) + 3 \cdot area(C_1 A_1 A_2)$$, so $$3 \cdot area(C_1 A_1 A_2) = -area(C_1 C_2 C_3)$$
+$$S = area(C_1 C_2 C_3) + 3 \cdot area(C_1 A_1 A_2)$$
 
-So the magnitudes of the two parts' areas are equal.
+Which gives:
+
+$$3 \cdot area(C_1 A_1 A_2) = -area(C_1 C_2 C_3)$$
+
 </aside>
 
 **Chapter 2. The Planimeter**
