@@ -36,6 +36,8 @@ $$\sin^{2} \theta + \cos^{2} \theta = 1$$
 
 of course $$\sin \theta = \pm \sqrt{1 - \cos^{2} \theta}$$ and vice-versa. Also, $$1 + \tan^{2} \theta = \sec^{2} \theta$$ and $$1 + \cot^{2} \theta = \csc^{2} \theta$$.
 
+-----
+
 ## Symmetries and Translation Formulas
 
 $$\sin -\theta = -\sin \theta$$ (sine is odd)
@@ -53,6 +55,8 @@ Shifting $$\sin -\theta$$ or $$\cos -\theta$$ by quarter turns traverses the lis
 $$\sin (-\theta) = -\cos (-\theta - \frac{\pi}{2}) = -\sin (-\theta - \pi) = \cos (-\theta - \frac{3\pi}{2})$$
 
 Both of these are just statements that the graphs of $$\sin \theta$$, $$\cos \theta$$, $$\sin -\theta$$, and $$\cos -\theta$$ look the same but are translated differently.
+
+-------
 
 ## Angle formulas
 
@@ -114,6 +118,8 @@ $$\cos^{2} a = \frac{1}{2}(1+\cos 2a)$$
 
 $$\sin^{2} a \cos^{2} a = \frac{1}{8}(1 - \cos 4a)$$
 
+-------
+
 ## Geometric identities
 
 For a triangle with angles $$a, b, c$$ and side lengths $$A, B, C$$:
@@ -150,6 +156,8 @@ or
 
 $$\cos c = -\cos a \cos b + \sin a \sin b \cos \frac{C}{R}$$
 
+--------
+
 ## Inverse functions
 
 It's really antiquated to call these $$\arcsin$$ instead of $$\sin^{-1}$$, in my opinion, but whatever.
@@ -161,6 +169,8 @@ Inverse trig functions require some fanangling with their domains to keep things
 $$\arctan x$$ gives real results for all real inputs (since the range of tangent is all reals) and typically has range $$(-\frac{\pi}{2}, \frac{\pi}{2})$$
 
 I'll leave $$\text{atan2 } x$$, the oriented / two-argument / sign-preserved arctan [function](https://en.wikipedia.org/wiki/Atan2), to be discussed in a separate reference page.
+
+-------
 
 ### Symmetries
 
@@ -184,11 +194,13 @@ $$\arcsin x = 2\arctan \frac{x}{1 + \sqrt{1- x^{2}}}$$
 
 $$\arccos x = 2\arctan \frac{\sqrt{1 - x^{2}}}{1 + x}, x \in (-1, 1]$$
 
+--------
+
 ### Other Formulas
 
 Inversions:
 
-Relationships between trig and inverse trig functions can be thought of as relationships between parts of a triangle. For example, $$\arcsin x$$ is "the angle that gives $$\frac{opposite}{hypotenuse}$$ ratio x", and therefore $$\cos \arcsin x$$ is the $$\frac{adjacent}{hypotenuse}$$ ratio such a triangle. If $$\frac{o}{h}=x$$, then let $$h=1$$, so $$o = x$$ and $$a = \sqrt{1-x^{2}}$$.
+Relationships between trig and inverse trig functions can be thought of as relationships between parts of a triangle. For example, $$\arcsin x$$ is "the angle that gives $$\frac{opposite}{hypotenuse}$$ ratio x". Then $$\cos \arcsin x$$ must be the $$\frac{adjacent}{hypotenuse}$$ ratio such a triangle. If $$\frac{o}{h}=x$$, then let $$h=1$$, so $$o = x$$ and $$a = \sqrt{1-x^{2}}$$.
 
 $$ \sin \arccos x = \cos \arcsin x = \sqrt{1-x^{2}}$$
 
@@ -206,6 +218,8 @@ $$\arccos x = i \ln (x - i\sqrt{1-x^{2}})$$
 
 $$\arctan x = \frac{i}{2} \ln \frac{i+x}{i-x}$$
 
+--------
+
 ## Calculus
 
 Limits:
@@ -213,6 +227,8 @@ Limits:
 $$\lim_{x\rightarrow 0} \frac{\sin x}{x} = 1$$
 
 $$\lim_{x\rightarrow 0} \frac{1 - \cos x}{x} = 0$$
+
+---------
 
 ### Derivatives:
 
@@ -224,16 +240,12 @@ $$\tan' = \sec^{2}, \cot' = -\csc^{2}$$
 
 $$\sec' = \tan \sec, \csc' = -\csc \cot$$
 
-$$(\arcsin x)' = -(\arccos x)' = \frac{1}{\sqrt{1- x^{2}}}$$
-
-$$(\arctan x)' = -(\text{arccot } x)' = \frac{1}{1 + x^{2}}$$
-
-
-Inverse function derivatives (defined except where denominators would be 0)
+Inverse function derivatives (defined except where denominators would be 0):
 
 $$(\arcsin z)' = \frac{1}{\sqrt{1-x^{2}}} = -(\arccos z)'$$
 
 $$(\arctan z)' = \frac{1}{1+z^{2}} = -(\text{arccot } z)'$$
+
 
 Inverse functions can also be defined as integrals:
 
@@ -242,6 +254,8 @@ $$\arcsin x = \int_{0}^{x} \frac{1}{\sqrt{1-z^{2}}} dz$$
 $$\arccos x = \int_{x}^{1} \frac{1}{\sqrt{1-z^{2}}} dz$$
 
 $$\arctan x = \int_{0}^{x} \frac{1}{1+z^{2}} dz$$
+
+----------
 
 ### Non-trivial integrals:
 
@@ -256,6 +270,8 @@ $$\int \frac{dx}{\sqrt{a^{2} - x^{2}}} = \sin^{-1}(\frac{x}{a}) + C$$
 $$\int \frac{dx}{a^{2} + x^{2}} = \frac{1}{a}\tan^{-1}(\frac{x}{a}) + C$$
 
 $$\int \frac{dx}{x\sqrt{a^{2} - x^{2}}} = \frac{1}{a}\sec^{-1}\vert \frac{x}{a} \vert + C$$
+
+--------
 
 ### Taylor Series:
 
@@ -280,6 +296,8 @@ $$\sin x = x \prod_{n=1}^{\infty} (1 - \frac{x^{2}}{\pi^{2} n^{2}})$$
 $$\cos x = \prod_{n=1}^{\infty} (1- \frac{x^{2}}{\pi^{2}(n-\frac{1}{2})^{2}})$$
 
 $$\sin x = x\prod \cos \frac{x}{2^{n}}$$
+
+-------
 
 ## Hyperbolic functions
 
