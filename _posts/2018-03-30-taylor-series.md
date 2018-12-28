@@ -132,5 +132,3 @@ $$ = \lim_{\e \ra 0} (1 + \D_{\e})^{\frac{a}{\e}} f(x) = e^{a \p_{x}} f(x)$$
 ## 4
 
 I don't know, maybe this will be useful to someone, someday. I needed to write it down to keep various thoughts bundled together for later.
-
-More of this to come, someday.

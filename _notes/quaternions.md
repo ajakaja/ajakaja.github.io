@@ -4,6 +4,7 @@ title: "Quaternions"
 math: true
 aside: true
 footnotes: true
+category: notes
 ---
 
 ## 1 Facts

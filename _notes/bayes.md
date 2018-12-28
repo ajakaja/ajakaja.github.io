@@ -1,9 +1,10 @@
 ---
 layout: article
-title: "Bayes notes"
+title: "Bayesian Inference"
 math: true
 aside: true
 footnotes: true
+category: notes
 ---
 
 ## 1. Bayes

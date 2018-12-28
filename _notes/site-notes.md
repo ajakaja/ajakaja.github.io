@@ -1,6 +1,6 @@
 ---
 layout: article
-title: "Site-building notes"
+title: "On building this site"
 category: notes
 ---
 
