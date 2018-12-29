@@ -13,6 +13,7 @@ Here is a survey of understandings on each of the main types of Taylor series:
 2. multivariable $$\bb{R}^n \ra \bb{R}$$
 3. multivariable $$\bb{R}^n \ra \bb{R}^m$$
 4. complex $$\bb{C} \ra \bb{C}$$
+5. on a curved space (not yet written)
 
 I have collected a lot of disparate knowledge on these and I thought it would be useful to have it all written down in one place.
 
@@ -145,24 +146,23 @@ Higher-order terms in the vector field Taylor series generalize 'second' and 'th
 The full expansion (for $$X,Y$$ of any number of coordinates) is written like this:
 
 $$\begin{aligned} \b{f}(\b{x} + \b{v}) &= \b{f} + \p_i \b{f} \cdot v_i + \frac{1}{2!}(\p_i \p_j \b{f}) \cdot v_i v_j + \frac{1}{3!} (\p_i \p_j \p_k \b{f}) \cdot v_i v_j v_k + \ldots \\ 
-&= \b{f} + \p_i \b{f} \cdot v_i + \frac{1}{2!}(\p_i \o \p_j) \b{f} \cdot (v_i \o v_j) + \ldots \\
+&= \b{f} + \p_i \b{f} \cdot v_i + \frac{1}{2!}(\p_i \p_j) \b{f} \cdot (v_i v_j) + \ldots \\
 &= \b{f} +(\b{v} \cdot \vec{\p}) \b{f} + \frac{(\b{v} \cdot \vec{\p})^2}{2!} \b{f} + \ldots \\
-&=  \big[ \sum_{n} \frac{e^{\o n} \cdot \vec{\p}^{\o n}}{n!} \big] \b{f}(\b{x}) \\
 &= \big[ \sum_{n} \frac{(\b{v} \cdot \vec{\p})^n}{n!} \big] \b{f}(\b{x})
 \tag{Vector Field}
 \end{aligned}$$
 
 We write the numerator in the summation as $$(\b{v} \cdot \vec{\p})^{n}$$, which expands to $$(\sum_i v_i \p_i) (\sum_j v_j \p_j) \ldots$$, and then we can still group things into exponentials, only now we have to understand that all of these terms have derivative operators on them that need to be applied to $$\b{f}$$ to be meaningful:
 
-$$\b{f}(\b{x + v}) = e^{\b{v} \cdot \vec{\p}} \b{f}$$
+$$\b{f}(\b{x + v}) = e^{\b{v} \cdot \vec{\p}} \b{f}(\b{x})$$
 
 We could have included indexes on $$\b{f}$$ also:
 
 $$\begin{aligned} 
-f_k(\b{x} + \b{v}) &= \b{f}_k + \p_i \b{f}_k \cdot \b{v}_i + \frac{1}{2!}(\p_i \o \p_j) \b{f}_k \cdot (\b{v}_i \o \b{v}_j) + \ldots \\
+f_k(\b{x} + \b{v}) &= \b{f}_k + \p_i \b{f}_k \cdot \b{v}_i + \frac{1}{2!}(\p_i \p_j) \b{f}_k \cdot (\b{v}_i \b{v}_j) + \ldots \\
 &= \big[ \sum_{n} \frac{(\b{v} \cdot \vec{\p})^n}{n!} \big] f_k(\b{x}) \end{aligned}$$
 
-It seems evidence that this should work on matrices or any other sort of differentiable object also:
+It seems evident that this should work on matrices or any other sort of differentiable object also:
 
 $$M_{ij}(\b{x} + \b{v})= \big[ \sum_{n} \frac{(\b{v} \cdot \vec{\p})^n}{n!} \big] M_{ij}(\b{x}) $$
 
@@ -178,15 +178,15 @@ $$z \lra x\b{x} + y\b{y}$$
 
 $$\bar{z} \lra x\b{x} - y\b{y}$$
 
-A function $$f: \bb{C} \ra \bb{C}$$ is _complex-analytic_ if it can be written as a Taylor series in $$z$$, and, importantly, _not_ in $$\bar{z}$$, the complex conjugate of $$z$$.
+It turns out that a function $$f: \bb{C} \ra \bb{C}$$ is _complex-analytic_ if and only if it can be written as a Taylor series in $$z$$, and, importantly, _not_ in $$\bar{z}$$, the complex conjugate of $$z$$. (The mapping $$z \ra \bar{z}$$ is not analytic; essentially $$\bar{z}$$ acts like essentially an entirely different variable.)
 
 In general, the term 'analytic' means 'having a Taylor series'. When we're doing single or multivariate calculus, that means having one at all. In $$\bb{C}$$, that means having a series which is only a function of $$z$$. 
 
-It's not enough that $$f(z)$$ not have an explicit dependence on $$\bar{z}$$, though. What's needed is that $$\p_{\bar{z}} f(z) = 0$$. This is because it turns out that a function can have a $$\bar{z}$$ derivative without depending on $$\bar{z}$$, because:
+It's not enough that $$f(z)$$ not have an explicit dependence on $$\bar{z}$$, though. What's needed is that $$\bar{\p} f(z) = 0$$. Let's define $$\bar{\p} = \p_{\bar{z}}$$. This is because it turns out that a function can have a $$\bar{z}$$ derivative without depending on $$\bar{z}$$, because:
 
-$$\p_{\bar{z}} \frac{1}{z} = 2 \pi i \delta(z, \bar{z})$$
+$$\bar{\p} \frac{1}{z} = 2 \pi i \delta(z, \bar{z})$$
 
-Where the right side is the Delta Function. I think this is surprising.
+where the right side is the Delta Function. I think this is surprising.
 
 <aside class="toggleable" id="complex" placeholder="<b>Aside</b>: Conjugate derivatives <em>(click to expand)</em>">
 
@@ -200,48 +200,48 @@ $$\begin{aligned}
 &= 0 + 2 \pi i
 \end{aligned}$$
 
-Now apply Stoke's theorem to the integral:
+Now apply Stoke's theorem to the integral (using the notations of [differential forms](https://en.wikipedia.org/wiki/Differential_form)):
 
 $$\begin{aligned}
 2 \pi i  &= \iint_D d(\frac{1}{z} dz) \\
-&= \iint_D  \p_{\bar{z}} \frac{1}{z} d\bar{z} \^ dz \end{aligned}$$
+&= \iint_D  (\bar{\p} \frac{1}{z}) d\bar{z} \^ dz \end{aligned}$$
 
 
 Because we only really know how to deal with delta-functions in $$(x,y)$$ coordinates, change variables, using $$d\bar{z} \^ dz = (dx - i dy) \^ (dx + i dy) = 2i dx \^ dy$$:
 
 $$\begin{aligned}
-2 \pi i &=  \iint_D  \p_{\bar{z}} \frac{1}{z} d\bar{z} \^ dz \\
-&= 2i \iint_D \p_{\bar{z}} \frac{1}{z} dx \^ dy \\
-\pi &= \iint_D \p_{\bar{z}}\frac{1}{z} dx \^ dy
+2 \pi i &=  \iint_D  (\bar{\p} \frac{1}{z}) d\bar{z} \^ dz \\
+2 \pi i&= 2i \iint_D (\bar{\p} \frac{1}{z}) dx \^ dy \\
+\pi &= \iint_D (\bar{\p} \frac{1}{z}) dx \^ dy
 \end{aligned}$$
 
 Because this is true on _any_ circle around the origin, the term in the integral is behaving like a delta distribution:
 
-$$ \p_{\bar{z}}\frac{1}{z} \equiv \pi \delta(x,y)$$
+$$ \bar{\p}\frac{1}{z} \equiv \pi \delta(x,y)$$
 
-And it seems to me that to rewrite this as a delta function on $$\bb{C}$$, we need $$2 \pi i = \iint_D  \p_{\bar{z}} \frac{1}{z} d \bar{z} \^ dz$$ to be true, so:
+If we want to express this as a delta function on $$\bb{C}$$, we need $$2 \pi i = \iint_D  \bar{\p} (\frac{1}{z}) d \bar{z} \^ dz$$ to be true, so:
 
-$$ \p_{\bar{z}}\frac{1}{z} \equiv  2 \pi i \delta(z, \bar{z})$$
+$$ \bar{\p} \frac{1}{z} \equiv  2 \pi i \delta(z, \bar{z})$$
 
 If nothing else this argument convinces me that delta functions should be dealt with in introductory multivariable calculus, and that complex analysis is pointlessly confusing.
 
 </aside>
 
-Importantly, $$\p_{\bar{z}}\frac{1}{z^{n}} $$ is _only_ true for $$n = 1$$. This property gives rise to the entire method of [residues](https://en.wikipedia.org/wiki/Residue_theorem), because if $$f(z) = \frac{f_{-1}(0) }{z} + f^*(z)$$, where $$f^*(z)$$ has no terms of order $$\frac{1}{z}$$, then integrating a contour $$C$$ around a region $$D$$ which contains $$0$$ gives:
+Importantly, $$\bar{\p}\frac{1}{z^{n}} \neq 0 $$ is _only_ true for $$n = 1$$. This property gives rise to the entire method of [residues](https://en.wikipedia.org/wiki/Residue_theorem), because if $$f(z) = \frac{f_{-1}(0) }{z} + f^*(z)$$, where $$f^*(z)$$ has no terms of order $$\frac{1}{z}$$, then integrating a contour $$C$$ around a region $$D$$ which contains $$0$$ gives:
 
 $$\begin{aligned}
-\oint_C f(z) dz &= \iint_D \p_{\bar{z}} (\frac{f_{-1}(0) }{z} + f^*(z)) \; d\bar{z} \^ dz \\
+\oint_C f(z) dz &= \iint_D \bar{\p} (\frac{f_{-1}(0) }{z} + f^*(z)) \; d\bar{z} \^ dz \\
 &= 2 \pi i \iint_D \delta(z, \bar{z}) f_{-1}(0) \; d\bar{z} \^ dz \\
 &= 2 \pi i f_{-1}(0)
 \end{aligned}$$
 
 (If the $$\bar{z}$$ derivative isn't $$0$$, you get the [Cauchy-Pompeiu formula](https://en.wikipedia.org/wiki/Cauchy%27s_integral_formula#Smooth_functions) for contour integrals immediately.)
 
-Anyway, $$\p_{\bar{z}} f(z) = 0$$ means that if $$f(z) = (u(x, y) + i v(x, y))$$, then
+Anyway, $$\bar{\p} f(z) = 0$$ means that if $$f(z) = (u(x, y) + i v(x, y))$$, then
 
-$$\p_{\bar{z}} f(z) = (\p_x + i \p_y) (u(x,y) + i v(x,y)) = 0$$
+$$\bar{\p} f(z) = (\p_x + i \p_y) (u(x,y) + i v(x,y)) = 0$$
 
-Which gives:
+By matching real and complex terms:
 
 $$\begin{aligned}
 u_x &= v_y \\
@@ -256,9 +256,9 @@ Okay, now back to Taylor series.
 
 In general a function $$f(z, \bar{z})$$ is just a function in a two-dimensional vector space, and so can of course be expressed as a Taylor series in the two composite variables $$z, \bar{z}$$:
 
-$$f(z + \D z, \bar{z} + \D \bar{z}) = \big[ \sum \frac{(\D z \p_z + \D \bar{z} \p_{\bar{z}})^n}{n!} \big] f(z, \bar{z})$$
+$$f(z + \D z, \bar{z} + \D \bar{z}) = \big[ \sum \frac{(\D z \p + \D \bar{z} \bar{\p})^n}{n!} \big] f(z, \bar{z})$$
 
-Specifically in regions where $$f$$ is analytic, ie where $$\p_{\bar{z}} f(z) = 0$$, then we can write it as a Taylor series in $$z$$ alone, just because the rest of the terms are $$0$$:
+Specifically in regions where $$f$$ is analytic, ie where $$\bar{\p} f(z) = 0$$, then we can write it as a Taylor series in $$z$$ alone, just because the rest of the terms are $$0$$:
 
 $$f(z + \D z) =  \big[ \sum \frac{(\D z \p_z)^n}{n!} \big] f(z) \tag{Complex-Analytic}$$
 
@@ -276,7 +276,7 @@ The Fourier transform extracts these $$F(q)$$ coefficents:
 
 $$F(q) = \frac{1}{2 \pi} \int e^{-iqx} f(x) dx$$
 
-Now we change variables: $$z = e^{\frac{i }{}x}$$, $$x = \frac{1}{i} \ln z$$ and $$dx = \frac{dz}{ i z}$$. 
+Now we change variables: $$z = e^{\frac{i }{}x}$$, $$x = \frac{1}{i} \ln z$$ and $$dx = \frac{dz}{ i z}$$.
 
 $$f(\frac{1}{i} \ln z) = \sum_q F(q) z^q$$
 
@@ -292,6 +292,6 @@ This generally works for functions defined on any finite range; we can modify th
 
 ---------
 
-## 6 Curved space
+## 5 Curved space
 
 I'm not ready to write this section yet.
