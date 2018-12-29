@@ -16,8 +16,10 @@ Here is a survey of understandings on each of the main types of Taylor series:
 5. on a curved space (not yet written)
 
 I have collected a lot of disparate knowledge on these and I thought it would be useful to have it all written down in one place.
+<!-- Awkward sentence? -->
 
 In these notes I am going to ignore discussions of convergence so that more ground can be covered. Generally it's important to address convergence in order to, well, not be wrong. And I'm certain that I've made statements which are wrong below. But I am just trying to make sure I understand what happens when everything works, first, because it's easier to remember that as a coherent theory and deal with exceptions case-by-case.
+<!-- perhaps grant that the issue exist and that we will avoid topics that require a careful handling? -->
 
 <!--more-->
 
@@ -29,12 +31,12 @@ A Taylor series for a function in $$\bb{R}$$ looks like this:
 
 $$
 \begin{aligned} f(x + \e) &= f(x) + f'(x) \e + f''(x) \frac{\e^2}{2} + \ldots \\
-&= \sum f^{(n)} \frac{\e^n}{n!}
+&= \sum_n f^{(n)} \frac{\e^n}{n!}
 \end{aligned}$$
 
 It's useful to write this as one big operator acting on $$f(x)$$:
 
-$$f(x + \e) = \big[ \sum \frac{\p^n_x \e^n}{n!} \big] f(x) \tag{Single-Variable}$$
+$$f(x + \e) = \big[ \sum_n \frac{\p^n_x \e^n}{n!} \big] f(x) \tag{Single-Variable}$$
 
 Or even as a single exponentiation of the derivative operator, which is commonly done in physics, but you probably shouldn't think to hard about what it means:
 
@@ -82,9 +84,9 @@ f(\b x + \b v) &= f(\b x) + (v_x \p_x + v_y \p_y) f(\b x) + \frac{(v_x \p_x + v_
 
 (This can also be written as a sum over every individual term using [multi-index notation](https://en.wikipedia.org/wiki/Multi-index_notation).)
 
-So that looks pretty good. And it can still be written as $$e^{ \b{v} \cdot \p} f(\b{x})$$. The same formula -- now that we've hidden all the actual indexes -- happily continues to work for dimension $$> 2$$, as well.
+So that looks pretty good. And it can still be written as $$e^{ \b{v} \cdot \vec{\p}} f(\b{x})$$. The same formula -- now that we've hidden all the actual indexes -- happily continues to work for dimension $$> 2$$, as well.
 
-... Actually, this is not as surprising a formula as it might look. What the multivariate Taylor series of $$f(\b{x})$$ _really_ is a bunch of single-variable ones multiplied together:
+... Actually, this is not as surprising a formula as it might look. The multivariate Taylor series of $$f(\b{x})$$ is _really_ just the single-variable series multiplied together:
 
 $$\begin{aligned}
 f(x+ v_x, y + v_y) &= e^{v_x \p_x} f(x, y + v_y) \\
@@ -96,11 +98,11 @@ I mention all this because it's useful to have a solid idea of what a scalar fun
 
 -------
 
-L'Hôpital's rule is more subtle for multivariable functions. In general the limit of a function may be different depending on what direction you approach from, so an expression like $$\lim_{\b{x} \ra 0} \frac{f(\b{x})}{g(\b{x})}$$ is not necessarily defined, even if both $$f$$ and $$g$$ have Taylor expansions. On the other hand, if we choose a path for $$\b{x} \ra 0$$, such as $$\b{x}(t) = (x(t), y(t))$$ then this just becomes a one-dimensional limit, and the regular rule applies again. So, for instance, while $$\lim_{\b x \ra 0} \frac{f(\b{x})}{g(\b x)}$$ may not be defined, $$\lim_{\e \ra 0} \frac{f(\e \b{v})}{g(\e \b{v})}$$ is.
+L'Hôpital's rule is more subtle for multivariable functions. In general the limit of a function may be different depending on what direction you approach from, so an expression like $$\lim_{\b{x} \ra 0} \frac{f(\b{x})}{g(\b{x})}$$ is not necessarily defined when $$f(\b{0}) = g(\b{0}) = 0$$, even if both $$f$$ and $$g$$ have Taylor expansions. On the other hand, if we choose a path for $$\b{x} \ra 0$$, such as $$\b{x}(\e) = \e\b{v}$$ then this just becomes a one-dimensional limit, and the regular rule applies again. So, for instance, while $$\lim_{\b x \ra 0} \frac{f(\b{x})}{g(\b x)}$$ may not be defined, $$\lim_{\e \ra 0} \frac{f(\e \b{v})}{g(\e \b{v})}$$ is.
 
-And the path we take to approach $$0$$ doesn't even matter -- only the slope when we're infinitesimally close to $$0$$. For example, suppose we approached on the path given by $$y = x^2$$:
+And the path we take to approach $$0$$ doesn't even matter -- only the gradients when we're infinitesimally close to $$0$$. For example, suppose we approached on the path given by $$y = x^2$$:
 
-$$\lim_{\e \ra 0} \frac{f(\e,\e^2)}{g(\e,\e^2)} = \lim_{ \e \ra 0 } \frac{ f(0 + \e, 0^2 + 2 \e 0 + \e^2) }{g(0 + \e, 0^2 + 2 \e 0 + \e^2)} = \lim_{\e \ra 0} \frac{f(\e,0)}{g(\e,0)}$$
+$$\lim_{\x \ra 0} \frac{f(\x,\y(x))}{g(\x,\y(x))} = \lim_{\e \ra 0} \frac{f(0 + \e,(0 + \e)^2)}{g(0 + \e,(0 + \e)^2)} = \frac{f_{\x}(0,0)}{g_{\x}(0,0)}$$
 
 In fact, this problem basically exists in 1D also, except that limits can only come from two directions: $$x^+$$ and $$x^-$$, so lots of functions get away without a problem (but you can also [abuse this](https://en.wikipedia.org/wiki/Cauchy_principal_value)). L'Hôpital's rule only needs that the functions be expandable as a Taylor series on the side the limit comes from.
 
@@ -110,15 +112,16 @@ I think that the concept of a limit that _doesn't_ specify a direction of approa
 
 ## 3 Vector Fields
 
-There are several types of vector-valued functions -- curves like $$\gamma: \bb{R} \ra \bb{R}^n$$, or maps between manifolds like $$\b{f}: \bb{R}^m \ra \bb{R}^n$$ (including from a space to itself). In each case there is something like a Taylor series that can be defined. It's not commonly seen written out, but I think it _should be_, so let's try.
+There are several types of vector-valued functions -- curves like $$\gamma: \bb{R} \ra \bb{R}^n$$, or maps between manifolds like $$\b{f}: \bb{R}^m \ra \bb{R}^n$$ (including from a space to itself). In each case there is something like a Taylor series that can be defined. It's not commonly written out, but I think it _should be_, so let's try.
 
-Let's imagine our function maps spaces $$X \ra Y$$, where $$X$$ has $$m$$ coordinates and $$Y$$ has $$n$$ coordinates, and $$m$$ might be 1 in the case of a curve. Then along any _particular_ coordinate in $$Y$$ out of the $$n$$ -- call it $$y_i$$ -- the Taylor series expression from above holds, because $$\b{f}_i = \b{f} \cdot y_i$$ is just a scalar function.
+Let's imagine our function maps spaces $$X \ra Y$$, where $$X$$ has $$m$$ coordinates and $$Y$$ has $$n$$ coordinates, and $$m$$ might be 1 in the case of a curve. Then along any _particular_ coordinate in $$Y$$ out of the $$n$$ -- call it $$y_i$$ -- the Taylor series expression from above holds, because $$f_i = \b{f} \cdot \hat{\b{y_i}}$$ is just a scalar function.
 
-$$\b{f}(\b{x} + \b{v})_i = e^{\b{v} \cdot \vec{\p}} [\b{f}(\b{x})_i]$$
+$$f(\b{x} + \b{v})_i = e^{\b{v} \cdot \vec{\p}} [\b{f}(\b{x})_i]$$
 
 But of course this holds in every $$i$$ at once, so it holds for the whole function:
 
 $$\b{f}(\b{x} + \b{v}) = e^{\b{v} \cdot \vec{\p}} \b{f}(\b{x})$$
+<!-- This doesn't dimension-check. Is there a better way to write it? As a composition. With a transpose? Sum over indices? Also, I really prefer \del to mixing \b and \vec --> 
 
 The subtlety here is that the partial derivatives $$\p$$ are now being taken _termwise_ -- once for each component of $$\b{f}$$. For example, consider the first few terms when $$X$$ and $$Y$$ are 2D:
 
@@ -127,6 +130,7 @@ $$\begin{aligned}
 &= \b{f} + \begin{pmatrix} \p_{x_1} \b{f}_{y_1} & \p_{x_2} \b{f}_{y_1} \\ \p_{x_1} \b{f}_{y_2} & \p_{x_2} \b{f}_{y_2} \end{pmatrix} \begin{pmatrix} v_{x_1} \\ v_{x_2} \end{pmatrix} + \ldots \\ 
 &= \b{f} + (v_{x_1}, v_{x_2}) \cdot (\p_{x_1}, \p_{x_2}) (\b{f}_{y_1}, \b{f}_{y_2}) + \ldots
 \end{aligned}$$
+<!-- Last line here looks funky. f should be a column? Also, all the \b{f} here need \b{f(\x)} or need to say in some other way "evaluated at x". Maybe. At least. It's fine when we get into operators below but weird when written out here. -->
 
 That matrix term, the $$n=1$$ term in the series, is the [Jacobian Matrix](https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant) of $$f$$, sometimes written $$J_f$$, and is much more succinctly written as $$\vec{\p}_{x_i} \b{f}_{y_j}$$, or just $$\vec{\p}_i \b{f}_j$$.
 
@@ -170,32 +174,24 @@ I don't want to talk about curl and divergence here, because it brings in a lot 
 
 ## 4 Complex Taylor Series
 
-In general, $$(z,\bar{z}) = (x + iy, x - iy)$$ is a sort of change of basis for $$\bb{R}^2$$:
+When working with functions on complex numbers $$f: \bb{C} \ra \bb{C}$$, we're mostly interested in those that are _analytic_, which it turns out just means "having a Taylor series in $$z$$ everywhere".
 
-$$z \lra x\b{x} + y\b{y}$$
-
-$$\bar{z} \lra x\b{x} - y\b{y}$$
-
-It turns out that a function $$f: \bb{C} \ra \bb{C}$$ is _complex-analytic_ if and only if it can be written as a Taylor series in $$z$$, and, importantly, _not_ in $$\bar{z}$$, the complex conjugate of $$z$$. (The mapping $$z \ra \bar{z}$$ is not analytic; essentially $$\bar{z}$$ acts like essentially an entirely different variable.)
-
-In general, the term 'analytic' means 'having a Taylor series'. When we're doing single or multivariate calculus, that means having one at all. In $$\bb{C}$$, that means having a series which is only a function of $$z$$. 
-
-It's not enough that $$f(z)$$ not have an explicit dependence on $$\bar{z}$$, though. What's needed is that $$\p_{\bar{z}} f(z) = 0$$. It turns out that a function can have a $$\bar{z}$$ derivative _without_ depending on $$\bar{z}$$, because:
-
-$$\p_{\bar{z}} \frac{1}{z} = 2 \pi i \delta(z, \bar{z})$$
-
-where the right side is the Delta Function. I think this is surprising.
-
-$$\p_{\bar{z}} f(z) = 0$$ means that if $$f(z) = (u(x, y) + i v(x, y))$$, then
-
-$$\p_{\bar{z}} f(z) = (\p_x + i \p_y) (u(x,y) + i v(x,y)) = 0$$
-
-By matching real and complex terms we get the [Cauchy-Riemann Equations](https://en.wikipedia.org/wiki/Cauchy%E2%80%93Riemann_equations) for determining whether a function is holomorphic / complex-analytic:
+This is [non-trivially](https://en.wikipedia.org/wiki/Analyticity_of_holomorphic_functions) equivalent to saying the function is differentiable everywhere, which is in turn implied by the function obeying the [Cauchy-Riemann Equations](https://en.wikipedia.org/wiki/Cauchy%E2%80%93Riemann_equations). For $$f(z) = (u(x, y) + i v(x, y))$$: 
 
 $$\begin{aligned}
 u_x &= v_y \\
 u_y &= - v_x
 \end{aligned}$$
+
+There's another way to write this. In general, $$(z,\bar{z}) = (x + iy, x - iy)$$ is a basis for $$\bb{C}$$. The Cauchy-Riemann equations are equivalent to the statement that $$\p_{\bar{z}} f(z) = 0$$:
+
+$$\p_{\bar{z}} f(z) = (\p_x + i \p_y) (u(x,y) + i v(x,y)) = 0$$
+
+To have a Taylor series, it's not enough that the function be expressible as a function not depending on $$\bar{z}, because it can have a $$\bar{z}$$ derivative _without_ depending on $$\bar{z}$$:
+
+$$\p_{\bar{z}} \frac{1}{z} = 2 \pi i \delta(z, \bar{z})$$
+
+where the right side is the Delta Function. I think this is surprising.
 
 Here's on aside on why $$\p_{\bar{z}} \frac{1}{z} = 2 \pi i \delta(z, \bar{z})$$ is true:
 
@@ -272,22 +268,22 @@ Fourier series are closely related to contour integrals, and thus to complex Tay
 
 If a function $$f(x)$$ on the real axis has a Fourier series in the finite interval $$(0,2 \pi )$$, then it can be written as a series of oscillators with different frequencies:
 
-$$f(x) = \sum F(p) e^{i p x}$$
+$$f(x) = \sum F(k) e^{i k x}$$
 
-The Fourier transform extracts these $$F(q)$$ coefficents:
+The Fourier transform extracts these $$F(k)$$ coefficents:
 
 $$F(p) = \frac{1}{2 \pi} \int_0^{2 \pi} e^{-ipx} f(x) dx$$
 
 Now we change variables: $$z = e^{ix}$$, $$x = \frac{1}{i} \ln z$$ and $$dx = \frac{dz}{ i z}$$. This turns the integral on a line segment $$(0, 2\pi)$$ into a _contour integral_ around the origin (obviously this is why I used the range $$(0, 2\pi)$$ in the first place. In the general case the change of variables is more complicated to get it into this form.)
 
-$$f(\frac{1}{i} \ln z) = \sum_q F(q) z^q$$
+$$f(\frac{1}{i} \ln z) = \sum_k F(k) z^k$$
 
 $$\begin{aligned}
-F(p) &= \frac{1}{2 \pi}  \oint_C z^{-p} f(x) \frac{dz}{iz} \\
-&= \frac{1}{2 \pi i} \oint_C \frac{1}{ z^{p+1}} \sum_{p'} F(p') z^{p'} dz \\
-&= \frac{1}{2 \pi i} \oint_C \sum_{p'}  \frac{F(p')}{ z^{p - p' + 1}} dz \\
-&= \sum_{p'}  \delta(p - p') F(p') \\
-&= F(p)
+F(k) &= \frac{1}{2 \pi}  \oint_C z^{-k} f(x) \frac{dz}{iz} \\
+&= \frac{1}{2 \pi i} \oint_C \frac{1}{ z^{k+1}} \sum_{k'} F(k') z^{k'} dz \\
+&= \frac{1}{2 \pi i} \oint_C \sum_{k'}  \frac{F(k')}{ z^{k - k' + 1}} dz \\
+&= \sum_{k'}  \delta(k - k') F(k') \\
+&= F(k)
 \end{aligned}$$
 
 This generally works for functions defined on any finite range; we can modify the variables appropriately to move the contour bounds to a single loop.
