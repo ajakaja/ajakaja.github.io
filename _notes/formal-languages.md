@@ -3,7 +3,6 @@ layout: article
 title: "Formal Languages"
 math: true
 footnotes: true
-category: notes
 ---
 
 An outline of formal language concepts and cached intuitions, for my reference.

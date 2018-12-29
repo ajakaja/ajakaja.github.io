@@ -7,12 +7,12 @@ Notes on stuff.
 
 <div class="posts">
 <ul class="list">
-  {% for post in site.categories.notes %}
+  {% for post in site.notes %}
     <li>
       <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
     </li>
   {% endfor %}
-  {% for post in site.notes %}
+  {% for post in site.tags.notes %}
     <li>
       <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
     </li>

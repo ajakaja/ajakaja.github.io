@@ -1,7 +1,6 @@
 ---
 layout: article
 title: "On building this site"
-category: notes
 ---
 
 After experimenting with some other ways of running person blogs I'm convinced that using Jekyll on Github pages is by far the easiest way to go.

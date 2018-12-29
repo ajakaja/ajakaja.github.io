@@ -1,10 +1,10 @@
 ---
 layout: article
-title: "Taylor Series"
+title: "All About Taylor Series"
 footnotes: true
 math: true
 aside: true
-category: notes
+tags: notes
 ---
 
 Here is a survey of understandings on each of the main types of Taylor series:
@@ -15,9 +15,9 @@ Here is a survey of understandings on each of the main types of Taylor series:
 4. complex $$\bb{C} \ra \bb{C}$$
 5. on a curved space (not yet written)
 
-I have collected a lot of disparate knowledge on these and I thought it would be useful to have it all written down in one place.
+I thought it would be useful to have everything I know about these written down in one place.
 
-In these notes I am going to ignore discussions of convergence so that more ground can be covered. Generally it's important to address convergence in order to, well, not be wrong. And I'm certain that I've made statements which are wrong below. But I am just trying to make sure I understand what happens when everything works, first, because it's easier to remember that as a coherent theory and deal with exceptions case-by-case.
+In these notes I am going to ignore discussions of convergence so that more ground can be covered. Generally it's important to address convergence in order to, well, not be wrong. And I'm certain that I've made statements which are wrong below. But I am just trying to make sure I understand what happens when everything works, because in my interests (physics) it usually does.
 
 <!--more-->
 
@@ -29,12 +29,12 @@ A Taylor series for a function in $$\bb{R}$$ looks like this:
 
 $$
 \begin{aligned} f(x + \e) &= f(x) + f'(x) \e + f''(x) \frac{\e^2}{2} + \ldots \\
-&= \sum f^{(n)} \frac{\e^n}{n!}
+&= \sum_n f^{(n)} \frac{\e^n}{n!}
 \end{aligned}$$
 
 It's useful to write this as one big operator acting on $$f(x)$$:
 
-$$f(x + \e) = \big[ \sum \frac{\p^n_x \e^n}{n!} \big] f(x) \tag{Single-Variable}$$
+$$f(x + \e) = \big[ \sum_n \frac{\p^n_x \e^n}{n!} \big] f(x) \tag{Single-Variable}$$
 
 Or even as a single exponentiation of the derivative operator, which is commonly done in physics, but you probably shouldn't think to hard about what it means:
 
@@ -82,9 +82,9 @@ f(\b x + \b v) &= f(\b x) + (v_x \p_x + v_y \p_y) f(\b x) + \frac{(v_x \p_x + v_
 
 (This can also be written as a sum over every individual term using [multi-index notation](https://en.wikipedia.org/wiki/Multi-index_notation).)
 
-So that looks pretty good. And it can still be written as $$e^{ \b{v} \cdot \p} f(\b{x})$$. The same formula -- now that we've hidden all the actual indexes -- happily continues to work for dimension $$> 2$$, as well.
+So that looks pretty good. And it can still be written as $$e^{ \b{v} \cdot \vec{\p}} f(\b{x})$$. The same formula -- now that we've hidden all the actual indexes -- happily continues to work for dimension $$> 2$$, as well.
 
-... Actually, this is not as surprising a formula as it might look. What the multivariate Taylor series of $$f(\b{x})$$ _really_ is a bunch of single-variable ones multiplied together:
+... Actually, this is not as surprising a formula as it might look. The multivariate Taylor series of $$f(\b{x})$$ is _really_ just a bunch of single-variable series multiplied together:
 
 $$\begin{aligned}
 f(x+ v_x, y + v_y) &= e^{v_x \p_x} f(x, y + v_y) \\
@@ -98,9 +98,11 @@ I mention all this because it's useful to have a solid idea of what a scalar fun
 
 L'Hôpital's rule is more subtle for multivariable functions. In general the limit of a function may be different depending on what direction you approach from, so an expression like $$\lim_{\b{x} \ra 0} \frac{f(\b{x})}{g(\b{x})}$$ is not necessarily defined, even if both $$f$$ and $$g$$ have Taylor expansions. On the other hand, if we choose a path for $$\b{x} \ra 0$$, such as $$\b{x}(t) = (x(t), y(t))$$ then this just becomes a one-dimensional limit, and the regular rule applies again. So, for instance, while $$\lim_{\b x \ra 0} \frac{f(\b{x})}{g(\b x)}$$ may not be defined, $$\lim_{\e \ra 0} \frac{f(\e \b{v})}{g(\e \b{v})}$$ is.
 
-And the path we take to approach $$0$$ doesn't even matter -- only the slope when we're infinitesimally close to $$0$$. For example, suppose we approached on the path given by $$y = x^2$$:
+And the path we take to approach $$0$$ doesn't even matter -- only the gradients when we're infinitesimally close to $$0$$. For example, suppose we $$f(0,0) = g(0,0) = 0$$ and we're taking the limit on the path given by $$y = x^2$$:
 
-$$\lim_{\e \ra 0} \frac{f(\e,\e^2)}{g(\e,\e^2)} = \lim_{ \e \ra 0 } \frac{ f(0 + \e, 0^2 + 2 \e 0 + \e^2) }{g(0 + \e, 0^2 + 2 \e 0 + \e^2)} = \lim_{\e \ra 0} \frac{f(\e,0)}{g(\e,0)}$$
+$$\lim_{\e \ra 0} \frac{f(\e,\e^2)}{g(\e,\e^2)} = \lim_{ \e \ra 0 } \frac{ f_x(0,0) \e +  O(\e^2) }{ g_x(0,0) \e + O(\e^2)} = \lim_{\e \ra 0} \frac{f(\e,0)}{g(\e,0)}$$
+
+The $$f_y$$ and $$g_y$$ terms are of order $$\e^2$$ and so drop out, leaving a limit taken only on the $$x$$-axis -- corresponding to the fact that the tangent to $$(x,x^2)$$ at 0 is $$(1,0)$$.
 
 In fact, this problem basically exists in 1D also, except that limits can only come from two directions: $$x^+$$ and $$x^-$$, so lots of functions get away without a problem (but you can also [abuse this](https://en.wikipedia.org/wiki/Cauchy_principal_value)). L'Hôpital's rule only needs that the functions be expandable as a Taylor series on the side the limit comes from.
 
@@ -110,11 +112,11 @@ I think that the concept of a limit that _doesn't_ specify a direction of approa
 
 ## 3 Vector Fields
 
-There are several types of vector-valued functions -- curves like $$\gamma: \bb{R} \ra \bb{R}^n$$, or maps between manifolds like $$\b{f}: \bb{R}^m \ra \bb{R}^n$$ (including from a space to itself). In each case there is something like a Taylor series that can be defined. It's not commonly seen written out, but I think it _should be_, so let's try.
+There are several types of vector-valued functions -- curves like $$\gamma: \bb{R} \ra \bb{R}^n$$, or maps between manifolds like $$\b{f}: \bb{R}^m \ra \bb{R}^n$$ (including from a space to itself). In each case there is something like a Taylor series that can be defined. It's not commonly written out, but I think it _should be_, so let's try.
 
-Let's imagine our function maps spaces $$X \ra Y$$, where $$X$$ has $$m$$ coordinates and $$Y$$ has $$n$$ coordinates, and $$m$$ might be 1 in the case of a curve. Then along any _particular_ coordinate in $$Y$$ out of the $$n$$ -- call it $$y_i$$ -- the Taylor series expression from above holds, because $$\b{f}_i = \b{f} \cdot y_i$$ is just a scalar function.
+Let's imagine our function maps spaces $$X \ra Y$$, where $$X$$ has $$m$$ coordinates and $$Y$$ has $$n$$ coordinates, and $$m$$ might be 1 in the case of a curve. Then along any _particular_ coordinate in $$Y$$ out of the $$n$$ -- call it $$y_i$$ -- the Taylor series expression from above holds, because $$f_i = \b{f} \cdot y_i$$ is just a scalar function.
 
-$$\b{f}(\b{x} + \b{v})_i = e^{\b{v} \cdot \vec{\p}} [\b{f}(\b{x})_i]$$
+$$f(\b{x} + \b{v})_i = e^{\b{v} \cdot \vec{\p}} [f(\b{x})_i]$$
 
 But of course this holds in every $$i$$ at once, so it holds for the whole function:
 
@@ -125,7 +127,7 @@ The subtlety here is that the partial derivatives $$\p$$ are now being taken _te
 $$\begin{aligned}
 \b{f}(\b{x} + \b{v}) &= \b{f}(\b{x}) + (v_{x_1} \p_{x_1} + v_{x_2} \p_{x_2}) \b{f} + \frac{(v_{x_1} \p_{x_1} + v_{x_2} \p_{x_2})^2}{2!} \b{f} + \ldots\\
 &= \b{f} + \begin{pmatrix} \p_{x_1} \b{f}_{y_1} & \p_{x_2} \b{f}_{y_1} \\ \p_{x_1} \b{f}_{y_2} & \p_{x_2} \b{f}_{y_2} \end{pmatrix} \begin{pmatrix} v_{x_1} \\ v_{x_2} \end{pmatrix} + \ldots \\ 
-&= \b{f} + (v_{x_1}, v_{x_2}) \cdot (\p_{x_1}, \p_{x_2}) (\b{f}_{y_1}, \b{f}_{y_2}) + \ldots
+&= \b{f} +(\p_{x_1}, \p_{x_2}) \o \begin{pmatrix}\b{f}_{y_1} \\ \b{f}_{y_2} \end{pmatrix} \cdot \begin{pmatrix} v_{x_1} \\ v_{x_2} \end{pmatrix}  + \ldots
 \end{aligned}$$
 
 That matrix term, the $$n=1$$ term in the series, is the [Jacobian Matrix](https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant) of $$f$$, sometimes written $$J_f$$, and is much more succinctly written as $$\vec{\p}_{x_i} \b{f}_{y_j}$$, or just $$\vec{\p}_i \b{f}_j$$.
@@ -133,9 +135,6 @@ That matrix term, the $$n=1$$ term in the series, is the [Jacobian Matrix](https
 $$J_f = \p_i f_j$$
 
 The Jacobian matrix is the 'first derivative' of a vector field, and it includes every term which can possibly matter to compute how the function changes to first-order. In the same way that a single-variable function is locally linear ($$f(x + \e) \approx f(x) + \e f'(x)$$), a multi-variable function is locally a linear transformation: $$\b{f}(\b{x + v}) \approx \b{f}(\b{x}) + J_f \b{v}$$.
-
-
-A single-variable function is locally invertible if $$f'(a) \neq 0$$, because it is locally linear: if $$c = f(a)$$ and $$f(b) \approx f(a) + f'(a) (b-a)$$, then $$f^{-1}(c + \e) \approx f^{-1}(c) + \frac{1}{f'(a)} \e$$, ie, $$(f^{-1}(c))' = \frac{1}{f'(a)}$$. In the same way, a multivariable function is locally invertible (the [inverse function theorem](https://en.wikipedia.org/wiki/Inverse_function_theorem)) via $$\b{f}^{-1}(\b{c} + \b{h}) \approx \b{f}^{-1}(\b{c}) + J_f^{-1} \b{h}$$, as long as $$\det J_f \neq 0$$ so that $$J_f^{-1}$$ exists.
 
 ------
 
@@ -170,15 +169,13 @@ I don't want to talk about curl and divergence here, because it brings in a lot 
 
 ## 4 Complex Taylor Series
 
-In general, $$(z,\bar{z}) = (x + iy, x - iy)$$ is a sort of change of basis for $$\bb{R}^2$$:
+The complex plane $$\bb{C}$$ is a sort of change-of-basis of $$\bb{R}^2$$, via $$(z,\bar{z}) = (x + iy, x - iy)$$:
 
 $$z \lra x\b{x} + y\b{y}$$
 
 $$\bar{z} \lra x\b{x} - y\b{y}$$
 
-It turns out that a function $$f: \bb{C} \ra \bb{C}$$ is _complex-analytic_ if and only if it can be written as a Taylor series in $$z$$, and, importantly, _not_ in $$\bar{z}$$, the complex conjugate of $$z$$. (The mapping $$z \ra \bar{z}$$ is not analytic; essentially $$\bar{z}$$ acts like essentially an entirely different variable.)
-
-In general, the term 'analytic' means 'having a Taylor series'. When we're doing single or multivariate calculus, that means having one at all. In $$\bb{C}$$, that means having a series which is only a function of $$z$$. 
+A function is said to be analytic in a region if it can be written as a Taylor series there. In complex analysis, a function $$\bb{C} \ra \bb{C}$$ is said to be complex-analytic if it can be written as a Taylor series _only_ in $$z$$, with no $$\bar{z}$$ terms. (The mapping $$z \ra \bar{z}$$ is not analytic; essentially $$\bar{z}$$ acts like essentially an entirely different variable).
 
 It's not enough that $$f(z)$$ not have an explicit dependence on $$\bar{z}$$, though. What's needed is that $$\p_{\bar{z}} f(z) = 0$$. It turns out that a function can have a $$\bar{z}$$ derivative _without_ depending on $$\bar{z}$$, because:
 
@@ -186,7 +183,11 @@ $$\p_{\bar{z}} \frac{1}{z} = 2 \pi i \delta(z, \bar{z})$$
 
 where the right side is the Delta Function. I think this is surprising.
 
-$$\p_{\bar{z}} f(z) = 0$$ means that if $$f(z) = (u(x, y) + i v(x, y))$$, then
+If we write $$f$$ with separate functions for its real and imaginary parts:
+
+$$f(x+iy) = u(x, y) + i v(x, y)$$
+
+then $$\p_{\bar{z}} f(z) = 0$$ means that:
 
 $$\p_{\bar{z}} f(z) = (\p_x + i \p_y) (u(x,y) + i v(x,y)) = 0$$
 
@@ -196,6 +197,8 @@ $$\begin{aligned}
 u_x &= v_y \\
 u_y &= - v_x
 \end{aligned}$$
+
+---------
 
 Here's on aside on why $$\p_{\bar{z}} \frac{1}{z} = 2 \pi i \delta(z, \bar{z})$$ is true:
 
@@ -238,7 +241,7 @@ If nothing else this argument convinces me that delta functions should be dealt 
 
 One final comment: what does it _mean_ for $$\p_{\bar{z}} \frac{1}{z} = 2 \pi i \delta(z, \bar{z})$$ to be true? Well, it turns out that this effect exists even in one dimension, except that it's exhibited by $$\ln x$$ instead of $$\frac{1}{x}$$ (and it's by $$\frac{1}{x^2}$$ in 3 dimensions, etc).
 
-Any negative real number has a logarithm like $$\ln (-1) = i \pi$$, due to the fact that $$e^{i \pi} = -1$$. This means that $$\lim_{x \ra 0^-} \ln x = i \pi$$, while $$\lim_{x \ra 0^+} \ln x = 0$$. This means that it should be true that $$\frac{d}{dx} \ln x = \frac{1}{x} + i \pi \delta(x)$$, at least when it appears under an integral. I suppose that the delta-function derivative of $$\frac{1}{z}$$ amounts to the same effect in 2D.
+Any negative real number has a logarithm like $$\ln (-1) = i \pi$$, due to the fact that $$e^{i \pi} = -1$$. This means that $$\lim_{x \ra 0^-} \ln x = i \pi$$, while $$\lim_{x \ra 0^+} \ln x = 0$$. This means that it should be true that $$\frac{d}{dx} \ln x = \frac{1}{x} + i \pi \delta(x)$$, at least when it appears under an integral. I suppose that the delta-function derivative of $$\frac{1}{z}$$ amounts to the same effect in 2D, but I'm not sure of a good way to intuit the details.
 
 </aside>
 
@@ -268,29 +271,44 @@ $$f(z + \D z) =  \big[ \sum \frac{(\D z \p_z)^n}{n!} \big] f(z) \tag{Complex-Ana
 
 -----
 
-Fourier series are closely related to contour integrals, and thus to complex Taylor series.
+Fourier series are closely related to contour integrals, and thus to complex Taylor series. Here's a heuristic argument, skipping all the analytical details.
 
 If a function $$f(x)$$ on the real axis has a Fourier series in the finite interval $$(0,2 \pi )$$, then it can be written as a series of oscillators with different frequencies:
 
-$$f(x) = \sum F(p) e^{i p x}$$
+$$f(x) = \sum F(k) e^{i k x}$$
 
-The Fourier transform extracts these $$F(q)$$ coefficents:
+The Fourier transform extracts these $$F(k)$$ coefficents:
 
-$$F(p) = \frac{1}{2 \pi} \int_0^{2 \pi} e^{-ipx} f(x) dx$$
+$$F(k) = \frac{1}{2 \pi} \int_0^{2 \pi} e^{-ikx} f(x) dx$$
 
-Now we change variables: $$z = e^{ix}$$, $$x = \frac{1}{i} \ln z$$ and $$dx = \frac{dz}{ i z}$$. This turns the integral on a line segment $$(0, 2\pi)$$ into a _contour integral_ around the origin (obviously this is why I used the range $$(0, 2\pi)$$ in the first place. In the general case the change of variables is more complicated to get it into this form.)
+Now we change variables: $$z = e^{ix}$$, $$x = \frac{1}{i} \ln z$$ and $$dx = \frac{dz}{ i z}$$. This turns the integral on a line segment $$(0, 2\pi)$$ into a _contour integral_ around the origin (obviously this is why I used the range $$(0, 2\pi)$$ in the first place).
 
-$$f(\frac{1}{i} \ln z) = \sum_q F(q) z^q$$
+$$f(\frac{1}{i} \ln z) = \sum_k F(k) z^k$$
 
 $$\begin{aligned}
-F(p) &= \frac{1}{2 \pi}  \oint_C z^{-p} f(x) \frac{dz}{iz} \\
-&= \frac{1}{2 \pi i} \oint_C \frac{1}{ z^{p+1}} \sum_{p'} F(p') z^{p'} dz \\
-&= \frac{1}{2 \pi i} \oint_C \sum_{p'}  \frac{F(p')}{ z^{p - p' + 1}} dz \\
-&= \sum_{p'}  \delta(p - p') F(p') \\
-&= F(p)
+F(k) &= \frac{1}{2 \pi}  \oint_C z^{-k} f(x) \frac{dz}{iz} \\
+&= \frac{1}{2 \pi i} \oint_C \frac{1}{ z^{k+1}} \sum_{k'} F(k') z^{k'} dz \\
+&= \frac{1}{2 \pi i} \oint_C \sum_{k'}  \frac{F(k')}{ z^{k - k' + 1}} dz \\
+&= \sum_{k'}  \delta(k - k') F(k') \\
+&= F(k)
 \end{aligned}$$
 
-This generally works for functions defined on any finite range; we can modify the variables appropriately to move the contour bounds to a single loop.
+This generally works for functions defined on any finite range; we can modify the variables appropriately to move the contour bounds to a single loop. 
+
+This logic shows that the 'orthogonalization' property of Fourier transforms is basically the same thing as the ability of contour integrals to pull out $$f_{-1}$$ coefficients. Actually, if anything, I think the Fourier transform is more fundamental. A contour integral of a function $$\oint_C \frac{f(z) dz}{z}$$, when written in polar coordinates, is clearly related to a Fourier transform:
+
+$$\begin{aligned}
+\oint_C \frac{f(z) dz}{z^{k+1}} &= 
+\oint_C \frac{f(re^{i \theta}) e^{i\theta} dr}{re^{(k+1)i \theta}} + 
+\oint_C \frac{f(re^{i \theta}) ire^{i\theta} d\theta}{re^{(k+1)i \theta}} \\
+&= 
+i \oint_C f(re^{i \theta})e^{-ik\theta} d\theta
+\end{aligned}$$
+
+The first integral term vanishes because $$r$$ is the same on both ends of the contour. The second integral is, or is massageable into (if the contour takes a funny path), a Fourier transform.
+
+I like this realization. It means I don't have to spend too much time thinking about what's going on with contour integrals, because they're a disguised instance of something I already know.
+
 
 ---------
 

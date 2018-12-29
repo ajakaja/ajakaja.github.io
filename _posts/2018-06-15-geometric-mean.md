@@ -4,7 +4,7 @@ title: "Geometric Mean and Standard Deviation"
 footnotes: true
 math: true
 aside: true
-category: notes
+tags: notes
 ---
 
 A friend is writing her master's thesis in a subfield where data is typically summarized using _geometric_ statistics: geometric means and geometric standard deviations (GSD), and sometimes even geometric standard errors -- whatever those are. And occasionally 'geometric confidence intervals' and 'geometric interquartile ranges'.
