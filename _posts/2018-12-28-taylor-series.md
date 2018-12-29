@@ -11,7 +11,7 @@ Here is a survey of understandings on each of the main types of Taylor series:
 
 1. single-variable
 2. multivariable $$\bb{R}^n \ra \bb{R}$$
-3. multivarable $$\bb{R}^n \ra \bb{R}^m$$
+3. multivariable $$\bb{R}^n \ra \bb{R}^m$$
 4. complex $$\bb{C} \ra \bb{C}$$
 
 I have collected a lot of disparate knowledge on these and I thought it would be useful to have it all written down in one place.
@@ -55,41 +55,41 @@ Which equals $$\frac{f'(x)}{g'(x)}$$ if the limit exists, and otherwise might be
 
 ## 2. Multivariable
 
-A _multivariate_ Taylor series looks messier at first. Let's look at it in two variables, with $$f_x \equiv \p_x f(\b{x})$$ and $$\b{e} = (e_x, e_y)$$, to get it into a more usable form:
+A _multivariate_ Taylor series looks messier at first. Let's look at it in two variables, with $$f_x \equiv \p_x f(\b{x})$$ and $$\b{v} = (v_x, v_y)$$, to get it into a more usable form:
 
 $$\begin{aligned} 
-f(\b x + \b e) &= f(\b x) + [f_x e_x + f_y e_y] + \frac{1}{2!} [f_{xx} e_x^2 + 2 f_{xy} e_x e_y + f_{yy} e_y^2] \\
-&+ \frac{1}{3!} [f_{xxx} e_x^3 + 3 f_{xxy} e_x^2 e_y + 3 f_{xyy} e_x e_y^2 + f_{yyy} e_y^3] + \ldots
+f(\b x + \b v) &= f(\b x) + [f_x v_x + f_y v_y] + \frac{1}{2!} [f_{xx} v_x^2 + 2 f_{xy} v_x v_y + f_{yy} v_y^2] \\
+&+ \frac{1}{3!} [f_{xxx} v_x^3 + 3 f_{xxy} v_x^2 v_y + 3 f_{xyy} v_x v_y^2 + f_{yyy} v_y^3] + \ldots
 \end{aligned} $$
 
-(The strangeness of the terms like $$2 f_{xy} e_x e_y$$ and $$3 f_{xxy} e_x^2 e_y$$ is because these are really sums of multiple terms; because of the [commutativity of partial derivatives](https://en.wikipedia.org/wiki/Symmetry_of_second_derivatives) on analytic functions, $$f_{xy} = f_{yx}$$, we can write $$f_{xy} e_x e_y + f_{yx} e_y e_x = 2 f_{xy} e_x e_y$$.)
+(The strangeness of the terms like $$2 f_{xy} v_x v_y$$ and $$3 f_{xxy} v_x^2 v_y$$ is because these are really sums of multiple terms; because of the [commutativity of partial derivatives](https://en.wikipedia.org/wiki/Symmetry_of_second_derivatives) on analytic functions, $$f_{xy} = f_{yx}$$, we can write $$f_{xy} v_x v_y + f_{yx} v_y v_x = 2 f_{xy} v_x v_y$$.)
 
 The first few terms are often arranged like this:
 
-$$f(\b x + \b e) = f(\b x) + \b{e} \cdot \nabla f(\b{x}) + \b{e} \begin{pmatrix} f_{xx} & f_{xy} \\ f_{yx} & f_{yy} \end{pmatrix} \b{e} + O(e_3)$$
+$$f(\b x + \b v) = f(\b x) + \b{v} \cdot \nabla f(\b{x}) + \b{v}^T \begin{pmatrix} f_{xx} & f_{xy} \\ f_{yx} & f_{yy} \end{pmatrix} \b{v} + O(v_3)$$
 
 $$\nabla f(\b{x}) $$ is the gradient of $$f$$ (the vector of partial derivatives like $$(f_x, f_y)$$. The matrix $$H = \begin{pmatrix} f_{xx} & f_{xy} \\ f_{yx} & f_{yy} \end{pmatrix} $$ is the "Hessian matrix" for $$f$$, and represents its second derivative.
 
-... But we can do better. In fact, every order of derivative of $$f$$ in the total series has the same form, as powers of $$\b{e} \cdot \vec{\nabla}$$, which I prefer to write as $$\vec{\p}$$, because it represents a 'vector of partial derivatives' $$\vec{\p} = (\p_x, \p_y)$$:
+... But we can do better. In fact, every order of derivative of $$f$$ in the total series has the same form, as powers of $$\b{v} \cdot \vec{\nabla}$$, which I prefer to write as $$\vec{\p}$$, because it represents a 'vector of partial derivatives' $$\vec{\p} = (\p_x, \p_y)$$:
 
 $$\begin{aligned} 
-f(\b x + \b e) &= f(\b x) + (e_x \p_x + e_y \p_y) f(\b x) + \frac{(e_x \p_x + e_y \p_y)^2}{2!} f(\b x) + \ldots  \\
-&= \big[ \sum_n \frac{(e_x \p_x + e_y \p_y)^n}{n!} \big] f(\b x) \\
-&= \big[ \sum_n \frac{(\b{e} \cdot \vec{\p})^n}{n!} \big] f(\b x) 
+f(\b x + \b v) &= f(\b x) + (v_x \p_x + v_y \p_y) f(\b x) + \frac{(v_x \p_x + v_y \p_y)^2}{2!} f(\b x) + \ldots  \\
+&= \big[ \sum_n \frac{(v_x \p_x + v_y \p_y)^n}{n!} \big] f(\b x) \\
+&= \big[ \sum_n \frac{(\b{v} \cdot \vec{\p})^n}{n!} \big] f(\b x) 
 \tag{Scalar Field}
 \end{aligned} $$
 
 (This can also be written as a sum over every individual term using [multi-index notation](https://en.wikipedia.org/wiki/Multi-index_notation).)
 
-So that looks pretty good. And it can still be written as $$e^{\p \cdot \b{e}} f(\b{x})$$. The same formula -- now that we've hidden all the actual indexes -- happily continues to work for dimension $$> 2$$, as well.
+So that looks pretty good. And it can still be written as $$e^{ \b{v} \cdot \p} f(\b{x})$$. The same formula -- now that we've hidden all the actual indexes -- happily continues to work for dimension $$> 2$$, as well.
 
 ... Actually, this is not as surprising a formula as it might look. What the multivariate Taylor series of $$f(\b{x})$$ _really_ is a bunch of single-variable ones multiplied together:
 
 $$\begin{aligned}
-f(x+ e_x, y + e_y) &= e^{e_x \p_x} f(x, y + e_y) \\
+f(x+ v_x, y + v_y) &= e^{e_x \p_x} f(x, y + v_y) \\
 &= e^{e_x \p_x}e^{e_y \p_y} f(x,y) \\
-&= e^{e_x \p_x + e_y \p_y} f(x,y) \\
-&= e^{\b{e} \cdot \vec{\p}} f(\b{x}) \end{aligned} $$
+&= e^{e_x \p_x + v_y \p_y} f(x,y) \\
+&= e^{\b{v} \cdot \vec{\p}} f(\b{x}) \end{aligned} $$
 
 I mention all this because it's useful to have a solid idea of what a scalar function is before we move to _vector_ functions.
 
@@ -97,13 +97,13 @@ I mention all this because it's useful to have a solid idea of what a scalar fun
 
 L'Hôpital's rule is more subtle for multivariable functions. In general the limit of a function may be different depending on what direction you approach from, so an expression like $$\lim_{\b{x} \ra 0} \frac{f(\b{x})}{g(\b{x})}$$ is not necessarily defined, even if both $$f$$ and $$g$$ have Taylor expansions. On the other hand, if we choose a path for $$\b{x} \ra 0$$, such as $$\b{x}(t) = (x(t), y(t))$$ then this just becomes a one-dimensional limit, and the regular rule applies again. So, for instance, while $$\lim_{\b x \ra 0} \frac{f(\b{x})}{g(\b x)}$$ may not be defined, $$\lim_{\e \ra 0} \frac{f(\e \b{v})}{g(\e \b{v})}$$ is.
 
-And the path we take to approach $$0$$ doesn't even matter -- only the slope when we're infinitesimally close to $$0$$. For example: 
+And the path we take to approach $$0$$ doesn't even matter -- only the slope when we're infinitesimally close to $$0$$. For example, suppose we approached on the path given by $$y = x^2$$:
 
-$$\lim_{x \ra 0} \frac{f(x,x^2)}{g(x,x^2)} = \lim_{ x \ra 0 } \frac{ f(0 + x, 0^2 + 2 x 0 + x^2) }{g(0 + x, 0^2 + 2 x 0 + x^2)} = \lim_{x \ra 0} \frac{f(x,0)}{g(x,0)}$$
+$$\lim_{\e \ra 0} \frac{f(\e,\e^2)}{g(\e,\e^2)} = \lim_{ \e \ra 0 } \frac{ f(0 + \e, 0^2 + 2 \e 0 + \e^2) }{g(0 + \e, 0^2 + 2 \e 0 + \e^2)} = \lim_{\e \ra 0} \frac{f(\e,0)}{g(\e,0)}$$
 
 In fact, this problem basically exists in 1D also, except that limits can only come from two directions: $$x^+$$ and $$x^-$$. L'Hôpital's rule only needs that the functions be expandable as a Taylor series on the side the limit comes from.
 
-I generally think that the concept of a limit that _doesn't_ specify a direction of approach should be less common of a concept, because it's really quite problematic in practice.
+I generally think that the concept of a limit that _doesn't_ specify a direction of approach is more common than it should be, because it's really quite problematic in practice.
 
 
 
@@ -115,56 +115,56 @@ There are several types of vector-valued functions -- curves like $$\gamma: \bb{
 
 Let's imagine our function maps spaces $$X \ra Y$$, where $$X$$ has $$m$$ coordinates and $$Y$$ has $$n$$ coordinates, and $$m$$ might be 1 in the case of a curve. Then along any _particular_ coordinate in $$Y$$ out of the $$n$$ -- call it $$y_i$$ -- the Taylor series expression from above holds, because $$\b{f}_i = \b{f} \cdot y_i$$ is just a scalar function.
 
-$$\b{f}(\b{x} + \b{e})_i = e^{\b{e} \cdot \vec{\p}} [\b{f}(\b{x})_i]$$
+$$\b{f}(\b{x} + \b{v})_i = e^{\b{v} \cdot \vec{\p}} [\b{f}(\b{x})_i]$$
 
 But of course this holds in every $$i$$ at once, so it holds for the whole function:
 
-$$\b{f}(\b{x} + \b{e}) = e^{\b{e} \cdot \vec{\p}} \b{f}(\b{x})$$
+$$\b{f}(\b{x} + \b{v}) = e^{\b{v} \cdot \vec{\p}} \b{f}(\b{x})$$
 
 The subtlety here is that the partial derivatives $$\p$$ are now being taken _termwise_ -- once for each component of $$\b{f}$$. For example, consider the first few terms when $$X$$ and $$Y$$ are 2D:
 
 $$\begin{aligned}
-\b{f}(\b{x} + \b{e}) &= \b{f}(\b{x}) + (e_{x_1} \p_{x_1} + e_{x_2} \p_{x_2}) \b{f} + \frac{(e_{x_1} \p_{x_1} + e_{x_2} \p_{x_2})^2}{2!} \b{f} + \ldots\\
-&= \b{f} + \begin{pmatrix} \p_{x_1} \b{f}_{y_1} & \p_{x_2} \b{f}_{y_1} \\ \p_{x_1} \b{f}_{y_2} & \p_{x_2} \b{f}_{y_2} \end{pmatrix} \begin{pmatrix} e_{x_1} \\ e_{x_2} \end{pmatrix} + \ldots \\ 
-&= \b{f} + (e_{x_1}, e_{x_2}) \cdot (\p_{x_1}, \p_{x_2}) (\b{f}_{y_1}, \b{f}_{y_2}) + \ldots
+\b{f}(\b{x} + \b{v}) &= \b{f}(\b{x}) + (v_{x_1} \p_{x_1} + v_{x_2} \p_{x_2}) \b{f} + \frac{(v_{x_1} \p_{x_1} + v_{x_2} \p_{x_2})^2}{2!} \b{f} + \ldots\\
+&= \b{f} + \begin{pmatrix} \p_{x_1} \b{f}_{y_1} & \p_{x_2} \b{f}_{y_1} \\ \p_{x_1} \b{f}_{y_2} & \p_{x_2} \b{f}_{y_2} \end{pmatrix} \begin{pmatrix} v_{x_1} \\ v_{x_2} \end{pmatrix} + \ldots \\ 
+&= \b{f} + (v_{x_1}, v_{x_2}) \cdot (\p_{x_1}, \p_{x_2}) (\b{f}_{y_1}, \b{f}_{y_2}) + \ldots
 \end{aligned}$$
 
-That matrix term, the $$n=1$$ term in the series, is the [Jacobian Matrix](https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant) of $$f$$, sometimes written $$J_f$$, and is much more succinctly written as $$\p_{x_i} \b{f}_{y_j}$$, or just $$\vec{\p}_i \b{f}_j$$, or even as $$\vec{\p} \o \b{f}$$ (I think -- that notation is a bit iffy, since $$\p$$ should be an operator acting on $$\b{f}$$!) 
+That matrix term, the $$n=1$$ term in the series, is the [Jacobian Matrix](https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant) of $$f$$, sometimes written $$J_f$$, and is much more succinctly written as $$\vec{\p}_{x_i} \b{f}_{y_j}$$, or just $$\vec{\p}_i \b{f}_j$$.
 
 $$J_f = \p_i f_j$$
 
-The Jacobian matrix is the 'first derivative' of a vector field, and it includes every term which can possibly matter to compute how the function changes to first-order. In the same way that a single-variable function is locally linear ($$f(x + \e) \approx f(x) + \e f'(x)$$), a multi-variable function is locally a linear transformation: $$\b{f}(\b{x + e}) \approx \b{f}(\b{x}) + J_f \b{e}$$.
+The Jacobian matrix is the 'first derivative' of a vector field, and it includes every term which can possibly matter to compute how the function changes to first-order. In the same way that a single-variable function is locally linear ($$f(x + \e) \approx f(x) + \e f'(x)$$), a multi-variable function is locally a linear transformation: $$\b{f}(\b{x + v}) \approx \b{f}(\b{x}) + J_f \b{v}$$.
 
 
 A single-variable function is locally invertible if $$f'(a) \neq 0$$, because it is locally linear: if $$c = f(a)$$ and $$f(b) \approx f(a) + f'(a) (b-a)$$, then $$f^{-1}(c + \e) \approx f^{-1}(c) + \frac{1}{f'(a)} \e$$, ie, $$(f^{-1}(c))' = \frac{1}{f'(a)}$$. In the same way, a multivariable function is locally invertible (the [inverse function theorem](https://en.wikipedia.org/wiki/Inverse_function_theorem)) via $$\b{f}^{-1}(\b{c} + \b{h}) \approx \b{f}^{-1}(\b{c}) + J_f^{-1} \b{h}$$, as long as $$\det J_f \neq 0$$ so that $$J_f^{-1}$$ exists.
 
 ------
 
-Higher-order terms in the vector field Taylor series generalize 'second' and 'third' derivatives, etc, but they are generally _tensors_ rather than matrices. They look like $$(\p \o \p) \b{f}$$, $$(\p \o \p \o \p) \b{f}$$, or $$\p^{\o n} \b{f}$$ in general, and they act on $$n$$ copies of $$\b{e}$$, ie, $$e_{\o n}$$.
+Higher-order terms in the vector field Taylor series generalize 'second' and 'third' derivatives, etc, but they are generally _tensors_ rather than matrices. They look like $$(\p \o \p) \b{f}$$, $$(\p \o \p \o \p) \b{f}$$, or $$\p^{\o n} \b{f}$$ in general, and they act on $$n$$ copies of $$\b{v}$$, ie, $$\b{v}^{\o n}$$.
 
 The full expansion (for $$X,Y$$ of any number of coordinates) is written like this:
 
-$$\begin{aligned} \b{f}(\b{x} + \b{e}) &= \b{f} + \p_i \b{f} \cdot e_i + \frac{1}{2!}(\p_i \p_j \b{f}) \cdot e_i e_j + \frac{1}{3!} (\p_i \p_j \p_k \b{f}) \cdot e_i e_j e_k + \ldots \\ 
-&= \b{f} + \p_i \b{f} \cdot e_i + \frac{1}{2!}(\p_i \o \p_j) \b{f} \cdot (e_i \o e_j) + \ldots \\
-&= \b{f} +(\b{e} \cdot \vec{\p}) \b{f} + \frac{(\b{e} \cdot \vec{\p})^2}{2!} \b{f} + \ldots \\
+$$\begin{aligned} \b{f}(\b{x} + \b{v}) &= \b{f} + \p_i \b{f} \cdot v_i + \frac{1}{2!}(\p_i \p_j \b{f}) \cdot v_i v_j + \frac{1}{3!} (\p_i \p_j \p_k \b{f}) \cdot v_i v_j v_k + \ldots \\ 
+&= \b{f} + \p_i \b{f} \cdot v_i + \frac{1}{2!}(\p_i \o \p_j) \b{f} \cdot (v_i \o v_j) + \ldots \\
+&= \b{f} +(\b{v} \cdot \vec{\p}) \b{f} + \frac{(\b{v} \cdot \vec{\p})^2}{2!} \b{f} + \ldots \\
 &=  \big[ \sum_{n} \frac{e^{\o n} \cdot \vec{\p}^{\o n}}{n!} \big] \b{f}(\b{x}) \\
-&= \big[ \sum_{n} \frac{(\b{e} \cdot \vec{\p})^n}{n!} \big] \b{f}(\b{x})
+&= \big[ \sum_{n} \frac{(\b{v} \cdot \vec{\p})^n}{n!} \big] \b{f}(\b{x})
 \tag{Vector Field}
 \end{aligned}$$
 
-We write the numerator in the summation as $$(\b{e} \cdot \vec{\p})^{n}$$, which expands to $$(\sum_i e_i \p_i) (\sum_j e_j \p_j) \ldots$$, and then we can still group things into exponentials, only now we have to understand that all of these terms have derivative operators on them that need to be applied to $$\b{f}$$ to be meaningful.
+We write the numerator in the summation as $$(\b{v} \cdot \vec{\p})^{n}$$, which expands to $$(\sum_i v_i \p_i) (\sum_j v_j \p_j) \ldots$$, and then we can still group things into exponentials, only now we have to understand that all of these terms have derivative operators on them that need to be applied to $$\b{f}$$ to be meaningful:
 
-$$\b{f}(\b{x + e}) = e^{\b{e} \cdot \vec{\p}} \b{f}$$
+$$\b{f}(\b{x + v}) = e^{\b{v} \cdot \vec{\p}} \b{f}$$
 
 We could have included indexes on $$\b{f}$$ also:
 
 $$\begin{aligned} 
-f_k(\b{x} + \b{e}) &= \b{f}_k + \p_i \b{f}_k \cdot \b{e}_i + \frac{1}{2!}(\p_i \o \p_j) \b{f}_k \cdot (\b{e}_i \o \b{e}_j) + \ldots \\
-&= \big[ \sum_{n} \frac{(\b{e} \cdot \vec{\p})^n}{n!} \big] f_k(\b{x}) \end{aligned}$$
+f_k(\b{x} + \b{v}) &= \b{f}_k + \p_i \b{f}_k \cdot \b{v}_i + \frac{1}{2!}(\p_i \o \p_j) \b{f}_k \cdot (\b{v}_i \o \b{v}_j) + \ldots \\
+&= \big[ \sum_{n} \frac{(\b{v} \cdot \vec{\p})^n}{n!} \big] f_k(\b{x}) \end{aligned}$$
 
 It seems evidence that this should work on matrices or any other sort of differentiable object also:
 
-$$M_{ij}(\b{x} + \b{e})= \big[ \sum_{n} \frac{(\b{e} \cdot \vec{\p})^n}{n!} \big] M_{ij}(\b{x}) $$
+$$M_{ij}(\b{x} + \b{v})= \big[ \sum_{n} \frac{(\b{v} \cdot \vec{\p})^n}{n!} \big] M_{ij}(\b{x}) $$
 
 I don't want to talk about curl and divergence here, because it brings in a lot more concepts and I don't know the best understanding of it, but it's worth noting that both are formed from components of $$J_f$$, appropriately arranged.
 

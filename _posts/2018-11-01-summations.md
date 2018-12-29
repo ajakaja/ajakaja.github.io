@@ -16,14 +16,16 @@ $$1+2+3+4+5+\ldots = -\frac{1}{12}$$
 
 The video caused a bit of an uproar at the time, since it was many people's first introduction to the (rather outrageous) idea and they had all sorts of (very reasonable) objections.
 
-I'm interested in talking about this because: something about how mathematicians have shared it with the world _irks_ me. It's fine to get excited about strange mathematical results. But it's not fine to present something that requires a lot of asterixes and disclaimers as simply "true". The equation is _true_ only in the sense that if you subtly change the meanings of lots of symbols, it can be shown to become true. But that's not the same thing as quotidian, useful, everyday truth.
+I'm interested in talking about this because: I think it's important to think about how to deal with experts telling you something that seems insane, and this is a nice microcosm for that problem.
+
+Because, well, the world of mathematics seems to have been irresponsible here. It's fine to get excited about strange mathematical results. But it's not fine to present something that requires a lot of asterixes and disclaimers as simply "true". The equation is _true_ only in the sense that if you subtly change the meanings of lots of symbols, it can be shown to become true. But that's not the same thing as quotidian, useful, everyday truth. And now that this is 'out', as it were, we have to figure out how to cope with it. Is it true? False? Something else?
 
 
 <!--more-->
 
 The Numberphile video came much later and had a bunch of other people "believing" this, or, like, doubting their sanity because they were being told to believe it.
 
-Some years later I eventually learned more mathematics and went out of my way to understand the real explanation for closure.
+Some years later I eventually learned more mathematics and went out of my way to understand the real explanation for closure. I'll put that at the end.
 
 -----
 
