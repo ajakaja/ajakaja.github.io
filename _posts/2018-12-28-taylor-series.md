@@ -87,9 +87,9 @@ So that looks pretty good. And it can still be written as $$e^{ \b{v} \cdot \p} 
 ... Actually, this is not as surprising a formula as it might look. What the multivariate Taylor series of $$f(\b{x})$$ _really_ is a bunch of single-variable ones multiplied together:
 
 $$\begin{aligned}
-f(x+ v_x, y + v_y) &= e^{e_x \p_x} f(x, y + v_y) \\
-&= e^{e_x \p_x}e^{e_y \p_y} f(x,y) \\
-&= e^{e_x \p_x + v_y \p_y} f(x,y) \\
+f(x+ v_x, y + v_y) &= e^{v_x \p_x} f(x, y + v_y) \\
+&= e^{v_x \p_x}e^{v_y \p_y} f(x,y) \\
+&= e^{v_x \p_x + v_y \p_y} f(x,y) \\
 &= e^{\b{v} \cdot \vec{\p}} f(\b{x}) \end{aligned} $$
 
 I mention all this because it's useful to have a solid idea of what a scalar function is before we move to _vector_ functions.
@@ -102,11 +102,9 @@ And the path we take to approach $$0$$ doesn't even matter -- only the slope whe
 
 $$\lim_{\e \ra 0} \frac{f(\e,\e^2)}{g(\e,\e^2)} = \lim_{ \e \ra 0 } \frac{ f(0 + \e, 0^2 + 2 \e 0 + \e^2) }{g(0 + \e, 0^2 + 2 \e 0 + \e^2)} = \lim_{\e \ra 0} \frac{f(\e,0)}{g(\e,0)}$$
 
-In fact, this problem basically exists in 1D also, except that limits can only come from two directions: $$x^+$$ and $$x^-$$. L'Hôpital's rule only needs that the functions be expandable as a Taylor series on the side the limit comes from.
+In fact, this problem basically exists in 1D also, except that limits can only come from two directions: $$x^+$$ and $$x^-$$, so lots of functions get away without a problem (but you can also [abuse this](https://en.wikipedia.org/wiki/Cauchy_principal_value)). L'Hôpital's rule only needs that the functions be expandable as a Taylor series on the side the limit comes from.
 
-I generally think that the concept of a limit that _doesn't_ specify a direction of approach is more common than it should be, because it's really quite problematic in practice.
-
-
+I think that the concept of a limit that _doesn't_ specify a direction of approach is more common than it should be, because it's really quite problematic in practice. I'm not quite sure I fully understand the complexity of solving it in $$N > 1$$ dimension -- but clearly if you just reduce to a 1-dimensional limit, you sweep the difficulties under the rug anyway. But see, perhaps, [this](https://arxiv.org/pdf/1209.0363.pdf) pre-print for a lot more information.
 
 -----
 
@@ -162,7 +160,7 @@ $$\begin{aligned}
 f_k(\b{x} + \b{v}) &= \b{f}_k + \p_i \b{f}_k \cdot \b{v}_i + \frac{1}{2!}(\p_i \p_j) \b{f}_k \cdot (\b{v}_i \b{v}_j) + \ldots \\
 &= \big[ \sum_{n} \frac{(\b{v} \cdot \vec{\p})^n}{n!} \big] f_k(\b{x}) \end{aligned}$$
 
-It seems evident that this should work on matrices or any other sort of differentiable object also:
+It seems evident that this should work any other sort of differentiable object also. What about matrices?
 
 $$M_{ij}(\b{x} + \b{v})= \big[ \sum_{n} \frac{(\b{v} \cdot \vec{\p})^n}{n!} \big] M_{ij}(\b{x}) $$
 
@@ -182,11 +180,24 @@ It turns out that a function $$f: \bb{C} \ra \bb{C}$$ is _complex-analytic_ if a
 
 In general, the term 'analytic' means 'having a Taylor series'. When we're doing single or multivariate calculus, that means having one at all. In $$\bb{C}$$, that means having a series which is only a function of $$z$$. 
 
-It's not enough that $$f(z)$$ not have an explicit dependence on $$\bar{z}$$, though. What's needed is that $$\bar{\p} f(z) = 0$$. Let's define $$\bar{\p} = \p_{\bar{z}}$$. This is because it turns out that a function can have a $$\bar{z}$$ derivative without depending on $$\bar{z}$$, because:
+It's not enough that $$f(z)$$ not have an explicit dependence on $$\bar{z}$$, though. What's needed is that $$\p_{\bar{z}} f(z) = 0$$. It turns out that a function can have a $$\bar{z}$$ derivative _without_ depending on $$\bar{z}$$, because:
 
-$$\bar{\p} \frac{1}{z} = 2 \pi i \delta(z, \bar{z})$$
+$$\p_{\bar{z}} \frac{1}{z} = 2 \pi i \delta(z, \bar{z})$$
 
 where the right side is the Delta Function. I think this is surprising.
+
+$$\p_{\bar{z}} f(z) = 0$$ means that if $$f(z) = (u(x, y) + i v(x, y))$$, then
+
+$$\p_{\bar{z}} f(z) = (\p_x + i \p_y) (u(x,y) + i v(x,y)) = 0$$
+
+By matching real and complex terms we get the [Cauchy-Riemann Equations](https://en.wikipedia.org/wiki/Cauchy%E2%80%93Riemann_equations) for determining whether a function is holomorphic / complex-analytic:
+
+$$\begin{aligned}
+u_x &= v_y \\
+u_y &= - v_x
+\end{aligned}$$
+
+Here's on aside on why $$\p_{\bar{z}} \frac{1}{z} = 2 \pi i \delta(z, \bar{z})$$ is true:
 
 <aside class="toggleable" id="complex" placeholder="<b>Aside</b>: Conjugate derivatives <em>(click to expand)</em>">
 
@@ -204,51 +215,42 @@ Now apply Stoke's theorem to the integral (using the notations of [differential 
 
 $$\begin{aligned}
 2 \pi i  &= \iint_D d(\frac{1}{z} dz) \\
-&= \iint_D  (\bar{\p} \frac{1}{z}) d\bar{z} \^ dz \end{aligned}$$
+&= \iint_D  (\p_{\bar{z}} \frac{1}{z}) d\bar{z} \^ dz \end{aligned}$$
 
 
 Because we only really know how to deal with delta-functions in $$(x,y)$$ coordinates, change variables, using $$d\bar{z} \^ dz = (dx - i dy) \^ (dx + i dy) = 2i dx \^ dy$$:
 
 $$\begin{aligned}
-2 \pi i &=  \iint_D  (\bar{\p} \frac{1}{z}) d\bar{z} \^ dz \\
-2 \pi i&= 2i \iint_D (\bar{\p} \frac{1}{z}) dx \^ dy \\
-\pi &= \iint_D (\bar{\p} \frac{1}{z}) dx \^ dy
+2 \pi i &=  \iint_D  (\p_{\bar{z}} \frac{1}{z}) d\bar{z} \^ dz \\
+2 \pi i&= 2i \iint_D (\p_{\bar{z}} \frac{1}{z}) dx \^ dy \\
+\pi &= \iint_D (\p_{\bar{z}} \frac{1}{z}) dx \^ dy
 \end{aligned}$$
 
 Because this is true on _any_ circle around the origin, the term in the integral is behaving like a delta distribution:
 
-$$ \bar{\p}\frac{1}{z} \equiv \pi \delta(x,y)$$
+$$ \p_{\bar{z}}\frac{1}{z} \equiv \pi \delta(x,y)$$
 
-If we want to express this as a delta function on $$\bb{C}$$, we need $$2 \pi i = \iint_D  \bar{\p} (\frac{1}{z}) d \bar{z} \^ dz$$ to be true, so:
+If we want to express this as a delta function on $$\bb{C}$$, we need $$2 \pi i = \iint_D  \p_{\bar{z}} (\frac{1}{z}) d \bar{z} \^ dz$$ to be true, so this should hold when considered as an equality of distributions:
 
-$$ \bar{\p} \frac{1}{z} \equiv  2 \pi i \delta(z, \bar{z})$$
+$$ \p_{\bar{z}} \frac{1}{z} \equiv  2 \pi i \delta(z, \bar{z})$$
 
 If nothing else this argument convinces me that delta functions should be dealt with in introductory multivariable calculus, and that complex analysis is pointlessly confusing.
 
+One final comment: what does it _mean_ for $$\p_{\bar{z}} \frac{1}{z} = 2 \pi i \delta(z, \bar{z})$$ to be true? Well, it turns out that this effect exists even in one dimension, except that it's exhibited by $$\ln x$$ instead of $$\frac{1}{x}$$ (and it's by $$\frac{1}{x^2}$$ in 3 dimensions, etc).
+
+Any negative real number has a logarithm like $$\ln (-1) = i \pi$$, due to the fact that $$e^{i \pi} = -1$$. This means that $$\lim_{x \ra 0^-} \ln x = i \pi$$, while $$\lim_{x \ra 0^+} \ln x = 0$$. This means that it should be true that $$\frac{d}{dx} \ln x = \frac{1}{x} + i \pi \delta(x)$$, at least when it appears under an integral. I suppose that the delta-function derivative of $$\frac{1}{z}$$ amounts to the same effect in 2D.
+
 </aside>
 
-Importantly, $$\bar{\p}\frac{1}{z^{n}} \neq 0 $$ is _only_ true for $$n = 1$$. This property gives rise to the entire method of [residues](https://en.wikipedia.org/wiki/Residue_theorem), because if $$f(z) = \frac{f_{-1}(0) }{z} + f^*(z)$$, where $$f^*(z)$$ has no terms of order $$\frac{1}{z}$$, then integrating a contour $$C$$ around a region $$D$$ which contains $$0$$ gives:
+Importantly, $$\p_{\bar{z}}\frac{1}{z^{n}} \neq 0 $$ is _only_ true for $$n = 1$$. This property gives rise to the entire method of [residues](https://en.wikipedia.org/wiki/Residue_theorem), because if $$f(z) = \frac{f_{-1}(0) }{z} + f^*(z)$$, where $$f^*(z)$$ has no terms of order $$\frac{1}{z}$$, then integrating a contour $$C$$ around a region $$D$$ which contains $$0$$ gives:
 
 $$\begin{aligned}
-\oint_C f(z) dz &= \iint_D \bar{\p} (\frac{f_{-1}(0) }{z} + f^*(z)) \; d\bar{z} \^ dz \\
+\oint_C f(z) dz &= \iint_D \p_{\bar{z}} (\frac{f_{-1}(0) }{z} + f^*(z)) \; d\bar{z} \^ dz \\
 &= 2 \pi i \iint_D \delta(z, \bar{z}) f_{-1}(0) \; d\bar{z} \^ dz \\
 &= 2 \pi i f_{-1}(0)
 \end{aligned}$$
 
 (If the $$\bar{z}$$ derivative isn't $$0$$, you get the [Cauchy-Pompeiu formula](https://en.wikipedia.org/wiki/Cauchy%27s_integral_formula#Smooth_functions) for contour integrals immediately.)
-
-Anyway, $$\bar{\p} f(z) = 0$$ means that if $$f(z) = (u(x, y) + i v(x, y))$$, then
-
-$$\bar{\p} f(z) = (\p_x + i \p_y) (u(x,y) + i v(x,y)) = 0$$
-
-By matching real and complex terms:
-
-$$\begin{aligned}
-u_x &= v_y \\
-u_y &= - v_x
-\end{aligned}$$
-
-Which are the _Cauchy-Riemann Equations_ for determining whether a function is holomorphic / complex-analytic.
 
 Okay, now back to Taylor series.
 
@@ -256,9 +258,9 @@ Okay, now back to Taylor series.
 
 In general a function $$f(z, \bar{z})$$ is just a function in a two-dimensional vector space, and so can of course be expressed as a Taylor series in the two composite variables $$z, \bar{z}$$:
 
-$$f(z + \D z, \bar{z} + \D \bar{z}) = \big[ \sum \frac{(\D z \p + \D \bar{z} \bar{\p})^n}{n!} \big] f(z, \bar{z})$$
+$$f(z + \D z, \bar{z} + \D \bar{z}) = \big[ \sum \frac{(\D z \p + \D \bar{z} \p_{\bar{z}})^n}{n!} \big] f(z, \bar{z})$$
 
-Specifically in regions where $$f$$ is analytic, ie where $$\bar{\p} f(z) = 0$$, then we can write it as a Taylor series in $$z$$ alone, just because the rest of the terms are $$0$$:
+Specifically in regions where $$f$$ is analytic, ie where $$\p_{\bar{z}} f(z) = 0$$, then we can write it as a Taylor series in $$z$$ alone, just because the rest of the terms are $$0$$:
 
 $$f(z + \D z) =  \big[ \sum \frac{(\D z \p_z)^n}{n!} \big] f(z) \tag{Complex-Analytic}$$
 
@@ -270,21 +272,21 @@ Fourier series are closely related to contour integrals, and thus to complex Tay
 
 If a function $$f(x)$$ on the real axis has a Fourier series in the finite interval $$(0,2 \pi )$$, then it can be written as a series of oscillators with different frequencies:
 
-$$f(x) = \sum F(q) e^{i q x}$$
+$$f(x) = \sum F(p) e^{i p x}$$
 
 The Fourier transform extracts these $$F(q)$$ coefficents:
 
-$$F(q) = \frac{1}{2 \pi} \int e^{-iqx} f(x) dx$$
+$$F(p) = \frac{1}{2 \pi} \int_0^{2 \pi} e^{-ipx} f(x) dx$$
 
-Now we change variables: $$z = e^{\frac{i }{}x}$$, $$x = \frac{1}{i} \ln z$$ and $$dx = \frac{dz}{ i z}$$.
+Now we change variables: $$z = e^{ix}$$, $$x = \frac{1}{i} \ln z$$ and $$dx = \frac{dz}{ i z}$$. This turns the integral on a line segment $$(0, 2\pi)$$ into a _contour integral_ around the origin (obviously this is why I used the range $$(0, 2\pi)$$ in the first place. In the general case the change of variables is more complicated to get it into this form.)
 
 $$f(\frac{1}{i} \ln z) = \sum_q F(q) z^q$$
 
 $$\begin{aligned}
-F(p) &= \frac{1}{2 \pi}  \oint z^{-p} f(x) \frac{dz}{iz} \\
-&= \frac{1}{2 \pi i} \oint \frac{1}{ z^{p+1}} \sum F(q) z^q dz \\
-&= \frac{1}{2 \pi i} \oint \sum \frac{F(q)}{ z^{p - q + 1}} dz \\
-&= \oint \delta(p - q) F(q) dz \\
+F(p) &= \frac{1}{2 \pi}  \oint_C z^{-p} f(x) \frac{dz}{iz} \\
+&= \frac{1}{2 \pi i} \oint_C \frac{1}{ z^{p+1}} \sum_{p'} F(p') z^{p'} dz \\
+&= \frac{1}{2 \pi i} \oint_C \sum_{p'}  \frac{F(p')}{ z^{p - p' + 1}} dz \\
+&= \sum_{p'}  \delta(p - p') F(p') \\
 &= F(p)
 \end{aligned}$$
 
