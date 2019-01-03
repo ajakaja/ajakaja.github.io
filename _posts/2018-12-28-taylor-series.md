@@ -56,7 +56,7 @@ Which equals $$\frac{f'(x)}{g'(x)}$$ if the limit exists, and otherwise might be
 
 ## 2. Multivariable
 
-A _multivariate_ Taylor series looks messier at first. Let's look at it in two variables, with $$f_x \equiv \p_x f(\b{x})$$ and $$\b{v} = (v_x, v_y)$$, to get it into a more usable form:
+The multivariable Taylor series looks messier at first, so let's start with only two variables, writing $$f_x \equiv \p_x f(\b{x})$$ and $$\b{v} = (v_x, v_y)$$, and we'll work it into a more usable form.
 
 $$\begin{aligned} 
 f(\b x + \b v) &= f(\b x) + [f_x v_x + f_y v_y] + \frac{1}{2!} [f_{xx} v_x^2 + 2 f_{xy} v_x v_y + f_{yy} v_y^2] \\
@@ -198,9 +198,12 @@ u_x &= v_y \\
 u_y &= - v_x
 \end{aligned}$$
 
----------
+This is also equivalent to saying that $$F$$ is complex-differentiable at $$z$$, since for $$\p_z F(z) = \lim_{dz \ra 0} \frac{F(z + dz) - F(z)}{dz}$$ to be true, the limit must exist, which requires it be the same from any direction. For that to be true there must be $$\bar{z}$$ terms in $$F$$, because $$\lim_{dz \ra 0} \frac{\bar{dz}}{dz} = \lim_{(x,y) \ra 0} \frac{x - iy}{x + iy} $$ gives different answers depending on the path taken to $$0$$:
 
-Here's on aside on why $$\p_{\bar{z}} \frac{1}{z} = 2 \pi i \delta(z, \bar{z})$$ is true:
+$$
+-1 = \lim_{\e \ra 0} \frac{\e - i \e^2}{\e + i \e^2} \neq \lim_{\e \ra 0} \frac{\e^2 - i \e}{\e^2 + i \e} = 1 $$
+
+Anyway, here's on aside on why $$\p_{\bar{z}} \frac{1}{z} = 2 \pi i \delta(z, \bar{z})$$ is true:
 
 <aside class="toggleable" id="complex" placeholder="<b>Aside</b>: Conjugate derivatives <em>(click to expand)</em>">
 
@@ -269,9 +272,12 @@ $$f(z + \D z) =  \big[ \sum \frac{(\D z \p_z)^n}{n!} \big] f(z) \tag{Complex-Ana
 
 (The commutativity of partial derivatives guarantees that none of the $$z$$-derivatives of $$f(z)$$ will themselves have non-zero $$\bar{z}$$-derivatives.)
 
------
+By the way: Fourier series are closely related to contour integrals, and thus to complex Taylor series. The short version is that, roughly, you can write $$ \frac{1}{2 \pi i} \oint_C \frac{F(z)}{z^{k+1}} dz$$ as $$\frac{1}{2 \pi} \oint_C F(re^{i \theta})e^{-ik\theta} d\theta$$, which is clearly a Fourier transform suitable $$F$$.
 
-Fourier series are closely related to contour integrals, and thus to complex Taylor series. Here's a heuristic argument, skipping all the analytical details.
+
+<aside class="toggleable" id="fourier" placeholder="<b>Aside</b>: Contour Integrals as Fourier Transforms <em>(click to expand)</em>">
+
+Here's a heuristic argument, skipping all the analytical details because I don't know or care about them.
 
 If a function $$f(x)$$ on the real axis has a Fourier series in the finite interval $$(0,2 \pi )$$, then it can be written as a series of oscillators with different frequencies:
 
@@ -307,8 +313,10 @@ i \oint_C f(re^{i \theta})e^{-ik\theta} d\theta
 
 The first integral term vanishes because $$r$$ is the same on both ends of the contour. The second integral is, or is massageable into (if the contour takes a funny path), a Fourier transform.
 
-I like this realization. It means I don't have to spend too much time thinking about what's going on with contour integrals, because they're a disguised instance of something I already know.
+</aside>
 
+
+I like this realization. Of the two concepts, I feel like Fourier transforms deal with the more tangible concept -- of breaking a function down into its frequency components. The contour integral turns out to measure which components of $$F$$ are rotating in such a way as to exactly cancel out the rotating path around the pole at $$\frac{1}{z}$$. Though I'm not sure how to reconcile the fact that contour integrals can count paths around multiple poles at the same time -- that seems equivalent to taking Fourier transforms in multiple frequencies in a single integral, and I'm not sure why you would want to do that.
 
 ---------
 

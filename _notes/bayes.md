@@ -168,7 +168,7 @@ In log odds, if $$A$$ is "twice as likely as" $$B$$, then $$\log (A) = 1 + \log 
 
 ## 5. Conservation of Expected Evidence
 
-This is an obscure idea which I think is quite helpful intuitively. It formalizes the idea that "absence of evidence _is_ evidence of absence_", in the sense that if a positive result gives evidence for a hypothesis, a negative one _must_ give evidence against it.
+This is an obscure idea which I think is quite helpful intuitively. It formalizes the idea that "absence of evidence _is_ evidence of absence", in the sense that if a positive result gives evidence for a hypothesis, a negative one _must_ give evidence against it.
 
 We can write $$P(H)$$, the prior probability of $$H$$, like this:
 
@@ -180,9 +180,9 @@ Suppose that $$P(H \| E) > P(H)$$ -- $$E$$ is positive evidence for $$H$$. Then 
 
 $$\D P(H | E) P(E) = - \D P(H | \neg E) P(\neg E)$$
 
-This has been called **conservation of expected evidence**. If seeing $$E$$ makes you think that $$H$$ is _more_ likely, then seeing $$\neg E$$ _must_ make you think that $$H$$ is _less_ likely. Moreover, if you already believe that $$P(H)$$ is the _true_ probability of $$H$$, then you don't _expect_, on average, for evidence to change your opinion on that _at all_ -- the expected change $$\D P(H)$$ is $$0$$.
+This has been called **conservation of expected evidence**: If seeing $$E$$ makes you think that $$H$$ is _more_ likely, then seeing $$\neg E$$ _must_ make you think that $$H$$ is _less_ likely. Moreover, if you already believe that $$P(H)$$ is the _true_ probability of $$H$$, then you don't _expect_, on average, for evidence to change your opinion on that _at all_ -- the expected change $$\D P(H)$$ is $$0$$.
 
-Of course, if you're _wrong_ about $$P(H)$$, then on average in reality you will change your mind after $$E$$, and on average it will lead you in the direction of the true value of $$P(H)$$. If you had _expected_ to change your mind about $$P(H)$$ upon observing $$E$$ (in one direction or the other), you could just imagine testing $$E$$ and make the change anyway. You already know enough to update your prior without doing another experiment. That means that you have to expect for $$P(H)$$ not to change.
+On the other hand, if you're _wrong_ about $$P(H)$$, then on average you will change your mind after testing $$E$$, and on average it will lead you in the direction of the true value of $$P(H)$$. If you had _expected_ to change your mind about $$P(H)$$ upon observing $$E$$ (in one direction or the other), you could just _imagine_ testing $$E$$ and then making the change anyway - you already know enough to update your hypothesis without doing another experiment. This means that the only stable state, where you have incorporated all available evidence, is when you don't the test of $$E$$ to change your estimate of $$P(H)$$ at all.
 
 More [here](https://www.lesswrong.com/posts/jiBFC7DcCrZjGmZnJ/conservation-of-expected-evidence), including the delightful real-life example that if living a sinful life makes a medieval woman more likely to be a witch, then living a virtuous life _must_ make a medieval woman _less_ likely to be a witch.
 
