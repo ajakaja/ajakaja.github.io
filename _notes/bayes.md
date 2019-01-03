@@ -101,11 +101,11 @@ Read aloud:
 
 > The **posterior odds** $$O(H \| E : \neg H : E) $$ of $$H : \neg H$$ after observing evidence $$E$$ is equal to the **prior odds** $$O(H : \neg H)$$ times the **relative likelihood** $$\frac{P(E \| H)} {P(E \| \neg H)}$$. 
 
-Relative Likelihood is a new term. It's also called the **Bayes Factor**, and it measures how much $$E$$ recommends $$H$$ versus $$\neg H$$. For instance, seeing that the ground is wet suggests a very high value for the hypothesis "it rained recently", meaning that it recommends this hypothesis far more than the alternative ("it did not rain recently"). This term isn't an _odds_ exactly, but it is a _ratio of rates_. It means: "the rates of $$E$$ given $$H$$ compared to the rate of $$E$$ given $$\neg H$$". This is why I emphasized that odds are sort of like rates above -- the intuition goes a long way.
+Relative Likelihood is a new term. It's also called the _Bayes Factor_, and it measures how much $$E$$ recommends $$H$$ versus $$\neg H$$. For instance, seeing that the ground is wet suggests a very high value for the hypothesis "it rained recently", meaning that it recommends this hypothesis far more than the alternative ("it did not rain recently"). This term isn't an _odds_ exactly, but it is a _ratio of rates_. It means: "the rates of $$E$$ given $$H$$ compared to the rate of $$E$$ given $$\neg H$$". This is why I emphasized that odds are sort of like rates above -- the intuition goes a long way.
 
 Finally, even though I just wrote everything in odds ... it tends to be useful to just write odds as fractions anyway; it's a lot more familiar that way:
 
-$$\underbrace{\frac{(H | E)}{(\neg H | E)}}_{\text{Posterior Odds}} = \underbrace{ \frac{(E | H)}{(E | \neg H)}}_{\text{Relative Likelihood}} \underbrace{\frac{(H)}{(\neg H)}}_{\text{Prior Odds}} \tag{Bayes, Odds Form}$$
+$$\boxed{\underbrace{\frac{(H | E)}{(\neg H | E)}}_{\text{Posterior Odds}} = \underbrace{ \frac{(E | H)}{(E | \neg H)}}_{\text{Relative Likelihood }} \times \underbrace{\frac{(H)}{(\neg H)}}_{\text{Prior Odds}} \tag{Bayes, Odds Form}}$$
 
 This is my favorite way to write Bayes' Rule. All the terms sit happily next to each other, and multiply. In this form, the Bayesian update process is simple multiplication. Just like this:
 
@@ -119,7 +119,9 @@ $$\frac{(H \| E)}{(\neg H \| E)} = 10 \times \frac{1}{5} = 2$$
 
 And $$2:1$$ odds means $$P(H \| E) = \frac{2}{3}$$.
 
-This is _much easier_ to do on the fly then the probability version -- once you get the hang of thinking in terms of rates, which takes a bit of getting used to.
+This is _much easier_ to do on the fly then the probability version -- once you get the hang of thinking in terms of rates, which takes a bit of getting used to. Here's how it sounds in my head:
+
+> $$5$$ times as many people are healthy compared to sick, but the rate of sick reports on sick people is 10x the rate on healthy people, so that's $$10:5 = 2:1$$ odds that a sick report is actually sick, which is $$\frac{2}{3}$$.
 
 ------
 
