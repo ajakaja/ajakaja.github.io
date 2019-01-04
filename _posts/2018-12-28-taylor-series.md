@@ -17,6 +17,8 @@ Here is a survey of understandings on each of the main types of Taylor series:
 
 I thought it would be useful to have everything I know about these written down in one place.
 
+These notes are not pedagogical; they're for crystallizing everything when you already have a loose understanding of. Particularly, I don't want to have to remember the difference between all the different flavors of Taylor series, so I find it helpful to just cast them all into the same form.
+
 In these notes I am going to ignore discussions of convergence so that more ground can be covered. Generally it's important to address convergence in order to, well, not be wrong. And I'm certain that I've made statements which are wrong below. But I am just trying to make sure I understand what happens when everything works, because in my interests (physics) it usually does.
 
 <!--more-->
@@ -40,6 +42,22 @@ Or even as a single exponentiation of the derivative operator, which is commonly
 
 $$f(x + \e) = e^{\e \p_x} f(x)$$
 
+I also think it's useful to interpret the Taylor series equation as resulting from repeated integration:
+
+$$\begin{aligned}
+f(x) &= f(0) + \int_0^x f'(x_1) dx_1 \\
+&= f(0) + \int_0^x [ f'(0) + \int_0^{x_1} f''(x_2) dx_2 ] dx_1 \\
+&= f(0) + \int_0^x [ f'(0) + \int_0^{x_1} [ f''(0) + \int_0^{x_2} f'''(x_3) dx_2  ] dx_2  ]dx_1 \ldots \\
+&= f(0) + \int f'(0) + \iint f''(0) + \iiint f'''(0) + \ldots \\
+&= f(0) + x f'(0) + \frac{x^2}{2} f''(0) + \frac{x^3}{3!} f'''(0) + \ldots
+\end{aligned}$$
+
+This basically makes sense as soon as you understand integration, plus it makes obvious that the series only works when all of the integrals are actually equal to the values of the previous function (so you can't take a series of $$\frac{1}{1-x}$$ which passes $$x=1$$, because you can't exactly integrate past it (though there are tricks))
+
+... plus it makes sense in pretty much any space you can integrate over.
+
+... _plus_ it makes it obvious how to truncate the series, how to create the remainder term, and it even shows you how you could -- if you were so inclined -- have each derivative be evaluated at a different point, such as $$f(x) = f(0) + \int_1^x f'(x_1) dx_1 =f(0) + (x-1) f'(1)  + \frac{(x-1)(x-2)}{2} f''(2) + \ldots$$, which I've never even seen done before (except for [here?](https://en.wikipedia.org/wiki/Finite_difference#Newton's_series)), though good luck with figuring out convergence if you do that.
+
 -----
 
 [L'Hôpital's rule](https://en.wikipedia.org/wiki/L%27H%C3%B4pital%27s_rule) about evaluating limits which give indeterminate forms follows naturally if the functions are both expressible as Taylor series. If $$f(x) = g(x) = 0$$, then:
@@ -50,7 +68,7 @@ $$\begin{aligned}
 &= \lim_{\e \ra 0} \frac{f'(x+\e)}{g'(x + \e)} 
 \end{aligned}$$
 
-Which equals $$\frac{f'(x)}{g'(x)}$$ if the limit exists, and otherwise might be solvable by applying the rule recursively. None of this works of course if limit doesn't exist. If $$f(x) = g(x) = \infty$$, evaluate $$\lim \frac{1/g(x)}{1/f(x)}$$ instead.
+Which equals $$\frac{f'(x)}{g'(x)}$$ if the limit exists, and otherwise might be solvable by applying the rule recursively. None of this works of course if limit doesn't exist. If $$f(x) = g(x) = \infty$$, evaluate $$\lim \frac{1/g(x)}{1/f(x)}$$ instead. If the indeterminate form is $$\infty - \infty$$, evaluate $$\lim f(x) - g(x)$$ instead.
 
 ------
 
