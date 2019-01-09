@@ -36,7 +36,7 @@ $$
 
 It's useful to write this as one big operator acting on $$f(x)$$:
 
-$$\boxed{f(x + \e) = \big[ \sum_n \frac{\p^n_x \e^n}{n!} \big] f(x)} \tag{Single-Variable}$$
+$$\boxed{f(x + \e) = \big[ \sum_{n=0}^\infty \frac{\p^n_x \e^n}{n!} \big] f(x)} \tag{Single-Variable}$$
 
 Or even as a single exponentiation of the derivative operator, which is commonly done in physics, but you probably shouldn't think too hard about what it [mmeans](https://en.wikipedia.org/wiki/Exponential_map_(Lie_theory)):
 
@@ -93,7 +93,7 @@ $$\nabla f(\b{x}) $$ is the gradient of $$f$$ (the vector of partial derivatives
 $$\begin{aligned} 
 f(\b x + \b v) &= f(\b x) + (v_x \p_x + v_y \p_y) f(\b x) + \frac{(v_x \p_x + v_y \p_y)^2}{2!} f(\b x) + \ldots  \\
 &= \big[ \sum_n \frac{(v_x \p_x + v_y \p_y)^n}{n!} \big] f(\b x) \\
-&= \boxed{  \big[ \sum_n \frac{(\b{v} \cdot \vec{\p})^n}{n!} \big] f(\b x) } \end{aligned}
+&= \boxed{  \big[ \sum_{n=0}^\infty \frac{(\b{v} \cdot \vec{\p})^n}{n!} \big] f(\b x) } \end{aligned}
 \tag{Scalar Field}
 $$
 
@@ -162,7 +162,7 @@ The full expansion (for $$X,Y$$ of any number of coordinates) is written like th
 $$\begin{aligned} \b{f}(\b{x} + \b{v}) &= \b{f} + \p_i \b{f} \cdot v_i + \frac{1}{2!}(\p_i \p_j \b{f}) \cdot v_i v_j + \frac{1}{3!} (\p_i \p_j \p_k \b{f}) \cdot v_i v_j v_k + \ldots \\ 
 &= \b{f} + \p_i \b{f} \cdot v_i + \frac{1}{2!}(\p_i \p_j) \b{f} \cdot (v_i v_j) + \ldots \\
 &= \b{f} +(\b{v} \cdot \vec{\p}) \b{f} + \frac{(\b{v} \cdot \vec{\p})^2}{2!} \b{f} + \ldots \\
-\b{f}(\b{x} + \b{v}) &= \boxed{ \big[ \sum_{n} \frac{(\b{v} \cdot \vec{\p})^n}{n!} \big] \b{f}(\b{x}) }
+\b{f}(\b{x} + \b{v}) &= \boxed{ \big[ \sum_{n=0}^\infty \frac{(\b{v} \cdot \vec{\p})^n}{n!} \big] \b{f}(\b{x}) }
 \tag{Vector Field}
 \end{aligned}$$
 
@@ -194,9 +194,9 @@ $$\bar{z} \lra x\b{x} - y\b{y}$$
 
 Therefore we can write it as a Taylor series in these two variables:
 
-$$f(z + \D z, \bar{z} + \D \bar{z}) = \big[ \sum \frac{(\D z \p + \D \bar{z} \p_{\bar{z}})^n}{n!} \big] f(z, \bar{z})$$
+$$f(z + \D z, \bar{z} + \D \bar{z}) = \big[ \sum_{n=0}^\infty \frac{(\D z \p + \D \bar{z} \p_{\bar{z}})^n}{n!} \big] f(z, \bar{z})$$
 
-One subtlety: it should always be true that $$\p_{x_i} \b{x}^j = 1_{i = j}$$ when changing variables. Because $$z$$ and $$\bar{z}$$, when considered as vectors in $$\bb{R}^2$$ are not _unit_ vectors, there is a normalization factor required on the partial derivatives. Also, when written as elements of $$\bb{C}$$, the signs swap.
+One subtlety: it should always be true that $$\p_{x_i} \b{x}^j = 1_{i = j}$$ when changing variables. Because $$z$$ and $$\bar{z}$$, when considered as vectors in $$\bb{R}^2$$, are not _unit_ vectors, there is a normalization factor required on the partial derivatives. Also, for $$\bb{C}$$ the factors of $$i$$ cause the signs to swap:
 
 $$\begin{aligned}
 \p_z &\underset{\bb{C}}{=} \frac{1}{2}(\p_x - i \p_y) \underset{\bb{R}^2}{=} \frac{1}{2}(\p_{\b{x}} + \p_{\b{y}}) \\
@@ -212,7 +212,7 @@ In complex analysis, for some reason, $$\bar{z}$$ is not treated as a true varia
 
 So when we discuss Taylor series of functions $$\bb{C} \ra \bb{C}$$, we usually mean this:
 
-$$\boxed{f(z + \D z) =  \big[ \sum \frac{(\D z \p_z)^n}{n!} \big] f(z)} \tag{Complex-Analytic}$$
+$$\boxed{f(z + \D z) =  \big[ \sum_{n=0}^\infty \frac{(\D z \p_z)^n}{n!} \big] f(z)} \tag{Complex-Analytic}$$
 
 If we write $$f(z(x,y)) = u(x,y) + i v(x,y)$$, the requirement that $$\p_{\bar{z}} f(z) = \frac{1}{2}(\p_x + i \p_y) f(z) = 0$$ becomes the [Cauchy-Riemann Equations](https://en.wikipedia.org/wiki/Cauchy%E2%80%93Riemann_equations) by matching real and complex parts:
 
@@ -231,7 +231,7 @@ I find this to be quite surprising. Here's an aside on why it's true:
 
 <aside class="toggleable" id="complex" placeholder="<b>Aside</b>: Conjugate derivatives <em>(click to expand)</em>">
 
-The explanation I've seem comes in a few forms, and is usually done in $$3D$$ regarding the divergence of $$\frac{1}{r^2}$$. One version for $$\bb{C}$$ goes like this: 
+The explanation I've seen comes in a few forms, and is usually done in $$3D$$ regarding the divergence of $$\frac{1}{r^2}$$. One version for $$\bb{C}$$ goes like this: 
 
 Let $$C$$ be a circle of radius $$R$$ around the origin, and integrate $$\frac{1}{z}$$ in polar coordinates, using the fact that $$dz = d(re^{i \theta}) = dr e^{i \theta} + ire^{i \theta} d\theta$$.
 
@@ -241,7 +241,7 @@ $$\begin{aligned}
 &= 0 + 2 \pi i
 \end{aligned}$$
 
-Now apply Stoke's theorem to the integral (using the notations of [differential forms](https://en.wikipedia.org/wiki/Differential_form)):
+Now apply Stokes' theorem to the integral (using the notations of [differential forms](https://en.wikipedia.org/wiki/Differential_form)):
 
 $$\begin{aligned}
 2 \pi i  &= \iint_D d(\frac{1}{z} dz) \\
@@ -272,7 +272,7 @@ Any negative real number has a logarithm like $$\ln (-1) = i \pi$$, due to the f
 
 </aside>
 
-Importantly, $$\p_{\bar{z}} z^n \neq 0 $$ is _only_ true for $$n = -1$$. This property gives rise to the entire method of [residues](https://en.wikipedia.org/wiki/Residue_theorem), because if $$f(z) = \frac{f_{-1}(0) }{z} + f^*(z)$$, where $$f^*(z)$$ has no terms of order $$\frac{1}{z}$$, then integrating a contour $$C$$ around a region $$D$$ which contains $$0$$ gives, via Stoke's theorem:
+Importantly, $$\p_{\bar{z}} z^n \neq 0 $$ is _only_ true for $$n = -1$$. This property gives rise to the entire method of [residues](https://en.wikipedia.org/wiki/Residue_theorem), because if $$f(z) = \frac{f_{-1}(0) }{z} + f^*(z)$$, where $$f^*(z)$$ has no terms of order $$\frac{1}{z}$$, then integrating a contour $$C$$ around a region $$D$$ which contains $$0$$ gives, via Stokes' theorem:
 
 $$\begin{aligned}
 \oint_C f(z) dz &= \iint_D \p_{\bar{z}} \big[ \frac{f_{-1}(0) }{z} + f^*(z) \big] \; d\bar{z} \^ dz \\
@@ -282,7 +282,7 @@ $$\begin{aligned}
 
 (If the $$\bar{z}$$ derivative isn't $$0$$, you get the [Cauchy-Pompeiu formula](https://en.wikipedia.org/wiki/Cauchy%27s_integral_formula#Smooth_functions) for contour integrals immediately.)
 
-By the way: Fourier series are closely related to contour integrals, and thus to complex Taylor series. The short version is that, roughly, you can write $$ \frac{1}{2 \pi i} \oint_C \frac{F(z)}{z^{k+1}} dz$$ as $$\frac{1}{2 \pi} \oint_C F(re^{i \theta})e^{-ik\theta} d\theta$$, which is clearly a Fourier transform suitable $$F$$.
+By the way: Fourier series are closely related to contour integrals, and thus to complex Taylor series. You can change variables to write $$ \frac{1}{2 \pi i} \oint_C \frac{F(z)}{z^{k+1}} dz$$ as $$\frac{1}{2 \pi} \oint_C F(re^{i \theta})e^{-ik\theta} d\theta$$, which is clearly a Fourier transform for suitable $$F$$.
 
 
 <aside class="toggleable" id="fourier" placeholder="<b>Aside</b>: Contour Integrals as Fourier Transforms <em>(click to expand)</em>">
