@@ -13,7 +13,6 @@ Here is a survey of understandings on each of the main types of Taylor series:
 2. multivariable $$\bb{R}^n \ra \bb{R}$$
 3. multivariable $$\bb{R}^n \ra \bb{R}^m$$
 4. complex $$\bb{C} \ra \bb{C}$$
-5. on a curved space (not yet written)
 
 I thought it would be useful to have everything I know about these written down in one place.
 
@@ -326,9 +325,3 @@ The first integral term vanishes because $$r$$ is the same on both ends of the c
 I like this realization. Of the two concepts, I feel like Fourier transforms deal with the more tangible concept -- of breaking a function down into its frequency components. The contour integral turns out to measure which components of $$F$$ are rotating in such a way as to exactly cancel out the rotating path around the pole at $$\frac{1}{z}$$. Though I'm not sure how to reconcile the fact that contour integrals can count paths around multiple poles at the same time -- that seems equivalent to taking Fourier transforms in multiple frequencies in a single integral, and I'm not sure why you would want to do that.
 
 </aside>
-
----------
-
-## 5 Curved space
-
-I'm not ready to write this section yet.
