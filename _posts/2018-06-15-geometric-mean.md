@@ -139,9 +139,9 @@ $$\GM \Big[ \frac{x_i}{y_i} \Big] = \frac{\GM[x_i]}{\GM[y_i]}$$
 
 **Important note on doing statistics with a computer**:
 
-For the love of all things that are good, _do not program the formula $$\GM[x] = \sqrt[n]{\prod x_i}$$ into a computer (if you do not know what you are doing)_. Use a built-in library for it, or use one of the other two formulas ($$= e^{\AM[\log x]}$$ or $$= \prod \sqrt[n]{x_i}$$). Multiplying arbitrarily long lists of numbers together can overflow the data values in some programming languages, causing them to wrap around to negative numbers, rendering all your math utterly wrong. In particularly unfortunate cases, the resulting value will look _close_ to what it should be, yet have been computed an entirely incorrect way.
+For the love of all things that are good, _do not program the formula $$\GM[x] = \sqrt[n]{\prod x_i}$$ into a computer_ (if you do not know what you are doing). Use a built-in library for it, or use one of the other two formulas ($$= e^{\AM[\log x]}$$ or $$= \prod \sqrt[n]{x_i}$$). Multiplying arbitrarily long lists of numbers together can overflow the data values in some programming languages, causing them to wrap around to negative numbers, rendering all your math utterly wrong. In particularly unfortunate cases, the resulting value will, by chance, be _close_ and so seem reasonable, yet have been computed an entirely wrong way.
 
-(If you're in a data-science-oriented language like R, you'll probably get away with it, cause they tend to avoid including [footguns](https://en.wiktionary.org/wiki/footgun). If you're in C, you won't.)
+If you're in a data-science-oriented language like R, you _might_ get away with it, cause they tend to avoid including [footguns](https://en.wiktionary.org/wiki/footgun). If you're in, like, C, you won't.
 
 </div>
 
@@ -161,7 +161,7 @@ $$\begin{aligned} e^{AM \pm SD} &= e^{AM}e^{\pm SD} \\
 
 Note that $$ \GM[x] \text{GSD}[x]^{\pm 1}$$ means the two values are $$(\GM[x] \text{GSD}[x], \frac{\GM[x]}{\text{GSD}[x]})$$. Clearly the GSD should be not too different from $$1$$, such that 68.2% of values fall in the range of $$\text{GSD}[x]^{\pm 1}$$.
 
-Analogously, if your data is well-described by a GM + GSD, it's _not_ well-described by an AM + SD, because it should be positively skewed, while your SD would suggest that the data is spread evenly around the mean. (Consider how weird it would be to say that "X% of the data falls within $$\frac{\mu}{2}$$ and $$2 \mu$$" for non-skewed data like a normal distribution!)
+Analogously, if your data is well-described by a GM + GSD, it's probably _not_ well-described by an AM + SD, because it should be positively skewed, while your SD would suggest that the data is spread evenly around the mean. (Consider how weird it would be to say that "X% of the data falls within $$\frac{\mu}{2}$$ and $$2 \mu$$" for non-skewed data like a normal distribution.)
 
 If reporting confidence intervals for a given $$P$$-value, using geometric statistics, they will also not be the same distance from the geometric mean. For $$P=0.95$$, with z-score $$z = 1.96$$ (ie laughably permissible, false positives everywhere), the confidence intervals are:
 
@@ -255,16 +255,17 @@ Since you don't normally know $$\mu_G$$, you can use the sample mean $$\GM[x]$$,
 
 $$\text{GSE}[x, N] =  \frac{\GM[x]}{\sqrt{N-1}} \text{SD}[\log x]$$
 
-What this means is that the distribution for "our calculation of $$\GM[x]$$ from $$N$$ samples" has probability distribution:
+The geometric standard error tells us that "our calculation of $$\GM[x]$$ from $$N$$ samples" has a probability distribution:
 
-$$\GM_N[x] \sim \cal{N}[\mu_G, \frac{\mu_G}{\sqrt{N}} \sigma_{\log x}]$$
+$$\GM_N[x] \sim \cal{N}(\mu_G, \frac{\mu_G}{\sqrt{N}} \sigma_{\log x}) = \cal{N}(\mu_G, GSE[x,N])$$
 
 And the previous formula is our best estimate of it, given a sample of $$N$$ values.
 
-On the one hand, this is weird to compute. Until now we did not care about $$\sigma_{\log x}$$. (And I assume, but am actually not sure, that $$\sigma_{\log x}$$ has another factor of $$\frac{1}{N-1}$$ in it, since it's _also_ computed from the sample?) But it should, for sufficiently high $$N$$, give the correct numerical difference between $$\GM[x]$$ and the true $$\mu_x$$. 
+This is weird to compute. Until now we did not care about $$\sigma_{\log x}$$. (And I assume, but am actually not sure, that $$\sigma_{\log x}$$ has another factor of $$\frac{1}{N-1}$$ in it, since it's _also_ computed from the sample?) But it should, for sufficiently high $$N$$, give the correct numerical difference between $$\GM[x]$$ and the true $$\mu_x$$. 
 
-I'm not sure it's a good idea to use the GSE, because I don't think people will know how to think about it. It is a bit unintuitive: it is the only statistic we've talked about that is _additive_ (so it's talking about the difference between $$\GM_N[x] - \mu_G$$, rather than $$\frac{GM_N[x]}{\mu_G}$$). It's based on the idea that, even for log-normal data, the sample geometric mean $$\GM_N[x]$$ is normally distributed (notice that I did not say _log_-normal, though it may also be that! Even log-normal distribution samples are normally distributed for high-enough $$N$$! They are just also massively skewed). Maybe some subfield thinks this makes perfect sense as a summary statistic -- I don't know. I'd avoid it.
+I'm not sure it's a good idea to use the GSE, because I don't think people will know how to think about it. It is a bit unintuitive: it is the only statistic we've talked about that is _additive_ (so it's talking about a difference $$\GM_N[x] - \mu_G$$, rather than a ratio $$\frac{GM_N[x]}{\mu_G}$$). It's based on the idea that, even for log-normal data, the sample geometric mean $$\GM_N[x]$$ is normally distributed. (I did not say _log_-normal, though it may also be that! Even log-normal distribution samples are normally distributed for high-enough $$N$$ -- they are just also massively skewed.) Maybe some subfield thinks this makes perfect sense as a summary statistic -- I don't know. I would avoid it.
 
+----------
 
 ## Trivia: Some Other Means
 
@@ -277,9 +278,9 @@ For instance:
 * AM: $$f(x) = x$$
 * GM: $$f(x) = \log x$$
 * [Harmonic Mean](https://en.wikipedia.org/wiki/Harmonic_mean): $$f(x) = x^{-1}$$
-	* Good for averaging _rates_ of things, like the rates of a car over different legs of a trip. If you travel $$60$$ mph one way and $$40$$ mph the other way over the same distance cause of some traffic, then your average speed is $$\frac{2}{\frac{1}{60} + \frac{1}{40}} \approx 48 \text{ mph}$$, because it takes the same times as if you went $$48$$ mph the whole time.
+	* Good for averaging _rates_ of things, like the rates of a car over different legs of a trip. If you travel $$60$$ mph one way and $$40$$ mph the other way over the same distance (maybe there was some traffic), then your average speed is $$\frac{2}{\frac{1}{60} + \frac{1}{40}} \approx 48 \text{ mph}$$, which is useful: the total travel time is equal if you travel $$48$$ mph the whole time.
 * [Root Mean Square](https://en.wikipedia.org/wiki/Root_mean_square): $$f(x) = x^2$$
-	* Used in electrical engineering, especially to average the strength of electrical signals. Interestingly, when $$\AM[x]=0$$ (such as for an alternating current), then $$\text{RMS}(x) = \sigma_x$$, the regular standard deviation.
+	* Used in electrical engineering, especially to measure the average strength of electrical signals. When $$\AM[x]=0$$ (such as for an alternating current), then $$\text{RMS}(x) = \sigma_x$$, the regular standard deviation.
 * [Generalized means](https://en.wikipedia.org/wiki/Generalized_mean): screw it, $$f(x) = x^p$$ for any $$p$$.
 	* $$\infty$$-mean: set $$p=\infty$$ and you get, weirdly, $$\E_{\infty}[x] = \max(x)$$.
 	* $$-\infty$$-mean: it's just $$\min(x)$$
