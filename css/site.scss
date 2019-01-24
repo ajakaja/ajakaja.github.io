@@ -403,6 +403,10 @@ span .inline-footnote .closed {
   text-indent: 40px;
 }
 
+.inline-equation {
+  white-space: nowrap;
+}
+
 p.indent {
   text-indent: 2em;
 }
@@ -459,4 +463,23 @@ figcaption {
 img.border {
   border: 2px solid #ddd;
   border-radius: 2px;
+}
+
+.entry > table {
+  width: 90%;
+  margin: auto;
+
+  thead {
+    background: #ddd;
+  }
+
+  th, td {
+    padding: 3px;
+    text-align: left;
+    border-left: 1px #ddd solid;
+    border-right: 1px #ddd solid;
+  }
+  tbody {
+    border: 1px #ddd solid;
+  }
 }
