@@ -11,9 +11,9 @@
     <script type="text/javascript" src="/js/auto-render.min.js"></script>
     <link rel="stylesheet" href="/css/katex.min.css" type="text/css"/>{% endif %}
     {% if page.footnotes %}<link rel="stylesheet" href="/css/jquery.inline-footnotes.css" type="text/css"/>
-    <script type="text/javascript" src="/js/jquery.inline-footnotes.min.js"></script>{% endif %}
+    <script type="text/javascript" src="/js/jquery-overlaps.js"></script>
+    <script type="text/javascript" src="/js/jquery.inline-footnotes.js"></script>{% endif %}
     {% if page.aside %}{% include hidden-aside.html %}{% endif %}
-    {% include analytics.html %}
 </head>
 <body>
 
@@ -29,8 +29,6 @@
                 <a href="/">[a blog]</a>
                 <span style="text-decoration: line-through; color: #999">&nbsp;&nbsp;&nbsp;&nbsp;</span>
                 <a href="/about">[about]</a>
-                <span style="text-decoration: line-through; color: #999">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                <a href="/notes">[notes]</a>
               </p>
           </div>
 

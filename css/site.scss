@@ -7,6 +7,7 @@
 
 @import "reset";
 @import "variables";
+@import "jquery.inline-footnotes";
 // Syntax highlighting @import is at the bottom of this file
 
 /**************/
@@ -390,6 +391,12 @@ div .footnotes {
 
 span .inline-footnote .closed {
   font-size: 1em;
+}
+
+sup[id^="fnref"] {
+  top: -0.5em;
+  line-height: 0;
+  font-size: 0.75em;
 }
 
 .box {
