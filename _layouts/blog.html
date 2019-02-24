@@ -7,6 +7,12 @@ layout: default
   {% if page.subtitle %}
   <h3><em>{{ page.subtitle }}</em></h3>
   {% endif %}
+  <div class="date">
+    [{{ page.date | date: "%B %e, %Y" }}]
+  </div>
+  <hr>
+
+
 
   <div class="entry">
     {{ content }}
@@ -14,9 +20,6 @@ layout: default
 
   <hr>
 
-  <div class="date">
-    [posted {{ page.date | date: "%B %e, %Y" }}]
-  </div>
   
   <div class="pagenavigation">
     {% if page.previous.url %}
