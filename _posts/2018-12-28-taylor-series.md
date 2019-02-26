@@ -1,5 +1,5 @@
 ---
-layout: article
+layout: blog
 title: "All About Taylor Series"
 footnotes: true
 math: true
