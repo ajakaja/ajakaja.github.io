@@ -19,17 +19,17 @@ $$F(t) = 1 - S(t) = \frac{N_0 - N(t)}{N_0}$$
 
 which measures how many people have died at time $$t$$, and of course $$F(t) = P(T < t)$$. The **death rate** per time is therefore 
 
-$$f(t) = F'(t) = -S'(t) = 1 - \frac{N'(t)}{N_0} = \frac{N_0 - N'(t)}{N_0}$$
+$$f(t) = F'(t) = -S'(t) = - \frac{N'(t)}{N_0} = -\frac{N'(t)}{N_0}$$
 
 ----------
 
 Failure rate says: "for a sufficiently small interval $$\D t$$, $$f(t) \D t$$ will be the percentage of the total population that will die in that time. It is the rate by which the percentage of dead people changes. If you are actually, say, 65 years old, $$f(65 \text{ years})$$ does _not_ tell you your expected death rate -- it tells you the death rate of of the whole population at 65 years old. If $$f(T) = .1$$ that means "10% of all people die per year around age $$T$$!" rather than "10% of people of age $$T$$ are dying per year!".
 
-To get the number of people of age $$T$$ who are dying per year, we need to rescale -- we should only be considering the rate of death among people of that age: $$\frac{-N'(t)}{N(t)}$$. This is the **hazard function** $$\lambda(t)$$:
+To get the number of people of age $$T$$ who are dying per year, we need to rescale -- we should only be considering the rate of death among people of that age, by dividing the total death rate by the number of people of that age. This is the **hazard function** $$\lambda(t)$$:
 
 $$\lambda(t) = -\frac{N'(t)}{N(t)} = -\frac{N'(t)/N_0}{N(t)/N_0} = -\frac{S'(t)}{S(t)} = \frac{f(t)}{S(t)}$$
 
-Note that this divides out the dependence on $$N_0$$ entirely. This makes sense: the actual rate of death at a time should not depend on where we started counting time from -- if $$t_0$$ was $$0$$, or $$55$$, or whatever, it doesn't matter; the concept of rate of death is independent of that.
+Note that this divides out the dependence on $$N_0$$ entirely. This makes sense: the actual rate of death at a time should not depend on where we started counting time from -- if $$t_0$$ was $$0$$, or $$55$$, or whatever, it doesn't matter; the concept of rate of death is independent of that. For a simple example: if 10% of people die per year around age 80, but 10% of people _are_ of age 80, then their hazard rate is 100%.
 
 Put differently, $$\lambda(t)$$ is the rate of death at a time $$t$$, conditional on _having lived_ to time $$t$$. That sounds like it might mean $$\lambda(t) = \frac{d}{dt} P[T < t \| T > t ]$$, but that can't be right. The right way is to start with two variables: it's actually the derivative of 
 
