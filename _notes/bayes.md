@@ -13,7 +13,7 @@ From basic probability we know about the concept of _conditional probability_, w
 $$P(A \and B) = P(A | B) P(B) \\
 = P(B | A) P(A)$$
 
-This immediately gives Bayes' Theorem, which allows us to invert $$P(A | B) \lra P(B | A)$$:
+This immediately gives Bayes' Theorem, which allows us to invert $$P(A \| B) \lra P(B \| A)$$:
 
 $$P(A | B) = P(A) \frac{P(B | A) }{P(B)} \tag{1}$$
 
@@ -168,7 +168,7 @@ In log odds, if $$A$$ is "twice as likely as" $$B$$, then $$\log (A) = 1 + \log 
 
 ## 5. Conservation of Expected Evidence
 
-This is an obscure idea which I think is quite helpful intuitively. It formalizes the idea that "absence of evidence _is_ evidence of absence", in the sense that if a positive result gives evidence for a hypothesis, a negative one _must_ give evidence against it.
+This is an obscure idea which I think is quite helpful enlightening. It formalizes the idea that "absence of evidence _is_ evidence of absence", in the sense that if a positive result gives evidence for a hypothesis, a negative one _must_ give evidence against it.
 
 We can write $$P(H)$$, the prior probability of $$H$$, like this:
 
@@ -176,7 +176,7 @@ $$P(H) = P(H | E) P(E) + P(H | \neg E) P(\neg E)$$
 
 We can interpret this in an interesting way. Since $$P(E)$$ and $$P(\neg E)$$ are effectively constant, this is the form of an _expectation value_, specifically, of the value $$\bb{E}[P(H)]$$. It's the expected value of $$P(H)$$ after the observation of $$E$$ or $$\neg E$$: $$\bb{E}[P(H)]$$, based on the probabilities of $$E$$ and $$\neg E$$.
 
-Suppose that $$P(H \| E) > P(H)$$ -- $$E$$ is positive evidence for $$H$$. Then the formula above shows that we expect to see our estimate of $$H$$ go up exactly $$P(E)$$ of the time, and down $$P(\neg E)$$ of the time -- and the amounts that our estimate of $$H$$ changes by are proportional to how like $$E$$ is compared to $$\neg E$$. Specifically:
+Suppose that $$P(H \| E) > P(H)$$, so $$E$$ is positive evidence for $$H$$. Then the formula above shows that we expect to see our estimate of $$H$$ go up exactly $$P(E)$$ of the time, and down $$P(\neg E)$$ of the time -- and the amounts that our estimate of $$H$$ changes by are proportional to how like $$E$$ is compared to $$\neg E$$. Specifically:
 
 $$\D P(H | E) P(E) = - \D P(H | \neg E) P(\neg E)$$
 
@@ -184,7 +184,7 @@ This has been called **conservation of expected evidence**: If seeing $$E$$ make
 
 On the other hand, if you're _wrong_ about $$P(H)$$, then on average you will change your mind after testing $$E$$, and on average it will lead you in the direction of the true value of $$P(H)$$. If you had _expected_ to change your mind about $$P(H)$$ upon observing $$E$$ (in one direction or the other), you could just _imagine_ testing $$E$$ and then making the change anyway - you already know enough to update your hypothesis without doing another experiment. This means that the only stable state, where you have incorporated all available evidence, is when you don't the test of $$E$$ to change your estimate of $$P(H)$$ at all.
 
-More [here](https://www.lesswrong.com/posts/jiBFC7DcCrZjGmZnJ/conservation-of-expected-evidence), including the delightful real-life example that if living a sinful life makes a medieval woman more likely to be a witch, then living a virtuous life _must_ make a medieval woman _less_ likely to be a witch.
+More [here](https://www.lesswrong.com/posts/jiBFC7DcCrZjGmZnJ/conservation-of-expected-evidence), including the delightful real-life example that if living a sinful life makes a medieval woman more likely to be a witch, then living a virtuous life _must_ make a medieval woman _less_ likely to be a witch, which is unfortunately not the opinion that some witch-burners held.
 
 ------
 
