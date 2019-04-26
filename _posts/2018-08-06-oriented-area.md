@@ -6,15 +6,11 @@ math: true
 aside: true
 ---
 
-This article exists for two reasons:
+Here's a summary of the concept of oriented area and the "shoelace formula", and some equations I found while playing around with it that turned out not to be novel.
 
-First, because I wanted to make a reference for myself which collects all of the ideas around _oriented area_, a concept that I find myself thinking about a lot, and which I think deserves to be better popularized. 
+I wanted to write this article because I think the concept deserves to be better popularized, and it is useful to me to have my own reference on the subject. Some resources I have found, including Wikipedia, cite a 1959 monograph entitled *Computation of Areas of Oriented Figures* by A.M. Lopshits, originally printed in Russian and translated to English by Massalski and Mills, which I have not been able to find online. I did find a copy via university library, and I thought I would summarize its contents in the process to make them more available to a casual Internet reader.
 
-Second, because some resources (including Wikipedia) cite a 1959 monograph titled *Computation of Areas of Oriented Figures*, by A.M. Lopshits, originally printed in Russian and translated to English by Massalski and Mills, which I have not been able to find online. I did find a copy via university library, and I thought I would summarize its contents in the process to make them more available to a casual Internet observer.
-
-(Also, because I wanted practice making beautiful math diagrams. Which succeeded, mostly, but my god is it ever not worth the effort.)
-
-First, a summary of the concept of oriented area and the "shoelace formula", and some equations I found while playing around with it that turned out not to be novel.
+I also wanted to practice making beautiful math diagrams. Which went okay, but god is it ever not worth the effort.
 
 <!--more-->
 
