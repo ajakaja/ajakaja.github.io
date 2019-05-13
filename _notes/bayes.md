@@ -17,21 +17,19 @@ This immediately gives Bayes' Theorem, which allows us to invert $$P(A \| B) \lr
 
 $$P(A | B) = P(A) \frac{P(B | A) }{P(B)} \tag{1}$$
 
-The first thing I have learned about "Bayesianism" is that it only shares a _name_ with Bayes' Theorem. The theorem is more fundamental than any particular intepretation of probability theory or infereence process; it is a simple mathematical relationship between formal values.
-
-Another mathematical relationship is that we can expand the $$P(B)$$ term in the denominator, like this:
+We can expand the $$P(B)$$ term in the denominator, like this:
 
 $$P(B) = P(B | A) P(A) + P(B | \neg A) P(\neg A)$$
 
 This gives:
 
-$$P(A | B) = \frac{P(B | A) P(A)}{P(B | A) P(A) + P(B | \neg A) P(\neg A)} \tag{Bayes}$$
+$$P(A | B) = \frac{P(B | A) P(A)}{P(B | A) P(A) + P(B | \neg A) P(\neg A)} $$
 
 -------
 
 ## 2 Bayesian Inference
 
-Next, we formulate Bayesian _Inference_. Bayesian Inference is the process by which we incorporate new evidence to update our beliefs. I say "_is_ the process" because we do it already, heuristically, to some degree. What follows is the mathematical version of the intuitive process of 'inductive reasoning'.
+Next, we formulate Bayesian _Inference_. Bayesian Inference is the process by which we incorporate new evidence to update our beliefs (ie, our guess of the probability $$P(H)$$ that a hypothesis is true). I say "_is_ the process" because we do it already, heuristically, to some degree. What follows is the mathematical version of the intuitive process of 'inductive reasoning'.
 
 We interpret $$P(A \| B)$$ as "having learned the new information $$B$$, what do we think the probability of $$A$$ is?". Let's relabel: $$A \ra H$$ for 'hypothesis' and $$B \ra E$$ for 'evidence', giving:
 
@@ -78,9 +76,9 @@ But, in fact, this turns out to be a fairly unwieldy way of computing Bayes upda
 
 It is also possible to express probabilities in the form of _Odds_. I have long had trouble understanding why anyone would want to do this, but I might have figured it out: it's because it miraculously makes the Bayesian inference process much simpler.
 
-Odds are just the familiar concept of odds: if I say a bet has 2:1 odds, then it's twice as likely to occur as to not occur. We write odds as $$O(X) = a:b$$, which corresponds to a probability $$P(X) = \frac{a}{a+b}$$. The expression for $$P(X)$$ measures the occurrences of $$X$$ compared to _all outcomes_ ($$a+b$$ in this case), while $$O(X)$$ measures the occurrences of $$X$$ compared to $$\neg X$$. They express the same thing in two different ways.
+Odds are just the familiar concept of, well, odds: if I say a bet has 2:1 odds, then it's twice as likely to occur as to not occur. We write odds as $$O(X) = a:b$$, which corresponds to a probability $$P(X) = \frac{a}{a+b}$$. The expression for $$P(X)$$ measures the occurrences of $$X$$ compared to _all outcomes_ ($$a+b$$ in this case), while $$O(X)$$ measures the occurrences of $$X$$ compared to $$\neg X$$. They express the same thing in two different ways.
 
-Even though we write odds as ratios $$a:b$$, they are still, basically, just fractions -- so $$ca : cb \sim \frac{ca}{cb} = \frac{a}{b} \sim a:b$$. (Well -- this isn't entirely true, because it can be meaningful to write down odds of more than two terms, like $$1:2:3$$, in which case you can divide factors across all _three_ terms. But it's usually just 2.)
+Even though we write odds as ratios $$a:b$$, they are still, basically, just fractions -- so $$ca : cb \sim \frac{ca}{cb} = \frac{a}{b} \sim a:b$$. (Well -- this isn't entirely true, because it can be meaningful to write down odds of more than two terms, like $$1:2:3$$, in which case you can divide factors across all _three_ terms. But it's usually just 2, which is basically a fraction.)
 
 I find that thinking in Odds reminds me that probabilities are all about comparing the **rates** of different things happening (if you somehow tested multiple times). In a probability like $$P(A) = \frac{a}{a+b}$$, we compare the rate of $$A$$ to the rate of _anything at all_ ($$a$$ or $$b$$, in this case). In an odds, like $$A : \neg A$$, we compare the rate of $$A$$ to the rate of, specifically, not-$$A$$. Thing is, both of them are rates. There's nothing stopping us from mixing probabilities and odds in the same equation, as long as we're careful about knowing what we mean.
 
@@ -99,7 +97,7 @@ $$(H | E) : (\neg H \| E) = \frac{P(E | H)} {P(E | \neg H)} (H : \neg H)$$
 
 Read aloud:
 
-> The **posterior odds** $$O(H \| E : \neg H : E) $$ of $$H : \neg H$$ after observing evidence $$E$$ is equal to the **prior odds** $$O(H : \neg H)$$ times the **relative likelihood** $$\frac{P(E \| H)} {P(E \| \neg H)}$$. 
+> The **posterior odds** $$O(H \| E : \neg H\| E) $$ of $$H : \neg H$$ after observing evidence $$E$$ is equal to the **prior odds** $$O(H : \neg H)$$ times the **relative likelihood** $$\frac{P(E \| H)} {P(E \| \neg H)}$$. 
 
 Relative Likelihood is a new term. It's also called the _Bayes Factor_, and it measures how much $$E$$ recommends $$H$$ versus $$\neg H$$. For instance, seeing that the ground is wet suggests a very high value for the hypothesis "it rained recently", meaning that it recommends this hypothesis far more than the alternative ("it did not rain recently"). This term isn't an _odds_ exactly, but it is a _ratio of rates_. It means: "the rates of $$E$$ given $$H$$ compared to the rate of $$E$$ given $$\neg H$$". This is why I emphasized that odds are sort of like rates above -- the intuition goes a long way.
 
@@ -113,7 +111,7 @@ $$\text{posterior odds} = \text{prior odds } \times \text{ relative likelihood}$
 
 The reason for the odds form is that, once you get used to it, it's _really_ easy to do in your head. Here's the classic example again:
 
-$$\frac{1}{6}$$ of people are sick, so $$\frac{(H)}{(\neg H)}$$ = $$\frac{1}{5}$$. The test reports sick people as sick $$\frac{10}{11}$$ of the time, but healthy people as sick $$\frac{1}{11}$$ of the time, so $$\frac{(E \| H)}{(E \| \neg H)} = \frac{10/11}{1/11}$$. Finally:
+$$\frac{1}{6}$$ of people are sick, so $$\frac{(H)}{(\neg H)}$$ = $$\frac{1}{5}$$. The test reports sick people as sick $$\frac{10}{11}$$ of the time, but healthy people as sick $$\frac{1}{11}$$ of the time, so $$\frac{(E \| H)}{(E \| \neg H)} = \frac{10/11}{1/11} = 10$$. Finally:
 
 $$\frac{(H \| E)}{(\neg H \| E)} = 10 \times \frac{1}{5} = 2$$
 

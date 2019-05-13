@@ -12,10 +12,6 @@ Notes on stuff.
       <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
     </li>
   {% endfor %}
-  {% for post in site.tags.notes %}
-    <li>
-      <a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a>
-    </li>
-  {% endfor %}
+
 </ul>
 </div>
