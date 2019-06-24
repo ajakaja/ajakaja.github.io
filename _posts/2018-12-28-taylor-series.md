@@ -37,7 +37,7 @@ It's useful to write this as one big operator acting on $$f(x)$$:
 
 $$\boxed{f(x + \e) = \big[ \sum_{n=0}^\infty \frac{\p^n_x \e^n}{n!} \big] f(x)} \tag{Single-Variable}$$
 
-Or even as a single exponentiation of the derivative operator, which is commonly done in physics, but you probably shouldn't think too hard about what it [mmeans](https://en.wikipedia.org/wiki/Exponential_map_(Lie_theory)):
+Or even as a single exponentiation of the derivative operator, which is commonly done in physics, but you probably shouldn't think too hard about what it [means](https://en.wikipedia.org/wiki/Exponential_map_(Lie_theory)):
 
 $$f(x + \e) = e^{\e \p_x} f(x)$$
 
@@ -87,7 +87,7 @@ $$f(\b x + \b v) = f(\b x) + \b{v} \cdot \nabla f(\b{x}) + \b{v}^T \begin{pmatri
 
 $$\nabla f(\b{x}) $$ is the gradient of $$f$$ (the vector of partial derivatives like $$(f_x, f_y)$$. The matrix $$H = \begin{pmatrix} f_{xx} & f_{xy} \\ f_{yx} & f_{yy} \end{pmatrix} $$ is the "Hessian matrix" for $$f$$, and represents its second derivative.
 
-... But we can do better. In fact, every order of derivative of $$f$$ in the total series has the same form, as powers of $$\b{v} \cdot \vec{\nabla}$$, which I prefer to write as $$\vec{\p}$$, because it represents a 'vector of partial derivatives' $$\vec{\p} = (\p_x, \p_y)$$:
+... But we can do better. In fact, every order of derivative of $$f$$ in the total series has the same form, as powers of $$\b{v} \cdot \vec{\nabla}$$, which I prefer to write as $$\b{v} \cdot \vec{\p}$$, because it represents a 'vector of partial derivatives' $$\vec{\p} = (\p_x, \p_y)$$:
 
 $$\begin{aligned} 
 f(\b x + \b v) &= f(\b x) + (v_x \p_x + v_y \p_y) f(\b x) + \frac{(v_x \p_x + v_y \p_y)^2}{2!} f(\b x) + \ldots  \\
@@ -112,7 +112,7 @@ I mention all this because it's useful to have a solid idea of what a scalar fun
 
 -------
 
-L'Hôpital's rule is more subtle for multivariable functions. In general the limit of a function may be different depending on what direction you approach from, so an expression like $$\lim_{\b{x} \ra 0} \frac{f(\b{x})}{g(\b{x})}$$ is not necessarily defined, even if both $$f$$ and $$g$$ have Taylor expansions. On the other hand, if we choose a path for $$\b{x} \ra 0$$, such as $$\b{x}(t) = (x(t), y(t))$$ then this just becomes a one-dimensional limit, and the regular rule applies again. So, for instance, while $$\lim_{\b x \ra 0} \frac{f(\b{x})}{g(\b x)}$$ may not be defined, $$\lim_{\e \ra 0} \frac{f(\e \b{v})}{g(\e \b{v})}$$ is.
+L'Hôpital's rule is more subtle for multivariable functions. In general the limit of a function may be different depending on what direction you approach from, so an expression like $$\lim_{\b{x} \ra 0} \frac{f(\b{x})}{g(\b{x})}$$ is not necessarily defined, even if both $$f$$ and $$g$$ have Taylor expansions. On the other hand, if we choose a path for $$\b{x} \ra 0$$, such as $$\b{x}(t) = (x(t), y(t))$$ then this just becomes a one-dimensional limit, and the regular rule applies again. So, for instance, while $$\lim_{\b x \ra 0} \frac{f(\b{x})}{g(\b x)}$$ may not be defined, $$\lim_{t \ra 0} \frac{f(t \b{v})}{g(t \b{v})}$$ is.
 
 And the path we take to approach $$0$$ doesn't even matter -- only the gradients when we're infinitesimally close to $$0$$. For example, suppose we $$f(0,0) = g(0,0) = 0$$ and we're taking the limit on the path given by $$y = x^2$$:
 
@@ -146,7 +146,7 @@ $$\begin{aligned}
 &= \b{f} +(\p_{x_1}, \p_{x_2}) \o \begin{pmatrix}\b{f}_{y_1} \\ \b{f}_{y_2} \end{pmatrix} \cdot \begin{pmatrix} v_{x_1} \\ v_{x_2} \end{pmatrix}  + \ldots
 \end{aligned}$$
 
-That matrix term, the $$n=1$$ term in the series, is the [Jacobian Matrix](https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant) of $$f$$, sometimes written $$J_f$$, and is much more succinctly written as $$\vec{\p}_{x_i} \b{f}_{y_j}$$, or just $$\vec{\p}_i \b{f}_j$$.
+That matrix term, the $$n=1$$ term in the series, is the [Jacobian Matrix](https://en.wikipedia.org/wiki/Jacobian_matrix_and_determinant) of $$f$$, sometimes written $$J_f$$, and is much more succinctly written as $$\vec{\p}_{x_i} \b{f}_{y_j}$$, or just $$\vec{\p}_i \b{f}_j$$ or even just $$\p_i \b{f}_j$$.
 
 $$J_f = \p_i f_j$$
 
@@ -202,7 +202,7 @@ $$\begin{aligned}
 \p_{\bar{z}} &\underset{\bb{C}}{=} \frac{1}{2}(\p_x + i \p_y) \underset{\bb{R}^2}{=} \frac{1}{2}(\p_{\b{x}} - \p_{\b{y}})
 \end{aligned}$$
 
-In complex analysis, for some reason, $$\bar{z}$$ is not treated as a true variable, and we only consider a function as 'complex differentiable' when it has derivatives with respect to $$z$$ alone. Notably, $$\p_z \bar{z}$$ does not exist -- the value of $$\lim_{(x,y) \ra (0,0)} \frac{x + iy}{x - i y}$$ is different depending on the path you take towards the origin. Thesee statements turn out to be _almost_ equivalent:
+In complex analysis, for some reason, $$\bar{z}$$ is not treated as a true variable, and we only consider a function as 'complex differentiable' when it has derivatives with respect to $$z$$ alone. Notably, we woudl say that the derivative $$\p_z \bar{z}$$ does not exist -- the value of $$\lim_{(x,y) \ra (0,0)} \frac{x + iy}{x - i y}$$ is different depending on the path you take towards the origin. These statements turn out to be _almost_ equivalent:
 
 * $$f(z)$$ is a function of only $$z$$ in a region
 * $$\p_{\bar{z}} f(z) = 0$$ in a region
@@ -230,7 +230,7 @@ I find this to be quite surprising. Here's an aside on why it's true:
 
 <aside class="toggleable" id="complex" placeholder="<b>Aside</b>: Conjugate derivatives <em>(click to expand)</em>">
 
-The explanation I've seen comes in a few forms, and is usually done in $$3D$$ regarding the divergence of $$\frac{1}{r^2}$$. One version for $$\bb{C}$$ goes like this: 
+The explanation I've seen comes in a few forms, and is usually done in 3D regarding the divergence of $$\frac{1}{r^2}$$. One version for $$\bb{C}$$ goes like this: 
 
 Let $$C$$ be a circle of radius $$R$$ around the origin, and integrate $$\frac{1}{z}$$ in polar coordinates, using the fact that $$dz = d(re^{i \theta}) = dr e^{i \theta} + ire^{i \theta} d\theta$$.
 
@@ -288,7 +288,7 @@ By the way: Fourier series are closely related to contour integrals, and thus to
 
 Here's a heuristic argument, skipping all the analytical details because I don't know or care about them.
 
-If a function $$f(x)$$ on the real axis has a Fourier series in the finite interval $$(0,2 \pi )$$, then it can be written as a series of oscillators with different frequencies:
+If a function $$f(x)$$ on the real axis has a Fourier series in the finite interval $$(0,2 \pi )$$, then it can be written as a series of oscillations at different frequencies:
 
 $$f(x) = \sum F(k) e^{i k x}$$
 
