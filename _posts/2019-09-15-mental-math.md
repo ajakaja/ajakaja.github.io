@@ -8,30 +8,21 @@ tags: notes
 ---
 
 
-Most of our descriptions of how our brains work are fundamentally _vague_. We talk about our brains performing verbs like "think", "realize", "forget", "hope", etc, but we have no real conception of what's going on mechanically inside these things. Or we describe our behaviors with colloquial adjectives: "smart", "cocky", "vain". These can all be assigned truth values, in the sense that, if everyone generally agrees that someone 'realized' something, it's fair to say that their brain did perform the act of 'realization'. But there's no _technical_ understanding of what the process of realization is -- beyond, perhaps, some hand-wavey story about connections being bridged between neurons.
+Most of our descriptions of how our brains work are fundamentally _vague_. We speak of our brains performing verbs like "think", "realize", "forget", or "hope" but we have no real conception of what's going on mechanically inside these words. These can all be assigned truth values, in the sense that, if everyone generally agrees that someone 'realized' something, we might define their brain to have performed the objective act of 'realization'. But this gives no _technical_ understanding of what the process of realization is -- beyond, perhaps, some hand-wavey story about connections being bridged between neurons.
 
-Sometime in the last few years the English-speaking Internet [became aware](https://trends.google.com/trends/explore?date=today%205-y&geo=US&q=aphantasia) of the condition called [aphantasia](https://en.wikipedia.org/wiki/Aphantasia). Aphantasia is when a person is unable to picture images in their thoughts -- they don't have a "mind's eye" at all. It's interesting because it's a rather concrete description of how the brain works: some people see an image in their head when they draw or recall something; others don't. Their brains work in discretely different ways. I would have no idea how to figure out if two people "realize" something via different mechanisms, but I can be sure that two people describe an object differently, if one is describing it by examining a picture and the other isn't.
+So, sometime in the last few years the English-speaking Internet [became aware](https://trends.google.com/trends/explore?date=today%205-y&geo=US&q=aphantasia) of the condition called [aphantasia](https://en.wikipedia.org/wiki/Aphantasia). Aphantasia is when a person is unable to picture images in their thoughts -- they don't have a "mind's eye" at all. This is interesting because, in contrast to the above, aphantasia is a concrete description of how the brain works. Some people see an image in their head when they draw or recall something; others don't. Their brains work in materially different ways. I would have no idea how to figure out if two people "realize" something via different mechanisms, but I can be sure that two people's brains operate differently, if one sees pictures and the others don't.
 
 <!--more-->
 
-
-
-I happen to be... aphantasiac?... if that's the word for it. I guess I wish I wasn't; it sounds fun and useful to be able to picture things, and it always feels like I'm missing out on some aspect of human experience by not getting to. Although, I am pretty sure there was a time when I was much younger that I _could_ picture things, and I can still very-occasionally seem to be able to do it during half-awake ([hypnagogic](https://en.wikipedia.org/wiki/Hypnagogia)) hallucinations. But it's hard to be sure. It comes in fleeting glimpses during semilucidity, where it's hard to trust recollection.
-
 Knowing about aphantasia is fun because lots of people who can see images are surprised that anyone can't, and lots of people who can't are flabbergasted that anyone can -- they thought that talking about "picturing a person" was always just a figure of speech. It's amusing when it comes up in conversation because you tend to get a mix of surprised people on both sides.
 
-
-
-
-
-
-
+I happen to be aphantasiac (if that's the word for it). I guess I wish I wasn't; it sounds fun and useful to be able to picture things, and it always feels like I'm missing out on some aspect of human experience by not getting to. (Although I do get glimmers of images when half asleep, I think, and I seem to remember it happening at other times also when I was younger.)
 
 ------
 
 ## Mental Math
 
-I know of another closely-related variation in how human thought works that can be described in concrete terms: how we perform mental math.
+Here's another variation in how human thought works that can be described in concrete terms: how we perform mental math.
 
 First, an example. Try to multiply these two numbers in your head. Don't look at them while you do it-- read the problem, close your eyes, and multiply in your head:
 
@@ -47,7 +38,7 @@ First, how you do math in your head has a strong dependence on whether you are a
 
 People who can't see images obviously can't picture doing the equation on paper. So how do they do it? There's a bit more variation here, and it tends to be harder to explain. 
 
-I can tell you how I do it: I seem to use my 'verbal' brain as short-term memory. Verbal memory seems to serve as a small amount of 'scratch space', so if I say something in my mind it bounces around for a bit and I can summon it back after thinking about something else. It's similar to repeating something someone said while you weren't paying attention; it floats in the background for a few seconds and you can summon it back during that time. There is also some amount of pattern-matching going on, where certain numbers look familiar and comfortable, like the $$2 \times 45$$ in the above equation, which immediately feels familiar.
+I can tell you how I do it: I use my 'verbal' brain as something like short-term memory. Verbal memory seems to serve as a small amount of 'scratch space', so if I say something in my mind it bounces around for a bit and I can summon it back after thinking about something else. It's similar to repeating something someone said while you weren't paying attention; it floats in the background for a few seconds and you can summon it back during that time. There is also some amount of pattern-matching going on, where certain numbers look familiar and comfortable, like the $$2 \times 45$$ in the above equation, which immediately feels familiar.
 
 So the process of doing the multiplication above goes something like this in my internal dialogue[^dialogue]:
 

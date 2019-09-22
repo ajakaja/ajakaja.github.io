@@ -1,0 +1,81 @@
+---
+---
+
+#container {
+    position: absolute;
+    left: 100px;
+    top: 50px;
+}
+.card {
+    height: 400px;
+    width: 280px;
+    border: 1px solid;
+    border-radius: 5px;
+    padding: 5px;
+    box-shadow: 5px 5px 5px gray;
+    display: flex;
+    flex-direction: column;
+    margin: auto;
+    font-family: sans-serif;
+}
+
+.ctopbar {
+    width: 100%;
+    box-sizing: border-box;
+    position: relative;
+}
+.ctopleft {
+    text-align: left;
+    font-weight: bold;
+    font-style: italic;
+    font-size: 1.5em;
+    float: left;
+}
+.ctopright {
+    text-align: right;
+    bottom: 0px;
+    right: 5px;
+    position: absolute;
+}
+
+.cbody {
+    border: 1px solid;
+    border-radius: 0 0 5px 5px;
+    box-sizing: border-box;
+    height: 100%;
+}
+.ctype {
+    border-bottom: 1px solid;
+    text-align: right;
+    padding-right: 5px;
+    font-size: 0.8em;
+}
+.cimage {
+    height: 50%;
+    box-sizing: border-box;
+    background: linear-gradient(to bottom right, green, purple);
+}
+.cdesc {
+    padding: 3px;
+}
+.cbottombar {
+    position: relative;
+}
+.cbottomright {
+    text-align: right;
+    bottom: -2px;
+    right: 5px;
+    position: absolute;
+}
+.cbottomleft {
+}
+#input {
+    width: 30em;
+    height: 14em;
+    border: 2px solid grey;
+}
+#error {
+    color: red;
+    margin-top: 10px;
+    font-size: 0.8em;
+}

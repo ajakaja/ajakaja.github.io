@@ -6,92 +6,10 @@ category: misc
 <!DOCTYPE html>
 <html>
 <head>
+    <script src="/js/jquery-2.2.3.min.js" type="text/javascript"></script>
+    <link rel="stylesheet" type="text/css" href="./cards.css" >
 
-<style>
-
-#container {
-    position: absolute;
-    left: 100px;
-    top: 50px;
-}
-.card {
-    height: 400px;
-    width: 280px;
-    border: 1px solid;
-    border-radius: 5px;
-    padding: 5px;
-    box-shadow: 5px 5px 5px gray;
-    display: flex;
-    flex-direction: column;
-}
-.card > div {
-    padding-right: 5px;
-    padding-left: 5px;
-    font-family: sans-serif;
-}
-
-.ctopbar {
-    width: 100%;
-    box-sizing: border-box;
-    border: 1px solid;
-    position: relative;
-}
-.ctopleft {
-    text-align: left;
-    font-weight: bold;
-    font-style: italic;
-    font-size: 1.5em;
-    float: left;
-}
-.ctopright {
-    text-align: right;
-    bottom: 0px;
-    right: 5px;
-    position: absolute;
-}
-
-.cbody {
-    border: 1px solid;
-    border-radius: 5px;
-    box-sizing: border-box;
-    height: 100%;
-}
-.ctype {
-    border: 1px solid;
-    text-align: right;
-    padding-right: 5px;
-}
-.cimage {
-    height: 50%;
-    box-sizing: border-box;
-    background: linear-gradient(to bottom right, green, purple);
-}
-.cdesc {
-    padding: 3px;
-}
-.cbottombar {
-    position: relative;
-}
-.cbottomright {
-    text-align: right;
-    bottom: -2px;
-    right: 5px;
-    position: absolute;
-}
-.cbottomleft {
-}
-#input {
-    width: 30em;
-    height: 14em;
-    border: 2px solid grey;
-}
-#error {
-    color: red;
-    margin-top: 10px;
-    font-size: 0.8em;
-}
-
-</style>
+    <title>Card Generator</title>
 </head>
 
 <body>
@@ -121,77 +39,77 @@ category: misc
 </body>
 
 <script type="text/javascript">
-    var card = document.getElementById("card");
-    var title = card.querySelector('div.ctopleft');
-    var cost = card.querySelector('div.ctopright');
-    var type = card.querySelector('div.ctype');
-    var desc = card.querySelector('div.cdesc');
-    var bottomright = card.querySelector('div.cbottomright');
-    var bottomleft = card.querySelector('div.cbottomleft');
-    var inputfield = document.getElementById("input");
-    var error = document.getElementById("error");
-    var renderButton = document.getElementById("renderbutton");
-    var parseButton = document.getElementById("parsebutton");
-    parse = function() {
-        var ret = {};
-        ret.title = title.innerHTML;
-        ret.cost = cost.innerHTML;
-        ret.type = type.innerHTML;
-        ret.desc = desc.innerHTML;
-        ret.bottomright = bottomright.innerHTML;
-        ret.bottomleft = bottomleft.innerHTML;
-        return ret;
-    };
-    render = function(json) {
-        title.innerHTML = json.title ? json.title : "";
-        cost.innerHTML = json.cost ? json.cost : "";
-        type.innerHTML = json.type ? json.type : "";
-        desc.innerHTML = json.desc ? json.desc : "";
-        bottomright.innerHTML = json.bottomright ? json.bottomright : "";
-        bottomleft.innerHTML = json.bottomleft ? json.bottomleft : "";
-    };
-    updateUrl = function() {
-        var base64 = btoa(inputfield.value);
-        var newurl = window.location.origin + window.location.pathname + "?" + base64;
-        if(history.pushState) {
-            window.history.pushState({path:newurl},'',newurl);
-        } else {
-            window.location.href = newurl;
-        }
+$(() => {
+
+const card = $("#card");
+const title = $('div.ctopleft');
+const cost = $('div.ctopright');
+const type = $('div.ctype');
+const desc = $('div.cdesc');
+const bottomright = $('div.cbottomright');
+const bottomleft = $('div.cbottomleft');
+const inputfield = $("#input");
+const error = $("#error");
+const renderButton = $("#renderbutton");
+const parseButton = $("#parsebutton");
+const parse = () => {
+    var ret = {};
+    ret.title = title.html();
+    ret.cost = cost.html();
+    ret.type = type.html();
+    ret.desc = desc.html();
+    ret.bottomright = bottomright.html();
+    ret.bottomleft = bottomleft.html();
+    return ret;
+};
+const render = (json) => {
+    title.html(json.title ? json.title : "");
+    cost.html(json.cost ? json.cost : "");
+    type.html(json.type ? json.type : "");
+    desc.html(json.desc ? json.desc : "");
+    bottomright.html(json.bottomright ? json.bottomright : "");
+    bottomleft.html(json.bottomleft ? json.bottomleft : "");
+};
+const updateUrl = () => {
+    var base64 = btoa(inputfield.text());
+    var newurl = window.location.origin + window.location.pathname + "?" + base64;
+    if(history.pushState) {
+        window.history.pushState({path:newurl},'',newurl);
+    } else {
+        window.location.href = newurl;
     }
-    renderButton.onclick = function(){
-        var text = inputfield.value;
-        if(!text) {
-            error.innerText = "Error: No JSON entered.";
-        }
-        try {
-            var json = JSON.parse(text);
-        } catch (e){
-            error.innerText = "Error: " + e.name + " " + e.message;
-            return;
-        } 
-        error.innerText = "";
-        render(json);
-        updateUrl();
-    };
-    parseButton.onclick = function() {
-        var json = parse();
-        var text = JSON.stringify(json, null, 2);
-        inputfield.value = text;
-        updateUrl();
-    };
+}
+renderButton.click(() => {
+    var text = inputfield.text();
+    if(!text) {
+        error.text( "Error: No JSON entered.");
+    }
+    try {
+        var json = JSON.parse(text);
+    } catch (e){
+        error.text("Error: " + e.name + " " + e.message);
+        return;
+    } 
+    error.innerText = "";
+    render(json);
+    updateUrl();
+});
+parseButton.click(() => {
+    var json = parse();
+    var text = JSON.stringify(json, null, 2);
+    inputfield.text(text);
+    updateUrl();
+})
 
-    (function() {
-        var base64 = window.location.search;
-        if(base64.length > 1) {
-            base64 = base64.substring(1); //remove ?
-            text = atob(base64);
-            render(JSON.parse(text));
-            inputfield.value = text;
-        } else {
-            inputfield.value = JSON.stringify(parse(), null, 2);
-        }
-
-    })();
+let base64 = window.location.search;
+if(base64.length > 1) {
+    base64 = base64.substring(1); //remove ?
+    text = atob(base64);
+    render(JSON.parse(text));
+    inputfield.text(text)
+} else {
+    inputfield.text(JSON.stringify(parse(), null, 2));
+}
+});
 </script>
 </html>
