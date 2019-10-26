@@ -8,9 +8,13 @@ tags: notes
 ---
 
 
-Most of our descriptions of how our brains work are fundamentally _vague_. We speak of our brains performing verbs like "think", "realize", "forget", or "hope" but we have no real conception of what's going on mechanically inside these words. These can all be assigned truth values, in the sense that, if everyone generally agrees that someone 'realized' something, we might define their brain to have performed the objective act of 'realization'. But this gives no _technical_ understanding of what the process of realization is -- beyond, perhaps, some hand-wavey story about connections being bridged between neurons.
+Most of our descriptions of how our brains work are fundamentally _vague_. We speak of our brains performing verbs like "think", "realize", "forget", or "hope" but we aren't talking about what's going on mechanically to result in those qualities.
 
-So, sometime in the last few years the English-speaking Internet [became aware](https://trends.google.com/trends/explore?date=today%205-y&geo=US&q=aphantasia) of the condition called [aphantasia](https://en.wikipedia.org/wiki/Aphantasia). Aphantasia is when a person is unable to picture images in their thoughts -- they don't have a "mind's eye" at all. This is interesting because, in contrast to the above, aphantasia is a concrete description of how the brain works. Some people see an image in their head when they draw or recall something; others don't. Their brains work in materially different ways. I would have no idea how to figure out if two people "realize" something via different mechanisms, but I can be sure that two people's brains operate differently, if one sees pictures and the others don't.
+Sure, these can all be assigned truth values, in the sense that if everyone generally agrees that someone 'realized' something, we might define their brain to have performed the objective act of 'realization'. But this gives no _technical_ understanding of what the process of realization is -- beyond, perhaps, some hand-wavey story about connections being bridged between neurons.
+
+So, sometime in the last few years the English-speaking Internet [became aware](https://trends.google.com/trends/explore?date=today%205-y&geo=US&q=aphantasia) of the condition called [aphantasia](https://en.wikipedia.org/wiki/Aphantasia). Aphantasia is when a person is unable to picture images in their thoughts -- they don't have a "mind's eye" at all.
+
+This is interesting because, in contrast to the above, aphantasia is a concrete description of how the brain works. Some people see an image in their head when they draw or recall something; others don't. Their brains work in materially different ways. I would have no idea how to figure out if two people "realize" something via different mechanisms, but I can be sure that two people's brains operate differently, if one sees pictures and the others don't.
 
 <!--more-->
 

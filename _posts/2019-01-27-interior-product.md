@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "EA Notes #4: The Interior Product"
+title: "Exterior Algebra 4: The Interior Product"
 footnotes: true
 math: true
 aside: true

@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "EA Notes #3: The Hodge Star"
+title: "Exterior Algebra 3: The Hodge Star"
 footnotes: true
 math: true
 aside: true
