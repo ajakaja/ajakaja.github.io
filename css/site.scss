@@ -38,6 +38,7 @@ hr {
 
 sup, sub {
   position: relative;
+  line-height: 0;
 }
 
 small {
@@ -103,6 +104,7 @@ h4 {
 
 p {
   margin: 15px 0;
+  line-height: 1.5;
 }
 
 a {
