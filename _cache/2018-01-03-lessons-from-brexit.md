@@ -4,6 +4,9 @@ title: "Lessons from the Architect of Brexit"
 footnotes: true
 ---
 
+(I still like this writing of his. Its ideas 'ring true' to me. But I don't feel very good about this post anymore -- particularly, he has seemed less credible since this.)
+
+
 [This](https://dominiccummings.com/2017/01/09/on-the-referendum-21-branching-histories-of-the-2016-referendum-and-the-frogs-before-the-storm-2/) January 2017 post, by Dominic Cummings, the architect/manager of Brexit, on 'how it happened' and 'why no one understands how it happened', is the most interesting thing I read last year.
 
 It is so interesting that, when I realized I couldn't remember why I thought it was so interesting, I had to go reread it.
