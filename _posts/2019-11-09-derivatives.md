@@ -13,7 +13,7 @@ A [blog I follow](https://xorshammer.com) led me to a [paper](https://arxiv.org/
 
 Observation: the notation $$dx$$ used for derivatives is really $$d(x)$$, the derivative operator applied to a function (which happens to just be $$x$$). Therefore the notation $$\frac{d^2 f}{dx^2}$$ for a second derivative of a function should be understood as $$\frac{d(d(f))}{(dx)^2}$$.
 
- This is not new, but it's slightly more useful than I realized. For instance it determines when the plausible-seeming operation of treating derivatives as fractions is valid. $$\frac{d(y)}{dx} \frac{d(x)}{dy}$$ is cancellable _only_ if $$d(x) = dx$$ and $$d(y) = dy$$, which is only true if each are _single_-variable functions of the other.
+This is not new, but it's slightly more useful than I realized. For instance it determines when the plausible-seeming operation of treating derivatives as fractions is valid. $$\frac{d(y)}{dx} \frac{d(x)}{dy}$$ is cancellable _only_ if $$d(x) = dx$$ and $$d(y) = dy$$, which is only true if each are _single_-variable functions of the other.
 
 <!--more-->
 
@@ -28,9 +28,9 @@ $$\begin{aligned}
 
 Seems useful.
 
-The paper also uses this notation to show a succinct derivation of a formula for inverting second derivatives:
+The paper also uses this notation to show a succinct derivation of a formula for inverting second derivatives (in slightly different notation):
 
-$$ - \frac{d^2 y}{dx^2} \big[ \frac{1}{dy/dx}\big]^3 = \frac{d^2 x}{dy^2}$$
+$$ \frac{d^2 y}{dx^2} = - \frac{d^2 x}{dy^2} \big( \frac{dy}{dx} \big)^3$$
 
-The authors say that they and their reviewers initially thought this might have been a new discovery. In fact it can be found on [Wikipedia](https://en.wikipedia.org/wiki/Inverse_functions_and_differentiation), in the notation $$g''(x) = \frac{f''(g(x))}{[f'(g(x))]^3}$$. But they're not wrong that it's not well-known!
+The authors say that they and their reviewers initially thought this might have been a new discovery. In fact it can be found on [Wikipedia](https://en.wikipedia.org/wiki/Inverse_functions_and_differentiation#Higher_derivatives). But it's definitely not that well-known!
 
