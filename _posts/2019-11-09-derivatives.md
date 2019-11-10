@@ -7,17 +7,17 @@ aside: true
 tags: notes
 ---
 
-A [blog I follow](https://xorshammer.com) led me to a [paper](https://arxiv.org/pdf/1801.09553.pdf), "Extending the Algebraic Manipulability of Differentials", which makes a useful point about the notation we use for derivatives.  I'm repeating it here to remind myself of it.
+A [blog post](https://xorshammer.com) led me to a [paper](https://arxiv.org/pdf/1801.09553.pdf), "Extending the Algebraic Manipulability of Differentials", which makes a useful point about the notation we use for derivatives. This is a brief summary so I don't forget it.
 
-(The paper itself has a bit of a sketchy pseudo-academic quality to it, spending a lot of time explaining things that every mathematician should know -- but a good point is a good point, and I like any effort to fix notation.)
+(The paper itself has a bit of a sketchy pseudo-academic quality to it, spending a lot of time explaining things that every mathematician should know -- but a good point is a good point, and I like any effort to improve notation.)
 
-Observation: the notation $$dx$$ used for derivatives is really $$d(x)$$, the derivative operator applied to a function (which happens to just be $$x$$). Therefore the notation $$\frac{d^2 f}{dx^2}$$ for a second derivative of a function should be understood as $$\frac{d(d(f))}{(dx)^2}$$.
-
-This is not new, but it's slightly more useful than I realized. For instance it determines when the plausible-seeming operation of treating derivatives as fractions is valid. $$\frac{d(y)}{dx} \frac{d(x)}{dy}$$ is cancellable _only_ if $$d(x) = dx$$ and $$d(y) = dy$$, which is only true if each are _single_-variable functions of the other.
+Observation: the notation $$df$$ used for derivatives is really $$d(f)$$, the derivative operator applied to a function. We can interpret the _derivative_ operator $$\frac{d}{dx}$$ as two steps: applying $$d$$ and dividing by $$d(x)$$. In this notation, expressions like $$\frac{d(x)}{dx} = \frac{x_t dt}{dx} \neq 1$$ make sense. The product rule for derivatives applies to differentials as well, so $$d(x dx) = (dx)^2 = (d(x))^2 + x d(d(x)) = dx^2 + x d^2x$$.[^exterior]
 
 <!--more-->
 
-The second derivative version of this is to write $$\frac{d^2 y}{dx^2} $$ as $$\frac{d(dy/dx)}{dx} = \frac{d^2 y}{dx^2} -  \frac{dy}{dx} \frac{d^2 x}{dx^2}$$. (In this notation, note that $$\frac{d^2 x}{dx^2} = \frac{d(d(x))}{(dx)(dx)} \neq 0$$ if $$x$$ is a function of something else). This is useful because, among other things, it leads to the correct rule for calculating the 2nd-derivative version of the chain rule ([Faà di Bruno's formula](https://en.wikipedia.org/wiki/Fa%C3%A0_di_Bruno%27s_formula)) without much thought:
+[^exterior]: note that this is not the same use of $$d$$ as is used in exterior algebra, with $$d^2 = 0$$. That requires additionally quotienting by relations like $$dx dy \sim dy dx$$.
+
+This is only a slight change of notation, but it's more useful than I realized. For instance the meticulous notation for a second derivative is $$\frac{d^2 y}{dx^2} = \frac{d(dy/dx)}{dx} = \frac{d^2 y}{dx^2} -  \frac{dy}{dx} \frac{d^2 x}{dx^2}$$. (Keep in mind that $$\frac{d^2 x}{dx^2} \neq 0$$ here if $$x$$ is a function of something else.) Among other things, this leads to the correct rule for calculating the 2nd-derivative version of the chain rule ([Faà di Bruno's formula](https://en.wikipedia.org/wiki/Fa%C3%A0_di_Bruno%27s_formula)) without much thought:
 
 $$\begin{aligned}
 \frac{df}{dt} &= \frac{f_x dx}{dt} = f_x \frac{dx}{dt} \\
