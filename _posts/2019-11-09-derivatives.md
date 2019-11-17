@@ -7,30 +7,35 @@ aside: true
 tags: notes
 ---
 
-A [blog post](https://xorshammer.com) led me to a [paper](https://arxiv.org/pdf/1801.09553.pdf), "Extending the Algebraic Manipulability of Differentials", which makes a useful point about the notation we use for derivatives. This is a brief summary so I don't forget it.
+A [blog post](https://xorshammer.com) led me to a [paper](https://arxiv.org/pdf/1801.09553.pdf), "Extending the Algebraic Manipulability of Differentials", which makes a useful point about the notation we use for derivatives. This is a brief summary so I don't forget it.[^sketch]
 
-(The paper itself has a bit of a sketchy pseudo-academic quality to it, spending a lot of time explaining things that every mathematician should know -- but a good point is a good point, and I like any effort to improve notation.)
+[^sketch]: The paper itself has a bit of a sketchy pseudo-academic quality to it, spending a lot of time explaining things that every mathematician should know -- but a good point is a good point, and I like any effort to improve notation.
 
-Observation: the notation $$df$$ used for derivatives is really $$d(f)$$, the derivative operator applied to a function. We can interpret the _derivative_ operator $$\frac{d}{dx}$$ as two steps: applying $$d$$ and dividing by $$d(x)$$. In this notation, expressions like $$\frac{d(x)}{dx} = \frac{x_t dt}{dx} \neq 1$$ make sense. The product rule for derivatives applies to differentials as well, so $$d(x dx) = (dx)^2 = (d(x))^2 + x d(d(x)) = dx^2 + x d^2x$$.[^exterior]
+Observation: the derivative operator $$\frac{d}{dx}$$ can be decomposed into two steps: applying the differential operator $$d$$ to the target, then dividing by $$dx$$. It is useful to think of this as occuring in two steps, because it removes confusion in certain notations. Particularly, we will identify these two ways of writing the second derivative as meaning slightly different things:[^exterior]
+
+[^exterior]: note that this is not the same use of $$d$$ as is used in exterior algebra, with $$d^2 = 0$$. That one requires additionally quotienting by relations like $$dx dy \sim dy dx$$.
+
+$$(\frac{d}{dx})^2 y = \frac{d}{dx} (\frac{dy}{dx})= \frac{d^2 y}{dx^2} -  \frac{dy}{dx} \frac{d^2 x}{dx^2}$$
+
+vs
+
+$$\frac{d^2 y}{dx^2} = \frac{d( y_x dx )}{dx^2} = \frac{ y_{xx} dx^2 + y_x d^2 x}{dx^2} = y_{xx} + y_x \frac{d^2 x}{dx^2}$$
 
 <!--more-->
 
-[^exterior]: note that this is not the same use of $$d$$ as is used in exterior algebra, with $$d^2 = 0$$. That requires additionally quotienting by relations like $$dx dy \sim dy dx$$.
+In this notation $$(\frac{d}{dx})^2 y$$ is not the same thing as $$\frac{d^2 y}{dx^2}$$, so $$\frac{d^2 x}{dx^2}$$ is not necesarily equal to $$0$$. We find by substituting the second into the first that $$\frac{d(dy/dx)}{dx} = y_{xx}$$, as expected. In general $$\frac{d^2 y}{dx^2} = y_{xx}$$ may not be true if $$x$$ is a function of another variable $$x(t)$$, because then $$\frac{d^2 x}{dx^2} = \frac{x_{tt} dt^2 + x_t d^2 t}{dx^2}$$.
 
-This is only a slight change of notation, but it's more useful than I realized. For instance the meticulous notation for a second derivative is $$\frac{d^2 y}{dx^2} = \frac{d(dy/dx)}{dx} = \frac{d^2 y}{dx^2} -  \frac{dy}{dx} \frac{d^2 x}{dx^2}$$. (Keep in mind that $$\frac{d^2 x}{dx^2} \neq 0$$ here if $$x$$ is a function of something else.) Among other things, this leads to the correct rule for calculating the 2nd-derivative version of the chain rule ([Faà di Bruno's formula](https://en.wikipedia.org/wiki/Fa%C3%A0_di_Bruno%27s_formula)) without much thought:
+Why bother with this? Because it lets expression with higher derivatives be manipulated algebraically without going astray. Here is the second-derivative version of the chain rule ([Faà di Bruno's formula](https://en.wikipedia.org/wiki/Fa%C3%A0_di_Bruno%27s_formula)) without much thought:
 
 $$\begin{aligned}
-\frac{df}{dt} &= \frac{f_x dx}{dt} = f_x \frac{dx}{dt} \\
 \frac{d}{dt} \big( \frac{df}{dt} \big) &=  \frac{d (f_x dx)}{(dt)^2} \\
-&= \frac{(f_x dx) dx + f_{x} d(d(x))}{(dt)^2} \\
-&= f_{xx} \big( \frac{dx}{dt} \big)^2 + f_{x} \frac{d^2 x}{dt^2}
+&= \frac{(f_{xx} dx) dx + f_{x} d(d(x))}{(dt)^2} \\
+&= f_{xx} \big( \frac{dx}{dt} \big)^2 + f_{x} (\frac{d^2 x}{dt^2})
 \end{aligned}$$
 
-Seems useful.
-
-The paper also uses this notation to show a succinct derivation of a formula for inverting second derivatives (in slightly different notation):
+Seems useful. The paper also uses this notation to show a succinct derivation of a formula for inverting second derivatives (in slightly different notation):
 
 $$ \frac{d^2 y}{dx^2} = - \frac{d^2 x}{dy^2} \big( \frac{dy}{dx} \big)^3$$
 
-The authors say that they and their reviewers initially thought this might have been a new discovery. In fact it can be found on [Wikipedia](https://en.wikipedia.org/wiki/Inverse_functions_and_differentiation#Higher_derivatives). But it's definitely not that well-known!
+The authors say that they and their reviewers initially thought this might have been a new discovery. In fact it can be found on [Wikipedia](https://en.wikipedia.org/wiki/Inverse_functions_and_differentiation#Higher_derivatives), but it's definitely not that well-known!
 
