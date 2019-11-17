@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "Exterior Algebra 3: The Hodge Star"
+title: "Exterior Algebra Notes #3: The Hodge Star"
 footnotes: true
 math: true
 aside: true
@@ -65,17 +65,17 @@ Wikipedia will tell you that the main purpose of $$\star$$ is to define, like, t
 ## 2. Note on Duality
 
 
-Note that the Hodge star is also called the 'Hodge dual', although this is normally not the same thing vector space duality.
+The Hodge star is also called the 'Hodge dual', although this is normally not the same thing vector space duality.
 
-When you are keeping track of duality, I have found references which define $$\star$$ as both $$\^^k V \ra \^^{n-k}V$$ and as $$\^^k V \ra \^^{n-k} V^*$$. I am not sure which one is more 'correct'.
+When you are keeping track of duality, I have found references which define $$\star$$ as both $$\^^k V \ra \^^{n-k}V$$ and as $$\^^k V \ra \^^{n-k} V^*$$. I suppose it depends on whether you assuming the existence of an inner product as well, which lets you identify $$\^^{n-k} V \simeq \^^{n-k} V^*$$.
 
-It might depend on what other machinery you have around -- if you are doing linear algebra in a space which does not have an inner product, then the wedge product gives you a mapping $$\^^k V \times \^^{n-k} V \ra \^^n V$$. Since $$\^^n V \simeq \bb{R}$$ (or whatever base field) this means that $$\^^k V$$ and $$\^^{n-k} V$$ are dual, as vector spaces, but you need to actually _provide_ a mapping $$\^^n V \ra \bb{R}$$ in order to construct the duality mapping. This amounts to picking a value of $$\omega$$, which determines the orientation and scaling of the space. The choice of $$\omega$$ identifies $$\^^k \simeq \^^{n-k} V^*$$ (see [this](https://math.stackexchange.com/questions/872/what-is-the-relationship-between-the-hodge-dual-of-p-vectors-and-the-dual-space) explanation for more).
+Even without an inner product or $$\star$$, the wedge product provides a construction of the dual space. Since the space $$\^^n V$$ is one-dimensional, it is isomorphic to $$\bb{R}$$, although there is no canonical choice of isomorphism (which amounts to picking a pseudoscalar). This means the map $$\un{k}{\alpha} \ra \alpha \^ \un{n-k}{\beta} \in \^^n V$$ is a map $$\^^k V \ra \bb{R}$$, so $$\^^{n-k} V \simeq (\^^k V)^*$$ and $$\^^k V \simeq (\^^{n-k}V)^*$$, even without $$\star$$.
 
-Thus, if you have no canonical inner product, you can still define a notion of vector space duality using $$\star$$.  I am mostly trying to develop for myself a low-level view of exterior algebra for use in familiar Euclidean vector spaces, so I've been assuming away the presence of an inner product without thinking about this.
+A choice of $$\star$$ or inner product (each can be defined in terms of the other) additionally maps $$\^^k \simeq \^^{n-k} V$$, and thus provides the isomorphism $$\^^{n-k} V \simeq \^^{n-k} V^*$$. Something like that. See [this](https://math.stackexchange.com/questions/872/what-is-the-relationship-between-the-hodge-dual-of-p-vectors-and-the-dual-space) explanation for more.
 
-If you _do_ have an inner product, then you also have an isomorphism $$V \mapsto V^*$$, and so you have $$\^^{k} V \simeq \^^{k} V^*$$, and thus $$\star$$ can be considered as a map $$\^^k V \ra \^^{n-k} V$$.
+In physics, at least, we invoke vector space duality when we are concerned with creating coordinate-independent quantities. In a coordinate-independent inner product like $$a \cdot b$$, one side must be contravariant and the other covariant, so that the result is invariant. It is easy that, since $$\star (a \cdot b) = a \^ \star b$$, the $$\star$$ operation must be involved with covariance as well. The result is kinda unwieldy (you can see one version on [wikipedia](https://en.wikipedia.org/wiki/Hodge_star_operator#Expression_in_index_notation)), but I think I am going to wait on figuring it out for myself until I contend with everything else in a covariant way also in some future article.
 
-In physics, at least, we invoke vector space duality when we are concerned with preserving inner products under coordinate transformations. With $$\star: \^^k V \ra \^^{n-k} V$$, the transformation of a multivector $$\star \alpha$$ is taken care of by the transformation rules for $$\^^{n-\| \alpha \|} V$$, without needing to consider it as a dual vector.. Although keep in mind that $$\star$$ itself is only preserved by positively-oriented orthonormal transformations, which have $$\det (A) = 1$$.
+It is worth noting that $$\star$$ itself is not coordinate-invariant. It's only preserved by orientation-preserving orthonormal transformations.
 
 --------
 

@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "Exterior Algebra 4: The Interior Product"
+title: "Exterior Algebra Notes #4: The Interior Product"
 footnotes: true
 math: true
 aside: true
@@ -107,13 +107,19 @@ If we consider our projection/rejection operations as operators, writing $$L_{\b
 
 $$\iota_{\b{a}} \circ L_{\b{a}} + L_{\b{a}} \circ \iota_{\b{a}}  = \vert \b{a} \vert^2 (\text{proj}_{\b{a}} + \text{proj}_{\perp \b{a}}) = \vert \b{a} \vert^2 $$
 
+Since $$\iota^2 = L^2 = 0$$, this could also be written as
+
+$$(\iota_{\b{a}} + L_{\b{a}})^2 = \vert \b{a} \vert^2$$
+
+And in fact this works (although the interpretation is trickier) with different vectors for each term:
+
+$$(\iota_{\b{a}} + L_{\b{b}})^2 = \b{a \cdot b}$$
 
 There is a lot of interesting structure here which is worth diving into in the future. It turns out to be related to a lot of other mathematics. The short version is that $$\iota$$ is, technically, a "graded derivation" on the exterior algebra, and the property that $$\iota L + L \iota = I$$ is the exterior-algebra equivalent of the fact that $$\p_x x - x \p_x = 1$$ on derivatives (in the [sense](https://en.wikipedia.org/wiki/Weyl_algebra) that $$(xf)' - x f' = f$$).
 
 ------
 
-If we are keeping track of vector space duality, the left side of an interior product $$\alpha \cdot \beta$$ should transform like a dual multivector. (It certainly seems like it should because the left side of an inner product $$\< \alpha , \beta \>$$ should.)
-
+If we are keeping track of vector space duality, the left side of an interior product $$\alpha \cdot \beta$$ should transform like a dual multivector. (It certainly seems like it should because the left side of an inner product $$\< \alpha , \beta \>$$ should.) More on that later.
 
 The discussion about projection above seems to me to strongly suggest that we define $$\frac{\iota_{\b{a}}}{\vert \b{a} \vert^2} = \b{a}^{-1}$$ as a sort of 'multiplicative inverse' of $$\b{a}$$. It's not a complete inverse, because $$\b{a} \^ \b{a}^{-1} \^ \beta = \beta_{\b{a}}$$. Instead of being invertible, dividing and then multiplying pulls out the projection on $$\b{a}$$. There is a certain elegance to it.
 
@@ -186,6 +192,7 @@ $$\star \alpha = \alpha \cdot (\b{x \^ y \^ z})$$
 This is probably the better definition. One reason is that it suggests that $$\star$$ is not so special, and, for instance, we might allow ourselves to take a $$\star$$ in a subspace. For instance while working in $$\bb{R}^3$$ here is another way to write the rotation operator $$R_{\b{xy}}$$:
 
 $$\star_{xy} \b{x} = \b{x} \cdot (\b{x \^ y}) = \b{y}$$
+
 
 
 

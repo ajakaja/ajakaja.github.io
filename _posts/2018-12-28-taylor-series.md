@@ -45,8 +45,8 @@ I also think it's useful to interpret the Taylor series equation as resulting fr
 
 $$\begin{aligned}
 f(x) &= f(0) + \int_0^x dx_1 f'(x_1) \\
-&= f(0) + \int_0^x dx_1 [ f'(0) + \int_0^{x_1} dx_2 f''(x_2) ]] \\
-&= f(0) + \int f'(0) + \iint f''(0) + \iiint f'''(0) + \ldots \\
+&= f(0) + \int_0^x dx_1 [ f'(0) + \int_0^{x_1} dx_2 f''(x_2) ]] + \ldots\\
+&= f(0) + \int dx_1 f'(0) + \iint dx_1 dx_2 f''(0) + \iiint dx_1 dx_2 dx_3 f'''(0) + \ldots \\
 &= f(0) + x f'(0) + \frac{x^2}{2} f''(0) + \frac{x^3}{3!} f'''(0) + \ldots
 \end{aligned}$$
 
@@ -202,7 +202,7 @@ $$\begin{aligned}
 \p_{\bar{z}} &\underset{\bb{C}}{=} \frac{1}{2}(\p_x + i \p_y) \underset{\bb{R}^2}{=} \frac{1}{2}(\p_{\b{x}} - \p_{\b{y}})
 \end{aligned}$$
 
-In complex analysis, for some reason, $$\bar{z}$$ is not treated as a true variable, and we only consider a function as 'complex differentiable' when it has derivatives with respect to $$z$$ alone. Notably, we woudl say that the derivative $$\p_z \bar{z}$$ does not exist -- the value of $$\lim_{(x,y) \ra (0,0)} \frac{x + iy}{x - i y}$$ is different depending on the path you take towards the origin. These statements turn out to be _almost_ equivalent:
+In complex analysis, for some reason, $$\bar{z}$$ is not treated as a true variable, and we only consider a function as 'complex differentiable' when it has derivatives with respect to $$z$$ alone. Notably, we would say that the derivative $$\p_z \bar{z}$$ does not exist -- the value of $$\lim_{(x,y) \ra (0,0)} \frac{x + iy}{x - i y}$$ is different depending on the path you take towards the origin. These statements turn out to be _almost_ equivalent:
 
 * $$f(z)$$ is a function of only $$z$$ in a region
 * $$\p_{\bar{z}} f(z) = 0$$ in a region
@@ -226,7 +226,7 @@ There is one important case where a function $$f(z, \bar{z})$$ is a function of 
 
 $$\p_{\bar{z}} \frac{1}{z} = 2 \pi i \delta(z, \bar{z})$$
 
-I find this to be quite surprising. Here's an aside on why it's true:
+Where $$\delta(z, \bar{z})$$ is the two-dimensional Dirac Delta function. I find this to be quite surprising. Here's an aside on why it's true:
 
 <aside class="toggleable" id="complex" placeholder="<b>Aside</b>: Conjugate derivatives <em>(click to expand)</em>">
 
