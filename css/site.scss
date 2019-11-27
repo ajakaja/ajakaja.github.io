@@ -4,6 +4,7 @@
 //
 // IMPORTS
 //
+$footnote-font-size: 0.8em;
 
 @import "reset";
 @import "variables";
@@ -388,10 +389,6 @@ footer {
 div .footnotes {
   font-size: 0.8em;
   color: $gray;
-}
-
-span .inline-footnote .closed {
-  font-size: 1em;
 }
 
 sup[id^="fnref"] {

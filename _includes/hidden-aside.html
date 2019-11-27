@@ -22,6 +22,7 @@ $(() => {
 
 		let $title = $("<div/>")
 			.html($el.attr("placeholder"))
+			.css("width", "100%")
 			.prependTo($el)
 			.click(e => {
 				if($el.hasClass("hidden")) {
