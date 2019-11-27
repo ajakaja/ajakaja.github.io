@@ -13,7 +13,7 @@ A [blog post](https://xorshammer.com) led me to a [paper](https://arxiv.org/pdf/
 
 Observation: the derivative operator $$\frac{d}{dx}$$ can be decomposed into two steps: applying the differential operator $$d$$ to the target, then dividing by $$dx$$. It is useful to think of this as occuring in two steps, because it removes confusion in certain notations. Particularly, we will identify these two ways of writing the second derivative as meaning slightly different things:[^exterior]
 
-[^exterior]: note that this is not the same use of $$d$$ as is used in exterior algebra, with $$d^2 = 0$$. That one requires additionally quotienting by relations like $$dx dy \sim dy dx$$.
+[^exterior]: note that this is not the same use of $$d$$ as is used in exterior algebra, with $$d^2 = 0$$. That one requires additionally quotienting by relations like $$dx \, dy \sim dy \, dx$$.
 
 $$(\frac{d}{dx})^2 y = \frac{d}{dx} (\frac{dy}{dx})= \frac{d^2 y}{dx^2} -  \frac{dy}{dx} \frac{d^2 x}{dx^2}$$
 

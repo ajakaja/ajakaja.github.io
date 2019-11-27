@@ -38,19 +38,30 @@ const macros = {
         "\\un": "\\underset",
         "\\v": "\\vee",
         "\\vol": "\\text{vol}",
-        "\\F": "\\mathcal{F}",
       };
 function renderWithErrors(tex, displayMode) {
   try { 
     return katex.renderToString(tex, {
       displayMode: displayMode,
+      output: "html",
       throwOnError: false,
-      macros: macros
+      macros: macros,
+      strict: false,
+      minRuleThickness: 0.07 // seems to fix fraction problems at reasonable zooms in Chrome
     }); 
   } catch (e) {
     return "<span class='texerror'>" + e.message + "</span>";
   }
 }
+$("script[type='math/tex; mode=display']").replaceWith(
+  function(){
+    var tex = $(this).text()
+      .replace("% <![CDATA[", "")
+      .replace("%]]>", "");
+    return "<div class=\"equation\">" + 
+           renderWithErrors(tex, true) +
+           "</div>";
+});
 $("script[type='math/tex']").replaceWith(
   function(){
     var tex = $(this).text()
@@ -60,12 +71,4 @@ $("script[type='math/tex']").replaceWith(
            renderWithErrors(tex, false) +
            "</span>";
 });
-$("script[type='math/tex; mode=display']").replaceWith(
-  function(){
-    var tex = $(this).text()
-      .replace("% <![CDATA[", "")
-      .replace("%]]>", "");
-    return "<div class=\"equation\">" + 
-           renderWithErrors(tex, true) +
-           "</div>";
-});</script>
+</script>

@@ -7,6 +7,8 @@ aside: true
 tags: notes
 ---
 
+$$\gdef\F#1{\mathcal{F}[#1]}$$
+
 A while ago I found a series of papers which do some wild magic with derivative operators:
 
 1. [New Dirac Delta function based methods with applications to perturbative expansions in quantum field theory](https://arxiv.org/abs/1404.0747) by Kempf/Jackson/Morales, 2014
@@ -33,13 +35,13 @@ which can be understood as the [exponential map](https://en.wikipedia.org/wiki/E
 
 Now, the Fourier transform of $$\p^n_x f(x) = f^{(n)}(x)$$ is given by[^convention]
 
-[^convention]: Let's agree to use the convention $$\F[f(x)] = \hat{f}(k) = \int f(x) e^{- ik x} dx$$, with the $$\frac{1}{2 \pi}$$ on the inverse transform.
+[^convention]: Let's agree to use the convention $$\F{f(x)} = \hat{f}(k) = \int f(x) e^{- ik x} dx$$, with the $$\frac{1}{2 \pi}$$ on the inverse transform.
 
-$$\F[f^{(n)}(x)] = (i k)^n \hat{f}(k)$$
+$$\F{f^{(n)}(x)} = (i k)^n \hat{f}(k)$$
 
 So it seems like we can write this, by matching up the Taylor series term-by-term
 
-$$\F[f(x + a)] = \F[e^{a \p_x} f(x)] = e^{ika} \hat{f}(k)$$
+$$\F{f(x + a)} = \F{e^{a \p_x} f(x)} = e^{ika} \hat{f}(k)$$
 
 Is that correct? Sure, no problem: if a function is a sum of exponentials $$e^{i k x}$$, then of course $$f(x+a)$$ is a sum of exponentials $$e^{i k a} e^{i k x} $$, and the first factor just passes through the transform untouched because it has no $$x$$-dependence (and also Wikipedia says so). But it also just seems that we simply swapped $$ik$$ for $$\p_x$$. I wonder if we can do just insert $$\p_x \ra i k$$ to Fourier-transform any other functions with no work? 
 
@@ -51,9 +53,9 @@ Let's try polynomials. We can write an integral as a a sort of inverse derivativ
 
 $$x^n = n! \p_x^{-n} (1)$$
 
-Mindless substitution $$\p_x \ra ik$$ (with $$\F(1) = 2\pi \delta(k)$$, with $$\delta$$ the [delta function](https://en.wikipedia.org/wiki/Dirac_delta_function)) gives the Fourier transform as
+Mindless substitution $$\p_x \ra ik$$ (with $$\F{1} = 2\pi \delta(k)$$, with $$\delta$$ the [delta function](https://en.wikipedia.org/wiki/Dirac_delta_function)) gives the Fourier transform as
 
-$$\F{x^n} = \F[n! \p_x^{-n} (1)] = 2 \pi \delta(k)  \frac{n!}{(ik)^n} $$
+$$\F{x^n} = \F{n! \p_x^{-n} (1)} = 2 \pi \delta(k)  \frac{n!}{(ik)^n} $$
 
 Wikipedia says that the transform should actually be $$2\pi i^n \delta^{(n)}$$. Are those the same? Yeah, turns out they are:
 
@@ -79,7 +81,7 @@ $$\begin{aligned}
 
 So we can say $$ \delta^{(n)}(k) = (-1)^n n! \frac{\delta(k)}{k^n}$$, and our formula is correct:
 
-$$\F[x^n] = \F[n! \p_x^{-n} (1)] = 2 \pi (-i)^n n! \frac{\delta(k)}{k^n} = 2 \pi i^n \delta^{(n)}(k)$$
+$$\F{x^n} = \F{n! \p_x^{-n} (1)} = 2 \pi (-i)^n n! \frac{\delta(k)}{k^n} = 2 \pi i^n \delta^{(n)}(k)$$
 
 </aside>
 
@@ -87,7 +89,7 @@ So we have[^sign]
 
 [^sign]: I have a different sign here than the Kempf/Jackson/Morales paper and I'm not sure why, since we're using the same Fourier convention.
 
-$$\F[x^n]  = 2 \pi (i\p_k)^n \delta(k)$$
+$$\F{x^n}  = 2 \pi (i\p_k)^n \delta(k)$$
 
 ----
 
@@ -95,17 +97,17 @@ $$\F[x^n]  = 2 \pi (i\p_k)^n \delta(k)$$
 
 If that's true, then the Fourier series of any function that has a Taylor series is going to be something like
 
-$$\F[f(x)]  = 2 \pi f(i \p_k) \delta(k)$$
+$$\F{f(x)}  = 2 \pi f(i \p_k) \delta(k)$$
 
 Since we like to write $$\delta'(x) = - \delta(x) \p_x$$ we can write that as:
 
-$$\F[x^n]  = 2 \pi  \delta(k) (-i\p_k)^n$$
+$$\F{x^n}  = 2 \pi  \delta(k) (-i\p_k)^n$$
 
-This kinda suggests that $$\F[f(x)]$$ should just be $$2 \pi \delta(k) f(-i \p_k)$$ for any function that has a Taylor series.
+This kinda suggests that $$\F{f(x)}$$ should just be $$2 \pi \delta(k) f(-i \p_k)$$ for any function that has a Taylor series.
 
 The derivative here acts the right, not on the delta function. If we don't like leaving our Fourier transforms as derivative operators $$f(-i \p_k)$$, we can sometimes rewrite the derivatives in terms of delta functions: $$\delta(k) \p_k g(k) = - \delta'(k) g(k)$$. For instance here is the polynomial formula from before, done another way:
 
-$$\F[x^n] = 2 \pi \delta(k) (-i \p_k)^n= 2 \pi i^n \delta^{(n)}(k)$$
+$$\F{x^n} = 2 \pi \delta(k) (-i \p_k)^n= 2 \pi i^n \delta^{(n)}(k)$$
 
 What can we make of $$f(-i \p_k)$$? Well, if $$f$$ has a Taylor series and we operate this on an exponential, it turns into a form of substitution: $$f(-i a\p_k) e^{i a k} = \hat{f}(a) e^{i a k}$$. So $$(-i a \p_k)$$ is an operator whose eigenvalues, I guess, are $$f(a)$$, when acting on each exponential. That makes a certain amount of sense. It feels a lot like quantum mechanicical operators pulling out eigenvalues... but it's purely mathematical! Weird.
 
@@ -114,9 +116,9 @@ What can we make of $$f(-i \p_k)$$? Well, if $$f$$ has a Taylor series and we op
 
 ## 4
 
-What about $$\F[1/x]$$? Apparently it should be:
+What about $$\F{1/x}$$? Apparently it should be:
 
-$$\F[1/x] = 2\pi \delta(k)  \frac{1}{-i \p_k}  = - 2 \pi i \p_k^{-1} \delta(k) = - 2 i \pi (\theta(x) + c)$$
+$$\F{1/x} = 2\pi \delta(k)  \frac{1}{-i \p_k}  = - 2 \pi i \p_k^{-1} \delta(k) = - 2 i \pi (\theta(x) + c)$$
 
 I kept the $$c$$ around because Wikipedia says this should be $$- i \pi \sgn(x)$$, which would mean $$c = - \frac{1}{2}$$. I'm not sure where you get that from, but I think it's possible the constant is arbitrary. This integral is normally evaluted using the [Cauchy Principal Value](https://en.m.wikipedia.org/wiki/Cauchy_principal_value), which is not very well-behaved anyway, so I dunno[^principalvalue].
 
@@ -155,11 +157,11 @@ In summary it _appears_ to be true, in some numerological and intuitive sense, t
 
 [^series]: Where should the Taylor series be defined / convergent? No idea. But it seems to work algebraically.
 
-$$\F[f] =  \int f(x) e^{-ikx} dx \equiv 2 \pi \delta(k) f(- i \p_k)  = 2\pi f(i \p_k) \delta(k) $$
+$$\F{f} =  \int f(x) e^{-ikx} dx \equiv 2 \pi \delta(k) f(- i \p_k)  = 2\pi f(i \p_k) \delta(k) $$
 
 And more generally if we write $$f$$ as a function of $$x$$ and $$\p_x$$, then:
 
-$$\F[f(x, \p_x)] \equiv 2 \pi \delta(k) f(i k, -i \p_k) $$
+$$\F{f(x, \p_x)} \equiv 2 \pi \delta(k) f(i k, -i \p_k) $$
 
 At least since this works for Taylor series it seems like it will work for a nice class of well-behaved functions. From playing with it I've decided that it 'rings true' to me, because it has so far appeared to be consistent with a bunch of the Fourier transforms I've checked, so I suspect that it will be more-or-less consistent with the rest. 
 

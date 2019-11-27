@@ -5,7 +5,9 @@ math: true
 footnotes: true
 ---
 
-*(Notes. Definitely not interesting unless, at minimum, you really like calculus.)*
+*(Notes. Definitely not interesting unless, at minimum, you really really liked calculus.)*
+
+---
 
 ## 1
 
@@ -61,6 +63,8 @@ So it's just all really great, when it works and the series converge and everyth
 
 <small>(In physics we tend to, instead of carefully proving things converge, just do the calculations and *see* if they match what they should be afterwards, and then wave our hands and conclude that it works, because it's easier that way and because (I suspect) getting a coherent calculus of operators is an analytical nightmare, and definitely not in immediate reach of the curious undergraduate.)</small>
 
+----
+
 ## 2
 
 Assume $$F(x) = \int f(x) dx$$ exists, and consider antidifferentiation as a left inverse of the differentation operator:
@@ -97,6 +101,8 @@ Which has a nice symmetry to it. It reminds me of a change of basis, which, in s
 
 It basically means: project $$f(x)$$ onto its behavior at each polynomial order $$\frac{x^{n}}{n!}$$, and then write it literally in terms of those polynomial orders using $$\frac{a^{n}}{n!}$$. If (1) $$f$$ is truly entirely constructible entirely from polynomials, and (2) the resulting sum converges, this should be equivalent to $$f(x+a)$$.
 
+----
+
 ## 3 Misc
 
 If we consider $$f$$ as an abstract function object which only takes on a value $$f(x)$$ when composed with a point $$\hat{x} \circ f = f(x)$$, then we can write a suggestive (but probably not too meaningful) equations like:
@@ -128,6 +134,8 @@ Alternatively we may write this as applying an infinitesimal translation operato
 $$f(x + a) = \lim_{\e \ra 0} T^{\frac{a}{\e}}_{\e} f(x) = \lim_{\e \ra 0} (1 + (T_{\e} - 1))^{\frac{a}{\e}} f(x) $$
 
 $$ = \lim_{\e \ra 0} (1 + \D_{\e})^{\frac{a}{\e}} f(x) = e^{a \p_{x}} f(x)$$
+
+----
 
 ## 4
 
