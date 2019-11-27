@@ -7,7 +7,7 @@ aside: true
 tags: notes
 ---
 
-A while ago I found a series papers which do some wild magic with derivative operators:
+A while ago I found a series of papers which do some wild magic with derivative operators:
 
 1. [New Dirac Delta function based methods with applications to perturbative expansions in quantum field theory](https://arxiv.org/abs/1404.0747) by Kempf/Jackson/Morales, 2014
 2. [How to (Path-) Integrate by Differentiating](https://arxiv.org/abs/1507.04348) also by Kempf/Jackson/Morales, 2015
@@ -51,7 +51,7 @@ Let's try polynomials. We can write an integral as a a sort of inverse derivativ
 
 $$x^n = n! \p_x^{-n} (1)$$
 
-Mindless substitution $$\p_x \ra ik$$ (with $$\F(1) = 2\pi \delta(k)$$) gives the Fourier transform as
+Mindless substitution $$\p_x \ra ik$$ (with $$\F(1) = 2\pi \delta(k)$$, with $$\delta$$ the [delta function](https://en.wikipedia.org/wiki/Dirac_delta_function)) gives the Fourier transform as
 
 $$\F{x^n} = \F[n! \p_x^{-n} (1)] = 2 \pi \delta(k)  \frac{n!}{(ik)^n} $$
 
@@ -127,9 +127,7 @@ I kept the $$c$$ around because Wikipedia says this should be $$- i \pi \sgn(x)$
 
 ## 5
 
-A quick example of how this is useful for evaluating integrals.
-
-Using $$\int_{-\infty}^{\infty} g(x) dx = \hat{g}(0)$$ we get a weird ways of writing an integral:
+A quick example of how this is useful for evaluating integrals. Using $$\int_{-\infty}^{\infty} g(x) dx = \hat{g}(0)$$ we get this odd formula:
 
 $$\begin{aligned}
 \int_{-\infty}^{\infty} g(x) dx &= 2\pi  g(i \p_x) \delta(x) \vert_{x = 0} 
