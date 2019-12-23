@@ -60,7 +60,7 @@ Where are things going to go differently? There are basically two steps that can
 
 It seems to me that (2) should be answered with 'yes', because there's no other alternative -- if an experimenter measures $$n$$ events and sees $$\| 0 \>$$ $$k$$ times, then they're going to write down that $$P[0] = \frac{k}{n}$$, even if they are one slice of a big quantum state.
 
-(1), however, is less clear. A potential problem is that each of these measurement results could have phases, and there is no reason to think that they will add up neatly.[^crux] Consider running the experiment twice. The state we general will be:
+(1), however, is less clear. A potential problem is that each of these measurement results could have phases, and there is no reason to think that they will add up neatly.[^crux] Consider running the experiment twice, letting each result have a different phase. The state we generate will be:
 
 [^crux]: This is the crux of the whole argument, and it directly induces the result. I'm really not sure that it's credible but let's proceed as though it is.
 
@@ -81,7 +81,7 @@ Where $$\theta = \theta_{\alpha} - \theta_{\beta}$$. The $$e^{i \theta_{\beta}}$
 
 $$e^{i (\theta_1 + \theta_2) }  a^2 \| 0^2 \> + ab (e^{i \theta_1} + e^{i \theta_2}) \| 0^1 1^1 \> + b^2 \| 1^2 \>$$
 
-And $$ab (e^{i \theta_1} + e^{i \theta_2}) \| 0^1 1^1 \>$$ only has the same magnitude as $$2ab \| 0^1 1^1 \>$$ when $$\theta_1 = \theta_2$$. So, if I haven't done anything egregiously wrong, there appears to be a sort of damping factor on the probability of states with multiplicity (which is almost all of them), due to the fact that the different results may be out of phase with each other. States with many phase factors involved end up having a lower amplitude than they would if we were doing classical probability.
+And $$ab (e^{i \theta_1} + e^{i \theta_2}) \| 0^1 1^1 \>$$ only has the same magnitude as $$2ab \| 0^1 1^1 \>$$ when $$\theta_1 = \theta_2$$. So, if I haven't done anything egregiously wrong, there appears to be a sort of damping factor on the probability of states with multiplicity (which is basically all of them), due to the fact that the different ways of getting the same result may be out of phase with each other. States with many phase factors involved end up having a lower amplitude than they would if we were doing classical probability.
 
 This has the effect of making the amplitudes of states closer to the center of the distribution _lower_ -- but by how much? 
 
@@ -139,11 +139,11 @@ $$\begin{aligned}
 &= \| \hat{P}[0] = \| \alpha \|^2 \>
 \end{aligned}$$
 
-Thus we conclude that the probability of measuring $$\| 0 \>$$ when interacting with a system in state $$\alpha \| 0 \> + \beta \| 1 \>$$ is $$\| \alpha \|^2$$, as reported by an experimenter in a box who runs this many times, which is what we probably are anyway. 
+Thus we conclude that the probability of measuring $$\| 0 \>$$ when interacting with a system in state $$\alpha \| 0 \> + \beta \| 1 \>$$ is $$\| \alpha \|^2$$, as reported by an experimenter in a box who runs this many times, which is what we probably are anyway. And that's the Born Rule.
 
-Ultimately this seems to be because different ways of seeing the same result interfere with each other, suppressing the amplitudes of seeing less uniform results by a square-root factor.
+Ultimately this seems to be because different ways of seeing the same result interfere with each other, suppressing the amplitudes of seeing less uniform results by a factor of the square root of their multiplicity.
 
-Note that this argument works if $$\alpha^2 + \beta^2 \neq 1$$; the resulting asymptotic normal distribution will end up having mean $$\frac{n \| \alpha \|^2}{\| \alpha \|^2 + \| \beta \|^2}$$.
+Note that this argument should still work if $$\|\alpha \|^2 + \| \beta \|^2 \neq 1$$; the resulting asymptotic normal distribution will end up having mean $$\frac{n \| \alpha \|^2}{\| \alpha \|^2 + \| \beta \|^2}$$.
 
 If this is valid, there are some strange implications that I'll try to explore another time. Among other things it certainly casts frequentism in a strange light.
 
