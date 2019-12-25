@@ -94,7 +94,7 @@ $$\psi = \sum_k a^k b^{n-k} E_{k, n} \| 0^k  1^{n-k} \> = \sum_k a^k b^{n-k} E_{
 
 The classical version of this is a binomial distribution because $$E_{k, n}$$ is replaced with $${n \choose k}$$. The quantum version observes some cancellation. Still, we want to know: as $$n \ra \infty$$, what value of $$k$$ dominates?
 
-We are assuming that all of the $$\theta_i$$ are randomly distributed, which gives $$\bb{E}[e^{i \theta}] = 0$$ and therefore $$\bb{E}[E_{k, n}] = 0$$ for all $$k$$. But this doesn't mean that the expected _amplitude_ is 0, just like how the expected magnitude of displacement in a random walk is not $$0$$. In fact, for $$k=1$$ this is just a random walk in the complex plane, and the expected amplitude of a random walk is [well-known](http://mathworld.wolfram.com/RandomWalk2-Dimensional.html) to be given by $$\bb{E}[ \| E_{1, n} \|^2 ] = n$$. Briefly, this comes from the fact that
+We are assuming that all of the $$\theta_i$$ are randomly distributed, which gives $$\bb{E}[e^{i \theta}] = 0$$ and therefore $$\bb{E}[E_{k, n}] = 0$$ for all $$k$$. But this expected _magnitude_ is not 0. The sum of all of these random vectors forms a random walk in the complex plane, and the expected amplitude of a random walk is [well-known](http://mathworld.wolfram.com/RandomWalk2-Dimensional.html) to be given by $$\bb{E}[ \| E_{1, n} \|^2 ] = n$$. Briefly, this comes from the fact that
 
 $$\begin{aligned}
 
@@ -103,29 +103,25 @@ $$\begin{aligned}
 &= n
 \end{aligned}$$
 
-(The second term drops out because it is just the expectation of $$e^{i (\theta_2 - \theta_1)}$$) (This is also basically a complex version of linearity of variance: $$\bb{E} [ \| E_{1, n} \|^2 ] = n \bb{E} [ \| e^{i \theta} \| ^2 ] = n$$.)
+(The second term drops out because it is the expectation of $$e^{i (\theta_2 - \theta_1)}$$.)
 
 This means that the magnitude of the $$k=1$$ term for our quantum coin is proportional to $$\sqrt{n}$$. For comparison, in classical probability it is $${ n \choose 1 } = n$$.
 
-For $$k > 1$$, the same argument applies (it's still basically a random walk), except that there are $${ n \choose k }$$ terms in the sum, so in every case we get an expected amplitude $$\bb{E} [ \| E_{k, n} \|] = \sqrt{ n \choose k}$$.
+For $$k > 1$$, the same argument applies (it's still basically a random walk), except that there are $${ n \choose k }$$ terms in the sum, so in every case we get an expected amplitude $$\bb{E} [ \| E_{k, n} \|^2 ] = { n \choose k }$$.
 
 ------
 
-Therefore, for large $$n$$, our poor experimenter's wave function goes like
+These don't tell us the constant of proportionality, since $$\bb{E}[ \| E_{k, n} \|^2] \neq \bb{E}[ \| E_{k, n} \|]^2$$, but fortunately we only need to compute the value of $$k$$ at the peak, which we can do either way. $$\| \psi \|$$ is hard to work with, but $$\| \psi \|^2$$ isn't:
 
-$$\psi = \sum_k a^k b^{n-k} \sqrt{n \choose k} \| \hat{P}[ 0] = \frac{k}{n} \>$$
+$$\| \psi \|^2  \sim \sum {n \choose k} (a^2)^k (b^2)^{n-k} $$
 
-What's the value of $$k$$ at the peak? I have no idea how to compute the maximum value of a binomial distribution whose coefficients are square-rooted, but I do know how to compute the max of $$\| \psi \|^2$$:
-
-$$\< \psi, \psi \> = \sum {n \choose k} (a^2)^k (b^2)^{n-k} $$
-
-This is a binomial distribution $$B(n, a^2, b^2) = B(n, \|\alpha\|^2, \| \beta \|^2)$$, which asymptotically looks like a normal distribution $$\mathcal{N}(n \| \alpha \|^2, n \| \alpha \|^2 \| \beta \|^2)$$, and has its maximum at $$n \| \alpha \|^2$$, which means that at the peak the experiment measures the probability as:
+This is a binomial distribution $$B(n, a^2, b^2) = B(n, \|\alpha\|^2, \| \beta \|^2)$$, which asymptotically looks like a normal distribution $$\mathcal{N}(n \| \alpha \|^2, n \| \alpha \|^2 \| \beta \|^2)$$ with maximum $$k = n \| \alpha \|^2$$, which means that the highest-amplitude state measures the probability as:
 
 $$\begin{aligned}
 \| \hat{P}[0]= \frac{n \| \alpha \|^2}{n} \> = \| \hat{P}[0] = \| \alpha \|^2 \>
 \end{aligned}$$
 
-Thus we conclude that the probability of measuring $$\| 0 \>$$ when interacting with a system in state $$\alpha \| 0 \> + \beta \| 1 \>$$ is $$\| \alpha \|^2$$, as reported by an experimenter in a box who runs this many times, which is what we probably are anyway. And that's the Born Rule.
+Thus we conclude that the observed probability of measuring $$\| 0 \>$$ when interacting with a system in state $$\alpha \| 0 \> + \beta \| 1 \>$$ is centered around $$\| \alpha \|^2$$, as reported by an experimenter in a box who runs the measurement many times, which is what we probably are anyway. And that's the Born Rule.
 
 Ultimately this seems to be because different ways of seeing the same result interfere with each other, suppressing the amplitudes of seeing less uniform results by a factor of the square root of their multiplicity.
 
@@ -133,8 +129,12 @@ Note that this argument should still work if $$\|\alpha \|^2 + \| \beta \|^2 \ne
 
 So that's interesting.
 
-It's unclear to me if this is compatible with experimental results that find probabilities -- I don't understand what sort of setup would be required for re-ordering of results to interfere with each other. But I find the fact that it works out correctly intriguing, especially because I suspected the calculation would work before I did it, and it worked out perfectly.
+------
+
+It's unclear to me how carefully isolated an experiment would have to be for different orderings of its results to interfere with each other. Presumably the answer is "a lot", but what if it isn't? I'm intrigued, either way, by the fact that this type of calculation produces the right answer through a relatively elementary manipulation. I'm especially intrigued because I suspected it would work before calculating, and it did, which never happens...
 
 Suffice to say I would love to know a) what's wrong with this argument (I feel like could be circular, but I haven't figured out how), or b) if it exists in the literature somewhere, cause I haven't found anything, although admittedly I didn't look very hard.
+
+I can think of some strange implications of this argument but I don't want to get ahead of myself (yet).
 
 I would also kinda like to go to graduate school.
