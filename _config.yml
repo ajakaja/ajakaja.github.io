@@ -16,7 +16,7 @@ plugins: []
 sass:
  sass_dir: _sass
 
-google_analytics: UA-75007391-1
+google_analytics: True
 
 exclude: [Gemfile,CNAME,README.md]
 
