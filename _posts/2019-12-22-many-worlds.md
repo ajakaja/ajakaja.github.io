@@ -7,7 +7,9 @@ aside: true
 tags: notes
 ---
 
-The Many-Worlds Interpretation (MWI) of quantum mechanics is probably roughly correct. There is no reason to think that the rules of atomic phenomena would stop applying at larger scales when an experimenter becomes entangled with their experiment (kooky interjections about consciousness notwithstanding...). However, MWI has the problem that it does not easily explain why quantum randomness leads to the probabilities that we observe. The [Born Rule](https://en.wikipedia.org/wiki/Born_rule) says that if a system is in a state $$\alpha \| 0 \> + \beta \| 1 \>$$, upon 'measurement' (in which we entangle with one or the other outcome), we measure the eigenvalue associated with the state $$\| 0 \>$$ with probability
+The Many-Worlds Interpretation (MWI) of quantum mechanics is probably roughly correct. There is no reason to think that the rules of atomic phenomena would stop applying at larger scales when an experimenter becomes entangled with their experiment (kooky interjections about consciousness notwithstanding...).
+
+However, MWI has the problem that it does not easily explain why quantum randomness leads to the probabilities that we observe. The [Born Rule](https://en.wikipedia.org/wiki/Born_rule) says that if a system is in a state $$\alpha \| 0 \> + \beta \| 1 \>$$, upon 'measurement' (in which we entangle with one or the other outcome), we measure the eigenvalue associated with the state $$\| 0 \>$$ with probability
 
 $$P[0] = \| \alpha \|^2$$
 
@@ -21,17 +23,17 @@ Anyway here's an argument I found that I find somewhat compelling? See what you 
 
 ## 1. A classical coin
 
-First let's think about classical probability, but write it in a notation suggestive of quantum mechanics. Suppose we're flipping a biased coin, and let's call its states $$\| H \> $$ and $$\| T \>$$ -- so the results of a coin flip are $$a \| H \> + b \| T \>$$ with $$a + b = 1$$. Upon $$n$$ iterations of classical coin-flipping we end up in state
+First let's think about classical probability, but write it in a notation suggestive of quantum mechanics. Suppose we're flipping a biased coin that gets heads with probability $$P[H] = p$$ and $$P[T] = q$$. Let's call its states $$\| H \> $$ and $$\| T \>$$, so the results of a coin flip are written as $$p \| H \> + q \| T \>$$ with $$p + q= 1$$. Upon $$n$$ iterations of classical coin-flipping we end up in state
 
-$$(a \| H \> + b \| T \>)^n = \sum_k {n \choose k} a^k b^{n-k} \| H^k T^{n-k} \>$$
+$$(p \| H \> + q \| T \>)^n = \sum_k {n \choose k} p^k q^{n-k} \| H^k T^{n-k} \>$$
 
 Where $$\| H^k T^{n-k} \>$$ means a state in which we have observed $$k$$ heads and $$n-k$$ tails (in any order).
 
-Now suppose this whole experiment is being performed by a poor experimenter who's, like, locked in a box or something. The experimenter does the experiment, writes down what they think the probability of heads is, and then transmits _that_ to us, outside of the box. So the only value we end up seeing is the value of their _measurement_ of $$P[H] = a$$, which we'll call $$\hat{P}[H]$$. The best estimate that the experimenter can give, of course, is their observed frequency $$\frac{k}{n}$$, so we might say that the resulting system's states are identified by the probability perceived by the experimenter:
+Now suppose this whole experiment is being performed by a poor experimenter who's, like, locked in a box or something. The experimenter does the experiment, writes down what they think the probability of heads is, and then transmits _that_ to us, outside of the box. So the only value we end up seeing is the value of their _measurement_ of $$P[H] = p$$, which we'll call $$\hat{P}[H]$$. The best estimate that the experimenter can give, of course, is their observed frequency $$\frac{k}{n}$$, so we might say that the resulting system's states are identified by the probability perceived by the experimenter:
 
-$$(a \| H \> + b \| T \>)^n = \sum_k {n \choose k} a^k b^{n-k} \| \hat{P}[H] = k/n\>$$
+$$(p \| H \> + q \| T \>)^n = \sum_k {n \choose k} p^k q^{n-k} \| \hat{P}[H] = k/n\>$$
 
-If you let $$n$$ get very large, the system with $$\hat{P}[H] = a$$ will end up having the highest-magnitude amplitude, and so we expect to end up in a 'universe' where the measurement of the probability $$a$$ converges on the true value of $$a$$. This is easily seen, because for large $$n$$ the binomial distribution $$B(n, a, b)$$ converges to a normal distribution $$\mathcal{N}(na, nab)$$ with mean $$na$$. So, asymptotically, the state $$\| \hat{P}[H] = \frac{na}{n} = a \>$$ becomes increasingly high-amplitude relative to all of the others.  This is a way of phrasing the law of large numbers.
+If you let $$n$$ get very large, the system with $$\hat{P}[H] = a$$ will end up having the highest-magnitude amplitude, and so we expect to end up in a 'universe' where the measurement of the probability $$p$$ converges on the true value of $$p$$. This is easily seen, because for large $$n$$ the binomial distribution $$B(n, p, q)$$ converges to a normal distribution $$\mathcal{N}(np, npq)$$ with mean $$np$$. So, asymptotically, the state $$\| \hat{P}[H] = \frac{np}{n} = p \>$$ becomes increasingly high-amplitude relative to all of the others.  This is a way of phrasing the law of large numbers.
 
 I think this is as good an explanation as any as to what probability 'is'. Instead of trying to figure out what it means for _us_ to experience an infinite number of events and observe a probability, let's just let an experimenter who's locked in a box figure it out for us, and then just have them send us their results! Unsurprisingly, the experimenter does a good job of recovering classical probability.
 
@@ -39,7 +41,7 @@ I think this is as good an explanation as any as to what probability 'is'. Inste
 
 ## 2. A quantum coin
 
-Now let's try it for a quantum coin (okay, a qubit). The individual experiment runs are now given by $$\alpha \| 0 \> + \beta \| 1 \>$$ where $$\alpha, \beta$$ are probabilities amplitudes with $$\| \alpha \|^2 + \| \beta \|^2 = 1$$. Note that normalizing these to sum to 1 doesn't predetermine what the experienced probabilities are, and as we will see the normalization isn't necessary.
+Now let's try it for a quantum coin (okay, a qubit). The individual experiment runs are now given by $$\alpha \| 0 \> + \beta \| 1 \>$$ where $$\alpha, \beta$$ are probability amplitudes with $$\| \alpha \|^2 + \| \beta \|^2 = 1$$. Note that normalizing these to sum to 1 doesn't predetermine what the experienced probabilities are, and as we will see the normalization isn't necessary.
 
 As before we generate a state that's something like:
 
