@@ -33,7 +33,7 @@ Now suppose this whole experiment is being performed by a poor experimenter who'
 
 $$(p \| H \> + q \| T \>)^n = \sum_k {n \choose k} p^k q^{n-k} \| \hat{P}[H] = k/n\>$$
 
-If you let $$n$$ get very large, the system with $$\hat{P}[H] = a$$ will end up having the highest-magnitude amplitude, and so we expect to end up in a 'universe' where the measurement of the probability $$p$$ converges on the true value of $$p$$. This is easily seen, because for large $$n$$ the binomial distribution $$B(n, p, q)$$ converges to a normal distribution $$\mathcal{N}(np, npq)$$ with mean $$np$$. So, asymptotically, the state $$\| \hat{P}[H] = \frac{np}{n} = p \>$$ becomes increasingly high-amplitude relative to all of the others.  This is a way of phrasing the law of large numbers.
+If you let $$n$$ get very large, the system with $$\hat{P}[H] = p$$ will end up having the highest-magnitude amplitude, and so we expect to end up in a 'universe' where the measurement of the probability $$p$$ converges on the true value of $$p$$. This is easily seen, because for large $$n$$ the binomial distribution $$B(n, p, q)$$ converges to a normal distribution $$\mathcal{N}(np, npq)$$ with mean $$np$$. So, asymptotically, the state $$\| \hat{P}[H] = \frac{np}{n} = p \>$$ becomes increasingly high-amplitude relative to all of the others.  This is a way of phrasing the law of large numbers.
 
 I think this is as good an explanation as any as to what probability 'is'. Instead of trying to figure out what it means for _us_ to experience an infinite number of events and observe a probability, let's just let an experimenter who's locked in a box figure it out for us, and then just have them send us their results! Unsurprisingly, the experimenter does a good job of recovering classical probability.
 
@@ -47,16 +47,9 @@ As before we generate a state that's something like:
 
 $$(\alpha \| 0 \> + \beta \| 1 \>)^n$$
 
-Where are things going to go differently? It looks like there are two steps that can be affected by the fact that we are now dealing with amplitudes instead of probabilities:
+Where are things going to go differently? A potential problem is that each of the measurement results that comprise a $$\| P = \frac{k}{n} \>$$ macrostate could have different phases, and there is no reason to think that they will add up neatly -- there could be interference between different ways of getting the same result. I'm not totally sure this is reasonable, but it leads to an interesting result, so let's assume it is.
 
-1. Can we still sum up all of the different orders to just be their _counts_? It's not clear that all of the orderings of, say, n $$\| 1 \>$$s and k $$\| 0 \>$$s should be considered as one state $${n \choose k} \| 0^k 1^{n-k} \>$$.
-2. Can we still interpret a state $$\| 0^k 1^{n-k} \>$$ as being interpreted by the experimenter as $$\| P[0] = \frac{k}{n} \>$$?
-
-It seems to me that (2) should be answered with 'yes', because there's no other alternative -- if an experimenter measures $$n$$ events and sees $$\| 0 \>$$ $$k$$ times, then they're going to write down that $$P[0] = \frac{k}{n}$$, even if they are one slice of a big quantum state.
-
-(1), however, is less clear. A potential problem is that each of these measurement results could have different phases, and there is no reason to think that they will add up neatly -- there could be interference between different ways of getting the same result. I'm not totally sure this is reasonable, but it leads to an interesting result, so let's assume it is.
-
-Consider running the experiment twice, but letting each $$\| 0 \>$$ state have a different have a different phase $$\alpha_i = \| \alpha \| e^{i \theta_1}$$. (We can ignore the $$\beta$$ phase without loss of generality by treating it as an overall coefficient to the entire wave function) 
+Consider running the experiment twice, but letting each $$\| 0 \>$$ state have a different have a different phase $$\alpha_j = \| \alpha \| e^{i \theta_j}$$. (We can ignore the $$\beta$$ phase without loss of generality by treating it as an overall coefficient to the entire wave function) 
 
 The state we generate will be:
 
@@ -69,16 +62,15 @@ This is no longer a clean binomial distribution. Writing $$a = \| \alpha \|$$ an
 
 $$= e^{i (\theta_1 + \theta_2) }  a^2 \| 0^2 \> + ab (e^{i \theta_1} + e^{i \theta_2}) \| 0^1 1^1 \> + b^2 \| 1^2 \>$$
 
-And $$ab (e^{i \theta_1} + e^{i \theta_2}) \| 0^1 1^1 \>$$ only has the same magnitude as $$2ab \| 0^1 1^1 \>$$ when $$\theta_1 = \theta_2$$. So, if I haven't done anything egregiously wrong, there appears to be a sort of damping factor on the probability of states with multiplicity (which is basically all of them), due to the fact that the different ways of getting the same result may be out of phase with each other. States with many phase factors involved end up having a lower amplitude than they would if we were doing classical probability.
+And $$ab (e^{i \theta_1} + e^{i \theta_2}) \| 0^1 1^1 \>$$ only has the same magnitude as $$2ab \| 0^1 1^1 \>$$ when $$\theta_1 = \theta_2$$. 
 
-------
+----
 
 Now let's consider what this looks like as $$n \ra \infty$$.
 
-
 For a state with $$k$$ $$\alpha\| 0 \>$$ terms, we end up with a sum of exponentials with $$k$$ phases in them: 
 
-$$E_{k, n} = \sum_{I \in S_{k,n}} e^{i \sum_{i \in I} \theta_i}$$
+$$E_{k, n} = \sum_{J \in S_{k,n}} e^{i \sum_{j \in J} \theta_j}$$
 
 Here $$S_{k,n}$$ is the set of $$k$$-element subsets of $$n$$ elements. For instance if $$k=2, n=3$$:
 
@@ -109,7 +101,7 @@ For $$k > 1$$, the same argument applies (it's still basically a random walk), e
 
 ------
 
-These don't tell us the constant of proportionality, since $$\bb{E}[ \| E_{k, n} \|^2] \neq \bb{E}[ \| E_{k, n} \|]^2$$, but fortunately we only need to compute the value of $$k$$ at the peak. $$\| \psi \|$$ is hard to work with, but $$\| \psi \|^2$$ isn't:
+These don't tell us the constant of proportionality, since $$\bb{E}[ \| E_{k, n} \|^2] \neq \bb{E}[ \| E_{k, n} \|]^2$$, but fortunately we only need to compute the value of $$k$$ at the peak, and we can find that using $$\| \psi \|^2$$, which is easy to work with:
 
 $$\| \psi \|^2  \sim \sum {n \choose k} (a^2)^k (b^2)^{n-k} $$
 
