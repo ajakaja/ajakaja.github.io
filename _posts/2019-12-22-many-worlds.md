@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "Born from Many Worlds"
+title: "A possible way to get the Born Rule in Many Worlds"
 footnotes: true
 math: true
 aside: true
@@ -15,7 +15,7 @@ $$P[0] = \| \alpha \|^2$$
 
 The Born Rule is normally included as an additional postulate in MWI, and this is somewhat unsatisfying. Or at least, it is apparently difficult to justify, given that I've read a bunch of attempts, each of which talks about how there haven't been any other satisfactory attempts. I think it would be unobjectionable to say that there is not a consensus on how to motivate the Born Rule from MWI without any other assumptions.
 
-Anyway here's an argument I found that I find somewhat compelling? See what you think.
+Anyway here's an argument that I find somewhat compelling? See what you think.
 
 <!--more-->
 
