@@ -66,6 +66,8 @@ And $$ab (e^{i \theta_1} + e^{i \theta_2}) \| 0^1 1^1 \>$$ only has the same mag
 
 ----
 
+## 3. Random Walks in Phase Space
+
 Now let's consider what this looks like as $$n \ra \infty$$.
 
 For a state with $$k$$ $$\alpha\| 0 \>$$ terms, we end up with a sum of exponentials with $$k$$ phases in them: 
@@ -101,6 +103,8 @@ For $$k > 1$$, the same argument applies (it's still basically a random walk), e
 
 ------
 
+## 4. The Born Rule
+
 These don't tell us the constant of proportionality, since $$\bb{E}[ \| E_{k, n} \|^2] \neq \bb{E}[ \| E_{k, n} \|]^2$$, but fortunately we only need to compute the value of $$k$$ at the peak, and we can find that using $$\| \psi \|^2$$, which is easy to work with:
 
 $$\| \psi \|^2  \sim \sum {n \choose k} (a^2)^k (b^2)^{n-k} $$
@@ -119,12 +123,10 @@ Ultimately this seems to be because different ways of seeing the same result int
 
 So that's interesting.
 
-------
+I find the argument that "random walks in phase space might lead to a peak amplitude that matches the Born Rule" to be suspiciously clean, and therefore compelling, but I don't any confidence that I've correctly identified what might actually lead to the random interference in this experiment. Is it the experimental apparatus interfering with itself? Is it hidden degrees of freedom in the experiment itself? Or maybe it's all of reality, from the point of view of an observer trying to make sense of all historical evidence for the Born Rule. And it's unclear to me how carefully isolated an experiment would have to be for different orderings of its results to interfere with each other. Presumably the answer is "a lot", but what if it isn't?
 
-It's unclear to me how carefully isolated an experiment would have to be for different orderings of its results to interfere with each other. Presumably the answer is "a lot", but what if it isn't? I'm intrigued, either way, by the fact that this type of calculation produces the right answer through a relatively elementary manipulation. I'm especially intrigued because I suspected it would work before calculating, and it did, which never happens...
-
-Suffice to say I would love to know a) what's wrong with this argument (I feel like could be circular, but I haven't figured out how), or b) if it exists in the literature somewhere, cause I haven't found anything, although admittedly I didn't look very hard.
+Suffice to say I would love to know a) what's wrong with this argument (maybe it's circular, but I haven't figured out how), or b) if it exists in the literature somewhere, cause I haven't found anything, although admittedly I didn't look very hard.
 
 I can think of some strange implications of this argument but I don't want to get ahead of myself.
 
-I would also kinda like to go to graduate school.
+I should go to graduate school.
