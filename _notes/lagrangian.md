@@ -43,7 +43,7 @@ In exterior algebra I have found it very useful to emphasize that a linear trans
 
 Well, there is also an induced transformation on scalar products: $$A$$ turns $$\< u, v\>$$ to $$\< A u, Av \>$$. As matrices, this is $$u^T A^T A v$$. $$A^T A$$ is a symmetric matrix, so we can also write this as $$g = A^T A$$ being the matrix which takes a vector to its dual. But this is silly: what's really going on is that _all_ vectors should have $$A$$ applied, rather than dual vectors having $$A^T A$$ applied.
 
-Of course, $$g = A^T A$$ has only $${ n+1 \choose 2} = 10$$ components, while $$A$$ has 16 -- so maybe $$g$$ is the 'real' value' and $$A$$ would overspecify it. But I'm more inclined to believe that (a) dual vectors are silly and (b) in some way, the other 6 components of $$A$$ matter, we just haven't figured out where. Dual vectors are so tedious that I have trouble believing reality cares about them.
+Of course, $$g = A^T A$$ has only $${ n+1 \choose 2} = 10$$ components, while $$A$$ has 16 -- so maybe $$g$$ is the 'real' value and $$A$$ would overspecify it. But I'm more inclined to believe that (a) dual vectors are silly and (b) in some way, the other 6 components of $$A$$ matter, we just haven't figured out where. Dual vectors are so tedious that I have trouble believing reality cares about them.
 
 ## 3. Integration
 
@@ -75,7 +75,7 @@ What's going on when we integrate $$\sqrt{ds^2} = ds$$? (note "$$= ds"$$ should 
 
 Let me just say that, after the previous section, I think it's clear that line integrals are sorta cheating.
 
-$$\int f ds$$ appears to have a 1-component 1-form $$ds$$, despite the fact that it is integrating in $$n$$-dimensional space. How does it pull of this trick?
+$$\int f ds$$ appears to have a 1-component 1-form $$ds$$, despite the fact that it is integrating in $$n$$-dimensional space. How does it pull off this trick?
 
 The answer is that there is a simplification that has already been performed: that the path of integration and the integrated form are _parallel_ (when regarded as vectors). Here is a 'full' line integral:
 
