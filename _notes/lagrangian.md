@@ -45,6 +45,11 @@ Well, there is also an induced transformation on scalar products: $$A$$ turns $$
 
 Of course, $$g = A^T A$$ has only $${ n+1 \choose 2} = 10$$ components, while $$A$$ has 16 -- so maybe $$g$$ is the 'real' value and $$A$$ would overspecify it. But I'm more inclined to believe that (a) dual vectors are silly and (b) in some way, the other 6 components of $$A$$ matter, we just haven't figured out where. Dual vectors are so tedious that I have trouble believing reality cares about them.
 
+In general relativity, by the way, I seem to recall that we run into $$\sqrt{-g}$$ factors in integrals. This is because an integral $$\int d^4 x$$ in flat space, when a transformation $$A$$ is applied, it undices the transformation $$d^4 x \ra d^4 (Ax) = A^{\^4} d^4 x$$. Since $$g^{\^4} = \det g = \det A^T A = (\det A)^2$$, then $$d^4 x \ra \sqrt{- g}$$ [tbh I don't know where the minus sign comes from; I assume it means that $$g = -A^T A$$ is the actually correct equation].
+
+Then if you integrate over $$dx \^ dy \^ dz$$, you are left with only a $$dt$$ term, but you might still have the $$\sqrt{-g}$$ term, depending on how you do it (unsure on this).
+
+
 ## 3. Integration
 
 A comment about how integration works
@@ -61,11 +66,11 @@ Where every component is itself a vector (_not_ a form) in whatever space they l
 
 Note that if we use $$g = A^T A$$ as in our previous section, then our integral can be modeled as either
 
-$$\sum_i (g_{\mu \nu} f^{\mu}(c_i)) \cdot \gamma(c_i)$$
+$$\sum_i (g_{\mu \nu} f^{\mu}(c_i)) \cdot (\gamma^{\nu}(c_i))$$
 
 _or_ as
 
-$$\sum_i (A_{\mu \nu} f^\mu(c_i)) \cdot (A_{\mu \nu}\gamma^{\nu} (c_i))$$
+$$\sum_i (A_{\mu \nu} f^\mu(c_i)) \cdot (A^T)^{\nu \rho}\gamma_{\rho} (c_i))$$
 
 And these necessarily give the same results. Various other ways of writing this using the glossary at the top also work. The point is that integration is _many applications of a dot product, added up_, and any way of computing or notating the dot product is equally valid.
 
@@ -79,11 +84,11 @@ $$\int f ds$$ appears to have a 1-component 1-form $$ds$$, despite the fact that
 
 The answer is that there is a simplification that has already been performed: that the path of integration and the integrated form are _parallel_ (when regarded as vectors). Here is a 'full' line integral:
 
-$$\int df = \int f_{\mu} dx^{\mu}$$
+$$\int df = \int f_{x^\mu} dx^{\mu}$$
 
 Suppose at some point the tangent vector for the path is $$\vec{v} = v^{\sigma} \p_{\sigma}$$. Then in general the contribution to the integral at this point will of course be
 
-$$\vec{v} \cdot df = df(\vec{v})= v^{\sigma} \p_{\sigma} f_{\mu} dx^{\mu} = v^{\sigma} f_{\sigma} = v^0 f_0 - v^1 f_1 - \ldots$$
+$$df(\p_{\vec{v}})= v^{\sigma} \p_{\sigma} f_{x^\mu} dx^{\mu} = v^{\sigma} f_{x^\sigma} = v^0 f_{x^0} - v^1 f_{x^1} - \ldots$$
 
 This is the _actual_ line integral under consideration. If we happen to know that $$df(\vec{v}) = \| df \| \| v \|$$ -- ie, the two objects, when treated by vectors, are parallel -- then we can just write this directly. Normally this would only happen if $$df = h(s) (\vec{v}^*)$$, where $$h(s)$$ is some scalar function of the arc length, and $$\vec{v}^* = g_{\sigma \nu} v^{\sigma}$$ is the dual vector to $$\vec{v}$$.
 
@@ -91,33 +96,43 @@ But! we can cheat. If we know that we're only going to integrate $$df$$ along a 
 
 This is what's going on inside the relativistic line integral $$\int \sqrt{ds^2} = \int ds$$. $$ds$$ is defined as the length of the curve anyway, so we can treat it as a 1-component 1-form integrated along a 1-dimensional path rather than a 4-component 1-form integrated along a 4-component path. You absolutely could write $$\p_s L(s) = (L_t t_s, L_x x_s, L_y y_s, L_z z_s)$$. But why bother, when you're just going to integrate it in one dimension anyway?
 
-In general relativity, by the way, I seem to recall that we run into $$\sqrt{-g}$$ factors in integrals. This is because an integral $$\int d^4 x$$ in flat space, when a transformation $$A$$ is applied, it undices the transformation $$d^4 x \ra d^4 (Ax) = A^{\^4} d^4 x$$. Since $$g^{\^4} = \det g = \det A^T A = (\det A)^2$$, then $$d^4 x \ra \sqrt{- g}$$ [tbh I don't know where the minus sign comes from; I assume it means that $$g = -A^T A$$ is the actually correct equation].
-
-Then if you do the trick above, and cut 3 dimensions, for instance if you integrate over $$dx \^ dy \^ dz$$, you are left with only a $$dt$$ term, but you might still have the $$\sqrt{-g}$$ term, depending on how you do it (unsure on this).
-
 --------
 
 ## 5. Lagrangians
 
 Which brings us to the Lagrangian.
 
-We agree that $$S = \int -m d \tau$$, and so $$L = dS/d \tau = -m$$ in the reference frame. 
+We agree that the free particle action $$S = \int -m d \tau$$, and so $$L = dS/d \tau = -m$$ in the reference frame and $$\int -m \gamma^{-1} dt$$ in general.
 
-A few things that are true:
+First, I am pretty sure sure this is true: 
+
+$$\begin{aligned}
+S &= \int -m \gamma^{-1} dt \\
+&= -\int m \frac{1 - v^2}{\sqrt{1 - v^2}} dt \\
+&= - \int m \frac{dt - v dx}{\sqrt{1 - v^2}} \\
+&= - \int m \gamma (dt - v dx) \\
+&= - \int p_{x^\mu} dx^\mu
+\end{aligned}$$
+
+But I'm a little unsure because it seems too easy.
+
+A few things that are definitely true:
 
 $$dS/dt = L$$ in any reference frame.
 
-$$L$$ is _not_ a Lorentz scalar (clearly, because it transforms under coordinate transformations). Nor is it a Lorentz vector, because it is only a time component in every frame.
+$$L$$ is _not_ a Lorentz scalar (clearly, because it changes under coordinate transformations). Nor is $$L dt$$ it a Lorentz covector, because it is only a time component in every frame.
 
-$$dS/d \tau = -m$$, on the other hand, is a Lorentz scalar. To be explicit, it is the exterior derivative of the 0-form $$S$$, $$dS = S_{\tau} + (\text{ other terms})$$, acting on the (frame-independent) vector $$\p_{\tau}$$: $$-m = dS(\p_{\tau}) = \p_{\tau} S$$.
+$$dS/d \tau = -m$$, on the other hand, is a Lorentz scalar. To be explicit, it is the exterior derivative of the 0-form $$S$$, $$dS = S_{\tau} + (\text{ other terms})$$, which is a Lorentz 1-form, acting on the Lorentz vector vector $$\p_{\tau}$$: $$-m = dS(\p_{\tau}) = \p_{\tau} S$$.
 
 $$dS$$ is a Lorentz 1-form, which tranforms appropriately in every reference frame.
 
 $$\p_{\tau}$$ is a Lorentz vector, which transforms appropriately in every reference frame.
 
-If we boost a particle with velocity $$v$$, then it is now traveling on a trajectory which is parallel to the $$\p_{\tau}$$ vector. _This is important_. The line integral we will use for the action is _parallel to the motion_. That means we can use the trick from the last section, and turn a 4-dimensional integral into a 1-dimensional one. 
+$$dS$$, if defined as a function of space, might have four components in the rest frame: $$(S_{\tau}, S_x, S_y, S_z)$$. The other three _do not_ factor into the line integral, so they are normally completely ignored
 
-Thus here are a bunch of equivalent forms of the action using the chain rule in various ways:
+If we boost a particle with velocity $$v$$, then it is now traveling on a trajectory which is still parallel to the $$\p_{\tau}$$ vector. _This is important_. The line integral we will use for the action is _parallel to the motion_. That means we can use the trick from the last section, and turn a 4-dimensional integral into a 1-dimensional one. Normally, the transform of a 1-form has 4 components in general. But the transform of the _equation- $$df(\p_{\tau})$$ -- the contraction of a one-form and a _particular_ vector -- can get many forms, as long as it gives the right answer. Namely: $$(f_{\tau}, f_{anything}) \cdot (1, 0,0,0)$$ is the same result.
+
+Anyway here are a bunch of equivalent forms of the action using the chain rule in various ways:
 
 $$\begin{aligned}
 S &= \int dS \\
@@ -129,7 +144,7 @@ S &= \int dS \\
 &= \int (S_t - S_{\vec{x}} \cdot \vec{v}) \gamma^{-1}(v) d \tau \\
 \end{aligned}$$
 
-But the most important one is:
+But the normal one for the Lagrangian is:
 
 $$\begin{aligned}
 S &= -m \int d\tau \\
@@ -165,3 +180,74 @@ S &= -m \int \gamma^{-1}/\vec{v} \cdot d\vec{x}
 (presumably $$\vec{v}^{-1}$$ may be interpeted as one of those 'inverse basis vectors', $$\iota_{\vec{v}}/\| \vec{v} \|^2$$. Not sure. But this would work if we just used one component of $$v$$ also.)
 
 The point is that $$S = \int L dt$$ is really sweeping a lot under the rug. $$dS = S_t dt - S_x dx$$ is the _interesting_ quantity. The action integral really conceals that.
+
+Okay, if you believe me so far, then you believe me $$S = \int L dt = \int -m d \tau$$. The one-form we're integrating here is $$(-m, 0, 0, 0) = -m d \tau$$. But, recalling that $$p^\mu = (m, 0, 0, 0)$$ is the 4-momentum vector in the rest frame, this appears to be the (negative) _dual_ four-momentum $$-p_{\mu}$$. So I claim that 
+
+$$S = - \int dp$$
+
+is the 'true' form of the action: the momentum is the derivative of the action! Kinda neat.
+
+By the way, notice that if our path is one with a constant velocity, then this can be written $$S = - p_\mu \int dx^\mu = - p_{\mu} x^\mu$$, which is the reason that the fundamental modes for a free particle are expanded in terms of this:
+
+$$\psi = e^{i S /\hbar} = e^{- i p_{\mu} x^{\mu}/\hbar}$$
+
+So I'm not just making this up; we already use it. (The Klein-Gordon equation $$(\hbar^2 \p^2 + m^2) \psi = 0$$ simply says that $$\| p \| = -m$$, so it restricts which modes comprise the particle by one dimension.) (I'm being a little reckless with signs here.)
+
+
+## 6. Potentials
+
+Suppose we know that $$L = T - V$$. But we also know that $$m d \tau = -m \gamma^{-1} dt \approx (-m + \frac{1}{2} m v^2) dt$$. Let's write thi as $$m d\tau = K dt$$, where $$K$$ will mean the full relativistic momentum term. The $$m$$ term is usually missing here, but is, I suppose, important if we care about the actual phase instead of just relative differences. This means that the usual classical Lagrangian is
+
+$$S = \int S_t dt - S_{\vec{x}} d\vec{x} = \int (S_t - S_{\vec{x}} \cdot \vec{v}) dt = \int (K - V) dt$$
+
+We expect that we should be able to rework $$- V dt$$ to be a full four-component one-form. Suppose that we knew it had components $$u_t dt - u_{\vec{x}} \cdot d\vec{x}$$ [these are not partial derivatives -- yet]. Then
+
+$$-V dt = (u_t - u_{\vec{x}} \cdot \vec{v}) dt$$
+
+For a time-independent potential, this gives $$V dt = (u_{\vec{x}} \cdot \vec{v}) dt = u_{\vec{x}} \cdot d \vec{x}$$, which looks a lot like the _work_ done due a potential $$u$$.
+
+Suppose that these $$u_{\mu}$$ were actually partial derivatives $$U_{\mu}$$ of a scalar field $$U$$. Then 
+
+$$\int U_{\mu} dx^{\mu} = \int (U_t - U_{\vec{x}} \cdot \vec{v}) dt$$
+
+would give the change in $$U$$ along a path. If we write $$V(\vec{x}) = U_{\vec{x}} \cdot \vec{v}$$ for a time-independent potential, or $$V(x, t) = U_{\vec{x}} \cdot \vec{v} - U_t$$ for a time-dependent potential, then we get things that act like normal potentials in classical mechanics?
+
+Of course there is no reason to believe that a potential may be integrated this way in general. I believe what is happening is that $$\int V dt$$ is standing in for doing this: regardless of what local form of the potential is, this integral represents the phase change due to it. In some cases we might be able to write it as a scalar function, but even if we can't it still gives the correct dynamics.
+
+Anyway it seems nice to think that these are all the same thing:
+
+$$S = P + U = \int dP + dU = \int (K - V) dt = \int L dt$$
+
+
+## 7. Euler-Lagrange - WIP
+
+We should be clear about something: there are three different velocities. 
+
+1. There's the $$v$$ of the reference frame, which tells us how to turn $$S_{\tau} d\tau = S_t dt - S_{\vec{x}} \cdot d \vec{x}$$. 
+2. There's the $$v$$ of the path of integration, which tells us how $$S_{\vec{x}} \cdot d\vec{x} = (S_{\vec{x}} \cdot \vec{v}) dt$$. 
+3. And there's the $$v$$ of the particle motion itself (when we're solving for in classical mechanics).
+
+When we are solving for a particle's motion in classical mechanics, we are identifying (2) and (3), and trying to find a path of integration that conserves momentum at each point (d'Alembert's principle). In any case, these are _not_ the same as the $$v$$ of the reference frame, I think.
+
+todo: figure out how this works.
+
+
+## 8. E&M - WIP
+
+We don't really think that the E&M field (our usual potential) is a scalar field. Its classical Lagrangian is $$L_{EM} = - \frac{1}{2} \| dA \|^2 - A_{\mu} J^{\mu}$$.[^squared]
+
+[^squared]: Justification of $$\| dA \|^2$$: $$dA$$ is a 4x4 antisymmetric tensor with components given by $$A_{\mu \^ \nu}$$. We know that $$dA_{i \^ 0} = \vec{E}_i$$ and $$dA_{i \^ j} = \vec{B}_{i \^ j}$$ [note: either of these might have minus signs; not sure]. Regardless of signs, $$\| dA \|^2 = \| \vec{E} \|^2 - \| \vec{B} \|^2$$. Compare to $$F_{\mu \nu} F^{\mu \nu} = 2(E^2 - B^2)$$. The factor of $$\frac{1}{2}$$ comes from the fact that if you contract $$dA$$ as a tensor, you get two copies of each component compared to if you treat it as a bivector, because $$x \o y$$ and $$y \o x$$ are different basis elements in the tensor formulation.
+
+The field-theory Lagrangian improves the second term to $$\bar{\psi} (q A_{\mu} \gamma^{\mu}) \psi$$, but this basically expresses the same thing. The gamma matrix only serves to convert into the funky basis of $$\psi$$; it is essentially $$A_{\mu} (q \| \psi \|^2)^{\mu}$$. More on this later (?). Basically, $$A$$ couples to an electron via its decomposition as a (bi)-spinor.
+
+The classical and probably first-order version of the coupling, separating free- and bound- currents is given as:
+
+$$L = \frac{1}{2} (dA)^2 - A_0 \rho + \vec{A} \cdot \vec{J} + \vec{E} \cdot \vec{P} + \vec{B} \cdot \vec{M}$$
+
+Where $$\vec{P}$$ is the electric polarization (electric dipole moment) and $$\vec{M}$$ is the magnetization (magnetic dipole moment). We can do better:[^EM]
+
+$$L = \frac{1}{2} (dA)^2 - A \cdot J + dA \cdot dJ$$
+
+[^EM]: the first term, $$\frac{1}{2} (dA)^2$$, is really part of the last term. The vacuum itself has a polarization $$dJ$$, and apparently couples to itself, just like any other polarized object.
+
+I write it this way because a spin is a magnetic dipole moment (rather than a net current), and so couples to the derivative of $$A$$ and fits into the second term here: $$dA \cdot S$$.
