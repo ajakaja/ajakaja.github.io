@@ -9,11 +9,11 @@ tags: notes
 
 *Vector spaces are assumed to be finite-dimensional and over $$\bb{R}$$. The grade of a multivector $$\alpha$$ will be written $$\| \alpha \|$$, while its magnitude will be written $$\Vert \alpha \Vert$$. Bold letters like $$\b{u}$$ will refer to (grade-1) vectors, while Greek letters like $$\alpha$$ refer to arbitrary multivectors with grade $$\| \alpha \|$$.*
 
-<!--more-->
-
 More notes on exterior algebra. This time, the interior product $$\alpha \cdot \beta$$, with a lot more concrete intuition than you'll see anywhere else, but still not enough.
 
 I am not the only person who has had [trouble](https://mathoverflow.net/questions/102917/urge-reason-for-inventing-interior-product-grassmann-algebra) figuring out what the interior product is for. This is what I have so far...
+
+<!--more-->
 
 ---------
 
