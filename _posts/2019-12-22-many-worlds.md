@@ -125,8 +125,6 @@ So that's interesting.
 
 I find the argument that "random walks in phase space might lead to a peak amplitude that matches the Born Rule" to be suspiciously clean, and therefore compelling, but I don't any confidence that I've correctly identified what might actually lead to the random interference in this experiment. Is it the experimental apparatus interfering with itself? Is it hidden degrees of freedom in the experiment itself? Or maybe it's all of reality, from the point of view of an observer trying to make sense of all historical evidence for the Born Rule. And it's unclear to me how carefully isolated an experiment would have to be for different orderings of its results to interfere with each other. Presumably the answer is "a lot", but what if it isn't?
 
-Suffice to say I would love to know a) what's wrong with this argument (maybe it's circular, but I haven't figured out how), or b) if it exists in the literature somewhere, cause I haven't found anything, although admittedly I didn't look very hard.
+Suffice to say I would love to know a) what's wrong with this argument (maybe it's circular, but I haven't figured out how), or b) if it exists in the literature somewhere, cause I haven't found anything, although admittedly I didn't look very hard. Also I should probably go to graduate school.
 
-I can think of some strange implications of this argument but I don't want to get ahead of myself.
-
-I should go to graduate school.
+If this is actually how nature works, I wonder if it's detectable somehow. What if you could isolate a particular experiment so much that you could suppress the interference of histories. Can you get the probabilities to become proportional to $$\| \alpha \|$$?

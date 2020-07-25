@@ -53,7 +53,7 @@ It is common to take Fourier transforms of operators acting on functions, like $
 
 $$\F{\p_x f(x)} = \int \p_x f(x) e^{-ikx} dx = - \int f(x) \p_x e^{-ikx} dx = (ik) \F{f(x)}$$
 
-Itseems plausible to use the same argument to Fourier-transform a "freestanding" derivative operator, like $$\p_x$$:
+It seems plausible to use the same argument to Fourier-transform a "freestanding" derivative operator, like $$\p_x$$:
 
 $$\F{\p_x} = \int \p_x e^{-ikx} dx = (-ik) \F{1} = (-ik) 2 \pi \delta(k)$$
 
