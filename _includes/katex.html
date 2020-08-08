@@ -51,10 +51,6 @@ document.addEventListener("DOMContentLoaded", function() {
     macros: macros,
     strict: false,
     minRuleThickness: 0.07,
-    errorCallback: function (message, stack) {
-      console.log(message, stack);
-      return "<span class='texerror'>" + e.message + "</span>";
-    }
   });
 });
 </script>
