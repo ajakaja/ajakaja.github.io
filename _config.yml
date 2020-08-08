@@ -11,6 +11,12 @@ kramdown:
  hard_wrap: true
  syntax_highlighter: rouge
 
+# github pages enforces these, may as well use them locally
+lsi: false
+safe: true
+gist:
+  noscript: false
+
 plugins: []
 
 sass:

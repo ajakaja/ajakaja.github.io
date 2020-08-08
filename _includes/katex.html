@@ -39,36 +39,22 @@ const macros = {
         "\\v": "\\vee",
         "\\vol": "\\text{vol}",
       };
-function renderWithErrors(tex, displayMode) {
-  try { 
-    return katex.renderToString(tex, {
-      displayMode: displayMode,
-      output: "html",
-      throwOnError: false,
-      macros: macros,
-      strict: false,
-      minRuleThickness: 0.07
-    }); 
-  } catch (e) {
-    return "<span class='texerror'>" + e.message + "</span>";
-  }
-}
-$("script[type='math/tex; mode=display']").replaceWith(
-  function(){
-    var tex = $(this).text()
-      .replace("% <![CDATA[", "")
-      .replace("%]]>", "");
-    return "<div class=\"equation\">" + 
-           renderWithErrors(tex, true) +
-           "</div>";
-});
-$("script[type='math/tex']").replaceWith(
-  function(){
-    var tex = $(this).text()
-      .replace("% <![CDATA[", "")
-      .replace("%]]>", "");
-    return "<span class=\"inline-equation\">" + 
-           renderWithErrors(tex, false) +
-           "</span>";
+
+document.addEventListener("DOMContentLoaded", function() {
+  renderMathInElement(document.body, {
+    delimiters: [
+      {left: "\\(", right: "\\)", display: false},
+      {left: "\\[", right: "\\]", display: true}
+    ],
+    output: "html",
+    throwOnError: false,
+    macros: macros,
+    strict: false,
+    minRuleThickness: 0.07,
+    errorCallback: function (message, stack) {
+      console.log(message, stack);
+      return "<span class='texerror'>" + e.message + "</span>";
+    }
+  });
 });
 </script>
