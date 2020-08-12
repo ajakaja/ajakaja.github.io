@@ -7,7 +7,7 @@ aside: true
 tags: notes
 ---
 
-Rapid-fire intuitions for calculus on complex numbers, with zero rigor.
+Rapid-fire intuitions for calculus on complex numbers, with little rigor.
 
 Not an introduction to the subject.
 
@@ -255,8 +255,7 @@ This captures the idea that the series does converge if its successive ratios ar
 
 ## 7. Global Laurent Series
 
-This is my own idea for making convergence of Laurent series more intuitive.
-
+This is my own idea for making divergence of Taylor series more intuitive.
 
 If we take the Cauchy formula's definitions of integrals and derivatives as the 'right' way to compute these values, eg
 
@@ -274,32 +273,32 @@ $$f(z) = \ldots + f^{(-2)}(0) \frac{2! }{z^2}  - f^{(-1)}(0) \frac{1!}{z}  + f(0
 then some handwaving leads to an alternate characterization of divergent series. For most calculations $$\p_z f(0)$$ is independent of the choice of $$C$$, but for a function with a pole away from the origin, they are not. Consider $$f(z) = \frac{1}{1-z}$$, and let $$C$$ be the positively oriented circle of fixed radius $$R$$. Then:
 
 $$\begin{aligned}
-f(0) &= \frac{1}{2\pi i}\oint_{C} \frac{1}{(z)(1-z)} dz \\
+f_R(0) &= \frac{1}{2\pi i}\oint_{C} \frac{1}{(z)(1-z)} dz \\
 &= \frac{1}{2\pi i}\oint_{C} \frac{1}{z} + \frac{1}{1-z} dz \\
-&=\text{Res} (z=0, \frac{1}{z} - \frac{1}{z-1}) + \text{Res} (z=1, \frac{1}{z} - \frac{1}{z-1}) \\
-&= 1 - H(r - 1) \\
+&=\text{Res}_C (z=0, \frac{1}{z} - \frac{1}{z-1}) + \text{Res}_C (z=1, \frac{1}{z} - \frac{1}{z-1}) \\
+&= 1 + H(1-R) \\
 \end{aligned}$$
 
-Where $$H$$ is a [step function](https://en.wikipedia.org/wiki/Heaviside_step_function) $$H(x) = 1_{x > 0}$$. The derivative and integral terms show the same effect, after computing some partial fractions:
+Where $$H$$ is a [step function](https://en.wikipedia.org/wiki/Heaviside_step_function) $$H(x) = 1_{x > 0}$$ (remember that $$H(1-R) = - H(R-1)$$). The derivative and integral terms show the same effect, after computing some partial fractions:
 
 $$\begin{aligned}
-f'(0) &= \frac{1}{2\pi i}\oint_{C} \frac{1}{(z^2)(1-z)} dz \\
+f_R'(0) &= \frac{1}{2\pi i}\oint_{C} \frac{1}{(z^2)(1-z)} dz \\
 &= \frac{1}{2\pi i}\oint_{C} \frac{1}{z} + \frac{1}{z^2} + \frac{1}{1-z} dz \\
-&= 1 - H(r) \\
-f^{(-1)}(0) &= \frac{1}{2\pi i}\oint_{C}\frac{1}{1-z} dz \\
-&=- H(r)
+&= 1 + H(1 - R) \\
+f^{(-1)}_R(0) &= \frac{1}{2\pi i}\oint_{C}\frac{1}{1-z} dz \\
+&=H(1-R)
 \end{aligned}$$
 
 In total we get:
 
-$$a_n = \begin{cases} 
-1 - H(r-1) & n \geq 0 \\
--H(r-1) & n < 0
+$$a_{n, R} = \begin{cases} 
+1 + H(1-R) & n \geq 0 \\
+H(1-R) & n < 0
 \end{cases}$$
 
 Which gives the 'real' Laurent series as:
 
-$$\frac{1}{1-z} = (\ldots - z^{-2} - z^{-1}) (H(r-1)) + (1 + z + z^2 + \ldots) (1 - H(r-1))$$
+$$\frac{1}{1-z} = (\ldots + z^{-2} + z^{-1}) H(1 - \|z\|) + (1 + z + z^2 + \ldots) (1 + H(1 - \|z\|))$$
 
 The usual entirely-local calculations of $$f'(z)$$, etc miss the 'global' property: that the derivative calculations fail to be valid beyond $$R=1$$, and a whole different set of terms become non-zero, which correspond to expansion around $$z=\infty$$.
 

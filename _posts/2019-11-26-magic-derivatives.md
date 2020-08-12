@@ -19,7 +19,7 @@ The general theme is: evaluating functions on derivative operators $$f(\p)$$, an
 
 The authors are physicists, unsurprisingly, and I'm sure there are a bunch of reasons why these results are either not that surprising or surprising-yet-not-useful, but I found them remarkable. But the whole thing is confusing and hard to make sense of. Here's a... totally different take, in which I rederive the main result by poking around.
 
-tldr: the Fourier transform of $$f(x)$$ is $$2 \pi f(i \p_x) \delta(x)$$. Er, what?
+tldr: the Fourier transform of $$f(x, \p_x)$$ is $$f(i \p_k, -ik) 2 \pi  \delta(k)$$, whatever that means.
 
 <!--more-->
 
