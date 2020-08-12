@@ -9,6 +9,8 @@ tags: notes
 
 Rapid-fire intuitions for calculus on complex numbers, with zero rigor.
 
+Not an introduction to the subject.
+
 <!--more-->
 
 Contents:
@@ -30,7 +32,7 @@ x + iy & \lra (x + R y) \hat{x}
 
 Where $$R$$ is a rotation operator. $$\cos \theta + i \sin \theta = e^{i \theta}$$ follows from applying the [exponential map](https://en.wikipedia.org/wiki/Exponential_map) to $$R$$ as the generator of rotations. If I had my way we would not use complex numbers ever and would just learn the subject as 'calculus using rotation operators' to avoid a proliferation of things that seem like magic.
 
-$$\bb{R}^2$$ is a two-dimensional space, though, while $$\bb{C}$$ appears to have one 'complex' dimension. This is a bit strange, but for the most part you can just treat $$z, \bar{z}$$ like any other two dimensional space. The tangent bases are:
+$$\bb{R}^2$$ is a two-dimensional space, though, while $$\bb{C}$$ appears to have one 'complex' dimension. This is a bit strange, but for the most part you can just treat $$z, \bar{z}$$ like any other two dimensional space. The tangent basis forms are:
 
 
 $$\begin{aligned}
@@ -45,9 +47,9 @@ $$\begin{aligned}
 \p_{\bar{z}} &= \frac{1}{2}(\p_x + i \p_y)
 \end{aligned}$$
 
-The coefficients and swapping of signs is required such that $$\p_z (z) = \p_{\bar{z}} \bar{z} = 1$$.
+The coefficients and swapping of signs is required such that $$\p_z (z) = \p_{\bar{z}} \bar{z} = 1$$. In an alternate universe both sides would have had $$\frac{1}{\sqrt{2}}$$ factors, but oh well.
 
-Note that any function that explicitly uses $$r$$ or $$\theta$$ has a $$\bar{z}$$ dependency: 
+Note that any function that explicitly uses $$r$$ or $$\theta$$ has a $$\bar{z}$$ dependency unless they cancel it out somehow (of course $$z = re^{i \theta}$$ does): 
 
 $$\begin{aligned}
 r &= \sqrt{z \bar{z}} \\
@@ -65,28 +67,29 @@ u_x = v_y\\
 u_y = - v_x 
 \end{aligned}$$
 
-In fact, these express the idea that $$f$$ has no derivative with respect to $$\bar{z}$$:
+Being complex differentiable means that $$f(z)$$ has a derivative that is itself a complex number: $$(f_x, f_y) \in \bb{C}$$ when regarded as part of $$\bb{R}^2$$. In fact, the equations express the idea that $$f$$ has no derivative with respect to $$\bar{z}$$:
 
 $$\begin{aligned}
 \p_{\bar{z}} f(z)
 &= \frac{1}{2} (f_x + i f_y) \\
 &\propto u_x + i v_x + i u_y - v_y \\
-&= (u_x - v_y) + i (v_x + u_y)
+&= (u_x - v_y) + i (v_x + u_y) \\
+&= 0 + i 0
 \end{aligned}$$
 
-As long as $$f$$ is continuous and this condition is true in a region $$D$$, all functions of $$z$$ essentially work like one-variable functions in $$z$$. For instance $$\p_z (z^n) = n z^{n+1}$$.
+As long as $$f$$ is continuous and this condition is true in a region $$D$$, operations on $$f(z)$$ essentially work like they would for one-variable functions in $$z$$. For instance $$\p_z (z^n) = n z^{n+1}$$.
 
-While $$z$$ seems like a 2-dimensional variable, there's only one 'degree of freedom' in the derivative of a complex function. $$f'(z)$$ has to be a simple complex number, which rotates and scales tangent vectors uniforml (a [conformal map](https://en.wikipedia.org/wiki/Conformal_map)):
+While $$z$$ seems like a 2-dimensional variable, there's only one 'degree of freedom' in the derivative of a complex function. $$f'(z)$$ has to be a simple complex number, which rotates and scales tangent vectors uniformly (a [conformal map](https://en.wikipedia.org/wiki/Conformal_map)):
 
 $$f(z + dz) \approx f(z) + f'(z) dz = f(z) + re^{i\theta} dz$$
 
-Functions which are complex-differential at every point within a region are called _holomorphic_ in that region for some reason. A function $$f(z)$$ that is holomorphic (or 'regular'?) in a region $$D$$ is _extremely_ well-behaved:
+Functions which are complex-differential at every point within a region are called [holomorphic](https://en.wikipedia.org/wiki/Holomorphic_function) in that region for some reason. A function $$f(z)$$ that is holomorphic (or 'regular'?) in a region $$D$$ is _extremely_ well-behaved:
 
-* $$f$$ is _infinitely_ differentiable
-* and $$f$$ is 'complex analytic', ie equal to its Taylor series in $$z$$ throughout $$D$$. The series around any particular point converges within a circular disk that stays within $$D$$.
+* $$f$$ is _infinitely_ complex-differentiable
+* and $$f$$ is 'complex analytic', ie equal to its Taylor series in $$z$$ throughout $$D$$. The series around any particular point converges within the largest circular disk that stays within $$D$$.
 * and $$f$$ is locally invertible, ie $$f^{-1}(w + dw) \approx z + 1/f'(z) dw$$ exists and is holomorphic in the neighborhood of $$z = f(w)$$.
 * its antiderivatives exist, and its integrals along any closed contour vanishes: $$\oint_C f(z) dz = 0$$.
-* the data of $$f$$ in $$D$$ is fully determined by its values on the boundary of the region, or on any one-dimensional curve within $$D$$, or on some subregion of $$D$$.
+* the data of $$f$$ in $$D$$ is fully determined by its values on the boundary of the region, or on any one-dimensional curve within $$D$$, or on some nontrivial subregion of $$D$$.
 
 The general theme is that holomorphic/analytic functions generally act like one-dimensional functions and all of the calculus is really easy on them. This tends to be true much more than it is for 1d calculus.
 
@@ -96,9 +99,11 @@ Most 1d functions like $$e^x$$ and $$\sin x$$ have holomorphic complex versions 
 
 Complex differentiability fails at singularities. We categorize the types:
 
-* _poles_ of order $$n$$, around which $$f(z) \sim 1/z^n$$, which are 'well-behaved' poles. Around these there's a region where $$1/f$$ is analytic. 'Zeros' and 'poles' are dual in the sense that $$f \sim z^n$$ at zeroes and $$f \sim 1/z^n$$ at poles.
-* 'removable singularities': singularities that can be removed by redefinition, probably because they're an indeterminate form. The canonical example is $$\sin(z)/z$$ which is repaired by defining $$\sin(0)/0 = 1$$.
-* 'essential singularities': singularities which oscillate infinitely rapidly near a point, such that they are in a sense too complicated to handle. $$\sin(1/z)$$ or $$e^{1/z}$$ are the canonical examples. They all look like this, oscillating infinitely: [Great Picard's Theorem](https://en.wikipedia.org/wiki/Picard_theorem) (what a name) says that near an essential singularity the function takes every value infinitely times, except possibly one.
+* **poles** of order $$n$$, around which $$f(z) \sim 1/z^n$$, which are 'well-behaved' poles. Around these there's a region where $$1/f$$ is analytic. 'Zeros' and 'poles' are dual in the sense that $$f \sim z^n$$ at zeroes and $$f \sim 1/z^n$$ at poles.
+* _removable singularities_: singularities that can be removed by redefinition, probably because they're an indeterminate form. The canonical example is $$\sin(z)/z$$ which is repaired by defining $$\sin(0)/0 = 1$$.
+* _essential singularities_: singularities which oscillate infinitely rapidly near a point, such that they are in a sense too complicated to handle. $$\sin(1/z)$$ or $$e^{1/z}$$ are the canonical examples. They all look like this, oscillating infinitely: [Great Picard's Theorem](https://en.wikipedia.org/wiki/Picard_theorem) (what a name) says that near an essential singularity the function takes every value infinitely times, except possibly one.
+
+Poles are much more interesting than the other two.
 
 ------
 
@@ -109,7 +114,7 @@ No one would really care about complex analysis except for, well, _analysts_, we
 
 $$\p_{\bar{z}} \frac{1}{z} \neq 0$$
 
-For some reason, $$z^n$$ for only $$n=-1$$ has a certain kind of divergence at $$z=0$$.But in 2d it's a [delta <strike>function</strike> distribution](https://en.wikipedia.org/wiki/Dirac_delta_function):
+For some reason, $$z^n$$ for only $$n=-1$$ has a certain kind of divergence at $$z=0$$. It looks like a 2d [delta <strike>function</strike> distribution](https://en.wikipedia.org/wiki/Dirac_delta_function):
 
 $$\p_{\bar{z}} \frac{1}{z} = \pi \delta (z, \bar{z})$$
 
@@ -133,7 +138,7 @@ $$\begin{aligned}
 \p_{\bar{z}} \frac{1}{z} &\equiv 2 \pi i \delta(z, \bar{z})
 \end{aligned}$$
 
-A function that is holomorphic except at a set of poles is called _meromorphic_ ('mero-' is [Greek](https://www.etymonline.com/search?q=mero-), meaning 'part' or 'fraction'). If we integratea mesomorphic function around a region $$D$$ the result only contains contributions from the $$\frac{1}{z}$$ terms. Around each order-1 pole at $$z_k$$, $$f(z_k) \sim f_{-1} \frac{1}{z_k} + f^{*}(z_k)$$ where $$f^{*}$$ has no $$z^{-1}$$ term. The $$f_{-1}$$ values at each pole are for some reason called [residues](https://en.wikipedia.org/wiki/Residue_theorem), and:
+A function that is holomorphic except at a set of poles is called _meromorphic_ ('mero-' is [Greek](https://www.etymonline.com/search?q=mero-), meaning 'part' or 'fraction'). If we integrate a meromorphic function around a region $$D$$ the result only contains contributions from the $$\frac{1}{z}$$ terms. Around each order-1 pole at $$z_k$$, $$f(z_k) \sim f_{-1} \frac{1}{z_k} + f^{*}(z_k)$$ where $$f^{*}$$ has no $$z^{-1}$$ term. The $$f_{-1}$$ values at each pole are for some reason called [residues](https://en.wikipedia.org/wiki/Residue_theorem), and:
 
 $$\int_{\p D} f(z) dz = 2 \pi i \sum_{z_k}  I(\p D, z_k) \text{Res} (f, z_k)$$
 
@@ -186,7 +191,7 @@ $$\begin{aligned}
 &= \pi
 \end{aligned}$$
 
-Here we closed the contour around the upper-half plane, upon which the integrand is $$0$$ due to the $$r^2 \ra \infty$$. One pole is the upper-half plane and one is in the lower. The winding number around the upper is $$+1$$ and the residue is $$\frac{1}{z+i}$$ evaluated at $$z=i$$, or $$1/2i$$. If we had used the lower half-plane the winding number would have been $$-1$$ and the residue $$-1/2i$$, so the result is independent of how we closed the contour. This method gives the answer very directly without having to remember that $$\int \frac{1}{1 + x^2} = \tan^{-1} x$$ or anything like that.
+Here we closed the contour around the upper-half plane, upon which the integrand is $$0$$ due to the $$r^2 \ra \infty$$. One pole is the upper-half plane and one is in the lower. The winding number around the upper is $$+1$$ and the residue is $$\frac{1}{z+i}$$ evaluated at $$z=i$$, or $$1/2i$$. If we had used the lower half-plane the winding number would have been $$-1$$ and the residue $$-1/2i$$, so the result is independent of how we closed the contour. This method gives the answer very directly without having to remember that $$\int \frac{dx}{1 + x^2} = \tan^{-1} x$$ or anything like that.
 
 Note that this wouldn't work if the pole was _on_ the path of integration, as in $$\int_{-\infty}^{+\infty} \frac{1}{x} dx$$. This integral is the [Cauchy Principal Value](https://en.wikipedia.org/wiki/Cauchy_principal_value) and is in a sense an indefinite form like $$0/0$$ whose value depends on the context. More on that another time.
 
@@ -204,7 +209,7 @@ $$\log e^{i \theta} = i \theta + 2 \pi i k_{\in \bb{Z}}$$
 
 Smoothly varying $$\theta = \int d \theta$$ of course will just continue to tick up: $$2\pi, 4\pi, 6\pi$$, etc. But the $$\log$$ function itself appears to have a discontinuity of $$2\pi i$$ at $$\theta = 0$$.
 
-When dealing with these multi-valued functions you can consider $$\theta = 0$$ as a 'branch point' -- a place where the function becomes multi-valued. But to be honest the whole theory of branch points isn't very interesting if you aren't a mathematician. I prefer to just think of all math being done modula $$2 \pi$$, or, if you need the discontinutiy to count because you're doing contour integrals, just get over the idea that functions can't have multiple path-dependent values and don't demand it have a unique inverse.
+When dealing with these multi-valued functions you can consider $$\theta = 0$$ as a 'branch point' -- a place where the function becomes multi-valued. But to be honest the whole theory of branch points isn't very interesting if you aren't a mathematician. I prefer to just think of all math being done modulo $$2 \pi$$, or, if you need the discontinuity to count because you're doing contour integrals, just get over the idea that functions can't have multiple path-dependent values and don't demand it have a unique inverse.
 
 Another topological interest in $$\bb{C}$$: if you 'join together' the points at infinity in every direction by defining a symbol $$\infty$$ such that $$1/0 = \infty$$, you get the "extended complex plane" or the [Riemann sphere](https://en.wikipedia.org/wiki/Riemann_sphere), since it is topologically shaped like a sphere. Most of the things that seem like they should be true involving $$\infty$$ are true in this case. For example, the asymptotes of $$\frac{1}{z}$$ on either size of $$\| z \| = 0$$ really _do_ connect at infinity and come back on the other side.
 
@@ -224,7 +229,7 @@ $$\frac{1}{1-z} = \begin{cases}
 -\frac{1}{z} - \frac{1}{z^2} - \frac{1}{z^3} - \ldots & \| z \| > 1 
 \end{cases} $$
 
-Amusingly, you can keep changing the point you expand around to 'go around' a pole, producing an analytic continuation ourtside the radius of the initial Taylor series.
+Amusingly, you can keep changing the point you expand around to 'go around' a pole, producing an analytic continuation outside the radius of the initial Taylor series.
 
 Complex Taylor series diverge for the same reasons that real ones do, but the choices of radius make a lot more sense in complex analysis than they do in real analysis: they are the distance to the closest singularity (for instance, $$\frac{1}{1 + x^2}$$ around $$x=0$$ has radius of convergence $$r=1$$ since there are poles at $$\pm i$$).
 
@@ -232,7 +237,7 @@ The simpelst way to show that a series converges is to show that the series stil
 
 $$f(z) = a_0 + a_1 z + a_2 z^2 + \ldots \leq f(r) = a_0 + a_1 r + a_2 r^2 + \ldots $$
 
-Since, after all, the phases of the $$z$$ terms can only serve to reduce the sums of the magnitudes.
+After all, the phases of the $$z$$ terms can only serve to reduce the sums of the magnitudes.
 
 We know that geometric series $$1 + x + x^2 + \ldots$$ converge only if $$x < 1$$. This means that $$\sum a_n r^n$$ definitely converges if the terms look like $$\sqrt[n]{\| a_n r^n \|} = \sqrt[n]{\| a_n \| } r \lt 1$$, which gives the [root test](https://en.wikipedia.org/wiki/Root_test) for convergence:
 
@@ -246,45 +251,55 @@ $$\| \frac{a_n r^n }{a_{n+1} r^{n+1}} \| = \| \frac{a_n}{a_{n+1}} \| \frac{1}{r}
 
 This captures the idea that the series does converge if its successive ratios are less than that of a geometric series, but fails if the terms look like $$x + x + x^2 + x^2 + x^3 + x^3 + \ldots$$ or something.
 
+----
 
-If we use the Cauchy formula's definitions of integrals and derivatives, eg
+## 7. Global Laurent Series
+
+This is my own idea for making convergence of Laurent series more intuitive.
+
+
+If we take the Cauchy formula's definitions of integrals and derivatives as the 'right' way to compute these values, eg
+
 
 $$\begin{aligned}
 f(0) &= \frac{1}{2\pi i} \oint_{C} \frac{f(z) dz}{z} \\
-f^{(1)}(0) &= \frac{1}{2\pi i} \oint_{C} \frac{f(z) dz}{z^2} \\
-f^{(-1)}(0) &= \frac{1}{2\pi i} \oint_{C} f(z) dz \\
+\frac{f^{(n)}(0)}{n!} &= \frac{1}{2\pi i} \oint_{C} \frac{f(z) dz}{z^{n+1}} \\
+(-1)^n n! f^{(-n)}(0) &= \frac{1}{2\pi i}\oint_{C}  z^{n-1} f(z) dz \\
 \end{aligned}$$
 
+So that 
 
-Then some handwaving leads to an alternate characterization of divergent series. For most calculations $$\p_z f(0)$$ is independent of the choice of $$C$$, but for a function with a pole away from the origin, they are not. Consider $$f(z) = \frac{1}{1-z}$$, and let $$C$$ be the positively oriented circle of fixed radius $$R$$. Then:
+$$f(z) = \ldots + f^{(-2)}(0) \frac{2! }{z^2}  - f^{(-1)}(0) \frac{1!}{z}  + f(0) + f^{(1)} z + f^{(2)}(0) \frac{z^2}{2!} + \ldots$$
+
+then some handwaving leads to an alternate characterization of divergent series. For most calculations $$\p_z f(0)$$ is independent of the choice of $$C$$, but for a function with a pole away from the origin, they are not. Consider $$f(z) = \frac{1}{1-z}$$, and let $$C$$ be the positively oriented circle of fixed radius $$R$$. Then:
 
 $$\begin{aligned}
 f(0) &= \frac{1}{2\pi i}\oint_{C} \frac{1}{(z)(1-z)} dz \\
 &= \frac{1}{2\pi i}\oint_{C} \frac{1}{z} + \frac{1}{1-z} dz \\
 &=\text{Res} (z=0, \frac{1}{z} - \frac{1}{z-1}) + \text{Res} (z=1, \frac{1}{z} - \frac{1}{z-1}) \\
-&= 1 - \mu(r - 1) \\
+&= 1 - H(r - 1) \\
 \end{aligned}$$
 
-Where $$\mu$$ is a [step function](https://en.wikipedia.org/wiki/Heaviside_step_function) $$\mu(x) = 1_{x > 0}$$. The derivative and integral terms show the same effect, after computing some partial fractions:
+Where $$H$$ is a [step function](https://en.wikipedia.org/wiki/Heaviside_step_function) $$H(x) = 1_{x > 0}$$. The derivative and integral terms show the same effect, after computing some partial fractions:
 
 $$\begin{aligned}
 f'(0) &= \frac{1}{2\pi i}\oint_{C} \frac{1}{(z^2)(1-z)} dz \\
 &= \frac{1}{2\pi i}\oint_{C} \frac{1}{z} + \frac{1}{z^2} + \frac{1}{1-z} dz \\
-&= 1 - \mu(r) \\
+&= 1 - H(r) \\
 f^{(-1)}(0) &= \frac{1}{2\pi i}\oint_{C}\frac{1}{1-z} dz \\
-&=- \mu(r)
+&=- H(r)
 \end{aligned}$$
 
 In total we get:
 
 $$a_n = \begin{cases} 
-1 - \mu(r-1) & n \geq 0 \\
-- \mu(r-1) & n < 0
+1 - H(r-1) & n \geq 0 \\
+-H(r-1) & n < 0
 \end{cases}$$
 
 Which gives the 'real' Laurent series as:
 
-$$\frac{1}{1-z} = (\ldots - z^{-2} - z^{-1}) (\mu(r-1)) + (1 + z + z^2 + \ldots) (1 - \mu(r-1))$$
+$$\frac{1}{1-z} = (\ldots - z^{-2} - z^{-1}) (H(r-1)) + (1 + z + z^2 + \ldots) (1 - H(r-1))$$
 
 The usual entirely-local calculations of $$f'(z)$$, etc miss the 'global' property: that the derivative calculations fail to be valid beyond $$R=1$$, and a whole different set of terms become non-zero, which correspond to expansion around $$z=\infty$$.
 
