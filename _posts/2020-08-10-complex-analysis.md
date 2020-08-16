@@ -53,7 +53,7 @@ Note that any function that explicitly uses $$r$$ or $$\theta$$ has a $$\bar{z}$
 
 $$\begin{aligned}
 r &= \sqrt{z \bar{z}} \\
-\theta &= \cos^{-1} \frac{1}{2} (z + \bar{z})
+\theta &= - \frac{i}{2} \log \frac{z}{\bar{z}}
 \end{aligned}$$
 
 -------
@@ -77,7 +77,7 @@ $$\begin{aligned}
 &= 0 + i 0
 \end{aligned}$$
 
-As long as $$f$$ is continuous and this condition is true in a region $$D$$, operations on $$f(z)$$ essentially work like they would for one-variable functions in $$z$$. For instance $$\p_z (z^n) = n z^{n+1}$$.
+As long as $$f$$ is continuous and this condition is true in a region $$D$$, operations on $$f(z)$$ essentially work like they would for one-variable functions in $$z$$. For instance $$\p_z (z^n) = n z^{n-1}$$.
 
 While $$z$$ seems like a 2-dimensional variable, there's only one 'degree of freedom' in the derivative of a complex function. $$f'(z)$$ has to be a simple complex number, which rotates and scales tangent vectors uniformly (a [conformal map](https://en.wikipedia.org/wiki/Conformal_map)):
 
@@ -99,8 +99,8 @@ Most 1d functions like $$e^x$$ and $$\sin x$$ have holomorphic complex versions 
 
 Complex differentiability fails at singularities. We categorize the types:
 
-* **poles** of order $$n$$, around which $$f(z) \sim 1/z^n$$, which are 'well-behaved' poles. Around these there's a region where $$1/f$$ is analytic. 'Zeros' and 'poles' are dual in the sense that $$f \sim z^n$$ at zeroes and $$f \sim 1/z^n$$ at poles.
-* _removable singularities_: singularities that can be removed by redefinition, probably because they're an indeterminate form. The canonical example is $$\sin(z)/z$$ which is repaired by defining $$\sin(0)/0 = 1$$.
+* _poles_ of order $$n$$, around which $$f(z) \sim 1/z^n$$, which are 'well-behaved' singularities. Around these there's a region where $$1/f$$ is analytic. 'Zeros' and 'poles' are dual in the sense that $$f \sim z^n$$ at zeroes and $$f \sim 1/z^n$$ at poles.
+* _removable singularities_: singularities that can be removed by redefinition, probably because they're an indeterminate form. The canonical example is $$\sin(z)/z$$ which is repaired by defining $$\sin(0)/0 = 1$$. In a sense these are not singularities at all.
 * _essential singularities_: singularities which oscillate infinitely rapidly near a point, such that they are in a sense too complicated to handle. $$\sin(1/z)$$ or $$e^{1/z}$$ are the canonical examples. They all look like this, oscillating infinitely: [Great Picard's Theorem](https://en.wikipedia.org/wiki/Picard_theorem) (what a name) says that near an essential singularity the function takes every value infinitely times, except possibly one.
 
 Poles are much more interesting than the other two.
@@ -255,9 +255,13 @@ This captures the idea that the series does converge if its successive ratios ar
 
 ## 7. Global Laurent Series
 
-This is my own idea for making divergence of Taylor series more intuitive.
+This is my own idea for making divergence of Laurent series more intuitive.
 
-If we take the Cauchy formula's definitions of integrals and derivatives as the 'right' way to compute these values, eg
+Laurent series coefficients are derivatives of the function evaluated at a particularly point, like $$f^{(n)}(z=0)$$, such that a whole Laurent series is 
+
+$$f(z) = \ldots + f^{(-2)}(0) \frac{2! }{z^2}  - f^{(-1)}(0) \frac{1!}{z}  + f(0) + f^{(1)} z + f^{(2)}(0) \frac{z^2}{2!} + \ldots$$
+
+Suppose that for some reason the Cauchy forms of computing derivatives and 'inverse' derivatives are 'right' way to compute these values:
 
 
 $$\begin{aligned}
@@ -266,17 +270,14 @@ f(0) &= \frac{1}{2\pi i} \oint_{C} \frac{f(z) dz}{z} \\
 (-1)^n n! f^{(-n)}(0) &= \frac{1}{2\pi i}\oint_{C}  z^{n-1} f(z) dz \\
 \end{aligned}$$
 
-So that 
-
-$$f(z) = \ldots + f^{(-2)}(0) \frac{2! }{z^2}  - f^{(-1)}(0) \frac{1!}{z}  + f(0) + f^{(1)} z + f^{(2)}(0) \frac{z^2}{2!} + \ldots$$
-
-then some handwaving leads to an alternate characterization of divergent series. For most calculations $$\p_z f(0)$$ is independent of the choice of $$C$$, but for a function with a pole away from the origin, they are not. Consider $$f(z) = \frac{1}{1-z}$$, and let $$C$$ be the positively oriented circle of fixed radius $$R$$. Then:
+Where $$C$$ is a curve enclosing around $$z=0$$. Then some handwaving leads to an alternate characterization of divergent series. For most calculations $$\p_z f(0)$$ is independent of the choice of $$C$$, but for a function with a pole away from the origin, they are not. Consider $$f(z) = \frac{1}{1-z}$$, and let $$C$$ be the positively oriented circle of fixed radius $$R$$. Then:
 
 $$\begin{aligned}
 f_R(0) &= \frac{1}{2\pi i}\oint_{C} \frac{1}{(z)(1-z)} dz \\
 &= \frac{1}{2\pi i}\oint_{C} \frac{1}{z} + \frac{1}{1-z} dz \\
 &=\text{Res}_C (z=0, \frac{1}{z} - \frac{1}{z-1}) + \text{Res}_C (z=1, \frac{1}{z} - \frac{1}{z-1}) \\
 &= 1 + H(1-R) \\
+&= 1 - H(R-1)
 \end{aligned}$$
 
 Where $$H$$ is a [step function](https://en.wikipedia.org/wiki/Heaviside_step_function) $$H(x) = 1_{x > 0}$$ (remember that $$H(1-R) = - H(R-1)$$). The derivative and integral terms show the same effect, after computing some partial fractions:

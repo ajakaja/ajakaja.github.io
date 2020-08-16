@@ -26,7 +26,7 @@ Here's a $$P$$ with $$n=5$$:
 
 The _signed_ or _oriented_ area of $$P$$ is given by the so-called "[shoelace formula](https://en.wikipedia.org/wiki/Shoelace_formula)":
 
-$$Area(P) = \frac{1}{2} \sum_{i=0}^n p_i \times p_{i+1} \tag{1}$$
+$$Area(P) = \frac{1}{2} \sum_{i=0}^{n-1} p_i \times p_{i+1} \tag{1}$$
 
 where the sum wraps around, thanks to $$p_0$$ being the same as $$p_n$$. Each term is the area of the triangle formed by the origin, $$p_i$$, and $$p_{i+1}$$.
 
@@ -87,7 +87,7 @@ $$\b{a} \times \b{b} = |a||b| \sin \phi \\
 
 The shoelace formula can be massaged into some other forms. Defining $$\b{d}_i$$ as the vector displacements of each side[^vector]:
 
-[^vector]: I like to use boldface to refer to things that are definitely _vectors_, as opposed to our $$p_i$$ which are _points_ and cannot be added and subtracted.
+[^vector]: I like to use boldface to refer to things that are definitely _vectors_, as opposed to our $$p_i$$ which are _points_ and cannot be added.
 
 $$\b{d}_i = p_{i+1} - p_i$$
 
@@ -146,10 +146,10 @@ We can see that these relationships should hold, in case you'd like to go calcul
 
 $$\begin{aligned} \frac{L}{2} &= r \cos \frac{\alpha}{2}  \\
 s &= r \sin \frac{\alpha}{2} \\
-&= \frac{L}{2} \tan \frac{\alpha}{2} \\
+s &= \frac{L}{2} \tan \frac{\alpha}{2} \\
 Perimeter &= NL = 2 n r \cos \frac{\alpha}{2} \\ 
 Area &= \frac{1}{2} NsL \\
-&= \frac{1}{2} s \cdot Perimeter
+Area &= \frac{1}{2} s \cdot Perimeter
 \end{aligned}$$
 
 
@@ -272,7 +272,7 @@ $$\begin{aligned} area(D) &= \iint_D 1 \, dx dy \\
 
 The connection is this:
 
-Suppose we are computing $$\frac{1}{2} \oint_P (x,y) \times (dx, dy)$$, ie, computing a line integral around the boundary of an oriented polygon $$P$$ from before. Then, for the entire segment of the integral along the side $$p_i p_{i+1}$$, the tangent direction is parallel to $$\b{d}_i$$. Obviously these sums of 'infinitesimal' triangles along the side should add up to give the finite-sized triangle area of $$p_i \times \b{d}_i$$:
+Suppose we are computing $$\frac{1}{2} \oint_P (x,y) \times (dx, dy)$$, ie, computing a line integral around the boundary of one of the oriented polygons $$P$$ from before. Then, for the entire segment of the integral along the side $$p_i p_{i+1}$$, the tangent direction is parallel to $$\b{d}_i$$. Obviously these sums of 'infinitesimal' triangles along the side should add up to give the finite-sized triangle area of $$p_i \times \b{d}_i$$:
 
 {% include image.html filename="2018-08-06/21-integral.svg" width="200px" %}
 
@@ -284,8 +284,6 @@ Adding the contributions from every side give:
 
 $$\frac{1}{2} \oint_C (x,y) \times (dx,dy) = \frac{1}{2} \sum_i p_i \times \b{d}_i$$
 
-I'm sure there is some reason why this is not entirely rigorous, but it explains why it works perfectly.
-
 ----
 
 While we're at it, maybe we can come up with an 'integral form' of (3) or (4). Naively, it should look something like this, right?
@@ -294,7 +292,7 @@ $$area(D) = \frac{1}{2} \sum_i \sum_{j < i} \b{d}_j \times \b{d}_i \Lra \frac{1}
 
 Where we parameterize the curve $$C$$ enclosing our region as $$\vec{\gamma}(t)$$ for $$t \in [0, 1]$$.
 
-This is just taking the integral formula $$\frac{1}{2} \oint_C \vec{\gamma}(t) \times \dot{\vec{\gamma}(t)} dt$$ and replacing $$\vec{\gamma}(t)$$ with $$\int_0^t \dot{\vec{\gamma}}(s) ds$$, which should be fine as long as [*mumbled analytical argument*]. If we separate $$\vec{\gamma}(t)$$ into $$r(t)$$ and $$\theta(t)$$ we should get a version of (5), also.
+This is just taking the integral formula $$\frac{1}{2} \oint_C \vec{\gamma}(t) \times \dot{\vec{\gamma}}(t) dt$$ and replacing $$\vec{\gamma}(t)$$ with $$\int_0^t \dot{\vec{\gamma}}(s) ds$$, which should be fine as long as [*mumble*]. If we separate $$\vec{\gamma}(t)$$ into $$r(t)$$ and $$\theta(t)$$ we should get a version of (5), also.
 
 -------
 
