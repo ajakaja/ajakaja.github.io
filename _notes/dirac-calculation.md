@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "A quantum mechanical calculation"
+title: "Pauli Hamiltonian Calculation"
 footnotes: true
 math: true
 aside: true
