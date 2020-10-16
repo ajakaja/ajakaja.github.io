@@ -47,7 +47,7 @@ I'm going to keep using $$\^$$ for join here for consistency with most of the li
 
 ## Note on duality
 
-Since I am mostly concerned with eventually using this stuff for physics, I can't ignore the way physicists handle vector space duality. The inner product of vectors is defined only between a vector and its dual, and contraction is performed using a metric tensor, so $$g: V \otimes V^* \ra \bb{R}$$. In index notation this means you always pair a lower indexe with an upper one: $$\b{u} \cdot \b{v} = u_i v^i$$.
+Since I am mostly concerned with eventually using this stuff for physics, I can't ignore the way physicists handle vector space duality. The inner product of vectors is defined only between a vector and its dual, and contraction is performed using a metric tensor, so $$g: V \o V^* \ra \bb{R}$$. In index notation this means you always pair a lower index with an upper one: $$\b{u} \cdot \b{v} = u_i v^i$$.
 
 However, I think most of this should be intuitive even on plain Euclidean space with an identity metric, so I tend to prefer first presenting each equation with no attention paid to duality, then a version with upper and lower indices. I'll mostly avoid including a metric-tensor version for space, but it can usually be deduced from the index-notation version.
 
@@ -65,37 +65,37 @@ Rota's Invariant Theory school uses yet another definition of the inner product.
 
 ## 1. The Tensor Product $$\o$$
 
-We should briefly mention the tensor product first. $$\otimes$$ is the 'free multilinear product' on vector spaces. Multilinear means that $$u \otimes v$$ is linear in both arguments: $$(c_1 u_1 + c_2 u_2) \otimes v = c_1 (u_1 \otimes v) + (c_2 u_2 \otimes v)$$, etc.  [Free](https://en.wikipedia.org/wiki/Free_object) means that any other multilinear product (such as $$\^$$) factors through $$\otimes$$. That is, if $$\alpha \^ \beta$$ is multilinear in its arguments, then there is a map $$f$$ such that $$f(\alpha \otimes \beta) = \alpha \^ \beta)$$. 
+We should briefly mention the tensor product first. $$\o$$ is the 'free multilinear product' on vector spaces. Multilinear means that $$u \o v$$ is linear in both arguments: $$(c_1 u_1 + c_2 u_2) \o v = c_1 (u_1 \o v) + (c_2 u_2 \o v)$$, etc.  [Free](https://en.wikipedia.org/wiki/Free_object) means that any other multilinear product (such as $$\^$$) factors through $$\o$$. That is, if $$\alpha \^ \beta$$ is multilinear in its arguments, then there is a map $$f$$ such that $$f(\alpha \o \beta) = \alpha \^ \beta)$$. 
 
-'Free'ness is generally a useful concept. $$\^$$ happens to be the free _antisymmetric_ product, so any other antisymmetric operation on the tensor algebra factors through $$\^$$. There are 'free'r products than $$\o$$ as well, if you let go of multilinearity and associativity as well.
+'Free'-ness is generally a useful concept. $$\^$$ happens to be the free _antisymmetric_ product, so any other antisymmetric operation on the tensor algebra factors through $$\^$$. There are 'free'-r products than $$\o$$ as well, if you let go of multilinearity and associativity as well.
 
-$$\otimes$$ acting on $$V$$ (a vector space over $$\bb{R}$$) produces the 'tensor algebra' consisting of consisting of $$\o V = \bb{R} \oplus V \oplus V^{\otimes 2} \oplus \ldots $$, with $$\otimes$$ as the multiplication operation. There is a canonical inner product on any $$V^{\o n}$$ inherited from $$V$$'s: $$\< \b{a} \otimes \b{b}, \b{c} \otimes \b{d} \> = \< \b{a}, \b{c} \> \< \b{b} , \b{d} \>$$.
+$$\o$$ acting on $$V$$ (a vector space over $$\bb{R}$$) produces the 'tensor algebra' consisting of consisting of $$\o V = \bb{R} \oplus V \oplus V^{\o 2} \oplus \ldots $$, with $$\o$$ as the multiplication operation. There is a canonical inner product on any $$V^{\o n}$$ inherited from $$V$$'s: $$\< \b{a} \o \b{b}, \b{c} \o \b{d} \> = \< \b{a}, \b{c} \> \< \b{b} , \b{d} \>$$.
 
 -------
 
 ## 2. The Exterior Product $$\^$$
 
-The basic operation is the exterior product $$\alpha \^ \beta$$. Its most general definition is via the quotient of the tensor algebra (so, $$\o V = \bb{R} \oplus V \oplus V^{\otimes 2} \oplus \ldots $$, with $$\otimes$$ as the multiplication operation) by the relation $$x \otimes x \sim 0$$ for all $$x$$. Specifically, the exterior _algebra_ is the algebra you get under this quotient; the exterior _product_ is the behavior of $$\otimes$$ under this algebra homomorphism.
+The basic operation is the exterior product $$\alpha \^ \beta$$. Its most general definition is via the quotient of the tensor algebra (so, $$\o V = \bb{R} \oplus V \oplus V^{\o 2} \oplus \ldots $$, with $$\o$$ as the multiplication operation) by the relation $$x \o x \sim 0$$ for all $$x$$. Specifically, the exterior _algebra_ is the algebra you get under this quotient; the exterior _product_ is the behavior of $$\o$$ under this algebra homomorphism.
 
-Given a vector space $$V$$ and tensor algebra $$\o V$$, we define $$I$$ as the ideal of elements of the form $$x \otimes x$$ (so any tensor which contains any copy of the same basis vector twice). Then:
+Given a vector space $$V$$ and tensor algebra $$\o V$$, we define $$I$$ as the ideal of elements of the form $$x \o x$$ (so any tensor which contains any copy of the same basis vector twice). Then:
 
 $$\^ V \equiv V / I$$
 
 Elements in this quotient space are multivectors like $$\alpha \^ \beta$$, and $$\o$$ maps to the $$\^$$ operation. If $$\pi$$ is the canonical projection $$V \mapsto V/I$$:
 
-$$\pi(\alpha) \^ \pi(\beta) \equiv \pi(\alpha \otimes \beta)$$
+$$\pi(\alpha) \^ \pi(\beta) \equiv \pi(\alpha \o \beta)$$
 
-In practice, you compute the wedge product of multivectors by just appending them, as the product inherits associativity from $$\otimes$$ (with $$\| \alpha \| = m, \| \beta \| = n$$):
+In practice, you compute the wedge product of multivectors by just appending them, as the product inherits associativity from $$\o$$ (with $$\| \alpha \| = m, \| \beta \| = n$$):
 
 $$\alpha \^ \beta = \alpha_1 \^ \ldots \^ \alpha_{m} \^ \beta_1 \^ \ldots \^ \beta_n$$
 
 There is are several standard ways to map a wedge product back to a tensor product (reversing $$\pi$$, essentially, so we'll write it as $$\pi^{-1}$$ although it is not an inverse). One is to select *any* valid tensor:
 
-$$\pi^{-1} \alpha \stackrel{?}{=} (\alpha_1 \^ \ldots \^ \alpha_n) = \alpha_1 \otimes \ldots \otimes \alpha_n$$
+$$\pi^{-1} \alpha \stackrel{?}{=} (\alpha_1 \^ \ldots \^ \alpha_n) = \alpha_1 \o \ldots \o \alpha_n$$
 
 More useful, however, it to map the wedge product to a totally antisymmetrized tensor:
 
-$$\pi^{-1} \alpha = K \sum_{\sigma \in S_{m}} \sgn(\sigma) \alpha_{\sigma(1)} \otimes \ldots \otimes \alpha_{\sigma(m)}$$
+$$\pi^{-1} \alpha = K \sum_{\sigma \in S_{m}} \sgn(\sigma) \alpha_{\sigma(1)} \o \ldots \o \alpha_{\sigma(m)}$$
 
 This has $$m!$$ terms for simple vectors $$\^^m \bb{R}^n$$ ($${n \choose m}$$ in total for all bases) so it is impractical for algorithms, but is good for theoretical understanding. $$K$$ is a constant that is chosen to be either $$1$$, $$\frac{1}{m!}$$, or $$\frac{1}{\sqrt{m!}}$$, depending on the source. I prefer $$K=1$$ so I'll always use that.
 
@@ -252,7 +252,7 @@ But it's still useful. What's the right notation, though? Tentatively, I propose
 
 The partial trace of two multivectors is implemented like this:
 
-$$\alpha \cdot_k \beta = \sum_{\gamma \in \^^k V} (\gamma \cdot \alpha) \otimes (\gamma \cdot \beta) \in \^ V \o \^ V$$
+$$\alpha \cdot_k \beta = \sum_{\gamma \in \^^k V} (\gamma \cdot \alpha) \o (\gamma \cdot \beta) \in \^ V \o \^ V$$
 
 Where the sum is over unit-length basis multivectors $$\gamma$$. Note that this use of $$\o$$ is _not_ the multiplication operation in the tensor algebra we constructed $$\^ V$$ from; rather, it is the $$\o$$ of $$\^ V \o \^ V$$. This translates to:
 
@@ -260,7 +260,7 @@ $$[\alpha \cdot_k \beta]_{J K} = \alpha_{IJ} \beta^I_{K} = \delta^{IH} \alpha_{I
 
 (That $$\delta$$ is the identity matrix; recall that indexing it by multivectors $$I, H \in \^^k V$$ means to take elements of $$\delta^{\^^k}$$ which is the identity matrix on $$\^^k V$$.)
 
-This construction gives $$(\b{x \^ y})^{\cdot_1 ^2} = (\b{x \o x + y \o y}) = I_{xy}$$, because we contracted the first indices together. When used on a vector as a rotation operator, we need a rule like this:
+This construction gives $$(\b{x \^ y})^{(\cdot_1) ^2} = (\b{x \o x + y \o y}) = I_{xy}$$, because we contracted the first indices together. When used on a vector as a rotation operator, we need a rule like this:
 
 $$R_{xy}^2 = - (\b{x \^ y})^{\cdot_1 2}$$
 
@@ -327,9 +327,9 @@ A general definition is kinda awkward, but we can do it using the $$\star_k$$ op
 
 $$\alpha \vee \beta = (\star_{\| \beta \|} \alpha) \cdot \beta$$
 
-The $$\alpha$$ will be inner-product'd with the $$\star$$'d terms of $$\beta$$. Recall that $$\star_k \beta$$ becomes a sum of tensor products $$\beta_1 \otimes \beta_2$$. We end up dotting $$\alpha$$ with the first term:
+The $$\alpha$$ will be inner-product'd with the $$\star$$'d terms of $$\beta$$. Recall that $$\star_k \beta$$ becomes a sum of tensor products $$\beta_1 \o \beta_2$$. We end up dotting $$\alpha$$ with the first term:
 
-$$\alpha \vee \beta = [\sum_{\alpha_1 \^ \alpha_2 = \alpha} (\star \alpha_1) \otimes \alpha_2] \cdot \beta = \sum_{\alpha_1 \^ \alpha_2 = \alpha}  (\star \alpha_1 \cdot \beta) \alpha_2$$
+$$\alpha \vee \beta = [\sum_{\alpha_1 \^ \alpha_2 = \alpha} (\star \alpha_1) \o \alpha_2] \cdot \beta = \sum_{\alpha_1 \^ \alpha_2 = \alpha}  (\star \alpha_1 \cdot \beta) \alpha_2$$
 
 (This is a sum over 'coproduct slices' of $$\alpha$$, in one sense. This kind of sum is called 'Sweedler Notation' in the literature.) This is non-zero only if $$\beta$$ contains all of the basis vectors _not_ in $$\alpha$$. It makes more sense on an example:
 
@@ -456,7 +456,7 @@ I often find myself wondering if the interior product and dual vectors in genera
 
 Unfortunately geometric algebra is afflicted by way too many definitions of unintuitive operations. Most of what I've listed above have definitions in terms of the geometric product. Plus there are a bunch of extras. Here's most of them:
 
-1. **Grade projection**: $$\< \alpha \>_k = \sum_{\gamma \in \^^k V} (\gamma \cdot \alpha) \otimes \gamma$$ extracts the $$k$$-graded terms of $$\alpha$$.
+1. **Grade projection**: $$\< \alpha \>_k = \sum_{\gamma \in \^^k V} (\gamma \cdot \alpha) \o \gamma$$ extracts the $$k$$-graded terms of $$\alpha$$.
 2. **Reversion**: $$(abcde)^{\dag} = edcba = (-1)^{r(r-1)/2} (abcde)$$. Generalizes complex conjugation.
 3. **Exterior product**: same operation as above, but now defined $$A \^ B = \sum_{r,s} \< \< A \>_r \< B \>_s \>_{r + s}$$
 4. **Commutator product**: $$A \times B = \frac{1}{2}(AB - BA)$$. I don't know what the point of this is.
@@ -496,13 +496,13 @@ $$\b{a}^{-1} (\b{a} \^ \b{b}) = \frac{\b{a}}{\| \b{a} \|^2} \cdot (\b{a} \^ \b{b
 
 The result is the 'rejection' of $$\b{b}$$ off of $$\b{a}$$. It doesn't quite 'invert' $$\^$$, but it's a pretty sensible result. It is commutative due to our definition of the two sided interior product (both terms on contract left-to-right either way). If $$\b{a \^ b} = 0$$ in the first place, then this rightfully says that $$\b{b}_{\perp \b{a}} = 0$$ as well, which is nice.
 
-**Multivector division 2**: the second way of defining this is to allow the result to be some sort of general object, not a single-value:
+**Multivector division 2**: Allow the result to be some sort of general object, not a single-value:
 
 $$\alpha^{-1} \beta = \frac{\alpha}{\| \alpha \|^2} \cdot \beta + K$$
 
 where $$K$$ is "the space of all multivectors $$\gamma$$ with $$\alpha \^ \gamma = 0$$". This operation produces the true preimage of multiplication via $$\^$$, at the loss of an easy way to represent the result. But I suspect this definition is good and meaningful and is sometimes necessary to get the 'correct' answer.
 
-**Multivector division 3**: 
+**Multivector division 3**: Use the geometric product.
 
 The geometric product produces something that actually _is_ division on GA's versions of complex numbers and quaternions (even-graded elements of $$\^ \bb{R}^2$$ and $$\^ \bb{R}^3$$):
 
