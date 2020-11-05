@@ -270,36 +270,35 @@ f(0) &= \frac{1}{2\pi i} \oint_{C} \frac{f(z) dz}{z} \\
 (-1)^n n! f^{(-n)}(0) &= \frac{1}{2\pi i}\oint_{C}  z^{n-1} f(z) dz \\
 \end{aligned}$$
 
-Where $$C$$ is a curve enclosing around $$z=0$$. Then some handwaving leads to an alternate characterization of divergent series. For most calculations $$\p_z f(0)$$ is independent of the choice of $$C$$, but for a function with a pole away from the origin, they are not. Consider $$f(z) = \frac{1}{1-z}$$, and let $$C$$ be the positively oriented circle of fixed radius $$R$$. Then:
+Where $$C$$ is a circle of radius $$R$$ around $$z=0$$. Then some handwaving leads to an alternate characterization of divergent series. For most calculations $$\p_z f(0)$$ is independent of the choice of $$C$$, but for a function with a pole away from the origin, they are not. Consider $$f(z) = \frac{1}{1-z}$$, and let $$C$$ be the positively oriented circle of fixed radius $$R$$. Then:
 
 $$\begin{aligned}
 f_R(0) &= \frac{1}{2\pi i}\oint_{C} \frac{1}{(z)(1-z)} dz \\
 &= \frac{1}{2\pi i}\oint_{C} \frac{1}{z} + \frac{1}{1-z} dz \\
 &=\text{Res}_C (z=0, \frac{1}{z} - \frac{1}{z-1}) + \text{Res}_C (z=1, \frac{1}{z} - \frac{1}{z-1}) \\
-&= 1 + H(1-R) \\
-&= 1 - H(R-1)
+&= 1 - H(R-1) \\
 \end{aligned}$$
 
-Where $$H$$ is a [step function](https://en.wikipedia.org/wiki/Heaviside_step_function) $$H(x) = 1_{x > 0}$$ (remember that $$H(1-R) = - H(R-1)$$). The derivative and integral terms show the same effect, after computing some partial fractions:
+Where $$H$$ is a [step function](https://en.wikipedia.org/wiki/Heaviside_step_function) $$H(x) = 1_{x > 0}$$. The derivative and integral terms show the same effect, after computing some partial fractions:
 
 $$\begin{aligned}
 f_R'(0) &= \frac{1}{2\pi i}\oint_{C} \frac{1}{(z^2)(1-z)} dz \\
-&= \frac{1}{2\pi i}\oint_{C} \frac{1}{z} + \frac{1}{z^2} + \frac{1}{1-z} dz \\
-&= 1 + H(1 - R) \\
-f^{(-1)}_R(0) &= \frac{1}{2\pi i}\oint_{C}\frac{1}{1-z} dz \\
-&=H(1-R)
+&= \frac{1}{2\pi i}\oint_{C} \frac{1}{z} + \frac{1}{z^2} - \frac{1}{z-1} dz \\
+&= 1 - H(R-1) \\
+f^{(-1)}_R(0) &= \frac{1}{2\pi i}\oint_{C}\frac{- 1}{z-1} dz \\
+&=-H(R-1)
 \end{aligned}$$
 
-In total we get:
+In total we get, using $$H(x) = 1 - H(-x)$$:
 
-$$a_{n, R} = \begin{cases} 
-1 + H(1-R) & n \geq 0 \\
-H(1-R) & n < 0
+$$f^{(n)}_R(0) = \begin{cases} 
+H(1-R) & n \geq 0 \\
+- H(R-1) & n < 0
 \end{cases}$$
 
 Which gives the 'real' Laurent series as:
 
-$$\frac{1}{1-z} = (\ldots + z^{-2} + z^{-1}) H(1 - \|z\|) + (1 + z + z^2 + \ldots) (1 + H(1 - \|z\|))$$
+$$\frac{1}{1-z} = - (\; \ldots + z^{-2} + z^{-1}) H(\|z\| - 1) + (1 + z + z^2 + \ldots) H(1 - \|z\|)$$
 
 The usual entirely-local calculations of $$f'(z)$$, etc miss the 'global' property: that the derivative calculations fail to be valid beyond $$R=1$$, and a whole different set of terms become non-zero, which correspond to expansion around $$z=\infty$$.
 
