@@ -413,48 +413,49 @@ The primary reason to use this operation is that its implementations on $$\bb{R}
 * The geometric product on four elements $$(\b{t, x, y, z})$$ with the $$x^2 = y^2 = z^2 = -1$$ is implemented by the [gamma matrices](https://en.wikipedia.org/wiki/Gamma_matrices) $$\gamma^{\mu}$$  which are used in quantum mechanics.
 	* (I won't discuss the alternate metric in this article, but it's done by using $$x \o x \sim Q(x,x)$$ in the quotient construction of the algebra, where $$Q$$ is the symmetric bilinear form that's providing a metric.)
 
-Geometric algebra tends to treat the geometric product as fundamental, and then produce the operations from it. For vectors:
+Geometric algebra tends to treat the geometric product as fundamental, and then produce the operations from it. For vectors, the definitions are:
 
 $$\< \b{a}, \b{b} \> = \frac{1}{2}(\b{ab + ba})$$
 
 $$\b{a} \^ \b{b} = \frac{1}{2}(\b{ab - ba})$$
 
-We could also define things the other way:
+But we could also define things the other way:
 
 $$\b{ab} = \frac{1}{2}(\b{a \cdot b} + \b{a \^ b})$$
 
 Multivector basis elements are just written by juxtaposing the relevant basis vectors, since $$\b{xy} = \b{x \^ y}$$. I like this notation and should start using it even if I avoid the geometric product; it would save a lot of $$\^$$s.
 
-To define the geometric product in terms of the other operations on this page, we need to define the **reversion** operator, which inverts the order of the components in a geometric product:
+To define the geometric product in terms of the other operations on this page, we need to define the **reversion** operator, which inverts the order of the components in a geometric product (with $$k$$ as the grade of the argument):
 
 $$(abcde)^{\dag} = edcba = (-1)^{k(k-1)/2} (abcde)$$
 
-This generalizes complex conjugation, since it takes $$\b{xy} \ra -\b{xy}$$ in $$\bb{R}^2$$ and $$\bb{R}^3$$. It allows us to compute geometric products, which contracts elements from innermost to outermost, using the operations already defined on this page, which I have defined as contracting left-to-right in every case. The general algorithm for producing geometric products out of previously-mentioned operations then is to try projecting the onto _every_ basis multivector:
+This generalizes complex conjugation, since it takes $$\b{xy} \ra -\b{xy}$$ in $$\bb{R}^2$$ and $$\bb{R}^3$$. It allows us to compute geometric products, which contracts element from inner to outer, using the operations already defined on this page, which I have defined as contracting left-to-right in every case. The general algorithm for producing geometric products out of previously-mentioned operations then is to try projecting the onto _every_ basis multivector:
 
 $$\alpha \beta = \sum_{\gamma \in \^^ V} (\gamma \cdot \alpha^\dag) \^ (\gamma \cdot \beta)$$
 
 This translates into index notation as:
 
-$$\alpha \beta = \sum_{\gamma \in \^^ V} (-1)^{k(k-1)/2} \gamma_I  \gamma_K \alpha^{I}_{[J}\beta^{K}_{L]}$$
+$$\alpha \beta = \sum_{\gamma \in \^^ V} (-1)^{\| \alpha \| ( \| \alpha \| -1)/2} \gamma_I  \gamma_K \alpha^{I}_{[J}\beta^{K}_{L]}$$
 
-I think we can agree that's pretty awkward. My overall opinion on the geometric product is this:
+I think we can agree that's pretty awkward. But it's hard to be sure what to do with it. Clearly it's _useful_, at least in the specific cases of complex and quaternions multiplication.
+
+My overall opinion on the geometric product is this:
 
 * I _tentatively_ think that it is mis-defined to use inner-to-outer contraction, because of the awkward signs and conjugation operations that result.
-	* I suspect the appeal of defining contraction this way was to make $$\b{xy}^2 = -1$$, in order to produce something analogous to $$i^2 = -1$$. But imo it's really much more elegant if all basis elements have $$\alpha^2 = 1$$.
+	* I suspect the appeal of defining contraction this way was to make $$(\b{xy})^2 = -1$$, in order to produce something analogous to $$i^2 = -1$$. But imo it's really much more elegant if all basis elements have $$\alpha^2 = 1$$.
 	* If we want to preserve the existing of a multiplication operation with $$\alpha^2 = -1$$, we can _define_ the geometric product as $$\alpha \beta = \alpha^{\dag} \cdot \beta$$ or something like that. Maybe.
+	* Associativity is really nice, though. So maybe it's my definition of the other products that's wrong for doing away with it.
 * However, it works suspiciously well for complex numbers, quaternions, and gamma matrices.
 * And it works suspiciously well for producing something that acts like a multiplicative inverse (see below).
 * But I know of almost zero cases where mixed-grade multivectors are useful, except for sums of "scalars plus one grade of multivector".
 * I can't find any general geometric intuition for the product in general.
-* So I think my internal jury is still out, and I try to reverse judgment on the subject overall.
-
-I often find myself wondering if the interior product and dual vectors in general could be considered as "negative-grade" multivectors, which also operate with $$\^$$ but subtract grades instead of adding them. I suspect they can, and I think the geometric product strikes close to, but not exactly, on this more general calculus for multivectors, and that's why it occasionally works well. But I'm not sure! Please let me know if you have this figured out.
+* So I'm mostly reserving judgment on the subject, until I figure out what's going on more completely.
 
 -----------
 
 **Other operations of geometric algebra**
 
-Unfortunately geometric algebra is afflicted by way too many definitions of unintuitive operations. Most of what I've listed above have definitions in terms of the geometric product. Plus there are a bunch of extras. Here's most of them:
+Unfortunately geometric algebra is afflicted by way too many other unintuitive operations. Here's most of them:
 
 1. **Grade projection**: $$\< \alpha \>_k = \sum_{\gamma \in \^^k V} (\gamma \cdot \alpha) \o \gamma$$ extracts the $$k$$-graded terms of $$\alpha$$.
 2. **Reversion**: $$(abcde)^{\dag} = edcba = (-1)^{r(r-1)/2} (abcde)$$. Generalizes complex conjugation.
@@ -470,7 +471,7 @@ Unfortunately geometric algebra is afflicted by way too many definitions of unin
 
 --------
 
-## 12. Multivector division $$\alpha^{-1}$$
+## 11. Multivector division $$\alpha^{-1}$$
 
 Ideally division of multivectors would produce a multivector $$\alpha^{-1}$$ that inverts $$\^$$:
 
