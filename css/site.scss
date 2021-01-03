@@ -324,7 +324,6 @@ aside {
   padding: 5px 10px;
   overflow: hidden;
   height: auto;
-  position: relative;
 }
 
 aside.hidden {
@@ -367,7 +366,8 @@ aside.hidden {
   }
 
   .read-more {
-    font-style: italic;
+  font-style: italic;
+    font-size: 15px;
   }
 }
 
@@ -383,7 +383,11 @@ footer {
   padding: 20px 0;
   text-align: left;
   font-style: italic;
-  font-size: 12px
+  font-size: 12px;
+}
+
+code.language-plaintext {
+  color: #D82651;
 }
 
 div .footnotes {

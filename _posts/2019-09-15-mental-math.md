@@ -50,17 +50,17 @@ So the process of doing the multiplication above goes something like this in my 
 
 > 45 times 27... let's see... 
 > [subconcious realization that it's going to be easier to multiply $$45(20 + 7)$$ than $$(40 + 5)(27)$$ because $$2 \times 45$$ looks 'pleasant']
+> 45 times 2 is 90, moved over one, so that's 900
 > ...7 times 45 is... let's see..
 > 7 times 4 is 28, so that's 280
 > 7 and 5 is 35, so those give
 > [verbally remembering the 280, and recognizing 28 + 3 = 31] ... 315
 > [now I can still hear the 900 from a second ago too, so grab that back]
 > and so 900 plus 315 is ...
-> [9 and 3 causes me to feel 12, and I know intuitively that the rest can be copied over]
+> [9 and 3 summons 12, and the rest feels like it can be copied over]
 > ...1215
 
-The text here is subvocalized, and I can feel how it invokes the muscles that would do the speaking if I said it out loud. I guess the result is that I basically compute math by talking. The realizations in []s are things that happen automatically, seemingly through instant pattern recognition -- I've done a lot of math in my life, and a lot of math in my head, and I guess my brain comfortably knows that 2 times 45 is a comfortable calculation that won't take a lot of effort. I could do 4 times 27 if I needed to, but my brain seems to prefer smaller numbers.
-
+The text here is slightly subvocalized, and I can feel how it invokes the muscles that would do the speaking if I said it out loud. I guess I compute math by talking to myself. The realizations in []s are things that happen automatically, seemingly through instant pattern recognition -- I've done a lot of math in my life, and a lot of math in my head, and I guess my brain comfortably knows that 2 times 45 is a comfortable calculation that won't take a lot of effort. I could do 4 times 27 if I needed to, but my brain seems to prefer smaller numbers.
 
 I'm curious to hear if there are any other methods, besides 'verbal' and 'visual', and if they work well. Or if there are any other notable counterexamples, of visual-math people who are very accurate or quick. I'm not even sure what I would search to find this, because it isn't talked about that much!
 
