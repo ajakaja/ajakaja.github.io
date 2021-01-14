@@ -37,7 +37,7 @@ For the most part I greatly prefer notations and terminology based on vector alg
 
 Everyone also picks their choice of scalar coefficients differently. I always pick the one that involves the fewer factorial terms, and I don't care about making sure the choices generalize to finite fields.
 
-Unfortunately, Cartan and the vector analysis folks definitely got the symbol $$\^$$ for the exterior product wrong. Projective geometers and Rota got it right: it should be $$\vee$$, rather than $$\^$$. Join is to vector spaces what union is to sets, and union is $$\cup$$. Meet (discussed below) is equivalent to $$\cap$$. (And linear subspaces form a lattice, which already uses the symbols $$\^$$ and $$\v$$ this way, plus the terminology 'join' and 'meet'!) 
+Unfortunately, Cartan and the vector analysis folks definitely got the symbol $$\^$$ for the exterior product wrong. Projective geometers and Rota got it right: it should be $$\vee$$, rather than $$\^$$. Join is to vector spaces what union is to sets, and union is $$\cup$$. Meet (discussed below) is analogous to $$\cap$$. (And linear subspaces form a lattice, which already uses the symbols $$\^$$ and $$\v$$ this way, plus the terminology 'join' and 'meet'!) 
 
 I'm going to keep using $$\^$$ for join here for consistency with most of the literature, but it's definitely wrong, so here's an open request to the world:
 
@@ -49,15 +49,15 @@ I'm going to keep using $$\^$$ for join here for consistency with most of the li
 
 Since I am mostly concerned with eventually using this stuff for physics, I can't ignore the way physicists handle vector space duality. The inner product of vectors is defined only between a vector and its dual, and contraction is performed using a metric tensor, so $$g: V \o V^* \ra \bb{R}$$. In index notation this means you always pair a lower index with an upper one: $$\b{u} \cdot \b{v} = u_i v^i$$.
 
-However, I think most of this should be intuitive even on plain Euclidean space with an identity metric, so I tend to prefer first presenting each equation with no attention paid to duality, then a version with upper and lower indices. I'll mostly avoid including a metric-tensor version for space, but it can usually be deduced from the index-notation version.
+However, I think most of this should be intuitive even on plain Euclidean space with an identity metric, so I prefer first presenting each equation with no attention paid to duality, then a version with upper and lower indices. I'll mostly avoid including a metric-tensor version for space, but it can be deduced from the index-notation version.
 
 An added complication is that there is an argument to be made that use of the dual vector space to define the inner product is a _mistake_. I am not exactly qualified to say if this correct or not, but after everything I've read I suspect it is. The alternative to vector space duality is to define everything in terms of the volume form, so the inner product is defined by the relation:
 
 $$ \alpha \^ \star \beta = \< \alpha, \beta \> \omega$$
 
-With $$\omega$$ a choice of pseudoscalar. This means that the choice of metric becomes a choice of _volume form field_, which is actually pretty compelling. $$\< \alpha, \_ \>$$ _is_ a linear functional $$\in V^* \simeq V \ra \bb{R}$$, and so does comprise the dual vector space. But this can also make it tricky to define $$\star$$, depending on whether you think it should give a dual multivector or not.
+With $$\omega$$ a choice of pseudoscalar. This means that the choice of metric becomes a choice of _volume form field_, which is actually pretty compelling. $$\< \alpha, \_ \>$$ _is_ a linear functional $$\in V^* \simeq V \ra \bb{R}$$, and so counts as the dual vector space. But this can also make it tricky to define $$\star$$, since some people think it should map vectors to dual vectors and vice versa.
 
-Another idea is to interpret $$V^*$$ as a "-1"-graded vector, so that $$\underset{-1}{a} \^ \underset{1}{b} = \underset{0}{(a \cdot b)}$$. 'Dual multivectors' then have negative grades in general. This often seems like a good idea but I'm not sure about it yet.
+Another idea is to interpret $$V^*$$ as a "-1"-graded vector space relative to $$V$$, such that $$\underset{-1}{a} \^ \underset{1}{b} = \underset{0}{(a \cdot b)}$$. 'Dual multivectors' then have negative grades in general. This often seems like a good idea but I'm not sure about it yet.
 
 Rota's Invariant Theory school uses yet another definition of the inner product. They define the wedge product in terms of another operation, called a 'bracket' $$[, ]$$, so that $$\alpha \^ \star \beta = [\alpha, \beta] \omega$$, but they also seem to treat the pseudoscalar as a regular scalar and so call this an inner product. I don't think this is the right approach because I'm not comfortable forgetting the difference between $$\^^n \bb{R}$$ and $$\bb{R}$$, although as above I do like the idea of the volume form as defining the inner product. (They call the whole space equipped with such a bracket a 'Peano space'. I don't think the name caught on.)
 
@@ -65,9 +65,9 @@ Rota's Invariant Theory school uses yet another definition of the inner product.
 
 ## 1. The Tensor Product $$\o$$
 
-We should briefly mention the tensor product first. $$\o$$ is the 'free multilinear product' on vector spaces. Multilinear means that $$u \o v$$ is linear in both arguments: $$(c_1 u_1 + c_2 u_2) \o v = c_1 (u_1 \o v) + (c_2 u_2 \o v)$$, etc.  [Free](https://en.wikipedia.org/wiki/Free_object) means that any other multilinear product (such as $$\^$$) factors through $$\o$$. That is, if $$\alpha \^ \beta$$ is multilinear in its arguments, then there is a map $$f$$ such that $$f(\alpha \o \beta) = \alpha \^ \beta)$$. 
+We should briefly mention the tensor product first. $$\o$$ is the 'free multilinear product' on vector spaces. Multilinear means that $$u \o v$$ is linear in both arguments: $$(c_1 u_1 + c_2 u_2) \o v = c_1 (u_1 \o v) + (c_2 u_2 \o v)$$, etc.  [Free](https://en.wikipedia.org/wiki/Free_object) means that any other multilinear product defined on vector spaces factors through $$\o$$. Skipping some technicalities, this means if we have some other operation $$\ast$$ on vectors which is multilinear in its arguments, then there is an map $$f$$ with $$a \ast b = f(a \otimes b)$$.
 
-'Free'-ness is generally a useful concept. $$\^$$ happens to be the free _antisymmetric_ product, so any other antisymmetric operation on the tensor algebra factors through $$\^$$. There are 'free'-r products than $$\o$$ as well, if you let go of multilinearity and associativity as well.
+'Free'-ness is generally a useful concept. $$\^$$ happens to be the free _antisymmetric_ multilinear product, so any other antisymmetric operation on the tensor algebra factors through $$\^$$. There are 'free'-r products than $$\o$$ as well, if you let go of multilinearity and associativity.
 
 $$\o$$ acting on $$V$$ (a vector space over $$\bb{R}$$) produces the 'tensor algebra' consisting of consisting of $$\o V = \bb{R} \oplus V \oplus V^{\o 2} \oplus \ldots $$, with $$\o$$ as the multiplication operation. There is a canonical inner product on any $$V^{\o n}$$ inherited from $$V$$'s: $$\< \b{a} \o \b{b}, \b{c} \o \b{d} \> = \< \b{a}, \b{c} \> \< \b{b} , \b{d} \>$$.
 
@@ -75,7 +75,7 @@ $$\o$$ acting on $$V$$ (a vector space over $$\bb{R}$$) produces the 'tensor alg
 
 ## 2. The Exterior Product $$\^$$
 
-The basic operation is the exterior product $$\alpha \^ \beta$$. Its most general definition is via the quotient of the tensor algebra (so, $$\o V = \bb{R} \oplus V \oplus V^{\o 2} \oplus \ldots $$, with $$\o$$ as the multiplication operation) by the relation $$x \o x \sim 0$$ for all $$x$$. Specifically, the exterior _algebra_ is the algebra you get under this quotient; the exterior _product_ is the behavior of $$\o$$ under this algebra homomorphism.
+The basic operation of discussion is the exterior product $$\alpha \^ \beta$$. Its most general definition is via the quotient of the tensor algebra by the relation $$x \o x \sim 0$$ for all $$x$$. Specifically, the exterior _algebra_ is the algebra you get under this quotient; the exterior _product_ is the behavior of $$\o$$ under this algebra homomorphism.
 
 Given a vector space $$V$$ and tensor algebra $$\o V$$, we define $$I$$ as the ideal of elements of the form $$x \o x$$ (so any tensor which contains any copy of the same basis vector twice). Then:
 
@@ -97,7 +97,7 @@ More useful, however, it to map the wedge product to a totally antisymmetrized t
 
 $$\pi^{-1} \alpha = K \sum_{\sigma \in S_{m}} \sgn(\sigma) \alpha_{\sigma(1)} \o \ldots \o \alpha_{\sigma(m)}$$
 
-This has $$m!$$ terms for simple vectors $$\^^m \bb{R}^n$$ ($${n \choose m}$$ in total for all bases) so it is impractical for algorithms, but is good for theoretical understanding. $$K$$ is a constant that is chosen to be either $$1$$, $$\frac{1}{m!}$$, or $$\frac{1}{\sqrt{m!}}$$, depending on the source. I prefer $$K=1$$ so I'll always use that.
+Where $$\sigma$$ ranges over the permutations of $$m$$ elements. This has $$m!$$ terms for a basis vector $$\in \^^m \bb{R}^n$$ ( a more complicated formula with $${n \choose m}$$ terms is needed for general elements of $$\^^m \bb{R}^n$$ -- but you can basically apply the above for every component). It is impractical for algorithms but good for intuition. $$K$$ is a constant that is chosen to be either $$1$$, $$\frac{1}{m!}$$, or $$\frac{1}{\sqrt{m!}}$$, depending on the source. I prefer $$K=1$$ to keep things simple. Here's an example:
 
 $$\pi^{-1}(\b{x} \^ \b{y}) = \b{x} \o \b{y} - \b{y} \o \b{x}$$
 
