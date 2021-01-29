@@ -21,7 +21,7 @@ Anyway here's an argument that I find somewhat compelling. See what you think?
 
 -------
 
-## 1. Classical coin flip
+## 1. Classical coin flips
 
 First let's discuss a toy example using classical probability, but write it in a notation suggestive of quantum mechanics. Suppose we're flipping a biased coin that gets heads with probability $$P[H] = p$$ and $$P[T] = q = 1 - p$$. Let's call its states $$\| H \> $$ and $$\| T \>$$, so the results of a coin flip are written as $$p \| H \> + q \| T \>$$ with $$p + q= 1$$. Upon $$n$$ iterations of classical coin-flipping we end up in state
 
