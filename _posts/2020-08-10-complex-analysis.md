@@ -30,7 +30,7 @@ i &\lra R \\
 x + iy & \lra (x + R y) \hat{x}
 \end{aligned}$$
 
-Where $$R$$ is a rotation operator. $$\cos \theta + i \sin \theta = e^{i \theta}$$ follows from applying the [exponential map](https://en.wikipedia.org/wiki/Exponential_map) to $$R$$ as the generator of rotations. If I had my way we would not use complex numbers ever and would just learn the subject as 'calculus using rotation operators' to avoid a proliferation of things that seem like magic.
+Where $$R$$ is a rotation operator. The identity $$\cos \theta + i \sin \theta = e^{i \theta}$$ follows from applying the [exponential map](https://en.wikipedia.org/wiki/Exponential_map) to $$R$$ as the generator of rotations. If I had my way we would not use complex numbers ever and would just learn the subject as 'calculus using rotation operators' to avoid a proliferation of things that seem like magic.
 
 $$\bb{R}^2$$ is a two-dimensional space, though, while $$\bb{C}$$ appears to have one 'complex' dimension. This is a bit strange, but for the most part you can just treat $$z, \bar{z}$$ like any other two dimensional space. The tangent basis forms are:
 
@@ -47,9 +47,9 @@ $$\begin{aligned}
 \p_{\bar{z}} &= \frac{1}{2}(\p_x + i \p_y)
 \end{aligned}$$
 
-The coefficients and swapping of signs is required such that $$\p_z (z) = \p_{\bar{z}} \bar{z} = 1$$. In an alternate universe both sides would have had $$\frac{1}{\sqrt{2}}$$ factors, but oh well.
+The $$\frac{1}{2}$$ factors and the swapping of signs is required such that $$\p_z (z) = \p_{\bar{z}} (\bar{z}) = 1$$. In an alternate universe both sides might have had $$\frac{1}{\sqrt{2}}$$ factors.
 
-Note that any function that explicitly uses $$r$$ or $$\theta$$ has a $$\bar{z}$$ dependency unless they cancel it out somehow (of course $$z = re^{i \theta}$$ does): 
+Note that any function that explicitly uses $$r$$ or $$\theta$$ has a $$\bar{z}$$ dependency unless they cancel it out somehow (like $$z = re^{i \theta}$$ does): 
 
 $$\begin{aligned}
 r &= \sqrt{z \bar{z}} \\
@@ -114,11 +114,11 @@ No one would really care about complex analysis except for, well, _analysts_, we
 
 $$\p_{\bar{z}} \frac{1}{z} \neq 0$$
 
-For some reason, $$z^n$$ for only $$n=-1$$ has a certain kind of divergence at $$z=0$$. It looks like a 2d [delta <strike>function</strike> distribution](https://en.wikipedia.org/wiki/Dirac_delta_function):
+Make sure you see that that's a $$\bar{z}$$-derivative. For some reason, $$z^n$$ for only $$n=-1$$ has a certain kind of divergence at $$z=0$$. It looks like a 2d [delta <strike>function</strike> distribution](https://en.wikipedia.org/wiki/Dirac_delta_function):
 
-$$\p_{\bar{z}} \frac{1}{z} = \pi \delta (z, \bar{z})$$
+$$\p_{\bar{z}} \frac{1}{z} = 2 \pi i \delta (z, \bar{z})$$
 
-(This is related to the fact that we're doing calculus in 2d; in 3d the same property holds for $$1/z^2$$, and in 1d it's $$\p_x \log x = \frac{1}{x} + i \pi \delta(x)$$ that does it.)
+This is intrinsically related to the fact that we're doing calculus in 2d. In 3d a similar property holds for $$1/z^2$$, and in 1d it's $$\p_x \log x = \frac{1}{x} + i \pi \delta(x)$$ that has the delta term.
 
 This is equivalent to saying that the contour integral (integral on a closed path) of $$1/z$$ around the origin is non-zero:
 
@@ -261,7 +261,7 @@ Laurent series coefficients are derivatives of the function evaluated at a parti
 
 $$f(z) = \ldots + f^{(-2)}(0) \frac{2! }{z^2}  - f^{(-1)}(0) \frac{1!}{z}  + f(0) + f^{(1)} z + f^{(2)}(0) \frac{z^2}{2!} + \ldots$$
 
-Suppose that for some reason the Cauchy forms of computing derivatives and 'inverse' derivatives are 'right' way to compute these values:
+Suppose that for some reason the Cauchy forms of computing derivatives and 'inverse' derivatives are the 'correct' way to compute these values:
 
 
 $$\begin{aligned}
@@ -279,7 +279,7 @@ f_R(0) &= \frac{1}{2\pi i}\oint_{C} \frac{1}{(z)(1-z)} dz \\
 &= 1 - H(R-1) \\
 \end{aligned}$$
 
-Where $$H$$ is a [step function](https://en.wikipedia.org/wiki/Heaviside_step_function) $$H(x) = 1_{x > 0}$$. The derivative and integral terms show the same effect, after computing some partial fractions:
+Where $$H$$ is a [step function](https://en.wikipedia.org/wiki/Heaviside_step_function) $$H(x) = 1_{x > 0}$$. The value of $$f(0)$$ changes depending on the radius we 'measure' it at. The derivative and integral terms show the same effect, after computing some partial fractions:
 
 $$\begin{aligned}
 f_R'(0) &= \frac{1}{2\pi i}\oint_{C} \frac{1}{(z^2)(1-z)} dz \\
@@ -302,7 +302,7 @@ $$\frac{1}{1-z} = - (\; \ldots + z^{-2} + z^{-1}) H(\|z\| - 1) + (1 + z + z^2 + 
 
 The usual entirely-local calculations of $$f'(z)$$, etc miss the 'global' property: that the derivative calculations fail to be valid beyond $$R=1$$, and a whole different set of terms become non-zero, which correspond to expansion around $$z=\infty$$.
 
-Which if you ask me is very elegant, and very clearly shows why the radius of convergence of the conventional expansion around $$z=0$$ is the distance to the closest pole.
+Which if you ask me is very elegant, and very clearly shows why the radius of convergence of the conventional expansion around $$z=0$$ is the distance to the closest pole. Of course it is a bit circular, because to get this we had to choose to use circles $$C$$ to measure derivatives, but that's ok.
 
 --------
 

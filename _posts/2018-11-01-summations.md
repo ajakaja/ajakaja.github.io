@@ -6,38 +6,33 @@ footnotes: true
 date: 2018-11-01 14:00
 ---
 
-You may have seen that [Youtube video](https://www.youtube.com/watch?v=w-I6XTVZXww) by Numberphile that circulated the social media world a few years ago. It showed the 'astounding' mathematical result:
+You may have seen that [Youtube video](https://www.youtube.com/watch?v=w-I6XTVZXww) by Numberphile that circulated the social media world a few years ago. It showed an 'astounding' mathematical result:
 
 $$1+2+3+4+5+\ldots = -\frac{1}{12}$$
 
 (quote: "the answer to this sum is, remarkably, minus a twelfth")
 
-...Then they tell you that this result is used in many areas of physics, and show you a page of a string theory textbook (*oooo*) that states it as a theorem.
+Then they tell you that this result is used in many areas of physics, and show you a page of a string theory textbook (*oooo*) that states it as a theorem.
 
 The video caused a bit of an uproar at the time, since it was many people's first introduction to the (rather outrageous) idea and they had all sorts of (very reasonable) objections.
 
 I'm interested in talking about this because: I think it's important to think about how to deal with experts telling you something that seems insane, and this is a nice microcosm for that problem.
 
-Because, well, the world of mathematics seems to have been irresponsible here. It's fine to get excited about strange mathematical results. But it's not fine to present something that requires a lot of asterixes and disclaimers as simply "true". The equation is _true_ only in the sense that if you subtly change the meanings of lots of symbols, it can be shown to become true. But that's not the same thing as quotidian, useful, everyday truth. And now that this is 'out', as it were, we have to figure out how to cope with it. Is it true? False? Something else?
-
+Because, well, the world of mathematics seems to have been irresponsible here. It's fine to get excited about strange mathematical results. But it's not fine to present something that requires a lot of asterixes and disclaimers as simply "true". The equation is _true_ only in the sense that if you subtly change the meanings of lots of symbols, it can be shown to become true. But that's not the same thing as quotidian, useful, everyday truth. And now that this is 'out', as it were, we have to figure out how to cope with it. Is it true? False? Something else? Let's discuss.
 
 <!--more-->
-
-The Numberphile video came much later and had a bunch of other people "believing" this, or, like, doubting their sanity because they were being told to believe it.
-
-Some years later I eventually learned more mathematics and went out of my way to understand the real explanation for closure. I'll put that at the end.
 
 -----
 
 ## The Proof
 
-First, here's the 'proof' from the video:
+First, here's the 'proof' from the video.
 
 Start with the simpler sum:
 
 $$P = 1 - 1 + 1 - 1 + 1\ldots$$
 
-Clearly the value of P oscillates between 1 and 0 depending on how many terms you include. Numberphile decides that it equals $$\frac{1}{2}$$, because that's halfway in the middle. Alternatively, consider P+P with the terms interleaved, and then check out _this_ quirky arithmetic:
+Clearly the value of P oscillates between 1 and 0 depending on how many terms you include. Numberphile decides that it equals $$\frac{1}{2}$$, because that's halfway in the middle. Alternatively, consider P+P with the terms interleaved, and then let's do some quirky arithmetic:
 
 $$\begin{aligned}
 P+P = 1&-1+1-1\ldots \\
@@ -106,10 +101,10 @@ Not because you know about how infinite sums work better than a physicist or mat
 That is, the unreasonable mathematical result is because the mathematician or physicist is talking about one "sense" of addition or equality, but it's not the same one that you're using when you do everyday sums or when you apply your intuitions about intuition to everyday life. This is by far the simplest explanation: addition works just how you thought it does, even in your inexpertise; you and the mathematician are just talking past each other somehow, and you don't have to know what way that is to be pretty sure that it's happening. Anyway, there's no reason expert mathematicians can't be amateur communicators, and even that is a much more palatable result than what they're claiming.
 {: .indent}
 
-This is basically one of the subtleties to how we instinctively apply [Bayes' Theorem](https://en.wikipedia.org/wiki/Bayes%27_theorem) to real experiences. We incorporate new evidence about the world naturally -- but we also have to incorporate our own ability to process that evidence correctly, and our confidence in the sources of the evidence, and our confidence in the ability of the sources to process and _communicate_ that evidence correctly. And, of course, in our [ability to correctly apply Bayes' Theorem](https://xkcd.com/2059/) at all. And it's important that, in the process of trying to hang on through this mess of evidence-evaluation, that we can be _confident about the basics_-- or we get into situations like this one, where we're told something absurd but have been worn down to the point of not being sure that we are epistemologically 'allowed' to reject it.
+When we're trying to figure out what's true in the world, we take our existing model and incorporate evidence. That can be arguments, or the credentials of the arguer, or our confidence in our own ability to think rationally. And it's important that, in the process of trying to hang on through this mess of evidence-evaluation, that we can be _confident about our basic understanding_-- or we get into situations like this one, where we're told something absurd but have been worn down to the point of not being sure that we are epistemologically 'allowed' to reject it.
 {: .indent}
 
-(As it happens, my view is that any trained mathematician who claims that $$1+2+3+4+5\ldots = -\frac{1}{12}$$ without qualification is so incredibly confused or poor at communicating or actually just misanthropic that they ought to be, er, re-educated, but who's asking me?)
+In short: yes, you know how arithmetic works, and it doesn't work like this. You are right to say "no, you're messing with me", no matter how many Youtube videos there are about it. As it happens, my view is that any trained mathematician who claims that $$1+2+3+4+5\ldots = -\frac{1}{12}$$ without ample qualification is so incredibly confused or poor at communicating or actually just evil that they ought to be sent back to school.
 
 
 --------
@@ -118,7 +113,7 @@ This is basically one of the subtleties to how we instinctively apply [Bayes' Th
 
 There's no shortage of explanations of this online, and a mountain of them emerged after this video became popular.
 
-I'll write out a simple heuristic version anyway for the curious.
+I'll write out a simple heuristic version anyway for if you're curious.
 
 It turns out that, yes, there is a _sense_ in which those summations are valid, but it's not the sense you're using when you perform ordinary addition. It's also true that the summations emerge in physics. It's also true that the validity of these summations is *in spite of* the rules of "you can't add, subtract, or otherwise deal with infinities, and yes all these sums diverge" that you learn in introductory calculus; it turns out that those rules are also elementary and there are ways around them but you have to be very rigorous to get them right.
 {: .indent}
@@ -130,9 +125,7 @@ $$S(\infty) = 1+2+3+4+5\ldots \approx -\frac{1}{12} + O(\infty)$$
 
 where $$S(n)$$ is a function giving the n'th partial sum of the series, and $$S(\infty)$$ is what happens you formally extend $$S(n)$$ to take a limit at $$n \ra \infty$$. The $$O(\infty)$$ part means "something on the order of infinity".
 
-(Technically we're talking about the [analytic continuation](https://en.wikipedia.org/wiki/Analytic_continuation) of $$S(n)$$ to $$+\infty$$.)
-
-Point is, that $$O(\infty)$$ bit is in there, but doesn't necessarily disrupt arithmetic on the finite part, which is why algebraic manipulations still seem to work. And it's true that this series is always found to have the finite part $$-\frac{1}{12}$$, if you stick to a certain type of 'valid' manipulations. (Well, there may be other kinds of summation techniques that I don't know about that get different results. But this value is not just randomly one among many associated with this summation; you can get this same answer in different ways.)
+That $$O(\infty)$$ bit is in there, but doesn't necessarily disrupt arithmetic on the finite part, which is why algebraic manipulations still seem to work. And it's true that this series is always found to have the finite part $$-\frac{1}{12}$$, if you stick to a certain type of 'valid' manipulations. (Well, there may be other kinds of summation techniques that get different results. But this value is not just randomly one among many associated with this summation; you can get this same answer in different ways.)
 {: .indent}
 
 In fact, if you just graph the partial sums $$S(n)$$, the curve which approximates this [apparently](https://en.wikipedia.org/wiki/1_%2B_2_%2B_3_%2B_4_%2B_%E2%8B%AF) intercepts the $$y$$ axis at $$(0, -\frac{1}{12}$$).
