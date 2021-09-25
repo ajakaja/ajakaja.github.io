@@ -7,9 +7,7 @@ aside: true
 tags: notes
 ---
 
-Rapid-fire intuitions for calculus on complex numbers, with little rigor.
-
-Not an introduction to the subject.
+Rapid-fire non-rigorous intuitions for calculus on complex numbers. Not an introduction to the subject.
 
 <!--more-->
 
@@ -23,16 +21,26 @@ Contents:
 
 ## 1. The complex plane
 
-Most of calculus on $$\bb{C}$$ is actually just calculus on $$\bb{R}^2$$, under the substitutions:
+Calculus on $$\bb{C}$$ is more-or-less just calculus on $$\bb{R}^2$$, under the substitutions:
 
 $$\begin{aligned}
 i &\lra R \\
-x + iy & \lra (x + R y) \hat{x}
+a + bi & \lra (a + R b) \hat{x} = a \hat{x} + b \hat{y}
 \end{aligned}$$
 
-Where $$R$$ is a "rotation operator". The identity $$\cos \theta + i \sin \theta = e^{i \theta}$$ follows from applying the [exponential map](https://en.wikipedia.org/wiki/Exponential_map) to $$R$$ as the generator of rotations. If I had my way we would not use complex numbers ever and would just learn the subject as 'calculus using rotation operators' to avoid a proliferation of things that seem like magic.
+Where $$R$$ is the "rotation operator". The identity $$\cos \theta + i \sin \theta = e^{i \theta}$$ follows from applying the [exponential map](https://en.wikipedia.org/wiki/Exponential_map) to $$R$$ as the generator of rotations. If I had my way we would not use complex numbers ever and would just learn the subject as 'calculus using rotation operators' to avoid a proliferation of things that seem like magic.
 
-$$\bb{R}^2$$ is a two-dimensional space, though, while $$\bb{C}$$ appears to have one 'complex' dimension. This is a bit strange, but for the most part you can just treat $$z, \bar{z}$$ like any other two dimensional space. The tangent basis forms are:
+The one way that $$\bb{C}$$ is more than just $$\bb{R}^2$$ is that there is a definition of multiplying two vectors: 
+
+$$(a + b i) (c + d i) = (ac - bd) + (ad + bc) i$$
+
+The best way I know to interpret this is like this. The correspondence $$a + bi \Ra (a + R b) \hat{x}$$ suggests that we interpret a complex number as an operator that is understood to 'act on' the $$\hat{x}$$ basis vector. In this sense both adding and multiplying complex numbers are natural operations: adding them applies both operations to $$\hat{x}$$ and adds the result; multiplying them applies them sequentially. 
+
+$$[(a + b R) \circ (c + d R) ](\hat{x})  = [(ac - bd) + (ad + bc) R] (\hat{x})$$
+
+This model is especially appealing because it is easy to extend to higher dimensions.
+
+So we want to do calculus on these operators on $$\bb{R}^2$$. We start by identifying derivatives and differential forms. The differentials of the coordinate vectors are:
 
 
 $$\begin{aligned}
@@ -47,9 +55,23 @@ $$\begin{aligned}
 \p_{\bar{z}} &= \frac{1}{2}(\p_x + i \p_y)
 \end{aligned}$$
 
-The $$\frac{1}{2}$$ factors and the swapping of signs is required such that $$\p_z (z) = \p_{\bar{z}} (\bar{z}) = 1$$. In an alternate universe both sides might have had $$\frac{1}{\sqrt{2}}$$ factors.
+Note that the signs are swapped, compared to the forms, and factors of $$\frac{1}{2}$$ have appeared. These are necessary because of the requirement that that $$\p_z (z) = \p_{\bar{z}} (\bar{z}) = 1$$. In an alternate universe both sides might be given $$\frac{1}{\sqrt{2}}$$ factors instead.
 
-Note that any function that explicitly uses $$r$$ or $$\theta$$ has a $$\bar{z}$$ dependency unless they cancel it out somehow (like $$z = re^{i \theta}$$ does): 
+There are other parameterizations of $$\{ z, \bar{z} \}$$ in terms of $$\bb{R}^2$$ coordinates. The most common choice is polar coordinates: $$z = re^{i \theta}$$ and $$\bar{z} = r e^{-i \theta}$$. Then the forms are:
+
+$$\begin{aligned}
+dz &= e^{i \theta} (dr + i r d \theta) \\
+d\bar{z} &= e^{-i \theta} (dr - i r d \theta)
+\end{aligned}$$
+
+Then the partial derivatives would be:
+
+$$\begin{aligned}
+\p_z &= \frac{e^{-i \theta}}{2} (\p_r - \frac{i}{r} \p_\theta) \\
+\p_{\bar{z}} &= \frac{e^{i \theta}}{2} (\p_r + \frac{i}{r} \p_\theta)
+\end{aligned}$$
+
+Although these don't come up very much. Note that any function that explicitly uses $$r$$ or $$\theta$$ has a $$\bar{z}$$ dependency unless they cancel it out somehow, since both $$r$$ and $$\theta$$ do:
 
 $$\begin{aligned}
 r &= \sqrt{z \bar{z}} \\
@@ -60,6 +82,8 @@ r &= \sqrt{z \bar{z}} \\
 
 ## 2. Holomorphic functions
 
+Perhaps we want to do calculus on complex numbers, and take derivatives of functions of $$z$$. Being complex differentiable means that $$f(z)$$ has a derivative that is itself a complex number: $$(f_x, f_y) \in \bb{C}$$ (when regarded as part of $$\bb{R}^2$$). 
+
 The [Cauchy-Riemann equations](https://en.wikipedia.org/wiki/Cauchy%E2%80%93Riemann_equations) tell you when a complex function $$f(z) = u(x+iy) + i v(x + iy)$$ is complex-differentiable:
 
 $$\begin{aligned}
@@ -67,7 +91,7 @@ u_x = v_y\\
 u_y = - v_x 
 \end{aligned}$$
 
-Being complex differentiable means that $$f(z)$$ has a derivative that is itself a complex number: $$(f_x, f_y) \in \bb{C}$$ when regarded as part of $$\bb{R}^2$$. In fact, the equations express the idea that $$f$$ has no derivative with respect to $$\bar{z}$$:
+In fact, the equations express the idea that $$f$$ has no derivative with respect to $$\bar{z}$$:
 
 $$\begin{aligned}
 \p_{\bar{z}} f(z)
@@ -130,7 +154,7 @@ $$\begin{aligned}
 
 It's clear why this non-zero contour only holds for $$z^{-1}$$: for any other $$z^n$$, the $$d \theta$$ term is still a non-constant function of $$\theta$$, so its values on each end cancel out. For $$n=-1$$, though, the $$d \theta$$ just counts the total change in angle.
 
-The delta-function version folllows from Stoke's theorem. Since the contour integral gives the same value on any path as long as it circles $$z=0$$, the divergence must be fully located at that point:
+The delta-function version follows from Stoke's theorem. Since the contour integral gives the same value on any path as long as it circles $$z=0$$, the divergence must be fully located at that point:
 
 $$\begin{aligned}
 \oint_{\p D} \frac{1}{z} dz &= \iint_D d(\frac{dz}{z}) \\
@@ -306,4 +330,4 @@ Which if you ask me is very elegant, and very clearly shows why the radius of co
 
 --------
 
-In summary: don't use complex numbers. Please use $$\bb{R}^2$$ if you can.
+Anyway, in summary, please use $$\bb{R}^2$$ instead of $$\bb{C}$$ if you can. Thanks.

@@ -7,9 +7,7 @@ aside: true
 tags: notes
 ---
 
-I'm returning to exterior algebra notes. This time, a reference for all of the many operations that I am aware of throughout the subject. It's easier to define them all in one place than to spread the definitions over articles that use them.
-
-I will make a point of giving explicit algorithms and an explicit example of each, in the lowest dimension that can still be usefully illustrative.
+More exterior algebra notes. This is a reference for (almost) all of the many operations that I am aware of in the subject. I will make a point of giving explicit algorithms and an explicit example of each, in the lowest dimension that can still be usefully illustrative.
 
 Warning: very long.
 
