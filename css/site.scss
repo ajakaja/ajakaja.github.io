@@ -422,14 +422,13 @@ p.indent {
 
 .pagenavigation {
   font-size: 14px;
-  display: block;
+  display: flex;
   width: auto;
   overflow: hidden;
 }
 
 .pagenavigation a {
-  display: block;
-  width: 50%;
+  flex-grow: 1;
   float: left;
   margin: 1em 0;
 }

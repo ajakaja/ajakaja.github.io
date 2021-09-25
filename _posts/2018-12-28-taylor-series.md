@@ -110,25 +110,27 @@ f(x+ v_x, y + v_y) &= e^{v_x \p_x} f(x, y + v_y) \\
 
 I mention all this because it's useful to have a solid idea of what a scalar function is before we move to _vector_ functions.
 
+Note that $$e^{v_x \p_x}e^{v_y \p_y} f(x,y) = e^{v_x \p_x + v_y \p_y} f(x,y) $$ is not always allowed. There are [complicated rules](https://en.wikipedia.org/wiki/Baker%E2%80%93Campbell%E2%80%93Hausdorff_formula) for how to combine exponentiated operators -- but fortunately, when the exponents commute (ie $$\p_x \p_y = \p_y \p_x$$, which we're just assuming is true here), you can add them in the normal way.
+
 -------
 
-L'Hôpital's rule is more subtle for multivariable functions. In general the limit of a function may be different depending on what direction you approach from, so an expression like $$\lim_{\b{x} \ra 0} \frac{f(\b{x})}{g(\b{x})}$$ is not necessarily defined, even if both $$f$$ and $$g$$ have Taylor expansions. On the other hand, if we choose a path for $$\b{x} \ra 0$$, such as $$\b{x}(t) = (x(t), y(t))$$ then this just becomes a one-dimensional limit, and the regular rule applies again. So, for instance, while $$\lim_{\b x \ra 0} \frac{f(\b{x})}{g(\b x)}$$ may not be defined, $$\lim_{t \ra 0} \frac{f(t \b{v})}{g(t \b{v})}$$ is.
+L'Hôpital's rule is more subtle for multivariable functions. In general the limit of a function may be different depending on what direction you approach from, so an expression like $$\lim_{\b{x} \ra 0} \frac{f(\b{x})}{g(\b{x})}$$ is not necessarily defined, even if both $$f$$ and $$g$$ have Taylor expansions. On the other hand, if we choose a path for $$\b{x} \ra 0$$, such as $$\b{x}(t) = (x(t), y(t))$$ then this just becomes a one-dimensional limit, and the regular rule applies again. So, for instance, while $$\lim_{\b x \ra 0} \frac{f(\b{x})}{g(\b x)}$$ may not be defined, $$\lim_{t \ra 0} \frac{f(t \b{v})}{g(t \b{v})}$$ is for any fixed vector $$\b{v}$$.
 
-And the path we take to approach $$0$$ doesn't even matter -- only the gradients when we're infinitesimally close to $$0$$. For example, suppose we $$f(0,0) = g(0,0) = 0$$ and we're taking the limit on the path given by $$y = x^2$$:
+And the path we take to approach $$0$$ doesn't even matter: only the gradients when we're infinitesimally close to $$0$$ do. For example, suppose we $$f(0,0) = g(0,0) = 0$$ and we're taking the limit on the path given by $$y = x^2$$:
 
 $$\lim_{\e \ra 0} \frac{f(\e,\e^2)}{g(\e,\e^2)} = \lim_{ \e \ra 0 } \frac{ f_x(0,0) \e +  O(\e^2) }{ g_x(0,0) \e + O(\e^2)} = \lim_{\e \ra 0} \frac{f(\e,0)}{g(\e,0)}$$
 
-The $$f_y$$ and $$g_y$$ terms are of order $$\e^2$$ and so drop out, leaving a limit taken only on the $$x$$-axis -- corresponding to the fact that the tangent to $$(x,x^2)$$ at 0 is $$(1,0)$$.
+The $$f_y$$ and $$g_y$$ terms are of order $$\e^2$$ and so drop out, leaving a limit taken only on the $$x$$-axis, corresponding to the fact that the tangent to $$(x,x^2)$$ at 0 is $$(1,0)$$.
 
 In fact, this problem basically exists in 1D also, except that limits can only come from two directions: $$x^+$$ and $$x^-$$, so lots of functions get away without a problem (but you can also [abuse this](https://en.wikipedia.org/wiki/Cauchy_principal_value)). L'Hôpital's rule only needs that the functions be expandable as a Taylor series on the side the limit comes from.
 
-I think that the concept of a limit that _doesn't_ specify a direction of approach is more common than it should be, because it's really quite problematic in practice. I'm not quite sure I fully understand the complexity of solving it in $$N > 1$$ dimension -- but clearly if you just reduce to a 1-dimensional limit, you sweep the difficulties under the rug anyway. But see, perhaps, [this](https://arxiv.org/pdf/1209.0363.pdf) pre-print for a lot more information.
+I think that the concept of a limit that _doesn't_ specify a direction of approach is more common than it should be, because it's really quite problematic in practice. I'm not quite sure I fully understand the complexity of solving it in $$N > 1$$ dimension, but clearly if you just reduce to a 1-dimensional limit, you sweep the difficulties under the proverbial rug. See, perhaps, [this](https://arxiv.org/pdf/1209.0363.pdf) pre-print for a lot more information.
 
 -----
 
 ## 3. Vector Fields
 
-There are several types of vector-valued functions -- curves like $$\gamma: \bb{R} \ra \bb{R}^n$$, or maps between manifolds like $$\b{f}: \bb{R}^m \ra \bb{R}^n$$ (including from a space to itself). In each case there is something like a Taylor series that can be defined. It's not commonly written out, but I think it _should be_, so let's try.
+There are several types of vector-valued functions: one-dimensional curves like $$\gamma: \bb{R} \ra \bb{R}^n$$, or arbitrary-dimensional maps like $$\b{f}: \bb{R}^m \ra \bb{R}^n$$ (including from a space to itself), or maps between arbitrary differentiable manifolds $$f: M \ra N$$. In each case there is something like a Taylor series that can be defined. It's not commonly written out, but I think it _should be_, so let's try.
 
 Let's imagine our function maps spaces $$X \ra Y$$, where $$X$$ has $$m$$ coordinates and $$Y$$ has $$n$$ coordinates, and $$m$$ might be 1 in the case of a curve. Then along any _particular_ coordinate in $$Y$$ out of the $$n$$ -- call it $$y_i$$ -- the Taylor series expression from above holds, because $$f_i = \b{f} \cdot y_i$$ is just a scalar function.
 
@@ -219,6 +221,8 @@ $$\begin{aligned}
 u_x &= v_y \\
 u_y &= - v_x
 \end{aligned}$$
+
+But seriously, $$\p_{\bar{z}} f(z) = 0$$ is a _much_ better way of expressing this.
 
 -------
 

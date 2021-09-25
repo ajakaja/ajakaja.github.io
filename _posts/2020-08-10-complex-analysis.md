@@ -30,7 +30,7 @@ i &\lra R \\
 x + iy & \lra (x + R y) \hat{x}
 \end{aligned}$$
 
-Where $$R$$ is a rotation operator. The identity $$\cos \theta + i \sin \theta = e^{i \theta}$$ follows from applying the [exponential map](https://en.wikipedia.org/wiki/Exponential_map) to $$R$$ as the generator of rotations. If I had my way we would not use complex numbers ever and would just learn the subject as 'calculus using rotation operators' to avoid a proliferation of things that seem like magic.
+Where $$R$$ is a "rotation operator". The identity $$\cos \theta + i \sin \theta = e^{i \theta}$$ follows from applying the [exponential map](https://en.wikipedia.org/wiki/Exponential_map) to $$R$$ as the generator of rotations. If I had my way we would not use complex numbers ever and would just learn the subject as 'calculus using rotation operators' to avoid a proliferation of things that seem like magic.
 
 $$\bb{R}^2$$ is a two-dimensional space, though, while $$\bb{C}$$ appears to have one 'complex' dimension. This is a bit strange, but for the most part you can just treat $$z, \bar{z}$$ like any other two dimensional space. The tangent basis forms are:
 
