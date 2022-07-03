@@ -1,9 +1,9 @@
 {% if include.caption %}
 <figure>
-<img src="/assets/posts/{{ include.filename }}" {% if include.alt %} alt="{{ include.alt }}" {% endif %} {% if include.width %} width="{{ include.width }}" {% endif %}/>
+<img src="/assets/posts/{{ include.filename }}" {% if include.alt %} alt="{{ include.alt }}" {% endif %} {% if include.width %} width="{{ include.width }}" {% endif %} style="{{ include.style }}"/>
 <figcaption>{{ include.caption }} 
 </figcaption>
 </figure>
 {% else %}
-<img src="/assets/posts/{{include.filename }}" {% if include.alt %} alt="{{ include.alt }}" {% endif %} {% if include.width %} width="{{ include.width }}" {% endif %}/>
+<img src="/assets/posts/{{include.filename }}" {% if include.alt %} alt="{{ include.alt }}" {% endif %} {% if include.width %} width="{{ include.width }}" {% endif %} style="{{ include.style }}"/>
 {% endif %}
