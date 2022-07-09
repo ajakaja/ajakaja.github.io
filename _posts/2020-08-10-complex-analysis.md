@@ -28,15 +28,19 @@ i &\lra R \\
 a + bi & \lra (a + R b) \hat{x} = a \hat{x} + b \hat{y}
 \end{aligned}$$
 
-Where $$R$$ is the "rotation operator". Yes, it is strange that you can do calculus with a rotation operator, but have an open mind.
+Where $$R$$ is the "rotation operator". Yes, it is strange that you can do calculus with a rotation operator, but keep an open mind.
 
-The identity $$\cos \theta + i \sin \theta = e^{i \theta}$$ follows from applying the [exponential map](https://en.wikipedia.org/wiki/Exponential_map) to $$R$$ as the generator of rotations. If I had my way we would not use complex numbers ever and would just learn the subject as 'calculus using rotation operators' to avoid a proliferation of things that seem like magic. Certainly the words "complex" and "imaginary" aren't doing anybody any favors.
+It is also possible to consider complex numbers as 2x2 matrices, using $$i = R = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$$. Then in general
 
-The one way that $$\bb{C}$$ is more than just $$\bb{R}^2$$ is that there is a definition of multiplying two vectors: 
+$$a + bi = \begin{pmatrix} a & -b \\ b & a \end{pmatrix}$$
+
+The identity $$\cos \theta + i \sin \theta = e^{i \theta}$$ follows from applying the [exponential map](https://en.wikipedia.org/wiki/Exponential_map) to $$R$$. If I had my way we would not use complex numbers ever and would just learn the subject as 'calculus using rotation operators' to avoid a proliferation of things that seem like magic, although a bit of work is needed to make it pedagogically sound. Certainly the words "complex" and "imaginary" aren't doing anybody any favors.
+
+The one way that $$\bb{C}$$ is more interesting than plain $$\bb{R}^2$$ is that there is a definition of multiplying two vectors: 
 
 $$(a + b i) (c + d i) = (ac - bd) + (ad + bc) i$$
 
-The best way I know to interpret this is like this. The correspondence $$a + bi \Ra (a + R b) \hat{x}$$ suggests that we interpret a complex number as an operator that is understood to 'act on' the $$\hat{x}$$ basis vector. In this sense both adding and multiplying complex numbers are natural operations: adding them applies both operations to $$\hat{x}$$ and adds the result; multiplying them applies them sequentially. 
+The best way I know to interpret this is like so: the correspondence $$a + bi \Ra (a + R b) \hat{x}$$ suggests that we interpret a complex number as an operator that is understood to 'act on' the $$\hat{x}$$ basis vector. In this sense both adding and multiplying complex numbers are natural operations: adding them applies both operations to $$\hat{x}$$ and adds the result; multiplying them applies them sequentially. 
 
 $$[(a + b R) \circ (c + d R) ](\hat{x})  = [(ac - bd) + (ad + bc) R] (\hat{x})$$
 
@@ -50,7 +54,7 @@ dz &= dx + i dy \\
 d\bar{z} &= dx - i dy
 \end{aligned}$$
 
-The partial derivatives are for some reason given the name "[Wirtinger derivatives](https://en.wikipedia.org/wiki/Wirtinger_derivatives)":
+The partial derivatives are for some reason called "[Wirtinger derivatives](https://en.wikipedia.org/wiki/Wirtinger_derivatives)":
 
 $$\begin{aligned}
 \p_z &= \frac{1}{2}(\p_x - i \p_y) \\
@@ -84,7 +88,7 @@ r &= \sqrt{z \bar{z}} \\
 
 ## 2. Holomorphic functions
 
-Perhaps we want to do calculus on complex numbers, and take derivatives of functions of $$z$$. Being complex differentiable means that $$f(z)$$ has a derivative that is itself a complex number: $$(f_x, f_y) \in \bb{C}$$ (when regarded as part of $$\bb{R}^2$$). 
+Complex analysis is mostly concerned with doing calculus on functions in $$\bb{C}$$, so we are interested in differentiable functions of $$z$$. Being complex differentiable means that $$f(z)$$ has a derivative that is itself a complex number (when regarded as part of $$\bb{R}^2$$): $$(f_x, f_y) \in \bb{C}$$. 
 
 The [Cauchy-Riemann equations](https://en.wikipedia.org/wiki/Cauchy%E2%80%93Riemann_equations) tell you when a complex function $$f(z) = u(x+iy) + i v(x + iy)$$ is complex-differentiable:
 
@@ -93,17 +97,17 @@ u_x = v_y\\
 u_y = - v_x 
 \end{aligned}$$
 
-The C-R equations just express the idea that $$f$$ has no derivative with respect to $$\bar{z}$$:
+This really just expresses the idea that $$f$$ has no derivative with respect to $$\bar{z}$$:
 
 $$\begin{aligned}
 \p_{\bar{z}} f(z)
 &= \frac{1}{2} (f_x + i f_y) \\
-&\propto u_x + i v_x + i u_y - v_y \\
+&= u_x + i v_x + i u_y - v_y \\
 &= (u_x - v_y) + i (v_x + u_y) \\
 &= 0 + i 0
 \end{aligned}$$
 
-$$\p_{\bar{z}} f(z)$$ is a much better way to write this. The Cauchy-Riemann version should be deprecated.
+($$\p_{\bar{z}} f(z) = 0$$ is a much better way to write this. The Cauchy-Riemann version should be deprecated.)
 
 As long as $$f$$ is continuous and this condition is true in a region $$D$$, operations on $$f(z)$$ essentially work like they would for one-variable functions in $$z$$. For instance $$\p_z (z^n) = n z^{n-1}$$.
 
@@ -111,25 +115,25 @@ While $$z$$ seems like a 2-dimensional variable, there's only one 'degree of fre
 
 $$f(z + dz) \approx f(z) + f'(z) dz = f(z) + re^{i\theta} dz$$
 
-Functions which are complex-differential at every point within a region are called [holomorphic](https://en.wikipedia.org/wiki/Holomorphic_function) in that region for some reason. A function $$f(z)$$ that is holomorphic (or 'regular'?) in a region $$D$$ is _extremely_ well-behaved:
+Functions which are complex-differential at every point within a region are called [holomorphic](https://en.wikipedia.org/wiki/Holomorphic_function) ('holo' is Greek for 'whole') or regular in that region for some reason. A function $$f(z)$$ that is holomorphic in a region $$D$$ is extremely well-behaved in that region:
 
-* $$f$$ is _infinitely_ complex-differentiable
+* $$f$$ is _infinitely_ complex-differentiable in $$D$$
 * and $$f$$ is 'complex analytic', ie equal to its Taylor series in $$z$$ throughout $$D$$. The series around any particular point converges within the largest circular disk that stays within $$D$$.
-* and $$f$$ is locally invertible, ie $$f^{-1}(w + dw) \approx z + 1/f'(z) dw$$ exists and is holomorphic in the neighborhood of $$z = f(w)$$.
-* its antiderivatives exist, and its integrals along any closed contour vanishes: $$\oint_C f(z) dz = 0$$.
-* the data of $$f$$ in $$D$$ is fully determined by its values on the boundary of the region, or on any one-dimensional curve within $$D$$, or on some nontrivial subregion of $$D$$.
+* and $$f$$ is locally invertible, ie $$f^{-1}(w + dw) \approx z + (f'(z))^{-1} dw$$ exists and is holomorphic in the neighborhood of $$w = f(z)$$.
+* its antiderivatives exist, and its integrals along any closed contour $$C$$ inside $$D$$ vanishes: $$\oint_C f(z) dz = 0$$.
+* the data of $$f$$ in $$D$$ is fully determined by its values on the boundary of the region, or on any one-dimensional curve within $$D$$, or on any nontrivial subregion of $$D$$, in the sense that its Taylor series can be computed on a subset of the space and then will give the correct value throughout $$D$$ (possibly via [analytic continuation]((https://en.wikipedia.org/wiki/Analytic_continuation))).
 
 The general theme is that holomorphic/analytic functions generally act like one-dimensional functions and all of the calculus is really easy on them. This tends to be true much more than it is for 1d calculus.
 
-If two analytic functions defined on different regions _agree_ on an overlapping region, they are in a sense the 'same function'. This lets you [analytically continue](https://en.wikipedia.org/wiki/Analytic_continuation) a function by finding other functions which agree on a particular line or region. An easy case is to 'glue together' Taylor expansions around different points to go around a divergence.
+If two analytic functions defined on _different_ regions nonetheless agree on an overlapping region, they are in a sense the 'same function'. This means that you can "analytically continue" a function by finding other functions which agree on an overlapping line or region. A simple use of this is to 'glue together' Taylor expansions around different points to go around a divergence. The [Riemann Zeta function](https://en.wikipedia.org/wiki/Riemann_zeta_function) is a famous example of a function which has an interesting analytic continuation: the function is easily defined on the positive real axis where $$x>1$$, but the famous [Riemann Hypothesis](https://en.wikipedia.org/wiki/Riemann_hypothesis) concerns zeroes of its analytic continuation elsewhere on $$\bb{C}$$.
 
-Most 1d functions like $$e^x$$ and $$\sin x$$ have holomorphic complex versions like $$e^z$$ and $$\sin z$$ that are analytic everywhere. Discontinuous functions like $$\|z\|$$ or $$\log z = i \theta \ln r  $$, or functions that include an explicit or implicity $$\bar{z}$$ dependency, fail to be analytic somewhere.
+Most 1d functions like $$e^x$$ and $$\sin x$$ have holomorphic complex versions like $$e^z$$ and $$\sin z$$ that are analytic everywhere. Discontinuous functions like $$\|z\|$$ or $$\log z = i \theta \ln r  $$, or functions that include an explicit or implicit $$\bar{z}$$ dependency, fail to be analytic somewhere.
 
 Complex differentiability fails at singularities. We categorize the types:
 
 * _poles_ of order $$n$$, around which $$f(z) \sim 1/z^n$$, which are 'well-behaved' singularities. Around these there's a region where $$1/f$$ is analytic. 'Zeros' and 'poles' are dual in the sense that $$f \sim z^n$$ at zeroes and $$f \sim 1/z^n$$ at poles.
-* _removable singularities_: singularities that can be removed by redefinition, probably because they're an indeterminate form. The canonical example is $$\sin(z)/z$$ which is repaired by defining $$\sin(0)/0 = 1$$. In a sense these are not singularities at all.
-* _essential singularities_: singularities which oscillate infinitely rapidly near a point, such that they are in a sense too complicated to handle. $$\sin(1/z)$$ or $$e^{1/z}$$ are the canonical examples. They all look like this, oscillating infinitely: [Great Picard's Theorem](https://en.wikipedia.org/wiki/Picard_theorem) (what a name) says that near an essential singularity the function takes every value infinitely times, except possibly one.
+* _removable singularities_: singularities that can be removed by redefinition, probably because they're an indeterminate form. The canonical example is $$\sin(z)/z$$ which is repaired by defining $$\sin(0)/0 = 1$$. In a sense these are not singularities at all, they're just poorly handle by our notation.
+* _essential singularities_: singularities which oscillate infinitely rapidly near a point, such that they are in a sense too complicated to handle by normal methods. $$\sin(1/z)$$ or $$e^{1/z}$$ are the canonical examples. They all look like this, oscillating infinitely: [Great Picard's Theorem](https://en.wikipedia.org/wiki/Picard_theorem) (what a name) says that near an essential singularity the function takes every value infinitely times, except possibly one.
 
 Poles are much more interesting than the other two.
 
@@ -138,15 +142,19 @@ Poles are much more interesting than the other two.
 ## 3. Residues
 
 
-No one would really care about complex analysis except for, well, _analysts_, were it not for one suspicious fact about the complex derivatives:
+No one would really care about complex analysis except for, well, analysts, were it not for one suspicious fact about the complex derivatives:
 
 $$\p_{\bar{z}} \frac{1}{z} \neq 0$$
 
-(Make sure you see that that's a $$\bar{z}$$-derivative.) For some reason, $$z^n$$ for only $$n=-1$$ has a certain kind of divergence at $$z=0$$. It looks like a 2d [delta <strike>function</strike> distribution](https://en.wikipedia.org/wiki/Dirac_delta_function):
+(Make sure you see that that's a $$\bar{z}$$-derivative.)
 
-$$\p_{\bar{z}} \frac{1}{z} = 2 \pi i \delta (z, \bar{z})$$
+For some reason, for _only_ $$n=-1$$, $$z^n$$  has a certain kind of divergence at $$z=0$$. It looks like a 2d [delta <strike>function</strike> distribution](https://en.wikipedia.org/wiki/Dirac_delta_function):
 
-[By the way, this is intrinsically related to the fact that we're doing calculus in 2d. It is really a skew way of writing the more fundamental fact that $$\oint d \theta = 2 \pi$$ --- more on this another time, I hope. In 3d a similar property would hold for $$1/z^2$$, and it's related to the 1-dimensional formula $$\p_x \log x = \frac{1}{x} + i \pi \delta(x)$$. Physicists are familiar with the 3d case without always realizing it: the Maxwell equation $$\nabla \cdot E = \rho$$ applied to a point charge only works if $$\nabla \cdot \frac{\hat{r}}{r^2} = 4 \pi \delta(r)$$.]
+$$\p_{\bar{z}} \frac{1}{z} = 2 \pi i \delta (z)$$
+
+Meaning tha $$\p_{\bar{z}} \frac{1}{z} = 0$$ unless $$z = 0$$, in which case it has the value $$2 \pi i$$.
+
+[By the way, this is intrinsically related to the fact that we're doing calculus in 2d. It is really a skew way of writing the more fundamental fact that $$\oint d \theta = 2 \pi$$ if you integrate around the origin, combined with the fact that $$\frac{1}{z} dz$$ cancels out its own $$\theta$$ dependence. It's related to the 1-dimensional formula $$\p_x \log x = \frac{1}{x} + i \pi \delta(x)$$, and there are versions in higher dimensions as well. Physicists are familiar with the 3d case without always realizing it: the Maxwell equation $$\nabla \cdot E = \rho$$ applied to a point charge only works if $$\nabla \cdot \frac{\hat{r}}{r^2} = 4 \pi \delta(r)$$. More on that another time, I hope.]
 
 This is equivalent to saying that the contour integral (integral on a closed path) of $$1/z$$ around the origin is non-zero:
 
