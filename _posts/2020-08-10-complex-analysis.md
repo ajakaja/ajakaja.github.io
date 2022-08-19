@@ -23,10 +23,10 @@ Contents:
 
 Calculus on $$\bb{C}$$ is more-or-less just calculus on $$\bb{R}^2$$, under the substitutions:
 
-$$\begin{aligned}
-i &\lra R \\
-a + bi & \lra (a + R b) \hat{x} = a \hat{x} + b \hat{y}
-\end{aligned}$$
+$$
+i \lra R \\
+a + bi \lra (a + R b) \hat{x} = a \hat{x} + b \hat{y}
+$$
 
 Where $$R$$ is the "rotation operator". Yes, it is strange that you can do calculus with a rotation operator, but keep an open mind.
 
@@ -356,4 +356,4 @@ Which if you ask me is very elegant, and very clearly shows why the radius of co
 
 --------
 
-Anyway, in summary, please use $$\bb{R}^2$$ instead of $$\bb{C}$$ if you can. Thanks.
+Anyway, in summary, please talk about $$\bb{R}^2$$ instead of $$\bb{C}$$ if you can help yourself. Thanks.
