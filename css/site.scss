@@ -23,7 +23,7 @@ html {
 body {
   background: $white;
   font-size: 13px;
-  font-family: Trebuchet MS;
+  font-family: Helvetica Neue;
   font-weight: normal;
   color: #000;
   height: 100%;
@@ -385,7 +385,9 @@ footer {
 }
 
 code.language-plaintext {
-  color: #D82651;
+  color: inherit;
+  background-color: #efefef;
+  padding: 2px 1px;
 }
 
 div .footnotes {
@@ -446,17 +448,6 @@ svg#b {
   opacity: 0.08;
 }
 
-.highlight {
-  overflow: hidden !important;
-}
-
-pre.highlight {
-  border: none;
-  box-shadow: none;
-  -webkit-box-shadow: none;
-  margin: 0px;
-}
-
 figcaption {
   text-align: center;
   font-size: 0.8em;
@@ -488,4 +479,31 @@ img.border {
   tbody {
     border: 1px #ddd solid;
   }
+}
+
+.highlight {
+  .si {
+    color: black;
+    font-style: normal;
+  }
+
+  .na {
+    color: black;
+  }
+
+  .kd {
+  }
+
+  .nc {
+    color: #062873;
+  }
+
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  border: none;
+}
+
+
+pre.highlight {
+  margin: 0px;
 }
