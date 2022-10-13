@@ -38,8 +38,13 @@ hr {
 }
 
 sup, sub {
-  position: relative;
   line-height: 0;
+  vertical-align: super;
+  font-size: smaller;
+}
+
+.inline-footnote sup {
+  vertical-align: baseline;
 }
 
 small {
@@ -132,6 +137,7 @@ ul {
 
 ol {
   list-style-type: decimal;
+  line-height: 1.5em;
 }
 
 ol ul, ul ol, ul ul, ol ol {
@@ -501,8 +507,9 @@ img.border {
   box-shadow: none;
   -webkit-box-shadow: none;
   border: none;
-}
 
+  overflow: auto;
+}
 
 pre.highlight {
   margin: 0px;
