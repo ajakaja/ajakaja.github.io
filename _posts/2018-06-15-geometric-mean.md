@@ -1,20 +1,23 @@
 ---
 layout: blog
-title: "Geometric Mean and Standard Deviation"
+title: "Geometric Mean and Geometric Standard Deviation"
 footnotes: true
 math: true
 aside: true
 tags: notes
 ---
 
-A friend is writing her master's thesis in a subfield where data is typically summarized using _geometric_ statistics: geometric means and geometric standard deviations (GSD), and sometimes even geometric standard errors -- whatever those are. And occasionally 'geometric confidence intervals' and 'geometric interquartile ranges'.
+A friend is writing her master's thesis in a subfield where data is typically summarized using _geometric_ statistics: geometric means (GMs) and geometric standard deviations (GSDs), and sometimes even geometric standard errors (GSEs), whatever those are. Oh and occasionally also 'geometric confidence intervals' and 'geometric interquartile ranges'.
 
-Most of which are (a) not something anyone really has intuition for and (b) surprisingly hard to find references for online, compared to regular 'arithmetic' statistics.
+...Most of which are (a) not something anyone really has intuition for and (b) surprisingly hard to find references for online, compared to regular 'arithmetic' statistics.
 
 I was trying to help her understand these, but it took a lot of work to find easily-readable references online, so I wanted to write down what I figured out.
 
+(later edit: I wish I had saved the sources though.)
+
 <!--more-->
 
+---------------
 
 ## 1. What's the point of using a Geometric Mean?
 
@@ -22,9 +25,9 @@ The [geometric mean](https://en.wikipedia.org/wiki/Geometric_mean) of a dataset 
 
 $$\GM[\b{x}] = (\prod x_i)^{\frac{1}{n}}$$ 
 
-Though it is easier to understand through this equation[^log]:
+Though it is easier to understand through this equation[^log]
 
-[^log]: I'm using $$\log x\equiv \log_e x \equiv \ln x$$ throughout this page. This is normal in some fields and totally weird in others. Sorry if it's weird.
+[^log]: I'm using $$\log x\equiv \log_e x \equiv \ln x$$ throughout this page. This is normal in some fields and totally weird in others. Sorry if it's weird to you.
 
 $$\GM[\b{x}] = e^{\AM[\log \b{x}]}$$
 
@@ -38,13 +41,15 @@ A more meaningful example: if something increases by $$x_i$$ percents for $$i = 
 
 (By the way: using $$\GM[]$$ and $$\AM[]$$ as notations for these things is definitely not conventional, but I think it makes it easier to read in settings where you're using both.)
 
-This formula means that you are computing "the average of the _logarithms_ of your data", and then rescaling that back so the units work out. The same process is used for the geometric standard deviation / confidence intervals / interquartile ranges / whatever: (a) calculate the regular statistic on the log data, like $$\text{SD}[\log x]$$, then rescale back: $$\text{GSD}[x] = e^{SD[\log x]}$$.
+The exponential-of-logarithms formula means that you are computing "the average of the _logarithms_ of your data", and then rescaling that back so the units work out. The same process will be used to construct the geometric standard deviation / confidence intervals / interquartile ranges / whatever: (a) calculate the regular statistic on the log data, like $$\text{SD}[\log x]$$, then rescale back: $$\text{GSD}[x] = e^{SD[\log x]}$$. We might call this "log-transformed" statistics; I don't know where the word "geometric" came from.
 
-The simplest case where log-transformed statistics are more useful is if we are dealing with data whose values range over many orders of magnitudes. This is true for things that we already use logarithmic scales for, like [brightness of stars](https://en.wikipedia.org/wiki/Apparent_magnitude), [loudness of sounds](https://en.wikipedia.org/wiki/Decibel), [acidity/basicity of solutions](https://en.wikipedia.org/wiki/PH), [sound frequency](https://en.wikipedia.org/wiki/Octave), or [power of earthquakes](https://en.wikipedia.org/wiki/Richter_magnitude_scale).
+The simplest case where log-transformed statistics are more useful is if we are dealing with data whose values range over many orders of magnitudes. This is true for things that we already use logarithmic scales for, like [brightness of stars](https://en.wikipedia.org/wiki/Apparent_magnitude), [loudness of sounds](https://en.wikipedia.org/wiki/Decibel), [acidity/basicity of solutions](https://en.wikipedia.org/wiki/PH), [frequency of sounds](https://en.wikipedia.org/wiki/Octave), or [power of earthquakes](https://en.wikipedia.org/wiki/Richter_magnitude_scale).
 
 In all these cases, notice that you don't really know what the original measurements were. Like, presumably Richter measures the energy of the earthquake, but who knows what the values actually look like. Is a 7.5 Richter earthquake $$10^{15} J$$ of energy? $$10^{20} J$$? Who knows?[^richter] If we did statistics on the non-transformed values themselves, a single huge value like $$10^{20}$$ would become the mean of any data set, so our summary statistics would not summarize much of anything.
 
-Basically, each of these scales is measuring the logarithms of _something_, but for reporting data we don't care as much what the 'something' is. If that's the case, I think you may as well just log-transform all your data and then be done with it. Don't worry about geometric means, just logarithm everything and take arithmetic means.
+Basically, each of these scales is measuring the logarithms of _something_, but for reporting data we don't care as much what the 'something' is. If that's the case, I think you may as well just log-transform all your data and then be done with it. Don't worry about geometric means, just logarithm everything and take arithmetic means. But that's my opinion.[^distribution]
+
+[^distribution]: Although you can introduce artifacts in your data by doing this. If a bunch of values are uniformly distributed in $$[1, 1000]$$ (so $$AM \sim 500$$) and you take all their logarithms, they're not uniformly distributed anymore -- their average is going to be higher than $$\log 500$$. This had better not affect your statistics' conclusions.
 
 [^richter]: Actually I looked this up and Richter is totally different: it measures the _amplitude of the local tremor_, as recorded on a seismograph (the displacement of a needle, or whatever) which is then normalized based on the distance from the measurement to the epicenter of the earthquake. It turns out there are [tons of](https://en.wikipedia.org/wiki/Seismic_magnitude_scales) other scales, and some of them do a better job of measuring the actual energy of the earthquake.
 
@@ -70,7 +75,7 @@ Here are some signs that this might be true:
 	* that is, a factor's effect is proportional to the size of your data. This would be anything like an 'increase in efficiency' or an 'increased rate of occurrence'
 	* in practice _most things_, apparently, work this way. Growth rates, heights, densities, power outputs, dollar amounts, disease rates, ...
 	* but generally you may not be sure, or able to tell, if this is true, so here are some more signs:
-* corollary: the logarithm of the data looks more like a normal distribution than the data itself (ie your data is [log-normal](https://en.wikipedia.org/wiki/Log-normal_distribution))
+* corollary: the logarithm of the data looks more like a normal distribution than the data itself (ie your data is closer to [log-normal](https://en.wikipedia.org/wiki/Log-normal_distribution))
 * the data definitely cannot go below 0, by definition of what you're measuring
 * and effectively never goes _to_ 0, either, since that would make the geometric mean 0 also (though see note, below)
 * the data do not have a constant translation factor (ie, if you could just as easily have measured $$x + 50$$ instead of $$x$$, then the logarithm is going to be meaningless.)
@@ -113,7 +118,7 @@ Okay. Maybe it is _possibly_ reasonable to either:
 
 But, and **this is important**: if there are enough zero data points that your _choice of $$\e$$_ for rounding is changing your geometric mean significantly, you are probably doing something wrong.
 
-And if you decide instead of _delete_ the 0 values, you better report the result as "the average X when X was present", rather than just "the average X", or you're just [lying with statistics](https://www.amazon.com/How-Lie-Statistics-Darrell-Huff/dp/0393310728).
+And if you decide instead of _delete_ the 0 values, you better report the result as "the average X when X was present", rather than just "the average X", or you're just "lying with statistics".
 
 It's pretty confusing, though. You aren't wrong for being unsure. People use geometric means all the time with data that can be zero, maybe doing one of the above workarounds, and I _really_ doubt they're all handling it correctly or reporting it correctly afterwards.
 
@@ -135,22 +140,17 @@ Another important relationship, which explains why GM works so well for _ratios_
 
 $$\GM \Big[ \frac{x_i}{y_i} \Big] = \frac{\GM[x_i]}{\GM[y_i]}$$
 
-<div class="box">
+-------
 
-**Important note on doing statistics with a computer**:
+By the way, don't program the formula $$\GM[x] = \sqrt[n]{\prod x_i}$$ into a computer (if you do not know what you are doing). Use a built-in library for it, or use one of the other two formulas ($$= e^{\AM[\log x]}$$ or $$= \prod \sqrt[n]{x_i}$$). Multiplying arbitrarily long lists of numbers together can overflow the data values in some programming languages, causing them to wrap around to negative numbers, rendering all your math utterly wrong. In particularly unfortunate cases, the resulting value will, by chance, be _close_ and so seem reasonable, yet have been computed an entirely wrong way.
 
-For the love of all things that are good, _do not program the formula $$\GM[x] = \sqrt[n]{\prod x_i}$$ into a computer_ (if you do not know what you are doing). Use a built-in library for it, or use one of the other two formulas ($$= e^{\AM[\log x]}$$ or $$= \prod \sqrt[n]{x_i}$$). Multiplying arbitrarily long lists of numbers together can overflow the data values in some programming languages, causing them to wrap around to negative numbers, rendering all your math utterly wrong. In particularly unfortunate cases, the resulting value will, by chance, be _close_ and so seem reasonable, yet have been computed an entirely wrong way.
-
-If you're in a data-science-oriented language like R, you _might_ get away with it, cause they tend to avoid including [footguns](https://en.wiktionary.org/wiki/footgun). If you're in, like, C, you won't.
-
-</div>
-
+-------
 
 The **geometric standard deviation** (GSD) is the same transformation, applied to the regular standard deviation.
 
 $$\text{GSD}[x] = e^{\text{SD}[\log x]}$$
 
-This is going to be useful if and only it was a good idea to use a geometric mean on your data, and particularly if your data is _positively skewed_. Make sure you realize what this is saying. When using a Geometric Standard Deviation, the phrase "68.2% of values fall within one standard deviation of the mean" _means something different_:
+This is going to be useful if and only it was a good idea to use a geometric mean on your data, and particularly, IMO, if your data is positively skewed. That's cause: using a Geometric Standard Deviation, the phrase "68.2% of values fall within one standard deviation of the mean" _means something different_:
 
 The GSD, instead of giving an equal range on either side of the mean, gives an equal _factor_:
 
@@ -163,7 +163,7 @@ Note that $$ \GM[x] \text{GSD}[x]^{\pm 1}$$ means the two values are $$(\GM[x] \
 
 Analogously, if your data is well-described by a GM + GSD, it's probably _not_ well-described by an AM + SD, because it should be positively skewed, while your SD would suggest that the data is spread evenly around the mean. (Consider how weird it would be to say that "X% of the data falls within $$\frac{\mu}{2}$$ and $$2 \mu$$" for non-skewed data like a normal distribution.)
 
-If reporting confidence intervals for a given $$P$$-value, using geometric statistics, they will also not be the same distance from the geometric mean. For $$P=0.95$$, with z-score $$z = 1.96$$ (ie laughably permissible, false positives everywhere), the confidence intervals are:
+If reporting confidence intervals for a given $$P$$-value, using geometric statistics, they will also not be the same distance from the geometric mean. For $$P=0.95$$, with z-score $$z = 1.96$$ (ie laughably permissive, false positives everywhere), the confidence intervals are:
 
 $$\text{CI}_{0.95} = \GM[x] e^{\pm 1.96 \text{SD}[x]} = \GM[x] GSD^{\pm 1.96}$$
 
