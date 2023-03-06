@@ -222,7 +222,7 @@ $$\begin{aligned}
 \b{a} \cdot (\b{b \^ c}) &= \b{b} \cdot (\b{a \^ c}) - \b{c} \cdot (\b{a \^ b}) \\
 \end{aligned}$$
 
-This is equivalent to $$\b{b \cdot a}) \b{c} - (\b{c \cdot a}) \b{b}$$, but it hints at greater structure (which is related to $$\cdot$$ being a derivation, above). I know it's involved in Lie Algebras, but I haven't been able to find a good purely geometric intuition for what it could mean.
+This is equivalent to $$( \b{b \cdot a}) \b{c} - (\b{c \cdot a}) \b{b}$$, but it hints at greater structure (which is related to $$\cdot$$ being a derivation, above). I know it's involved in Lie Algebras, but I haven't been able to find a good purely geometric intuition for what it could mean.
 
 (An alternative proof of the Jacobi identity: the exterior algebra element $$\b{a \^ b \^ c}$$ corresponds to the tensor algebra element $$\b{a(bc-cb) + b(ca-ac) + c(ab-bc)}$$. The identity follows from contracting any two indexes of this tensor together, since it is antisymmetric in all positions.)
 
