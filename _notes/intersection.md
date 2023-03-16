@@ -15,57 +15,28 @@ p = a + (b-a) t \\
 p = c + (d-c) s
 $$
 
-Rearrange:
+Set equal to each other and rearrange:
 
 $$(b-a) t - (d-c) s = c - a$$
 
-Cramer's rule for solving systems is really just wedging by each vector in turn to cancel out the other ones. (For $$n>2$$, you wedge by all $$n-1$$ other vectors).
+This is a set of $$n$$ equations for $$2$$ unknowns, so in general it's overdetermined and may not have a solution. This makes sense: it reflects the fact that two line segments in $$\bb{R}^{n \geq 3}$$ may not intersect. The requirement that it has a solution is that $$(ab)$$ and $$(cd)$$ lay in the same plane. I believe (haven't checked carefully) that this is equivalent to saying that $$(1,a) \^ (1,b) \^ (1,c) \^ (1,d) = 0$$, that is, their two lines have zero 'volume' (in projective $$n+1$$ space). This expands to $$(abcd) = 0$$ and $$(abc) - (abd) + (acd) - (bcd) = 0$$. There might be a cleaner way though. Seems to work from trying one trivial example.) Also, trivially, $$(b-a) \^ (d-c) \neq 0$$ is required, since the two lines have to be not collinear. 
+
+    todo: come up with a clean, compact formula for these requirements?
+
+Assuming that there is a solution, we can solve this equation in many ways, since any two coordinates that aren't trivial should give us a valid system of equations for $$(t,s)$$. One mindless approach is to contract with the two coefficients in turn to create two scalar equations:
+
+$$(b-a) \cdot ((b-a) t - (d-c) s) = (b-a) \cdot (c-a) \\
+(d-c) \cdot ((b-a) t - (d-c) s) = (d-c) \cdot (c-a)$$
+
+Or we can do it by eliminating variables Cramer's rule, which is really just wedging by each vector in turn to cancel out the other ones. This gives:
 
 $$\begin{aligned}
-(b-a) \^ [(b-a) t - (d-c) s] &= (b-a) \^ (c-a) \\
 [(d-c) \^ (b-a)] s &= (b-a) \^ (c-a) \\
+[(d-c) \^ (b-a)] t &=  (d - c) \^ (c-a)
 \end{aligned}$$
 
-Etc. You eventually get:
+Both of these are equalities of bi-vectors, but if $$(b-a) \^ (d-c) \neq 0$$ then all three are parallel, so we can divide through by magnitudes, or just divide through on any single non-zero component since they all have to be the same.
 
-$$\begin{aligned}
-t = \frac{(d-c) \^ (c-a)}{(d-c) \^ (b-a)}\\
-s = \frac{(b-a) \^ (c-a)}{(d-c) \^ (b-a)}
-\end{aligned}$$
+    todo: it would be nice to have a 'closed form' for $$t,s$$ here instead of this 'algorithm'.
 
-Note that the denominators are the same. Also, these fractions are dividing two $$\^^2$$ bivectors as though they are scalars, which is probably not quite kosher. Nor are they particularly elegant. Anyway, we can substitute one of them --- say $$t$$ --- back into its original formula to find the point of intersection.
-
-$$p = a + (b-a) \frac{(d-c) \^ (c-a)}{(d-c) \^ (b-a)}$$
-
-I feel like there should be a way to write this that is symmetric in the two lines, but not sure what it is. If you extend the fraction to include the $$a$$ term, there's a manipulation using the Jacobi identity ( $$a(b \^ c) + b (c \^ a) + c (a \^ b) = 0$$ ) which gives the other formula for $$p$$ in terms of the ($$c,d$$) line, though:
-
-$$p = c + (d-c) \frac{(b-a) \^ (c-a)}{(d-c) \^ (b-a)}$$
-
-
---------
-
-Now that we have the point of intersection, we want to know if it's actually inside the two line segments. The way to do this is the "signature" operation from OPG. The signature of $$p$$ relative to a simplex $$S = (a_0 a_1 \ldots)$$ is found by substituting $$p$$ for each of the points in the simplex and seeing if it gives the same or the opposite orientation, which is given by the sign of e.g. $$(ap) \cdot (ab)$$. The result is a tuple like $$(+,+,-)$$. $$p$$ is 'in' $$S$$ if the signature is all $$+$$s.
-
-(note: I don't remember the full discussion of the signature operation at the moment, or exactly why it works. In particular, it definitely seems to require that $$p$$ live in the subspace spanned by $$S$$, so I guess before you run this algorithm you have to check that $$S \^ p = 0$$.)
-
-So for a line segment $$(ab)$$ and point $$p$$, we check $$(pb)$$ and $$(ap)$$. All three of these should be the same line with the same orientation. How do we check orientation? I guess we compute $$\sgn((ab) \cdot (pb))$$ and $$\sgn((ab) \cdot (ap))$$ and check if they are both $$1$$. Afaik this has to happen in oriented-projective space. Sheesh.
-
-$$\begin{aligned}
-(ab) &\ra (a \^ b, b-a) \\
-(pb) &\ra (p \^ b, b-p) \\
-(ap) &\ra (a \^ p, p-a)
-
-\end{aligned}$$
-
-Interestingly, and I hadn't noticed before, $$(a \^ p) \cdot (a \^ b)$$ and $$(p-a) \cdot (b-a)$$ have the same value. So we don't need to actually do the full calculations, we can just compute $$(b-a) \cdot (b-p)$$ and $$(b-a) \cdot (p-a)$$ ... which makes sense, actually.
-
-$$\begin{aligned}
-(b-a) \cdot (b-p) & \stackrel{?}{>} 0 \\
-(b-a) \cdot (p-a) & \stackrel{?}{>} 0
-\end{aligned}$$
-
-And likewise for $$(c,d)$$. It's an algorithm, but it's not an especially pretty one! I have a hunch there's an easier way to do it using the boundary operator:
-
-$$\p(abc) = (ab) + (bc) + (ca) $$
-
-Because then, for e.g. a tetrahedron, $$p \^ \p(ab) = (pab) + (pbc) + (pca) = (pbc) + (apc) + (abp)$$ which is exactly the three terms we need to check the orientations of. Maybe it works out that $$[p \^ \p S] \cdot S$$ encompasses the result in one value? Need to look into that.
+$$p$$ is actually _inside_ $$(a,b)$$ and $$(c,d)$$ if both $$s, t \in (0, 1)$$.
