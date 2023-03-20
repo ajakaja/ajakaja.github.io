@@ -1,10 +1,10 @@
 ---
 layout: blog
-title: "Note to self: notations for vectors and matrices"
+title: "Notations for vectors and matrices"
 footnotes: true
 math: true
 aside: true
-tags: notes
+tags: math
 ---
 
 I keep confusing myself when trying to keep track of the upper and lower indexes in matrices when using [Einstein Notation](Einstein_notation). So here's my reference.

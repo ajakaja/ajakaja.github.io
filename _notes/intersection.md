@@ -4,6 +4,7 @@ title: "Intersection notes"
 footnotes: true
 math: true
 aside: true
+tag: math
 ---
 
 Q: find closed-form formula for the intersection of two line segments in $$\bb{R}^2$$ given by $$(a,b)$$ and $$(c,d)$$.

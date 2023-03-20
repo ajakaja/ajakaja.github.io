@@ -23,9 +23,12 @@ html {
 body {
   background: $white;
   font-size: 13px;
-  font-family: Helvetica Neue;
+  font-family: $font;
   font-weight: normal;
   color: #000;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
   height: 100%;
 }
 
@@ -33,7 +36,6 @@ hr {
   border-width: 1px;
   border-style: none;
   width: 100%;
-  height: 1em;
   border-bottom: 1px inset #ccc;
 }
 
@@ -51,14 +53,27 @@ small {
   font-size: 0.85em;
 }
 
-.outer {
+.divider {
+  border-bottom: 1px solid #999; 
+  width: 30px
+}
+
+.main {
+  width: 100%;
   display: flex;
-  flex-direction: column;
-  height: 100%;
+  border-top: 1px solid $lightGray;
+  flex-grow: 1;
+}
+
+.sidebar {
+  padding-top: 10px;
+  padding-left: 20px;
+  width: 120px;
+  background-color: $lightGray;
 }
 
 .container {
-  margin: 0 auto;
+  margin: 30px 15px;
   max-width: 740px;
   padding: 0 10px;
   width: 100%;
@@ -71,7 +86,6 @@ pre {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  font-family: $helveticaNeue;
   color: $darkerGray;
   font-weight: 500;
 
@@ -81,18 +95,20 @@ h1, h2, h3, h4, h5, h6 {
   @include mobile {
     line-height: 1.4;
   }
-}
 
-h1 {
-  font-size: 24px;
   a {
     color: inherit;
     text-decoration: none;
   }
-  svg.triangle {
-    position: relative;
-    left: -8px;
-  }
+}
+
+svg.triangle {
+  position: relative;
+  left: -8px;
+}
+
+h1 {
+  font-size: 24px;
 }
 
 h2 {
@@ -108,7 +124,7 @@ h4 {
   font-weight: bold;
 }
 
-p {
+.entry p {
   margin: 15px 0;
   line-height: 1.5;
 }
@@ -126,13 +142,9 @@ a.next {
   text-align: right;
 }
 
-ul, ol {
+article ul, ol {
   margin: 15px 0;
   padding-left: 30px;
-}
-
-ul {
-  list-style-type: disc;
 }
 
 ol {
@@ -142,10 +154,6 @@ ol {
 
 ol ul, ul ol, ul ul, ol ol {
   margin: 0;
-}
-
-ul ul, ol ul {
-  list-style-type: disc;
 }
 
 li br {
@@ -169,11 +177,6 @@ p.noscript {
   font-style: italic;
 }
 
-// Fixes images in popup boxes from Google Translate
-.gmnoprint img {
-  max-width: none;
-}
-
 .date {
   font-style: italic;
   color: $gray;
@@ -190,17 +193,6 @@ p.noscript {
   background: $lightGray;
 }
 
-// Nicolas Gallagher's micro clearfix hack
-// http://nicolasgallagher.com/micro-clearfix-hack/
-.clearfix:before,
-.clearfix:after {
-    content: " ";
-    display: table;
-}
-
-.clearfix:after {
-    clear: both;
-}
 /*********************/
 /* LAYOUT / SECTIONS */
 /*********************/
@@ -210,40 +202,19 @@ p.noscript {
 //
 
 .wrapper-masthead {
-  margin-bottom: 30px;
+  padding-left: 20px;
 }
 
 .masthead {
   padding: 20px 0;
-  border-bottom: 1px solid $lightGray;
 
   @include mobile {
     text-align: center;
   }
 }
 
-.site-avatar {
-  float: left;
-  width: 70px;
-  height: 70px;
-  margin-right: 15px;
-
-  @include mobile {
-    float: none;
-    display: block;
-    margin: 0 auto;
-  }
-
-  img {
-    border-radius: 5px;
-  }
-}
-
 .site-info {
-  float: left;
-
   @include mobile {
-    float: none;
     display: block;
     margin: 0 auto;
   }
@@ -253,7 +224,6 @@ p.noscript {
   margin: 0;
   color: $darkGray;
   cursor: pointer;
-  font-family: $helveticaNeue;
   font-weight: 300;
   font-size: 28px;
   letter-spacing: 1px;
@@ -261,9 +231,11 @@ p.noscript {
 
 .subheader {
   margin: -5px 0 0 0;
+}
+
+.subheader, .nav {
   color: $gray;
   font-size: 14px;
-  font-family: $helveticaNeue;
   font-weight: 300;
 
 
@@ -281,8 +253,7 @@ p.noscript {
 
 nav {
   float: right;
-  margin-top: 23px; // @TODO: Vertically middle align
-  font-family: $helveticaNeue;
+  margin-top: 23px;
   font-size: 16px;
 
   @include mobile {
@@ -303,6 +274,10 @@ nav {
       margin: 0 10px;
       color: $blue;
     }
+  }
+
+  ul {
+    list-style-type: none;
   }
 }
 
@@ -372,6 +347,12 @@ aside.hidden {
   .read-more {
   font-style: italic;
     font-size: 13px;
+  }
+}
+
+.list {
+  ul {
+    line-height: 1.4em;
   }
 }
 

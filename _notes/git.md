@@ -3,7 +3,7 @@ layout: article
 title: "A Very Brief Shell and Git Reference"
 math: true
 footnotes: true
-category: reference
+tag: tech
 ---
 
 For non-technical Mac users who want to dip their toes in being technical.

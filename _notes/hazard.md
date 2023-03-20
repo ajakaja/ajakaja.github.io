@@ -3,6 +3,7 @@ layout: article
 title: "Quick note on survival analysis"
 footnotes: true
 math: true
+tag: math
 ---
 
 First some review (ie I derive everything myself):

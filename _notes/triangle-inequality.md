@@ -3,6 +3,7 @@ layout: article
 title: "The Reverse Triangle Inequality"
 footnotes: true
 math: true
+tag: math
 ---
 
 The [triangle inequality](https://en.wikipedia.org/wiki/Triangle_inequality) for a vector space says that for vectors $$u, v$$:

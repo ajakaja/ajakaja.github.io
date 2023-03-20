@@ -4,6 +4,7 @@ title: "Bayesian Inference"
 math: true
 aside: true
 footnotes: true
+tag: math
 ---
 
 ## 1. Bayes' Theorem

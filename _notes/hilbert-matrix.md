@@ -3,6 +3,7 @@ layout: article
 title: "Note on inverting a matrix"
 footnotes: true
 math: true
+tag: math
 ---
 
 We attempt to prove the following conjecture:

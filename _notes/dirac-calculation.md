@@ -1,10 +1,11 @@
 ---
 layout: blog
-title: "Pauli Hamiltonian Calculation"
+title: "A Pauli Hamiltonian Calculation"
 footnotes: true
 math: true
 aside: true
 tags: notes
+tag: math
 ---
 
 Brief version of a derivation which I worked through on paper.

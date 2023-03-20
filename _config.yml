@@ -20,7 +20,7 @@ gist:
 plugins: []
 
 sass:
- sass_dir: _sass
+ sass_dir: css
 
 google_analytics: True
 
@@ -32,8 +32,4 @@ collections:
   notes:
     output: true
   misc:
-    output: true
-  reference:
-    output: true
-  cache:
     output: true

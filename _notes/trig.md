@@ -3,7 +3,7 @@ layout: article
 title: "Trigonometric Identities"
 math: true
 footnotes: true
-category: reference
+tag: math
 ---
 
 <style>.equation { line-height: 3em; }</style>
@@ -168,7 +168,7 @@ Inverse trig functions require some fanangling with their domains to keep things
 
 $$\arctan x$$ gives real results for all real inputs (since the range of tangent is all reals) and typically has range $$(-\frac{\pi}{2}, \frac{\pi}{2})$$
 
-I'll leave $$\text{atan2 } x$$, the oriented / two-argument / sign-preserved arctan [function](https://en.wikipedia.org/wiki/Atan2), to be discussed in a separate reference page.
+There's also $$\text{atan2 } x$$, the oriented / two-argument / sign-preserved arctan [function](https://en.wikipedia.org/wiki/Atan2), which I don't feel like going into here. It is usually what you actually want in code.
 
 -------
 

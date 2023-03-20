@@ -3,6 +3,7 @@ layout: article
 title: "Formal Languages"
 math: true
 footnotes: true
+tag: tech
 ---
 
 An outline of formal language concepts and cached intuitions, for my reference.

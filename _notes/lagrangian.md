@@ -4,6 +4,7 @@ title: "Note on Covariance and Lagrangians"
 math: true
 aside: true
 footnotes: true
+tag: math
 ---
 
 ## 1. Regarding 4-vectors.
