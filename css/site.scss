@@ -70,6 +70,17 @@ small {
   padding-left: 20px;
   width: 120px;
   background-color: $lightGray;
+
+  @include mobile {
+    display: none;
+  }
+}
+
+.mobile-subheader {
+  display: none;
+  @include mobile {
+    display: block;
+  }
 }
 
 .container {
@@ -231,9 +242,13 @@ p.noscript {
 
 .subheader {
   margin: -5px 0 0 0;
+
+  @include mobile {
+    display: none;
+  }
 }
 
-.subheader, .nav {
+.subheader, .mobile-subheader, .nav {
   color: $gray;
   font-size: 14px;
   font-weight: 300;
