@@ -1,0 +1,1 @@
+{% for page in site.posts %}{% if page.url == include.url %}[{{ page.title }}]({{ page.url }}){% endif %}{% endfor %}

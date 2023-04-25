@@ -4,7 +4,7 @@ title: "Aphantasia (and how not to do math in your head)"
 footnotes: true
 math: true
 aside: true
-tags: notes
+tags: math
 ---
 
 

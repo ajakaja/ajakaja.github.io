@@ -1,14 +1,15 @@
 <div class="list">
 <ul>
-{% for post in site.posts limit: include.limit %}
-{% if include.category == 'all' or post.categories contains include.category %}
-<li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> — {{ post.date | date: "%B %e, %Y" }}</li>
-{% endif %}
-{% endfor %}
 {% if include.collection %}
 {% for post in site[include.collection] %}
 {% if include.tag == 'all' or post.tags contains include.tag %}
 <li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></li>
+{% endif %}
+{% endfor %}
+{% else %}
+{% for post in site.posts limit: include.limit %}
+{% if include.tag == 'all' or post.tags contains include.tag %}
+<li><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a> — {{ post.date | date: "%B %e, %Y" }}</li>
 {% endif %}
 {% endfor %}
 {% endif %}

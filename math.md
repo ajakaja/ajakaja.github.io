@@ -3,6 +3,11 @@ layout: default
 title: "Notes"
 ---
 
-Math posts.
+## Math & Physics posts
 
-{% include preview.html category="math"%}
+{% include list.html tag="math" %}
+
+## Math & Physics notes
+
+{% include list.html collection="notes" tag="math" %}
+

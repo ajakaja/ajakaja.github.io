@@ -4,7 +4,7 @@ title: "A possible derivation of the Born Rule"
 footnotes: true
 math: true
 aside: true
-tags: notes
+tags: math
 ---
 
 The so-called [Born Rule](https://en.wikipedia.org/wiki/Born_rule) of quantum mechanics says that if a system is in a state $$\alpha \| 0 \> + \beta \| 1 \>$$, upon 'measurement' (in which we entangle with one or the other outcome), we measure the eigenvalue associated with the state $$\| 0 \>$$ with probability

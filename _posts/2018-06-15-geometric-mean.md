@@ -4,7 +4,7 @@ title: "Geometric Mean and Geometric Standard Deviation"
 footnotes: true
 math: true
 aside: true
-tags: notes
+tags: math
 ---
 
 A friend is writing her master's thesis in a subfield where data is typically summarized using _geometric_ statistics: geometric means (GMs) and geometric standard deviations (GSDs), and sometimes even geometric standard errors (GSEs), whatever those are. Oh and occasionally also 'geometric confidence intervals' and 'geometric interquartile ranges'.

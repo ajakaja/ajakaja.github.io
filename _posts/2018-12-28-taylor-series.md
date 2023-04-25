@@ -4,7 +4,7 @@ title: "All About Taylor Series"
 footnotes: true
 math: true
 aside: true
-tags: notes
+tags: math
 ---
 
 Here is a survey of understandings on each of the main types of Taylor series:

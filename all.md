@@ -10,4 +10,4 @@ regenerate: true
 
 -------------
 
-{% include list.html category="all" %}
+{% include list.html tag="all" %}

@@ -5,7 +5,7 @@ title: "Tech stuff"
 
 ## Tech posts
 
-{% include list.html category="tech" %}
+{% include list.html tag="tech" %}
 
 ## Tech notes
 

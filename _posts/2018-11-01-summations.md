@@ -4,6 +4,7 @@ title: "Infinite Summations and You"
 math: true
 footnotes: true
 date: 2018-11-01 14:00
+tags: math
 ---
 
 You may have seen that [Youtube video](https://www.youtube.com/watch?v=w-I6XTVZXww) by Numberphile that circulated the social media world a few years ago. It showed an 'astounding' mathematical result:
@@ -139,4 +140,4 @@ So there you go. The sense in which it is true is: when you go mucking about wit
 
 -----
 
-(This is adapted from something I posted on [LessWrong](http://lesswrong.com/r/discussion/lw/oht/infinite_summations_a_rationality_litmus_test/) a few years ago. Copied here for posterity and improvement.)
+(This is something I posted on [LessWrong](http://lesswrong.com/r/discussion/lw/oht/infinite_summations_a_rationality_litmus_test/) a few years ago. I've copied here for posterity and because I don't use or like LessWrong any more.)

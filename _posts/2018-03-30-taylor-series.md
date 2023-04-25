@@ -3,6 +3,7 @@ layout: blog
 title: "Meditation on Taylor Series"
 math: true
 footnotes: true
+tags: math
 ---
 
 *(Notes. Definitely not interesting unless, at minimum, you really really liked calculus.)*

@@ -4,7 +4,7 @@ title: "The essence of complex analysis"
 footnotes: true
 math: true
 aside: true
-tags: notes
+tags: math
 ---
 
 Rapid-fire non-rigorous intuitions for calculus on complex numbers. Not an introduction, but if you find/found the subject hopelessly confusing, this should help.

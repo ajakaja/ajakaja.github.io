@@ -4,7 +4,7 @@ title: "All the Exterior Algebra Operations"
 footnotes: true
 math: true
 aside: true
-tags: notes
+tags: math
 ---
 
 More exterior algebra notes. This is a reference for (almost) all of the many operations that I am aware of in the subject. I will make a point of giving explicit algorithms and an explicit example of each, in the lowest dimension that can still be usefully illustrative.

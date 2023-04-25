@@ -4,6 +4,7 @@ title: "Oriented Areas and the Shoelace Formula"
 footnotes: true
 math: true
 aside: true
+tags: math
 ---
 
 Here's a summary of the concept of oriented area and the "shoelace formula", and some equations I found while playing around with it that turned out not to be novel.
