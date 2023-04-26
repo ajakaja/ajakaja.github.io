@@ -8,9 +8,9 @@ layout: default
   <h3><em>{{ page.subtitle }}</em></h3>
   {% endif %}
   <div class="date">
-    [{{ page.date | date: "%B %e, %Y" }}]
+    {{ page.date | date: "%B %e, %Y" }}
   </div>
-  <hr>
+  <hr class="large">
 
 
 
@@ -18,7 +18,7 @@ layout: default
     {{ content }}
   </div>
 
-  <hr>
+  <hr class="large">
 
   
   <div class="pagenavigation">

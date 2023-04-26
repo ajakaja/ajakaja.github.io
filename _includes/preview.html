@@ -7,9 +7,9 @@
 <h3><em>{{ post.subtitle }}</em></h3>
 {% endif %}
 <div class="date">
-[{{ post.date | date: "%B %e, %Y" }}]
+{{ post.date | date: "%B %e, %Y" }}
 </div>
-<hr>
+<hr class="">
 
 <div class="entry">
 {{ post.excerpt }}

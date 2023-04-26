@@ -36,7 +36,16 @@ hr {
   border-width: 1px;
   border-style: none;
   width: 100%;
-  border-bottom: 1px inset #ccc;
+  border-bottom: 1px inset $lightGray;
+}
+
+article hr {
+  width: 100%;
+}
+
+article hr.large {
+  width: calc(100% + 25px);
+  margin-left: -25px;
 }
 
 sup, sub {
@@ -55,7 +64,7 @@ small {
 
 .divider {
   border-bottom: 1px solid #999; 
-  width: 30px
+  width: 60px
 }
 
 .main {
@@ -84,9 +93,8 @@ small {
 }
 
 .container {
-  margin: 30px 15px;
+  margin: 30px 15px 30px 25px;
   max-width: 740px;
-  padding: 0 10px;
   width: 100%;
   flex: 1;
   position: relative;
