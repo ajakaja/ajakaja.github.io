@@ -158,6 +158,14 @@ article ul, ol {
   padding-left: 30px;
 }
 
+ul, ol {
+  list-style-type: disc;
+}
+
+.sidebar ul, ol {
+  list-style-type: none;
+}
+
 ol {
   list-style-type: decimal;
   line-height: 1.5em;
@@ -391,6 +399,12 @@ code.language-plaintext {
   background-color: #efefef;
   padding: 2px 1px;
 }
+
+h1,h2,h3 {
+  code.language-plaintext {
+    background-color: transparent;
+  }
+} 
 
 div .footnotes {
   font-size: 0.8em;
