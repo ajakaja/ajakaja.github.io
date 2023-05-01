@@ -1,10 +1,12 @@
 ---
 layout: blog
-title: "React Gotchas"
+title: "React Mistakes"
 tags: tech
 ---
 
-More notes on React.js, from the trenches of my former job: the simple things that you and your colleagues need to not do in (modern) React but which you will still do by accident from time-to-time and eventually spend weeks of your life, in total, tracking down. Don't worry, these are all a bit more interesting than React 101 stuff like "don't write conditional hooks".
+Simple things that you and your colleagues need to not do in React but which you will still do by accident from time-to-time and eventually spend months of your life, in total, tracking down.
+
+Don't worry, these are all a bit more interesting than React 101 stuff like "don't write conditional hooks".
 
 <!--more-->
 
@@ -14,7 +16,7 @@ More notes on React.js, from the trenches of my former job: the simple things th
 
 ## 1. `useEffect` with no deps array
 
-`useEffect` with an *empty* deps array runs once, on mount.
+As you may know, `useEffect` with an *empty* deps array runs once, on mount.
 
 ```tsx
 useEffect(() => {
@@ -25,7 +27,7 @@ useEffect(() => {
 }, []);
 ```
 
-But `useEffect` with *no* deps array runs on every render: 
+And `useEffect` with *no* deps array runs on every render: 
 
 ```tsx
 useEffect(() => {
@@ -33,12 +35,13 @@ useEffect(() => {
 });
 ```
 
-You almost never want this! It should be banned. Seriously, it is a huge mistake in the API that this exists. You probably know about it if you've read the docs like a good engineer, but nevertheless it's going to come back to haunt you some day. I'd bet money that in ten years `useEffect` will be called `DEPRECATED_useEffect()` after having been split up into a few smaller hooks that have fewer footguns. Mainly this one, but also for a few other reasons...
+But even if you know this, you're going to mess it up occasionally. You probably know about it if you've read the docs like a good engineer, but it's going to come back to haunt you some day. It should be banned. It is a huge mistake in the API that this exists.
 
+I'd bet money that in ten years `useEffect` will be called `DEPRECATED_useEffect()` after having been split up into a few smaller hooks that have fewer footguns. Mainly this one, but also for a few other reasons...
 
 ----------
 
-## 2. `UseEffect` with listeners
+## 2. `useEffect` with listeners
 
 A common use of `useEffect` is to set up some listener manually.
 
@@ -84,10 +87,21 @@ My preferred solution is to completely ignore the deps array linter -- either tu
 
 Of course, the trick is making sure everyone on your team is okay with this, and does it correctly. All of this suggests that the concept is fundamentally broken. I love hooks, in general (they're better than any *other* way of writing UI), but there is something glaringly wrong with them still, and the solution is something that hasn't come yet.
 
+---------
+
+## 3. `useEffect` in general
+
+It was never quite clear, anyway, what `useEffect` is supposed to do.
+
+Yes, it's something that should happen when a component re-renders, a 'side-effect', hence the name. But the API and the Linter together make it clear that the intention is that effects should happen whenever the relevant props change, so it's expressing the concept of "a side-effect *of props changing*", which is a code-level construct, an implementation detail. And then there's the no-deps-array version that runs on every render, a "side-effect of rendering".
+
+Both of those are distinctly different from the thing you usually need: "a side-effect in *business-logic*". That is: "when *certain* props `[x,y]` change, do a particular thing (whose specification has nothing to do with that `x` or `y`, necessarily)". In this case the "exhaustive deps" lint rule is basically always wrong, and, as above, I think the solution is to ignore it. You should understand which type of effect you're writing and then write it whole-heartedly, and if that means disabling the linter, so be it.
+
+The real Gotcha here is that you will waste a bunch of time *arguing* about what a proper `useEffect` is, and whether the exhaustive-deps lint rule is correct, and whether some particularly egregious violation of it is okay. When in fact `useEffect` is a badly-conceived API and you should just ignore it and do exactly what you need it to do, with the understanding that it is one API trying to be three things at once.
 
 ----------
 
-## 3. Forgetting `DisplayName`
+## 4. Forgetting `DisplayName`
 
 Set `displayName` on Function components so they have useful names in React Devtools:
 
@@ -111,7 +125,7 @@ By the way, you could avoid needing `displayName` by defining your components wi
 
 ----------
 
-## 4. `useState` with callbacks
+## 5. `useState` with callbacks
 
 Every once in a while you find yourself needing to store a callback in local state. You’ll screw it up the first time, though:
 
@@ -144,7 +158,7 @@ Even though it's obvious once you think about it, it is super easy to forget in 
 
 ----------
 
-## 5. `React.memo` and prop spreads
+## 6. `React.memo` and prop spreads
 
 Sometimes you have a bucket of props which you want to spread onto a subcomponent:
 
@@ -187,7 +201,7 @@ type WrapperProps = {
 
 ----------
 
-## 6. Accidentally redefining components
+## 7. Accidentally redefining components
 
 Spot the bug:
 
@@ -236,13 +250,11 @@ As you can see, passing component definitions around as props should be consider
 
 ------
 
-## 7. Rerendering during animations
+## 8. Rerendering during animations
 
-You should generally not trigger component rerenders on every frame of an animation. It is kinda acceptable in small hobby apps, but in a, uh, production-quality codebase, it's a bad idea. It has a tendency to fry the performance of anything else that is going on at the same time, and to fry the performance of the page for people with weaker machines than yours. So don't do it.
+You should generally not trigger component rerenders on every frame of an animation. You may get away with it in small hobby apps and so think it is fine, and sometimes React tutorials will even do it to demonstrate how things work. But in a, uh, production-quality codebase, it's a bad idea. It will fry the performance of anything else that is going on at the same time, and it will look a *lot* worse on your users' weak machines than it looks on yours. So don't do it.
 
-It is fairly easy to see why this happens if you look at Devtool's performance traces during an animation. Triggering React re-renders on every animation frame causes a _lot_ of code to get run, all at once, during a time when you would really like the animation to proceed smoothly.
-
-The weird 'gotcha' of this is that React developers will often be working on very fast machines, like M1/M2 Macbooks, so the animation will seem perfectly smooth _to them_ ... and then when you go see the same code run on other people's computers, the animation will stutter and glitch around, and their CPU fan will start spinning, because the React render loop is running so much code that it's basically maxing out CPUs for the entire 16ms of each frame. So just don't do it.
+Take a look at Devtool's performance traces during an animation. Triggering React re-renders on every animation frame causes a _lot_ of code to get run, all at once, at a time when you would specifically like the animation to proceed smoothly. React developers will often be working on very fast machines, like M1/M2 Macbooks, so the animation will seem perfectly smooth _to them_ ... and then when you go see the same code run on other people's computers, the animation will stutter and glitch around, and their CPU fan will start spinning, because the React render loop is running so much code that it's basically maxing out CPUs for the entire 16ms of each frame. So, again, just don't do it.
 
 If possible, animation should be entirely handled via CSS. But when it can't be, it's still okay to do it in JS. The trick is to do it all imperatively, without ever triggering a React state update. The basic technique looks like this:
 
@@ -259,19 +271,21 @@ By the way, don't forget that this applies also to user-triggered events that ru
 * resizing the window, or resizing components
 * arguably, typing, but you might get away with it.
 
-None of these should ever trigger state updates on every frame. State updates on specific breakpoints, such as when you resize the window smaller than a certain size or when you move the mouse into a certain region, are fine though.
+None of these should ever trigger state updates on every frame. State updates on specific breakpoints, such as when you resize the window smaller than a certain size or when you move the mouse into a certain region, are fine, as long as they won't thrash (e.g. if they're triggered when the mouse is on the border, then they'll fire in a loop if the user leaves the mouse there for a long time).
+
+Look, you don't have to listen to me. Script your animations in React state updates for all I care. But I will just say: in engineering, the point of wisdom is to fix bugs by never writing them in the first place. So you may as well do the gritty work now instead of later.
 
 ----------
 
-## 8. Redux
+## 9. Redux
 
 Don’t use Redux. Use Recoil or Jotai or something. Thank me later. 
 
-Why? Well, this is pretty contentious, I guess. But I don't think Redux scales correctly for large multi-module codebases.
+Why? Well, this is contentious, I guess. But I don't think Redux scales correctly for large multi-module codebases.
 
 The problem is that it becomes unclear whose job it is to set up or populate parts of the store. You run into cases where components mount that expect a slice of the store to (a) exist, (b) have its reducers and middleware aready set up, and (c) have its state pre-populated with the correct values. But the components don't have a way of _forcing_ that to happen, so they instead have to just assume it's been done already... and usually it does, except when it occasionally doesn't, and then you've managed to reinvent race conditions in a single-threaded language.
 
-I'm not entirely sure what the right idiom for safe Redux usage is, but it has to basically involve components atomically setting up whatever parts of the store they need if it's not already there, so that everything can render whenever it feels like without worrying about what other code has already run. I'm not aware of a library that does this.
+Whatever the right idiom for safe Redux usage is, it has to basically involve components atomically setting up whatever parts of the store they need if it's not already there, so that everything can render whenever it feels like without worrying about what other code has already run. I'm not aware of a library that does this.
 
 The other problem with Redux is that it puts developers in an "all you have is a hammer so everything looks like a nail" situation, vis-à-vis state management. Since it's so easy to put any moderately global state into Redux, you do, and you end up with things that should be local to a particular subtree or 'slice' of the app going through the global reducer chain and triggering every `useReducer()` in the whole app to re-run. Using `React.Context`, which will only update its explicitly subscribed children when it explicitly changes, will be much more efficient for anything that updates quickly or needs fast feedback.
 
@@ -283,7 +297,7 @@ IMO a good rule of thumb is that Redux actions should be 1:1 with state changes 
 
 -------
 
-## 9. Logging in Redux
+## 10. Logging in Redux
 
 While I'm on the subject: if you do use Redux, definitely _don't_ do your logging with it. It will never be the case that the list of Redux actions is the same, or even necessarily similar to, the list of events you want to log. Even if it was in the Redux sample app. Logging in Redux just pollutes everything -- the Redux action list, the reducer list, the number of Redux actions that you might have to step through in the debugger -- for no benefit, really. It takes something that's otherwise easy to read and splays it out into a mess of indirection (although arguably that's what Redux always does, lol).
 
@@ -294,3 +308,8 @@ Instead, either pass a `Logger` object around anywhere you need it, and maybe se
 Okay, that's my list.
 
 After all that, I should probably mention that I do love React. React is great. It would be foolish to not use it or something like it for web development in 2023. I don't think it's the final library we'll be using to build interfaces on starships in 100 years, or whatever, but it's better than everything that came before it, and the future of application development will probably come in the form of looking *more* Reacty, not less. Or rather, it'll come in the form of better-delivering on React's promises than React already does, for instance by not having these landmines everywhere.
+
+--------
+--------
+
+{% include react.html %}
