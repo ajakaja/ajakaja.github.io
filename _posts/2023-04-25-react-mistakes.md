@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "React Mistakes"
+title: "Some Easily-Made React Mistakes"
 tags: tech
 ---
 
