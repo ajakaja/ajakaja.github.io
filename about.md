@@ -14,5 +14,3 @@ If for some reason you want to contact me, please do, I'd be delighted to hear f
 ### about this:
 
 I'm interested in a lot of things, but somewhat more nervous about talking about them online and under my real name, so mostly I've been writing about math. Math is interesting, though, so that's okay. Recently I've been trying to write about some other stuff as well. 
-
-Someday I hope to write a novel, perform a concerto, make a programming language, release a video game, sell a painting, publish a paper, and visit every US National Park. So far I've been to about half of the parks and haven't really started on the rest of the list. So that's where I'm at.

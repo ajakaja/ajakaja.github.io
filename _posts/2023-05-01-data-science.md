@@ -8,26 +8,26 @@ tags: tech
 
 A classic product experiment at a technology company is a feature A/B test which tries to improve revenue or engagement metrics. It goes like this:
 
-1. Ask a question: can we drive more users to pay for our product by changing something, say the color of the sign-up button?
-2. Come up with some hypotheses to test: what if we make it a big grey button? A big red button? A big *flashing* red button?
-3. Do an A/B test experiment: implement each of the variants and randomly assign some visitors to each one, measuring the signup rate under each hypothesis.
-4. Analyze the results: perform a mathematical ritual which determines if the changes made a "statistically significant" difference in sign-up rates. Interpret this to mean that the data is not simply due to random variation, and the winning variant actually caused more signups to happen.
-5. If one of the variants clearly emerged as a winner, commit to that result and remove the others from code. Don't forget to also mass-email folks and show off the results of your experiment and claim credit for driving X% signups / revenue / whatever. Good on you, promotions all around.
+1. Ask a question: can we drive more users to pay for our product by changing, say, the color of the sign-up button?
+2. Formula a hypothesis: what if we make it a big grey button? A big red button? A big *flashing* red button?
+3. Do an experiment: implement each of the variants and randomly assign some visitors to each one, measuring the signup rate under each hypothesis.
+4. Analyse the results: perform a mathematical ritual which determines if the changes made a "statistically significant" difference in sign-up rates. Interpret this to mean that the resulting sign-up rate is not simply due to random variation, and identify whether the winning variant actually caused more sign-ups to happen.
+5. Conclude things: if one of the variants clearly emerged as a winner, commit to that result and remove the others from code. Don't forget to also mass-email folks and show off the results of your experiment and claim credit for driving X% signups / revenue / whatever. Good on you, promotions all around. Stick it on your resume.
 
-We might call this the Data Science Scientific Method. It certainly looks like we did some Science. After all, isn't this how Science works? Like in those triptychs from school:
+We might call this the Data Science Scientific Method. It certainly looks like we did some Science. After all, isn't this how Science works? Like on those triptychs:
 
 {% include image.html filename="2023-05-01/science.png" width="600px" %}
 
-And, as we know, Science is Good. Everybody knows that. It's how you can Be Right and Not Be Wrong. In fact, everybody at the company knows both that Science is Good and that everybody _else_ knows that Science is Good, so they don't even have to talk about it, they can just proceed with Doing Science and Making Money. And they also know they're right, because it's working: they're getting good results, converting customers, getting promotions and whatnot, and, most importantly, making lots of money. And they're all very pleased to be part of this big rational machine that's smarter than any of the individuals it comprises.
+As everyone knows, Science is good, and it's the only way to be right, to avoid bias and guesswork. In fact, everyone at the company also knows that everyone _else_ knows that Science is good, so there's no need to discuss it. Just carry on with doing Science, being right, and making money. And everyone knows they're right, because it's working: Science is getting good results, converting customers, winning promotions and whatnot, and making lots of money. Everyone is very pleased to be part of this big rational machine that's smarter than any of the individuals it comprises.
 
 Two problems:
 
 1. That's not what science is, like at all.
 2. That big rational machine is somehow dumber than a single person.
 
-You know what "data science" experiment I've never seen anyone do? Ask the question "can one person, using their intuition and maybe asking around a bit, make better decisions than our whole data science apparatus?". Cause if so, then maybe you should just give that person all the decision-making power and do whatever they say for a while.
+You know what data science "experiment" I've never seen anyone do? Ask the question "can one person, using their intuition and maybe asking around a bit, make better decisions than our whole data science apparatus?". 'Cause if so, then maybe you should just give that person all the decision-making power and do whatever they say for a while.
 
-Or maybe you could do better science. Science is, after all, about being _right_. Just because you did a thing that you called Science, and that everybody is pretty sure that it's Science at an I-read-the-New-York-Times level of understanding, doesn't mean you're right. The fact that you made money successfully doesn't even make you right. At best you were right at the small question of "which color button gets more clicks over the next little while"; probably not at the bigger question of "what's the optimal way to make more money" and definitely not on the even-bigger question of "what's the best thing to do for the business to succeed". 
+Or do better science. Science is, after all, about being _right_. Just because you did a thing that you called Science, and that everyone thinks is Science at a New-York-Times-reader understanding, doesn't mean you're right. The fact that you made money successfully doesn't even make you right: at best you were right at the small question of "which color button gets more clicks over the next little while"; probably not at the bigger question of "what's the optimal way to make more money" and definitely not on the even-bigger question of "what's the best thing to do for the business to succeed". 
 
 ----------
 
@@ -36,30 +36,30 @@ Or maybe you could do better science. Science is, after all, about being _right_
 Let's get this out of the way. This is not science:
 
 1. Ask a question
-2. Formulate hypothesis
+2. Formulate a hypothesis
 3. Do an experiment
-4. Get a result
+4. Analyse the results
 5. Conclude things
 
-Science is not a formulaic process anyway, but if it was it would have to be a process that by construction converges on better understanding over time. Here's a better list that includes some important missing steps:
+Science is not a formulaic process anyway, but if it was it would have to be a process that by construction converges on better understanding over time. Here's a better list of steps:
 
 1. Learn, Observe, and Study
-2. Conceiva of a model of the world that makes sense from what you know. If it's not obvious you might need to check it.
+2. Conceive of a model of the world that makes sense from what you know. If it's not obvious you might need to check it.
 3. Ask a question (that your model has something interesting to say about...)
 4. Formulate a hypothesis (about what answer your model would give if it were correct that other models would not give)
 5. Do an experiment
-6. Get a result
+6. Analyse the results
 7. Conclude things (about the accuracy of your model)
 8. Update your confidence in your model based on the result. Go back to step (2) until it's good.
 9. Go and do things in the world using your model now that you know it's good.
 
-If you’re not formulating a model as you go, and treating your experiments as tests of whether your model is good, you’re not really doing science. You're just doing... experiments, in a loop? Without ever learning anything? That doesn't deserve to be called science.
+If you don't formulate a model as you go or use your experiments to test and improve that model, you’re not really doing anything that deserves to be called Science. You're just doing... experiments, in a loop? Without ever learning anything. You're certainy not trying to get more right over time.
 
-Corporate data science doesn't really target producing models---it basically targets producing _decisions_. If you produced a model, the model would tell you what decision to make, but... that's scary. No one wants to just learn the model and then _pick_ what color the button should be. What if they're wrong? Instead we can just let an experiment decide for us. No one ever got fired for staffing a data science team, or for making the button whichever color people clicked on most frequently for two weeks last June.
+Corporate data science doesn't even want to produce models, anyway. Its job is to make _decisions_. Or rather, to _launder_ decisions: to make the decision-making process so benign and agreeable that nobody risks blame. You want to understand how users work and then _pick_ what color the button should be to achieve a result? But what if you're... wrong? Better to let an experiment decide for us. No one ever got fired for staffing up the data science team, or for making the button whichever color people provably clicked the most on for two weeks last June.
 
 Science is---has to be---the process of studying things in a way that necessarily becomes more correct over time. Asymptotically it should figure out the true workings of whatever slice of reality you're looking at. This always involves building up theories of how reality works, and typically should require validating those theories with experiments to see how good they are. (Although, strictly speaking, that's only useful inasmuch it gets you closer to correctness. You can get away without it if the experiment's result is utterly obvious.)
 
-In business, the theories are answers to the question "how should we run our company?" That experiment to see what color the button should be? It assumes, but never tests, that the answer to that question is this: "we should run experiments like this one all day and then do whatever they say for the indefinite future." You could also do some science on _that_ hypothesis, if you wanted, but I wouldn't bother. It's pretty obviously flawed. Anywhere you look, data-science-driven companies are doing fantastically dumb things, all the time, and everybody who works there seems to know it. And yet they do it anyway---because their collective understanding is that they're supposed to stay on that sacred, data-driven path.
+In business, the theories are answers to the question "how should we run our company?" That experiment to see what color the button should be? It assumes, but never tests, that the answer to that question is this: "we should run experiments like this one all day and then do whatever they say for the indefinite future." You could also do some science on _that_ hypothesis, if you wanted, but don't bother; it's pretty obviously flawed. Anywhere you look, data-science-driven companies are doing fantastically dumb things, and everybody who works at them knows it. And yet they do it anyway---because their collective understanding is that they're supposed to stay on that sacred, data-driven path.
 
 ----------
 
