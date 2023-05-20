@@ -168,7 +168,7 @@ $$\p_{\bar{z}} \frac{1}{z} = 2 \pi i \delta (z)$$
 
 This means that $$\p_{\bar{z}} \frac{1}{z} = 0$$ unless $$z = 0$$, in which case it has the value $$2 \pi i$$ (it's a bit more subtle than that if you define the Dirac delta correctly, but let's ignore that.)
 
-(By the way, this is intrinsically related to the fact that we're doing calculus in 2d. It is really a skew way of writing the more fundamental fact that $$\oint d \theta = 2 \pi$$ if you integrate around the origin. It's related to the 1-dimensional formula $$\p_x \log x = \frac{1}{x} + i \pi \delta(x)$$. There are versions in higher dimensions as well--- in particular, pysicists are familiar with the $$\bb{R}^3$$ case without necessarily realizing it. The Maxwell equation $$\nabla \cdot E = \rho$$ applied to a point charge only works if $$\nabla \cdot \frac{\hat{r}}{r^2} = 4 \pi \delta(r)$$. More on that another time, I hope.)
+(By the way, this is intrinsically related to the fact that we're doing calculus in 2d. It is really a skew way of writing the more fundamental fact that $$\oint d \theta = 2 \pi$$ if you integrate around the origin. It's related to the 1-dimensional formula $$\p_x \log x = \frac{1}{x} + i \pi \delta(x)$$. There are versions in higher dimensions as well--- in particular, physicists are familiar with the $$\bb{R}^3$$ case without necessarily realizing it. The Maxwell equation $$\nabla \cdot E = \rho$$ applied to a point charge only works if $$\nabla \cdot \frac{\hat{r}}{r^2} = 4 \pi \delta(r)$$. More on that another time, I hope.)
 
 This is equivalent to saying that the contour integral (integral on a closed path) of $$1/z$$ around the origin is non-zero, which is easy to see if you transform to polar coordinates:
 
