@@ -163,11 +163,16 @@ a.next {
 
 article ul, ol {
   margin: 15px 0;
-  padding-left: 30px;
+  padding-left: 20px;
 }
 
 ul, ol {
   list-style-type: disc;
+}
+
+ul#markdown-toc {
+  list-style-type: none;
+  line-height: 1.3em;
 }
 
 .sidebar ul, ol {

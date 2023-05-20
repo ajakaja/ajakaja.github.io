@@ -28,33 +28,41 @@ i \lra R \\
 a + bi \lra (a + R b) \hat{x} = a \hat{x} + b \hat{y}
 $$
 
-Where $$R$$ is the "rotation operator". Yes, it is strange that you can do calculus with a rotation operator, but keep an open mind.
+where $$R$$ is a thing called a "rotation operator". Yes, it is strange that you can do calculus with a rotation operator, but keep an open mind. We do it because it turns out to work and be useful.
 
-It is also possible to consider complex numbers as 2x2 matrices, using $$i = R = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$$. Then in general
+Another handy interpretation is to consider complex numbers as equivalent to 2x2 matrices, using $$i = R = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$$. Then in general
 
 $$a + bi = \begin{pmatrix} a & -b \\ b & a \end{pmatrix}$$
 
-The identity $$\cos \theta + i \sin \theta = e^{i \theta}$$ follows from applying the [exponential map](https://en.wikipedia.org/wiki/Exponential_map) to $$R$$. If I had my way we would not use complex numbers ever and would just learn the subject as 'calculus using rotation operators' to avoid a proliferation of things that seem like magic, although a bit of work is needed to make it pedagogically sound. Certainly the words "complex" and "imaginary" aren't doing anybody any favors.
+Regardess of which interpretation you use, Euler's identity $$\cos \theta + i \sin \theta = e^{i \theta}$$ holds. Euler's identity is an instance of applying the [exponential map](https://en.wikipedia.org/wiki/Exponential_map) to $$i$$ regarded as an operator.
 
-The one way that $$\bb{C}$$ is more interesting than plain $$\bb{R}^2$$ is that there is a definition of multiplying two vectors: 
+If I had my way we would not use complex numbers ever. We would instead learn the subject as 'calculus with rotation operators', to avoid a proliferation of things that seem like magic, although a bit of work is needed to make it pedagogically sound. Certainly the words "complex" and "imaginary" aren't doing anybody any favors.
+
+The main way that $$\bb{C}$$ is more interesting than plain-old $$\bb{R}^2$$ is that there is a standard definition of multiplying two vectors: 
 
 $$(a + b i) (c + d i) = (ac - bd) + (ad + bc) i$$
 
-The best way I know to interpret this is like so: the correspondence $$a + bi \Ra (a + R b) \hat{x}$$ suggests that we interpret a complex number as an operator that is understood to 'act on' the $$\hat{x}$$ basis vector. In this sense both adding and multiplying complex numbers are natural operations: adding them applies both operations to $$\hat{x}$$ and adds the result; multiplying them applies them sequentially. 
+The best way I know to interpret this is like so: the correspondence $$a + bi \Ra (a + R b) \hat{x}$$ suggests that we interpret a complex number as an operator that is understood to 'act on' the $$\hat{x}$$ basis vector. In this sense both adding and multiplying complex numbers are natural operations: adding them applies both operations to $$\hat{x}$$ and adds the result, while multiplying them applies them sequentially. 
 
 $$[(a + b R) \circ (c + d R) ](\hat{x})  = [(ac - bd) + (ad + bc) R] (\hat{x})$$
 
-This model is especially appealing because it is easy to extend to higher dimensions. (This generalizes to 'geometric algebra' which works in every dimension, _not_ quaternions, which only work in $$\bb{R}^3$$.)
+This model is especially appealing because it is easy to extend to higher dimensions. (The generalization is called 'geometric algebra', which works in every dimensios. It's _not_ quaternions, which only work in $$\bb{R}^3$$.)
 
-So we want to do calculus on these operators on $$\bb{R}^2$$. We start by identifying derivatives and differential forms. The differentials of the coordinate vectors are:
+But basically we want to do calculus on $$\bb{R}^2$$. Normally this would involve $$(x,y)$$ coordinates, but the big twist is that we instead change bases into these two variables:
 
+$$z = x + iy \\
+\bar{z} = x - iy $$
+
+Rather confusingly, each of these is, in a weird sense, a _one-dimensional_ variable. After all, $$\bb{R}^2$$ has only two degrees of freedom, regardless of which basis we use. Although $$z$$ can express every point in $$\bb{R}^2$$ 'on its own', in a sense half of the space is 'missing' when you do this. This is quite hard to wrap your head around and, honestly, I'm not sure I fully understand how it works. The basic idea is that we have split the space into 'positive parity' and 'negative parity' parts, rather than $$x$$ and $$y$$ directions, and the full space is spanned by both in either case. Please let me know if you know a more pedagogically neat way to express this!
+
+Anyhow, to do calculus we start by identifying differential forms and derivative operators for our coordinate system. The differentials of the coordinate vectors are:
 
 $$\begin{aligned}
 dz &= dx + i dy \\
 d\bar{z} &= dx - i dy
 \end{aligned}$$
 
-The partial derivatives are for some reason called "[Wirtinger derivatives](https://en.wikipedia.org/wiki/Wirtinger_derivatives)":
+The partial derivatives are for some reason called "[Wirtinger derivatives](https://en.wikipedia.org/wiki/Wirtinger_derivatives)", but feel free to never use that name:
 
 $$\begin{aligned}
 \p_z &= \frac{1}{2}(\p_x - i \p_y) \\
@@ -63,7 +71,7 @@ $$\begin{aligned}
 
 Note that the signs are swapped, compared to the forms, and factors of $$\frac{1}{2}$$ have appeared. These are necessary because of the requirement that that $$\p_z (z) = \p_{\bar{z}} (\bar{z}) = 1$$. In an alternate universe both sides might be given $$\frac{1}{\sqrt{2}}$$ factors instead, but they weren't.
 
-There are other parameterizations of $$\{ z, \bar{z} \}$$ in terms of $$\bb{R}^2$$ coordinates. The most common choice is polar coordinates: $$z = re^{i \theta}$$ and $$\bar{z} = r e^{-i \theta}$$. Then the forms are:
+We could also start with $$\bb{R}^2$$ expressed in other coordinate systems. An important choice is polar coordinates: $$z = re^{i \theta}$$ and $$\bar{z} = r e^{-i \theta}$$. Then the $$\bb{C}$$ forms are:
 
 $$\begin{aligned}
 dz &= e^{i \theta} (dr + i r d \theta) \\
@@ -77,7 +85,9 @@ $$\begin{aligned}
 \p_{\bar{z}} &= \frac{e^{i \theta}}{2} (\p_r + \frac{i}{r} \p_\theta)
 \end{aligned}$$
 
-Although these don't come up very much. Note that any function that explicitly uses $$r$$ or $$\theta$$ has a $$\bar{z}$$ dependency unless they cancel it out somehow, since both $$r$$ and $$\theta$$ do:
+These don't come up very much, but it's sometimes useful to write them this way.
+
+Note that any function that explicitly uses $$r$$ or $$\theta$$ has an implicit $$\bar{z}$$ dependency unless they cancel it out somehow, since both $$r$$ and $$\theta$$ do:
 
 $$\begin{aligned}
 r &= \sqrt{z \bar{z}} \\
@@ -88,9 +98,11 @@ r &= \sqrt{z \bar{z}} \\
 
 ## 2. Holomorphic functions
 
-Complex analysis is mostly concerned with doing calculus on functions in $$\bb{C}$$, so we are interested in differentiable functions of $$z$$. Being complex differentiable means that $$f(z)$$ has a derivative that is itself a complex number (when regarded as part of $$\bb{R}^2$$): $$(f_x, f_y) \in \bb{C}$$. 
+Complex analysis is mostly concerned with doing calculus on functions in $$\bb{C}$$, so we are interested in differentiable functions of $$z$$. If we were interested in differential functions of _both_ $$z$$ and $$\bar{z}$$, then we would be doing regular multivariable calculus on $$\bb{R}^2$$. By restricting ourselves to just $$z$$, in a sense we are doing calculus on the 'positive parity' side of $$\bb{R}^2$$. Whatever that means.
 
-The [Cauchy-Riemann equations](https://en.wikipedia.org/wiki/Cauchy%E2%80%93Riemann_equations) tell you when a complex function $$f(z) = u(x+iy) + i v(x + iy)$$ is complex-differentiable:
+Being complex differentiable means that $$f(z)$$ has a derivative that is itself a complex number (when regarded as part of $$\bb{R}^2$$): $$(f_x, f_y) \in \bb{C}$$. In particular, $$\p_z f(z)$$ should be a function of $$z$$ and _not_ $$\bar{z}$$.
+
+The [Cauchy-Riemann equations](https://en.wikipedia.org/wiki/Cauchy%E2%80%93Riemann_equations) tell you when a complex function $$f(z)$$, regarded as a sum of two _real_ functions $$f(x+iy) = u(x, y) + i v(x, y)$$ is complex-differentiable:
 
 $$\begin{aligned}
 u_x = v_y\\
@@ -109,27 +121,29 @@ $$\begin{aligned}
 
 ($$\p_{\bar{z}} f(z) = 0$$ is a much better way to write this. The Cauchy-Riemann version should be deprecated.)
 
-As long as $$f$$ is continuous and this condition is true in a region $$D$$, operations on $$f(z)$$ essentially work like they would for one-variable functions in $$z$$. For instance $$\p_z (z^n) = n z^{n-1}$$.
+As long as $$f$$ is continuous and $$\p_{\bar{z}} f(z) = 0$$ in a region $$D$$, operations on $$f(z)$$ essentially work like they would for one-variable functions in $$z$$. For instance $$\p_z (z^n) = n z^{n-1}$$. It is pretty cool that this works, and is, I presume, somehow related to the fact that such a function is "really" one-dimensional in this region, despite the $$2d$$ coordinate system.
 
-While $$z$$ seems like a 2-dimensional variable, there's only one 'degree of freedom' in the derivative of a complex function. $$f'(z)$$ has to be a simple complex number, which rotates and scales tangent vectors uniformly (a [conformal map](https://en.wikipedia.org/wiki/Conformal_map)):
+Since $$z$$ is "really" a one-dimensional variable, there's only one 'degree of freedom' in the derivative of a complex function. This manifests as the fact that if $$f'(z)$$ is a single complex number, then it rotates and scales tangent vectors uniformly -- it's a a [conformal map](https://en.wikipedia.org/wiki/Conformal_map):
 
 $$f(z + dz) \approx f(z) + f'(z) dz = f(z) + re^{i\theta} dz$$
 
-Functions which are complex-differential at every point within a region are called [holomorphic](https://en.wikipedia.org/wiki/Holomorphic_function) ('holo' is Greek for 'whole') or regular in that region for some reason. A function $$f(z)$$ that is holomorphic in a region $$D$$ is extremely well-behaved in that region:
+In particular, a complex-valued derivative is one dimensional in the sense that its action on $$y$$ is entirely determined by its action on $$x$$ -- it can't have a different effect on the two different coordinates. So if you know what it does on _one_ dimension, you know everything about what it does.
+
+Functions which are complex-differential at every point within a region are called "[holomorphic](https://en.wikipedia.org/wiki/Holomorphic_function)" ('holo' is Greek for 'whole') or "regular", in that region. A function $$f(z)$$ that is holomorphic in a region $$D$$ is extremely well-behaved in that region:
 
 * $$f$$ is _infinitely_ complex-differentiable in $$D$$
-* and $$f$$ is 'complex analytic', ie equal to its Taylor series in $$z$$ throughout $$D$$. The series around any particular point converges within the largest circular disk that stays within $$D$$.
-* and $$f$$ is locally invertible, ie $$f^{-1}(w + dw) \approx z + (f'(z))^{-1} dw$$ exists and is holomorphic in the neighborhood of $$w = f(z)$$.
-* its antiderivatives exist, and its integrals along any closed contour $$C$$ inside $$D$$ vanishes: $$\oint_C f(z) dz = 0$$.
-* the data of $$f$$ in $$D$$ is fully determined by its values on the boundary of the region, or on any one-dimensional curve within $$D$$, or on any nontrivial subregion of $$D$$, in the sense that its Taylor series can be computed on a subset of the space and then will give the correct value throughout $$D$$ (possibly via [analytic continuation]((https://en.wikipedia.org/wiki/Analytic_continuation))).
+* and $$f$$ is 'complex analytic', i.e. equal to its Taylor series in $$z$$ throughout $$D$$. The series around any particular point converges within the largest circular disk that stays within $$D$$. Often we just say "analytic" for this.
+* and $$f$$ is locally invertible, i.e. $$f^{-1}(w + dw) \approx z + (f'(z))^{-1} dw$$ exists and is holomorphic in the neighborhood of $$w = f(z)$$.
+* its integrals along any closed contour $$C$$ which encircles a region entirely inside $$D$$ vanishes: $$\oint_C f(z) dz = 0$$.
+* the data of $$f$$ in $$D$$ is fully determined by its values on the boundary of the region, or on any one-dimensional curve within $$D$$, or on any nontrivial subregion of $$D$$, in the sense that its Taylor series can be computed on a subset of the space and then will give the correct value throughout $$D$$ (possibly via [analytic continuation](https://en.wikipedia.org/wiki/Analytic_continuation) to skirt non-holomorphic regions).
 
-The general theme is that holomorphic/analytic functions generally act like one-dimensional functions and all of the calculus is really easy on them. This tends to be true much more than it is for 1d calculus.
+The general theme is that holomorphic/analytic functions generally act like one-dimensional functions, despite being defined on two-dimensional spaces, and so all of the calculus is really easy on them. In fact calculus tends to be _easier_ than on $$\bb{R}$$, because certain things that never made sense, like the 'radius of convergence', actually do make sense (in $$\bb{C}$$ it is literally a radius).
 
 If two analytic functions defined on _different_ regions nonetheless agree on an overlapping region, they are in a sense the 'same function'. This means that you can "analytically continue" a function by finding other functions which agree on an overlapping line or region. A simple use of this is to 'glue together' Taylor expansions around different points to go around a divergence. The [Riemann Zeta function](https://en.wikipedia.org/wiki/Riemann_zeta_function) is a famous example of a function which has an interesting analytic continuation: the function is easily defined on the positive real axis where $$x>1$$, but the famous [Riemann Hypothesis](https://en.wikipedia.org/wiki/Riemann_hypothesis) concerns zeroes of its analytic continuation elsewhere on $$\bb{C}$$.
 
-Most 1d functions like $$e^x$$ and $$\sin x$$ have holomorphic complex versions like $$e^z$$ and $$\sin z$$ that are analytic everywhere. Discontinuous functions like $$\|z\|$$ or $$\log z = i \theta \ln r  $$, or functions that include an explicit or implicit $$\bar{z}$$ dependency, fail to be analytic somewhere.
+Most $$\bb{R}$$ standard functions like $$e^x$$ and $$\sin x$$ have holomorphic complex versions like $$e^z$$ and $$\sin z$$ that are analytic everywhere. Discontinuous functions like $$\|z\|$$ or $$\log z = i \theta \ln r  $$, or functions that include an explicit or implicit $$\bar{z}$$ dependency, fail to be analytic somewhere, but are usually analytic in regions that don't include those discontinuous points.
 
-Complex differentiability fails at singularities. We categorize the types:
+Complex differentiability fails other than simple jump discontinuities are called singularities. We categorize the types:
 
 * _poles_ of order $$n$$, around which $$f(z) \sim 1/z^n$$, which are 'well-behaved' singularities. Around these there's a region where $$1/f$$ is analytic. 'Zeros' and 'poles' are dual in the sense that $$f \sim z^n$$ at zeroes and $$f \sim 1/z^n$$ at poles.
 * _removable singularities_: singularities that can be removed by redefinition, probably because they're an indeterminate form. The canonical example is $$\sin(z)/z$$ which is repaired by defining $$\sin(0)/0 = 1$$. In a sense these are not singularities at all, they're just poorly handle by our notation.
@@ -142,21 +156,21 @@ Poles are much more interesting than the other two.
 ## 3. Residues
 
 
-No one would really care about complex analysis except for, well, analysts, were it not for one suspicious fact about the complex derivatives:
+No one would really care about complex analysis except for mathematicians were it not for one suspicious fact about the complex derivatives:
 
 $$\p_{\bar{z}} \frac{1}{z} \neq 0$$
 
 (Make sure you see that that's a $$\bar{z}$$-derivative.)
 
-For some reason, for _only_ $$n=-1$$, $$z^n$$  has a certain kind of divergence at $$z=0$$. It looks like a 2d [delta <strike>function</strike> distribution](https://en.wikipedia.org/wiki/Dirac_delta_function):
+_Only_ when $$n=-1$$, $$z^n$$  has a certain kind of divergence at $$z=0$$. It looks like a 2d [delta <strike>function</strike> distribution](https://en.wikipedia.org/wiki/Dirac_delta_function):
 
 $$\p_{\bar{z}} \frac{1}{z} = 2 \pi i \delta (z)$$
 
-Meaning tha $$\p_{\bar{z}} \frac{1}{z} = 0$$ unless $$z = 0$$, in which case it has the value $$2 \pi i$$.
+This means that $$\p_{\bar{z}} \frac{1}{z} = 0$$ unless $$z = 0$$, in which case it has the value $$2 \pi i$$ (it's a bit more subtle than that if you define the Dirac delta correctly, but let's ignore that.)
 
-[By the way, this is intrinsically related to the fact that we're doing calculus in 2d. It is really a skew way of writing the more fundamental fact that $$\oint d \theta = 2 \pi$$ if you integrate around the origin, combined with the fact that $$\frac{1}{z} dz$$ cancels out its own $$\theta$$ dependence. It's related to the 1-dimensional formula $$\p_x \log x = \frac{1}{x} + i \pi \delta(x)$$, and there are versions in higher dimensions as well. Physicists are familiar with the 3d case without always realizing it: the Maxwell equation $$\nabla \cdot E = \rho$$ applied to a point charge only works if $$\nabla \cdot \frac{\hat{r}}{r^2} = 4 \pi \delta(r)$$. More on that another time, I hope.]
+(By the way, this is intrinsically related to the fact that we're doing calculus in 2d. It is really a skew way of writing the more fundamental fact that $$\oint d \theta = 2 \pi$$ if you integrate around the origin. It's related to the 1-dimensional formula $$\p_x \log x = \frac{1}{x} + i \pi \delta(x)$$. There are versions in higher dimensions as well--- in particular, pysicists are familiar with the $$\bb{R}^3$$ case without necessarily realizing it. The Maxwell equation $$\nabla \cdot E = \rho$$ applied to a point charge only works if $$\nabla \cdot \frac{\hat{r}}{r^2} = 4 \pi \delta(r)$$. More on that another time, I hope.)
 
-This is equivalent to saying that the contour integral (integral on a closed path) of $$1/z$$ around the origin is non-zero:
+This is equivalent to saying that the contour integral (integral on a closed path) of $$1/z$$ around the origin is non-zero, which is easy to see if you transform to polar coordinates:
 
 $$\begin{aligned}
 \oint \frac{1}{z} dz &= \oint \frac{e^{i \theta} dr +  ir e^{i\theta} d \theta }{r e^{i \theta}} \\
@@ -164,9 +178,9 @@ $$\begin{aligned}
 &= 2 \pi i
 \end{aligned}$$
 
-It's clear why this non-zero contour only holds for $$z^{-1}$$: for any other $$z^n$$, the $$d \theta$$ term is still a non-constant function of $$\theta$$, so its values on each end cancel out. For $$n=-1$$, though, the $$d \theta$$ just counts the total change in angle.
+It's clear why this non-zero contour only holds for $$z^{-1}$$: for any other $$z^n$$, the $$d \theta$$ term is still a non-constant function of $$\theta$$, so its values on each end cancel out. Only for $$n=-1$$, though, the $$d \theta$$ just counts the total change in angle.
 
-The delta-function version follows from Stoke's theorem. Since the contour integral gives the same value on any path as long as it circles $$z=0$$, the divergence must be fully located at that point:
+The delta-function follows from Stoke's theorem. Since the contour integral gives the same value on any path as long as it circles $$z=0$$, the divergence must be _fully_ located at that point, which we write as a delta function:
 
 $$\begin{aligned}
 \oint_{\p D} \frac{1}{z} dz &= \iint_D d(\frac{dz}{z}) \\
@@ -178,15 +192,15 @@ $$\begin{aligned}
 
 ---------
 
-A function that is holomorphic except at a set of poles is called _meromorphic_ ('mero-' is [Greek](https://www.etymonline.com/search?q=mero-), meaning 'part' or 'fraction'). If we integrate a meromorphic function around a region $$D$$ the result only contains contributions from the $$\frac{1}{z}$$ terms. Around each order-1 pole at $$z_k$$, $$f(z_k)$$ has a series expansion that looks like $$f(z_k) \sim f_{-1} \frac{1}{z_k} + f^{*}(z_k)$$ where $$f^{*}(z_k)$$ has no $$z^{-1}$$ term. A clever calculist then realizes that a contour integral around a region can be computed _only_ from the values of the $$z_{-1}$$ terms at each pole.
+A function that is holomorphic except at a set of poles is called _meromorphic_ ('mero-' is [Greek](https://www.etymonline.com/search?q=mero-), meaning 'part' or 'fraction'). If we integrate a meromorphic function around a region $$D$$ the result only contains contributions from the $$\frac{1}{z}$$ terms. Around each order-1 pole at $$z_k$$, $$f(z_k)$$ has a series expansion that looks like $$f(z_k) \sim f_{-1} \frac{1}{z_k} + f^{*}(z_k)$$ where $$f^{*}(z_k)$$ has no $$z^{-1}$$ term.
 
-The $$f_{-1}$$ series coefficients at each pole $$z_k$$ are for some reason called [residues](https://en.wikipedia.org/wiki/Residue_theorem) and are written as $$\text{Res}(f, z_k)$$. Thus we can transform a contour integral like this:
+A clever calculist then realizes that a contour integral around a region can be computed _only_ from the values of the $$z_{-1}$$ terms at each pole. The $$f_{-1}$$ series coefficients at each pole $$z_k$$ are for some reason called [residues](https://en.wikipedia.org/wiki/Residue_theorem) and are written as $$\text{Res}(f, z_k)$$. Thus we can transform a contour integral like this:
 
 $$\int_{\p D} f(z) dz = 2 \pi i \sum_{z_k}  I(\p D, z_k) \text{Res} (f, z_k)$$
 
-Where $$I(\p D, z_k)$$ gives the [winding number](https://en.wikipedia.org/wiki/Winding_number) around the order-1 pole (+1 for single positive rotation, -1 for a single negative rotation, etc).
+where $$I(\p D, z_k)$$ gives the [winding number](https://en.wikipedia.org/wiki/Winding_number) around the order-1 pole ($$+1$$ for single positive rotation, $$-1$$ for a single negative rotation, $$0$$ if the pole is not enclosed by the boundary of $$D$$, higher numbers if the pole is encircled multiple times).
 
-This makes integration of analytic functions around closed contours _really easy_. You can often just eyeball them:
+This makes integration of analytic functions around closed contours _really easy_. You can often just eyeball them by looking for the $$z^{-1}$$ term:
 
 $$\oint_{\p D} \frac{1}{z-a} dz = (2\pi i) 1_{a \in D}$$
 
