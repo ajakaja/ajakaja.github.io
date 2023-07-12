@@ -12,6 +12,7 @@
 <hr class="">
 
 <div class="entry">
+{% if post.summary %}<p> {{post.summary}} </p> {% endif %}
 {{ post.excerpt }}
 </div>
 {% if post.excerpt != post.content %}

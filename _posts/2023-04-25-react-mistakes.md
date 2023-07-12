@@ -10,7 +10,7 @@ Don't worry, these are all a bit more interesting than React 101 stuff like "don
 
 <!--more-->
 
-(Apologies for the syntax highlighter's occasionally bizarre understanding of TSX. I'll fix it when I get the chance.)
+(Apologies for the syntax highlighter's occasionally bizarre understanding of TSX. Maybe I'll fix it someday.)
 
 ---------
 
