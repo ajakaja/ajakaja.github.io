@@ -303,13 +303,10 @@ While I'm on the subject: if you do use Redux, definitely _don't_ do your loggin
 
 Instead, either pass a `Logger` object around anywhere you need it, and maybe set up a global `React.Context` with your logger in it and let any component grab it from there. I generally think you shouldn’t use middleware at all, just a store + reducers, but some people are bound to disagree.
 
----------
+{% include thickrule.html %}
 
 Okay, that's my list.
 
 After all that, I should probably mention that I do love React. React is great. It would be foolish to not use it or something like it for web development in 2023. I don't think it's the final library we'll be using to build interfaces on starships in 100 years, or whatever, but it's better than everything that came before it, and the future of application development will probably come in the form of looking *more* Reacty, not less. Or rather, it'll come in the form of better-delivering on React's promises than React already does, for instance by not having these landmines everywhere.
-
---------
---------
 
 {% include react.html %}

@@ -39,6 +39,12 @@ hr {
   border-bottom: 1px inset $lightGray;
 }
 
+hr.thick {
+  border-width: 3px;
+  border-bottom: 3px inset $lightGray;
+  border-radius: 1px;
+}
+
 article hr {
   width: 100%;
 }
@@ -93,7 +99,7 @@ small {
 }
 
 .container {
-  margin: 30px 15px 30px 25px;
+  padding: 30px 15px 30px 25px;
   max-width: 740px;
   width: 100%;
   flex: 1;
@@ -121,7 +127,7 @@ h1, h2, h3, h4, h5, h6 {
   }
 }
 
-svg.triangle {
+svg.trianglesvg {
   position: relative;
   left: -8px;
 }
@@ -233,6 +239,17 @@ p.noscript {
 // .masthead
 //
 
+@media (min-width: 1000px) {
+.frame {
+    min-width: 1000px;
+    box-shadow: 0 0 5px 5px #dfe0e5;
+    margin: 5px auto;
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+}
+}
+
 .wrapper-masthead {
   padding-left: 20px;
 }
@@ -243,6 +260,12 @@ p.noscript {
   @include mobile {
     text-align: center;
   }
+}
+
+.triangles {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
 }
 
 .site-info {
@@ -465,13 +488,19 @@ p.indent {
   text-align: right;
 }
 
+.home {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
 .texerror {
   color: red;
 }
 
 svg#b {
   position: absolute;
-  left: 110%;
+  right: -20%;
   bottom: 0;
   opacity: 0.08;
 }
