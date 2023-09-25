@@ -13,4 +13,4 @@ If for some reason you want to contact me, please do, I'd be delighted to hear f
 
 ### about this:
 
-I'm interested in a lot of things, but somewhat more nervous about talking about them online and under my real name, so mostly I've been writing about math. Math is interesting, though, so that's okay. Recently I've been trying to write about some other stuff as well. 
+Everything feels a little bit broken and confusing. I'm idly interested in any work towards correcting that, and this blog is my small attempt at contributing. So far I have mostly been writing about math because having strong opinions about math is less nerve-wracking that having strong opinions about other subjects. I'm slowly trying to branch out into other subjects, though.
