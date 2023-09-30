@@ -6,22 +6,25 @@ footnotes: true
 tag: math
 ---
 
-[Wikipedia](https://en.wikipedia.org/wiki/Fourier_transform#Tables_of_important_Fourier_transforms)'s reference is inadequate:
+[Wikipedia's reference](https://en.wikipedia.org/wiki/Fourier_transform#Tables_of_important_Fourier_transforms) is inadequate:
 
 * It's really hard to read because everything is full of $$\Gamma$$ terms
 * It's not perfectly happy with everything being a distribution
 * It doesn't provide worked integrals to remind you how to do them.
 * It doesn't include a lot of >1d integrals, especially involving $$r$$.
-* It emphasis $$\F$$ instead of $$\F^{-1}$$
-* We only care about $$k$$ Fourier transforms.
+* It emphasizes $$\F$$ instead of $$\F^{-1}$$, but we usually need the inverse to solve Green's function problems.
+* It includes all the different kinds of Fourier transforms, but we only care about the non-unitary transforms in $$\b{k}$$.
+* It emphasizes $$\bb{R}^1$$ when we usually want generalizations to $$\bb{R}^n$$.
+* It takes a while to load that giant page.
 
-Fourier Transforms in general are distributions, and in some cases, such as $$\frac{1}{x}$$, they're not even that. $$\frac{1}{x}$$ terms require using $$\P$$, the principal value. Note that assigning a value to $$\P$$ is erroneous: the result is a distribution without a value.
+Fourier Transforms in general are distributions, and I suspect we ought to be perfectly happy with them also being operator-valued as well. In some cases, such as $$\frac{1}{x}$$, they're not even that. $$\frac{1}{x}$$ terms require using $$\P$$, the principal value. Note that assigning a value to $$\P$$ is erroneous: the result is a distribution without a value.
+
+I'll be writing $$\delta (\b{x})$$ for what is sometimes called $$\delta^d (\b{x}) = \delta(x) \delta(y) \delta(z) \ldots$$. I don't see a good reason to include the exponent, and it takes up the same spot in which it can be useful to write a derivative like $$\delta^{(n)}$$. Also note that $$\delta$$ takes different forms in curved coordinates. This is clear from the requirement that $$\int \delta^3 (r, \theta, \phi) \, r^2 \sin \theta \, dr \, d\theta \, d\phi = 1$$ must be true. As such $$\delta^3(r, \theta, \phi) = \delta^3 (x, y, z) / (r^2 \sin \theta)$$, etc.
+
 
 ---------
 
-# 1. Definitions
-
-
+# 1. Basics
 
 Transform in $$\bb{R}^d$$ space:
 
@@ -53,8 +56,6 @@ $$\begin{aligned}
 \boxed{ \F^{-1} (1) } &= \delta(x) \\
 \boxed{ \F^{-1}(1)_{n > 1}} &= \delta (\b{x}) \\
 \end{aligned}$$
-
-I'm going to write $$\delta (\b{x})$$ for what is sometimes called $$\delta^d (\b{x}) = \delta(x) \delta(y) \delta(z) \ldots$$. I don't see a good reason to include the exponent, and it takes up the same spot in which it can be useful to write a derivative like $$\delta^{(n)}$$. Also note that $$\delta$$ takes different forms in curved coordinates. This is clear from the requirement that $$\int \delta^3 (r, \theta, \phi) \, r^2 \sin \theta \, dr \, d\theta \, d\phi = 1$$ must be true. As such $$\delta^3(r, \theta, \phi) = \delta^3 (x, y, z) / (r^2 \sin \theta)$$, etc.
 
 ----------
 
@@ -97,7 +98,7 @@ $$\begin{aligned}
 ----------
 
 
-# 2. Polynomials
+# 3. Polynomials
 
 In these $$n$$ is a positive integer; the $$n < 0$$ cases will be dealt with in a later section as they are much more finicky. Most of these will be listed in a $$1$$d form and then a general $$\bb{R}^d$$ form for convenience.
 
@@ -141,12 +142,11 @@ As such we could write $$\F^{-1}(k) = (-i \overrightarrow{\p}_x) \delta(x) = (i 
 
 ------
 
-## 2.3 Distributions: $$x^{-n}$$, step functions, absolute values, $$\sgn$$.
+# 4. Distributions: $$x^{-n}$$, step functions, absolute values, $$\sgn$$, $$\P$$.
 
+# 5. Radial Functions and other weird stuff.
 
-# 3. Multivariable
-
-# 4. Breadcrumbs
+# 6. Breadcrumbs
 
 * Spherical Fourier
 * Spherical Harmonics
