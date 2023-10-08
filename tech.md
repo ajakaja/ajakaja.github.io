@@ -38,5 +38,3 @@ I have occasionally written references for myself.
 * [Git]({% link _notes/git.md %})
 * [On building This Site]({% link _notes/site-notes.md %})
 
-{% include list.html collection="notes" tag="tech" %}
-
