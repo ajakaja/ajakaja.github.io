@@ -105,7 +105,7 @@ small {
 }
 
 .container {
-  padding: 30px 15px 30px 25px;
+  padding: 20px 15px 30px 25px;
   max-width: 740px;
   width: 100%;
   flex: 1;
@@ -117,6 +117,7 @@ pre {
 }
 
 h1, h2, h3, h4, h5, h6 {
+  margin: 5px 0;
   color: $darkerGray;
   font-weight: 400;
 
@@ -279,6 +280,7 @@ p.noscript {
     display: flex;
     justify-content: center;
     gap: 10px;
+    margin: 20px 0;
 }
 
 .site-info {
@@ -303,6 +305,10 @@ p.noscript {
   @include mobile {
     display: none;
   }
+}
+
+.nav.index li {
+  margin-left: 2px;
 }
 
 .subheader, .mobile-subheader, .nav {
