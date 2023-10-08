@@ -1,19 +1,18 @@
 ---
-layout: default
-title: "Tech stuff"
+layout: article
+title: "Tech Stuff"
 ---
 
-## Tech Articles
+## Articles
 
-I worked as a React developer for several years at Dropbox and came away thinking that React is great and the only way to make progress is to lean into it further.
+I worked as a React developer (among other things) for several years at Dropbox and came away thinking that React is great and the only way to make progress is to lean into it further.
 
 {:class="bare"}
 * [The Zen of React]({% post_url 2022-09-17-react%})
 * [The Point of Hooks]({% post_url 2022-10-12-react-2 %})
 * [An Interesting List of React Mistakes]({% post_url 2023-04-25-react-mistakes %})
 
-
-I have little good to say about how Dropbox, or any other publicly-traded company, works internally, and I blame it on the non-existence of the concept of leadership. But it's really everyone's fault.
+Although I came away with little good to say about how Dropbox and publicly-traded companies in general are run.
 
 {:class="bare"}
 * [Data Science Mostly Isn't]({% post_url 2023-05-01-data-science %})

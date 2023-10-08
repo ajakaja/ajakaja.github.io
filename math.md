@@ -1,9 +1,9 @@
 ---
-layout: default
-title: "Math and Physics Articles"
+layout: article
+title: "Math and Physics"
 ---
 
-## Math and Physics Articles
+## Articles
 
 I am slowly sifting through and summarizing all of the miscellaneous knowledge that's out there on the subject of "Geometric Algebra". GA is a quirky subfield of math that is obviously terrible yet obviously _on to something_, and I haven't quite figured out what it is but I also don't think anybody else has either. So far I am avoiding using the GA term directly because I don't want to be associated with it, but long-term the goal is to tackle GA head-on. So far I've got:
 
