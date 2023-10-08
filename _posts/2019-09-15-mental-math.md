@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "Aphantasia (and how not to do math in your head)"
+title: "Aphantasia, or how not to do math in your head"
 footnotes: true
 math: true
 aside: true

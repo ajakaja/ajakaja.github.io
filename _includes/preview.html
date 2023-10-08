@@ -2,10 +2,7 @@
 {% for post in site.posts limit: include.limit %}
 {% if include.category == 'all' or post.categories contains include.category %}
 <article class="post">
-<h2><a href="{{ site.baseurl }}{{ post.url }}">{{ post.title }}</a></h2>
-{% if post.subtitle %}
-<h3><em>{{ post.subtitle }}</em></h3>
-{% endif %}
+<h1><a href="{{ post.url }}">{{ post.title }}</a></h1>
 <div class="date">
 {{ post.date | date: "%B %e, %Y" }}
 </div>
@@ -16,7 +13,7 @@
 {{ post.excerpt }}
 </div>
 {% if post.excerpt != post.content %}
-<a href="{{ site.baseurl }}{{ post.url }}" class="read-more">more...</a>
+<a href="{{ post.url }}" class="read-more">more...</a>
 {% endif %}
 </article>
 {% endif %}

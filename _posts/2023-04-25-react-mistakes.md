@@ -1,10 +1,10 @@
 ---
 layout: blog
-title: "Some Easily-Made React Mistakes"
+title: "An Interesting List of React Mistakes"
 tags: tech
 ---
 
-Simple things that you and your colleagues need to not do in React but which you will still do by accident from time-to-time and eventually spend months of your life, in total, tracking down.
+Look, a list of simple things that you and your colleagues should know to avoid, but which you will still do by accident from time-to-time and eventually spend months of your life, in total, tracking down.
 
 Don't worry, these are all a bit more interesting than React 101 stuff like "don't write conditional hooks".
 
