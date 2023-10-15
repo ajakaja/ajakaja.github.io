@@ -8,6 +8,7 @@ title: "Math and Physics"
 I am slowly sifting through and summarizing all of the miscellaneous knowledge that's out there on the subject of "Geometric Algebra". GA is a quirky subfield of math that is obviously terrible yet obviously _on to something_, and I haven't quite figured out what it is but I also don't think anybody else has either. So far I am avoiding using the GA term directly because I don't want to be associated with it, but long-term the goal is to tackle GA head-on. So far I've got:
 
 {:class="bare"}
+* [Oriented Areas and the Shoelace Formula]({% post_url 2018-08-06-oriented-area %})
 * [Matrices and Determinants]({% post_url 2018-10-08-exterior-1 %})
 * [The Inner product]({% post_url 2018-10-09-exterior-2 %})
 * [The Hodge Star]({% post_url 2019-01-26-exterior-3 %})
@@ -31,15 +32,16 @@ Every once in a while I write other miscellaneous math-related musings.
 {:class="bare"}
 * [Meditation on Taylor Series]({% post_url 2018-03-30-taylor-series %})
 * [Infinite Summations and You]({% post_url 2018-11-01-summations %})
-* [Oriented Areas and the Shoelace Formula]({% post_url 2018-08-06-oriented-area %})
 * [Aphantasia, or how not to do math in your head]({% post_url 2019-09-15-mental-math %})
 * [A possible derivation of the Born Rule]({% post_url 2019-12-22-many-worlds %})
+* [Delta Function Miscellanea]({% post_url 2023-10-14-delta-fns %})
+
 
 ------------
 
 ## References
 
-I also write myself references which, dunno, could be useful.
+I also write myself references which, dunno, could be useful somebody else I guess. These are generally less polished and might just be wrong in places, watch out.
 
 {:class="bare"}
 * [Bayesian Inference]({% link _notes/bayes.md %})
