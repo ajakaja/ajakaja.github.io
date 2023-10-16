@@ -229,7 +229,7 @@ By the way, there is a remarkable duality between zeroes and poles. In the regio
 
 ## 4. Integral tricks
 
-If you stare at the "calculus of residues" long enough you'll realize that, although they deal complex-valued functions, you can pull some tricks that allow them to be used to solve real-valued integrals. Even if you never look at complex analysis again, you'll still occasionally see complex analytic trickery come up in solving [otherwise annoying integrals](https://math.stackexchange.com/questions/562694/integral-int-11-frac1x-sqrt-frac1x1-x-ln-left-frac2-x22-x1/563063).
+If you stare at the "calculus of residues" long enough you'll realize that, although they deal with complex-valued functions, you can pull some tricks that allow them to be used to solve real-valued integrals. Even if you never look at complex analysis again, you'll still occasionally see complex analytic trickery come up in solving [otherwise annoying integrals](https://math.stackexchange.com/questions/562694/integral-int-11-frac1x-sqrt-frac1x1-x-ln-left-frac2-x22-x1/563063).
 
 For starters, note that closed integrals of a function with a Laurent series can be eyeballed using the Cauchy integral formula:
 
