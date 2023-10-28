@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "The essence of complex analysis"
+title: "The Essence of Complex Analysis"
 footnotes: true
 math: true
 aside: true
@@ -62,14 +62,22 @@ dz &= dx + i dy \\
 d\bar{z} &= dx - i dy
 \end{aligned}$$
 
-The partial derivatives are for some reason called "[Wirtinger derivatives](https://en.wikipedia.org/wiki/Wirtinger_derivatives)", but feel free to never use that name:
+The volume element is:
+
+$$\begin{aligned}
+d\bar{z} \^ d z &= (dx - i dy) \^ (dx + i dy) \\
+&= i (dx \^ dy) + i (dy \^ dx) \\
+&= 2i \, dx \^ dy
+\end{aligned}$$
+
+The partial derivatives are for some reason called "[Wirtinger derivatives](https://en.wikipedia.org/wiki/Wirtinger_derivatives)". Feel free to never use that name. They are:
 
 $$\begin{aligned}
 \p_z &= \frac{1}{2}(\p_x - i \p_y) \\
 \p_{\bar{z}} &= \frac{1}{2}(\p_x + i \p_y)
 \end{aligned}$$
 
-Note that the signs are swapped, compared to the forms, and factors of $$\frac{1}{2}$$ have appeared. These are necessary because of the requirement that that $$\p_z (z) = \p_{\bar{z}} (\bar{z}) = 1$$. In an alternate universe both sides might be given $$\frac{1}{\sqrt{2}}$$ factors instead, but they weren't.
+Note that the signs are swapped, compared to the forms, and factors of $$\frac{1}{2}$$ have appeared. These are necessary because of the requirement that $$\p_z (z) = \p_{\bar{z}} (\bar{z}) = 1$$. In an alternate universe both sides might be given $$\frac{1}{\sqrt{2}}$$ factors instead, but they weren't.
 
 We could also start with $$\bb{R}^2$$ expressed in other coordinate systems. An important choice is polar coordinates: $$z = re^{i \theta}$$ and $$\bar{z} = r e^{-i \theta}$$. Then the $$\bb{C}$$ forms are:
 
@@ -186,8 +194,7 @@ $$\begin{aligned}
 \oint_{\p D} \frac{1}{z} dz &= \iint_D d(\frac{dz}{z}) \\
 2\pi i &= \iint_D \p_{\bar{z}} \frac{1}{z} d \bar{z} \^ dz \\
 2 \pi i \iint_D \delta(z, \bar{z}) d\bar{z} \^ dz &= \iint_D \p_{\bar{z}} \frac{1}{z} d \bar{z} \^ dz \\
-
-\p_{\bar{z}} \frac{1}{z} &\equiv 2 \pi i \delta(z, \bar{z})
+2 \pi i \delta(z, \bar{z}) &\equiv \p_{\bar{z}} \frac{1}{z} 
 \end{aligned}$$
 
 ---------
@@ -208,20 +215,26 @@ $$\oint_{\p D} \frac{1}{z-a} dz = (2\pi i) 1_{a \in D}$$
 
 Multiplying and dividing powers of $$(z-a)$$ and then integrating around a curve containing $$a$$ allows you to extract any term in the Taylor series of $$f(z)$$ around $$a$$:
 
-$$f_n = f^{(n)}(z)_{z=a} =  \frac{n!}{2 \pi i} \oint f(z) (z-a)^{n-1} dz$$
+$$f_n= f^{(n)}(z)_{z=a} =  \frac{n!}{2 \pi i} \oint f(z) (z-a)^{n-1} dz$$
 
 This is called [Cauchy's Integral Theorem](https://en.wikipedia.org/wiki/Cauchy%27s_integral_formula). When negative terms are present the Taylor series is instead called a [Laurent Series](https://en.wikipedia.org/wiki/Laurent_series).
 
 $$\begin{aligned}
 f(z) &\approx \sum f_n \frac{(z-a)^n}{n!} \\
-&= \ldots + \frac{f_{-1}}{z} + f_0 + f_{1} z + f_2 \frac{z^2}{2!} + \ldots
+&= \ldots  f_{-2} \frac{2! }{z^2} + f_{-1}\frac{1}{z} + f_0 + f_{1} z + f_2 \frac{z^2}{2!} + \ldots
 \end{aligned}$$
 
 In particular the value at $$z=a$$ is fully determined by the contour integral with $$(z-a)^{- 1}$$:
 
 $$f(a) = f_0 = \frac{1}{2 \pi i} \oint \frac{f(z)}{z-a} dz$$
 
-You can, of course, formulate this whole thing in terms of $$f(\bar{z})$$ and $$\frac{dz}{\bar{z}}$$ instead. If a function isn't holomorphic in either $$z$$ or $$\bar{z}$$, you can still do regular $$\bb{R}^2$$ calculus in two variables $$f(z, \bar{z})$$, although I'm not sure how you would deal with poles.
+In light of the discussion involving $$\delta(z, \bar{z})$$ in the previous section, it is clear that this is simply extracting the value at a point with a delta function:
+
+$$f(a) = \iint \delta(z, \bar{z}) f(z-a) d \bar{z} \^ dz$$ 
+
+But it may turn out to be easier to compute. (Note that this transformation only works because $$\p_{\bar{z}} f(z) = 0$$ because $$f(z)$$ is holomorphic, so the only $$\p_{\bar{z}}$$ derivative is the delta function from the $$\frac{1}{z}$$. Otherwise there would be a second term in the integrand due to the $$\p_{\bar{z}}$$ derivative of $$f$$. That generalization is called the [Cauchy-Pompeiu](https://en.wikipedia.org/wiki/Cauchy%27s_integral_formula#Generalizations) formula.)
+
+You can, of course, formulate this whole thing in terms of $$f(\bar{z})$$ and $$\frac{dz}{\bar{z}}$$ instead, so the. If a function isn't holomorphic in either $$z$$ or $$\bar{z}$$, you can still do regular $$\bb{R}^2$$ calculus in two variables $$f(z, \bar{z})$$, although I'm not sure how you would deal with poles in that case because it gets quite a bit messier.
 
 By the way, there is a remarkable duality between zeroes and poles. In the region of a pole of a function $$f$$, the function behaves like $$\frac{1}{g}$$ where $$g$$ is an analytic function. In general a meromorphic function can be written as $$f= \frac{h}{g}$$ where $$g,h$$ are analytic, with the zeroes of $$g$$ corresponding to the poles of $$f$$.
 
