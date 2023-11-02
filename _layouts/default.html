@@ -18,6 +18,7 @@
 </head>
 <body>
 
+<div class="overlay"></div>
 <div class="frame">
 <div class="wrapper-masthead">
 {% include masthead.html %}
@@ -37,6 +38,9 @@
 {% if page.footnotes %}<script>
 $(document).ready(function() {
   $.inlineFootnotes({columnWidth: 1000});
+  if (window.location.hash.indexOf("#dark") >= 0) {
+    $(".overlay").addClass("on");
+  }
 });
 </script>{% endif %}
 {% for js in page.js %}<script type="text/javascript" src="{{ js }}"/></script>{% endfor %}

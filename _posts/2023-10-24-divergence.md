@@ -179,9 +179,9 @@ $$\begin{aligned}
 V_{\text{dipole}}(\b{x}) &= \p_{\b{p}} [ -\frac{1}{4 \pi r}] = \b{p} \cdot [- \frac{\hat{\b{r}}}{4 \pi r^2} ]\\
 \end{aligned}$$
 
-(Although see the next section for a correction to $$\b{E}$$ that makes this calculation cleaner.)
+(Although see the next section for a correction to $$\b{E}$$: there's apparently supposed to be a delta function term there also.)
 
-We can also make lines and planes and other shapes out of dipoles. Evidently the result is just that we take an additional $$\p_{\b{p}}$$ of every term, which is equivalent in each case to taking two copies of the monopole function and forcing them to be $$d \ra 0$$ apart with opposite signs while holding the ratio $$qd$$ constant.
+We can also make lines and planes and other shapes out of dipoles, for instance having a positively-charged line infinitesimally close to a negatively-charged line. The result is just that we take an additional $$\p_{\b{p}}$$ of every term, which is equivalent to forcing the two charged surfaces to be $$d \ra 0$$ apart with opposite signs while holding the ratio $$qd$$ constant,.
 
 Higher-order multipoles work the same way. The [multipole distribution](https://en.wikipedia.org/wiki/Multipole_expansion) of a potential looks like
 
@@ -208,20 +208,20 @@ By the way. While we're talking about dipoles and delta functions. Remember how 
 
 $$\b{E}_{\text{dipole}} = \frac{3 (\b{p} \cdot \hat{\b{r}}) \hat{\b{r}} - \b{p}}{4 \pi r^3}$$
 
-It turns out there is some debate in the physics world about whether this should have a delta function term attached to it:
+It turns out there is some debate in the physics world about whether this should have a delta function term attached to it and what the coefficient should be:
 
-$$\b{E}_{\text{dipole (corrected?)}} \stackrel{?}{=} \frac{1}{4 \pi } [ \frac{3 (\b{p} \cdot \hat{\b{r}}) \hat{\b{r}} - \b{p}}{ r^3} - \frac{4 \pi}{3}  \b{p} \delta(\b{x})]$$
+$$\b{E}_{\text{dipole (corrected?)}} \stackrel{?}{=} \frac{1}{4 \pi } [ \frac{3 (\b{p} \cdot \hat{\b{r}}) \hat{\b{r}} - \b{p}}{ r^3}] - \frac{1}{3}  \b{p} \delta(\b{x})$$
 
-Griffiths and Jackson, the pre-eminent textbooks, both say it should. The argument is that if you integrate the electric field $$\int \b{E}(\b{x}) d^3 \b{x}$$ over a region containing a dipole, it is off: you should get that the total field is $$-\frac{4 \pi}{3}  \b{p}$$, but instead you get that it's zero as long as you exclude the origin. ($$4 \pi /3$$ being the volume of a unit sphere.)
+Griffiths and Jackson, the pre-eminent textbooks, both say it should look like that. The argument is that if you integrate the electric field $$\int \b{E}(\b{x}) d^3 \b{x}$$ over a region containing a dipole, it is off: you should get that the total field is $$-\frac{1}{3}  \b{p}$$, but instead you get that it's zero as long as you exclude the origin. (The $$\frac{1}{3}$$ is really $$\frac{1}{4 \pi} \times \frac{4 \pi}{3}$$, the second term being the volume of a unit sphere.)
 
 But when you go looking to read about this correction, people are pretty polarized (no pun intended). [This](https://iopscience.iop.org/article/10.1088/0143-0807/28/2/012/meta) delightful paper by Andre Gsponer argues that the problem is that nobody is very good at using the $$r = \| \b{r} \|$$ variable, which (as I also noticed earlier) has a derivative of $$\sgn(r)$$ at $$r = 0$$; hence, its second derivative produces a delta function at the origin. In particular, they argue that the actual potential of a point charge goes as
 
-$$4 \pi V(\b{x}) = \frac{1}{r} \sgn(r)$$
+$ V(\b{x}) = \frac{1}{4 \pi r} \sgn(r)$$
 
 where $$\sgn(r)$$ hangs out even though it's always positive in order to give a correct derivative later. Then (recall that $$\del \cdot f$$ has radial part $$\frac{1}{r^2} \p_r(r^2 f_r)$$):
 
 $$\begin{aligned}
-4 \pi \b{E} &= - \del V \\
+4 \pi \b{E} &= - 4 \pi \del V \\
 &= \frac{\hat{\b{r}}}{r^2} \sgn(r) - q \frac{\hat{\b{r}}}{r} \delta(r) \\
 4\pi (\del \cdot \b{E}) &= \frac{1}{r^2} \p_r (\sgn(r) - \cancel{r \delta(r)}) \\
 4 \pi \rho &= \frac{1}{r^2} \delta(r)
@@ -230,7 +230,7 @@ $$\begin{aligned}
 The dipole version is:
 
 $$\begin{aligned}
-4 \pi \b{E} &= - \del V \\
+4 \pi \b{E} &= - 4 \pi \del V \\
 &= - \del ( \frac{\b{p} \cdot \b{r}}{r^3} \sgn(r)) \\
 &= [\frac{3 (\b{p} \cdot \b{r})(\b{r}) - r^2\b{p} }{r^5} \sgn(r) - \frac{(\b{p} \cdot \b{r}) \b{r}}{r^4} \delta(r) ] \\
 &= [\frac{3 (\b{p} \cdot \b{r})(\b{r}) - r^2 \b{p} }{r^5} \sgn(r) - \frac{\b{p}}{r^2} \delta(r) ] \\
@@ -245,14 +245,13 @@ There are some other weird papers around the subject:
 * [This](https://arxiv.org/pdf/1604.01121.pdf) paper by Edward Parker discusses various ways to get the terms in Jackson's argument.
 * [Some novel delta‐function identities](https://pubs.aip.org/aapt/ajp/article-abstract/51/9/826/1043129/Some-novel-delta-function-identities?redirectedFrom=fulltext) by Charles Frahm derives some of these equations with explicit calculations in indexes.
 * [Comment on “Some novel delta-function identities”](https://arxiv.org/abs/1001.1530) by Jerrold Franklin thinks that Frahm did it wrong and does it a different way, using "dyadic" notation for tensors, which always strikes me as juvenile for some reason. They do explicitly claim that the $$-\p^2 (\frac{1}{r}) = 4 \pi \hat{\b{x}}^{\o 2}\delta(\b{x})$$, though, and that everyone else has been integrating over the angular dependence implicitly. Actually I got that earlier when I had written $$(\b{p} \cdot \hat{\b{r}})\hat{\b{r}}$$, but the $$\hat{\b{r}}$$s disappeared because $$\b{p}$$ points in a radial direction so we just replaced the whole thing with $$\b{p}$$.
-* And then there's [Comment on "Comment on `Some novel delta-function identities"](https://arxiv.org/abs/1308.2262) by Yunyun Yang and Ricardo Estrada... but unfortunately ArXiv doesn't have the pdf. I think they took it down because it was an older version. But I think the actual paper is called [Distributions in spaces with thick points](https://repository.lsu.edu/cgi/viewcontent.cgi?article=1282&context=mathematics_pubs), which deals with everything more rigorously than I care for and honestly gets crazy in how complex it is, defining distributions on certain surfaces and a new kind of "thick" delta functions. Why is figuring out what happens at $$r=0$$ in $$\bb{R}^3$$ so hard?
+* And then there's [Comment on "Comment on `Some novel delta-function identities"](https://arxiv.org/abs/1308.2262) by Yunyun Yang and Ricardo Estrada... but unfortunately ArXiv doesn't have the pdf. I think they took it down because it was an older version and they changed the name later: the actual paper is called [Distributions in spaces with thick points](https://repository.lsu.edu/cgi/viewcontent.cgi?article=1282&context=mathematics_pubs), which deals with everything more rigorously than I care for and honestly gets crazy in how complex it is, defining distributions on certain surfaces and a new kind of "thick" delta functions. Why is figuring out what happens at $$r=0$$ in $$\bb{R}^3$$ so hard?
 
 Math is horrifying, but this chain of commentaries is kinda funny. Out of all of these I think the trick of using $$\frac{1}{r} \ra \frac{1}{r} \sgn(r)$$ is easily the most useable. Stay away from thick distributions for now.
 
-------
+--------------
 
-
-## 5. Curl and Magnetic Fields
+## 6. Curl and Magnetic Fields
 
 One last question. How does this work for magnetism and curl?
 
