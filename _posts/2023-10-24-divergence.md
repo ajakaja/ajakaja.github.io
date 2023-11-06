@@ -9,7 +9,11 @@ aside: true
 
 There's an identity that shows up in electromagnetism which has been bugging me since college. 
 
-As soon as we start using Gauss's Law ($$\del \cdot \b{E} = \rho$$) in introductory E&M, we run into the problem that, in order to use it for a point charge --- which is the most basic example in the subject! --- we already don't have the mathematical object we need to calculate the divergence on the left, or to represent the charge distribution on the right. The field of a point charge has to be
+As soon as we start using Gauss's Law
+
+$$\del \cdot \b{E} = \rho$$
+
+in introductory E&M, we run into the problem that, in order to use it for a point charge --- which is the most basic example in the subject! --- we already don't have the mathematical object we need to calculate the divergence on the left, or to represent the charge distribution on the right. The field of a point charge has to be
 
 $$\b{E} = q \hat{\b{r}}/4 \pi r^2$$
 
@@ -23,7 +27,7 @@ In your multivariable-calculus-based E&M class you mention this briefly, maybe, 
 
 Why, in the first place, are we using this divergence operator that we didn't know how to actually calculate --- are we missing something? Are there _other_ divergences that I don't know how to calculate? Does it work the same way in other dimensions? What about other powers of $$\frac{1}{r}$$? Are there _other_ derivative operators I don't know about that do similar tricks? Is there an equivalent version for the curl and by extension the magnetic field? Is there an equivalent version for dipoles, or multipoles? Etc. (The answer to all of these questions is 'yes', by the way.)
 
-Not only is it unsatisfying, it's also hard to learn about. For years I've been referring back to this one [rather confusing physicsforum.com post](https://www.physicsforums.com/threads/divergence-of-the-e-field-at-a-theoretical-point-charge.956012/), and I'm pretty tired of reading that. It's not even good! Griffith's and other E&M textbooks have blurbs on the  subject also, of course, but they're obscured by pedagogy and most of the interesting parts are left as exercises. Meanwhile the treatment on venerable old Wikipedia is very slim and spread out over many hard-to-navigate articles.
+Not only is it unsatisfying, it's also hard to learn about. For years I've been referring back to this one [rather confusing physicsforum.com post](https://www.physicsforums.com/threads/divergence-of-the-e-field-at-a-theoretical-point-charge.956012/), and I'm pretty tired of reading that. It's not even good! Griffith's and other E&M textbooks have blurbs on the  subject also, of course, but they're obscured by pedagogy and most of the interesting parts are left as exercises. Meanwhile the treatment on venerable old Wikipedia is very slim and spread out over many hard-to-navigate articles, but the best one is probably [here](https://en.wikipedia.org/wiki/Green%27s_function_for_the_three-variable_Laplace_equation).
 
 So today's the day: I'm going to figure this out in all the generalization I want and write myself the reference I have wanted so I never have to visit that forum post, or that one page of Griffiths, ever again.
 
@@ -117,8 +121,6 @@ $$\del \cdot \frac{\hat{\b{r}}_{xy}}{r_{xy}} = 2 \pi \delta(x,y) = \frac{\delta(
 
 Note that this doesn't require you to keep using the $$\del$$ symbol, either. You can totally compute a 2-divergence in $$\bb{R}^3$$, or a 3-divergence in $$\bb{R}^4$$, etc.
 
-Disclaimer: I don't really know how to double-check these formulas because I haven't found a resource on them. But they makes sense, I think?
-
 Fun fact: this construction works in $$\bb{R}^1$$ also, but it's kinda weird. What's the 1d version of $$\hat{\b{r}}/r^2$$ in $$\bb{R}^3$$ or $$\hat{\b{r}}_{xy}/r_{xy}$$ in $$\bb{R}^2$$? Well, it's $$\hat{\b{r}}_{x}$$, the "one dimensional radius function", also written less strangely as $$\sgn(x) \hat{\b{x}}$$.
 
 $$\begin{aligned} \del \cdot  (\hat{\b{r}}_x ) &= (\p_x \hat{\b{x}}) \cdot (\sgn(x) \hat{\b{x}}) \\
@@ -128,6 +130,26 @@ $$\begin{aligned} \del \cdot  (\hat{\b{r}}_x ) &= (\p_x \hat{\b{x}}) \cdot (\sgn
 \end{aligned}$$
 
 Where the $$2$$ is the surface area of a $$0$$-sphere aka a line segment. My flimsy justification for $$2 \delta(x) = \delta(r_x)$$ is that $$\delta(r_x)$$ splits $$\bb{R}$$ into two copies that both of end at $$x=0$$, and we need a term for each: $$\delta(r_x) = \delta(+x) + \delta(-x) = 2 \delta(x)$$. 
+
+There is some information about these functions on the Wikipedia article for [Newtonian potential](https://en.wikipedia.org/wiki/Newtonian_potential). They call the function which is the fundamental solution to $$\del^2 f = \delta$$ in $$\bb{R}^d$$ the "Newtonian Kernel" $$\Gamma$$, and write
+
+$$\Gamma(x) = \begin{cases} 
+2 \pi \log r & d = 2 \\ 
+\frac{1}{d(2-d) V_d} r^{2 - d} & d \neq 2
+\end{cases}$$
+
+Where $$V_d$$ is the _volume_ of the $$d$$-sphere. That's a bit confusing. It's easier to follow with the identity $$V_d = \frac{S_{d}}{d}$$ where $$S_d$$ is the surface area of the $$d$$-sphere. Then this is really
+
+$$\Gamma(x) = \begin{cases} 
+\frac{1}{2 \pi} \log r & d = 2 \\ 
+\frac{1}{(2-d) S_d} r^{2 - d} & d \neq 2
+\end{cases}$$
+
+And its gradient is given by the same formula in all dimensions:
+
+$$\del \Gamma(x) = \frac{1}{S_d} \frac{\hat{\b{r}}}{r^{d-1}}$$
+
+This agrees with what we wrote above, and even works in $$d=1$$ if you consider the "surface area of the 1-sphere" to be $$S_1 = 2$$.
 
 
 ----------
@@ -216,35 +238,41 @@ Griffiths and Jackson, the pre-eminent textbooks, both say it should look like t
 
 But when you go looking to read about this correction, people are pretty polarized (no pun intended). [This](https://iopscience.iop.org/article/10.1088/0143-0807/28/2/012/meta) delightful paper by Andre Gsponer argues that the problem is that nobody is very good at using the $$r = \| \b{r} \|$$ variable, which (as I also noticed earlier) has a derivative of $$\sgn(r)$$ at $$r = 0$$; hence, its second derivative produces a delta function at the origin. In particular, they argue that the actual potential of a point charge goes as
 
-$ V(\b{x}) = \frac{1}{4 \pi r} \sgn(r)$$
+$$ V(\b{x}) = \frac{1}{4 \pi r} \sgn(r)$$
 
-where $$\sgn(r)$$ hangs out even though it's always positive in order to give a correct derivative later. Then (recall that $$\del \cdot f$$ has radial part $$\frac{1}{r^2} \p_r(r^2 f_r)$$):
+Or equivalently:
+
+$$V(\b{x}) = \frac{1}{4 \pi \| r \|}$$
+
+since $$r (\sgn (r)) = \frac{r}{\sgn (r)} = \| r \|$$. The $$\sgn(r)$$ hangs out even though it's always positive in order to give a correct derivative later.
 
 $$\begin{aligned}
-4 \pi \b{E} &= - 4 \pi \del V \\
-&= \frac{\hat{\b{r}}}{r^2} \sgn(r) - q \frac{\hat{\b{r}}}{r} \delta(r) \\
-4\pi (\del \cdot \b{E}) &= \frac{1}{r^2} \p_r (\sgn(r) - \cancel{r \delta(r)}) \\
-4 \pi \rho &= \frac{1}{r^2} \delta(r)
+\del \frac{1}{\| r \|}  &= \p_r (\frac{1}{r} \, \sgn (r)) \\
+&= - \frac{\hat{\b{r}}}{r^2} \sgn(r) + 2 \frac{\hat{\b{r}}}{r} \delta(r) \\
+\del^2 \frac{1}{\| r \|}  &= \frac{1}{r^2} \p_r [r^2 (- \frac{1}{r^2} \sgn(r) + 2 \frac{1}{r} \delta(r))] \\
+&= \frac{1}{r^2} \p_r [- \sgn(r) + 2 r \delta(r)] \\
+&= \frac{1}{r^2} [- \delta(r) + \cancel{2 \delta(r) + 2 r \delta'(r)}] \\
+ &= - \frac{1}{r^2} \delta(r)
 \end{aligned}$$
+
+(Note that the radial part of the divergence is given by  $$\del \cdot f = \frac{1}{r^2} \p_r(r^2 f_r)$$, and also that $$x \delta'(x) = - \delta(x)$$.)
 
 The dipole version is:
 
 $$\begin{aligned}
-4 \pi \b{E} &= - 4 \pi \del V \\
-&= - \del ( \frac{\b{p} \cdot \b{r}}{r^3} \sgn(r)) \\
-&= [\frac{3 (\b{p} \cdot \b{r})(\b{r}) - r^2\b{p} }{r^5} \sgn(r) - \frac{(\b{p} \cdot \b{r}) \b{r}}{r^4} \delta(r) ] \\
-&= [\frac{3 (\b{p} \cdot \b{r})(\b{r}) - r^2 \b{p} }{r^5} \sgn(r) - \frac{\b{p}}{r^2} \delta(r) ] \\
+\del \p_{\b{p}} \frac{1}{\| r \|} &= \del [ - \frac{\b{p} \cdot \b{\hat{r}}}{r^2} \sgn (r)] \\
+&= \frac{3 (\b{p} \cdot \b{r})(\b{r}) - r^2\b{p} }{r^5} \sgn(r) - \frac{(\b{p} \cdot \b{r}) \b{\hat{r}}}{r^3} \delta(r)  \\
 \end{aligned}$$
 
 It's that last term $$ - \frac{\b{p}}{r^2} \delta(r)$$ which gives the discrepancy: when integrated over a sphere the $$1/r^2$$ cancels out the $$r^2$$ integration factor so the result is just the volume of the sphere, $$\frac{4 \pi}{3}$$, leading to $$-\frac{\b{p}}{3} \delta(r)$$. So there you go. Apparently there should be delta functions on $$\b{E}$$ fields also, and it's the missing $$\sgn(r)$$s that are causing us to lose track of our deltas. Who knew?
 
-Also, fun fact: apparently Jackson, who wrote that one textbook everyone hates, also published a [paper](http://cds.cern.ch/record/118393?ln=en) arguing that the fact that _intrinsic_ dipoles have a different delta function term ($$+ \frac{8 \pi}{3}$$ instead of $$- \frac{4 \pi}{3}$$, he says) compared to dipoles that are the limit of two monopoles shows that distant stars must have magnetic dipoles (that is, circulating electric currents) rather than magnetic monopoles in them, or they'd have a 42cm spectral line instead of a 21cm spectral line. Weird.
+Also, fun fact: apparently Jackson, who wrote that one textbook everyone knows, also published a [paper](http://cds.cern.ch/record/118393?ln=en) arguing that the fact that _intrinsic_ dipoles have a different delta function term ($$+ \frac{8 \pi}{3}$$ instead of $$- \frac{4 \pi}{3}$$, he says) compared to dipoles that are the limit of two monopoles shows that distant stars must have magnetic dipoles (that is, circulating electric currents) rather than magnetic monopoles in them, or they'd have a 42cm spectral line instead of a 21cm spectral line. Weird. I didn't really follow it.
 
 There are some other weird papers around the subject:
 
 * [This](https://arxiv.org/pdf/1604.01121.pdf) paper by Edward Parker discusses various ways to get the terms in Jackson's argument.
 * [Some novel delta‐function identities](https://pubs.aip.org/aapt/ajp/article-abstract/51/9/826/1043129/Some-novel-delta-function-identities?redirectedFrom=fulltext) by Charles Frahm derives some of these equations with explicit calculations in indexes.
-* [Comment on “Some novel delta-function identities”](https://arxiv.org/abs/1001.1530) by Jerrold Franklin thinks that Frahm did it wrong and does it a different way, using "dyadic" notation for tensors, which always strikes me as juvenile for some reason. They do explicitly claim that the $$-\p^2 (\frac{1}{r}) = 4 \pi \hat{\b{x}}^{\o 2}\delta(\b{x})$$, though, and that everyone else has been integrating over the angular dependence implicitly. Actually I got that earlier when I had written $$(\b{p} \cdot \hat{\b{r}})\hat{\b{r}}$$, but the $$\hat{\b{r}}$$s disappeared because $$\b{p}$$ points in a radial direction so we just replaced the whole thing with $$\b{p}$$.
+* [Comment on “Some novel delta-function identities”](https://arxiv.org/abs/1001.1530) by Jerrold Franklin thinks that Frahm did it wrong and does it a different way, using "dyadic" notation for tensors, which always strikes me as juvenile for some reason. They do explicitly claim that the $$-\p^2 (\frac{1}{r}) = 4 \pi \hat{\b{x}}^{\o 2}\delta(\b{x})$$, though, and that everyone else has been integrating over the angular dependence implicitly.
 * And then there's [Comment on "Comment on `Some novel delta-function identities"](https://arxiv.org/abs/1308.2262) by Yunyun Yang and Ricardo Estrada... but unfortunately ArXiv doesn't have the pdf. I think they took it down because it was an older version and they changed the name later: the actual paper is called [Distributions in spaces with thick points](https://repository.lsu.edu/cgi/viewcontent.cgi?article=1282&context=mathematics_pubs), which deals with everything more rigorously than I care for and honestly gets crazy in how complex it is, defining distributions on certain surfaces and a new kind of "thick" delta functions. Why is figuring out what happens at $$r=0$$ in $$\bb{R}^3$$ so hard?
 
 Math is horrifying, but this chain of commentaries is kinda funny. Out of all of these I think the trick of using $$\frac{1}{r} \ra \frac{1}{r} \sgn(r)$$ is easily the most useable. Stay away from thick distributions for now.
