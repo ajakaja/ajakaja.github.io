@@ -24,21 +24,33 @@ Contents:
 Calculus on $$\bb{C}$$ is more-or-less just calculus on $$\bb{R}^2$$, under the substitutions:
 
 $$
+1 \lra I \\
 i \lra R \\
-a + bi \lra (a + R b) \hat{x} = a \hat{x} + b \hat{y}
+a + bi \lra (I a + R b) \hat{x} = a \hat{x} + b \hat{y}
 $$
 
 where $$R$$ is a thing called a "rotation operator". Yes, it is strange that you can do calculus with a rotation operator, but keep an open mind. We do it because it turns out to work and be useful.
 
-Another handy interpretation is to consider complex numbers as equivalent to 2x2 matrices, using $$i = R = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$$. Then in general
+Another handy interpretation is to consider complex numbers as equivalent to 2x2 matrices, using
+
+$$i = R = \begin{pmatrix} 0 & -1 \\ 1 & 0 \end{pmatrix}$$
+
+Then a complex number becomes
 
 $$a + bi = \begin{pmatrix} a & -b \\ b & a \end{pmatrix}$$
 
-Regardess of which interpretation you use, Euler's identity $$\cos \theta + i \sin \theta = e^{i \theta}$$ holds. Euler's identity is an instance of applying the [exponential map](https://en.wikipedia.org/wiki/Exponential_map) to $$i$$ regarded as an operator.
+Regardess of which interpretation you use, Euler's identity $$\cos \theta + i \sin \theta = e^{i \theta}$$ holds:
 
-If I had my way we would not use complex numbers ever. We would instead learn the subject as 'calculus with rotation operators', to avoid a proliferation of things that seem like magic, although a bit of work is needed to make it pedagogically sound. Certainly the words "complex" and "imaginary" aren't doing anybody any favors.
+$$\begin{aligned}
+e^{R \theta} \hat{x} &= \cos (\theta) \hat{x} + \sin (\theta) R(\hat{x}) \\
+&= \cos (\theta) \hat{x} + \sin (\theta) \hat{y}
+\end{aligned}$$
 
-The main way that $$\bb{C}$$ is more interesting than plain-old $$\bb{R}^2$$ is that there is a standard definition of multiplying two vectors: 
+Which says that you can smear out the action of the rotation operator over an angle $$\theta$$, regardless of whether it's implemented as $$R$$, $$i$$, or as a matrix. (In the lingo, Euler's identity is an instance of applying the [exponential map](https://en.wikipedia.org/wiki/Exponential_map) to $$i$$ regarded as an operator.)
+
+If I had my way we would not use complex numbers ever. We would instead learn the subject as '$$2d$$ calculus with rotation operators', to avoid a proliferation of things that seem like magic, although a bit of work is needed to make it pedagogically sound. Certainly the words "complex" and "imaginary" aren't doing anybody any favors.
+
+The main way that $$\bb{C}$$ is more interesting than plain-old $$\bb{R}^2$$ is that there is a standard definition of "multiplying" two vectors: 
 
 $$(a + b i) (c + d i) = (ac - bd) + (ad + bc) i$$
 
@@ -46,14 +58,16 @@ The best way I know to interpret this is like so: the correspondence $$a + bi \R
 
 $$[(a + b R) \circ (c + d R) ](\hat{x})  = [(ac - bd) + (ad + bc) R] (\hat{x})$$
 
-This model is especially appealing because it is easy to extend to higher dimensions. (The generalization is called 'geometric algebra', which works in every dimensios. It's _not_ quaternions, which only work in $$\bb{R}^3$$.)
+This model is especially appealing because it is easy to extend to higher dimensions. (The generalization is called "exterior algebra" or "geometric algebra", which works in every dimension. It's _not_ the quaternions, which only work in $$\bb{R}^3$$.)
 
-But basically we want to do calculus on $$\bb{R}^2$$. Normally this would involve $$(x,y)$$ coordinates, but the big twist is that we instead change bases into these two variables:
+Basically we want to do calculus on $$\bb{R}^2$$. Normally this would involve $$(x,y)$$ coordinates, but the big twist is that we instead change bases into these two weird variables:
 
 $$z = x + iy \\
 \bar{z} = x - iy $$
 
-Rather confusingly, each of these is, in a weird sense, a _one-dimensional_ variable. After all, $$\bb{R}^2$$ has only two degrees of freedom, regardless of which basis we use. Although $$z$$ can express every point in $$\bb{R}^2$$ 'on its own', in a sense half of the space is 'missing' when you do this. This is quite hard to wrap your head around and, honestly, I'm not sure I fully understand how it works. The basic idea is that we have split the space into 'positive parity' and 'negative parity' parts, rather than $$x$$ and $$y$$ directions, and the full space is spanned by both in either case. Please let me know if you know a more pedagogically neat way to express this!
+Rather confusingly, each of these is, in a weird sense, a _one-dimensional_ variable, even though they appear to have two degrees of freedom. After all, $$\bb{R}^2$$ has only two degrees of freedom, regardless of which basis we use. Although $$z$$ can express every point in $$\bb{R}^2$$ 'on its own', in a sense half of the space is 'missing' when you do this. 
+
+This is quite hard to wrap your head around and, honestly, I'm not sure I fully understand why it works. The basic idea is that we have split the space into 'positive parity' and 'negative parity' parts, rather than $$x$$ and $$y$$ directions, and the full space is spanned by both in either case. Please let me know if you know a more pedagogically clean way of expressing this!
 
 Anyhow, to do calculus we start by identifying differential forms and derivative operators for our coordinate system. The differentials of the coordinate vectors are:
 
@@ -95,7 +109,7 @@ $$\begin{aligned}
 
 These don't come up very much, but it's sometimes useful to write them this way.
 
-Note that any function that explicitly uses $$r$$ or $$\theta$$ has an implicit $$\bar{z}$$ dependency unless they cancel it out somehow, since both $$r$$ and $$\theta$$ do:
+Note that any function that explicitly uses $$r$$ or $$\theta$$ has an implicit $$\bar{z}$$ dependency, since both $$r$$ and $$\theta$$ do, unless they cancel it out somehow:
 
 $$\begin{aligned}
 r &= \sqrt{z \bar{z}} \\
@@ -127,58 +141,58 @@ $$\begin{aligned}
 &= 0 + i 0
 \end{aligned}$$
 
-($$\p_{\bar{z}} f(z) = 0$$ is a much better way to write this. The Cauchy-Riemann version should be deprecated.)
+$$\p_{\bar{z}} f(z) = 0$$ is a much better way to write this. The Cauchy-Riemann equations are basically obfuscatory and shouldn't be used.
 
-As long as $$f$$ is continuous and $$\p_{\bar{z}} f(z) = 0$$ in a region $$D$$, operations on $$f(z)$$ essentially work like they would for one-variable functions in $$z$$. For instance $$\p_z (z^n) = n z^{n-1}$$. It is pretty cool that this works, and is, I presume, somehow related to the fact that such a function is "really" one-dimensional in this region, despite the $$2d$$ coordinate system.
+As long as $$f$$ is continuous and $$\p_{\bar{z}} f(z) = 0$$ in a region $$D$$, operations on $$f(z)$$ essentially work like they would if $$z$$ was $$\in \bb{R}$$. For instance $$\p_z (z^n) = n z^{n-1}$$. It is pretty cool that this works, and is, I presume, somehow related to the fact that such a function is "really" one-dimensional in this region.
 
-Since $$z$$ is "really" a one-dimensional variable, there's only one 'degree of freedom' in the derivative of a complex function. This manifests as the fact that if $$f'(z)$$ is a single complex number, then it rotates and scales tangent vectors uniformly -- it's a a [conformal map](https://en.wikipedia.org/wiki/Conformal_map):
+Since $$z$$ is "really" a one-dimensional variable, there's only one 'degree of freedom' in the derivative of a complex function. This manifests as the fact that if $$f'(z)$$ is a single complex number, then it rotates and scales $$x$$ and $$y$$ vectors in the same way -- it's a a [conformal map](https://en.wikipedia.org/wiki/Conformal_map):
 
 $$f(z + dz) \approx f(z) + f'(z) dz = f(z) + re^{i\theta} dz$$
 
-In particular, a complex-valued derivative is one dimensional in the sense that its action on $$y$$ is entirely determined by its action on $$x$$ -- it can't have a different effect on the two different coordinates. So if you know what it does on _one_ dimension, you know everything about what it does.
+In particular, a complex-valued derivative is one dimensional in the sense that its action on $$y$$ is entirely determined by its action on $$x$$ -- it can't have a different effect on the two different coordinates. So if you know what it does on _one_ dimension, you know everything about what it does. For comparison, the gradient of an $$\bb{R}^2$$ function is a $$2 \times 2$$ matrix, whose columns are its unrelated effects on $$\hat{x}$$ and $$\hat{y}$$.
 
-Functions which are complex-differential at every point within a region are called "[holomorphic](https://en.wikipedia.org/wiki/Holomorphic_function)" ('holo' is Greek for 'whole') or "regular", in that region. A function $$f(z)$$ that is holomorphic in a region $$D$$ is extremely well-behaved in that region:
+Functions which are complex-differentiable at every point within a region are called "[holomorphic](https://en.wikipedia.org/wiki/Holomorphic_function)" ('holo' is Greek for 'whole') or "regular", in that region. A function $$f(z)$$ that is holomorphic in a region $$D$$ is extremely well-behaved in that region:
 
 * $$f$$ is _infinitely_ complex-differentiable in $$D$$
 * and $$f$$ is 'complex analytic', i.e. equal to its Taylor series in $$z$$ throughout $$D$$. The series around any particular point converges within the largest circular disk that stays within $$D$$. Often we just say "analytic" for this.
 * and $$f$$ is locally invertible, i.e. $$f^{-1}(w + dw) \approx z + (f'(z))^{-1} dw$$ exists and is holomorphic in the neighborhood of $$w = f(z)$$.
 * its integrals along any closed contour $$C$$ which encircles a region entirely inside $$D$$ vanishes: $$\oint_C f(z) dz = 0$$.
-* the data of $$f$$ in $$D$$ is fully determined by its values on the boundary of the region, or on any one-dimensional curve within $$D$$, or on any nontrivial subregion of $$D$$, in the sense that its Taylor series can be computed on a subset of the space and then will give the correct value throughout $$D$$ (possibly via [analytic continuation](https://en.wikipedia.org/wiki/Analytic_continuation) to skirt non-holomorphic regions).
+* the data of $$f$$ in $$D$$ is fully determined by its values on the boundary of the region, or on any one-dimensional curve within $$D$$, or on any nontrivial subregion of $$D$$, in the sense that its Taylor series can be computed on a subset of the space and then will give the correct value throughout $$D$$ (possibly via analytic continuation to avoid exceeding the radius of convergence of the Taylor series).
 
 The general theme is that holomorphic/analytic functions generally act like one-dimensional functions, despite being defined on two-dimensional spaces, and so all of the calculus is really easy on them. In fact calculus tends to be _easier_ than on $$\bb{R}$$, because certain things that never made sense, like the 'radius of convergence', actually do make sense (in $$\bb{C}$$ it is literally a radius).
 
-If two analytic functions defined on _different_ regions nonetheless agree on an overlapping region, they are in a sense the 'same function'. This means that you can "analytically continue" a function by finding other functions which agree on an overlapping line or region. A simple use of this is to 'glue together' Taylor expansions around different points to go around a divergence. The [Riemann Zeta function](https://en.wikipedia.org/wiki/Riemann_zeta_function) is a famous example of a function which has an interesting analytic continuation: the function is easily defined on the positive real axis where $$x>1$$, but the famous [Riemann Hypothesis](https://en.wikipedia.org/wiki/Riemann_hypothesis) concerns zeroes of its analytic continuation elsewhere on $$\bb{C}$$.
+If two analytic functions defined on _different_ regions nonetheless agree on an overlapping region, they are in a sense the 'same function'. This means that you can [analytically continue](https://en.wikipedia.org/wiki/Analytic_continuation) a function by finding other functions which agree on an overlapping line or region. A simple use of this is to 'glue together' Taylor expansions around different points to go around a divergence. The [Riemann Zeta function](https://en.wikipedia.org/wiki/Riemann_zeta_function) is a famous example of a function which has an interesting analytic continuation: the function is easily defined on the positive real axis where $$x>1$$, but the famous [Riemann Hypothesis](https://en.wikipedia.org/wiki/Riemann_hypothesis) concerns zeroes of its analytic continuation elsewhere on $$\bb{C}$$.
 
 Most $$\bb{R}$$ standard functions like $$e^x$$ and $$\sin x$$ have holomorphic complex versions like $$e^z$$ and $$\sin z$$ that are analytic everywhere. Discontinuous functions like $$\|z\|$$ or $$\log z = i \theta \ln r  $$, or functions that include an explicit or implicit $$\bar{z}$$ dependency, fail to be analytic somewhere, but are usually analytic in regions that don't include those discontinuous points.
 
-Complex differentiability fails other than simple jump discontinuities are called singularities. We categorize the types:
+Complex differentiability fails other than simple jump discontinuities are called singularities. There are three types:
 
 * _poles_ of order $$n$$, around which $$f(z) \sim 1/z^n$$, which are 'well-behaved' singularities. Around these there's a region where $$1/f$$ is analytic. 'Zeros' and 'poles' are dual in the sense that $$f \sim z^n$$ at zeroes and $$f \sim 1/z^n$$ at poles.
 * _removable singularities_: singularities that can be removed by redefinition, probably because they're an indeterminate form. The canonical example is $$\sin(z)/z$$ which is repaired by defining $$\sin(0)/0 = 1$$. In a sense these are not singularities at all, they're just poorly handle by our notation.
 * _essential singularities_: singularities which oscillate infinitely rapidly near a point, such that they are in a sense too complicated to handle by normal methods. $$\sin(1/z)$$ or $$e^{1/z}$$ are the canonical examples. They all look like this, oscillating infinitely: [Great Picard's Theorem](https://en.wikipedia.org/wiki/Picard_theorem) (what a name) says that near an essential singularity the function takes every value infinitely times, except possibly one.
 
-Poles are much more interesting than the other two.
+But poles are much more interesting and useful than the other two.
 
 ------
 
-## 3. Residues
+## 3. Poles and Residues
 
 
-No one would really care about complex analysis except for mathematicians were it not for one suspicious fact about the complex derivatives:
+No one would really care about complex analysis were it not for one suspicious fact about the complex derivatives:
 
 $$\p_{\bar{z}} \frac{1}{z} \neq 0$$
 
-(Make sure you see that that's a $$\bar{z}$$-derivative.)
+(Make sure you see that that's a $$\bar{z}$$-derivative. Someone told me the bar wasn't rendering on their phone, which... sure makes this equation wrong.)
 
-_Only_ when $$n=-1$$, $$z^n$$  has a certain kind of divergence at $$z=0$$. It looks like a 2d [delta <strike>function</strike> distribution](https://en.wikipedia.org/wiki/Dirac_delta_function):
+_Only_ when $$n=-1$$, $$z^n$$  has a certain kind of divergence at $$z=0$$. It looks like a 2d [delta distribution](https://en.wikipedia.org/wiki/Dirac_delta_function):
 
-$$\p_{\bar{z}} \frac{1}{z} = 2 \pi i \delta (z)$$
+$$\p_{\bar{z}} \frac{1}{z} = 2 \pi i \delta (z, \bar{z})$$
 
-This means that $$\p_{\bar{z}} \frac{1}{z} = 0$$ unless $$z = 0$$, in which case it has the value $$2 \pi i$$ (it's a bit more subtle than that if you define the Dirac delta correctly, but let's ignore that.)
+This means that $$\p_{\bar{z}} \frac{1}{z} = 0$$ unless $$z = 0$$, in which case it has the value $$2 \pi i$$ (with the usual caveat that $$\delta(z)$$ is defined such that it integrates to $$1$$.)
 
-(By the way, this is intrinsically related to the fact that we're doing calculus in 2d. It is really a skew way of writing the more fundamental fact that $$\oint d \theta = 2 \pi$$ if you integrate around the origin. It's related to the 1-dimensional formula $$\p_x \log x = \frac{1}{x} + i \pi \delta(x)$$. There are versions in higher dimensions as well--- in particular, physicists are familiar with the $$\bb{R}^3$$ case without necessarily realizing it. The Maxwell equation $$\nabla \cdot E = \rho$$ applied to a point charge only works if $$\nabla \cdot \frac{\hat{r}}{r^2} = 4 \pi \delta(r)$$. More on that another time, I hope.)
+(By the way, this is intrinsically related to the fact that we're doing calculus in 2d. It is really a skew way of writing the more fundamental fact that $$\oint d \theta = 2 \pi$$ if you integrate around the origin; that is, $$d \theta$$ is an "inexact" differential form, also called a non-conservative vector field: meaning that its integral is path-dependent. There are versions in higher dimensions as well. In particular, physicists are familiar with the $$\bb{R}^3$$ case without necessarily realizing it: the Maxwell equation $$\nabla \cdot \vec{E} = \rho$$ applied to a point charge only works if $$\nabla \cdot \frac{\hat{r}}{r^2} = 4 \pi \delta(r)$$. I have an [article on that]({% post_url 2023-10-24-divergence %}) also.)
 
-This is equivalent to saying that the contour integral (integral on a closed path) of $$1/z$$ around the origin is non-zero, which is easy to see if you transform to polar coordinates:
+This is equivalent to saying that the contour integral (line integral on a closed path in $$\bb{C}$$) of $$1/z$$ around the origin is non-zero, which is easiest to see if you transform to polar coordinates:
 
 $$\begin{aligned}
 \oint \frac{1}{z} dz &= \oint \frac{e^{i \theta} dr +  ir e^{i\theta} d \theta }{r e^{i \theta}} \\
@@ -242,9 +256,9 @@ By the way, there is a remarkable duality between zeroes and poles. In the regio
 
 ## 4. Integral tricks
 
-If you stare at the "calculus of residues" long enough you'll realize that, although they deal with complex-valued functions, you can pull some tricks that allow them to be used to solve real-valued integrals. Even if you never look at complex analysis again, you'll still occasionally see complex analytic trickery come up in solving [otherwise annoying integrals](https://math.stackexchange.com/questions/562694/integral-int-11-frac1x-sqrt-frac1x1-x-ln-left-frac2-x22-x1/563063).
+If you stare at the "calculus of residues" long enough you'll realize that, although they deal with complex-valued functions, you can pull some tricks that allow them to be used to solve real-valued integrals. Even if you never look at complex analysis again, you'll still occasionally see complex analytic trickery come up in solving otherwise annoying integrals. Here is a [particularly insane example](https://math.stackexchange.com/questions/562694/integral-int-11-frac1x-sqrt-frac1x1-x-ln-left-frac2-x22-x1/563063).
 
-For starters, note that closed integrals of a function with a Laurent series can be eyeballed using the Cauchy integral formula:
+For starters, closed integrals of a function with a Laurent series can be eyeballed using the Cauchy integral formula. Just factor the integrand into a bunch of fractions of order $$z^{-1}$$ and add up the residues of the ones that are inside the contour:
 
 $$\begin{aligned}
 \oint_{r=1} \frac{1}{z(z-3)} dz &=  \oint_{r=1} \frac{1}{3} \frac{1}{z-3} - \frac{1}{3}\frac{1}{z} dz \\
@@ -288,16 +302,16 @@ When dealing with these multi-valued functions you can consider $$\theta = 0$$ a
 
 Another topological interest in $$\bb{C}$$: if you 'join together' the points at infinity in every direction by defining a symbol $$\infty$$ such that $$1/0 = \infty$$, you get the "extended complex plane" or the [Riemann sphere](https://en.wikipedia.org/wiki/Riemann_sphere), since it is topologically shaped like a sphere. Most of the things that seem like they should be true involving $$\infty$$ are true in this case. For example, the asymptotes of $$\frac{1}{z}$$ on either size of $$\| z \| = 0$$ really _do_ connect at infinity and come back on the other side.
 
-The Riemann sphere is topologically like a sphere, but acts like a _projective_ plane, which is a bit unintuitive. (It turns out to corresponds rather to a half sphere where antipodal points are considered equivalent). Particularly, it kinda seems like $$+r$$ and $$-r$$ should be different points, rather than the 'same' infinity. There is probably a resolution to this using [oriented projective geometry](https://en.wikipedia.org/wiki/Oriented_projective_geometry), defining the back half of the sphere as a second copy of $$\bb{C}$$ and conjoining the two at $$\infty e^{i \theta} \lra -\infty e^{i\theta}$$, but that's not worth discussing further here, and it's usually not mentioned in complex-analysis treatments.
+Although the Riemann sphere is topologically shaped like a sphere, its actual geometry is a "projective plane", which is super confusing: it turns out to correspond rather to a half sphere where antipodal points are considered equivalent (picture connecting every point on the equator of a sphere to the opposite point and then lopping off the bottom entirely). This feels wrong to me: it seems like $$+r$$ and $$-r$$ should be different points, rather than the 'same' infinity. It's possible to fix this by using [oriented projective geometry](https://en.wikipedia.org/wiki/Oriented_projective_geometry), defining the back half of the sphere as a second copy of $$\bb{C}$$ and conjoining the two at $$\infty e^{i \theta} \lra -\infty e^{i\theta}$$, but that's not worth discussing further here, and it's usually not mentioned in complex-analysis treatments either.
 
-Complex analytic functions map the Riemann sphere to itself in some way. For instance, $$z \mapsto \frac{1}{z}$$ swaps $$0$$ and $$\infty$$ and the rest of the sphere comes along for the ride. Powers of $$z$$ cause the mapping to be $$m:n$$ --- so $$z^2$$ maps two copies of the sphere to one copy, while $$z^{1/2}$$ maps one copy to two copies, hence becoming multi-valued. The [möbius transformations](https://en.wikipedia.org/wiki/M%C3%B6bius_transformation), functions of the form $$\frac{az + b}{cz + d}$$ with $$ad-bc \neq 0$$, are the invertible holomorphic transformations of the Riemann sphere; they comprise dilations, rotations, reflections, and inversions of $$\bb{C}$$.
+Complex analytic functions map the Riemann sphere to itself in some way. For instance, $$z \mapsto \frac{1}{z}$$ swaps $$0$$ and $$\infty$$ and the rest of the sphere comes along for the ride. Powers of $$z$$ cause the mapping to be $$m:n$$, so e.g. so $$z^2$$ maps two copies of the sphere to one copy, while $$z^{1/2}$$ maps one copy to two copies, hence becoming multi-valued. The [möbius transformations](https://en.wikipedia.org/wiki/M%C3%B6bius_transformation), functions of the form $$\frac{az + b}{cz + d}$$ with $$ad-bc \neq 0$$, are the invertible holomorphic transformations of the Riemann sphere; they comprise dilations, rotations, reflections, and inversions of $$\bb{C}$$.
 
 
 ------
 
 ## 6. Convergence concerns
 
-Just like in real-variable calculus, Taylor series in $$\bb{C}$$ do not always converge, and the region of convergence is determined by the distance to the closest pole. Unlike real-variable calculus, this makes a lot more sense --- since in $$\bb{R}$$ you still had to account for convergence failures due to poles that were on the complex part of the plane! Many of the 'convergence tests' that are learned in intro calculus make a lot more sense in $$\bb{C}$ as well.
+Just like in real-variable calculus, Taylor series in $$\bb{C}$$ do not always converge, and the region of convergence is determined by the distance to the closest pole. Unlike real-variable calculus, this makes a lot more sense --- since in $$\bb{R}$$ you still had to account for convergence failures due to poles that were on the complex part of the plane! Many of the 'convergence tests' that are learned in intro calculus make a lot more sense in $$\bb{C}$$ as well.
 
 In short, a series $$f(z-a) \approx f_0 + f_1 (z-a) + f_2 \frac{(z-a)^2}{2!} + \ldots$$ only converges within circles around $$a$$ that do not contain any poles, and thus what we call the 'radius of convergence' is the distance to the nearest pole in $$\bb{C}$$. For instance, $$\frac{1}{1 + x^2}$$ around $$x=0$$ has radius of convergence $$r=1$$ since there are poles at $$\pm i$$.
 
