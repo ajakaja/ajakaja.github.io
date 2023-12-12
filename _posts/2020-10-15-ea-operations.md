@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "All the Exterior Algebra Operations"
+title: "Exterior Algebra #8: All the Exterior Algebra Operations"
 footnotes: true
 math: true
 aside: true

@@ -9,14 +9,22 @@ I am slowly sifting through and summarizing all of the miscellaneous knowledge t
 
 {:class="bare"}
 * [Oriented Areas and the Shoelace Formula]({% post_url 2018-08-06-oriented-area %})
-* [Matrices and Determinants]({% post_url 2018-10-08-exterior-1 %})
-* [The Inner product]({% post_url 2018-10-09-exterior-2 %})
-* [The Hodge Star]({% post_url 2019-01-26-exterior-3 %})
-* [The Interior Product]({% post_url 2019-01-27-exterior-4 %})
-* [EA as Linearized Set Theory?]({% post_url 2019-02-13-exterior-5 %})
-* [Oriented Projective Geometry]({% post_url 2019-02-23-exterior-6 %})
-* [All the Exterior Algebra Operations]({% post_url 2020-10-15-ea-operations %})
+* [1. Matrices and Determinants]({% post_url 2018-10-08-exterior-1 %})
+* [2. The Inner product]({% post_url 2018-10-09-exterior-2 %})
+* [3. The Hodge Star]({% post_url 2019-01-26-exterior-3 %})
+* [4. The Interior Product]({% post_url 2019-01-27-exterior-4 %})
+* [5. EA as Linearized Set Theory?]({% post_url 2019-02-13-exterior-5 %})
+* [6. Oriented Projective Geometry]({% post_url 2019-02-23-exterior-6 %})
+* [7. Simplex Volumes and Boundaries]({% post_url 2019-03-02-exterior-7 %})
+* [8. All the Exterior Algebra Operations]({% post_url 2020-10-15-ea-operations %})
+
+I'm also searching for some kind of weird calculus that involves delta functions, pseudoinverses, and dividing by zero.
+
+{:class="bare"}
 * [How To Invert Anything]({% post_url 2023-09-25-inverses %})
+* [Delta Function Miscellanea]({% post_url 2023-10-14-delta-fns %})
+* [Divergences and Delta Functions]({% post_url 2023-10-24-divergence %})
+
 
 I'm also slowly working through my undergraduate math and physics curriculum and trying to "compress" it in a way that makes sense to me. This is because I want to learn QFT to understand how the universe works, but (IMO) the foundations are so shaky that there's no point. I suspect everyone else is in the same boat but, unlike me, distrusts themselves instead of distrusting the foundations.
 
@@ -34,7 +42,6 @@ Every once in a while I write other miscellaneous math-related musings.
 * [Infinite Summations and You]({% post_url 2018-11-01-summations %})
 * [Aphantasia, or how not to do math in your head]({% post_url 2019-09-15-mental-math %})
 * [A possible derivation of the Born Rule]({% post_url 2019-12-22-many-worlds %})
-* [Delta Function Miscellanea]({% post_url 2023-10-14-delta-fns %})
 
 
 ------------
