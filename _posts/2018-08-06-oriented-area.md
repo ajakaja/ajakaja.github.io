@@ -7,66 +7,64 @@ aside: true
 tags: math
 ---
 
-Here's a summary of the concept of oriented area and the "shoelace formula", and some equations I found while playing around with it that turned out not to be novel.
+Here's a summary of the concept of oriented area and the "shoelace formula", and some equations I found while playing around with it which are not novel. I wanted to write this article because I think the concept deserves to be better popularized, and it is useful to me to have my own reference on the subject.
 
-I wanted to write this article because I think the concept deserves to be better popularized, and it is useful to me to have my own reference on the subject. Some resources I have found, including Wikipedia, cite a 1959 monograph entitled *Computation of Areas of Oriented Figures* by A.M. Lopshits, originally printed in Russian and translated to English by Massalski and Mills, which I have not been able to find online. I did find a copy via university library, and I thought I would summarize its contents in the process to make them more available to a casual Internet reader.
+Several resources I have found on the subject, including Wikipedia, all cite a 1959 text entitled *Computation of Areas of Oriented Figures* by A.M. Lopshits, which was originally printed in Russian and translated to English by Massalski and Mills, but is apaprently not available online. I did find a copy via university library, so I thought I would summarize its contents in the process in order to make them available to a casual Internet reader.
 
-I also wanted to practice making beautiful math diagrams. Which went okay, but god is it ever not worth the effort.
+I also took this chance to practice making beautiful math diagrams. Which went okay, but god is it ever not worth the effort.
 
 <!--more-->
 
 -----------
 
-## 1
+## 1. Oriented Area
 
-Let $$P$$ be a polygon with vertices $$\{p_1, p_2, \ldots p_n\}$$. Sometimes I will refer to $$p_0$$ also, which is defined to equal $$p_n$$, because it makes formulas neater. 
+Let $$P$$ be an $$n$$_sided polygon with vertices labeled $$\{p_1, p_2, \ldots p_n\}$$. Sometimes we'll refer to $$p_n$$ as $$p_0$$ as well so that the list wraps around, because it makes formulas cleaner. 
 
 Here's a $$P$$ with $$n=5$$:
 
 {% include image.html filename="2018-08-06/01-polygon.svg" width="200px" %}
 
-The _signed_ or _oriented_ area of $$P$$ is given by the so-called "[shoelace formula](https://en.wikipedia.org/wiki/Shoelace_formula)":
+The "signed" or "oriented" area of $$P$$ is given by the so-called "[shoelace formula](https://en.wikipedia.org/wiki/Shoelace_formula)":
 
-$$Area(P) = \frac{1}{2} \sum_{i=0}^{n-1} p_i \times p_{i+1} \tag{1}$$
+$$\text{area}(P) = \frac{1}{2} \sum_{i=0}^{n-1} p_i \times p_{i+1} \tag{1}$$
 
-where the sum wraps around, thanks to $$p_0$$ being the same as $$p_n$$. Each term is the area of the triangle formed by the origin, $$p_i$$, and $$p_{i+1}$$.
-
-It's called the shoelace formula because when you write all the coordinates in a column and begin to compute the cross products by multiplying $$x_1 y_2 - x_2 y_1$$, $$x_2 y_3 - x_3 y_2$$, etc, it's reminiscent of a laced shoe:
+where the sum wraps around, thanks to $$p_0$$ being the same as $$p_n$$. Each term in the shoelace formula is a cross product (e.g. $$a \times b = a_x b_y - a_y b_x$$), which gives the area of the triangle $$(\mathcal{O}, p_i, p_{i+1})$$, where $$\mathcal{O}$$ is the origin. It's called the shoelace formula because when you write all the coordinates in a column and begin to compute the cross products by multiplying $$x_1 y_2 - x_2 y_1$$, $$x_2 y_3 - x_3 y_2$$, etc, it looks like a laced shoe:
 
 {% include image.html filename="2018-08-06/02-shoelace.svg" width="150px" %}
 
-"Signed" area means that the area is positive if its vertices go _counterclockwise_, and is negative if its vertices go _clockwise_. 
+The fact that this is a "signed area" means that it can be positive or negative. In particular the area is positive if its vertices go counterclockwise, like radians do, and is negative if its vertices go clockwise. 
 
-$$Area(-P) = Area(\{p_n, p_{n-1}, \ldots p_0\}) = -Area(P)$$
+$$\text{area}(-P) = \text{area}(\{p_n, p_{n-1}, \ldots p_0\}) = -\text{area}(P)$$
 
 {% include image.html filename="2018-08-06/03-negative.svg" width="200px" %}
 
-You can remember which is which because counterclockwise / positive is also the direction that positive radians go, by convention. This is arbitrary, and we could have defined it the other way. If you just want the unsigned area of a region, you can always take the absolute value of this, so the signed area is strictly more powerful than the unsigned version.
+Which direction has which sign is totally arbitrary, and we could have defined it the other way, but it's handy to keep it consistent with radians. If you ever just want the unsigned area of a region you can always take an absolute value, so the signed area is strictly more powerful than the unsigned version.
 
-Signed areas are useful because they are better-behaved than regular areas in several ways. The signed area of a shape is preserved under any decomposition into component shapes, with negatively-oriented components subtracting from the total area:
+Signed/oriented areas are useful because they are better-behaved than regular areas in several ways. The signed area of a shape is preserved under any decomposition into component shapes, with negatively-oriented components subtracting from the total area:
 
 {% include image.html filename="2018-08-06/04-subtraction.svg" width="500px" %}
 
 I've indicating that the circle is negatively oriented and thus has negative area with an arrow that says it is to be traversed clockwise. Its area is subtracted from the total area of the rectangle, giving the area of the composite shape automatically.
 
-This becomes more useful in more complicated figures, because it lets us build them out of simple parts very cleanly. The shoelace formula works because of the ability to add these oriented areas without having to specify which ones to subtract. It amounts to decomposing a shape into a list of triangles with the origin as the third vertex, and adding their areas. This is totally natural if the origin is fully contained within the polygon:
+This becomes useful in more complicated figures, because it lets us build them out of simple parts very cleanly. For example, the shoelace formula works because of the ability to add these oriented areas without having to specify which ones to subtract; it amounts to decomposing a shape into a list of triangles with the origin as the third vertex and adding their areas. This is totally natural if the origin is fully contained within the polygon:
 
 {% include image.html filename="2018-08-06/05-triangles.svg" width="200px" %}
 
-But signed areas mean that this construction works even if the origin is outside the polygon, with the triangles overlapping, because their overlapping parts cancel perfectly:
+But signed area mean that this construction works even if the origin is outside the polygon, with the triangles overlapping, because their overlapping parts cancel perfectly:
 
 {% include image.html filename="2018-08-06/06-triangles2.svg" width="200px" caption="The dark areas cancel out of the total sum, because the (negative) area of $$p_1 p_2\mathcal{O}$$ exactly cancels the excess positive areas in each of the other triangles $$p_2 p_3 \mathcal{O}, p_3 p_4 \mathcal{O}, p_4 p_0 \mathcal{O}$$, and $$p_0 p_1 \mathcal{O}$$."%}
 
 The coordinate-invariance of this formula (that it works regardless of where $$\mathcal{O}$$ is) should be enough to motivate it as mathematically valuable. We like formulas that don't care about specific coordinate systems.
 
-We're used to dealing with what are called _simple_ polygons -- polygons whose sides never overlap, so they surround a single region of space without any intersections. We can also consider _non-simple_ polygons, which are allowed to have their vertices or edges overlap or intersect. The shoelace formula continues to work if the polygon is _non-simple_, except we must understand that negatively-oriented regions subtract from the total sum instead of adding, which may not be totally intuitive:
+We're used to dealing with what are called _simple_ polygons -- polygons whose sides never overlap, so they surround a single region of space without any intersections. We can also consider _non-simple_ polygons, which are allowed to have their vertices or edges overlap or intersect. The shoelace formula continues to work if the polygon is non-simple, except we must understand that negatively-oriented regions subtract from the total sum instead of adding, which may not be totally intuitive:
 
-{% include image.html filename="2018-08-06/07-nonsimple.svg" width="250px" caption="The total signed area here is _zero_, because the two oppositely-oriented components have the same magnitudes of areas, but opposite signs, so they cancel out."%}
+{% include image.html filename="2018-08-06/07-nonsimple.svg" width="250px" caption="The total signed area here is zero, because the two oppositely-oriented components have the same magnitudes of areas, but opposite signs, so they cancel out."%}
 
 
 ---------
 
-
+## 2. Oriented Angle
 
 Related to the concept of oriented area is the concept of _oriented angle_, which is actually a bit more familiar. Oriented angles distinguish between "the angle between $$\b{a}$$ and $$\b{b}$$" and "the angle between $$\b{b}$$ and $$\b{a}$$", by insisting that we specify _counterclockwise_ angles (the way radians go) as positive:
 
@@ -84,11 +82,11 @@ $$\b{a} \times \b{b} = |a||b| \sin \phi \\
 
 ----------
 
-## 2
+## 3. The Shoelace Formula in Displacements
 
 The shoelace formula can be massaged into some other forms. Defining $$\b{d}_i$$ as the vector displacements of each side[^vector]:
 
-[^vector]: I like to use boldface to refer to things that are definitely _vectors_, as opposed to our $$p_i$$ which are _points_ and cannot be added.
+[^vector]: I like to use boldface $$\b{d}$$ to refer to things that are definitely vectors, so adding them together is meaningful, as opposed to points $$p_i$$ which cannot be meaningfully added.
 
 $$\b{d}_i = p_{i+1} - p_i$$
 
@@ -98,9 +96,9 @@ Which is just the same polygon labelled differently:
 
 Then we can write the area as:
 
-$$Area(P) = \frac{1}{2} \sum p_i \times \b{d}_{i} \tag{2}$$
+$$\text{area}(P) = \frac{1}{2} \sum p_i \times \b{d}_{i} \tag{2}$$
 
-Since $$p_i \times p_i = 0$$ and $$\times$$ is distributive, this is the same as (1). Essentially we are just referring to our triangles differently, by $$p_i$$ and $$\b{d}_i$$ instead of $$p_i$$ and $$p_{i+1}$$:
+Where $$\times$$ is a cross product. Since $$p_i \times (p_{i+1} - p_i) = p_i \times p_{i+1} - \cancel{p_i \times p_i} = p_i \times p_{i+1}$$, this is the same as (1). Essentially we are just referring to our triangles differently, by $$p_i$$ and $$\b{d}_i$$ instead of $$p_i$$ and $$p_{i+1}$$:
 
 {% include image.html filename="2018-08-06/11-displacements2.svg" width="150px" %}
 
@@ -111,14 +109,14 @@ $$p_j = p_0 + \sum_{i = 0}^{j-1} \b{d}_i$$
 
 They form a closed loop ($$\sum_{i=0}^{n} \b{d}_i = \b{0}$$). Therefore we can eliminate the $$p_i$$ terms from the area formula entirely by writing them as sums of displacements (recalling that $$\sum_{i} p_0 \times \b{d}_i$$ cancels out because it equals $$ p_0 \times  \sum_{i} \b{d}_i = p_0 \times \b{0} = 0$$):
 
-$$\begin{aligned} Area(P) &= \frac{1}{2} \sum_{i} (p_0 + \sum_{j < i} \b{d}_j) \times \b{d}_i \\
+$$\begin{aligned} \text{area}(P) &= \frac{1}{2} \sum_{i} (p_0 + \sum_{j < i} \b{d}_j) \times \b{d}_i \\
 &=\frac{1}{2} [ \sum_{i} p_0 \times \b{d}_i + \sum_{i}\sum_{j < i} \b{d}_j \times \b{d}_i ]\end{aligned}$$
 
-$$ Area(P) = \frac{1}{2} \sum_{i}\sum_{j < i} \b{d}_j \times \b{d}_i \tag{3} $$
+$$ \text{area}(P) = \frac{1}{2} \sum_{i}\sum_{j < i} \b{d}_j \times \b{d}_i \tag{3} $$
 
 This is the shoelace formula, rewritten to only use the vector displacements of the figure.
 
----------
+## 4. The Shoelace formula in Angles
 
 Finally, we can write this in terms of just the side-lengths and exterior vertex angles of the polygon. 
 
@@ -148,9 +146,9 @@ We can see that these relationships should hold, in case you'd like to go calcul
 $$\begin{aligned} \frac{L}{2} &= r \cos \frac{\alpha}{2}  \\
 s &= r \sin \frac{\alpha}{2} \\
 s &= \frac{L}{2} \tan \frac{\alpha}{2} \\
-Perimeter &= NL = 2 n r \cos \frac{\alpha}{2} \\ 
-Area &= \frac{1}{2} NsL \\
-Area &= \frac{1}{2} s \cdot Perimeter
+\text{perimeter} &= NL = 2 n r \cos \frac{\alpha}{2} \\ 
+\text{area} &= \frac{1}{2} NsL \\
+\text{area} &= \frac{1}{2} s \cdot \text{perimeter}
 \end{aligned}$$
 
 
@@ -173,15 +171,15 @@ $$\theta_{ij} = \sum_{i \leq k < j} \theta_k$$
 We can use this in $$(3)$$ to get a version of the area formula expressed only in lengths and exterior angles:
 
 $$\begin{aligned}
-Area(P) &= \frac{1}{2} \sum_{i}\sum_{j < i} \b{d}_j \times \b{d}_i \\
+\text{area}(P) &= \frac{1}{2} \sum_{i}\sum_{j < i} \b{d}_j \times \b{d}_i \\
 &= \frac{1}{2} \sum_i \sum_{j < i} | \b{d}_j | | \b{d}_i | \sin (\theta_{ij}) \\
 \end{aligned}$$
 
-$$Area(P) = \frac{1}{2} \sum_i \sum_{j < i} | \b{d}_j | | \b{d}_i | \sin (\theta_{ij}) \tag{4}$$
+$$\text{area}(P) = \frac{1}{2} \sum_i \sum_{j < i} | \b{d}_j | | \b{d}_i | \sin (\theta_{ij}) \tag{4}$$
 
 By labeling the side lengths $$\| \b{d}_i \| $$ as $$a_{i+1}$$ and expanding the sum over $$i$$ before $$j$$, we can get to a form which which is presented [on Wikipedia](https://en.wikipedia.org/wiki/Polygon#cite_ref-lopshits_6-0):
 
-$$\begin{aligned} Area(P) &= \frac{1}{2} (a_1 [a_2 \sin (\theta_1) + a_3 \sin (\theta_1 + \theta_2) + \ldots a_{n-1} \sin(\theta_1 + \theta_2 + \ldots + \theta_{n-1}) ] \\
+$$\begin{aligned} \text{area}(P) &= \frac{1}{2} (a_1 [a_2 \sin (\theta_1) + a_3 \sin (\theta_1 + \theta_2) + \ldots a_{n-1} \sin(\theta_1 + \theta_2 + \ldots + \theta_{n-1}) ] \\
 &+ a_2 [ a_3 \sin (\theta_2) + a_4 \sin (\theta_2 + \theta_3) + \ldots + a_{n-1} \sin (\theta_2 + \theta_3 + \ldots + \theta_{n-1})] \\
 &+ \dots + a_{n-2} \sin (\theta_{n-1})) \tag{5}
 \end{aligned}$$
@@ -190,9 +188,9 @@ This and (4) are two ways of expressing the same idea: the area of a polygon in 
 
 --------
 
-## 3
+## 5. A Summary of Lopshits
 
-As mentioned, the Wikipedia article on [polygons](https://en.wikipedia.org/wiki/Polygon) sources formula (5) from *Computation of Areas of Oriented Figures* by A.M. Lopshits, published 1959. It turns out some other people have chased that link and also cited this text, but I could not get my hands on a .pdf version, so I got it from the university library.
+As mentioned in the intro, the Wikipedia article on [polygons](https://en.wikipedia.org/wiki/Polygon) sources formula (5) from *Computation of Areas of Oriented Figures* by A.M. Lopshits, published 1959. It turns out some other people have chased that link and also cited this text, but I could not get my hands on a .pdf version, so I got it from the university library.
 
 If you are curious what it contains, here's an outline. The short version is: not much. I wanted more formulas and ideas in the vein of (5), but much deeper. Turns out, though, that's it's a mostly pedagogical text that reaches that formula as its final result after spending 40 pages on the concept of oriented area and related (elementary) geometric proofs.
 
@@ -202,7 +200,7 @@ If you are curious what it contains, here's an outline. The short version is: no
 1. Oriented triangles are a lot like regular triangles, but oriented.
 2. Oriented triangles have oriented areas.
 	* The simplest way to see that this might be useful is this:
-	* Consider a triangle $$ABC$$. If $$A'$$ is a point on the line segment $$BC$$, then $$area(ABC) = area(A'AB) + area(A'CA)$$.<br/>{% include image.html filename="2018-08-06/18-triangle.svg" width="150px" %}
+	* Consider a triangle $$ABC$$. If $$A'$$ is a point on the line segment $$BC$$, then $$\text{area}(ABC) = \text{area}(A'AB) + \text{area}(A'CA)$$.<br/>{% include image.html filename="2018-08-06/18-triangle.svg" width="150px" %}
 	* If we allow ourselves _oriented_ triangles and areas, this remains true even if $$A'$$ is a point on the line $$\overrightarrow{BC}$$, but _outside_ the triangle:<br/>{% include image.html filename="2018-08-06/19-triangle2.svg" width="200px" %}
 	* Lopshits makes all of these points arduously, in multiple theorems with elaborate proofs. I suspect the mid-century Russians loved proving things arduously.
 3. The area of an oriented triangle can be calculate using the shoelace formula for any choice of origin $$\mathcal{O}$$.
@@ -218,17 +216,17 @@ Designate the center of the polygon as the origin $$\mathcal{O}$$. The angle bet
 
 Noting that $$\mathcal{O} A_1 A_6$$ has the opposite orientation of $$\mathcal{O} A_1 A_2$$, the total signed area $$S$$ of the figure $$A_1 A_6 A_5 A_{10} A_9 A_2$$ is:
 
-$$\begin{aligned} S &= 3[area(\mathcal{O}A_1 A_6) + area(\mathcal{O} A_2 A_1)] \\
+$$\begin{aligned} S &= 3[\text{area}(\mathcal{O}A_1 A_6) + \text{area}(\mathcal{O} A_2 A_1)] \\
 &= 3 \frac{R^2}{2} [ -\sin 150 \degree +\sin 30 \degree ] \\
 &= 0 \end{aligned}$$
 
 But this can also be written as 
 
-$$S = area(C_1 C_2 C_3) + 3 \cdot area(C_1 A_1 A_2)$$
+$$S = \text{area}(C_1 C_2 C_3) + 3 \cdot \text{area}(C_1 A_1 A_2)$$
 
 Which gives:
 
-$$3 \cdot area(C_1 A_1 A_2) = -area(C_1 C_2 C_3)$$
+$$3 \cdot \text{area}(C_1 A_1 A_2) = -\text{area}(C_1 C_2 C_3)$$
 
 </aside>
 
@@ -240,9 +238,9 @@ There is one theorem I found interesting, though:
 2. "Imagine a directed segment $$\overrightarrow{AB}$$ in the plane. Let us move it around the plane, finally bringing it back to its original position. In this motion the end $$A$$ and $$B$$ will of course trace out closed curved $$L_A$$ and $$L_B$$. Also, $$\overrightarrow{AB}$$ will sweep out an oriented area $$S$$."
 	Theorem:
 
-	$$area(S) = area(L_A) - area(L_B)$$
+	$$\text{area}(S) = \text{area}(L_A) - \text{area}(L_B)$$
 
-	This is simple to convince yourself of -- as oriented areas, we must have $$area(S) = area(L_A) + area(L_B)$$, and one of the areas must be oppositely-oriented so we may pick $$area(L_B)$$ to be negative. 
+	This is simple to convince yourself of -- as oriented areas, we must have $$\text{area}(S) = \text{area}(L_A) + \text{area}(L_B)$$, and one of the areas must be oppositely-oriented so we may pick $$\text{area}(L_B)$$ to be negative. 
 
 **Chapter 3. Computation of the Area of a Polygon Useful in Surveying**
 1. This section primarily produces my formula (5). The argument for its use in surveying is that the formula uses only scalar lengths and angles, meaning that one can find the area of unwieldy regions (say, a plot of land) by measuring all the lengths and angles individually and then computing the result.
@@ -256,9 +254,9 @@ And that's pretty much... it. I'm a little disappointed.
 
 ---------
 
-## 4
+## 5. The Shoelace Formnula as an Area Integral
 
-It's worth discussing how the shoelace formula is related to integral calculus. After all, if anything is the 'canonical' way to calculate area, it's an area integral: $$area(P) = \iint_P 1 \, dx dy$$.
+It's worth discussing how the shoelace formula is related to integral calculus. After all, if anything is the 'canonical' way to calculate area, it's an area integral: $$\text{area}(P) = \iint_P 1 \, dx dy$$.
 
 [Green's theorem](https://en.wikipedia.org/wiki/Green%27s_theorem) says how we can translate an area integral over a region into an integral over its boundary. Specifically, it says that an area integral over a region is equivalent to certain a line integral around the boundary of the region. If $$L$$ and $$M$$ are functions with continuous partial derivatives in a region $$D$$ bounded by an (oriented!) curve $$C$$, then:
 
@@ -266,7 +264,7 @@ $$\oint_C L \, dx + M \, dy = \iint [ \p_x M - \p_y L ] dx dy$$
 
 For the simple case of $$\iint 1 \, dx dy$$, we just need to find any $$L,M$$ which have $$\p_x M - \p_y L = 1$$. This is easily done with either $$M(x,y) = x$$, $$L(x,y) = -y$$, or any combination of them, like $$\frac{1}{2} (M + L)$$. Therefore each of these gives an integral for area:
 
-$$\begin{aligned} area(D) &= \iint_D 1 \, dx dy \\
+$$\begin{aligned} \text{area}(D) &= \iint_D 1 \, dx dy \\
 &= \oint_C x dy \\
 &= \oint_C -y dx \\
 &= \frac{1}{2} \oint_C x \, dy - y \, dx = \frac{1}{2} \oint_C (x,y) \times (dx, dy) \end{aligned}$$ 
@@ -289,7 +287,7 @@ $$\frac{1}{2} \oint_C (x,y) \times (dx,dy) = \frac{1}{2} \sum_i p_i \times \b{d}
 
 While we're at it, maybe we can come up with an 'integral form' of (3) or (4). Naively, it should look something like this, right?
 
-$$area(D) = \frac{1}{2} \sum_i \sum_{j < i} \b{d}_j \times \b{d}_i \Lra \frac{1}{2} \int_0^1 \int_0^t \; \dot{\vec{\gamma}}(s) \times \dot{\vec{\gamma}} (t) \, ds \, dt$$
+$$\text{area}(D) = \frac{1}{2} \sum_i \sum_{j < i} \b{d}_j \times \b{d}_i \Lra \frac{1}{2} \int_0^1 \int_0^t \; \dot{\vec{\gamma}}(s) \times \dot{\vec{\gamma}} (t) \, ds \, dt$$
 
 Where we parameterize the curve $$C$$ enclosing our region as $$\vec{\gamma}(t)$$ for $$t \in [0, 1]$$.
 
@@ -297,7 +295,7 @@ This is just taking the integral formula $$\frac{1}{2} \oint_C \vec{\gamma}(t) \
 
 -------
 
-## 5
+## 6. The Shoelace Formula in Higher Dimensions
 
 The fact that the shoelace formula is a consequence of Green's theorem means that there should be a way to take it to higher dimensions. Green's theorem readily generalizes to [Stoke's Theorem](https://en.wikipedia.org/wiki/Stokes%27_theorem) in arbitrary spaces, which says that the integral of a function (or differential form) over a closed surface can be equated to the integral of its derivative through the enclosed volume:
 
@@ -316,7 +314,7 @@ $$T = (t_1,0,0), (0,t_2,0), (0,0,t_3)$$
 
 We can compute the shoelace answer:
 
-$$\begin{aligned} area(T) &= \frac{1}{2} \big[ (t_1,0,0) \times (0,t_2,0) + (0,t_2,0) \times (0,0,t_3) + (0,0,t_3) \times (t_1,0,0) \big]  \\
+$$\begin{aligned} \text{area}(T) &= \frac{1}{2} \big[ (t_1,0,0) \times (0,t_2,0) + (0,t_2,0) \times (0,0,t_3) + (0,0,t_3) \times (t_1,0,0) \big]  \\
 &= \frac{1}{2} \big[ (0,0,t_1 t_2) + (t_2 t_3, 0, 0) + (0, t_3 t_1, 0)\big] \\
 &= \frac{1}{2} (t_2 t_3, t_3 t_1, t_1 t_2)
 \end{aligned}$$
@@ -325,7 +323,7 @@ But that's... not a scalar. What went wrong?
 
 The answer is that this the area of $$T$$ represented as a _vector_, which is normal to the plane of $$T$$. It tells you _more_ than the area -- it also tells you what direction the area faces. To get to the _scalar_ area, though, you have to take its magnitude:
 
-$$area(T) = | \frac{1}{2} (t_2 t_3, t_3 t_1, t_1 t_2) | = \frac{1}{2} \sqrt{t_2^2 t_3^2 + t_3^2 t_1^2 + t_1^2 t_2^2}$$
+$$\text{area}(T) = | \frac{1}{2} (t_2 t_3, t_3 t_1, t_1 t_2) | = \frac{1}{2} \sqrt{t_2^2 t_3^2 + t_3^2 t_1^2 + t_1^2 t_2^2}$$
 
 But you lose the sign when taking the magnitude -- the direction of that vector was what was telling us the orientation. In 3D, it's meaningless to say that a surface is 'positively' oriented -- what if it's orthogonal to the $$XY$$ plane? Should that be positive or negative? What if we flip it over? Orientation cannot be an intrinsic property of a shape if it changes as we rotate things!
 
@@ -354,19 +352,19 @@ As for volumes -- that will have to wait for another article. Higher-dimensional
 
 I will say only that if you _do_ have a list of oriented polygonal faces $$\{F_i\} = \{\{f_{ij}\}\}$$, then the volume of the pyramid created by a face with the origin is given by 
 
-$$\begin{aligned} volume(F_i) &= \frac{1}{6} f_{i0} \cdot \sum_j f_{ij} \times f_{i,j+1} \\
-&= \frac{1}{3} f_{i0} \cdot area(F_i)
+$$\begin{aligned} \text{volume}(F_i) &= \frac{1}{6} f_{i0} \cdot \sum_j f_{ij} \times f_{i,j+1} \\
+&= \frac{1}{3} f_{i0} \cdot \text{area}(F_i)
 \end{aligned}$$
 
-($$f_{i0}$$ just has to be any point on the face -- we're summing the volumes of the tetrahedrons $$(\mathcal{O}, f_{i0}, f_{ij}, f_{i,j+1})$$, and we need any third point in order to turn areas into volumes. $$area(F_i)$$ in this case is the area _vector_, not the scalar.) 
+($$f_{i0}$$ just has to be any point on the face -- we're summing the volumes of the tetrahedrons $$(\mathcal{O}, f_{i0}, f_{ij}, f_{i,j+1})$$, and we need any third point in order to turn areas into volumes. $$\text{area}(F_i)$$ in this case is the area _vector_, not the scalar.) 
 
 Then the volume of the whole figure is given by:
 
-$$volume(F) = \sum volume(F_i)$$
+$$\text{volume}(F) = \sum \text{volume}(F_i)$$
 
 ----------
 
-## 6
+## 7. Conclusion
 
 That's all I've got, for now. Hope it's useful, interesting, or otherwise not a total waste of time. I hope to revisit higher-dimensional shoelace-type formulas at some point, but it'll have to wait. This was exhausting (well, making it pretty was).
 
