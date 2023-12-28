@@ -4,7 +4,6 @@
 //
 // IMPORTS
 //
-$footnote-font-size: 0.8em;
 
 @import "reset";
 @import "variables";
@@ -37,7 +36,12 @@ body {
     #f2f2f2 30px,
     #ded 40px,
   );
+
+  @include mobile {
+    font-size: 16px;
+  }
 }
+
 
 hr {
   border-width: 1px;
@@ -81,7 +85,7 @@ sup, sub {
 }
 
 small {
-  font-size: 0.85em;
+  font-size: smaller;
 }
 
 .divider {
@@ -149,22 +153,22 @@ svg.trianglesvg {
 }
 
 h1 {
-  font-size: 24px;
+  font-size: 1.9em;
 }
 
 h2 {
-  font-size: 20px;
+  font-size: 1.7em;
   margin: 10px 0;
 }
 
 h3 {
-  font-size: 16px;
+  font-size: 1.3em;
   font-weight: 500;
   margin: 5px 0;
 }
 
 h4 {
-  font-size: 14px;
+  font-size: 1.1em;
   font-weight: bold;
 }
 
@@ -250,7 +254,7 @@ p.noscript {
 .date {
   font-style: italic;
   color: $gray;
-  font-size: 12px;
+  font-size: 0.9em;
 }
 
 // Specify the color of the selection
@@ -319,7 +323,7 @@ p.noscript {
   color: $darkGray;
   cursor: pointer;
   font-weight: 300;
-  font-size: 28px;
+  font-size: 2.5em;
   letter-spacing: 1px;
 }
 
@@ -337,7 +341,7 @@ p.noscript {
 
 .subheader, .mobile-subheader, .nav {
   color: $gray;
-  font-size: 14px;
+  font-size: 1.1em;
   font-weight: 300;
 
 
@@ -356,13 +360,12 @@ p.noscript {
 nav {
   float: right;
   margin-top: 23px;
-  font-size: 16px;
+  font-size: 1.2em;
 
   @include mobile {
     float: none;
     margin-top: 9px;
     display: block;
-    font-size: 16px;
   }
 
   a {
@@ -448,7 +451,6 @@ aside.hidden {
 
   .read-more {
   font-style: italic;
-    font-size: 13px;
   }
 }
 
@@ -470,7 +472,7 @@ footer {
   padding: 20px 0;
   text-align: left;
   font-style: italic;
-  font-size: 12px;
+  font-size: 0.9em;
 }
 
 code.language-plaintext {
@@ -516,7 +518,7 @@ p.indent {
 }
 
 .pagenavigation {
-  font-size: 14px;
+  font-size: 1.1em;
   display: flex;
   width: auto;
   overflow: hidden;

@@ -4,6 +4,8 @@ title: "On building this site"
 tag: tech
 ---
 
+# 1. notes from when I first set this up (~2017)
+
 After experimenting with some other ways of running person blogs I'm convinced that using Jekyll on Github pages is by far the easiest way to go.
 
 I like Markdown; I think it's a Good Thing and it's amazing it took so long to come around. Markup languages like html are clutzy and hard to write articles in. Wysiwyg editors are generally garbage, and do things like mess up copy-pasting. Markdown is the first web-ready way of writing that I've actually wanted to write in.
@@ -39,6 +41,19 @@ I figured out, mostly, how to do image includes in Jekyll from [this article](ht
 
 Issues with KateX:
 * commas after equations often flow onto the next line
-* fraction lines disappear randomly depending on the zoom. It's subpixel something or another in Chrome, but, yeah, it's pretty annoying. It's an [open bug](https://github.com/Khan/KaTeX/issues/824) in KateX)
+* fraction lines disappear randomly depending on the zoom. It's subpixel something or another in Chrome, but, yeah, it's pretty annoying. It's an [open bug](https://github.com/Khan/KaTeX/issues/824) in KateX.
 * macros would be *super useful*, since I write \mathbf{} 100x a page.
+  * update: I found a way to do this, but it's via text-substitution and it's [awkward](https://github.com/ajakaja/ajakaja.github.io/blob/master/_includes/katex.html). Still, it works, but it would be nice if it was implementing in a LaTeXier way so I could e.g. share it with other apps.
 * as mentioned above, the KateX integration with MathJax is wonky. But it still looks pretty good.
+
+# 2. notes from later (2023)
+
+Jekyll is very awkward to do any sort of sophisticated programming in. I tried, for a long time, to use the "categories" and "tags" systems to create dynamic lists --- all the math posts, all the tech posts, etc --- and eventually gave up. There are ways of doing it by adding your own Jekyll plugins, but it's very awkward and you can't use plugins on Github which means I would have to pay for hosting, waah. 
+
+It would be nice if Jekyll's templating system, which is implemented on Liquid, worked like an actual programming language instead of this bizarre Ruby contraption that can't be debugged or inspect and requires its own custom logic.
+
+Over time I've gotten really tired of editing .md files as text and refreshing them to see the updates. It is _fine_, I guess, but it's not the future. There's really no future, I think, in editing things in code and seeing what happens. In the long run everything will be WYSIWYG (somehow). 
+
+There are Jekyll "editors" in the world, particularly for content management usages. Some are free and some are paid. So far I'm reluctant to try them out because none of them support math, especially with my macros. In the long run I imagine that there needs to be some sort of "composable WYSIWYG editor": edit whatever file you want, but also extend the file format _and the editor_ with extensions like math, diagramming, code blocks, etc. I wonder how you would do that.
+
+For that matter, including images in Jekyll is the biggest pain of all. I would _like_ to have beautiful math diagrams on every page but ... how? The editing cycle is horrible. In one case I compiled a bunch of stuff in TeX/TikZ and copied it over. Now if I want to edit those images I have to get TikZ working again! It is awful. This stuff needs a solution.
