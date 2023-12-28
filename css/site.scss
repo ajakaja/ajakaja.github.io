@@ -20,6 +20,15 @@ html {
   height: 100%;
 }
 
+/*  
+  attempt to disable 'font boosting' on Android, because 
+  it doesn't work correctly for KaTeX and ends up with tiny equations.
+  in theory the site should be scaling correctly anyway.
+*/
+body {
+  max-height:1000000px;
+}
+
 body {
   font-size: 13px;
   font-family: $font;
