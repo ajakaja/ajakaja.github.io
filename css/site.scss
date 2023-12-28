@@ -18,6 +18,7 @@ $footnote-font-size: 0.8em;
 html {
   font-size: 100%;
   height: 100%;
+  text-size-adjust: none; /* attempt to fix font-boosting on android because it doesn't play well with KaTeX */
 }
 
 body {
