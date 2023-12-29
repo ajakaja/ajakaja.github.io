@@ -8,6 +8,8 @@
 @import "reset";
 @import "variables";
 @import "jquery.inline-footnotes";
+@import "highlights";
+
 // Syntax highlighting @import is at the bottom of this file
 
 /**************/
@@ -60,20 +62,6 @@ article hr {
   width: 100%;
 }
 
-/*  
-  attempt to disable 'font boosting' on Android, because 
-  it doesn't work correctly for KaTeX and ends up with tiny equations.
-  in theory the site should be scaling correctly anyway.
-*/
-article.post * {
-  max-height:1000000px;
-}
-
-article hr.large {
-  width: calc(100% + 50px);
-  margin-left: -25px;
-}
-
 sup, sub {
   line-height: 0;
   vertical-align: super;
@@ -98,12 +86,13 @@ small {
   display: flex;
   border-top: 1px solid $lightGray;
   flex-grow: 1;
+  overflow-x: scroll;
 }
 
 .sidebar {
   padding-top: 10px;
-  padding-left: 20px;
-  width: 120px;
+  padding-left: 16px;
+  min-width: 100px;
   background-color: $lightGray;
 
   @include mobile {
@@ -119,11 +108,12 @@ small {
 }
 
 .container {
-  padding: 20px 15px 30px 25px;
-  max-width: 740px;
+  padding: 20px 15px 30px 40px;
+  max-width: 600px;
   width: 100%;
   flex: 1;
   position: relative;
+  min-width: 0; /* allows text to resize inside a flex item. sigh. */
 }
 
 pre {
@@ -153,11 +143,11 @@ svg.trianglesvg {
 }
 
 h1 {
-  font-size: 1.9em;
+  font-size: 1.8em;
 }
 
 h2 {
-  font-size: 1.7em;
+  font-size: 1.6em;
   margin: 10px 0;
 }
 
@@ -170,6 +160,10 @@ h3 {
 h4 {
   font-size: 1.1em;
   font-weight: bold;
+}
+
+.entry {
+  text-align: justify;
 }
 
 .entry p {
@@ -267,14 +261,6 @@ p.noscript {
   background: $lightGray;
 }
 
-/*********************/
-/* LAYOUT / SECTIONS */
-/*********************/
-
-//
-// .masthead
-//
-
 .frame {
   background: $white;
   flex-grow: 1;
@@ -284,19 +270,16 @@ p.noscript {
   position: relative;
 }
 
-@media (min-width: 1000px) {
+@media (min-width: 900px) {
 .frame {
-    min-width: 1000px;
+    min-width: 850px;
     box-shadow: 0 0 5px 5px #dfe0e5;
     margin: 15px auto;
 }
 }
 
-.wrapper-masthead {
-  padding-left: 20px;
-}
-
-.masthead {
+.header {
+  margin-left: 16px;
   padding: 20px 0;
 
   @include mobile {
@@ -560,12 +543,12 @@ figcaption {
   margin: 0px auto;
 }
 
-@import "highlights";
 
 img.border {
   border: 2px solid #ddd;
   border-radius: 2px;
 }
+
 
 .entry > table {
   width: 90%;

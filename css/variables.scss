@@ -12,7 +12,7 @@ $font: "Helvetica Neue", Helvetica, sans-serif;
 
 // Mobile breakpoints
 @mixin mobile {
-  @media screen and (max-width: 640px) {
+  @media screen and (max-width: 600px) {
     @content;
   }
 }

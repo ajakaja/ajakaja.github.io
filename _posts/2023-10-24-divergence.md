@@ -7,27 +7,17 @@ footnotes: true
 aside: true
 ---
 
-There's an identity that shows up in electromagnetism which has been bugging me since college. 
+There's an identity in electromagnetism which has been bugging me since college. 
 
-As soon as we start using Gauss's Law
+Gauss's law says that the divergence of the electric field is equivalent to the charge distribution: $$\del \cdot \b{E} = \rho$$. But in order to use this for a point charge---which is the most basic example in the subject!---we already don't have the mathematical objects we need to calculate the divergence on the left or to represent the charge distribution on the right.
 
-$$\del \cdot \b{E} = \rho$$
-
-in introductory E&M, we run into the problem that, in order to use it for a point charge --- which is the most basic example in the subject! --- we already don't have the mathematical object we need to calculate the divergence on the left, or to represent the charge distribution on the right. The field of a point charge has to be
-
-$$\b{E} = q \hat{\b{r}}/4 \pi r^2$$
-
-And its charge has to be concentrated at a point, i.e. it's a delta function:
-
-$$\del \cdot \frac{q \hat{\b{r}}}{4 \pi r^2} = q \delta(\b{x})$$
-
-In your multivariable-calculus-based E&M class you mention this briefly, maybe, but you don't really use it. Yet it is... kinda weird? It feels like it should make sense inside of a larger framework.
+After all, the field of a point charge has to be $$\b{E} = q \hat{\b{r}}/4 \pi r^2$$, and since its charge has to be concentrated at a point it has to be a delta function: $$\del \cdot \frac{q \hat{\b{r}}}{4 \pi r^2} = q \delta(\b{x})$$. In your multivariable-calculus-based E&M class you might mention this briefly at best. Yet it is... kinda weird? And important? It feels like it should make a basic fact that lives inside of a larger intuitive framework of divergences and delta functions and everything else.
 
 <!--more-->
 
-Why, in the first place, are we using this divergence operator that we didn't know how to actually calculate --- are we missing something? Are there _other_ divergences that I don't know how to calculate? Does it work the same way in other dimensions? What about other powers of $$\frac{1}{r}$$? Are there _other_ derivative operators I don't know about that do similar tricks? Is there an equivalent version for the curl and by extension the magnetic field? Is there an equivalent version for dipoles, or multipoles? Etc. (The answer to all of these questions is 'yes', by the way.)
+Why, in the first place, are we using this divergence operator that we didn't know how to actually calculate---are we missing something? Are there _other_ divergences that we don't know how to calculate? Does it work the same way in other dimensions? What about other powers of $$\frac{1}{r}$$? Are there other derivative _operators_ we don't know about that do similar tricks? Is there an equivalent version for the curl and by extension the magnetic field? Is there an equivalent version for dipoles, or multipoles? Etc. (The answer to all of these questions is 'yes', by the way.)
 
-Not only is it unsatisfying, it's also hard to learn about. For years I've been referring back to this one [rather confusing physicsforum.com post](https://www.physicsforums.com/threads/divergence-of-the-e-field-at-a-theoretical-point-charge.956012/), and I'm pretty tired of reading that. It's not even good! Griffith's and other E&M textbooks have blurbs on the  subject also, of course, but they're obscured by pedagogy and most of the interesting parts are left as exercises. Meanwhile the treatment on venerable old Wikipedia is very slim and spread out over many hard-to-navigate articles, but the best one is probably [here](https://en.wikipedia.org/wiki/Green%27s_function_for_the_three-variable_Laplace_equation).
+Not only is it unsatisfying, it's also hard to learn about. For years I've been referring back to this one [rather confusing physicsforum.com post](https://www.physicsforums.com/threads/divergence-of-the-e-field-at-a-theoretical-point-charge.956012/), and I'm pretty tired of reading that. It's not even good! Griffith's and other E&M textbooks mention it but they're obscured by pedagogy and most of the interesting parts are left as exercises and even then they don't have much to say. Meanwhile venerable old Wikipedia's treatment is very slim and spread out over many hard-to-navigate articles; the best one is probably [here](https://en.wikipedia.org/wiki/Green%27s_function_for_the_three-variable_Laplace_equation) but it's still not great.
 
 So today's the day: I'm going to figure this out in all the generalization I want and write myself the reference I have wanted so I never have to visit that forum post, or that one page of Griffiths, ever again.
 
@@ -53,7 +43,7 @@ We also learn the differential form of Gauss's law, that the divergence $$\del \
 
 $$\rho(\b{x}) = q \delta(\b{x})$$
 
-But we also know the functional form of $$\b{E}$$ for a point charge: it's $$\frac{q \hat{\b{r}}}{4 \pi r^2}$$. Hence at least in $$\bb{R}^3$$ it must be true that:
+But we also know the functional form of $$\b{E}$$ for a point charge: it's $$q \hat{\b{r}} /4 \pi r^2$$. Hence at least in $$\bb{R}^3$$ it must be true that:
 
 $$\del \cdot \frac{\hat{\b{r}}}{r^2} = 4 \pi \delta(\b{x})$$
 
@@ -244,7 +234,7 @@ Or equivalently:
 
 $$V(\b{x}) = \frac{1}{4 \pi \| r \|}$$
 
-since $$r (\sgn (r)) = \frac{r}{\sgn (r)} = \| r \|$$. The $$\sgn(r)$$ hangs out even though it's always positive in order to give a correct derivative later.
+since $$r \, \sgn (r) = \frac{r}{\sgn (r)} = \| r \|$$. The $$\sgn(r)$$ hangs out even though it's always positive in order to give a correct derivative later.
 
 $$\begin{aligned}
 \del \frac{1}{\| r \|}  &= \p_r (\frac{1}{r} \, \sgn (r)) \\
@@ -272,10 +262,10 @@ There are some other weird papers around the subject:
 
 * [This](https://arxiv.org/pdf/1604.01121.pdf) paper by Edward Parker discusses various ways to get the terms in Jackson's argument.
 * [Some novel delta‐function identities](https://pubs.aip.org/aapt/ajp/article-abstract/51/9/826/1043129/Some-novel-delta-function-identities?redirectedFrom=fulltext) by Charles Frahm derives some of these equations with explicit calculations in indexes.
-* [Comment on “Some novel delta-function identities”](https://arxiv.org/abs/1001.1530) by Jerrold Franklin thinks that Frahm did it wrong and does it a different way, using "dyadic" notation for tensors, which always strikes me as juvenile for some reason. They do explicitly claim that the $$-\p^2 (\frac{1}{r}) = 4 \pi \hat{\b{x}}^{\o 2}\delta(\b{x})$$, though, and that everyone else has been integrating over the angular dependence implicitly.
+* [Comment on “Some novel delta-function identities”](https://arxiv.org/abs/1001.1530) by Jerrold Franklin thinks that Frahm did it wrong and does it a different way. They do explicitly claim that the $$-\p^2 (\frac{1}{r}) = 4 \pi \hat{\b{x}}^{\o 2}\delta(\b{x})$$, though, and that everyone else has been integrating over the angular dependence implicitly.
 * And then there's [Comment on "Comment on `Some novel delta-function identities"](https://arxiv.org/abs/1308.2262) by Yunyun Yang and Ricardo Estrada... but unfortunately ArXiv doesn't have the pdf. I think they took it down because it was an older version and they changed the name later: the actual paper is called [Distributions in spaces with thick points](https://repository.lsu.edu/cgi/viewcontent.cgi?article=1282&context=mathematics_pubs), which deals with everything more rigorously than I care for and honestly gets crazy in how complex it is, defining distributions on certain surfaces and a new kind of "thick" delta functions. Why is figuring out what happens at $$r=0$$ in $$\bb{R}^3$$ so hard?
 
-Math is horrifying, but this chain of commentaries is kinda funny. Out of all of these I think the trick of using $$\frac{1}{r} \ra \frac{1}{r} \sgn(r)$$ is easily the most useable. Stay away from thick distributions for now.
+Math is horrifying, but this chain of commentaries is kinda funny. Out of all of these I think the $$\frac{1}{r} \ra \frac{1}{r} \sgn(r)$$ trick is the most useable. Probably best to stay away from "thick distributions" for now.
 
 --------------
 
@@ -326,6 +316,6 @@ $$\begin{aligned}
 ---------
 
 
-Anyway, that's all I've got. Thanks for reading. 
+So there you go.
 
-These equations aren't surprising or anything: they're basically just the toy examples used for half the problems in that intro electromagnetism course. But it's satisfying to just see them written _explicitly_ as delta functions, instead of working backwards to that form afterwards. I think things would have been easier to learn, back then, if the delta-function forms of these objects were made explicit from the start.
+These equations aren't surprising or anything; they're basically the toy examples from an intro electromagnetism course, written in a different way. But it's satisfying to just see them written _explicitly_ as delta functions, instead of working backwards to that form afterwards. I think things would have been easier to learn, back then, if the delta-function forms of these objects were made explicit from the start.
