@@ -16,9 +16,9 @@ Here is a survey of understandings on each of the main types of Taylor series:
 
 I thought it would be useful to have everything I know about these written down in one place.
 
-These notes are not pedagogical; they're for crystallizing everything when you already have a partial understanding of what's going on. Particularly, I don't want to have to remember the difference between all the different flavors of Taylor series, so I find it helpful to just cast them all into the same form, which is possible because they're all the same thing (seriously why aren't they taught this way?).
+Particularly, I don't want to have to remember the difference between all the different flavors of Taylor series, so I find it helpful to just cast them all into the same form, which is possible because they're all the same thing (seriously why aren't they taught this way?).
 
-In these notes I am going to ignore discussions of convergence so that more ground can be covered. Generally it's important to address convergence in order to, well, not be wrong. And I'm certain that I've made statements which are wrong below. But I am just trying to make sure I understand what happens when everything works, because in my interests (physics) it usually does.
+These notes are for crystallizing everything when you already have a partial understanding of what's going on. I'm going to ignore discussions of convergence so that more ground can be covered and because I don't really care about it for the purposes of intuition. 
 
 <!--more-->
 
@@ -79,7 +79,7 @@ f(\b x + \b v) &= f(\b x) + [f_x v_x + f_y v_y] + \frac{1}{2!} [f_{xx} v_x^2 + 2
 &+ \frac{1}{3!} [f_{xxx} v_x^3 + 3 f_{xxy} v_x^2 v_y + 3 f_{xyy} v_x v_y^2 + f_{yyy} v_y^3] + \ldots
 \end{aligned} $$
 
-(The strangeness of the terms like $$2 f_{xy} v_x v_y$$ and $$3 f_{xxy} v_x^2 v_y$$ is because these are really sums of multiple terms; because of the [commutativity of partial derivatives](https://en.wikipedia.org/wiki/Symmetry_of_second_derivatives) on analytic functions, $$f_{xy} = f_{yx}$$, we can write $$f_{xy} v_x v_y + f_{yx} v_y v_x = 2 f_{xy} v_x v_y$$.)
+(The asymmetry of the terms like $$2 f_{xy} v_x v_y$$ and $$3 f_{xxy} v_x^2 v_y$$ is because these are really sums of multiple terms; because of the [commutativity of partial derivatives](https://en.wikipedia.org/wiki/Symmetry_of_second_derivatives) on analytic functions, $$f_{xy} = f_{yx}$$, we can write $$f_{xy} v_x v_y + f_{yx} v_y v_x = 2 f_{xy} v_x v_y$$.)
 
 The first few terms are often arranged like this:
 
@@ -96,11 +96,9 @@ f(\b x + \b v) &= f(\b x) + (v_x \p_x + v_y \p_y) f(\b x) + \frac{(v_x \p_x + v_
 \tag{Scalar Field}
 $$
 
-(This can also be written as a sum over every individual term using [multi-index notation](https://en.wikipedia.org/wiki/Multi-index_notation).)
-
 So that looks pretty good. And it can still be written as $$e^{ \b{v} \cdot \vec{\p}} f(\b{x})$$. The same formula -- now that we've hidden all the actual indexes -- happily continues to work for dimension $$> 2$$, as well.
 
-... Actually, this is not as surprising a formula as it might look. The multivariate Taylor series of $$f(\b{x})$$ is _really_ just a bunch of single-variable series multiplied together:
+... Although really the multivariate Taylor series of $$f(\b{x})$$ is really just a bunch of single-variable series multiplied together:
 
 $$\begin{aligned}
 f(x+ v_x, y + v_y) &= e^{v_x \p_x} f(x, y + v_y) \\
@@ -108,23 +106,21 @@ f(x+ v_x, y + v_y) &= e^{v_x \p_x} f(x, y + v_y) \\
 &= e^{v_x \p_x + v_y \p_y} f(x,y) \\
 &= e^{\b{v} \cdot \vec{\p}} f(\b{x}) \end{aligned} $$
 
-I mention all this because it's useful to have a solid idea of what a scalar function is before we move to _vector_ functions.
+I mention all this because it's useful to have a solid idea of what a scalar function is before we move to vector functions.
 
-Note that $$e^{v_x \p_x}e^{v_y \p_y} f(x,y) = e^{v_x \p_x + v_y \p_y} f(x,y) $$ is not always allowed. There are [complicated rules](https://en.wikipedia.org/wiki/Baker%E2%80%93Campbell%E2%80%93Hausdorff_formula) for how to combine exponentiated operators -- but fortunately, when the exponents commute (ie $$\p_x \p_y = \p_y \p_x$$, which we're just assuming is true here), you can add them in the normal way.
+Note that, when exponentiating operators, $$e^{v_x \p_x}e^{v_y \p_y} f(x,y) = e^{v_x \p_x + v_y \p_y} f(x,y) $$ is not always allowed. There are [complicated rules](https://en.wikipedia.org/wiki/Baker%E2%80%93Campbell%E2%80%93Hausdorff_formula) for how to combine exponentiated operators---but fortunately, when the exponents commute (ie $$\p_x \p_y = \p_y \p_x$$, which we're just assuming is true here), you can add them in the normal way.
 
 -------
 
 L'Hôpital's rule is more subtle for multivariable functions. In general the limit of a function may be different depending on what direction you approach from, so an expression like $$\lim_{\b{x} \ra 0} \frac{f(\b{x})}{g(\b{x})}$$ is not necessarily defined, even if both $$f$$ and $$g$$ have Taylor expansions. On the other hand, if we choose a path for $$\b{x} \ra 0$$, such as $$\b{x}(t) = (x(t), y(t))$$ then this just becomes a one-dimensional limit, and the regular rule applies again. So, for instance, while $$\lim_{\b x \ra 0} \frac{f(\b{x})}{g(\b x)}$$ may not be defined, $$\lim_{t \ra 0} \frac{f(t \b{v})}{g(t \b{v})}$$ is for any fixed vector $$\b{v}$$.
 
-And the path we take to approach $$0$$ doesn't even matter: only the gradients when we're infinitesimally close to $$0$$ do. For example, suppose we $$f(0,0) = g(0,0) = 0$$ and we're taking the limit on the path given by $$y = x^2$$:
+The path we take to approach $$0$$ doesn't even matter, actually; what matters is the gradients when we're infinitesimally close to $$0$$. For example, suppose we $$f(0,0) = g(0,0) = 0$$ and we're taking the limit on the path given by $$y = x^2$$:
 
 $$\lim_{\e \ra 0} \frac{f(\e,\e^2)}{g(\e,\e^2)} = \lim_{ \e \ra 0 } \frac{ f_x(0,0) \e +  O(\e^2) }{ g_x(0,0) \e + O(\e^2)} = \lim_{\e \ra 0} \frac{f(\e,0)}{g(\e,0)}$$
 
 The $$f_y$$ and $$g_y$$ terms are of order $$\e^2$$ and so drop out, leaving a limit taken only on the $$x$$-axis, corresponding to the fact that the tangent to $$(x,x^2)$$ at 0 is $$(1,0)$$.
 
-In fact, this problem basically exists in 1D also, except that limits can only come from two directions: $$x^+$$ and $$x^-$$, so lots of functions get away without a problem (but you can also [abuse this](https://en.wikipedia.org/wiki/Cauchy_principal_value)). L'Hôpital's rule only needs that the functions be expandable as a Taylor series on the side the limit comes from.
-
-I think that the concept of a limit that _doesn't_ specify a direction of approach is more common than it should be, because it's really quite problematic in practice. I'm not quite sure I fully understand the complexity of solving it in $$N > 1$$ dimension, but clearly if you just reduce to a 1-dimensional limit, you sweep the difficulties under the proverbial rug. See, perhaps, [this](https://arxiv.org/pdf/1209.0363.pdf) pre-print for a lot more information.
+In fact, this problem basically exists in 1D also, except that limits can only come from two directions: $$x^+$$ and $$x^-$$, so lots of functions get away without a problem. L'Hôpital's rule seems to require that the functions be expandable as a Taylor series on the side the limit comes from. Indeed, we might just define a sort of "any-sided limit" which associates with each direction of approach a (potentially) different value. I'm not quite sure I fully understand the complexity of doing that in $$N > 1$$ dimensions, but clearly if you can just reduce to a 1-dimensional limit the difficulties should be removed. See, perhaps, [this](https://arxiv.org/pdf/1209.0363.pdf) paper for a lot more information.
 
 -----
 
@@ -132,7 +128,7 @@ I think that the concept of a limit that _doesn't_ specify a direction of approa
 
 There are several types of vector-valued functions: one-dimensional curves like $$\gamma: \bb{R} \ra \bb{R}^n$$, or arbitrary-dimensional maps like $$\b{f}: \bb{R}^m \ra \bb{R}^n$$ (including from a space to itself), or maps between arbitrary differentiable manifolds $$f: M \ra N$$. In each case there is something like a Taylor series that can be defined. It's not commonly written out, but I think it _should be_, so let's try.
 
-Let's imagine our function maps spaces $$X \ra Y$$, where $$X$$ has $$m$$ coordinates and $$Y$$ has $$n$$ coordinates, and $$m$$ might be 1 in the case of a curve. Then along any _particular_ coordinate in $$Y$$ out of the $$n$$ -- call it $$y_i$$ -- the Taylor series expression from above holds, because $$f_i = \b{f} \cdot y_i$$ is just a scalar function.
+Let's imagine our function maps spaces $$X \ra Y$$, where $$X$$ has $$m$$ coordinates and $$Y$$ has $$n$$ coordinates, and $$m$$ might be 1 in the case of a curve. Then along any _particular_ coordinate in $$Y$$ out of the $$n$$---call it $$y_i$$---the Taylor series expression from above holds, because $$f_i = \b{f} \cdot y_i$$ is just a scalar function.
 
 $$f(\b{x} + \b{v})_i = e^{\b{v} \cdot \vec{\p}} [f(\b{x})_i]$$
 
@@ -140,7 +136,7 @@ But of course this holds in every $$i$$ at once, so it holds for the whole funct
 
 $$\b{f}(\b{x} + \b{v}) = e^{\b{v} \cdot \vec{\p}} \b{f}(\b{x})$$
 
-The subtlety here is that the partial derivatives $$\p$$ are now being taken _termwise_ -- once for each component of $$\b{f}$$. For example, consider the first few terms when $$X$$ and $$Y$$ are 2D:
+The subtlety here is that the partial derivatives $$\p$$ are now being taken _termwise_---once for each component of $$\b{f}$$. For example, consider the first few terms when $$X$$ and $$Y$$ are 2D:
 
 $$\begin{aligned}
 \b{f}(\b{x} + \b{v}) &= \b{f}(\b{x}) + (v_{x_1} \p_{x_1} + v_{x_2} \p_{x_2}) \b{f} + \frac{(v_{x_1} \p_{x_1} + v_{x_2} \p_{x_2})^2}{2!} \b{f} + \ldots\\
@@ -204,7 +200,7 @@ $$\begin{aligned}
 \p_{\bar{z}} &\underset{\bb{C}}{=} \frac{1}{2}(\p_x + i \p_y) \underset{\bb{R}^2}{=} \frac{1}{2}(\p_{\b{x}} - \p_{\b{y}})
 \end{aligned}$$
 
-In complex analysis, for some reason, $$\bar{z}$$ is not treated as a true variable, and we only consider a function as 'complex differentiable' when it has derivatives with respect to $$z$$ alone. Notably, we would say that the derivative $$\p_z \bar{z}$$ does not exist -- the value of $$\lim_{(x,y) \ra (0,0)} \frac{x + iy}{x - i y}$$ is different depending on the path you take towards the origin. These statements turn out to be _almost_ equivalent:
+In complex analysis, for some reason, $$\bar{z}$$ is not treated as a true variable, and we only consider a function as 'complex differentiable' when it has derivatives with respect to $$z$$ alone. Notably, we would say that the derivative $$\p_z \bar{z}$$ does not exist---the value of $$\lim_{(x,y) \ra (0,0)} \frac{x + iy}{x - i y}$$ is different depending on the path you take towards the origin. These statements turn out to be _almost_ equivalent:
 
 * $$f(z)$$ is a function of only $$z$$ in a region
 * $$\p_{\bar{z}} f(z) = 0$$ in a region
@@ -324,8 +320,6 @@ $$\begin{aligned}
 i \oint_C f(re^{i \theta})e^{-ik\theta} d\theta
 \end{aligned}$$
 
-The first integral term vanishes because $$r$$ is the same on both ends of the contour. The second integral is, or is massageable into (if the contour takes a funny path), a Fourier transform.
-
-I like this realization. Of the two concepts, I feel like Fourier transforms deal with the more tangible concept -- of breaking a function down into its frequency components. The contour integral turns out to measure which components of $$F$$ are rotating in such a way as to exactly cancel out the rotating path around the pole at $$\frac{1}{z}$$. Though I'm not sure how to reconcile the fact that contour integrals can count paths around multiple poles at the same time -- that seems equivalent to taking Fourier transforms in multiple frequencies in a single integral, and I'm not sure why you would want to do that.
+The first integral term vanishes because $$r$$ is the same on both ends of the contour. The second integral is a Fourier transform, or is massageable into one if the contour takes a funny path I guess. The contour integral turns out to measure which components of $$F$$ are rotating in such a way as to exactly cancel out the rotating path around the pole at $$\frac{1}{z}$$. Though I'm not sure how to reconcile the fact that contour integrals can count paths around multiple poles at the same time---that seems equivalent to taking Fourier transforms in multiple frequencies in a single integral, and I'm not sure why you would want to do that.
 
 </aside>
