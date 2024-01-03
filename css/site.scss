@@ -68,8 +68,13 @@ sup, sub {
   font-size: smaller;
 }
 
-.inline-footnote sup {
-  vertical-align: baseline;
+.inline-footnote {
+  sup {
+    vertical-align: baseline;
+  };
+  p {
+    text-align: left;
+  }
 }
 
 small {
@@ -93,7 +98,7 @@ small {
   padding-top: 10px;
   padding-left: 16px;
   min-width: 100px;
-  background-color: $lightGray;
+  background: linear-gradient(to bottom, $lightGray 0 300px, transparent 500px);
 
   @include mobile {
     display: none;
@@ -108,12 +113,17 @@ small {
 }
 
 .container {
-  padding: 20px 15px 30px 20px;
-  max-width: 600px;
+  margin: 40px 30px 30px 30px;
+  max-width: 560px;
   width: 100%;
   flex: 1;
   position: relative;
   min-width: 0; /* allows text to resize inside a flex item. sigh. */
+
+  @include mobile {
+    margin-top: 20px;
+    margin-left: 20px;
+  }
 }
 
 pre {
