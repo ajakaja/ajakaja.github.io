@@ -158,7 +158,7 @@ This agrees with what we wrote above, and even works in $$d=1$$ if you consider 
 
 # 4. Other Shapes and Multipoles
 
-If you stare at this for a while you realize that it generalizes to a lot more than just point charges. In fact every example charge distribution from elementary E&M has an expression as a delta function. It's just that we're not very good at using delta functions so we don't normally write them that way.
+In fact every example charge distribution from elementary E&M has an expression as a delta function. It's just that we're not very... good... at using delta functions so we don't normally write them that way.
 
 Here are two classic examples from intro E&M, plus the electric fields that you get from applying Gauss's law to their symmetries:
 
@@ -193,17 +193,15 @@ A perfect [electric dipole](https://en.wikipedia.org/wiki/Electric_dipole_moment
 
 $$\rho_{\text{dipole}}(\b{x}) = \lim_{d \ra 0} [(+ q)\delta(\b{x} - \b{d}/2) + (- q)\delta(\b{x} + \b{d}/2)] =  -\b{p} \cdot \p [ \delta(\b{x})] = -\p_{\b{p}} \delta(\b{x})$$
 
-> FIX SIGNS $$-\p_{\b{p}}$$
-
 So the charge distribution of a dipole is the gradient of a delta-function. That makes sense: the net charge is zero, but there's two infinite spikes at the origin infinitesimally close to each other, which is what $$\delta'$$ looks like.
 
 We can immediately write down the electric field and potential also:
 
 $$\begin{aligned}
 V_{\text{dipole}}(\b{x}) &= -\p_{\b{p}} [ \frac{1}{4 \pi r}] = \b{p} \cdot [\frac{\hat{\b{r}}}{4 \pi r^2} ]\\
--\del V_{\text{dipole}}(\b{x}) = \b{E}_{\text{dipole}}(\b{x}) &= -\p_{\b{p}}[ \frac{ \hat{\b{r}}}{4 \pi r^2}] =  \frac{3 (\b{p} \cdot \hat{\b{r}}) \hat{\b{r}} - \b{p}}{4 \pi r^3} \\
+\b{E}_{\text{dipole}}(\b{x}) = -\del V_{\text{dipole}}(\b{x})   &= -\p_{\b{p}}[ \frac{ \hat{\b{r}}}{4 \pi r^2}] =  \frac{3 (\b{p} \cdot \hat{\b{r}}) \hat{\b{r}} - \b{p}}{4 \pi r^3} \\
 
-\del \b{E}_{\text{dipole}}(\b{x}) = \rho_{\text{dipole}}(\b{x}) &=  -\p_{\b{p}} [\delta(\b{x})]  \\
+ \rho_{\text{dipole}}(\b{x}) = \del \b{E}_{\text{dipole}}(\b{x}) &=  -\p_{\b{p}} [\delta(\b{x})]  \\
 \end{aligned}$$
 
 (Although see the next aside for a correction to $$\b{E}$$: there's apparently supposed to be a delta function term there also.)
@@ -269,32 +267,99 @@ $$\b{E}_{\text{dipole}} \stackrel{?}{=} \frac{1}{4 \pi } [ \frac{3 (\b{p} \cdot 
 
 </aside>
 
+Another way of looking at dipoles is to consider manually placing a bunch of charges at a distance $$h$$ apart and then taking $$h \ra 0$$. Write $$\Delta_\b{v}$$ for a finite difference at a distance $$h$$ along the $$\b{v}$$. For instance $$\Delta_{\b{v}} = f(\b{x} + \b{v} h) - f(\b{x})$$. Note that $$\p_\b{v} f(\b{x}) = \lim_{h \ra 0} \Delta_\b{v} f(\b{x})$$. Also, we can write $$T_\b{z} f \equiv f(\b{x} + \b{z} h)$$, such that $$D_\b{z} = T_\b{z} - 1$$ and $$D_\b{z} f = (T_\b{z} - 1) f = T_\b{z} f - f$$.
 
-We can also make lines and planes and other shapes out of dipoles, for instance having a positively-charged line infinitesimally close to a negatively-charged line. The result is just that we take an additional $$-\p$$ of every term, which is equivalent to forcing the two charged surfaces to be $$d \ra 0$$ apart with opposite signs while holding the ratio $$qd$$ constant.
+Then a "physical" dipole (where the charges are a small but finite distance apart) is proportional to
 
-Higher-order multipoles work the same way. The [multipole distribution](https://en.wikipedia.org/wiki/Multipole_expansion) of a potential gives an Taylor expansion of $$V$$ away from the charges, in terms of the increasingly higher-order moments $$(q, \b{p}, Q, \ldots)$$ of the underlying charge distribtion.[^quad]
+$$\Delta_\b{z} \delta(\b{x}) = \delta(\b{x} + \b{z} h) - \delta(\b{x})$$
 
-[^quad]: $$Q$$ here is the rank-2 [quadrupole tensor](https://en.wikipedia.org/wiki/Quadrupole). Equations using it and higher-order multipoles are best unpacked in index notation: $$\p^2_{Q} \delta(\b{x}) = Q^{ij} \p_i \p_j \delta(\b{x})$$. By the way, I haven't learned a ton about $$Q$$, and I'm a bit confused about when it ought to have a factor of $$1/2$$ or not. It might be a convention. Definitely double-check before using this.
+
+
+Then the infinitesimal dipole charge distribution is given by $$\rho(\b{x}) = - \frac{q}{h} \Delta_\b{z} \delta(\b{x})$$, which in the limit where $$h \ra 0$$ with $$hq = p $$ fixed gives
+
+$$\rho_{\text{dipole}}(\b{x}) = (- p ) \p_\b{z} \delta(\b{x}) = (-p \b{z}) \cdot \p \delta(\b{x})$$
+
+A physical quadrupole is given by the "second finite difference" (so, second derivative). We can consider the case along a single axis:
+
+$$
+\begin{aligned}
+\Delta_\b{z}^2 \delta &= (T_\b{z} - 1)^2 \delta \\
+&= T_\b{z}^2 \delta - 2 T_\b{z} \delta + \delta \\
+&\equiv \delta(\b{x} + 2h \b{z}) - 2 \delta(\b{x} + h \b{z}) + \delta(\b{x}) 
+\end{aligned}
+$$
+
+In the limit we take $$h \ra 0 $$ while holding $$q^2 h = Q$$ and get $$\rho_{\b{z}\b{z}\text{-quadrupole}} = Q \p_\b{z}^2 \delta = \hat{Q} \cdot \p^2 \delta$$ (where $$\hat{Q}$$ is a quadrupole tensor which only has an $$\b{z}\b{z}$$ component). Or, we can do an $$\b{y}$$-$$\b{z}$$ quadrupole:
+
+$$
+\begin{aligned}
+\Delta_\b{y} \Delta_\b{z} \delta (\b{x}) &= (T_\b{y} - 1)(T_\b{z} - 1) \delta \\
+&= T_\b{y} T_\b{z} \delta - T_\b{y} \delta - T_\b{z} \delta + \delta \\
+&\equiv \delta(\b{x} + h(\b{z} + \b{y})) - \delta(\b{x} + h \b{xz}) - \delta(\b{x} + h \b{z}) + \delta(\b{x})
+\end{aligned}
+$$
+
+The limit with $$q^2 h = Q$$ is $$\rho_{yz\text{-quadrupole}} = Q \p_y \p_z \delta(\b{x}) = \hat{Q} \cdot \p^2 \delta$$ (where $$\hat{Q}$$ is now a quadrupole tensor which only has an $$yz$$ component).
+
+This construction is nicely easy to generalize, for instance to any charge distribution that's a mix of points and multipoles at any separation from each other.
+
+We can also make lines and planes and other shapes out of multipoles. For instance a "line of dipoles" looks like a positively-charged line infinitesimally close to a negatively-charged line. The result is just that we take an additional $$-\p$$ of every term, which is equivalent to forcing the two charged surfaces to be $$d \ra 0$$ apart with opposite signs while holding the ratio $$qd$$ constant. For instance a line of charge on the $$z$$ axis had charge distribution $$\rho_{\text{line}} = \mu \delta(x,y)$$. A dipole along the $$x$$-axis made out of two of thsee has charge distribution
+
+$$\rho_{\text{line of dipoles}} = \lim_{h \ra 0, h\mu = p} [\rho_{\text{line}}(\b{x} + h \hat{x}) - \rho_{\text{line}}(\b{x})] = p \p_x \delta(x,y) $$
+
+More generally, the [multipole distribution](https://en.wikipedia.org/wiki/Multipole_expansion) of a potential gives an Taylor expansion of $$V$$ away from the charges, in terms of the increasingly higher-order moments $$(q, \b{p},  \hat{Q}, \ldots)$$ of the underlying charge distribtion.[^quad]
+
+[^quad]: $$ \hat{Q}$$ here is the rank-2 [quadrupole tensor](https://en.wikipedia.org/wiki/Quadrupole). Equations using it and higher-order multipoles are best unpacked in index notation: $$\p^2_{ \hat{Q}} \delta(\b{x}) = Q^{ij} \p_i \p_j \delta(\b{x})$$. By the way, I haven't learned a ton about $$ \hat{Q}$$, and I'm a bit confused about when it ought to have a factor of $$1/2$$ or not. It might be a convention. Definitely double-check before using this.
 
 $$\begin{aligned}
-V(\b{x})_{\text{multipole}} &= \frac{1}{4 \pi} [\frac{q}{r} + \b{p} \cdot \frac{\hat{\b{r}}}{r^2} + \frac{1}{2} Q \cdot \frac{\hat{\b{r}}^{\o 2} }{r^3} + \ldots] \\
-&=[q + \b{p} \cdot (-\p) + \frac{1}{2} Q \cdot \p^2 + \ldots]\frac{1}{4 \pi r} \\
+V(\b{x})_{\text{multipole}} &= \frac{1}{4 \pi} [\frac{q}{r} + \b{p} \cdot \frac{\hat{\b{r}}}{r^2} + \frac{1}{2}  \hat{Q} \cdot \frac{\hat{\b{r}}^{\o 2} }{r^3} + \ldots] \\
+&=\frac{1}{4 \pi r}  [q + \b{p} \cdot (-\p) + \frac{1}{2}  \hat{Q} \cdot (-\p)^2 + \ldots]\\
 \end{aligned}$$
 
 
 Each of these terms is going to have a $$-\del^2$$ that gives a delta-function derivative of some order.
 
 $$\begin{aligned}
--\del V = \b{E}(\b{x})_{\text{multipole}} &=  [q + \b{p} \cdot (-\p) + \frac{1}{2} Q \cdot \p^{2} + \ldots] \frac{\hat{\b{r}}}{4 \pi r^2} \\
--\del^2 V = \rho(\b{x})_{\text{multipole}} &= [q + \b{p} \cdot (-\p) + \frac{1}{2} Q \cdot \p^{2} + \ldots] \delta^3(\b{x})
+-\del V = \b{E}(\b{x})_{\text{multipole}} &=  [q + \b{p} \cdot (-\p) + \frac{1}{2} \hat{Q} \cdot (-\p)^{2} + \ldots] \frac{\hat{\b{r}}}{4 \pi r^2} \\
+-\del^2 V = \rho(\b{x})_{\text{multipole}} &= [q + \b{p} \cdot (-\p) + \frac{1}{2}  \hat{Q} \cdot (-\p)^{2} + \ldots] \delta^3(\b{x})
 
 \end{aligned}$$
 
-This shows that, in general, there are lots of objects in $$\bb{R}^3$$ that have delta function divergences and it's not just $$\hat{\b{r}}/r^2$$; it's just that lots of them are delta-function derivatives instead, which are even harder to detect with the usual implementations of divergence. Presumably terms like $$\hat{\b{r}}{r^k}$$ therefore generically have divergences proportional to $$\delta^{(k-2)}(r)$$ but I'll leave the details for a later date.
+-----
+
+## 5. Other powers of $$r$$
+
+The multipole examples imply that in general, there are lots of objects in $$\bb{R}^3$$ that have delta function divergences and it's not just $$\hat{\b{r}}/r^2$$, but the results are going to involve _derivatives_ of delta functions instead... which are even harder to detect with the usual implementations of divergence. 
+
+For instance we can can compute $$\del \cdot \hat{\b{r}}/r^3$$ in two ways. Everywhere except the origin, we can use $$\del \cdot f(r) = \frac{1}{r^2} \p_r (r^2 f_r)$$ to get 
+
+$$\del \cdot \frac{\hat{\b{r}}}{r^3} = - \frac{1}{r^4}$$
+
+And around the origin we use the integral definition of divergence:
+
+$$
+\begin{aligned}
+\del \cdot \frac{\hat{\b{r}}}{r^3} &= \lim_{R \ra 0} \oint_{R} \frac{1}{r} \frac{d \Omega}{ r^2} \\
+&= \frac{4 \pi }{r} \delta^3(\b{x}) \\
+&= \frac{\delta(r)}{r^3} \\
+\end{aligned}
+$$
+
+It seems like we should be able to make the delta function into a derivative, similar to what showed up in the multipole distribution. But it's a little weird. Normally we can replace $$\delta/x^n$$ with $$\frac{(-1)^n}{n!} \delta^{(x)}$$. But it seems like the identity is probably a little bit different in radial coordinates, since after all we expect this to be true:
+
+$$\frac{4 \pi }{r} \delta^3(\b{x}) = \frac{1 }{r} \frac{\delta(r)}{ r^2} = \frac{- \delta'(r)}{r^2}$$
+
+That is, $$\frac{1}{r^3}$$ should give a _first_ derivative, not a _third_ derivative:
+
+$$\frac{4 \pi }{r} \delta^3(\b{x}) = \frac{1 }{r} \frac{\delta(r)}{ r^2} \stackrel{!}{\neq} \frac{- \delta^{(3)}(r)}{3!}$$
+
+The problem, I presume, is basically that $$\p_r \delta(r)$$ is a weird object, because in an integral against a test function $$\< -\p_r \delta(r), f \>$$, the normal integration-by-parts that lets us move the derivative across doesn't work: $$\< -\p_r \delta(r), f \> \neq \< \delta, \p_r f \> $$: since the radial integral has bounds $$(0,r)$$, we _can't_ ignore the boundary. This integration by parts is what justifies $$\delta(x)/x = -\p_x \delta(x)$$ normally, since $$\< \delta(x)/x, f \> = \< \delta, f/x \> = - f'(0)$$ (in a principal-value sense?). Therefore it is _probably_ best to leave $$\delta(r) / r^3$$ as-is instead of trying to turn it into a radial derivative. 
+
+Nevertheless I'm pretty sure there are ways to do it, but it's a lot more than I want to figure out right now. Roughly speaking, though, we can expect that a term like $$\delta(r)/r^k$$ is going to turn into a delta-function derivative that is comparable to $$\frac{1}{r^2}  \frac{(-1)^{k-2}}{(k-2)!} \delta^{(k-2)}$$, that is, it will act like a delta-derivative but it acts like a factor of $$\frac{1}{r^{(k-2)}}$$ instead. But I hope to figure out the actual details in a future article.
 
 --------------
 
-## 5. Curl and Magnetic Fields
+## 6. Curl and Magnetic Fields
 
 One last question. How does this work for magnetism and curl?
 
@@ -348,7 +413,7 @@ $$\begin{aligned}
 
 ---------
 
-## 6. Summary
+## 7. Summary
 
 Most of these equations are the same toy examples from an intro electromagnetism course, written in a different way. But it is satisfying to see them written "explicitly", which is what the delta functions let us do, instead of "working around" the delta function formulation by computing with e.g. Gauss's law. I think things would have been easier to learn, back then, if the delta-function forms of these objects were made explicit from the start.
 
