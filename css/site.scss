@@ -152,6 +152,10 @@ svg.trianglesvg {
   left: -8px;
 }
 
+span.inline-triangle {
+  color: #c3e281;
+}
+
 h1 {
   font-size: 1.8em;
 }
@@ -543,6 +547,8 @@ div.b {
   svg {
     opacity: 0.08;
   }
+
+  pointer-events: none;
 }
 
 figcaption {

@@ -8,7 +8,7 @@ title: "Math and Physics"
 I am slowly sifting through and summarizing all of the miscellaneous knowledge that's out there on the subject of "Geometric Algebra". GA is a quirky subfield of math that is obviously terrible yet obviously _on to something_, and I haven't quite figured out what it is but I also don't think anybody else has either. So far I am avoiding using the GA term directly because I don't want to be associated with it, but long-term the goal is to tackle GA head-on. So far I've got:
 
 {:class="bare"}
-* [Oriented Areas and the Shoelace Formula]({% post_url 2018-08-06-oriented-area %})
+* [0. Oriented Areas and the Shoelace Formula]({% post_url 2018-08-06-oriented-area %})
 * [1. Matrices and Determinants]({% post_url 2018-10-08-exterior-1 %})
 * [2. The Inner product]({% post_url 2018-10-09-exterior-2 %})
 * [3. The Hodge Star]({% post_url 2019-01-26-exterior-3 %})
@@ -33,7 +33,7 @@ I'm also slowly working through my undergraduate math and physics curriculum and
 * [Geometric Mean and Standard Deviation]({% post_url 2018-06-15-geometric-mean %})
 * [All About Taylor Series]({% post_url 2018-12-28-taylor-series %})
 * [The Essence of Complex Analysis]({% post_url 2020-08-10-complex-analysis %})
-* [The Essence of (the math of) Quantum Mechanics]({% post_url 2020-07-24-qm %})
+* [Simple Examples for Quantum Mechanics]({% post_url 2020-07-24-qm %})
 
 Every once in a while I write other miscellaneous math-related musings.
 
