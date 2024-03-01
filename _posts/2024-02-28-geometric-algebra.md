@@ -210,7 +210,9 @@ $$\b{a} \cdot \b{b} = \frac{1}{2}(ab + ba)$$
 
 $$\b{a} \^ \b{b} = \frac{1}{2}(ab - ba)$$
 
-This construction is appealing to people who came from physics because, again, their first exposure to exterior algebra was often in the form of Pauli matrices and Gamma matrices. The gamma matrices, famously, have their symmetric product equal to the (Minkowski) metric $$\eta^{\mu \nu} = \text{diag}(1, -1, -1, -1)$$:
+This construction is appealing to people who came from particle physics because, again, their first exposure to exterior algebra was probably in the form of Pauli matrices (which show up in the quantum mechanics of a non-relativistic electron) and Gamma matrices (which show up in the [Dirac Equation](https://en.wikipedia.org/wiki/Dirac_equation) for relativistic electrons and positrons).
+
+The gamma matrices, famously, have their symmetric product equal to the (Minkowski) metric $$\eta^{\mu \nu} = \text{diag}(1, -1, -1, -1)$$:
 
 $$\{ \gamma^\mu, \gamma^\nu \} = \gamma^\mu \gamma^\nu + \gamma^\nu \gamma^\mu = 2 \eta^{\mu \nu}$$
 
@@ -220,11 +222,11 @@ So if you were coming from knowing about Pauli matrice and Gamma matrices, findi
 
 But the argument doesn't really work for me. These operations are useful for complex numbers, quaternions/Pauli matrices, and Gamma matrices... and _nowhere else_. So why would you go rewrite all of vector algebra in terms of them?
 
-Moreover, if you do want to do physics in terms of basis vectors instead of Gamma matrices, it's not actually that helpful replace all the $$\gamma^\mu$$s with $$\b{x}^\mu$$s without actually having a physical interpretation for the operations that you're doing. You're multiplying coordinate vectors together---why? If your only purpose was to write wedge products and dot products you could just do that and use exterior algebra without the GP. The only reason the GP enters is that you specifically want to _keep_ using your matrices as matrices with ordinary matrix multiplication. But as soon you move them all over to $$\b{x}^\mu$$s, why not just write $$\b{x}^\mu \cdot \b{x}^\nu = \eta^{\mu \nu}$$? Why leave them in terms of $$\b{a} \cdot \b{b} = \frac{1}{2}(ab + ba)$$?
+Moreover, if you do want to do physics in terms of basis vectors instead of Gamma matrices, it's not actually that helpful replace all the $$\gamma^\mu$$s with $$\b{x}^\mu$$s without actually having a physical interpretation for the operations that you're doing. You're multiplying coordinate vectors together---why? If your only purpose was to write wedge products and dot products you could just do that and use exterior algebra without the GP. The only reason the GP enters is that you specifically want to _keep_ using your matrices as matrices with ordinary matrix multiplication. But as soon you move them all over to $$\b{x}^\mu$$s, why not just write $$\b{x}^\mu \cdot \b{x}^\nu = \eta^{\mu \nu}$$? Why leave them in terms of $$\b{a} \cdot \b{b} = \frac{1}{2}(ab + ba)$$? Well, I guess the answer is that you do need the matrix form in order to compute their action on spinors. But still.
 
-So that's another problem with GA: **The GP is only really natural in certain places in physics and even there it doesn't make a lot of sense. Yet GA is trying to use it everywhere, for everything, when other operations do a better job.**
+Anyway I'm counting it as another problem with GA: **The GP is only really natural in certain places in physics and even there it doesn't make a lot of sense. Yet GA is trying to use it everywhere, for everything, when other operations do a better job.**
 
-That said I'll admit that there is something suspicious about it all. Why does physics seem to want us to use these matrices that obey a Clifford algebra? Why does that turn out to model bispinors correctly? Is it confused, or am I? I'm not sure. But anyway, for now I'm sticking with my stance: even if physics wants us to use the GP for a couple specific cases, that's not a justification for teaching it to everybody and phrasing all of vector calculus and projective geometry in terms of it when it _has no geometric meaning_. Let's keep the mysterious unintelligible operation confined to the places that need it and insulate everyone else from it for now, okay?
+I will admit that there is something suspicious about it. Why does physics seem to want us to use these matrices that obey a Clifford algebra? Why does that turn out to model bispinors correctly? Is it confused, or am I? I'm not sure. But anyway, for now I'm sticking with my stance: even if physics wants us to use the GP for a couple specific cases, that's not a justification for teaching it to everybody and phrasing all of vector calculus and projective geometry in terms of it when it _has no geometric meaning_. Let's keep the mysterious unintelligible operation confined to the places that need it and insulate everyone else from it for now, okay?
 
 ------------
 
@@ -262,7 +264,7 @@ Anyway, if you start with the tensor product, then your pedagogical task is to e
 
 ----
 
-
+### Weird Associativity
 
 There are more problems.
 
