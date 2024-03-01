@@ -42,6 +42,7 @@ Every once in a while I write other miscellaneous math-related musings.
 * [Infinite Summations and You]({% post_url 2018-11-01-summations %})
 * [Aphantasia, or how not to do math in your head]({% post_url 2019-09-15-mental-math %})
 * [A possible derivation of the Born Rule]({% post_url 2019-12-22-many-worlds %})
+* [The Case Against Geometric Algebra]({% posst_url 2024-02-28-geometric-algebra %})
 
 
 ------------
