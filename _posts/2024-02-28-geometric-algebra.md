@@ -11,7 +11,7 @@ I've been thinking about writing this post for a long time. Normally I haunt the
 
 To be clear I'm not opposed to GA per se. What I have a problem with is some of the details of GA, and the fact that the proponents of GA haven't fixed those details yet.
 
-In particular **Hestenes' "geometric product" is a bad mathematical operation that needs to be discarded**, and that doing so is way overdue. Meanwhile GA is producing more and more enthusiasts every year, and it will take those people a while to realize the things a lot of us have realized, and in the meantime they will go on selling other people on GA and repeating the cycle. As a result GA is stuck in a sort of mediocrity. My purpose in writing this is to push it to improve and address those problems.
+In particular: **Hestenes' "geometric product" is a bad mathematical operation that needs to be discarded**, and doing so is way overdue. Meanwhile GA is producing more and more enthusiasts every year, and it will take those people a while to realize the things a lot of us have realized, and in the meantime they will go on selling other people on GA and repeating the cycle. As a result GA is stuck in a sort of mediocrity. My purpose in writing this is to push it to improve and address those problems.
 
 <!--more-->
 

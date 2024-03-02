@@ -5,12 +5,12 @@ title: about
 
 ### about me:
 
-I used to live in Seattle and worked as a software engineer at Amazon and Dropbox. I wasn't especially happy to work at either but there were good parts too. Instead of buying a big million dollar Seattle house like you're supposed to I keep quitting and doing a lot of road trips instead. At the moment I'm living in Durham, North Carolina, which is where I went to college a decade ago, because I got too depressed during Covid in Seattle to stay.
+Hi I'm Alex. I used to live in Seattle and worked as a software engineer at Amazon and Dropbox. I wasn't especially happy to work at either but there were good parts too. Instead of buying a big million dollar Seattle house like you're supposed to I quit and did a lot of road trips instead. At the moment I'm living in Durham, North Carolina, which is where I went to college a decade ago, because I got too depressed during Covid to stay in Seattle. For the time being I guess my hobby is writing essays about math.
 
-I am not a mathematician or physicist and am definitely not credible at all, please don't look at me like that. I try to stick with "explaining things better than Wikipedia does" because it's harder to be embarrasingly wrong that way.
+I am not a mathematician or physicist and am definitely not credible at all, please don't look at me like that. I try to stick with "explaining things better than Wikipedia does" because it's harder to be embarrasingly wrong that way, but I've also got opinions and I guess that's what blogs are for. In the long term I'd like to go graduate school and study mathematical physics but it's not clear how I would do that and be able to work on what I want to work on, so I'm just doing this for now.
 
 ### about this:
 
-I think you will agree that everything in the world is a bit broken and confusing. This blog is a small and uncredentialed attempt at contributing, mostly by trying to make math and physics less confusing for me and then publishing the results so that it has some hope of scaling. I'd love to work on correcting broken-and-confusingness for the rest of life also, but it's somewhat nerve-wracking to put your strong opinions about other subjects on the internet, so this will have to do for now.
+Hopefully you agree that everything in the world is a bit broken and confusing right now. This blog is a small and uncredentialed attempt at contributing, mostly by making math and physics and sometimes programming less confusing for me, and then publishing the results so that it has some hope of helping others. I'd love to work on correcting broken and confusing things for the rest of my life, but it's not clear what a good way of doing that would be. In the meantime I'm working on some ideas here.
 
-If for some reason you want to contact me, please do, I'd really love that. I'm at <alex.kritchevsky@gmail.com>. 
+If for some reason you want to contact me, please do, I'd appreicate that. I'm at <alex.kritchevsky@gmail.com>. 
