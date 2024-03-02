@@ -5,9 +5,9 @@ title: about
 
 ### about me:
 
-Hi, I'm Alex. I used to live in Seattle and worked as a software engineer at Amazon and Dropbox. I wasn't especially happy to work at either but there were good parts too. Instead of buying a big million dollar Seattle house like you're supposed to I quit and did a lot of road trips instead. At the moment I'm living in Durham, North Carolina, which is where I went to college a decade ago, because I got too depressed during Covid to stay in Seattle. For the time being I guess my hobby is writing essays about math.
+Hi, I'm Alex. I used to live in Seattle and worked as a software engineer at Amazon and Dropbox. I wasn't especially happy at either but there were good parts too. Instead of saving up for a million dollar Seattle house like you're supposed to, I quit and went on a lot of road trips instead. At the moment I'm living in Durham, North Carolina, which is where I went to college a decade ago, because I got too depressed during Covid to stay in Seattle. For the time being I guess my hobby is writing essays about math.
 
-I am not a mathematician or physicist and am definitely not credible at all, please don't look at me like that. I try to stick with "explaining things better than Wikipedia does" because it's harder to be embarrasingly wrong that way, but I've also got opinions and I guess that's what blogs are for. In the long term I'd like to go graduate school and study mathematical physics but it's not clear how I would do that and be able to work on what I want to work on, so I'm just doing this for now.
+I am not a mathematician or physicist and am definitely not credible at all, please don't look at me like that. I try to stick with "explaining things better than Wikipedia does" because it's harder to be embarrasingly wrong that way, but I've also got opinions and I guess that's what blogs are for. In the long term I probably belong in graduate school studying mathematical physics, but it's not clear how I would do that and be able to work on what I want to work on, so I'm just doing this for now.
 
 ### about this:
 
