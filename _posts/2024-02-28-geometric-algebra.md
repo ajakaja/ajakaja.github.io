@@ -7,7 +7,7 @@ aside: true
 tags: notes
 ---
 
-I've been thinking about writing this post for a long time. Normally I haunt the comment section on Hacker News and whenever an article about GA comes up I post something to the effect of: "GA is okay but it's not as good as those people say, there's something wrong with it, what you really want is the wedge product on its own!" Which is not especially productive and probably slightly unhinged. So today I want to make actually argue that point in one central place that I can link to instead.
+I've been thinking about writing this post for a long time. Normally I haunt the comment section on Hacker News and whenever an article about GA comes up I post something to the effect of: "GA is okay but it's not as good as those people say, there's something wrong with it, what you really want is the wedge product on its own!" Which is not especially productive and probably slightly unhinged. So today I want to actually make that point in one central place that I can link to instead.
 
 To be clear I'm not opposed to GA per se. What I have a problem with is some of the details of GA, and the fact that the proponents of GA haven't fixed those details yet.
 
