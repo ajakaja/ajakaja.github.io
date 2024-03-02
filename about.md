@@ -13,4 +13,4 @@ I am not a mathematician or physicist and am definitely not credible at all, ple
 
 Hopefully you agree that everything in the world is a bit broken and confusing right now. This blog is a small and uncredentialed attempt at contributing, mostly by making math and physics and sometimes programming less confusing for me, and then publishing the results so that it has some hope of helping others. I'd love to work on correcting broken and confusing things for the rest of my life, but it's not clear what a good way of doing that would be. In the meantime I'm working on some ideas here.
 
-If for some reason you want to contact me, please do, I'd appreicate that. I'm at <alex.kritchevsky@gmail.com>. 
+If for some reason you want to contact me, please do, I'd appreicate that. I'm at <alex.kritchevsky@gmail.com>. I also have a Twitter account that I don't really use but feel free to message me there also: [@ajkish](https://twitter.com/ajkish).
