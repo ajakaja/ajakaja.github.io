@@ -29,9 +29,10 @@ And occasionally:
 * [Works in Progress](https://www.worksinprogress.news) --- for actually-technical writing about how the world actually works.
 * [Acko.net](https://acko.net/) --- Steve Wittens is a bit of a kooky nutjob and a bit of a genius. I love that he's trying to make React for graphics programming and would maintain a healthy distance from the social commentary because it's not very reasonable although I can see how a person might feel that way.
 * [WorryDream](http://worrydream.com/) --- Bret Victor has a vision for the future which I don't exactly agree with but at least he's walking the right direction while everyone else is circling the origin. Also, his site is very neat.
-* [Digital Antiquarian](https://www.filfre.net/) -- detailed histories of computer stuff.
+* [Digital Antiquarian](https://www.filfre.net/) --- detailed histories of computer stuff.
+* [Construction Physics](https://www.construction-physics.com/) --- in-depth essays on how stuff gets built.
 
 Also, just in case you don't know about these: the trick to doing your own education in a world of closed-access papers and 100$ textbooks is to ~~steal~~ borrow them. You can look these up yourself.
 * Library Genesis --- for all the textbooks
-* Sci-Hub --- for all the old papers
+* Sci-Hub --- for all the old papers, when it works.
 * [ArXiv](https://arxiv.org/) --- for most of the new papers, and legally at that.
