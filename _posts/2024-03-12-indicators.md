@@ -358,11 +358,11 @@ It's intriguing that the product of delta functions implements something like "i
 
 We can also do Stoke's theorem. Suppose $$g(\b{x})$$ is a well-behaved implicit function that describes a volume $$V$$, and is positive on the interior of a closed 2-surface and negative on the exterior. Write $$\b{n} = \frac{\del g}{\| \del g \|}$$ for the outward-pointing normal vector. 
 
-So far we have integrated over $$\delta(g\b{x})$$, but suppose we want to integrate over the volume instead? The easiest way is to instead use a step function $$\theta(g(\b{x}))$$, because it helps us figure out the chain rule terms:
+So far we have integrated over $$\delta(g(\b{x}))$$, but suppose we want to integrate over the volume instead? The easiest way is to instead use a step function $$\theta(g(\b{x}))$$, because it helps us figure out the chain rule terms:
 
-$$(-\p_\b{x}) \theta(g(\b{x})) = (\del g) \delta(g(\b{x}))$$
+$$(-\del) \theta(g(\b{x})) = (\del g) \delta(g(\b{x}))$$
 
-Note that $$\del g$$ on its own points in the direction of $$-\b{n}$$, into the surface, because $$g$$ increases as you go into the surface, so the $$-\p_\b{x}$$ flips this around to give $$+\b{n}$$. 
+Note that $$\del g$$ on its own points in the direction of $$-\b{n}$$, into the surface, because $$g$$ increases as you go into the surface, so the $$-\del$$ flips this around to give $$+\b{n}$$. 
 
 We'll do the Divergence Theorem version of Stokes first because it is easiest to think about. We want to get
 
