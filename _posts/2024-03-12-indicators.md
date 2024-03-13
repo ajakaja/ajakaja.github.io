@@ -370,7 +370,7 @@ $$\int_{\sigma} dF = \oint_{\p \sigma} F$$
 
 $$F$$ here is a vector field (which is probably better thought of as a bivector field). Its exterior derivative is $$dF = (\p_x F_{x} + \p_y F_{y} + \p_z F_{z}) d^3 \b{x} = (\del \cdot F) d^3 \b{x}$$.
 
-Then (recall that integration by parts works with a scalar function times a vector field: $$H (\del \cdot F) = -(\p_x H F + \p_y H F_y + \p_z H F_z) = -\del H \cdot F$$.):
+Then (recall that integration by parts works with a scalar function times a vector field: $$G (\del \cdot F) = -\del G \cdot F$$):
 
 $$
 \begin{aligned}
