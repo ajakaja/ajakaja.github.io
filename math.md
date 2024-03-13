@@ -24,6 +24,7 @@ I'm also searching for some kind of weird calculus that involves delta functions
 * [How To Invert Anything]({% post_url 2023-09-25-inverses %})
 * [Delta Function Miscellanea]({% post_url 2023-10-14-delta-fns %})
 * [Divergences and Delta Functions]({% post_url 2023-10-24-divergence %})
+* [Delta Functions via Inverse Differentials]({% post_url 2024-03-12-indicators %})
 
 
 I'm also slowly working through my undergraduate math and physics curriculum and trying to "compress" it in a way that makes sense to me. This is because I want to learn QFT to understand how the universe works, but (IMO) the foundations are so shaky that there's no point. I suspect everyone else is in the same boat but, unlike me, distrusts themselves instead of distrusting the foundations.
