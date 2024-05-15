@@ -21,10 +21,10 @@ As you may know, `useEffect` with an *empty* deps array runs once, on mount.
 
 ```tsx
 useEffect(() => {
-    // I'll run once, on mount.
-    return () => {
+  // I'll run once, on mount.
+  return () => {
     // and I'll run once, on unmount
-    };
+  };
 }, []);
 ```
 
@@ -32,7 +32,7 @@ And `useEffect` with *no* deps array runs on every render:
 
 ```tsx
 useEffect(() => {
-    // I'll run every time you get re-rendered. Why? Nobody knows.
+  // I'll run every time you get re-rendered. Why? Nobody knows.
 });
 ```
 
@@ -48,11 +48,11 @@ A common use of `useEffect` is to set up a listener manually.
 
 ```tsx
 useEffect(() => {
-    const keydown = () => { /* whatever */ };
-    document.addEventListener('keydown', keydown);
-    return () => {
-        document.removeEventListener('keydown', keydown);
-    };
+  const keydown = () => { /* whatever */ };
+  document.addEventListener('keydown', keydown);
+  return () => {
+    document.removeEventListener('keydown', keydown);
+  };
 }, []);
 ```
 
@@ -64,13 +64,13 @@ The React linter will tell you to make sure they’re all in the deps array, lik
 
 ```tsx
 useEffect(() => {
-    const keydown = dispatch(someAction(someId));
-    document.addEventListener('keydown', keydown);
-    return () => {
-        document.removeEventListener('keydown', keydown); 
-    }
+  const keydown = dispatch(someAction(someId));
+  document.addEventListener('keydown', keydown);
+  return () => {
+    document.removeEventListener('keydown', keydown); 
+  }
 }, [dispatch, someId]);
- // ^^^^ silly, but at least we appeased the linter?
+  // ^^^^ silly, but at least we appeased the linter?
 ```
 
 But now the listener is going to be being un-registered and re-registered whenever `someId` changes, even though that's completely pointless. In this case it is fairly innocuous, but it can combine with other weird situations and cause real bugs. Such as: sometimes you need listeners registered in a particular order for bubbling to work correctly (yes, unfortunate, but a common example is when both the page and a modal on the bind `Esc` keypresses and you want the modal to win the race). Another example: maybe the callback being registered in some other module that does non-trivial work on subscription, such as making a server call for a subscription token.
@@ -128,8 +128,8 @@ If you write higher-order components (which you shouldn't have to do because we 
 
 ```tsx
 const SomeHOC = (component) => { 
-    const wrapped = () => { /* whatever */ };
-    wrapped.displayName = `SomeHOC(${component.displayName})`;
+  const wrapped = () => { /* whatever */ };
+  wrapped.displayName = `SomeHOC(${component.displayName})`;
 };
 ```
 
@@ -186,8 +186,8 @@ Sometimes you have a bucket of props which you want to spread onto a subcomponen
 ```tsx
 type WrapperProps = ChildProps & { important: string; }
 const Wrapper: React.FC<WrapperProps> = (props) => {
-    const {important, ...rest} = props;
-    return <Child {...rest} />;
+  const {important, ...rest} = props;
+  return <Child {...rest} />;
 }
 ```
 
@@ -233,8 +233,8 @@ Spot the bug:
 
 ```tsx
 const SomeComponent: React.FC = ({userId, ...rest}) => {
-    const PartialChild = (rest) => <Child userId={userId} {...rest} />;
-    return <SomeWrapper ChildComponent={PartialChild} />
+  const PartialChild = (rest) => <Child userId={userId} {...rest} />;
+  return <SomeWrapper ChildComponent={PartialChild} />
 }
 
 const SomeWrapper: React.FC = ({ChildComponent}) => {
@@ -262,11 +262,11 @@ You also can’t totally avoid the problem by memoizing the child component:
 
 ```tsx
 const Component: React.FC = ({userId, ...rest}) => {
-    const MemoizedChild = React.useMemo(
-        () => (rest) => <Child userId={userId} {...rest} />, 
-        [userId]
-    );
-    return <SomeWrapper ChildComponent={MemoizedChild} />;
+  const MemoizedChild = React.useMemo(
+    () => (rest) => <Child userId={userId} {...rest} />, 
+    [userId]
+  );
+  return <SomeWrapper ChildComponent={MemoizedChild} />;
 }
 ```
 
@@ -276,8 +276,8 @@ The real solution is to zoom out a bit: it’s almost never what you want to rem
 
 ```tsx
 const Component: React.FC = ({userId, ...rest}) => {
-    const PartialChild = (rest) => <Child userId={userId} {...rest} />;
-    return <SomeWrapper childComponent={PartialChild} />; // note the lower-case "c"
+  const PartialChild = (rest) => <Child userId={userId} {...rest} />;
+  return <SomeWrapper childComponent={PartialChild} />; // note the lower-case "c"
 }
 
 const SomeWrapper: React.FC = ({childComponent}) => {

@@ -3,12 +3,14 @@ layout: article
 title: about
 ---
 
-### about me:
+### about this:
 
-Hi, I'm Alex. I live in North Carolina at the moment, and like to write articles about math and physics and sometimes programming. I started doing this because everything seems too confusing and opaque and none of the technical arguments stick in my mind, but clean intuition does. So I learn things and then try to write them out as pure intuition with no proofs and then I can hold onto it. 
+Hi, I'm Alex. I like to write articles about math and physics and sometimes programming. I started doing this because it's the only way I can remember anything: I need to convert things into a form I find intuitive to understand it, and I need to write the intuitions down to remember them later. These articles are mostly things I wish I had come across myself so that I would not have had to study them for so long, so I've put them online in case anyone else is looking for the same thing.
 
-I used to live in Seattle, where I worked as a software engineer at Amazon and Dropbox. I wasn't especially happy at either but there were good parts too. Instead of saving up for a million dollar Seattle house like you're supposed to, I quit and went on a lot of road trips instead. Seattle got too depressing during Covid so I left and moved back near home. For the time being I guess my hobby is writing essays about math.
+I am not a mathematician or physicist and am definitely not credible at all, please don't look at me like that. I know it's kind of silly. I'm kind of embarrassed about it. But I figure, there's nothing wrong with trying to find better explanations for things, and if it all seems dangerously unrigorous or confused or just wrong, sorry. But do let me know, so I can fix it up.
 
-I am not a mathematician or physicist and am definitely not credible at all, please don't look at me like that. I know it's kind of silly. I figure, there's a place in the world for people trying to find better explanations for things, and if it all seems dangerously unrigorous or confused or just wrong, sorry. Do let me know though so I can fix it up.
+### About me:
 
-If for some reason you want to contact me, please do, I'd appreicate it. I'm at <alex.kritchevsky@gmail.com>. I also have a Twitter account that I don't really use but feel free to message me there also: [@ajkish](https://twitter.com/ajkish).
+I live in Durham, North Carolina. I used to live in Seattle, where I worked as a software engineer at Amazon and Dropbox. I wasn't especially happy at either but there were good parts too. But during Covid Seattle got too depressing so I left and moved back near home. For the time being I guess my hobby is writing essays about math.
+
+If for some reason you want to contact me, please do, I'd appreciate it. I'm at <alex.kritchevsky@gmail.com>. I also have a Twitter account that I don't really use but feel free to message me there also: [@ajkish](https://twitter.com/ajkish).

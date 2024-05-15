@@ -12,6 +12,56 @@
 
 // Syntax highlighting @import is at the bottom of this file
 
+:root {
+  --link: #4183C4;
+  --link-hover: #3183A3;
+  --green-color: #c3e281;
+  --background: #fff;
+  --background-texture: repeating-linear-gradient(
+    -35deg,
+    #fff,
+    #f2f2f2 30px,
+    #ded 40px
+  );
+  --text-color: #000;
+  --selection: #eee;
+  --shadow: 0 0 5px 5px #dfe0e5;
+
+  --border: #eee;
+  --dark-border: #666;
+  --header: #333;
+  --subheader: #666;
+  --divider: #999;
+  --code-background: #efefef;
+  --sidebar:  linear-gradient(to bottom, var(--border) 0 300px, transparent 500px);
+}
+
+[data-theme="dark"] {
+  --background: #333;
+  --background-texture: repeating-linear-gradient(
+    -35deg,
+    #111,
+    #1a1a1a 30px,
+    rgb(35, 50, 35) 40px
+  );
+  --text-color: #eee;
+  --shadow: none;
+
+  --green-color: #92a961;
+  --link: #c3e281;
+  --link-hover: #92a961;
+  --header: #bbb;
+  --subheader: #ccc;
+  --border: #666;
+  --dark-border: #999;
+  --divider: #ccc;
+  --code-background: #222;
+  --sidebar: transparent;
+
+
+}
+
+
 /**************/
 /* BASE RULES */
 /**************/
@@ -24,20 +74,15 @@ html {
 
 body {
   font-size: 13px;
-  font-family: $font;
+  font-family: "Helvetica Neue", Helvetica, sans-serif;
   font-weight: normal;
-  color: #000;
+  color: var(--text-color);
   height: auto;
   display: flex;
   flex-direction: column;
   position: relative;
 
-  background: repeating-linear-gradient(
-    -35deg,
-    #fff,
-    #f2f2f2 30px,
-    #ded 40px,
-  );
+  background: var(--background-texture);
 
   @include mobile {
     font-size: 16px;
@@ -49,12 +94,12 @@ hr {
   border-width: 1px;
   border-style: none;
   width: 100%;
-  border-bottom: 1px inset $lightGray;
+  border-bottom: 1px inset var(--border);
 }
 
 hr.thick {
   border-width: 3px;
-  border-bottom: 3px inset $lightGray;
+  border-bottom: 3px inset var(--border);
   border-radius: 1px;
 }
 
@@ -82,14 +127,13 @@ small {
 }
 
 .divider {
-  border-bottom: 1px solid #999; 
+  border-bottom: 1px solid var(--divider); 
   width: 60px
 }
 
 .main {
   width: 100%;
   display: flex;
-  border-top: 1px solid $lightGray;
   flex-grow: 1;
   overflow-x: scroll;
 }
@@ -98,9 +142,26 @@ small {
   padding-top: 10px;
   padding-left: 16px;
   min-width: 100px;
-  background: linear-gradient(to bottom, $lightGray 0 300px, transparent 500px);
+  background: var(--sidebar);
 
   @include mobile {
+    display: none;
+  }
+}
+
+[data-theme="dark"]{
+  .dark-toggle  {
+    display: none;
+  }
+  .light-toggle {
+    display: block;
+  }
+}
+[data-theme="light"]{
+  .dark-toggle  {
+    display: block;
+  }
+  .light-toggle {
     display: none;
   }
 }
@@ -108,12 +169,14 @@ small {
 .mobile-subheader {
   display: none;
   @include mobile {
-    display: block;
+    display: flex;
+    justify-content: center;
+    column-gap: 5px;
   }
 }
 
 .container {
-  margin: 40px 30px 30px 30px;
+  margin: 20px 30px 30px 30px;
   max-width: 650px;
   width: 100%;
   flex: 1;
@@ -131,7 +194,7 @@ pre {
 }
 
 h1, h2, h3, h4, h5, h6 {
-  color: $darkerGray;
+  color: var(--header);
   font-weight: 400;
 
   line-height: 1.4;
@@ -150,10 +213,11 @@ h1, h2, h3, h4, h5, h6 {
 svg.trianglesvg {
   position: relative;
   left: -8px;
+  color: var(--green-color);
 }
 
 span.inline-triangle {
-  color: #c3e281;
+  color: var(--green-color);
 }
 
 h1 {
@@ -182,10 +246,10 @@ h4 {
 }
 
 a {
-  color: $blue;
+  color: var(--link);
 	cursor: pointer;
   &:hover, &:active {
-    color: $darkblue;
+    color: var(--link-hover);
   }
   text-decoration: none;
 }
@@ -231,8 +295,6 @@ ul#markdown-toc {
   line-height: 1.2em;
 }
 
-
-
 li br {
   line-height: 2
 }
@@ -256,22 +318,22 @@ p.noscript {
 
 .date {
   font-style: italic;
-  color: $gray;
+  color: var(--subheader);
   font-size: 0.9em;
 }
 
 // Specify the color of the selection
 ::-moz-selection {
-  color: $black;
-  background: $lightGray;
+  color: var(--text-color);
+  background: var(--selection);
 }
 ::selection {
-  color: $black;
-  background: $lightGray;
+  color: var(--text-color);
+  background: var(--selection);
 }
 
 .frame {
-  background: $white;
+  background: var(--background);
   flex-grow: 1;
   display: flex;
   flex-direction: column;
@@ -282,7 +344,7 @@ p.noscript {
 @media (min-width: 1000px) {
 .frame {
     min-width: 950px;
-    box-shadow: 0 0 5px 5px #dfe0e5;
+    box-shadow: var(--shadow);
     margin: 15px auto;
 }
 }
@@ -312,10 +374,10 @@ p.noscript {
 
 .site-name {
   margin: 0;
-  color: $darkGray;
+  color: var(--header);
   cursor: pointer;
   font-weight: 300;
-  font-size: 2.5em;
+  font-size: 2.1em;
   letter-spacing: 1px;
 }
 
@@ -332,7 +394,7 @@ p.noscript {
 }
 
 .subheader, .mobile-subheader, .nav {
-  color: $gray;
+  color: var(--subheader);
   font-size: 1.1em;
   font-weight: 300;
 
@@ -342,9 +404,9 @@ p.noscript {
   }
 
   a {
-      color: $gray;
+      color: var(--subheader);
     &:hover, &:active {
-      color: $blue;
+      color: var(--link);
     }
   }
 }
@@ -362,14 +424,14 @@ nav {
 
   a {
     margin-left: 20px;
-    color: $darkGray;
+    color: var(--nav);
     text-align: right;
     font-weight: 300;
     letter-spacing: 1px;
 
     @include mobile {
       margin: 0 10px;
-      color: $blue;
+      color: var(--link);
     }
   }
 
@@ -395,7 +457,7 @@ article {
 
 aside {
   margin: 20px;
-  border: 1px double #999;
+  border: 1px double var(--divider);
   border-radius: 5px;
   padding: 5px 10px;
   overflow: hidden;
@@ -414,7 +476,6 @@ aside.hidden {
 
 .posts > .post {
   padding-bottom: 1em;
-  border-bottom: 1px solid $lightGray;
   margin-bottom: 2em;
 }
 
@@ -426,9 +487,9 @@ aside.hidden {
 .post {
   blockquote {
     margin: 1.8em .8em;
-    border-left: 2px solid $gray;
+    border-left: 2px solid var(--divider);
     padding: 0.1em 1em;
-    color: $gray;
+    color: var(--subheader);
     font-size: 1em;
     font-style: italic;
   }
@@ -452,14 +513,6 @@ aside.hidden {
   }
 }
 
-.wrapper-footer {
-  margin-top: 50px;
-  border-top: 1px solid #ddd;
-  border-bottom: 1px solid #ddd;
-  background-color: $lightGray;
-  bottom: 0px;
-}
-
 footer {
   padding: 20px 0;
   text-align: left;
@@ -469,8 +522,8 @@ footer {
 
 code.language-plaintext {
   color: inherit;
-  background-color: #efefef;
-  padding: 2px 1px;
+  background-color: var(--code-background);
+  padding: 1px 5px;
 }
 
 h1,h2,h3 {
@@ -481,7 +534,7 @@ h1,h2,h3 {
 
 div .footnotes {
   font-size: 0.85em;
-  color: $gray;
+  color: var(--subheader);
 }
 
 sup[id^="fnref"] {
@@ -492,7 +545,7 @@ sup[id^="fnref"] {
 
 .box {
   margin: 1.8em .8em;
-  border: 1px solid $gray;
+  border: 1px solid var(--dark-border);
   padding: 0em 1em;
   font-size: 1em;
 }
@@ -542,6 +595,10 @@ div.b {
 
   svg {
     opacity: 0.08;
+    path {
+      fill: var(--green-color);
+      stroke: var(--text-color);
+    }
   }
 
   pointer-events: none;
@@ -556,7 +613,7 @@ figcaption {
 
 
 img.border {
-  border: 2px solid #ddd;
+  border: 2px solid var(--border);
   border-radius: 2px;
 }
 
@@ -566,28 +623,29 @@ img.border {
   margin: auto;
 
   thead {
-    background: #ddd;
+    background: var(--border);
   }
 
   th, td {
     padding: 3px;
     text-align: left;
-    border-left: 1px #ddd solid;
-    border-right: 1px #ddd solid;
+    border-left: 1px var(--border) solid;
+    border-right: 1px var(--border) solid;
   }
   tbody {
-    border: 1px #ddd solid;
+    border: 1px var(--border) solid;
   }
 }
 
 .highlight {
+  background-color: var(--code-background);
   .si {
-    color: black;
+    color: var(--text-color);
     font-style: normal;
   }
 
   .na {
-    color: black;
+    color: var(--text-color);
   }
 
   .kd {
@@ -608,11 +666,3 @@ pre.highlight {
   margin: 0px;
 }
 
-.overlay.on {
-  background-color: rgba(0, 0, 0, 0.2);
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  z-index: 1;
-  pointer-events: none;
-}

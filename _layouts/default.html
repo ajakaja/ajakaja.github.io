@@ -18,7 +18,6 @@
 </head>
 <body>
 
-<div class="overlay"></div>
 <div class="frame">
 {% include header.html %}
 <div class="main">
@@ -36,11 +35,9 @@
 {% if page.footnotes %}<script>
 $(document).ready(function() {
   $.inlineFootnotes({columnWidth: 1000});
-  if (window.location.hash.indexOf("#dark") >= 0) {
-    $(".overlay").addClass("on");
-  }
 });
 </script>{% endif %}
+{% include dark.html %}
 {% for js in page.js %}<script type="text/javascript" src="{{ js }}"/></script>{% endfor %}
 {% if page.math %}{% include katex.html %}{% endif %}
 {% include trianglescript.html %}

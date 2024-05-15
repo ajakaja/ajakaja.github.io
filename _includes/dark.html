@@ -1,0 +1,55 @@
+<script>
+window.setDarkMode = (on, savePref=false) => {
+  if(on) {
+    $(document.body).attr("data-theme", "dark");
+    $(".dark-toggle").addClass("hidden");
+    $(".light-toggle").removeClass("hidden");
+    if (savePref) {
+      localStorage.setItem("darkMode", "dark");
+    }
+  } else {
+    $(document.body).attr("data-theme", "light");
+    $(".dark-toggle").removeClass("hidden");
+    $(".light-toggle").addClass("hidden");
+    if (savePref) {
+      localStorage.setItem("darkMode", "light");
+    }
+  }
+
+}
+(() => {
+  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+    setDarkMode(true);
+  } else if(localStorage.getItem("darkMode") === "dark") {
+      setDarkMode(true);
+    }
+  else {
+    setDarkMode(false);
+  }
+})();
+$(document).ready(function() {
+  function removeHash() { 
+      history.replaceState("", document.title, window.location.pathname);
+  }
+  if (window.location.hash.indexOf("#dark") >= 0) {
+    window.setDarkMode(true);
+    removeHash();
+  }
+  if (window.location.hash.indexOf("#light") >= 0) {
+    window.setDarkMode(false);
+    removeHash();
+  }
+
+  $(".dark-toggle").click(e => {
+    setDarkMode(true, true);
+    e.preventDefault();
+  });
+  $(".light-toggle").click(e => {
+    setDarkMode(false, true);
+    e.preventDefault();
+  });
+
+
+});
+
+</script>

@@ -17,15 +17,15 @@ But first, some notations.
 
 ### Notations
 
-Our equations will involve lots of distributions, usually one of $$\delta$$ (the Dirac delta function), $$\theta$$ (the Heaviside step function), $$I$$ (the indicator function). These get quite verbose if you write them all out with their arguments like $$\delta(x-a)$$, so I like to use a series of shorthands to make things easier to read.
+Our equations will involve lots of distributions, particularly $$\delta$$ (the Dirac delta function), $$\theta$$ (the Heaviside step function), and $$I$$ (the indicator function). These get quite verbose if you write them all out with their arguments like $$\delta(x-a)$$, so I will be using some shorthands to make things easier to read:
 
-When the meaning is clear from context, we will omit the arguments for functions and distributions, so $$f$$ will be written for $$f(x)$$ when there is only one possible variable floating around.
+We will omit the arguments for functions and distributions when the meaning is clear from context: $$f$$ will be written instead of $$f(x)$$ when there it is obvious that the argument is in the variable $$x$$.
 
 $$f(x) \equiv f$$
 
-($$\equiv$$ means that something is defined as being equal to something else, as opposed to $$=$$ which means they are algebraically equal.)
+(I will be using $$\equiv$$ to mean that something is defined as being equal to something else, as opposed to $$=$$ which means they are algebraically equal.)
 
-We'd often like to also be able to omit an argument when it's of the form $$(x-a)$$, since this case is very common for distributions. We do this by moving the $$a$$ into a subscript and writing $$\delta_a$$ for $$\delta(x-a)$$. In practice we'll sometimes write this as $$\delta_{(a)}$$ instead, to make it clear that $$a$$ refers to a point.
+We'd often like to also be able to omit an argument when it's of the form $$(x-a)$$ as well, since this case is very common for distributions. We do this by moving the $$a$$ into a subscript,  writing $$\delta_a$$ for $$\delta(x-a)$$. In practice we'll sometimes write this as $$\delta_{(a)}$$ instead, to make it clear that $$a$$ refers to a point.
 
 $$
 \begin{aligned}
@@ -48,9 +48,15 @@ The generic surface is written with a capital letter to distinguish it from a po
 
 $$\int_I \d f = f \|_{\p I}$$
 
-When we use the interval notation $$1_{(a,b)} \equiv 1_{x \in (a,b)}$$, it is convenient to define $$1_{(b,a)} = -1_{(a,b)}$$. Therefore we would really like a sort of "oriented indicator function" instead which can take the value $$\pm 1$$ depending on whether $$a<b$$ or $$a > b$$. **In this article an indicator function over a range is understood to be an oriented indicator function**, rather than the usual indicator of mathematics which always has the value $$1$$.
+When we use the interval notation $$1_{(a,b)} \equiv 1_{x \in (a,b)}$$, it is convenient to define $$1_{(b,a)} = -1_{(a,b)}$$. Therefore we would really like a sort of "oriented indicator function" instead which can take the value $$\pm 1$$ depending on whether $$a<b$$ or $$a > b$$. Bolding this becuase it's important: **in this article an indicator function over a range is understood to be an oriented indicator function**, rather than the usual indicator of mathematics which always has the value $$1$$.
 
-We can take the subscript notation further by also allowing a subscript to contain a linear combination of surfaces, like $$1_{A + B} = 1_A + 1_B$$.  In every case the linear combination simply distributes over the function, so $$\delta_{A+B-C} = \delta_A + \delta_B - \delta_C$$, etc. When we write linear combinations of points, we write the points with parens, as $$(a) + (b)$$ so that it doesn't look like we're adding the points as vectors $$a + b$$. .
+$$1_{(a,b)} \equiv 
+\begin{cases}
++1 & a < b \\
+-1 & a > b
+\end{cases}$$
+
+We can take the subscript notation further by also allowing a subscript to contain a linear combination of surfaces, like $$1_{A + B} = 1_A + 1_B$$.  In every case the linear combination simply distributes over the function, so $$\delta_{A+B-C} = \delta_A + \delta_B - \delta_C$$, etc. When we write linear combinations of points, we write the points with parentheses, as $$(a) + (b)$$, so that it doesn't look like we're adding the points as vectors $$a + b$$.
 
 $$
 \begin{aligned}
@@ -61,7 +67,7 @@ $$
 \end{aligned}
 $$
 
-We can also use the same subscript notation on surface integrals:
+It's occasionally nice to also permit this notation for integrals. If $$A$$ and $$B$$ are two surfaces, then
 
 $$\int_{A - B} df \equiv \int_A \d f - \int_B \d f$$
 
@@ -70,19 +76,17 @@ Finally, know that I am going to be using the words "function" and "distribution
 
 ----------
 
-# 1. Integration with Indicators
+# 1. Integrating with Distributions
 
-An integral over a finite range $$(a,b)$$ can be written as integration against the indicator function for that range:
+Presumably you are aware that a delta function can be "used" to evaluate a function at a point:
+
+$$\int_{\bb{R}} \delta_a f \d x \equiv \int_{\bb{R}} \delta(x-a) f(x) \d x = f(a)$$
+
+It turns out that a lot of other operations can be converted into integrals against distributions. For instance, an integral over a finite range $$(a,b)$$ can be written as integration against the indicator function for that range:
 
 $$\int_a^b f' \d x  = \int_{\bb{R}} 1_{(a,b)} f' \d x = f(b) - f(a)$$
 
-Anyway, we can write an (oriented) indicator function over a range as the sum of two step functions:
-
-$$1_{(a,b)} = \theta_a - \theta_b$$
-
-This was the reason for the point about oriented indicator functions in the intro: $$1_{(a,b)} = -1_{(b,a)}$$ is nice because it's consistent with $$\theta_a - \theta_b = -(\theta_b - \theta_a)$$.
-
-Integrating against either form gives the same result:
+And we can write an (oriented) indicator function over a range as the sum of two step functions, $$1_{(a,b)} = \theta_a - \theta_b$$. Integrating against either form gives the same result:
 
 $$
 \begin{aligned}
@@ -93,6 +97,8 @@ $$
 &= f(b) - f(a)
 \end{aligned}
 $$
+
+(This was the reason for using oriented indicator functions: defining $$1_{(a,b)} = -1_{(b,a)}$$ makes it consistent with $$\theta_a - \theta_b = -(\theta_b - \theta_a)$$.)
 
 Another way of getting the result is by moving the derivative over onto the indicator function with integration-by-parts. Recall that $$\int_I u v' \d x = (u v) \|_{\p I} - \int_I u' v \d x$$. Here $$I = \bb{R}$$, so $$\p I = (-\infty, + \infty)$$, and the boundary terms vanish because $$1_{(a,b)}$$ is $$0$$ at $$\pm \infty$$.
 
