@@ -119,7 +119,7 @@ So basically I _do_ agree with them: GA is onto something, which is that geometr
 
 ----------
 
-# 3. The Actual Case Against GA
+# 2. The Actual Case Against GA
 
 As I wrote above: _Exterior Algebra_ is clearly valuable and widely used already in graduate-level math and physics. _Clifford Algebra_ is clearly widely used in theoretical mathematics and anything that has to do with spinors. So _Geometric Algebra_ ought to be evaluated on what it adds on top of those.
 
@@ -430,7 +430,7 @@ Anyway, I am just trying to make the case that GA's notion of vector division is
 
 -----------
 
-# 4. Summary
+# 3. Summary
 
 I have given a lot of reasons why I think GA is problematic: the Geometric Product is a bad operation for most purposes. It really implements operator composition and is not a very fundamental or intuitive thing. Using a Clifford Algebra to implement geometry is an implementation detail, appropriate for some problems but not for general understandings of vector algebra and all of geometry. Giving it first-class status and then bizarrely acting like _that is not weird_ is weird and alienating to people who can see through this trick. 
 
