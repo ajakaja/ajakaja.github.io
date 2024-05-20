@@ -18,12 +18,9 @@ window.setDarkMode = (on, savePref=false) => {
 
 }
 (() => {
-  if (window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches) {
+  if(localStorage.getItem("darkMode") === "dark") {
     setDarkMode(true);
-  } else if(localStorage.getItem("darkMode") === "dark") {
-      setDarkMode(true);
-    }
-  else {
+  } else {
     setDarkMode(false);
   }
 })();
