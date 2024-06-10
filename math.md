@@ -25,7 +25,7 @@ I'm also searching for some kind of weird calculus that involves delta functions
 * [Delta Function Miscellanea]({% post_url 2023-10-14-delta-fns %})
 * [Divergences and Delta Functions]({% post_url 2023-10-24-divergence %})
 * [Delta Functions via Inverse Differentials]({% post_url 2024-03-12-indicators %})
-
+* [The Essence of Lagrange Multipliers]({% post_url 2024-06-10-lagrange-multipliers %})
 
 I'm also slowly working through my undergraduate math and physics curriculum and trying to "compress" it in a way that makes sense to me. This is because I want to learn QFT to understand how the universe works, but (IMO) the foundations are so shaky that there's no point. I suspect everyone else is in the same boat but, unlike me, distrusts themselves instead of distrusting the foundations.
 
@@ -34,7 +34,7 @@ I'm also slowly working through my undergraduate math and physics curriculum and
 * [Geometric Mean and Standard Deviation]({% post_url 2018-06-15-geometric-mean %})
 * [All About Taylor Series]({% post_url 2018-12-28-taylor-series %})
 * [The Essence of Complex Analysis]({% post_url 2020-08-10-complex-analysis %})
-* [Simple Examples for Quantum Mechanics]({% post_url 2020-07-24-qm %})
+* [The Essence of Quantum Mechanics]({% post_url 2020-07-24-qm %})
 
 Every once in a while I write other miscellaneous math-related musings.
 
