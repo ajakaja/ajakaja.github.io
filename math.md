@@ -5,7 +5,7 @@ title: "Math and Physics"
 
 ## Articles
 
-I am slowly sifting through and summarizing all of the miscellaneous knowledge that's out there on the subject of "Geometric Algebra". GA is a quirky subfield of math that is obviously terrible yet obviously _on to something_, and I haven't quite figured out what it is but I also don't think anybody else has either. So far I am avoiding using the GA term directly because I don't want to be associated with it, but long-term the goal is to tackle GA head-on. So far I've got:
+I am slowly trying to wrap my head around the deeper parts of Exterior Algebra, which I think is still more important than people give it credit for. So far I've got:
 
 {:class="bare"}
 * [0. Oriented Areas and the Shoelace Formula]({% post_url 2018-08-06-oriented-area %})
@@ -18,7 +18,7 @@ I am slowly sifting through and summarizing all of the miscellaneous knowledge t
 * [7. Simplex Volumes and Boundaries]({% post_url 2019-03-02-exterior-7 %})
 * [8. All the Exterior Algebra Operations]({% post_url 2020-10-15-ea-operations %})
 
-I'm also searching for some kind of weird calculus that involves delta functions, pseudoinverses, and dividing by zero.
+I'm also playing around with the weird calculus of delta functions, pseudoinverses, and dividing by zero.
 
 {:class="bare"}
 * [How To Invert Anything]({% post_url 2023-09-25-inverses %})
@@ -27,7 +27,7 @@ I'm also searching for some kind of weird calculus that involves delta functions
 * [Delta Functions via Inverse Differentials]({% post_url 2024-03-12-indicators %})
 * [The Essence of Lagrange Multipliers]({% post_url 2024-06-10-lagrange-multipliers %})
 
-I'm also slowly working through my undergraduate math and physics curriculum and trying to "compress" it in a way that makes sense to me. This is because I want to learn QFT to understand how the universe works, but (IMO) the foundations are so shaky that there's no point. I suspect everyone else is in the same boat but, unlike me, distrusts themselves instead of distrusting the foundations.
+I'm also slowly working through my undergraduate math and physics curriculum and trying to "compress" it in a way that makes sense to me. This is because I want to learn QFT to understand how the universe works, but getting through the math hurts my brain. I think the foundations can be made a lot simpler and then it would be easier.
 
 {:class="bare"}
 * [Some Intuition For Entropy]({% post_url 2018-02-23-entropy-1 %})
@@ -50,7 +50,7 @@ Every once in a while I write other miscellaneous math-related musings.
 
 ## References
 
-I also write myself references which, dunno, could be useful somebody else I guess. These are generally less polished and might just be wrong in places, watch out.
+Here are some references which, dunno, could be useful to somebody else. These are generally less polished and might just be wrong in places, watch out.
 
 {:class="bare"}
 * [Bayesian Inference]({% link _notes/bayes.md %})

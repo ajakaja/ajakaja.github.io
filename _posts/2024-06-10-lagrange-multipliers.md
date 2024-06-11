@@ -7,93 +7,117 @@ footnotes: true
 aside: true
 ---
 
-In which we attempt to better understand multivariable calculus optimization problems.
+In which we attempt to better understand the classic multivariable calculus optimization problem.
 
 <!--more-->
 
-[Lagrange Multipliers](https://en.wikipedia.org/wiki/Lagrange_multiplier) are what you get when you try to solve a simple-sounding math problem in multivariable calculus:
+[Lagrange Multipliers](https://en.wikipedia.org/wiki/Lagrange_multiplier) are what you get when you try to solve a simple-sounding problem in multivariable calculus:
 
 > Maximize $$f(\b{x})$$
 > Subject to the constraint that $$g(\b{x}) = c$$
 
-In single-variable calculus you study maximization (/minimization/extremization/whatever) problems like "maximize $$f(x)$$". It was simple, at least in principle: set $$f'(x) = 0$$ and solve for $$x$$, if you can, and then check each solution to see if it is a maximum or a minimum or just a stationary point. But in multivariable you get trickier problems, because you can say things like "make sure the solution obeys a certain equation $$g(x) = c$$ at the same time", and it turns out that Lagrange multipliers are the trick to solving those. The trick is to instead maximize $$L = f(\b{x}) + \lambda (g(\b{x}) - c)$$ for both variables $$(x, \lambda)$$, by solving $$\del L = \p_{\lambda} L = 0 $$. Equivalently, "notice that the solution will obey $$\del f \propto \del g$$, rather than $$\del f = 0$$". 
+Lagrange multipliers are a trick to solving this. The trick is to instead maximize $$L = f(\b{x}) + \lambda (g(\b{x}) - c)$$ for both $$\b{x}$$ and a made-up variable $$\lambda$$, by solving $$\del L = \p_{\lambda} L = 0$$ instead. Equivalently, "notice that the solution will obey $$\del f \propto \del g$$, rather than $$\del f = 0$$ like it would if there was no constraint".
 
 I'm told that Lagrange multipliers show up all over mathematics and are a widely used technique for solving real-world problems. Couldn't tell you much about that. But I care about them for three reasons:
 
-One, the explanation for how to solve them that you get in undergraduate calculus is very... philosophically unsatisfying. I don't like techniques that arising from "noticing" something; I would also rather the insight somehow emerge from a natural calculation. Depending on your background noticing this might be easier or difficult, but in either case it's not satisfying for a problem to be solved by a trick.
+One, the explanation for how to solve them that you get in undergraduate calculus is very philosophically unsatisfying. I don't like techniques that arising from "noticing" something and then proving it works. Depending on your background noticing it might be easier or difficult, but in either case it's not satisfying for a problem to be solved by a trick. Instead the insight should somehow emerge from a natural calculation.
 
-Two, I am very interested in the concept of "generalized inverses", of which Lagrange multipliers include several great examples (to be demonstrated shortly). The algebra of these is a bit unfamiliar so it's helpful to play with some examples.
+Two, I am very interested in the concept of "generalized inverses", of which Lagrange multipliers include several great examples (to be demonstrated shortly). The algebra of these is a bit unfamiliar so it's helpful to play with some examples. More generally I think there are a few concepts (generalized inverses, pseudoinverses, dual bases, vector division, frames) that ought to be more widely used, and I intend for this to be an example of why.
 
-Three, various applications of Lagrange multipliers in physics (QFT, statmech, Lagrangian mechanics) imply that Lagrange multipliers are an incredibly deep and important concept, far beyond their initial impression, and I want to understand how and why.
+Three, various applications of Lagrange multipliers in physics ( Lagrangian mechanics, QFT, statmech) seem to imply that Lagrange multipliers are an incredibly deep and important concept, far beyond their initial impression, and I want to understand how and why.
 
 -------
 
 # 1. Lagrange Multipliers as inverting a projection
 
-Here is what I think is the most intuitive explanation of Lagrange multipliers. It is somewhat more complex than the standard explanations, but it's worth it because it's "natural" in a way that most explanations are not. I hope that someday it will be not be viewed as more complex.
+Here is what I think is the most intuitive explanation of Lagrange multipliers. It is somewhat more complex than the standard explanations, but worth it because it's "natural" in a way that most explanations are not. Maybe someday it will be not be viewed as more complex when everyone's used to doing this kind of math.
 
-We wish to find the maximum value of $$f(\b{x})$$ subject to the constraint that $$g(\b{x}) = c$$. We'll assume that $$f$$ and $$g$$ are both well-behaved smooth functions.
+We wish to find the maximum value of $$f(\b{x})$$ subject to the constraint that $$g(\b{x}) = c$$. We'll assume that $$f$$ and $$g$$ are both well-behaved smooth functions and that $$\del g \neq 0$$ anywhere, so it defines a [regular surface](https://en.wikipedia.org/wiki/Regular_surface_(differential_geometry)), which we'll call $$G$$. Being regular basically means that it doesn't have sharp corners or, like, glitches, anywhere. Picture a nice smooth shape, like a sphere.[^notation]
 
-In 1d calculus we would look for the maximum of a smooth function $$f$$ at points that have $$\frac{df}{dx} = 0$$. Maybe they're a maximum, or a minimum, or otherwise just a stationary point (we'd have to check the second derivative to know), and if they're a maximum, maybe they're global maximum or maybe not, but in any case, those are the points that we're interested in.
+[^notation]: Also: in general we're working in $$\bb{R}^n$$, but when writing out examples I'm just going to act like they're in $$\bb{R}^3$$ to save on notation.
 
-Similarly, for a multivariable function in the absence of a constraint, we would search for a maximum by looking for points that have $$\del f = (f_x, f_y, f_z) = \b{0}$$, and we'd test if they're a max by looking at the signs of the eigenvalues of the second derivative. All negative means it's a maximum because the function decreases in every direction.
+$$G = \{ \b{x} \, \| \, g(\b{x}) = c \}$$
 
-When we limit to points on the surface $$G = \{ \b{x} \, \| \, g(\b{x}) = c \}$$, we are not necessarily interested in global maxima of the whole function $$f$$ anymore. A global maximum point of $$f$$ would still be a maximum if it happened to be on the surface, but if it did not lie on $$G$$ then we would not care. Meanwhile the maximum that's on $$G$$ may not have $$\del f = \b{0}$$.
+We wish to find the maximum $$f$$ on $$G$$. How?
 
-Example: suppose $$G$$ is the surface $$g(x,y) = x^2 + y^2 = R^2$$, a circle of radius $$R$$ around the origin. Say the function we are maximizing is just $$x$$, the $$x$$ coordinate. There is no global maximum ($$f$$ increases as you head in the $$+x$$ direction forever), but the maximum on $$G$$ is clearly the point $$(x,y) = (R, 0)$$, the most $$x$$-ward point on the circle. Yet the gradient at that point is $$\del f = (1,0)$$, which is certainly not zero. It is, however, parallel to the gradient of $$g$$, which is $$(2x, 2y) = (2R, 0)$$.
+In 1d calculus we would look for the maximum of $$f$$ at points that have $$\frac{df}{dx} = 0$$. Maybe those points are a maximum, or a minimum, or otherwise just a stationary point where it becomes flat for a while but keeps going the same way afterwards (we'd have to check the second derivative to know). And if they're a maximum, maybe they're global maximum or maybe not, we'd have to check. In any case, those would be the points that we're interested in.
 
-The reason that $$\del f = \b{0}$$ is no longer condition for a maximum is that that we are really interested in only $$f$$'s derivative _when $$f$$ is restricted to_ $$G$$. As we move in directions that _are_ on $$G$$, how does $$f$$ change? If it's constant, then we are at a local stationary point of $$f$$. In the circle example: at $$(x,y) = (R, 0)$$, the gradient is $$(2R, 0)$$, but the circle is going in the $$\pm \hat{y}$$ direction, so the gradient along $$y$$ _is_ $$0$$.
+Similarly, for a multivariable function in the absence of a constraint, we would search for a maximum by looking for points that have gradient $$\del f = (f_x, f_y, f_z) = 0$$, and we'd test if they're a maximum by looking at the signs of the eigenvalues of the second derivative. All negative means it's a maximum, because the function decreases in every direction. Then we'd have to compare all the points we found and see which one is the global max.
+
+When we limit to points on the surface $$G$$, we are not necessarily interested in the local or global maxima of the whole function $$f$$ anymore. A global maximum point of $$f$$ would still be a maximum if it _happened_ to be on $$G$$, but if it did not lie on $$G$$ then we would not care about it at all. Meanwhile the maximum that's on $$G$$ may not have $$\del f = 0$$ at all; it could just be some random value in the middle of $$f$$'s range.
+
+Example: suppose $$G$$ is the surface $$g(x,y) = x^2 + y^2 = R^2$$, a circle of radius $$R$$ around the origin, and suppose $$f$$ the function we are maximizing is just $$x$$, the $$x$$ coordinate. There is no global maximum ($$f$$ increases as you head in the $$+x$$ direction forever), but the maximum on $$G$$ is clearly the point $$(x,y) = (R, 0)$$, since it's the most $$x$$-ward point on the circle. Yet the gradient at that point is $$\del f = (1,0)$$, which is certainly not zero.
+
+The reason that $$\del f = 0$$ is no longer condition for a maximum is that that we are really interested in only $$f$$'s derivative _when $$f$$ is restricted to_ $$G$$. As we move in directions that _are_ on $$G$$, how does $$f$$ change? If it's constant, then we are at a local stationary point of $$f$$. In the circle example: at the solution point $$(x,y) = (R, 0)$$, the gradient of $$f$$ is $$\del f = (1,0)$$, but the circle is going in the $$\pm \hat{y} = (0, \pm 1)$$ direction, so the gradient of $$f$$ _along_ $$G$$ is $$0$$.
 
 How do we express the derivative of $$f$$, but restricted to $$G$$, as an equation? What we are looking for is called the [covariant derivative](https://en.wikipedia.org/wiki/Covariant_derivative) of $$f$$, with respect to the surface $$G$$, and the condition for the maxima of $$f$$ is that the covariant derivative is zero:
 
-$$\del_G f = \b{0}$$
+$$\del_G f = 0$$
 
-It is the regular derivative $$\del f$$, but with the components that do not lie on the surface $$G$$ removed.
+It is the regular derivative $$\del f$$, but with the components that do not lie on the surface $$G$$ removed.[^covariant]
+
+[^covariant]: There are various versions of the covariant derivative at different levels of abstraction. This is the simple one from classical differential geometry. The one is Riemannian geometry is used when the surface isn't embedded in space and all you have is a metric (good for general relativity); the one on tensor bundles is used when you've attached some other field to every point in space and want to ask how it curves (good for QFT's gauge fields). They are a lot more difficult to think about than this one.
 
 $$\del_G f = \proj_G \del f $$
 
-One might think $$\proj_G$$ as a generic operator, but it's easier to work with as a matrix. Recall that $$\del g$$ points in the direction orthogonal to $$G$$, because it the only direction in which $$g$$ changes. Therefore to project onto $$G$$, we just have to remove the projection onto $$\del g$$:
+I've written $$\proj_G$$ as a generic operator there, but it's easier to work with as a matrix. Recall that $$\del g$$ points in the direction orthogonal to $$G$$, because it the only direction in which $$g$$ changes. Therefore to get project only the parts on the surface $$G$$, we just have to remove the parts that _aren't_ on $$G$$, which are the projection onto $$\del g$$ (with $$I$$ as the identity matrix):
 
-$$(I - \proj_{\del g}) \cdot \del f(x) = \b{0}$$
+$$(I - \proj_{\del g}) \cdot \del f(x) = 0$$
 
-Here $$I$$ is an identity matrix. $$\proj_{\del g}$$ is a matrix constructed from the vector $$\del g$$, defined by $$\proj_{\del g} (\b{v}) = \frac{\del g}{\| \del g \|} [ \frac{\del g}{\| \del g \|}  \cdot \b{v}]$$. Since each $$\del g / \| \del g \|$$ is the unit vector version of $$\del g$$, the projection $$\proj_{\del g}$$ is created by (a) dotting with $$\del g$$'s unit vector to find the component along that direction and (b) multiplying by it again to turn it into a vector along that direction. Another way to write it is as a tensor product:
+$$\proj_{\del g}$$ is a matrix constructed from the vector $$\del g$$, defined by 
 
-$$(I -  \frac{\del g}{\| \del g \|} \o \frac{\del g}{\| \del g \|}) \cdot \del f = \b{0}$$
+$$\proj_{\del g} (\b{v}) = \frac{\del g}{\| \del g \|} [ \frac{\del g}{\| \del g \|}  \cdot \b{v}]$$
 
+Since each $$\del g / \| \del g \|$$ is the unit vector version of $$\del g$$, the projection $$\proj_{\del g}$$ is created by (a) dotting with $$\del g$$'s unit vector to find the component along that direction and (b) multiplying by it again to turn it into a vector along that direction. A nice way to write it is as a tensor product:
+
+$$(I -  \frac{\del g}{\| \del g \|} \o \frac{\del g}{\| \del g \|}) \cdot \del f = 0$$
 
 All of these are ways of writing the surface derivative of $$f$$ with respect to $$G$$. It doesn't matter which one you use. The important part is: this is the constraint that is obeyed by $$f$$ at its stationary points on $$G$$.
 
-Here is one more version. Suppose we happen to have a coordinate system $$(u,v)$$ on $$G = g^{-1}(c)$$. Then locally there is a frame of unit vectors $$(\b{u}, \b{v}, \b{n})$$, with $$\b{n} = \frac{\del g}{\| \del g \|}$$. The identity matrix is $$I = \b{uu} + \b{vv} + \b{nn}$$ (using [dyadic notation](https://en.wikipedia.org/wiki/Dyadics) in which $$\b{nn} = \b{n} \o \b{n}$$), that is, it's $$\text{diag}(1,1,1)$$ in the $$(u,v,n)$$ coordinate system. Then we can write $$I - \b{nn} = \b{uu} + \b{vv} = \text{diag}(1,1,0)$$. That is, there is a basis in which these are true:
+Here is one more version. Suppose we happen to have a coordinate system $$(u,v)$$; don't ask me how we got it. Then locally there is a frame of unit vectors $$(\b{u}, \b{v}, \b{n})$$ with $$\b{n} = \frac{\del g}{\| \del g \|}$$ being the normal. The identity matrix can be written $$I = \b{uu} + \b{vv} + \b{nn}$$ (using [dyadic notation](https://en.wikipedia.org/wiki/Dyadics) in which $$\b{nn} = \b{n} \o \b{n}$$), which is equivalent to writing $$\text{diag}(1,1,1)$$ in the $$(u,v,n)$$ coordinate system. Then we can write $$I - \b{nn} = \b{uu} + \b{vv} = \text{diag}(1,1,0)$$. That is, there is a basis $$(\b{u}, \b{v}, \b{n})$$ in which these are true:
 
-$$\proj_G = I - \b{nn} = \b{uu} + \b{vv} = \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix}$$
+$$
+\begin{aligned}
+\proj_G &= I - \b{nn} \\
+&= (\b{uu} + \b{vv} + \b{nn}) - \b{nn} \\
+&= \b{uu} + \b{vv} \\
+&= \begin{pmatrix} 1 & 0 & 0 \\ 0 & 1 & 0 \\ 0 & 0 & 0 \end{pmatrix}
+\end{aligned}
+$$
 
-Which is so simple that it felt worth mentioning. After all this is all a projection is: if it removes one dimension from a vector, of course there's a basis in which it preserves the other two dimensions but gets rid of one, why not? It is often helpful to imagine coordinates like this to make the algebra more concrete. But we'll go back to the $$I - \proj_{\del g}$$ version for the rest of the discussion.
+Which is so simple that it felt worth mentioning. After all this is all a projection is: if it removes one dimension from a vector, of course there's a basis in which it preserves the other two dimensions but gets rid of one, right? It is often helpful to imagine coordinates like this to make the algebra more concrete (much more on this some other day...). But we'll go back to the $$I - \proj_{\del g}$$ version for the rest of the discussion.
 
 -------
 
 So the condition on points on $$G$$ which maximize $$f$$ is that
 
-$$\del_G f = \proj_G \del f = \b{0}$$
+$$\del_G f = \proj_G \del f = 0$$
 
-This doesn't require that $$\del f = \b{0}$$ itself. Yes, $$\del f$$'s components in the $$(n-1)$$ directions on the surface $$G$$ are zero, but there's one more direction besides those, the direction $$\del g$$, along which it can be whatever it wants. Therefore at the solutions $$\del f$$ has to be proportional to $$\del g$$:
+This doesn't require that $$\del f = 0$$ itself. Yes, $$\del f$$'s components in the $$(n-1)$$ directions on the surface $$G$$ are zero, but there's one more direction besides those, the direction $$\del g$$, along which it can be whatever it wants. Therefore at the solutions $$\del f$$ has to be proportional to $$\del g$$:
 
 $$\del f = \lambda \del g$$
 
-$$\lambda$$ the Lagrange Multiplier. When we solve the equation we'll come up with both a point $$\b{x}^*$$ and a value of $$\lambda^*$$ as the solution. It has an interesting interpretation which we'll talk about later, but for now just notice that its value doesn't matter for the argument. Note that if $$\del g$$ happens to be $$\b{0}$$, meaning that $$g(\b{x})$$ is locally constant, then $$\del f$$ has to equal $$\b{0}$$ as well: it once again has $$n$$ constraints instead of $$n-1$$, and there's no free parameter; it has to be an actual stationary point of $$\del f$$ on its own.
+Where $$\lambda$$ is an unspecified variable, called the Lagrange Multiplier. When we solve the equation we'll come up with both a point $$\b{x}^*$$ and a value of $$\lambda^*$$ as the solution. $$\lambda^*$$ has an interesting interpretation which we'll talk about later, but for now just notice that its value doesn't matter for the argument.
 
-There is a very simple way to produce this form. We had written $$\proj_{G} \cdot \del f = \b{0}$$. Well, the projection operator has a simple "generalized inverse": since it takes one dimension, the direction $$\del g$$, to $$0$$, then the preimage of $$\b{0}$$ can have any component along $$\del g$$. We write this as a free parameter $$\lambda$$:
+Note that if $$\del g$$ happens to be $$0$$, meaning that $$g(\b{x})$$ is locally constant, then $$\del f$$ has to equal $$0$$ as well: it once again has $$n$$ constraints instead of $$n-1$$, and there's no free parameter; it has to be an actual stationary point of $$\del f$$ on its own. We're not dealing with this case, as we've assumed $$G$$ is an actual 2-dimensional surface, and if $$\del g = 0$$ then locally it would be more like a "volume". But it's worth thinking about.
+
+There is a nicer way to come up with $$\del f = \lambda \del g$$ that doesn't require "noticing" that it has to be true:
+
+We had written $$\proj_{G} \cdot \del f = 0$$. Well, the projection operator has a simple [generalized inverse]((https://en.wikipedia.org/wiki/Generalized_inverse)):[^gen] since it takes one dimension, the direction $$\del g$$, to $$0$$, then the preimage of $$0$$ can have any component along $$\del g$$. We write this as a free parameter $$\lambda$$:
+
+[^gen]: I use "generalized inverse" to refer to the preimage of an operation, but written as an algebraic object that includes free parameters as necessary to be correct. For instance the generalized inverse of $$0 \times a = 0$$ is $$a = \lambda$$, meaning any real number. See also [this other post]({% post_url 2023-09-25-inverses %}).
 
 $$
 \begin{aligned}
-\proj_G \del f &= \b{0} \\
-\del f &= \proj_G^{-1}(\b{0}) \\ 
+\proj_G \del f &= 0 \\
+\del f &= \proj_G^{-1}(0) \\ 
 &= \lambda \del g \\
 \end{aligned}
 $$
 
-I like how that makes the free $$\lambda$$ parameter show up through rote algebra instead of any sort of trick. Invert a projection, get a free parameter. Easy.
+I like how that makes the free $$\lambda$$ parameter show up through what could be rote algebra instead of any sort of trick. Invert a projection, get a free parameter. Easy. Also easy to generalize. If, for instance, $$\proj_G$$ projected out two dimensions, we'd get two free parameters. More on that in a second.
 
-So far $$\del_G f = \b{0}$$ was a condition that we expected to be fulfilled at certain points, the maxima $$\b{x}^*$$. _At_ those points we'll write $$f^* = f(\b{x}^*)$$ and $$g^* = g(\b{x}^*) = c$$. We'll also write $$\del f^* = \del f(\b{x}^*)$$ and $$\del g^* = \del g(\b{x}^*)$$. Then the relation at the solution(s) is
+So far $$\del_G f = 0$$ was a condition that we expected to be fulfilled at certain points, the maxima $$\b{x}^*$$. _At_ those points we'll write everything with asterixes: $$f^* = f(\b{x}^*)$$, $$g^* = g(\b{x}^*) = c$$, $$\del f^* = \del f(\b{x}^*)$$, $$\del g^* = \del g(\b{x}^*)$$. Then the relation at a solution is
 
 $$\del f^* = \lambda^* \del g^*$$
 
@@ -101,114 +125,233 @@ We can just solve for $$\lambda^*$$:
 
 $$\lambda^* = \frac{\del f^*}{\del g^*}$$
 
-(This uses the unorthodox notation of division by a vector. It's defined as $$\b{a}/\b{b} = (\b{a} \cdot \b{b})/\| \b{b} \|^2$$, so this says that $$\lambda^* = (\del f^* \cdot \del g^*) / \| \del g^* \|^2$$.) 
+Yes, that's division by a vector. It's an unorthodox notation that I like. The meaning is that $$\b{a}/\b{b} = (\b{a} \cdot \b{b})/\| \b{b} \|^2$$, so this really says that:
 
-So that's the value of $$\lambda^*$$: it's the ratio of the derivatives of $$f$$ and $$g$$. We'll talk about why later. First let's do this again with more than one constraint because it gets interesting.
+$$\lambda^* = \frac{\del f^* \cdot \del g^*}{\| \del g^* \|^2}$$
+
+(Note that one more factor of $$\del g^*$$ would turn this into a projection: $$\lambda^* \del g = 
+\frac{\del f^*}{\del g^*} \del g^* = \proj_{\del g^*}(\del f^*)$$.)
+
+So that's the value of $$\lambda^*$$: it's the ratio of the derivatives of $$f$$ and $$g$$. We'll talk about what it means later. First let's do this again with more than one constraint because it gets more interesting.
 
 --------
 
 # 2. Handling Multiple Constraints with the Pseudoinverse
 
-Suppose we have $$k$$ constraints $$\{g_i(\b{x}) = g_i^*\}$$. Each constraint defines a surface $$G_i = g_i^{-1}(g^*_i)$$, and then we define the intersections of those surfaces as $$G = G_1 \cap G_2 \cap \ldots = g_1^{-1}(g^*_1) \cap g_2^{-1}(g^*_2) \cap \ldots$$.
+Now suppose we have $$k$$ constraints $$\{\, g_i(\b{x}) = c_i^* \, \}$$ instead of just one, and we're trying to solve:
 
-We'll assume that the surfaces defined by the constraints actually do all intersect. Each surface is $$(n-1)$$ dimension ("codimension $$1$$") The intersection is in general somewhere between $$(n-k)$$ and $$(n-1)$$-dimensional depending on whether the constraints are redundant with each other (two copies of the same constraint is no different than one); we'll assume that they're not redundant.
+> maximize $$f(\b{x})$$
+> subject to all of the $$g_i(\b{x}) = c_i$$ at once.
 
-Write $$G_{\perp} = (g_1, g_2, \ldots, g_k)$$ for the list of constraints as a vector, and then $$G_{\perp}^* = (g_1^*, g_2^*, \ldots, g_k^*)$$ will be the vector of the values we're looking for each constraint to take. The surface $$G$$ is the solution to $$G_{\perp}(\b{x}) = G_{\perp}^*$$, that is, $$G = G_{\perp}^{-1}(G_{\perp}^*)$$. We'll also write $$\del G_{\perp} = \{ \del g_1, \del g_2, \ldots \}$$ then will be the $$n \times k$$ matrix that is the gradient of all the constraints.
+Each constraint defines a surface $$g_i^{-1}(c_i)$$, and the intersection of all those surfaces is the surface $$G$$ that we want $$f$$ to live on:
 
-The reason for writing the list of constraints as $$G_{\perp}$$ is that $$\del G_{\perp}$$ is the list of vectors _orthogonal_ to the surface $$G$$, so we probably shouldn't write it as $$\del G$$. Also, it kinda makes sense: except at the solution values $$G_{\perp}^*$$, the constraints describe points that _aren't_ on the surface. Points on the surface would be described by some coordinates for it that we don't have access to.
+$$G = g_1^{-1}(c_1) \cap g_2^{-1}(c_2) \cap \ldots$$
 
-The stationary points of $$f$$, subject to all the constraints $$G_{\perp} = G_{\perp}^*$$, are still given by setting the covariant derivative with respect to this surface $$G$$ to zero
+We'll need a few assumptions. We assume that the surfaces defined by the constraints actually _do_ all intersect, and that at the points where they intersect, they're not parallel to each other (this would happen, for instance, with two spheres that touch at a point). This second assumption is not critical but it makes the math easier for now.
 
-$$\del_G f = \proj_G \cdot \del f = \b{0}$$
+Each constraint defines an $$(n-1)$$ dimensional surface ("codimension $$1$$", we say), like a sphere in $$\bb{R}^3$$. In general the intersection of two codimension $$1$$ surfaces can have various dimensions: $$(n-2)$$ (codimension $$2$$), such as two spheres intersecting in a circle, or codimension $$1$$ again, such as the _same_ sphere intersected with itself giving a sphere again, or they could not intersect at all, which I guess would be $$0$$-dimensional or codimension $$n$$. But by our assumptions that they do intersect and they're not parallel when they do, we assume the intersection of $$k$$ constraints is $$(n-k)$$-dimensional, that is, codimension $$k$$.
 
-for exactly the same reason as before: a point at which $$f$$ is maximized has no direction on $$G$$ in which you can move to increase it, hence its covariant derivative _on $$G$$_ is zero.
+The stationary points of $$f$$ on $$G$$, are still given by setting the covariant derivative with respect to this surface $$G$$ to zero:
+
+$$\del_G f = \proj_G \cdot \del f = 0$$
+
+For exactly the same reason as before: a point at which $$f$$ is maximized has no direction on $$G$$ in which you can move to increase it, hence its derivative _on $$G$$_ is zero.
 
 Also as before, we can in principle solve this by inverting the projection:
 
 $$
 \begin{aligned}
-\del_G f &= \b{0} \\
-\proj_G \del f &= \b{0}\\
-\del f &= \proj_G^{-1}(\b{0}) 
+\del_G f &= 0 \\
+\proj_G \del f &= 0\\
+\del f &= \proj_G^{-1}(0) 
 \end{aligned}
 $$
 
-And as before the solution is going to be a bunch of free parameters, one for each direction in $$\perp G$$. We happen to have those directions: they're $$\del G_{\perp}$$. $$\del f$$ is therefore a linear combination of the vectors in $$G_{\perp} = \text{span}(\del G_{\perp})$$:
+And again the solution is going to be a bunch of free parameters, one for each direction that the projetion erases. These directions form $$G_{\perp}$$, the orthogonal complement to $$G$$. We happen to have those directions: they're the $$\{ \del g_i \}$$, the gradients of all the constraints. So $$\del f$$ is therefore a linear combination of the vectors in $$G_{\perp} = \text{span}(\del g_1, \del g_2, \ldots)$$:
 
 $$
 \begin{aligned}
-\del f &= \proj_G^{-1}(\b{0}) \\
+\del f &= \proj_G^{-1}(0) \\
 &= \lambda_1 \del g_1 + \lambda_2 \del g_2 + \ldots \\ 
-&= \vec{\lambda} \cdot (\del G_{\perp})
 \end{aligned}
 $$
 
-Which are our Lagrange multipliers.
+Where the $$\{ \lambda_i \}$$ are our Lagrange multipliers. Easy. But still a trick.
 
-There is a more interesting way to solve this. Instead of just inverting $$\proj_G$$ and reasoning that it ought to be in $$\text{span}(\del G_{\perp})$$, we can manipulate the equation like this:
+Like before, there is a more interesting way to solve this. First we'll write the list of constraints and list of constraint values as vectors:
 
 $$
 \begin{aligned}
-(I - \proj_{\perp G}) \del f &= \b{0} \\ 
+G_{\perp} &= (g_1, g_2, \ldots, g_k) \\
+G_{\perp}^* &= (g_1^*, g_2^*, \ldots, g_k^*) \\
+&= (c_1, c_2, \ldots, c_k)
+\end{aligned}
+$$
+
+And the gradients become a $$n \times k$$ matrix (or is it $$k \times n$$? Eh, doesn't matter):
+
+$$\del G_{\perp} = \{ \del g_1, \del g_2, \ldots \}$$
+
+The reason for writing the list of constraints as $$G_{\perp}$$ instead of $$G$$ is that $$\del G_{\perp}$$ is the list of vectors _orthogonal_ to the surface $$G$$, which span the _subspace_ $$G_{\perp}$$, so we probably shouldn't write them as $$\del G$$. Also, it kinda makes sense: except at the solution values $$G_{\perp}^*$$, the constraints describe points that _aren't_ on the surface. Points on the surface would be described by some other coordinates for it that we don't have access to.
+
+In this notation the Lagrange multiplier solution from before can be written as
+
+$$
+\begin{aligned}
+\del f &= \proj_G^{-1}(0) \\
+&= \lambda_1 \del g_1 + \lambda_2 \del g_2 + \ldots \\ 
+&= \vec{\lambda} \cdot \del G_{\perp}
+\end{aligned}
+$$
+
+Which is an improvement already: it's a linear equation of the form $$A \b{x} = \b{b}$$, albeit for non-square $$A$$. Here's another way to write it: instead of just inverting $$\proj_G$$ and reasoning that it ought to be in $$\text{span}(\del G_{\perp})$$, we could use $$\proj_G = I - \proj_{\perp G}$$ and rearrange the terms:
+
+$$
+\begin{aligned}
+(I - \proj_{\perp G}) \del f &= 0 \\ 
 \del f &= \proj_{\perp G} \del f 
 \end{aligned}
 $$
 
-This too is the "condition on $$f$$ at the max", equivalent to $$\proj_G^{-1}(\b{0})$$. It is better to write it in terms of $$\proj_{\perp G}$$ because $$\perp G$$ is, in fact, something we can write out algebraically. But it's not as simple as $$(I - \proj_{\del g_1} - \proj_{\del g_2} \ldots)$$ or anything like that: the problem is that all the constraints may be generally non-orthogonal, so we'd be projecting off the same components twice if we did that. Instead we need to use something that acts like the inverse of a matrix: the [pseudoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse). Using the pseudoinverse we can write
+This is another way to write the condition on $$f$$ at the solution, which is equivalent to $$\proj_G^{-1}(0)$$.
 
-$$\proj_{\perp G} \del f = \frac{\del f}{\del G_{\perp}} \del G_{\perp}$$
+We'd like an algebraic version of both of these: a way of writing $$\proj_{\perp G} \del f $$ that explicitly gives the values of $$\vec{\lambda}$$ in $$\vec{\lambda} \cdot \del G_{\perp}$$. But $$\proj_{\perp G}$$ is not as simple as $$(I - \proj_{\del g_1} - \proj_{\del g_2} \ldots)$$ or $$(I - \proj_{\del g_1}) (I - \proj_{\del g_2}) \ldots$$ or anything like that. The problem is that all the constraints may be generally non-orthogonal, so we'd be projecting off the same components twice if we did that.
 
-The meaning of $$1/\del G_{\perp}$$ is that it is the pseudoinverse, which I am just writing as a fraction to be weird[^indices]. The pseudoinverse is exactly the matrix which projects $$\del f$$ onto the basis $$\del G_{\perp}$$. It's not a true inverse because $$\del G_{\perp}$$ is not square (it's $$k \times n$$), and so $$1/\del G_{\perp}$$ just deletes any components of $$\del f$$ that aren't in $$\text{span}(\del G_{\perp})$$.
+Consider if there are just two gradients $$(\del g_1, \del g_2)$$. The value we want for $$\proj_{\perp G}$$ is something like:[^gs]
+
+$$\proj_{\perp G} = I - \proj_{\del g_1} - [\proj_{\del g_2 - \proj_{\del g_1} \del g_2}]$$
+
+[^gs]: Incidentally the projections $$(\del g_1, \del g_2 - \proj_{\del g_1} \del g_2, \ldots)$$ here would, after you normalize them, form a [Gram-Schmidt basis](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process) for $$(\del g_1, \del g_2)$$. But that's not the best way to do it.
+
+For instance $$\del g_1 = (1,0,0)$$ and $$\del g_2 = (1, 1, 0)$$ then $$\proj_{\perp G}$$ should be $$I - \b{xx} - \b{yy} = \b{zz}$$. But this series is hard to use. How should we write it in general?
+
+The answer is that we need to use something that acts like the inverse of the matrix $$\del G_{\perp}$$, called the [pseudoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse). Using the pseudoinverse we can simply "divide through" by $$\del G_{\perp}$$:[^indices]
 
 [^indices]: To be precise we'd want to notate which indices of the matrices are contracted with each other, but let's not. Anyway there is really only one sensible way to do it.
 
-The operation $$\frac{\del f}{\del G_{\perp}} \del f$$ has the form $$\frac{\b{b}}{A} A$$.
-It's a generalization of the single-vector projection $$\frac{\b{b}}{\b{a}} \b{a} = \frac{\b{b} \cdot \b{a}}{\| \b{a} \|^2} \b{a}$$. If $$A = (\b{a}_1, \b{a}_2, \ldots)$$, then what this does is:
+$$
+\begin{aligned}
+\del f &= \vec{\lambda} \cdot \del G_{\perp} \\ 
+&\Ra \\
+\vec{\lambda} &= \frac{\del f}{\del G_{\perp}}
+\end{aligned}
+$$
 
-1. Suppose we are trying to find $$\proj_{A} \b{b} = b_1 \b{a}_1 + b_2 \b{a}_2 + \ldots$$, perhaps we are trying to do our best to solve $$A \b{x} = \b{b}$$ for a non-square $$A$$.
-2. $$\b{b} / A$$ produces the vector $$(b_1, b_2, \ldots)$$. (In practice by a process that looks like $$b_1 = \frac{\b{b} \^ \b{a}_2 \^ \b{a}_3 \ldots}{\b{a}_1 \^ \b{a}_2 \^ \b{a}_3 \ldots}$$, which gives the actual matrix inverse if $$A$$ is $$n \times n$$.)
-3. $$(\b{b}/A) A$$ expands those components again to produce $$ b_1 \b{a}_1 + b_2 \b{a}_2 + \ldots = \proj_{A} \b{b}$$
-4. Which, when $$\b{b} \in \text{span}(A)$$, is just $$\b{b}$$ again.
+Here is a blurb.
 
-Another way of looking at this is that $$1/A$$ is the matrix form of the [dual basis](https://en.wikipedia.org/wiki/Dual_basis) of $$A$$: it produces basis vectors that have $$\tilde{\b{a}}_i \cdot \b{a}^{j} = \delta_i^j$$. The fact that it is a projection but only onto the vectors in $$A$$ corresponds to the defining identity for a pseudoinverse: instead of $$A^{-1} A = I$$ it obeys $$A^{-1} A = I_A = \proj_A$$ and $$A A^{-1} A = A$$. Often people write it as $$A^+$$ since it's not a true inverse, but IMO it's pretty close, so why not. I'm also happy to write it as $$A^{-1}$$. 
+<aside class="toggleable" id="pseudoinverse" placeholder="<em>Aside:</em> The Pseudoinverse <em>(click to expand)</em>">
 
-Note that all of this only works as written if the vectors in $$A$$ are all linearly independent. Otherwise there would be multiple choices for the $$b_i$$, because e.g. $$\b{b} = b_1 \b{a}_1 + b_2 \b{a}_2$$ could be written in multiple ways if $$\b{b}_1$$ and $$\b{b}_2$$ are parallel. If this happened we could still express the answer in terms of the full _generalized_ inverse of $$A$$, which solves $$A \b{x} = \b{b}$$ with $$\b{x} = A^{-1} (\b{b}) + (I - A^{-1} A) \cdot \vec{\alpha}$$ for even more free parameters $$\vec{\alpha}$$; the matrix $$ (I - A^{-1} A)$$ is the projection $$\proj_{\perp A}$$. But I don't want to deal with that so we'll assume it's not the case.
+**The Pseudoinverse**
 
-(By the way, this is the solution to a pretty common confusion in calculus. We write $$\frac{df}{dx}$$ as the derivative of a function, but we are careful to point out that $$\frac{1}{dx}$$ is not "actually" an inverse, because multiplying by $$dx$$ does not give $$df$$ again. Of course it's not, but it _is_ a pseudoinverse. Since $$df = f_x dx + f_{\perp x} d x_{\perp}$$, we have:
+We are trying to solve the equation
+
+$$\del f = \vec{\lambda} \cdot \del G_{\perp}$$
+
+for $$\vec{\lambda}$$. This has the form
+
+$$A \b{x} = \b{b}$$
+
+Where $$A = \del G_{\perp}$$, $$\b{x} = \vec{\lambda}$$, and $$\b{b} = \del f$$. But $$A$$ is not square (it's $$k \times n$$), much less invertible, so we can't just solve it by writing $$\b{x} = A^{-1}(\b{b})$$. Or can we?
+
+Consider what $$A \b{x} = \b{b}$$ means. Suppose $$A = (\b{a}_1, \b{a}_2, \ldots)$$ and that all of the $$\b{a}$$ are linearly independent. Then we are searching a set of coefficients $$\b{x} = (b_1, b_2, \ldots)$$ such that we can write
+
+$$\b{b} = A \b{x} = b_1 \b{a}_1 + b_2 \b{a}_2 + \ldots \tag{maybe works}$$
+
+This isn't always possible, because maybe $$\b{b}$$ is _not_ a sum of the coluns of $$A$$ (that is, maybe $$\b{b} \notin \text{col}(A)$$, the column space of $$A$$). What we can _always_ do, though, is project $$\b{b}$$ onto the column space of $$A$$:
+
+$$\proj_A \b{b} = b_1 \b{a}_1 + b_2 \b{a}_2 + \ldots \tag{always works}$$
+
+The coefficients $$(b_1, b_2, \ldots)$$ will be given by the pseudoinverse of $$A$$:
+
+$$(b_1, b_2, \ldots) = \frac{\b{b}}{A}$$
+
+Normally people do not write the pseudoinverse like this; they like to write something like $$A^+(\b{b})$$. I prefer it as a fraction, even though it's a bit ambiguous which indices contract with which, because it acts a lot like a fraction. $$A^{-1}(\b{b})$$ is also fine with me: it is basically an inverse, just, with some caveats.
+
+(The actual construction of the pseudoinverse uses the wedge product: $$b_1 = \frac{\b{b} \^ \b{a}_2 \^ \b{a}_3 \ldots}{\b{a}_1 \^ \b{a}_2 \^ \b{a}_3 \ldots}$$, $$b_2 = \frac{\b{a}_1 \^ \b{b} \^ \b{a}_2 \^ \ldots}{\b{a}_1 \^ \b{a}_2 \^ \b{a}_3 \ldots}$$, etc, and then you work it into the form of a matrix. When $$k = n$$ this becomes the matrix inverse exactly; the numerator is $$\text{adj}(A)$$ and the denominator is $$\det(A)$$. Another way to make it is $$A^{-1} = (A^T A)^{-1} A^T$$.)
+
+Once we have those components we can multiply by $$A$$ again to reconstruct $$\proj_A \b{b}$$:
+
+$$\proj_A \b{b} = \frac{\b{b}}{A} \cdot A =  b_1 \b{a}_1 + b_2 \b{a}_2 + \ldots $$
+
+Which, when $$\b{b} \in \text{span}(A)$$, is just $$\b{b}$$ again. Generally speaking multiplying by $$A^{-1}$$ and then $$A$$ again becomes the projection onto $$A$$. In fact this is the defining quality of the pseudoinverse: that although $$A^{-1} A \neq I$$ like a regular inverse, it does have $$A^{-1} A = \proj_A$$ and $$A A^{-1} A = A$$ again. 
+
+Another way of looking at this is that $$1/A$$ is the matrix form of the [dual basis](https://en.wikipedia.org/wiki/Dual_basis) of $$A$$: its columns are "dual basis vectors" $$\{ \tilde{\b{a}}_i \}$$ that have $$\tilde{\b{a}}_i \cdot \b{a}^{j} = \delta_i^j$$. Then each component is just given by a dot product with a dual basis vector: 
+
+$$
+\begin{aligned}
+\tilde{\b{a}}_i \cdot \b{b} &= \tilde{\b{a}}_i \cdot (b_1 \b{a}_1 + b_2 \b{a}_2) + \ldots \\
+&= b_1 (\tilde{\b{a}}_i \cdot \b{a}_1 )+ b_2 (\cancel{\tilde{\b{a}}_i \cdot \b{a}_2}) + \ldots \\ 
+&= b_1 \\
+\frac{\b{b}}{A} &= (\tilde{\b{a}}_1 \cdot \b{b}, \tilde{\b{a}}_2 \cdot \b{b}, \ldots) \\ 
+&=(b_1, b_2, \ldots) \\
+\end{aligned}
+$$
+
+There are two well-known examples of pseudoinverses which nobody normally calls by that name. 
+
+First, there's the vector projection that I wrote earlier using vector division:
+
+$$\frac{\b{b}}{\b{a}} \b{a} = \frac{\b{b} \cdot \b{a}}{\| \b{a} \|^2} \b{a} = \proj_{\b{a}} \b{b}$$
+
+This is just the $$k=1$$ case of the matrix pseudoinverse above.
+
+Second there is the differential notation of calculus. We write $$\frac{df}{dx}$$ as the derivative of a function, but we are always careful to point out that $$\frac{1}{dx}$$ is not "actually" an inverse, because multiplying by $$dx$$ does not give $$df$$ again. True, but it _is_ a pseudoinverse. Suppose $$f = f(x,y)$$. Then $$df = f_x dx + f_y dy$$ and we can write:
 
 $$
 \begin{aligned}
 \frac{df}{dx} &= df \cdot \frac{1}{dx} \\ 
-&= (f_x dx + f_{\perp x} d x_{\perp}) \cdot \frac{1}{dx} \\ 
+&= (f_x \d x + f_{y} \d y) \cdot \frac{1}{dx} \\ 
 &= f_x \\
-\frac{df}{dx} dx &= f_x dx \\
-&= \proj_x df
+\frac{df}{dx} dx &= f_x \d x \\
+&= \proj_{dx} df
 \end{aligned}
 $$
 
-(Use your imagination to interpret the dot product, or, if you like differential forms, imagine that $$\frac{1}{dx} = \p_x$$, a tangent vector.) And we can "solve" $$\frac{df}{dx} = 0$$ with the generalized inverse version, which produces free parameters $$f_{\perp x}$$:
+Where $$\frac{dx}{dx} = 1$$ and $$\frac{dy}{dx} = 0$$. (Okay, some people would say that I should be writing this using $$\p x$$ instead of $$dx$$. I think I prefer it this way though? It's a bit tricky to explain. Short version is that I'm regarding $$\frac{1}{dx}$$ as a vector in the same space as $$dx$$, rather than an operator acting on $$f$$. Not really sure about this though.)
+
+And we can "solve" $$\frac{df}{dx} = 0$$ by dividing through again, but we have to add a free parameter because we're inverting a projection:
 
 $$
 \begin{aligned}
 \frac{df}{dx} &= 0 \\ 
 df &= (\frac{1}{dx})^{-1} (0) \\ 
-&= f_{\perp x} d x_{\perp}
+&= \lambda \d y
 \end{aligned}
 $$
 
-Above we have just done this for $$df/dG = 0$$, where $$G$$ are implied to be unspecified coordinates on the surface $$G$$.)
+That one I would call a "generalized inverse" rather than a pseudoinverse. I like to use the word "pseudoinverse" inverses that become projections and "generalized inverse" for inverses that produce free parameters instead of projections. So what we just did is we first wrote $$\frac{df}{dx}$$, $$df$$ times the pseudoinverse of $$dx$$, and then we divided by $$\frac{1}{dx}$$ to produce $$(\frac{1}{dx})^{-1}$$, a generalized inverse of $$\frac{1}{dx}$$. Bit confusing, I know, but you get used to it. The general relationship between a pseudoinverse and a generalized inverse is that
 
---------
 
-So anyway! I like to write the stationary point condition, the solution to $$\del_G f = \b{0}$$ like this:
+$$
+\begin{aligned}
+A_{\text{generalized}}^{-1}(\b{b}) &=  A_{\text{pseudo}}^{-1}(\b{b}) + (I - A_{\text{pseudo}}^{-1} A) \cdot \vec{\lambda}\\
+&= A_{\text{pseudo}}^{-1}(\b{b}) + \proj_{\perp A} \cdot \vec{\lambda} \\
+\end{aligned}
+$$
 
-$$\del f = \proj_{\perp G} \del f = \frac{\del f}{\del G_{\perp}} \del G_{\perp}$$
+For some vector of free parameters $$\vec{\lambda}$$.
 
-There are no free parameters. After all this is the only way the composition of $$\del f$$ into $$\del G_{\perp}$$ could happen. At most points it will not be true: $$\del f$$ will have other components that don't show up in the RHS. When it is true we have a stationary point and we write
+Note that all of this only works as written if the vectors in $$A$$ are all linearly independent. Otherwise there would be multiple choices for the $$b_i$$. For instance if $$A = (\b{a}_1, 2 \b{a}_1)$$ then $$\proj_A \b{b} = b_1 \b{a}_1 + 2 b_2 \b{a}_1 = (b_1 + 2 b_2) \b{a}_1$$ and there's more than one way to select $$b_1$$ and $$b_2$$ to get the same result. If this happened we could still express the answer in terms of the full generalized inverse of $$A$$: there would be even more free parameters to tell us _which_ of the equivalent representations to use, something like $$(b_1, b_2) = (\lambda, \frac{1 - \lambda}{2})$$. But I'd rather not think about that.
+
+</aside>
+
+To summarize: we can write the projection onto the list of vectors $$\del G_{\perp} $$ like this, using the pseudoinverse $$1/\del G_{\perp}$$:
+
+$$\proj_{\del G_{\perp}} \del f = \frac{\del f}{\del G_{\perp}} \cdot \del G_{\perp}$$
+
+Which is equivalent to the Lagrange multiplier form, with $$\vec{\lambda} = \frac{\del f}{\del G_{\perp}}$$:
+
+$$\proj_{\del G_{\perp}} \del f = \vec{\lambda} \cdot \del G_{\perp}$$
+
+And the condition satisfied by $$f$$ at the maximum on $$G$$, which was that $$\del_G f = 0$$, is equivalent to any of these:
+
+$$\del f = \proj_{\del G_{\perp}} \del f = \frac{\del f}{\del G_{\perp}} \cdot \del G_{\perp}  = \vec{\lambda} \cdot \del G_{\perp}$$
+
+When the condition holds we have a stationary point $$\b{x}^*$$, and we write
 
 $$\vec{\lambda}^* = \frac{\del f^*}{\del G^*_{\perp}}$$
 
-So the Lagrange multupliers $$\vec{\lambda}^* = \del f^* / \del G^*_{\perp}$$ give the coordinates for the projection of $$\del f^*$$ onto $$\del G^*_{\perp}$$. It is simply the multivariable equivalent of what $$\lambda^* = \del f^* / \del g^*$$ was for a single constriant.
+Which is the multi-constraint equivalent of what $$\lambda^* = \del f^* / \del g^*$$ was for a single constraint.
 
 -----
 
@@ -234,7 +377,7 @@ $$\begin{cases}
 
 The second clause just encodes the original constraint again, while the first is the Lagrange multiplier constraint. Cute? But... in what world is this a good way to do this? It just seems like a hack pulled out of thin air. And indeed, even after learning a _lot_ more about Lagrangians in physics, I _still_ feel like it's a hack pulled out of thin air. What is going on?[^confuse]
 
-[^confuse]: I am not the [only one](https://math.stackexchange.com/questions/1392280/lagrange-multiplier-method-why-is-the-langragian-function-defined-as-fx-y-l) confused by this, and as often happens, all the repliers on that question are confused by the fact that the questioner is confused about it. But I agree with the questioner: "noticing" you can write $$L = f - \lambda g$$ and optimize $$\del L = 0$$ instead is just weird. There needs to be some sort of elegant reason for why that works.
+[^confuse]: I am far from the [only one](https://math.stackexchange.com/questions/1392280/lagrange-multiplier-method-why-is-the-langragian-function-defined-as-fx-y-l) confused by this, and as often happens, all the repliers on that question are confused by the fact that the questioner is confused about it. But I agree with the questioner: "noticing" you can write $$L = f - \lambda g$$ and optimize $$\del L = 0$$ instead is just weird. There needs to be some sort of elegant reason for why that works.
 
 With the understanding of the Lagrange multipliers as inverting a covariant derivative, we can do a bit better.
 
@@ -245,57 +388,68 @@ First let's fix the notation a bit. So far we've been writing $$\del f$$ everywh
 $$
 \begin{aligned}
 d_G f &= \proj_G d f \\
+&= df - d_{\perp G} f \\
 &= (I - \proj_{\perp G}) df \\ 
-&= d f - \frac{df}{dG_{\perp}} d G_{\perp} \\
+&= d f - \frac{d f}{d G_{\perp}} d G_{\perp} \\
 \end{aligned}
 $$
 
-(Recall that $$df = \del f \cdot d \b{x}$$, e.g. $$df = f_x dx + f_y dy + \ldots$$ Well, $$d_G f = \del_G f \cdot d \b{x}$$. Same thing. This notation makes it clear that the derivatives are coordinate-independent and could happen in whatever coordinate system you like: they care only about the _surface_ $$G$$, not the specific implementation of the functions $$G_{\perp}$$ in particular coordinates.)
+If this is confusing, recall that
 
-So, $$d_G f$$ is the covariant derivative of $$f$$: the part of $$f$$'s derivative that lives on the surface $$G$$. We can define it everywhere, of course; it's only at stationary points where $$d_G f = \b{0}$$ matters.
+$$df = \del f \cdot d \b{x} = \frac{d f}{d \b{x}} \cdot d \b{x} = f_x d \b{x} + f_y d \b{y} + f_z d \b{z}$$
+
+Well, if we had some coordinates $$(u,v)$$ on $$G$$ and $$(n)$$ on $$G_{\perp}$$, then we'd write $$d_G f = f_u d \b{u} + f_v d \b{v}$$ and $$d_{\perp G} = f_n d \b{n}$$. A generic way to write this for any dimension is
+
+$$df = d_G f + d_{\perp G} f = \frac{d f}{d G} dG + \frac{d f}{d G_{\perp}} dG_{\perp}$$
+
+Where for instance $$\frac{d f}{d G} dG = \frac{d f}{d (u, v)} \cdot (d u, d v) = f_u \d u + f_v \d v$$. The variables $$d G$$ and $$d G_{\perp}$$ can be thought of as [frames](https://en.wikipedia.org/wiki/Frame_of_a_vector_space), which are like bags of arbitrary numbers of vectors, and their pseudoinverses $$\frac{1}{d G}$$ and $$\frac{1}{d G_{\perp}}$$ are their dual frames.
+
+These notations makes it clear that the derivatives are coordinate-independent and could happen in whatever coordinate system you like: they care only about the _surface_ $$G$$, not the specific implementation of $$G$$ in particular coordinates.
+
+So, $$d_G f$$ is the covariant derivative of $$f$$: the part of $$f$$'s derivative that lives on the surface $$G$$. We can define it everywhere, of course; it's only at stationary points where $$d_G f = 0$$ matters.
 
 An interesting thing we can do is attempt to linearly approximate it. We start with the expansion of $$d_G f$$
 
 $$
 \begin{aligned}
 0 &= d_G f \\
-&= df - \frac{df}{dG_{\perp}} dG_{\perp} \\
+&= df - \frac{d f}{d G_{\perp}} dG_{\perp} \\
 \end{aligned}
 $$
 
-But fix the value of $$\frac{df}{dG_{\perp}}$$ to be a constant $$\vec{\lambda}$$. Then approximate $$f$$ to first-order around the point $$\b{x} = \b{x}^*$$:
+But then fix the value of $$\frac{d f}{d G_{\perp}}$$ to be a constant $$\vec{\lambda}$$. Then approximate $$f$$ to first-order around the point $$\b{x} = \b{x}^*$$, exactly as if we were approximating $$f(x) = f(x^*) + f'(x^*) \int_{x^*}^x dx = f(x^*) + f'(x^*) (x - x^*)$$ in 1d:
 
 $$
 \begin{aligned}
 f(\b{x}) &= f(\b{x}^*) + \int_{\b{x}^*}^{\b{x}} d_G f \\ 
-&= f(\b{x}^*) + \int_{\b{x}^*}^{\b{x}} df - \frac{df}{dG_{\perp}} dG_{\perp}  \\
+&= f(\b{x}^*) + \int_{\b{x}^*}^{\b{x}} df - \frac{d f}{d G_{\perp}} dG_{\perp}  \\
 &\approx f(\b{x}^*) + \int_{\b{x}^*}^{\b{x}} df - \vec{\lambda} \, dG_{\perp} \\
 &= f(\b{x}) - \vec{\lambda} (G_{\perp}  - G_{\perp}^*) \\
 &= L(\b{x}, \vec{\lambda}) \\
 \end{aligned}
 $$
 
-This feels close to the true meaning of $$L$$: with the substitution, $$L(\b{x}, \frac{df}{dG_{\perp}})$$ is $$f$$ with its change along $$G_{\perp}$$ removed.  I imagine writing this as $$\proj_G f$$, the projection of a function onto a surface rather than a vector field. It's "the local approximation to $$f$$, but only the part on $$G$$". As if somebody had said:
+This feels close to the true meaning of $$L$$: with the substitution, $$L(\b{x}, \frac{d f}{d G_{\perp}})$$ is $$f$$ with its change along $$G_{\perp}$$ removed.  I imagine writing this as $$\proj_G f$$, the projection of a function onto a surface rather than a vector field. It's "the local approximation to $$f$$, but only the part on $$G$$". As if somebody had said:
 
-> instead of solving $$\del_G f = \b{0}$$
-> define $$L$$ such that $$\del L = \del_g f$$ around the solution, and set $$\del L = \b{0}$$ instead
+> instead of solving $$\del_G f = 0$$
+> define $$L$$ such that $$\del L = \del_g f$$ around the solution, and set $$\del L = 0$$ instead
 
 Another way of thinking about this: we can approximate a point $$\b{x}$$ near $$\b{x}^*$$ as
 
-$$\b{x} \approx \b{x}^* + \b{x}_G  (G - G^*) + \b{x}_{G_{\perp}} (G_{\perp} - G_{\perp}^*)$$
+$$\b{x} \approx \b{x}^* + \b{x}_G (G - G^*) + \b{x}_{G_{\perp}}  (G_{\perp} - G_{\perp}^*)$$
 
-Where we've written the point in $$G$$ coordinates (imaginary coordinates on the surface $$G$$) and $$G_{\perp}$$ coordinates (which we have, they're the values of the constraints). The $$\b{x}_G$$ are derivatives of the coordinate changes (Jacobians, if you want; hate that name). Naturally $$f$$ can be expanded in terms of these:
+Where again we've written the point in some imaginary $$G$$ coordinates (like the $$(u,v)$$ above) and $$G_{\perp}$$ coordinates (which we have, they're the values of the constraints). The $$\b{x}_G  = \frac{d \b{x}}{d G}$$ are the derivatives of the coordinate changes (Jacobians, if you want; hate that name). Naturally $$f$$ can be expanded in terms of these:
 
 $$
 \begin{aligned}
 f(\b{x}) 
 &\approx f(\b{x}^* + \b{x}_G  (G - G^*) + \b{x}_{G_{\perp}}  (G_{\perp} - G_{\perp}^*)) \\
-&\approx f(\b{x}^*) + (\del f) \b{x}_G  (G - G^*) + (\del f) \b{x}_{G_{\perp}}  (G_{\perp} - G_{\perp}^*) \\
-&= f(\b{x}^*) + \frac{df}{dG} (G - G^*) + \frac{df}{dG_{\perp}}  (G_{\perp} - G_{\perp}^*)
+&\approx f(\b{x}^*) + (\del f) \frac{d \b{x}}{d G}  (G - G^*) + (\del f) \frac{d \b{x}}{d G_{\perp}} (G_{\perp} - G_{\perp}^*) \\
+&= f(\b{x}^*) + \frac{d f}{d G} (G - G^*) + \frac{d f}{d G_{\perp}}  (G_{\perp} - G_{\perp}^*)
 \end{aligned}
 $$
 
-Then $$L(\b{x}, \frac{df}{dG_{\perp}})$$ is:
+Where we have used $$(\del f) \b{x}_G  = \frac{d f}{d \b{x}} \frac{d \b{x}}{d G} = \frac{d f}{d G}$$. Then $$L(\b{x}, \frac{d f}{d G_{\perp}})$$ is:
 
 $$
 \begin{aligned}
@@ -310,7 +464,7 @@ It is as if there was a coordinate system $$(G, G_{\perp})$$ on space, where the
 
 # 4. The meaning of $$L$$, part 2: the Envelope Theorem and Legendre Transforms
 
-But this can't be the full story, because $$L$$ is a function of $$\vec{\lambda}$$ in general, and we have to solve for that also: the solution is given by both $$L_{\b{x}} = \b{0}$$ and $$L_{\vec{\lambda}} = \b{0}$$. Why?
+But this can't be the full story, because $$L$$ is a function of $$\vec{\lambda}$$ in general, and we have to solve for that also: the solution is given by both $$L_{\b{x}} = 0$$ and $$L_{\vec{\lambda}} = 0$$. Why?
 
 I don't know that I understand the full reason, but here are some observations.
 
