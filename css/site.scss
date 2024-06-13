@@ -459,9 +459,13 @@ aside {
   margin: 20px;
   border: 1px double var(--divider);
   border-radius: 5px;
-  padding: 5px 10px;
+  padding: 0px 10px;
   overflow: hidden;
   height: auto;
+}
+
+aside.toggleable {
+  padding: 5px 10px;
 }
 
 aside.hidden {
