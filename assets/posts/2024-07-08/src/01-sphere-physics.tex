@@ -1,0 +1,27 @@
+\documentclass[crop,tikz]{standalone}
+\usepackage{tikz}
+\usepackage{tikz-3dplot}
+
+\begin{document}
+\tdplotsetmaincoords{100}{-30}
+%
+\pgfmathsetmacro{\rvec}{1}
+\pgfmathsetmacro{\thetavec}{50}
+\pgfmathsetmacro{\phivec}{-60}
+%
+\begin{tikzpicture}[scale=5,tdplot_main_coords]
+\coordinate (O) at (0,0,0);
+\draw[thick,->] (0,0,0) -- (1,0,0) node[anchor=north east]{$x$};
+\draw[thick,->] (0,0,0) -- (0,-1,0) node[anchor=south east]{$y$};
+\draw[thick,->] (0,0,0) -- (0,0,1) node[anchor=south]{$z$};
+
+\tdplotsetcoord{P}{\rvec}{\thetavec}{\phivec}
+\draw[-stealth] (O) -- (P) node[above right]{$(\theta, \phi)$};
+\draw[dashed] (O) -- (Pxy);
+\draw[dashed] (P) -- (Pxy);
+\tdplotdrawarc{(O)}{0.6}{0}{\phivec}{anchor=west}{$\phi$}
+\tdplotsetthetaplanecoords{\phivec}
+\tdplotdrawarc[tdplot_rotated_coords]{(0,0,0)}{0.6}{0}{\thetavec}{anchor=south west}{$\theta$}
+
+\end{tikzpicture}
+\end{document}

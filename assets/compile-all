@@ -1,0 +1,4 @@
+echo "compiling files in {$1}/*.tex"
+for filename in $1/*.tex; do
+	$(dirname $0)/compile $filename
+done
