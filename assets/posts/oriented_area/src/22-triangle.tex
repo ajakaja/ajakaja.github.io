@@ -1,0 +1,29 @@
+\documentclass[crop,tikz]{standalone}
+
+\usepackage{tikz}
+\usepackage{anyfontsize}
+
+\usetikzlibrary{bending}
+\usetikzlibrary{arrows.meta}
+\begin{document}
+
+\begin{tikzpicture}
+
+\coordinate (A) at (0,0);
+\coordinate (B) at (5,0);
+\coordinate (C) at (1,3);
+\coordinate (O) at (1,0.5);
+
+\draw (C) -- (A) -- (B) -- cycle;
+\draw[dashed] (A) -- (O);
+\draw[dashed] (B)+(0,0.5pt) -- (O);
+\draw[dashed] (C) -- (O);
+
+\node [above right] at (O) {$\mathcal{O}$};
+\node [left] at (A) {$(t_1, 0, 0)$};
+\node [right] at (B) {$(0, t_2, 0)$};
+\node [above] at (C) {$(0, 0, t_3)$};
+
+\end{tikzpicture}
+
+\end{document}

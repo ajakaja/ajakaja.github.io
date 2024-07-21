@@ -264,7 +264,7 @@ a.next {
     padding-left: 20px;
   }
   ol ul, ul ol, ul ul, ol ol {
-    margin: 6px 0;
+    margin: 2px 0;
   }
 }
 
@@ -286,7 +286,6 @@ ol {
 }
 
 ul#markdown-toc {
-  list-style-type: none;
   line-height: 1.3em;
 }
 
@@ -459,13 +458,9 @@ aside {
   margin: 20px;
   border: 1px double var(--divider);
   border-radius: 5px;
-  padding: 0px 10px;
+  padding: 5px 10px;
   overflow: hidden;
   height: auto;
-}
-
-aside.toggleable {
-  padding: 5px 10px;
 }
 
 aside.hidden {
@@ -610,7 +605,7 @@ div.b {
 
 figcaption {
   text-align: center;
-  font-size: 0.8em;
+  font-size: 0.9em;
   width: 80%;
   margin: 0px auto;
 }
@@ -670,3 +665,17 @@ pre.highlight {
   margin: 0px;
 }
 
+.collapsible::before {
+  position: static;
+  margin-left: -15px;
+  padding-right: 5px;
+  font-size: 10px;
+  content: "▼"
+}
+.collapsible.collapse::before {
+  content: "▲"
+}
+
+.collapse:not(h1) {
+  display: none !important; /* override Katex's display: block that gets set after page load. Sigh. */
+}
