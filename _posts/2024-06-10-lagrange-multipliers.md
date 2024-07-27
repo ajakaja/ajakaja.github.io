@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "The Essence of Lagrange Multipliers"
+title: "Lagrange Multipliers"
 tags: math
 math: true
 footnotes: true
