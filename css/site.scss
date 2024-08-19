@@ -34,6 +34,7 @@
   --divider: #999;
   --code-background: #efefef;
   --sidebar:  linear-gradient(to bottom, var(--border) 0 300px, transparent 500px);
+  --invert: "";
 }
 
 [data-theme="dark"] {
@@ -57,7 +58,7 @@
   --divider: #ccc;
   --code-background: #222;
   --sidebar: transparent;
-
+  --invert: invert(1);
 
 }
 
@@ -450,8 +451,10 @@ article {
     display: block;
     margin: 0 auto;
   }
-  p {
-  }
+}
+
+img.invertible {
+  filter: var(--invert);
 }
 
 aside {
