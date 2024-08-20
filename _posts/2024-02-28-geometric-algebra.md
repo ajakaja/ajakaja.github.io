@@ -186,51 +186,64 @@ Where the first part is a scalar (don't mind the minus sign, that's quaternions 
 
 Still, you have to explain what your geometric algebra is doing with mixed-grade objects. Do they... mean something? What is the scalar part? What would it mean to have a sum of a scalar, vector, bivector, and pseudoscalar? Or are they just formal linear combinations of things with no meaning? What is going on?
 
-Not only that, you need the mixed-grade objects to actually be _better_ than they were before you wrote them that way. For instance you _can_ write the electromagnetic field as $$\b{F} = \b{E} + \b{I} \b{B} \in Cl_{3,0}$$, and then Maxwell's equations as $$\del \b{F} = \del \cdot \b{F} + \del \^ \b{F} = J$$. But should you? Probably not. $$\b{E}$$ is better understood as being a $$\b{x} \^ \b{t}$$ bivector while $$\b{B}$$ is an $$\b{x} \^ \b{y}$$ bivector, both $$\in \^2 \bb{R}^{3,1}$$ Minkowski space, so they're both bivectors in the same space. The mixed-grade interpretation only makes sense if you really want to stay in $$\bb{R}^3$$ for some reason. There are [other examples](https://math.stackexchange.com/questions/3805595/are-there-any-geometrically-meaningful-useful-mixed-grade-objects-in-geometric-a) of rewriting things as mixed-grade objects, but, as far as I can tell, none of them seem... good? Writing equations in terms of mixed-grade multivectors in general doesn't _tell you anything useful_. You can't "think in them". Or at least, I can't. [Here](https://math.stackexchange.com/questions/1535878/visualizing-the-geometric-product) are some other people struggling to find a general interpretation of the GP as well.
+Not only that, you need the mixed-grade objects to actually be _better_ than they were before you wrote them that way. For instance you _can_ write the electromagnetic field as $$\b{F} = \b{E} + \b{I} \b{B} \in Cl_{3,0}$$, and then Maxwell's equations as $$\del \b{F} = \del \cdot \b{F} + \del \^ \b{F} = J$$. But should you? Probably not. $$\b{E}$$ is better understood as being a $$\b{x} \^ \b{t}$$ bivector while $$\b{B}$$ is an $$\b{x} \^ \b{y}$$ bivector, both $$\in \^^2 \bb{R}^{3,1}$$ Minkowski space, so they're both bivectors in the same space. The mixed-grade interpretation only makes sense if you really want to stay in $$\bb{R}^3$$ for some reason. There are [other examples](https://math.stackexchange.com/questions/3805595/are-there-any-geometrically-meaningful-useful-mixed-grade-objects-in-geometric-a) of rewriting things as mixed-grade objects, but, as far as I can tell, none of them seem... good? Writing equations in terms of mixed-grade multivectors in general doesn't _tell you anything useful_. You can't "think in them". Or at least, I can't. [Here](https://math.stackexchange.com/questions/1535878/visualizing-the-geometric-product) are some other people struggling to find a general interpretation of the GP as well.
 
-The approximate answer to "why is GA using mixed-grade objects and multiplying them?" is that it is really expressing a lot of _operations_ on multivectors as multivectors themselves. For example it will regard a unit vector as a reflection operator, or a scalar + bivector as a rotation operator. In this scheme, the product of two multivectors is generically interpreted as the composition of these operators. That is fine!
+The actual reason why GA so often uses mixed-grade objects and multiplies them together is that it is often using multivectors to represent various sorts of operators, rather than as geometric primitives like units of direction or area. For example they will use a unit vector to represent a reflection operator, or a scalar + bivector to represent a rotation operator. In this scheme, the product of two multivectors is generically interpreted as the composition of these operators. 
 
-However, GA is not very forthright about the fact that it is doing this, and will happily go on talking about mixed-grade multivectors that refer to geometry primitives, often by just saying "multiply these with the GP, then take only the grade-2 part to get their area" and things like that. As far as I know there is no reason to do this except that they really like the GP! And it is very offputting when it is used this way: if you wanted a wedge product, just write a wedge product; don't tell me to apply the GP to produce something that's partly meaningless and then extract the meaningful part from that. And anyway, if your goal is to pre-multiply vectors in a generic way and then extract useful components out of the result... you should be using the tensor product, not the geometric product.
+This approach allows one to model a limited number of operations as elements of a single algebra. For the regular $$Cl_{n, 0, 0}$$ Clifford Algebra, the basis vectors are interpreted as reflections and then their bivectors give rotations (more on this in a sec). But as far as I know there is not a great interpretation of the trivectors and higher. As an example, one might interpret the trivector $$\b{xyz} \in \^^3\bb{R}^3$$, which maps $$\b{x}$$ to $$\b{yz}$$, as giving the complementary subspace to a vector. But what would it mean in $$\^^3 \bb{R}^4$$? Its action on, say, $$\b{x} + \b{w}$$ returns $$\b{yz} + \b{xyzw}$$. As a unit of volume $$\b{xyz}$$ is perfectly reasonable, but as an operator it doesn't make much sense.
+
+The larger issue is that, even if the reason GA sometimes works is that it is implementing certain operators, very few users of GA understand that this is what is happening. As a result all the texts I have seen conflate the two concepts: they'll use mixed-grade multivector operators but then also use mixed-grade multivectors for simple geometric primitives. Often they'll prioritize the GP even when it makes no sense, such as creating the area of two vectors $$\b{a}$$ and $$\b{b}$$ by multiplying them with the GP and then extracting the grade-2 part, via $$\b{a} \^ \b{b} = (\b{ab} - \b{ba})/2$$. This makes no sense! Even if vectors *can be used* as operators, they are still used for the basic primitives of e.g. displacements between points and areas of triangles. There is no reason to define the primitive operations in terms of operators, and there's no additional insight gained from doing it. Instead it leaves you wondering: what in the world is the meaning of $$\b{ab}$$ on two displacements? And since there's no satisfactory answer to that, you're left completely confused.
 
 So that's a problem: **there is no good general interpretation or usage for the geometric product or mixed-grade multivectors**. There are usages and interpretations in special cases, but the generic operation is not meaningful. Yet it is used everywhere as the fundamental object of the theory. It is very awkward that the basic geometric operation in the geometric algebra that people espouse because they're trying to make everything geometrically intuitive... is not very geometrically meaningful on its own.
-
-Incidentally, you would not want to actually use the geometric product to do these calculations, like, numerically. If you want to calculate dot products, wedge products, rotations, reflections, etc, or especially if want to program them into a computer, the last thing you want to do is implement them as arbitrary products of mixed-grade-multivectors and then project out certain terms at the end that you care about. Because of course you don't: you really want to just implement the actual operation you were trying to use; doing it that way would be both tedious and a giant waste of memory and computational power. The reason you would use the GP is when all your objects are geometric operations that are already expressed as mixed-grade multivectors, so you can commute and anti-commute the terms in their components to compose them. In that case, go for it. But it is not like you want to be actually using the GP on a computer to perform operations that GA defines in terms of it, such as dot or wedge products. Nor would you want to use it to perform basic operations by hand. Basically the GP is useful for algebraic manipulations, not numeric ones.
 
 ---------
 
 ### Rotations and Reflections
 
-As I said above, the main place that the GP's behavior makes some sense is when the multivectors are being regarded as operators on geometric objects, rather than the geometric objects themselves. For instance:
+Rotations and reflections are the simplest examples of how the geometric product implements operations on vectors.
 
-(1) A basic rotation as implemented by exponentiating a bivector:
+A basic rotation in a plane is implemented by exponentiating a bivector
 
 $$e^{\theta (\b{xy})} = \cos \theta + (\b{xy}) \sin \theta$$
 
-Which operators on vectors like so:
+Which operators on vectors via
 
-$$e^{\theta (\b{xy})}(\b{x}) = \b{x} \cos \theta - \b{y} \sin \theta$$
+$$e^{\theta (\b{xy})}(a \b{x} + b \b{y}) = (a \b{x} + b \b{y}) \cos \theta + (b \b{x} - a\b{y}) \sin \theta$$
 
-(2) Or a better type of rotation is implemented by sandwiching an object between two "rotors", which are half-angle rotations (which is necessary to produce the correct [Rodrigues formula](https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula) for rotations in $$>2$$ dimensions[^Rodrigues]):
-
-[^Rodrigues]: In general rotating with $$e^{\theta \b{B}}$$ doesn't work to rotate vectors, because---well look at it, it multiplies every term in the vector by either $$\cos \theta$$ or $$\sin \theta$$, and rotating a vector _should_ leave an axis unchanged! The problem is that it only implements the rotation part of a rotation matrix, but not the $$1$$ on the diagonal. Modeling rotations as rotors, on the other hand, handles things correct: $$R_{\theta}(\b{v}) = e^{i \b{B}/2} \b{v} e^{-i\b{B}/2}$$. That's also how quaternions do rotations correctly. Note the similarity to a change of basis $$A \ra P A P^{-1}$$ in linear algebra. Some people treat these rotors as example of "spinors", since they themselves rotate with only one rotor instead of two, which also makes people sometimes call spinors a sort of "square root of vectors".
+But this doesn't work for vectors which don't lie in the $$\b{xy}$$ plane, because $$e^{\theta (\b{xy})} \b{z} = \b{z} \cos \theta + (\b{xyz}) \sin \theta$$. Instead one has to use the [Rodrigues formula](https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula) for rotations in $$>2$$ dimensions. GA accomplishes this the same way quaternions did, which is by which sandwiching a vector between two half-angle rotations instead, which GA calls "rotors":
 
 $$\b{v} \mapsto e^{\theta \b{B}/2} \b{v} e^{-\theta \b{B}/2}$$
 
-The intermediate object in this case is $$e^{\theta \b{B}/2} \b{v} = \cos (\theta/2 )\b{v} + \sin (\theta/2) \b{B} (v_{\parallel} + v_{\perp})$$. If $$v_{\perp}$$ is perpendicular to the plane of rotation then $$\b{B} \b{v}_{\perp}$$ becomes a trivector temporarily before being turned back into a vector by the second copy of $$\b{B}$$.
+This works correctly on $$\b{z}$$:
 
-(3) The reflection operator $$-\b{n} \b{v} \b{n} = \b{v}_{\perp n} - \b{v}_{\parallel n}  $$ which reflects a vector along the unit $$\b{n}$$.
+$$
+\begin{aligned}
+R_{xy} (\b{z}) &= e^{\theta \b{B}/2} \b{z} e^{-\theta \b{B}/2} \\
+&= [\b{z} \cos (\frac{\theta}{2}) + (\b{xyz}) \sin(\frac{\theta}{2})] [\cos (-\frac{\theta}{2}) + \b{xy} \sin (-\frac{\theta}{2})] \\
+&= \b{z} [ \cos^2 (\frac{\theta}{2}) + \sin^2(\frac{\theta}{2}) ] + \b{xyz} [\sin \frac{\theta}{2} \cos \frac{\theta}{2} - \cos \frac{\theta}{2} \sin \frac{\theta}{2} ]\\
+&= \b{z}
+\end{aligned}
+$$
 
-In each case we are using multivectors, and constructing intermediate mixed-grade multivectors, in order to transform a vector in some way (and there are extensions to multivectors). What seems to happen is that the scalar terms that show up in the geometric product in each case is responsible for performing the "identity" part of the operation which leaves its argument unchanged, while the bivector (or whatever) term is responsible for the part that gets transformed. Then the GP implements "composition" of these operators.
+We can split the action on a general vector $$\b{v}$$ into a part which is parallel to the plane of rotation and a part of which is orthogonal to it: $$\b{v} = \b{v}_{\parallel} + \b{v}_{\perp}$$. Then the rotation works by temporarily turning $$\b{v}_{\perp}$$ into a trivector with one multiplication and then back into a vector with the second. Strange.
 
-This becomes more clear in some of the more "exotic" geometric algebras out there: in practice GA people like to add more basis vectors, creating Clifford algebras like $$Cl_{3,1}$$ which has three basis vectors that square to $$+1$$ and one that squares to $$-1$$, or $$Cl_{3,0,1}$$ that has three $$+1$$s and one that squares to $$0$$. Each of these produces a different sort of "algebra of operations", and in each case the geometric product is used to compose them. Versions of this produce geometric algebras that include as primitives things like translations, Lorentz transformations, or screw-motions, and then their geometric product composes those operations.
+A reflection is similarly performed by sandwiching a vector, but between two other vectors instead of two exponentials. To reflect a vector $$\b{v}$$ along a unit vector $$\b{n}$$, we split $$\b{v} = \b{v}_{\perp n} + \b{v}_{\parallel n} $$ and then the goal is to reflect only the part along $$\b{n}$$: $$\b{v} \mapsto \b{v}_{\perp n} - \b{v}_{\parallel n}$$. This is implemented by $$-\b{n} \b{v} \b{n}$$, because
 
-The _fact that you can do this_ is certainly cool and neat, and profitable if you need to compose a lot of those operations. **But GA tends to act like this algebra which it has constructed to perform operations on a geometry... "is" the "right" way to do geometry**. Really it's just an implementation detail. If GA replaces all the vectors with planar reflections... well, vectors are still a thing, as is their wedge product. The fact that you built operators out of a quirky reinterpretation doesn't make the old things go away. GA's tendency to act like it is "better" than other approaches is very alienating: they all the same thing, and GA has just picked a few things and turned them into primitives, at the cost of making other things more complex. The GA in use is _not_ the canonical algebra of basic vectorial objects, but the algebra of a certain class of vectorial transformations on those objects that were chosen for the problem at hand.
+$$
+\begin{aligned}
+-\b{n} \b{v} \b{n} &= - (\b{n} \b{v}_{\perp n} + \b{n} \b{v}_{\parallel n}) \b{n} \\
+&= - (-\b{v}_{\perp n} \b{n} + \b{v}_{\parallel n} \b{n}) \b{n} \\
+&= \b{v}_{\perp n} - \b{v}_{\parallel n}
+\end{aligned}
+$$
 
-I strongly believe that if GA would make this distinction they would lose a lot fewer people. It is a completely interesting and useful thing to talk about "a representation of a particular class of operations that makes composition and inversion easy", and completely offputting when you blur the distinction between operators and geometric objects themselves, and write every operation in terms of the geometric product when only a few of them are really compositions of operators.
+Where we use the fact that the geometric products of parallel vectors commute, which orthogonal vectors anticommute.
+
+In each case we are using multivectors, and constructing intermediate mixed-grade multivectors, in order to transform a vector in some way. Various other geometric algebras augment the usual $$\bb{R}^n$$ basis with additional basis elements which allow one to represent and compose more operations such as translations, Lorentz transformations, or screw-motions.
 
 ------------
 
-It's worth considering what things would look like in a different model. The normal non-GA way to model a rotation operation, for instance, is with the [exponential map](https://en.wikipedia.org/wiki/Exponential_map) of a generator $$R_{xy}$$:
+It's worth comparing this to how its done in a different model. The normal non-GA way to model a rotation is with the [exponential map](https://en.wikipedia.org/wiki/Exponential_map) of a generator $$R_{xy}$$:
 
 $$
 \begin{aligned}
@@ -240,13 +253,13 @@ e^{\theta R_{xy}} (\b{x}) &= (I \cos \theta + R_{xy} \sin \theta) \b{x} \\
 \end{aligned}
 $$
 
-Where $$I$$ is the identity operator. (Don't mind the sign change compared to GA's version, it's basically a choice of convention.) $$R_{xy}$$ is the generator of rotation that simply performs the basic operation, while the exponential map "smears it out" and applies it over and over in infinitesimal amounts. $$R_{xy}$$ may be written as a matrix:
+Where $$I$$ is the identity operator; the sign change compared to GA is just a choice of convention. $$R_{xy}$$ may be written as a matrix:
 
 $$\begin{pmatrix} 0 & 1 & 0 \\ -1 & 0 & 0 \\ 0 & 0 & 1\end{pmatrix}$$
 
-but it's fine and perhaps better, to leave it as a symbol: the matrix is just a representation of it in a particular basis.
+but it's better to leave it as a symbol; the matrix is just a representation of it in a particular basis.
 
-The operator version of the exponential map produces an object whose two components have the same type: both are "operators that map vectors to vectors". Whereas the GA versions produce two objects with different types: a scalar and a bivector, which both happen to give a vector when multiplying a vector. In the operator version, the first term happens to be identity operator which you _could_ write as a scalar $$1$$... but it seems more natural to me that both $$e^{\theta R_{xy}}$$ and its expansion in terms of $$\cos \theta$$ and $$\sin \theta$$ are of the "same type" throughout. And although the identity operator $$I$$ could be written as $$1$$, it is just as good to regard it as a tensor product $$\b{x} \o \b{x} + \b{y} \o \b{y} + \b{z} \o \b{z}$$. Either way, GA's trick of "removing the vector part, then putting it back" is just... weird, I guess?
+The operator version of a rotation produces an object whose two components have the same type: both $$I$$ and $$R_{xy}$$ are linear maps $$\bb{R}^n \ra \bb{R}^n$$. The GA version instead says that a rotation has a scalar term and a bivector term, which both happen to give a vector when multiplying a vector. I dunno. Personally the operator version feels much more reasonable to me. Without a clear geometric interpretation for what the geometric product is doing, why would you want a version that uses it like that? And it's very strange how the GP version temporarily creates a trivector to perform a rotation.
 
 More to the point, these objects have the same algebra. If you write out your rotations as operators or geometric-products of mixed-grade multivectors, they do the same thing. The choice of representation is there for its utility, not for its underlying mathematical truth, and _pretending_ like it is mathematical truth is disingenuous and offputting.
 
@@ -259,33 +272,6 @@ Well, GA would phrase this as the vector interpretation being $$a \b{x} + b \b{y
 So GA ends up being very stuck because it equates "vectorial objects" and "operators that act on vectorial objects". It would be better to express all the geometric objects you care about in their most natural forms, and then find isomorphisms between them when it's necessary to do so. Otherwise all the meanings get blurred together and it's very confusing. So that's another problem with geometric algebra: **eliding the distinction between vectors and operators is undesirable, confusing, and disingenuous**.  The GP is only geometrically meaningful, to my knowledge, in the context of "representations of certain classes of geometric operators as implemented in particular Clifford Algebras", and treating it like it is some general-case thing turns a lot of people away from the start. 
 
 --------
-
-### Weird Formulas
-
-A related problem is that even when you _do_ treat multivectors as operators, the interpretations are... kinda weird? Consider the reflection operation:
-
-$$P_{\b{n}}: \b{v} \mapsto - \b{n} \b{v} \b{n}$$
-
-Where $$\b{n}$$ is a unit vector that we're reflecting along the axis of. This works because if you decompose $$\b{v} = \b{v}_{\parallel n} + \b{v}_{\perp n}$$ you can see that it flips the parallel part but not the perpendicular part (recall that parallel vectors have zero wedge product while perpendicular vectors have zero dot product, or in GA terms, parallel vectors commute while orthogonal vectors anticommute):
-
-$$
-\begin{aligned}
-P_{\b{n}}(\b{v}) &= - \b{n} \b{v} \b{n} \\
-&= - \b{n}( \b{v}_{\parallel n} + \b{v}_{\perp n}) \b{n} \\
-&= - \b{n} \b{n} \b{v}_{\parallel n} + \b{n} \b{n} \b{v}_{\perp n} \\
-&=  \b{v}_{\perp n} - \b{v}_{\parallel n}
-\end{aligned}
-$$
-
-It's neat that that works. But is it a good formula; does it make any sense? Not... really? Why would you reflect a vector by sandwiching it with a unit vector and adding in a minus sign? I doubt you could have guessed that formula without already knowing that it works, or by fiddling around with the geometric product for a while. And knowing it doesn't really teach you how to write down any other formulas. The operator version is something you can build out of primitives that you know (I mean, if we were developing geometric algebra with operators we would have already defined the projection $$\b{v}_{\parallel n}$$ and rejection $$\b{v}_{\perp n}$$ operators at this point.) 
-
-$$P_{\b{n}}(\b{v}) = \b{v}_{\perp n} - \b{v}_{\parallel n} $$
-
-A bit cludgy, but the meaning is clear. The GA representation is just that: a _representation_, in a particular algebra, that happens to work. But it is not a "natural" way to express the operation for most people's purposes.
-
-So that's another complaint: **Geometric Algebra's sleek formulas, when it has them, don't provide much useful geometric intuition**. They're just things you memorize. _Maybe_ there's a way to intuit the reflection formula if you think of all unit vectors as being reflection operations, but why bother? You'll get more intuition out of operators. 
-
------------
 
 ### GA in Physics: Pauli and Gamma Matrices
 
