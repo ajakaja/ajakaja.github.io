@@ -16,38 +16,41 @@ In which we attempt to better understand the classic multivariable calculus opti
 > Maximize $$f(\b{x})$$
 > Subject to the constraint that $$g(\b{x}) = c$$
 
-Lagrange multipliers are a trick to solving this. The trick is to instead maximize $$L = f(\b{x}) + \lambda (g(\b{x}) - c)$$ for both $$\b{x}$$ and a made-up variable $$\lambda$$, by solving $$\del L = \p_{\lambda} L = 0$$ instead. Equivalently, "notice that the solution will obey $$\del f \propto \del g$$, rather than $$\del f = 0$$ like it would if there was no constraint, and then invent $$L$$ to enforce this."
+Lagrange multipliers are a trick to solving this. The trick is to instead maximize a related function $$L = f(\b{x}) + \lambda (g(\b{x}) - c)$$ for both $$\b{x}$$ and a made-up variable $$\lambda$$, by solving $$\del L = \p_{\lambda} L = 0$$ instead. Equivalently, "notice that the solution will obey $$\del f \propto \del g$$, rather than $$\del f = 0$$ like it would if there was no constraint, and then invent $$L$$ to enforce this."
 
 I'm told that Lagrange multipliers show up all over mathematics and are a widely used technique for solving real-world problems. Couldn't tell you much about that. But I care about them for three reasons:
 
 One, the explanation for how to solve them that you get in undergraduate calculus is very philosophically unsatisfying. I don't like techniques that arising from "noticing" something and then proving it works. Depending on your background noticing it might be easier or difficult, but in either case it's not satisfying for a problem to be solved by a trick. Instead the insight should somehow emerge from a natural calculation.
 
-Two, I am very interested in the concept of "generalized inverses", of which Lagrange multipliers include several great examples (to be demonstrated shortly). The algebra of these is a bit unfamiliar so it's helpful to play with some examples. More generally I think there are a few concepts (generalized inverses, pseudoinverses, dual bases, vector division, frames) that ought to be more widely used, and I intend for this to be an example of why.
+Two, I am very interested in the concept of "generalized inverses", of which Lagrange multipliers include several great examples (to be demonstrated shortly). The algebra of these is a bit unfamiliar so it's helpful to play with some examples. More generally I think there are a few concepts (generalized inverses, pseudoinverses, dual bases, vector division, frames) that ought to be more widely used, and this is a good example of why.
 
-Three, various applications of Lagrange multipliers in physics (Lagrangian mechanics, QFT, statmech) seem to imply that Lagrange multipliers are an incredibly deep and important concept, far beyond their initial impression, and I want to understand how and why.
+Three, various applications of Lagrange multipliers in physics (Lagrangian mechanics, QFT, statmech) seem to imply that Lagrange multipliers are an incredibly deep and important concept, far beyond their initial impression, and I want to understand that better.
 
-Disclaimer: this is _not_ a pedagogical treatment of the subject. It's me doing it in a weird way to get a chance to play with generalized inverses and some other weird ideas. Consider yourself warned.
+Disclaimer: this is not a pedagogical treatment of the subject. It's me doing it in a weird way to get a chance to play with generalized inverses and some other weird ideas. Consider yourself warned.
 
 -------
 
 # 1. Lagrange Multipliers as inverting a projection
 
-Here is what I think is the most intuitive explanation of Lagrange multipliers. It is somewhat more complex than the standard explanations, but worth it because it's "natural" in a way that most explanations are not. Maybe someday it will be not be viewed as more complex when everyone's used to doing this kind of math. For the sake of being legible to a broader range of backgrounds, I'll start with some exposition about multivariable functions and how to think about the optimization problem.
+Here is what I think is the most intuitive explanation of Lagrange multipliers. It is somewhat more complex than the standard explanations, but worth it because it's "natural" in a way that most explanations are not. Maybe someday it will be not be viewed as more complex when everyone's used to doing this kind of math.
 
-Okay. We wish to find the maximum value of $$f(\b{x}): \bb{R}^n \ra R$$ subject to the constraint that $$g(\b{x}) = c$$. (In general we'll be working with functions on $$\bb{R}^n$$, but when writing out examples I'm just going to act like they're in $$\bb{R}^3$$ to save on notation.)
+In order to be accessible to a broader range of backgrounds, I'll start with some exposition about multivariable functions and how to think about the optimization problem.
+
+Okay. We wish to find the maximum value of $$f(\b{x}): \bb{R}^n \ra \bb{R}$$ subject to the constraint that $$g(\b{x}) = c$$. (In general we'll be working with functions on $$\bb{R}^n$$, but when writing out examples I'm just going to act like they're in $$\bb{R}^3$$ to save on notation.)
 
 We'll assume that $$f$$ and $$g$$ are both well-behaved smooth functions and that $$\del g \neq 0$$ anywhere, so it defines a [regular surface](https://en.wikipedia.org/wiki/Regular_surface_(differential_geometry)), which we'll call $$G$$. Being regular basically means that it doesn't have sharp corners or, like, glitches, anywhere. Picture a nice smooth shape, like a sphere.
 
-
 $$G = g^{-1}(c) = \{ \b{x} \, \| \, g(\b{x}) = c \}$$
 
-Since $$G$$ is defined by the solutions to a single constraint $$g$$, it has a single tangent vector $$\del g$$. The change of $$g$$ along a vector $$\b{v}$$ given by its directional derivative, which is the dot product with $$\del g$$: $$dg(\b{v}) = \del g \cdot \b{v}$$. Hence $$\del g$$ is the _only_ direction along which the value of $$g$$ changes. Along the other $$(n-1)$$ dimensions it does not change value, so if $$g(\b{x}) = c$$ at some point there are $$(n-1)$$ directions you can move along which it _stays_ at $$c.$$ Hence $$G$$ is an $$(n-1)$$-dimensional surface. For instance, a circle or line in $$\bb{R}^2$$, or a sphere or plane in $$\bb{R}^3$$. Most of this argument will work for $$G$$ of any dimension, and in the next section we'll repeat this for more constraints, which makes $$G$$ lower-dimensional. But the algebra gets more complicated. Better to start with one constraint and $$(n-1)$$-dimensional $$G$$.
+The normal vector of $$G$$ at any point is given by the gradient $$\del g$$. The reason for this is simple: The amount that $$g$$ changes along any vector $$\b{v}$$ is given by its directional derivative, which is the dot product with $$\del g$$: $$dg(\b{v}) = \del g \cdot \b{v}$$. Hence $$\del g$$ is the _only_ direction along which the value of $$g$$ changes. If $$\b{v}$$ points in any other direction the change in $$g$$ is zero; if you start at $$g(\b{x})=c$$ you stay at $$c$$.
+
+Since there is only one direction that changes the value of $$g$$, there are $$(n-1)$$ directions that you can move without changing the value of $$g$$, and $$G$$ is an $$(n-1)$$-dimensional surface. This might be a circle or line in $$\bb{R}^2$$, or a sphere or plane in $$\bb{R}^3$$. Most of this argument will work for $$G$$ of any dimension, though, and in the next section we'll repeat this for more constraints, which makes $$G$$ lower-dimensional. But the algebra gets more complicated in that case. Better to start with one constraint and $$(n-1)$$-dimensional $$G$$.
 
 We wish to find the maximum of $$f$$ on $$G$$. How?
 
-In 1d calculus we would look for the maximum of $$f$$ at points that have $$\frac{df}{dx} = 0$$. Maybe those points are a maximum, or a minimum, or otherwise just a stationary point where it becomes flat for a while but keeps going the same way afterwards (we'd have to check the second derivative to know). And if they're a maximum, maybe they're the global maximum or maybe not, we'd have to check. In any case, those would be the points that we're interested in.
+In 1d calculus we would look for the maximum of $$f$$ at points that have $$df/dx = 0$$. These points are _candidates_ for the maximum. Maybe they're a maximum, or a minimum, or otherwise just a stationary point where it becomes flat for a while but keeps going the same way afterwards. We have to check the second derivative to actually know: a maximum, for instnace, has a negative second derivative, meaning that it slopes down in both directions away from the point. And if some point is a maximum, maybe it's a global maximum or maybe not, we'd have to check that too. In any case those would be the points that we're interested in.
 
-Similarly, for a multivariable function in the absence of a constraint, we would search for a maximum by looking for points that have gradient $$\del f = (f_x, f_y, f_z) = 0$$, and we'd test if they're a local maximum by looking at the signs of the eigenvalues of the second derivative. All negative means it's a maximum, because the function decreases in every direction (equivalently: along any 1d slice it has negative second derivative). And of course we'd have to compare all the points we found and see which one is the global max, etc.
+Similarly, for a multivariable function with _no_ constraint, we would search for a maximum by looking for points that have gradient $$\del f = (f_x, f_y, f_z) = 0$$, and we'd test if they're a local maximum by looking at the "sign" of the second derivative. The second derivative is a $$3 \times 3$$ matrix, so it doesn't have a sign exactly, but there's something equivalent: the signs of the eigenvalues tell us if there are any directions we can that increase the value away from the stationary point. All negative eigenvalues means the point is a maximum, because the function decreases in every direction you can possibly go. After checking that we still have to compare all the points we found and see which one is an actual global maximum.
 
 When we limit to points on the surface $$G$$, we are not necessarily interested in the local or global maxima of the whole function $$f$$ anymore. A global maximum point of $$f$$ would still be a maximum if it _happened_ to be on $$G$$, but if it did not lie on $$G$$ then we would not care about it at all. Meanwhile the maximum that's on $$G$$ may not have $$\del f = 0$$ at all; it could just be some random value in the middle of $$f$$'s range.
 
@@ -61,47 +64,47 @@ $$\del_G f = \proj_G \del f$$
 
 And the condition for the maxima of $$f$$ is that the surface derivative is zero:
 
-$$\boxed{\del_G f = 0}$$
+$$\del_G f = 0$$
+
+So that is the Lagrange multiplier condition in what I think is a rather more intuitive form.
 
 [^covariant]: This is closely related to the [covariant derivative](https://en.wikipedia.org/wiki/Covariant_derivative), but it's a bit simpler because it's the derivative of a scalar instead of a vector. Normallyone talks about the covariant derivative of a tensor field, whereupon it does two things: (a) it restricts the full derivative to the surface you're on, and (b) it includes a number of additional terms which account for how the basis vectors change in space as well. But it's totally valid to define a covariant derivative of a _scalar_ field, in which case it's only the first part, the projection onto the surface.
     
     The covariant derivatives that you see in GR or in abstract Differential Geometry are usually doing this for a surface that's _not_ embedded in space, by deriving the covariant derivative from the metric or a connection. But this version is the "classical" version, which is quite a bit simpler and easier to think about.
 
-I'm using $$\proj_G$$ to mean the [vector projection](https://en.wikipedia.org/wiki/Vector_projection) operator, which takes a vector to another vector (not to be confused with the [scalar projection](https://en.wikipedia.org/wiki/Scalar_projection), which just gives the _components_ of the vector projection). It lops off components that don't lay in the surface. For instance we could project a vector $$\b{v} = (v_x, v_y, v_z)$$ onto the $$xy$$ plane, which would be given by $$\proj_{xy}(\b{v}) = (v_x, v_y, 0)$$.
+Note: I'm using $$\proj_G$$ to mean the [vector projection](https://en.wikipedia.org/wiki/Vector_projection) operator, which takes a vector to another vector (not to be confused with the [scalar projection](https://en.wikipedia.org/wiki/Scalar_projection), which just gives the _components_ of the vector projection). It lops off components that don't lay in the surface. For instance we could project a vector $$\b{v} = (v_x, v_y, v_z)$$ onto the $$xy$$ plane, which would be given by $$\proj_{xy}(\b{v}) = (v_x, v_y, 0)$$.
 
-For some reason people usually think of projections like $$\proj_G$$ as abstract "operators", basically functions on vectors. But it is representable as a matrix, and is easier to think about in that form. When we're thinking of it as a matrix I'll write a dot product symbol instead, as $$\proj_G \cdot \del f$$.
+For some reason people often treat projections $$\proj_G$$ as abstract "operators" which act on vectors, but are just functions on vectors rather than elements in the normal vector/matrix/scalar calculus. But it's perfectly possible to regard them as matrices, and it's easier to think about that way. When we're thinking of it as a matrix I'll write a dot product symbol instead, as $$\proj_G \cdot \del f$$.
 
-So what's the matrix form of $$\proj_G$$? Well, the information we have about $$G$$ is that $$\del g$$ points in the direction orthogonal to $$G$$. Therefore to get only the parts of a vector that lay _on_ the surface $$G$$, we just have to remove the parts that _aren't_ on $$G$$, which is the projection onto $$\del g$$
+We can construct the matrix form of $$\proj_G$$ from another matrix, the projection _off_ of $$G$$. We have a vector that describes the directions orthogonal to $$G$$: it's $$\del g$$. So projecting onto that projects a vector onto $$G_{\perp}$$, the subspace orthogonal to the tangent plane of $$G$$:
+
+$$\proj_{\del g} = \frac{\del g}{\| \del g \|} \o \frac{\del g}{\| \del g \|}$$
+
+This is a matrix whose action on a vector is to dot with one of the two components of the tensor product:
+
+$$\proj_{\del g} \cdot \b{v} = \proj_{\del g} (\b{v}) = \frac{\del g \cdot \b{v}}{\| \del g \|^2} \del g$$
+
+If that matrix extracts every component that's not on $$G$$, then it should leave behind every component that _is_ on $$G$$. hence the matrix form of $$\proj_G$$ is given by
 
 $$\proj_G \del f = (I - \proj_{\del g}) \cdot \del f$$
 
-(With $$I$$ as the identity matrix.) The projection onto the gradient $$\proj_{\del g}$$ is another matrix, which we can write down more easily. What it does to vectors is perhaps familiar from multivariable calculus: 
+(With $$I$$ as the identity matrix.)
 
-$$\proj_{\del g} (\b{v}) = \frac{\del g \cdot \b{v}}{\| \del g \|^2} \del g$$
+Now, that form will work, but it's easier to see what's going on if we make some substitutions. We'll write $$\b{n} = \frac{\del g}{\| \del g \|}$$ for normal vector. Then
 
-Although I prefer to write it in this more symmetric way:
+$$\proj_{\del g} = \b{n} \o \b{n}$$
 
-$$\proj_{\del g}(\b{v}) = \frac{\del g}{\| \del g \|} [ \frac{\del g}{\| \del g \|}  \cdot \b{v}]$$
-
-With $$\b{n} = \frac{\del g}{\| \del g \|}$$ it's
-
-$$\proj_{\del g}(\b{v}) = (\b{n} \cdot \b{v}) \b{n}$$
-
-A more sophisticated to write this, without having to specify the vector $$\b{v}$$, is with a tensor product:
-
-$$\proj_{\del g} = \frac{\del g}{\| \del g \|} \o \frac{\del g}{\| \del g \|} = \b{n} \o \b{n}$$
-
-And it is cleaner if we also adopt [dyadic notation](https://en.wikipedia.org/wiki/Dyadics), in which we shorten $$\b{n} \o \b{n}$$ to $$\b{nn}$$:
+And it's even cleaner if we also adopt [dyadic notation](https://en.wikipedia.org/wiki/Dyadics), in which we shorten $$\b{n} \o \b{n}$$ to $$\b{nn}$$:
 
 $$\proj_{\del g} = \b{nn}$$
 
 All of these are ways of writing the projection $$\proj_{\del g}$$ onto the vector $$\del g$$. It doesn't matter which one you use. The important part is that they express $$\proj_{\del g}$$ as a matrix, and then
 
-$$\proj_G \del f = (I - \proj_{\del g}) \del f = 0$$
+$$\proj_G \del f = (I - \proj_{\del g}) \del f = (I - \b{nn}) \del f = 0$$
 
 Is the constraint obeyed by $$\del f$$ at its stationary points on $$G$$.
 
-Here is one more version. Suppose we happen to have a coordinate system $$(u,v)$$ on the surface $$G$$; don't ask me how we got it. Then locally there is a frame of unit vectors $$(\b{u}, \b{v}, \b{n})$$ with $$\b{n} = \frac{\del g}{\| \del g \|}$$ as before. The identity matrix is then $$I = \b{uu} + \b{vv} + \b{nn}$$, which is equivalent to writing $$\text{diag}(1,1,1)$$ in the $$(u,v,n)$$ coordinate system. Then we can write $$I - \b{nn} = \b{uu} + \b{vv} = \text{diag}(1,1,0)$$. That is, there is a basis $$(\b{u}, \b{v}, \b{n})$$ in which these are true:
+Here is a notation I like even better Suppose we happen to have a coordinate system $$(u,v)$$ on the surface $$G$$; don't ask me how we got it. Then locally there is a frame of unit vectors $$(\b{u}, \b{v}, \b{n})$$ with $$\b{n} = \frac{\del g}{\| \del g \|}$$ as before. The identity matrix is then $$I = \b{uu} + \b{vv} + \b{nn}$$, which is equivalent to writing $$\text{diag}(1,1,1)$$ in the $$(u,v,n)$$ coordinate system. Then we can write $$I - \b{nn} = \b{uu} + \b{vv} = \text{diag}(1,1,0)$$. That is, there is a basis $$(\b{u}, \b{v}, \b{n})$$ in which these are true:
 
 $$
 \begin{aligned}
@@ -112,7 +115,7 @@ $$
 \end{aligned}
 $$
 
-Which is so simple that it felt worth mentioning. After all this is all a projection is: if it removes one dimension from a vector, of course there's a basis in which it preserves the other two dimensions but gets rid of one, right? It is often helpful to imagine coordinates like this to make the algebra more concrete (much more on this some other day...). But mostly we will not use this form.
+This is, I think the best way. It's how I think about projections in my head: invent a basis, even if you have no way of getting it easily, and use it freely so that everything is nice and diagonal. It is often helpful to imagine coordinates like this because it makes the algebra so much more concrete ( ore on this some other day...). But mostly we will not use this form; I just wanted to show it.
 
 -------
 
@@ -120,7 +123,7 @@ So the condition on points on $$G$$ which maximize $$f$$ is that
 
 $$\del_G f = \proj_G \del f = 0$$
 
-This doesn't require that $$\del f = 0$$ itself. Yes, $$\del f$$'s components in the $$(n-1)$$ directions on the surface $$G$$ are zero, but there's one more direction besides those, the direction $$\del g$$, along which it can be whatever it wants. Therefore at the solutions $$\del f$$ only has to be proportional to that remaining direction, $$\del g$$:
+This doesn't require that $$\del f = 0$$. Yes, $$\del f$$'s components in the $$(n-1)$$ directions on the surface $$G$$ are zero, but there's one more direction besides those, the direction $$\del g$$, along which it can be whatever it wants. Therefore at the solutions $$\del f$$ only has to be proportional to that remaining direction, $$\del g$$:
 
 $$\del f \propto \del g$$
 
@@ -134,7 +137,7 @@ When we solve the equation we'll come up with both a point $$\b{x}^*$$ and a val
 
 There is a nicer way to come up with $$\del f = \lambda \del g$$:
 
-We had written $$\proj_{G} \cdot \del f = 0$$. Well, the projection operator has a simple [generalized inverse](https://en.wikipedia.org/wiki/Generalized_inverse):[^gen] since it takes one dimension, the direction $$\del g$$, to $$0$$, then the preimage of $$0$$ can have any component along $$\del g$$. We write this as a free parameter $$\lambda$$:
+We had written $$\proj_{G} \cdot \del f = 0$$. Well, the projection operator has a simple [generalized inverse](https://en.wikipedia.org/wiki/Generalized_inverse):[^gen] since it takes one dimension, the direction $$\del g$$, to $$0$$, then the preimage of $$0$$ can have any component along $$\del g$$. We write this as a free parameter $$\lambda$$ also:
 
 [^gen]: I use "generalized inverse" to refer to the preimage of an operation, but written as an algebraic object that includes free parameters as necessary to be correct. For instance the generalized inverse of $$0 \times a = 0$$ is $$a = \lambda$$, meaning any real number. See also [this other post]({% post_url 2023-09-25-inverses %}).
 
@@ -146,7 +149,7 @@ $$
 \end{aligned}
 $$
 
-This is the same as just "noticing it", except that it treats dividing through by $$\proj_G$$ as an explicit algebraic operation. To me that's a big improvement. I like how that makes the free $$\lambda$$ parameter show up through what could be rote algebra instead of any sort of trick. Invert a projection, get a free parameter. Easy. Also it's easy to see how it generalizes: if, for instance, $$\proj_G$$ projected out two dimensions instead, we'd get two free parameters. More on that in a second.
+This is the same when we just "noticing it" above, except that it treats dividing through by $$\proj_G$$ as an explicit algebraic operation. To me that's a big improvement. I like how that makes the free $$\lambda$$ parameter show up through what could be rote algebra instead of any sort of trick. Invert a projection, get a free parameter. Easy. Also it's easy to see how it generalizes: if, for instance, $$\proj_G$$ projected out two dimensions instead, we'd get two free parameters. We'll get to that in a sec.
 
 So far $$\del_G f = 0$$ was a condition that we expected to be fulfilled at certain points, the maxima $$\b{x}^*$$. _At_ those points we'll write everything with asterixes: $$f^* = f(\b{x}^*)$$, $$g^* = g(\b{x}^*) = c$$, $$\del f^* = \del f(\b{x}^*)$$, $$\del g^* = \del g(\b{x}^*)$$. Then the relation at a solution is
 
@@ -156,17 +159,17 @@ We can just solve for $$\lambda^*$$:
 
 $$\lambda^* = \frac{\del f^*}{\del g^*}$$
 
-Yes, that's division by a vector. It's an unorthodox notation that I like. The meaning is that $$\b{a}/\b{b} = (\b{a} \cdot \b{b})/\| \b{b} \|^2$$, so this really says that:
+Where I've used the unorthodox but good notation of dividing by a vector. The meaning is that $$\b{a}/\b{b} = (\b{a} \cdot \b{b})/\| \b{b} \|^2$$, so it says that:
 
 $$\lambda^* = \frac{\del f^* \cdot \del g^*}{\| \del g^* \|^2}$$
 
-Note that had we included one more factor of $$\del g^*$$, it would turn this back into the expected projection:
+Note that multiplying through by $$\del g^*$$, turns this back the projection:
 
-$$\lambda^* \del g^* = \frac{\del f^* \cdot \del g^*}{\| \del g^* \|^2} \del g^* = \proj_{\del g^*} \del f^*$$
+$$\lambda^* \del g^* = \frac{\del f^* \cdot \del g^*}{\| \del g^* \|^2} \del g^* = \del f^* \cdot [\frac{\del g^*}{\| \del g^*} \o \frac{\del g^*}{\| \del g^*} ] = \proj_{\del g^*} \del f^*$$
 
-This tends to happen when you extend division to vectors and matrices: $$\frac{\b{b}}{\b{a}} \b{a} = \proj_{\b{a}} \b{b}$$. We'll see a lot more of it in a moment.
+This is a special case of the algebraic identity when you divide by vectors: $$\frac{\b{b}}{\b{a}} \b{a} = \proj_{\b{a}} \b{b}$$. We'll see a lot more of it in a moment.
 
-So that's the value of $$\lambda^*$$: it's the ratio of the derivatives of $$f$$ and $$g$$. We'll talk about what it means later. First let's do this again with more than one constraint because it gets more interesting.
+Anyway, that's the value of $$\lambda^*$$: it's the ratio of the derivatives of $$f$$ and $$g$$ at the maximum point. We'll talk about what it means later. First let's do this again with more than one constraint because it gets interesting.
 
 --------
 

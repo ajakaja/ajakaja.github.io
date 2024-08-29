@@ -62,11 +62,6 @@
 
 }
 
-
-/**************/
-/* BASE RULES */
-/**************/
-
 html {
   font-size: 100%;
   height: 100%;
@@ -189,6 +184,8 @@ small {
     margin-left: 20px;
   }
 }
+
+.katex { font-size: 1.15em; }
 
 pre {
   tab-size: 2em;
