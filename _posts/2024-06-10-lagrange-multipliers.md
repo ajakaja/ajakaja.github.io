@@ -589,7 +589,7 @@ Here are some examples:
 
 In economics, if the function being maximized is something like "profit" and the constraint is some condition on the business that forces $$g = g^*$$, then the multiplier $$\lambda^*$$ tells you how much more profit you will get if you can change that condition, and the highest multiplier tells you which change gives the highest marginal returns. (Wikipedia tells me that $$\lambda$$ is called the [marginal cost](https://en.wikipedia.org/wiki/Marginal_cost) or [shadow price](https://en.wikipedia.org/wiki/Shadow_price))
 
-In mechanics if a system is constrained to follow a certain surface in space given by $$g = g^*$$, then the Lagrange multiplier for that system is the normal fore which holds the system to that surface. Also there is a sense, alluded to above but which I'll have to work out some other day, in which $$L = T - V$$ is the Lagrange multipler form of $$F = ma$$: you can move in the potential, but there's a cost, and the multiplier is a force $$F$$.
+In mechanics if a system is constrained to follow a certain surface in space given by $$g = g^*$$, then the Lagrange multiplier for that system is the normal force which holds the system to that surface. Also there is a sense, alluded to above but which I'll have to work out some other day, in which $$L = T - V$$ is the Lagrange multipler form of $$F = ma$$: you can move in the potential, but there's a cost, and the multiplier is a force $$F$$.
 
 In thermodynamics, if two systems are in thermodynamic equilibrium, then they are modeled as maximizing entropy subject to their total energy being constant. You find that the Lagrange multiplier $$\frac{dS}{dE} = \frac{1}{T}$$, that is, inverse temperature is the multiplier for energy. There are a bunch of other variables in thermodynamics which characterize how systems equilibrate when they're allowed to exchange different quantities. Pressure $$P$$ is the multiplier for changes in volume $$V$$, chemical potential $$\mu$$ is the multiplier for changes in particle ratio (that is, it's the thing that equilibrates under diffusion); etc.
 
@@ -609,9 +609,7 @@ At some level I think that this perspective on Lagrange multipliers is like a se
 
 Suppose you are a strangely calculating, rational person, and you're trying to make a decision in your life, like picking a job and place to live that optimizes your happiness $$H$$. Maybe your job could be improved and your housing could be improved. Well, there is a multiplier: if taking a worse house makes your job better by _more_ than that, you should switch houses to get the better job. Or vice-versa. Or, since you know the value of $$\lambda = \frac{\p H}{\p C}$$, the return on happiness from making those changes, you should look for other places to make changes that get a better return: change your relationships, get a new hobby, start a revolution, whatever it takes. Maybe you get a certain negative return on happiness from even _thinking_ about the problem for a time $$t$$ due to some rate of stress $$S = \frac{\p H}{\p t}$$. Now you shouldn't be thinking about optimizing $$H$$ at all, but rather $$H - S t$$: make your decisions, but don't spend your whole life stressing about them either because you'll eat into the reward that way. Etc. Money can't buy happiness directly, but there _is_ a Lagrange multiplier $$\lambda = \p H/\p\$ $$ for it, and you might want to figure out what it is for you.
 
-That's right. Lagrange Multipliers are everywhere. They're basically an all-encompassing moral philosophy hiding under an bewildering pile of calculus hacks.
-
-Sheesh.
+That's right. Lagrange Multipliers are everywhere. They're some kind of all-encompassing moral philosophy hiding under an bewildering pile of calculus hacks. Sheesh.
 
 
 
