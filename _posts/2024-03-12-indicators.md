@@ -141,9 +141,11 @@ What is the difference between an indicator for a point and a delta function for
 
 # 2. Integration with Inverse Differentials
 
-I think the most intuitive answer is that the delta function may be regarded as an indicator function divided by the absolute value of a differential:
+I think the most intuitive answer is that the delta function may be regarded as an indicator function divided by the absolute value of a differential:[^btw]
 
-$$\boxed{\delta_a \? \frac{1_a}{\| d x \|}}$$
+[^btw]: Some time after posting this I realized that maybe this is overkill and it would be easier to follow in terms of $$d \theta_a$$ rather than $$1_a$$ (the only difference is that $$d \theta_a$$ handles the sign so you don't need an absolute value on $$dx$$). But everything works pretty similarly? Maybe I'll update it later.
+
+$$\boxed{\delta_a \? \frac{1_a}{\| d x \|}  = \frac{d \theta_a}{dx}}$$
 
 The $$1_{(a)}$$ is a normal indicator function. The object $$\| dx \|$$ is basically "the magnitude of $$dx$$". Unlike $$dx$$, it is always positive when evaluated on a tangent vector. And for some strange reason it is in a denominator, which we will have to get used to.
 

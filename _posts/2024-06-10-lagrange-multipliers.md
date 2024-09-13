@@ -78,13 +78,13 @@ For some reason people often treat projections $$\proj_G$$ as abstract "operator
 
 We can construct the matrix form of $$\proj_G$$ from another matrix, the projection _off_ of $$G$$. We have a vector that describes the directions orthogonal to $$G$$: it's $$\del g$$. So projecting onto that projects a vector onto $$G_{\perp}$$, the subspace orthogonal to the tangent plane of $$G$$:
 
-$$\proj_{\del g} = \frac{\del g}{\| \del g \|} \o \frac{\del g}{\| \del g \|}$$
+$$\proj_{\del g} = \frac{\del g}{ \| \del g \|^2 } \o \del g$$
 
 This is a matrix whose action on a vector is to dot with one of the two components of the tensor product:
 
-$$\proj_{\del g} \cdot \b{v} = \proj_{\del g} (\b{v}) = \frac{\del g \cdot \b{v}}{\| \del g \|^2} \del g$$
+$$\proj_{\del g} (\b{v}) \equiv \proj_{\del g} \cdot \b{v} = \frac{\del g \cdot \b{v}}{ \| \del g \|^2 }  \del g$$
 
-If that matrix extracts every component that's not on $$G$$, then it should leave behind every component that _is_ on $$G$$. hence the matrix form of $$\proj_G$$ is given by
+If that matrix extracts every component that's not on $$G$$, then it should leave behind every component that _is_ on $$G$$. Hence the matrix form of $$\proj_G$$ is given by
 
 $$\proj_G \del f = (I - \proj_{\del g}) \cdot \del f$$
 
@@ -104,7 +104,7 @@ $$\proj_G \del f = (I - \proj_{\del g}) \del f = (I - \b{nn}) \del f = 0$$
 
 Is the constraint obeyed by $$\del f$$ at its stationary points on $$G$$.
 
-Here is a notation I like even better Suppose we happen to have a coordinate system $$(u,v)$$ on the surface $$G$$; don't ask me how we got it. Then locally there is a frame of unit vectors $$(\b{u}, \b{v}, \b{n})$$ with $$\b{n} = \frac{\del g}{\| \del g \|}$$ as before. The identity matrix is then $$I = \b{uu} + \b{vv} + \b{nn}$$, which is equivalent to writing $$\text{diag}(1,1,1)$$ in the $$(u,v,n)$$ coordinate system. Then we can write $$I - \b{nn} = \b{uu} + \b{vv} = \text{diag}(1,1,0)$$. That is, there is a basis $$(\b{u}, \b{v}, \b{n})$$ in which these are true:
+Here is one more way of looking at it that makes what's going on obvious. Suppose we happen to have a coordinate system $$(u,v)$$ on the surface $$G$$; don't ask me how we got it. Then locally there is a frame of unit vectors $$(\b{u}, \b{v}, \b{n})$$ with $$\b{n} = \frac{\del g}{\| \del g \|}$$ as before. The identity matrix is then $$I = \b{uu} + \b{vv} + \b{nn}$$, which is equivalent to writing $$\text{diag}(1,1,1)$$ in the $$(u,v,n)$$ coordinate system. Then we can write $$I - \b{nn} = \b{uu} + \b{vv} = \text{diag}(1,1,0)$$. That is, there is a basis $$(\b{u}, \b{v}, \b{n})$$ in which these are true:
 
 $$
 \begin{aligned}
@@ -115,7 +115,7 @@ $$
 \end{aligned}
 $$
 
-This is, I think the best way. It's how I think about projections in my head: invent a basis, even if you have no way of getting it easily, and use it freely so that everything is nice and diagonal. It is often helpful to imagine coordinates like this because it makes the algebra so much more concrete ( ore on this some other day...). But mostly we will not use this form; I just wanted to show it.
+This is, I think the best way. It's how I think about projections in my head: invent a basis, even if you have no way of getting it easily, and use it freely so that everything is nice and diagonal. It is often helpful to imagine coordinates like this because it makes the algebra much more concrete (more on this some other day...). But mostly we will not use this form; I just wanted to show it.
 
 -------
 
@@ -165,9 +165,7 @@ $$\lambda^* = \frac{\del f^* \cdot \del g^*}{\| \del g^* \|^2}$$
 
 Note that multiplying through by $$\del g^*$$, turns this back the projection:
 
-$$\lambda^* \del g^* = \frac{\del f^* \cdot \del g^*}{\| \del g^* \|^2} \del g^* = \del f^* \cdot [\frac{\del g^*}{\| \del g^*} \o \frac{\del g^*}{\| \del g^*} ] = \proj_{\del g^*} \del f^*$$
-
-This is a special case of the algebraic identity when you divide by vectors: $$\frac{\b{b}}{\b{a}} \b{a} = \proj_{\b{a}} \b{b}$$. We'll see a lot more of it in a moment.
+$$\lambda^* \del g^* = \frac{\del f^* \cdot \del g^*}{\| \del g^* \|^2} \del g^* = \del f^* \cdot [\frac{\del g^*}{\| \del g^* \|^2} \o \del g^* ] = \proj_{\del g^*} \del f^*$$
 
 Anyway, that's the value of $$\lambda^*$$: it's the ratio of the derivatives of $$f$$ and $$g$$ at the maximum point. We'll talk about what it means later. First let's do this again with more than one constraint because it gets interesting.
 
@@ -260,7 +258,7 @@ Example: consider if there are just two gradients $$(\del g_1, \del g_2)$$. The 
 
 [^gs]: Incidentally the projections $$(\del g_1, \del g_2 - \proj_{\del g_1} \del g_2, \ldots)$$ here would, after you normalize them, form a [Gram-Schmidt basis](https://en.wikipedia.org/wiki/Gram%E2%80%93Schmidt_process) for $$(\del g_1, \del g_2)$$. But that's not the best way to do it.
 
-The answer is that we need to use something that acts like the inverse of the matrix $$\del G_{\perp}$$, called the [pseudoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse). I tend to write it as $$\frac{1}{\del G_{\perp}}$$ or $$(\del G_{\perp})^{-1}$$ without making a distinction from the regular inverse, although most people use a different symbol such as $$(\del G_{\perp})^+$$. If $$\del G_{\perp}$$ is $$k \times n$$ then $$1/\del G_{\perp}$$ is $$n \times k$$. Using the pseudoinverse we can simply "divide through" by $$\del G_{\perp}$$:[^indices]
+The answer is that we need to use something that acts like the inverse of the matrix $$\del G_{\perp}$$, called the [pseudoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse), written $$\del G_{\perp}^+$$. Using the pseudoinverse we can simply "divide through" by $$\del G_{\perp}$$:[^indices]
 
 [^indices]: To be precise we'd want to notate which indices of the matrices are contracted with each other, but let's not. Anyway there is really only one sensible way to do it.
 
@@ -268,98 +266,25 @@ $$
 \begin{aligned}
 \del f &= \vec{\lambda} \cdot \del G_{\perp} \\ 
 &\Ra \\
-\vec{\lambda} &= \frac{\del f}{\del G_{\perp}}
+\vec{\lambda} &= \del G_{\perp}^+(\del f)
 \end{aligned}
 $$
 
-Here is a blurb about it.
+I like to write the pseudoinverse as division. There used to be a big blurb about that here, but I decided to write it out as a [separate article]({% post_url 2024-09-11-vector-division %}) instead. The short version is that $$1/A = A^+$$, that's all, and we're going to write it as $$A^{-1}$$ even though it's not a true inverse. For vectors this becomes $$1/\b{v} = \frac{\b{v}}{\| \b{v} \|^2}$$. Although this not "actually" an inverse, it's very close, and when you multiply through you don't get unity but you do get a very useful identity: it becomes a projection operation onto the span of the denominator:
 
-<aside id="pseudoinverse">
+$$\frac{\b{v}}{A} A = \b{v}_A$$
 
-**The Pseudoinverse**
+In our case:
 
-We are trying to solve the equation
+$$\frac{\del f}{\del G_{\perp}} \del G_{\perp} = \proj_{\del G_{\perp}} f = \del_{\perp G} f$$
 
-$$\del f = \vec{\lambda} \cdot \del G_{\perp}$$
-
-for $$\vec{\lambda}$$. This has the form
-
-$$A \b{x} = \b{b}$$
-
-Where $$A = \del G_{\perp}$$, $$\b{x} = \vec{\lambda}$$, and $$\b{b} = \del f$$. But $$A$$ is not square (it's $$k \times n$$), much less invertible, so we can't just solve it by writing $$\b{x} = A^{-1}(\b{b})$$. Or can we?
-
-Consider what $$A \b{x} = \b{b}$$ means. Suppose $$A = (\b{a}_1, \b{a}_2, \ldots)$$ and that all of the $$\b{a}$$ are linearly independent. Then we are searching a set of coefficients $$\b{x} = (b_1, b_2, \ldots)$$ such that we can write
-
-$$\b{b} = A \b{x} = b_1 \b{a}_1 + b_2 \b{a}_2 + \ldots \tag{maybe works}$$
-
-This isn't always possible, because maybe $$\b{b}$$ is _not_ a sum of the columns of $$A$$ (that is, maybe $$\b{b} \notin \text{col}(A)$$, the column space of $$A$$). What we can _always_ do, though, is project $$\b{b}$$ onto the column space of $$A$$, which we'll write as:
-
-$$\proj_A \b{b} = b_1 \b{a}_1 + b_2 \b{a}_2 + \ldots \tag{always works}$$
-
-The coefficients $$(b_1, b_2, \ldots)$$ always exist, and will be given by the pseudoinverse of $$A$$:
-
-$$(b_1, b_2, \ldots) = \frac{\b{b}}{A}$$
-
-Normally people do not write the pseudoinverse like this; they like to write something like $$A^+(\b{b})$$. They are reluctant to write something that's not a true inverse as $$A^{-1}$$. But I think this is the better meaning of the symbol: it's much more general and reduces to the usual meaning in simple cases. So I'm going to write $$A^{-1}$$ or $$1/A$$ anyway.
-
-Once we have those components we can multiply by $$A$$ again to reconstruct $$\proj_A \b{b}$$:
-
-$$\proj_A \b{b} = \frac{\b{b}}{A} \cdot A =  b_1 \b{a}_1 + b_2 \b{a}_2 + \ldots $$
-
-Which, when $$\b{b} \in \text{span}(A)$$, is just $$\b{b}$$ again. Generally speaking multiplying by $$A^{-1}$$ and then $$A$$ again becomes the projection onto $$A$$. In fact this is the defining quality of the pseudoinverse: that although $$A^{-1} A \neq I$$ like a regular inverse, it does have $$A^{-1} A = \proj_A$$ and $$A A^{-1} A = A$$ again. 
-
-(If you're curious: the actual construction of the pseudoinverse uses the wedge product: $$b_1 = \frac{\b{b} \^ \b{a}_2 \^ \b{a}_3 \ldots}{\b{a}_1 \^ \b{a}_2 \^ \b{a}_3 \ldots}$$, $$b_2 = \frac{\b{a}_1 \^ \b{b} \^ \b{a}_2 \^ \ldots}{\b{a}_1 \^ \b{a}_2 \^ \b{a}_3 \ldots}$$, etc, and then you recast it as a matrix. When $$k = n$$ this becomes the matrix inverse exactly; the numerator is $$\text{adj}(A)$$ and the denominator is $$\det(A)$$. Another (simpler but less-insightful) way to construct it is as $$A^{-1} = (A^T A)^{-1} A^T$$.)
-
-By the way, another way of looking at $$1/A$$ is that it is the matrix form of the [dual basis](https://en.wikipedia.org/wiki/Dual_basis) of the columns of $$A$$: its columns are "dual basis vectors" $$\{ \b{a}^*_i \}$$ that have $$\b{a}^*_i \cdot \b{a}_{j} = \delta_i^j$$. Then each component is just given by a dot product with a dual basis vector: 
-
-$$
-\begin{aligned}
-\b{a}^*_i \cdot \b{b} &= \b{a}^*_i \cdot (b_1 \b{a}_1 + b_2 \b{a}_2) + \ldots \\
-&= b_1 (\b{a}^*_i \cdot \b{a}_1 )+ b_2 (\cancel{\b{a}^*_i \cdot \b{a}_2}) + \ldots \\ 
-&= b_1 \\
-\frac{\b{b}}{A} &= (\b{a}^*_1 \cdot \b{b}, \b{a}^*_2 \cdot \b{b}, \ldots) \\ 
-&=(b_1, b_2, \ldots) \\
-\end{aligned}
-$$
-
-Which makes the algebraic behavior nice and clear.
-
-Note that all of this only works as written if the vectors in $$A$$ are all linearly independent. Otherwise there would be multiple choices for the $$b_i$$. For instance if $$A = (\b{a}_1, 2 \b{a}_1)$$ then $$\proj_A \b{b} = b_1 \b{a}_1 + 2 b_2 \b{a}_1 = (b_1 + 2 b_2) \b{a}_1$$ and there's more than one way to select $$b_1$$ and $$b_2$$ to get the same result. If this happened we could still express the answer in terms of the full _generalized inverse_ of $$A$$: there would be even more free parameters to tell us _which_ of the equivalent representations to use, something like $$(b_1, b_2) = (\lambda, \frac{1 - \lambda}{2})$$. But I'd rather not think about that.
-
-The terms "pseudoinverse" and "generalized inverse" are not exactly standardized, but I've settled on a way of using them. A pseudoinverse inverts only the parts of $$A$$ that are not projections, and produces a single value. A generalized inverse inverts all of $$A$$, including the parts that are projections, and therefore produces free parameters. The general relationship between the pseudoinverse and the generalized inverse of a matrix $$A$$ is that
-
-$$
-\begin{aligned}
-A_{\text{generalized}}^{-1}(\b{b}) &=  A_{\text{pseudo}}^{-1}(\b{b}) + (I - A_{\text{pseudo}}^{-1} A) \cdot \vec{\lambda}\\
-&= A_{\text{pseudo}}^{-1}(\b{b}) + \proj_{\perp A} \cdot \vec{\lambda} \\
-\end{aligned}
-$$
-
-For some vector of free parameters $$\vec{\lambda}$$. Since $$A_{\text{pseudo}}^{-1} A = \proj_A$$, the remainder $$I - A_{\text{pseudo}}^{-1} A = \proj_{\perp A}$$ is the projection onto the nullspace of $$A$$. (Sometimes you will see $$\proj_{\perp A}$$ written as $$I_{\perp A}$$.)
-
-(Hm, it does seem like it would be nice have different notations for $$A_{\text{generalized}}^{-1}$$ and $$ A^{-1}_{\text{pseudo}}$$. But the only thing I can think of is the $$A^+$$ notation for the pseudoinverse, and I dislike that too much to use it.)
-
-Note that the the vector projection that I wrote earlier using vector division is jsut the $$k=1$$ case of the matrix pseudoinverse:
-
-$$\frac{\b{b}}{\b{a}} \b{a} = \frac{\b{b} \cdot \b{a}}{\| \b{a} \|^2} \b{a} = \proj_{\b{a}} \b{b}$$
-
-The general form is:
-
-$$\frac{\b{b}}{A} A = \proj_A \b{b}$$
-
-</aside>
-
-To summarize: we can write the projection onto the list of vectors $$\del G_{\perp} $$ like this, using the pseudoinverse $$1/\del G_{\perp}$$:
-
-$$\proj_{\del G_{\perp}} \del f = \frac{\del f}{\del G_{\perp}} \cdot \del G_{\perp}$$
-
-Which is equivalent to the Lagrange multiplier form, with $$\vec{\lambda} = \frac{\del f}{\del G_{\perp}}$$:
+Which is equivalent to the Lagrange multiplier form, with $$\vec{\lambda} = \del f / \del G_{\perp}$$:
 
 $$\proj_{\del G_{\perp}} \del f = \vec{\lambda} \cdot \del G_{\perp}$$
 
-And the condition satisfied by $$f$$ at the maximum on $$G$$, which was that $$\del_G f = 0$$, is equivalent to saying that $$\del f$$ is its projection onto $$\del G_{\perp}$$:
+The condition satisfied by $$f$$ at the maximum on $$G$$, which was that $$\del_G f = 0$$, is equivalent to saying that $$\del f$$ is equal to its projection onto $$\del G_{\perp}$$:
 
-$$\del f = \vec{\lambda} \cdot \del G_{\perp}$$
+$$\del f = \proj_{\del G_{\perp}} \del f = \vec{\lambda} \cdot \del G_{\perp}$$
 
 When the condition holds we have a stationary point $$\b{x}^*$$, and we write
 
@@ -368,7 +293,6 @@ $$\vec{\lambda}^* = \frac{\del f^*}{\del G^*_{\perp}}$$
 Which is the multi-constraint equivalent of what $$\lambda^* = \del f^* / \del g^*$$ was for a single constraint.
 
 -----
-
 
 # 3. The Meaning of $$L$$, part 1
 
