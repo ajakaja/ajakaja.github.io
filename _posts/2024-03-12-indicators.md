@@ -34,27 +34,24 @@ $$
 \end{aligned}
 $$
 
-An indicator function $$1_{P}(x)$$ is equal to $$1$$ anywhere that the predicate $$P(x)$$ is true, even if we omit the $$(x)$$. For instance $$1_{x = a}$$ is $$1$$ if $$x=a$$ and $$0$$ otherwise. We'll also omit the $$x$$ in the predicate and just write this as $$1_a$$ to mean the indicator for the point $$x=a$$. We also generalize this and allow the subscript to be other types of surfaces: an interval $$(a,b)$$, or a generic surface $$A$$.
+An indicator function $$1_{P}(x)$$ is equal to $$1$$ anywhere that the predicate $$P(x)$$ is true, even if we omit the $$(x)$$. For instance $$1_{x = a}$$ is $$1$$ if $$x=a$$ and $$0$$ otherwise. We'll also omit the $$x$$ in the predicate and just write this as $$1_a$$ to mean the indicator for the point $$x=a$$. We also generalize this and allow the subscript to be other types of surfaces, like a generic surface $$A$$
 
 $$
 \begin{aligned}
-1_{(a,b)} &\equiv 1_{x \in (a,b)} \\
 1_a &\equiv 1_{(a)} \equiv 1_{x = a} \\
-1_A &\equiv 1_{x \in A}
 \end{aligned}
 $$
 
+Sometimes it is useful to talk about an indicator function for an interval $$(a,b)$$. But when dealing with integration it is nicer if the indicator function respected the orientation of the range, such that the range $$(a,b)$$ was the negative of $$(b,a)$$. It would be weird to write $$1_{(a,b)}$$ for this, but we can do it easily with step functions:
+
+$$\theta_{(a,b)} = \theta_a - \theta_b = 
+\begin{cases} 1 & a < x < b \\ -1 & b < x < a \\ 0 & \text{otherwise} \end{cases}$$
+
+We can also talk about the indicator function for a generic surface, which is written with a capital letter to distinguish it from a point:
+
+$$1_A \equiv 1_{x \in A}$$
+
 The generic surface is written with a capital letter to distinguish it from a point. We'll also write integrals over an interval or a surface with capital letter when the details of the surface don't matter, like $$\int_I \d f$$. Then the result of the integral is to evaluate $$f$$ on the boundary of $$I$$, which is written $$\p I$$. If $$I$$ is the interval $$(a,b)$$ then $$\p I$$ is the pair of points $$(b) - (a)$$.
-
-$$\int_I \d f = f \|_{\p I}$$
-
-When we use the interval notation $$1_{(a,b)} \equiv 1_{x \in (a,b)}$$, it is convenient to define $$1_{(b,a)} = -1_{(a,b)}$$. Therefore we would really like a sort of "oriented indicator function" instead which can take the value $$\pm 1$$ depending on whether $$a<b$$ or $$a > b$$. Bolding this becuase it's important: **in this article an indicator function over a range is understood to be an oriented indicator function**, rather than the usual indicator of mathematics which always has the value $$1$$.
-
-$$1_{(a,b)} \equiv 
-\begin{cases}
-+1 & a < b \\
--1 & a > b
-\end{cases}$$
 
 We can take the subscript notation further by also allowing a subscript to contain a linear combination of surfaces, like $$1_{A + B} = 1_A + 1_B$$.  In every case the linear combination simply distributes over the function, so $$\delta_{A+B-C} = \delta_A + \delta_B - \delta_C$$, etc. When we write linear combinations of points, we write the points with parentheses, as $$(a) + (b)$$, so that it doesn't look like we're adding the points as vectors $$a + b$$.
 
@@ -78,19 +75,19 @@ Finally, know that I am going to be using the words "function" and "distribution
 
 # 1. Integrating with Distributions
 
-Presumably you are aware that a delta function can be "used" to evaluate a function at a point:
+You are probably aware that a delta function can be "used" to evaluate a function at a point:
 
 $$\int_{\bb{R}} \delta_a f \d x \equiv \int_{\bb{R}} \delta(x-a) f(x) \d x = f(a)$$
 
 It turns out that a lot of other operations can be converted into integrals against distributions. For instance, an integral over a finite range $$(a,b)$$ can be written as integration against the indicator function for that range:
 
-$$\int_a^b f' \d x  = \int_{\bb{R}} 1_{(a,b)} f' \d x = f(b) - f(a)$$
+$$\int_a^b f' \d x  = \int_{\bb{R}} \theta_{(a,b)} f' \d x = f(b) - f(a)$$
 
-And we can write an (oriented) indicator function over a range as the sum of two step functions, $$1_{(a,b)} = \theta_a - \theta_b$$. Integrating against either form gives the same result:
+Integrating against either form gives the same result:
 
 $$
 \begin{aligned}
-\int_{\bb{R}} 1_{(a,b)} f' \d x  &= \int (\theta_a - \theta_b) f' \d x \\
+\int_{\bb{R}} \theta_{(a,b)} f' \d x  &= \int (\theta_a - \theta_b) f' \d x \\
 &= \int_a^\infty f' \d x - \int_b^\infty f' \d x \\
 &= [\int_a^b f' \d x + \cancel{\int_b^\infty f' \d x}] - \cancel{\int_b^\infty f' \d x}\\
 &= \int_a^b f' \d x \\
@@ -98,20 +95,22 @@ $$
 \end{aligned}
 $$
 
-(This was the reason for using oriented indicator functions: defining $$1_{(a,b)} = -1_{(b,a)}$$ makes it consistent with $$\theta_a - \theta_b = -(\theta_b - \theta_a)$$.)
+This only works using the "oriented" indicator function that's given by $$\theta_{(a,b)}$$; $$1_{(a,b)}$$ would be incorrect because it doesn't respect the sign of the interval.
 
-Another way of getting the result is by moving the derivative over onto the indicator function with integration-by-parts. Recall that $$\int_I u v' \d x = (u v) \|_{\p I} - \int_I u' v \d x$$. Here $$I = \bb{R}$$, so $$\p I = (-\infty, + \infty)$$, and the boundary terms vanish because $$1_{(a,b)}$$ is $$0$$ at $$\pm \infty$$.
+Another way of getting the result is by moving the derivative over onto the indicator function with integration-by-parts.
+
+Recall that $$\int_I u v' \d x = (u v) \|_{\p I} - \int_I u' v \d x$$. Here $$I = \bb{R}$$, so $$\p I = (-\infty, + \infty)$$, and the boundary terms vanish because $$\theta_{(a,b)}$$ is $$0$$ at $$\pm \infty$$.
 
 $$
 \begin{aligned}
-\int_{\bb{R}} 1_{(a,b)} [\p_x f] \d x &= \cancel{1_{(a,b)} f \|_a^b} - \int_{\bb{R}} [\p_x  1_{(a,b)}] f \d x \\
+\int_{\bb{R}} \theta_{(a,b)} [\p_x f] \d x &= \cancel{\theta_{(a,b)} f \|_a^b} - \int_{\bb{R}} [\p_x  \theta_{(a,b)}] f \d x \\
 &=\int_{\bb{R}} [(-\p_x) (\theta_a - \theta_b)] f \d x \\
 &= \int_{\bb{R}} (\delta_b - \delta_a) f \d x \\
 &= f(b) - f(a) \\
 \end{aligned}
 $$
 
-The $$f' = \p_x f$$ passes its derivative over to $$(-\p_x) 1_{(a,b)}$$, and the boundary terms vanish because $$1_{(a,b)}$$ is $$0$$ at $$\pm \infty$$. The result is a pair of delta functions defined on the boundary of the underlying oriented surface $$\p(a,b) = (b) - (a)$$. Note that the order of $$b$$ and $$a$$ switch because of the negative sign from the integration-by-parts: $$(-\p)(\theta_b - \theta_a) = \delta_a - \delta_b$$.[^boundary]
+The $$f' = \p_x f$$ passes its derivative over to $$(-\p_x) \theta_{(a,b)}$$, and the boundary terms vanish because $$\theta_{(a,b)}$$ is $$0$$ at $$\pm \infty$$. The result is a pair of delta functions defined on the boundary of the underlying oriented surface $$\p(a,b) = (b) - (a)$$. Note that the order of $$b$$ and $$a$$ switch because of the negative sign from the integration-by-parts: $$(-\p)(\theta_b - \theta_a) = \delta_a - \delta_b$$.[^boundary]
 
 [^boundary]: It seems like the distribution for the range $$(a,b)$$ is $$\theta_a - \theta_b$$, and the distribution for the boundary is $$\delta_b - \delta_a$$, created by the $$-\p$$ operator, rather than $$+\p$$ as you might guess. Why? I think it's because, for a function like $$\delta_a$$ or $$\theta_a$$, the point $$a$$ actually enters with a negative sign, in $$\theta(x-a)$$. So if you wanted to take a derivative "with regard to the point $$a$$", you would really want the object $$\p_a \theta_a$$. It just happens that $$\p_a \theta_a = (-\p_x) \theta_a$$, so the negative derivative $$-\p_x$$ does the same thing as the positive derivative $$+\p_a$$.
 
@@ -141,68 +140,49 @@ What is the difference between an indicator for a point and a delta function for
 
 # 2. Integration with Inverse Differentials
 
-I think the most intuitive answer is that the delta function may be regarded as an indicator function divided by the absolute value of a differential:[^btw]
+I think that a good way of thinking about it is this. We know that in some sense a delta function is a derivative of a step function:
 
-[^btw]: Some time after posting this I realized that maybe this is overkill and it would be easier to follow in terms of $$d \theta_a$$ rather than $$1_a$$ (the only difference is that $$d \theta_a$$ handles the sign so you don't need an absolute value on $$dx$$). But everything works pretty similarly? Maybe I'll update it later.
+$$\delta_a = \frac{d \theta_a}{dx}$$
 
-$$\boxed{\delta_a \? \frac{1_a}{\| d x \|}  = \frac{d \theta_a}{dx}}$$
+If it were a normal derivative, it would be that $$d \theta_a$$ has a linear approximation $$d \theta_a \approx \theta_a' dx$$, and then the $$dx$$s cancel, leaving the derivative. $$\theta_a$$ doesn't have such an approximation, so when write $$\theta'_a = \delta_a$$ we are just pretending it does. But really it works a lot better if we don't pretend: instead we just leave it in that form, and let the $$dx$$s cancel out:
 
-The $$1_{(a)}$$ is a normal indicator function. The object $$\| dx \|$$ is basically "the magnitude of $$dx$$". Unlike $$dx$$, it is always positive when evaluated on a tangent vector. And for some strange reason it is in a denominator, which we will have to get used to.
+$$\int \delta_a f \d x = \int \frac{d \theta_a}{\cancel{dx}} f \, \cancel{d x} = \int d \theta_a f$$
 
-(I first heard this idea in a book called "Burn Math Class" by Jason Wilkes, although his version omits the absolute value which I am pretty sure has to be there. Then I forgot about it for a while, before reinventing it and then thinking I had come up with it myself. Oops. Anyway, maybe it's a bad idea for a reason I haven't thought of? Or maybe it is already a thing somewhere and I just haven't come across it? Dunno. But the reason I've written an article about it is that, the more I play with it, the more sense it keeps making to me.)
-
-The basic idea is that splitting up a delta function into two pieces like this allows those pieces to be used in algebra with some very natural-looking rules. But it takes some getting used to. This is how it works in an integral:
+Then $$d \theta_a$$ is a differential that is only nonzero on a single partition of the integral, given by
 
 $$
 \begin{aligned}
-\int_I \delta_a f(x) \d x &= \int_I \frac{1_a}{\| d x \|} f(x) \d x  \\
-&= \int_I 1_a f(x) \frac{d x}{\| d x \|} \\
-&= f(a) \sgn(I) \\
+d \theta_a = \theta(x-a + dx) - \theta(x-a) = \begin{cases} + 1 & x < a, x + dx > a \\
+-1 & x > a, x + dx < a \\
+0 & \text{otherwise}
+\end{cases}
 \end{aligned}
 $$
 
-It is convenient to define
+When integrating it extracts only the value at that single point, but _not_ times any $$dx$$ term, because that canceled out---which is why it gives a finite answer instead of something vanishly small. 
 
-$$\widehat{dx} \equiv \frac{dx}{\| dx \|}$$
+$$\int_\bb{R} f \d \theta_a = f(a)$$
 
-Which is meant to be the "unit vector" version of $$dx$$, akin to $$\hat{x} = \frac{\vec{x}}{\| \vec{x} \|}$$ for regular vectors. If you are used to thinking of differential forms like $$\d x $$ as functions from vectors to $$\bb{R}$$, then its behavior is $$\widehat{dx}(\b{v}) = \frac{dx(\b{v})}{\| dx(\b{v}) \|}$$. If you think of $$\d x$$ in the Riemann-integral sense, as an infinitesimal interval $$x_{i+1} - x_i$$, then $$\widehat{dx}$$ is the _sign_ of that interval $$\sgn(x_{i+1} - x_i)$$ without its magnitude.
+So $$\frac{d \theta_a}{dx}$$ makes perfect sense if you don't to replace it with $$\delta(x)$$ and just leave it as is. But $$d \theta_a$$ is still a bit awkward. It's an indicator function except it has a plus or minus sign? We can arrange it into this form:
 
-So we have
+$$\delta_a = \frac{1_a}{\| dx \|}$$
 
-$$
-\begin{aligned}
-\int_I \delta_a f(x) \d x &= \int_I 1_a f(x) \widehat{dx} \\
-&= f(a) \sgn(I) \\
-\end{aligned}
-$$
+That's the relationship between a delta function and an indicator for the same point: a delta function is the indicator divided by the absolute value of a differential. 
 
+The idea is that when integrating against the delta function, the only term that is left is the "sign" of the differential:
 
-The idea is that $$\frac{dx}{\| dx \|}$$ cancels out the magnitude of $$dx$$, leaving only a "unit differential" $$\widehat{dx}$$. We claim, because it seems to make sense, that the integral of a unit differential is trivial: it is simply $$\pm 1$$ depending on the orientation of the range of integration. The resulting $$\sgn(I)$$ is determined by whether the range of integration $$I$$ was over a positively-oriented range, such as $$(-\infty, \infty)$$, versus a negatively oriented range like $$(\infty, -\infty)$$ (we assume that $$a \in I$$ though).[^sign] Typically we just assume that all 1d integrals are over positively-oriented ranges unless otherwise specified, in which case we could simply omit the sign and write $$f(a)$$, but I'm trying to be careful now because it will matter more in higher dimensions.
+$$\int \delta_a f \d x = \int \frac{1_a}{\| dx \|} f \d x = \int 1_a f \frac{dx}{\| dx \|} = \int \delta_a \widehat{dx}$$
 
-The unit differential is necessary for this object to act like a delta function. Because an integral against a delta function gives $$\int_I \delta(x) \d x = \pm 1$$ depending on the orientation of $$I$$, we cannot fully cancel out the value of $$dx$$; we have to keep its sign. So we needed to invent something which cancels out its magnitude but leaves the direction.
+$$\widehat{dx}$$ is an object which evaluates to $$\pm 1$$ depending on whether the integration direction is positive or negative, like the unit vector version of a differential. $$d \theta_a = 1_a \widehat{dx}$$ together become the "oriented" indicator function: $$+1$$ if the integration crosses $$x=a$$ in the positive direction, $$-1$$ if crossing in the negative direction, and $$0$$ everywhere else. Since it is only nonzero on a single partition, the sum converges.
 
-[^sign]: A slightly more sophisticated object would be something like $$\sgn_a(I)$$ which measures "the sign of $$a$$ in $$I$$" (which I have also [seen written]({% post_url 2019-02-23-exterior-6 %}) as $$a \diamond I$$). The difference is that this would be $$0$$ if $$a \notin I$$. But I figure it's probably not necessary to include that additional complexity here.
+Of the two forms $$d \theta_a/dx$$ and $$1_a/\| dx \|$$, I find the latter easier to think about, so I'll usually use that.
 
-The actual integration step is supposed to be easy once the integrand is proportional to $$1_a \widehat{dx}$$. The $$1_a$$ reduces the integral to a single point, while the $$\widehat{dx}$$ integrates out to give the sign of the integration range at that point. I guess we just trust that that is how it works:
+Regardless of whether you use the $$1_a/\| dx \|$$ form or the $$ d\theta_a/dx$$ form, I find it really helpful to think about delta functions in these ways: they're _exact_ representations of the thing that you can use in algebra. What we're saying is that in general a differential $$df$$ is a function of _two_ arguments, $$df(x, x + dx)$$, which _might_ have a linear approximation, but might not. When we perform an integral on a bunch of sufficiently-small partitions, maybe it will be useful to be able to replace $$df(x, x + dx)$$ with $$f'(x) dx$$, or maybe not. For distributions like $$\theta$$, it is not: just leave it as $$d \theta/ dx$$; it _doesn't need_ to be approximated as a derivative. It works a lot better that way.
 
-$$\int_{\bb{R}} 1_a f(x) \widehat{dx} = f(a)$$
+For example, this construction makes some of the common disclaimers about $$\delta(x)$$ really trivial:
 
-...but here's some pseudo-theoretical justification anyway.
-
-Often we implement integration as the limit of a Riemann sum, which decomposes the integration range into a bunch of oriented cells, each of which is described by a tangent vector $$\b{v}_i$$ (which in 1d is often simplified to $$x_{i+1} - x_i$$). Then we evaluate $$f \d x$$ on each of those tangent vectors and add up the result. In the limit this converges (for some well-behaved class of functions) to the definite value for the integral. We write this as $$\int_I f \d x = \lim \sum_{i \in I} f(x) \d x (\b{v}_i)$$, where the limit takes the number of partitions to infinity. 
-
-In our scheme $$\| dx \|$$ is an object that has $$\| d x \| (\b{v}) = \| d x(\b{v}) \|$$ (similar to the integration measure in an arc-length integral), and $$\widehat{dx}$$ is the object that has $$\widehat{dx} (\b{v}) =\frac{d \b{x} (\b{v})}{\| d \b{x} (\b{v}) \|}$$, which in $$\bb{R}^1$$ is simply $$ \sgn (dx(\b{v}))$$. In higher dimensions it will include a direction, but in $$\bb{R}^1$$ there are only two possible directions, corresponding to $$\pm 1$$.
-
-Normally what allows the summation's limit to converge to the integral value is that $$dx(\b{v}_i) \propto \| \b{v}_i \|$$, so as the integration partitions' size goes to zero with their total magnitude bounded by the length of the range, the sum of $$dx(\b{v}_i)$$ is held proportional to that length. When using $$\widehat{dx}$$ the value is $$\pm 1$$, so obviously we can't add up a bunch of these. Instead the only reason the integral "converges" is that the indicator $$1_a$$ has limited the range to a single point, or a sum of a finite number of points, instead.
-
-...probably. If I haven't missed anything But I find it intuitive: each point in the indicator $$1_{(a)}$$ selects a point at which the integrand is evaluated, and then at that point the resulting contribution to the integral is $$\widehat{dx}$$ times the orientation of the range at that point, giving $$f(a)$$.
-
-----------
-
-This construction is nice because it makes some of the common disclaimers that normally have to be made about $$\delta(x)$$ really trivial:
-
-1. You can't evaluate $$\delta(x)$$ outside of an integral for the exact same reason that you can't evaluate $$f(x) \d x$$ outside of an integral: because it uses the symbol $$d x$$ whose value comes from the integral. Yet you can do algebra with it, as long as you keep track of the $$d x$$s and $$\| dx \|$s appropriately.
-2. $$\delta(x)$$ doesn't have a value at $$x=0$$ because it depends on an invisible variable, $$1/\| dx \|$$. The value is not exactly infinite: it's "whatever is required to cancel out a $$dx$$ and leave only its sign".
+1. You can't evaluate $$\delta(x)$$ outside of an integral for the exact same reason that you can't evaluate $$f(x) \d x$$ outside of an integral: because it uses the symbol $$d x$$ whose value comes from the integral. Yet you can do algebra with it, as long as you keep track of the $$d x$$s appropriately. It should be written, or at least thought of, as really being $$\delta(x, dx)$$, a non-trivial function of both arguments.
+2. $$\delta(x)$$ doesn't have a value at $$x=0$$ because it depends on that invisible variable, $$1/dx$$. The value is not exactly infinite: it's "whatever is required to cancel out a $$dx$$".
 3. You can't multiply two delta functions in the same variable by each other, like $$\delta(x) \delta(x) = \frac{1_{x=0} 1_{x=0}}{\| dx \|^2 }$$, because the two copies of $$\| dx \|$$ aren't going to cancel out a single $$dx$$ in the numerator and will leave an overall factor of $$1/\| dx \|$$ that you have no way to integrate.
 
 Also, compare this construction to a typical "nascent delta function" construction. Delta functions are often defined as the limit of a series of smooth functions whose properties integrals go, in the limit, to the behavior of a delta function. Usually the smooth functions are a Gaussian, square cutoffs, or some other $$\e \eta(x/\e)$$ for an integrable $$\eta$$ that has $$\int \eta \d x = 1$$. But these, I think, are trying to express exactly the idea of $$\frac{1_a}{\| dx \|}$$. They want to make something whose (1) integral, in the limit, converges to being nonzero at exactly a single point, and which (2) perfectly cancels out the value of $$dx$$ at that point, except for its sign, integrating to $$\pm 1$$. Well why not just write that directly? (Well, it does not solve for the main reason you might be using nascent delta constructions, which is that you are demanding things be rigorously constructed out of classical functions for some reason. But I'm not concerned about that.)
@@ -226,19 +206,15 @@ $$
 \end{aligned}
 $$
 
-So that's neat.
+Now they follow from rote algebra instead of being weird facts that you memorize.[^wheeler]
 
-Anyway, I don't find the use of an extra $$dx$$ in an integrand _that_ strange. Here's why:
-
-We are very used to integrating integrands of the form $$dF = f(x) \d x$$. But in full philosophical generality, an integrand could be written as $$dF = f(x, dx) = F(x + dx) - F(x)$$. That's an object that _perfectly_ expresses the derivative of $$F$$, rather than approximates it. It just so happens that in most cases we care about this can be written as a linear function in $$dx$$, $$F(x + dx) - F(x) = f(x) \d x$$, and then we can do calculus the normal way. But in some cases, such as when dealing with the derivative of a step function $$\theta(x)$$, the value of $$F(x + dx) - F(x)$$ depends not _linearly_ on $$dx$$,  but on some other condition, such as whether $$0 \in (x, x + dx)$$. In that case you end up with an integrand that is not proportional to $$dx$$ but depends on it in some other way, which is how you get identites like $$\theta' = \delta$$. 
-
-Well, extending that argument: for the general case of $$dF = f(x,dx) = F(x + dx) - F(x)$$, there is nothing preventing it from having any kind of weird functional dependence on $$dx$$. So why not $$\frac{1}{\| dx \|}$$ or something else? Sure, it might be hard to figure out how to integrate something like $$dF = a \d x ^2 + b \d x + c$$... but it is still a reasonable object to think about. And in this case, we do have a way of integrating it; just, it's an unfamiliar way. Fine with me!
+[^wheeler]: Another way of seeing these may be found in a paper 'Simplified Production of Direc Delta Function Identities" by Nicholas Wheeler, which can be found [here](https://www.reed.edu/physics/faculty/wheeler/documents/Miscellaneous%20Math/Delta%20Functions/Simplified%20Dirac%20Delta.pdf). Basically note that $$\theta(ax) = \sgn(a) \theta(x)$$ and then  $$\delta(ax) = d \theta(ax)/d (ax) = d \theta / \| a \| dx$$.
 
 ----------
 
 # 3. The Multivariable Case
 
-In the more dimensions this notation gives a lot of results for free, but there is a very important and weird caveat.
+In the more dimensions this interpretation gives a lot more results for free, but there is a very important caveat.
 
 At first it seems like a product of two delta functions, which are each an inverse differential, should be turn into a product of two inverse differentials:
 
@@ -265,7 +241,7 @@ $$
 
 Weird, but as far as I can tell necessary? Basically, $$\delta(x) \delta(x+y)$$ needs to cancel out the magnitudes of $$dx \^ d(x+y) = dx \^ dy$$. Since the numerator combines with a wedge product, the denominator has to also. In general, since $$\int \delta(f) \delta(g) \d f \^ d g$$ ought to equal $$\pm 1$$, the delta functions need to be proportional to $$\frac{1}{df \^ dg}$$, even if $$df$$ and $$dg$$ are not orthogonal (although they cannot be parallel or we'd end up dividing by zero).
 
-This will take some getting used to. Evidently the denominators are not just scalars: they are actually something like "differential forms" as well. Maybe they are "negative-grade absolute differential forms"? Or maybe the object $$\delta(x) \delta(y)$$ should be regarded as $$\delta^2(x,y)$$ and therefore its denominator is a compound object $$\| d^2(x,y) \|$$ from the start, and factoring it into $$\delta(x) \delta(y)$$ only "works" when those terms are orthogonal directions? Or maybe delta functions really act like measures and it's even more not okay to regard them as functions? Not sure. I really don't know the best way to explain it.
+This will take some getting used to. Evidently the denominators are not just scalars: they are actually something like "differential forms" as well. 
 
 In case you need more convincing, note that it is well-known (although somewhat hard to find) that the change-of-variables formula for a multivariable delta function with argument $$\b{u}(\b{x}): \bb{R}^n \ra \bb{R}^n$$ is
 
@@ -273,9 +249,45 @@ $$\delta(\b{u}(\b{x})) = \frac{\delta(\b{x} - \b{u}^{-1}(0))}{\| \det (\p\b{u} /
 
 That is, the denominator is the determinant of the Jacobian (hate that name) of $$\b{u}$$, $$\p\b{u} / \p\b{x}$$, and a determinant is _not_ the product of all the individual magnitudes. That is basically what we're dealing with here as well, only we've factored $$\delta(x, x+y)$$ as $$\delta(x) \delta(x+y)$$, which makes this combining-with-$$\^$$ behavior look more strange.
 
-Anyway, we will have to live with this.
+I think what's going on is roughly this. If you write each of the delta functions as a derivative of a step function
 
-(Hopefully it goes without saying that I'm rather unsure of all this. But whatever, let's see what happens.)
+$$\int \frac{d \theta(x)}{dx} \frac{d \theta(x + y)}{d(x+y)} f \, dx \^ dy$$
+
+Then each does cancel out with the $$dx \^ dy$$, but they do it using the interior product of differential forms. So
+
+$$
+\begin{aligned}
+\frac{1}{dx} \frac{1}{dx + dy} dx \^ dy &\? \iota_{dx + dy} \iota_{dx} (dx \^ dy) \\
+&= \iota_{dx + dy} dy \\
+&= 1
+\end{aligned}
+$$
+
+I don't exactly see _why_ it works this way, but it seems to be how it works. 
+
+September 2024 edit: It is a lot like the [vector division]({% post_url 2024-09-11-vector-division %}) that I play with sometimes, actually, and that's probably what it is. Well, I wrote that afterwards, partly based on this, but may as well have a forward link anyway. This kinda tells me how division on multivectors ought to work, if it's going to work:
+
+The confusing part is that you can't divide through by the magnitudes _individually_. It's _not_ this
+
+$$
+\begin{aligned}
+\frac{1}{(a \d x)} \frac{1}{(b \d x + c \d y)} (dx \^ dy) &\stackrel{!}{\neq}\frac{\iota_{dx + dy}}{\sqrt{b^2 + c^2}}  \frac{\iota_{dx}}{a} (dx \^ dy)
+\end{aligned}
+$$
+
+Instead it has to be this:
+
+$$
+\begin{aligned}
+\frac{1}{(a \d x)} \frac{1}{(b \d x + c \d y)} (dx \^ dy) &= \frac{1}{a dx \^ c d y} (dx \^ dy)\\
+&= \frac{\iota_{dx \^ dy}}{ac} (dx \^ dy) \\
+&= \frac{\iota_{dy} \iota_{dx}}{ac} (dx \^ dy) \\
+\end{aligned}
+$$
+
+This makes the idea that $$\frac{1}{a \d x} \equiv \frac{\iota_dx}{a}$$ a bit suspect. I _do_ really like the idea that interior produts (and inner products in general) are kinda like division, because very often they _seem_ more like division. But it's weird that you can't divide the terms one at a time; you have to actually multiply the denominators together first, then divide by them. Ick.
+
+Anyway, where were we?
 
 ------
 

@@ -7,21 +7,21 @@ footnotes: true
 aside: true
 ---
 
-While there are four standard ways of multiplying vectors and each has its own notation ($$\cdot$$, $$\times$$, $$\^$$, $$\o$$), there is no generally-agreed-upon definition or notation for dividing vectors. That's mostly because it doesn't really exist as a concept. But I think it should be a thing. There's an operation that acts a lot _like_ division which it would be useful to have an operation for, and it comes up more often than you might notice if you weren't looking for it.
+While there are four standard ways of multiplying vectors and each has its own notation ($$\cdot$$, $$\times$$, $$\^$$, $$\o$$), there is no generally-agreed-upon definition or notation for dividing vectors. That's mostly because it doesn't really exist as a concept, and is maybe also kinda silly. But I think it should be a thing. Or rather, I suspect it should be: there are too many clues that it does make sense to ignore. There's an operation that acts a lot _like_ division which it would be useful to have an operation for, and it comes up more often than you might notice if you weren't looking for it, and it does, in a sense, generalize scalar division. So why not?
 
-This article describes what I want the notation $$\b{b} / \b{a}$$ to mean, primarily because I keep wanting to I use it in other articles I have something to link to instead of defining it inline. I'm not claiming that this "is" vector division, but rather that this thing is sufficiently common that it makes sense to generalize the notation of division to include it.
+This article describes what I belief the notation $$\b{b} / \b{a}$$ should mean. I'm writing it out primarily because I keep wanting to I use it in other articles I have something to link to instead of defining it inline. I don't mean to claim that this "is" division. Rather it's a thing that is sufficiently common that it makes sense to generalize the division notation for.
 
 <!--more-->
 
-My definition is that division is roughly a shorthand for the [matrix pseudoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse), which allows dividing by a list of $$k$$ vectors at once, in a certain sense. Vector division is the $$k=1$$ case.
+My definition writes division is a shorthand for the [matrix pseudoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse), which allows dividing by a list of $$k$$ vectors at once, in a certain sense. Vector division is the $$k=1$$ case. The matrix inverse is the $$k=n$$ case. Scalar division is the $$k=n=1$$ case. The pseudoinverse is not really obscure, and writing it as an inverse is not that weird. Most of the text is about the update you have to make to your intuition about division in order to use the pseudoinverse like an inverse.
 
-As always take this with a heaping pile of salt, as it's still the semi-informed opinions of some guy on the internet.
+As always take this with a heaping pile of salt, 'cause it's still just the semi-informed opinions of some guy on the internet.
 
 ---------
 
 # 1. TLDR
 
-For vectors, the inverse notation means an inverse with respect to the dot product, and the fraction notation implies a dot product between the numerator and denominator:
+For vectors, the inverse notation will mean an inverse with respect to the dot product, and the fraction notation implies a dot product between the numerator and denominator:
 
 $$
 \begin{aligned}
@@ -34,25 +34,34 @@ It's not a true "inverse", but it's still a useful thing: $$(\b{b}/\b{a}) \b{a} 
 
 For matrices $$A = (\b{a}_1, \b{a}_2, \ldots)$$, where the vectors $$\{ \b{a}_i \}$$ are linearly independent, division means
 
-$$\frac{\b{b}}{A} = A^{+} (\b{b}) = \begin{pmatrix} b_1 \\ b_2 \\ \vdots \end{pmatrix}$$
+$$\frac{\b{b}}{A} \equiv A^{+} (\b{b}) = \begin{pmatrix} b_1 \\ b_2 \\ \vdots \end{pmatrix}$$
 
-$$A^{+}$$ is the Moore-Penrose pseudoinverse of $$A$$, which equals the actual matrix inverse when $$A$$ is invertible. This gives the components of the expansion of $$\b{b}_A$$, the projection of $$\b{b}$$ onto $$\text{col}(A)$$ in terms of the vectors of $$A$$:
+$$A^{+}$$ is the Moore-Penrose pseudoinverse of $$A$$, which equals the actual matrix inverse when $$A$$ is invertible. This gives the components of the expansion of $$\b{b}_A$$, the projection of $$\b{b}$$ onto $$\text{col}(A)$$, in terms of the vectors of $$A$$:
 
 $$A (\b{b}/A) = \b{b}_A = b_1 \b{a}_1 + b_2 \b{a}_2 + \ldots$$
 
-Division is not allowed when the vectors of $$A$$ are not linearly independent, just like we disallow dividing by zero for scalars. It is possible to talk about the pseudoinverse of a non-linearly-independent matrix, but it's too cludgy to include in the division notation.
+We don't bother to extend division for the case where the vectors of $$A$$ are not linearly independent, just like we disallow dividing by zero for scalars. It is possible to talk about the pseudoinverse of a non-linearly-independent matrix as well, and it's interesting, but generally less useful.
 
-(There's another definition of division out there which treats $$\b{b}/\b{a}$$ as an operation in a Clifford algebra. I don't like it as much. Although it's useful in some settings, I don't think it deserves to be the meaning of the notation $$\b{b}/\b{a}$$. I discuss that a bit at the end.)
+We think of the operation of "expanding a vector into components in a basis" as being fundamentally a division operation: the components of $$\b{x}$$ in the basis $$A = \{ \b{a}_i \}$$ are given by the vector $$x_A = \b{x}/A$$, and its representation in that basis is given by $$A x_A = x_{a_1} \b{a}_1 + x_{a_2} \b{a}_2 + \ldots\, $$. A change of basis to another basis $$B = \{ \b{b}_j \}$$ is given by cancelling out a fraction:
 
-All of this is discussed to death below. I hope I didn't mess anything up. My brain hurts.
+$$
+\begin{aligned}
+\b{x}_A &= A x_A \\
+\b{x}_B &= B x_B \\
+&= A (\frac{B}{A} x_A) \\
+x_B &= \frac{B}{A} x_A
+\end{aligned}
+$$
+
+When the matrices are invertible then this is just generic linear algebra. When they're not, it produces various projection operations, so $$\b{x}_A = A x_A$$ and $$\b{x}_B = B x_B$$ are not necessarily the same vector.
+
+All of this is discussed to death below. At the end we also compare this sense of division to the division in Clifford Algebras and tensor algebras. I hope I didn't mess anything up. My brain hurts.
 
 ---------
 
 # 2. Exposition
 
-Here is an expository version of the TLDR. The rest of the article attempts to justify it. I've ordered the exposition before the explanation, which is a bit confusing, I guess; it's because I want to link to this when I use the notation in other posts, so it seems better to start with the information this time.
-
-It is basically be a bunch of material from introductory linear algebra presented in an upside-down way.
+Here is a longer expository version of the stuff in the TLDR. It is basically be a bunch of material from introductory linear algebra presented in an upside-down way.
 
 ### Vectors
 
@@ -60,19 +69,23 @@ We define the multiplicative inverse of a vector to be
 
 $$\frac{1}{\b{a}} \equiv \b{a}^{-1} \equiv \frac{\b{a}}{\| \b{a} \|^2}$$
 
+And we define that a fraction of two vectors means a dot product:
+
+$$\frac{\b{b}}{\b{a}} = \b{b} \cdot \frac{1}{\b{a}} = \frac{\b{b} \cdot \b{a}}{\| \b{a} \|^2}$$
+
 The notation makes some sense because
 
 $$\b{a} \cdot \frac{1}{\b{a}} = 1$$
 
-When used in a fraction with another vector, it means a dot product with that vector:
+But it is certainly not a _true_ inverse, in the sense of $$f(f^{-1}) = I$$, the identity of a group / multiplicative unit in a ring. There are a few reasons:
 
-$$\frac{\b{b}}{\b{a}} = \b{b} \cdot \frac{1}{\b{a}} = \frac{\b{b} \cdot \b{a}}{\| \b{a} \|^2}$$
+One is that we're not talking about a single algebra with a single multiplication operation. Were there only one way to multiply vectors, we could ask if it has an inverse (probably not, in the group/ring sense). But instead we're just talking about vectors as a concept, with all of their operations. 
 
-This is certainly not a _true_ inverse, in the sense of $$f(f^{-1}) = I$$, the identity of a group / multiplicative unit in a ring, for a few reasons. 
+That said, roughly speaking this is trying to "undo" the tensor product, because $$\b{a} \cdot (\frac{1}{\b{a}} \o \b{b}) = \b{b}$$ holds. It's just that it doesn't actually multiply using the tensor product again---it's not like a group where $$a^{-1} a b = b$$ is three instances of the same group operation. Instead our notion of division uses a separate operation, the dot product / trace.
 
-One is that we're not talking about a single algebra with a single multiplication operation in which an inverse is even defined; instead we're just talking about vectors as a concept with all their operations. Roughly speaking this is trying to invert the tensor product, because $$\b{a} \cdot (\frac{1}{\b{a}} \o \b{b}) = \b{b}$$ holds. Defining $$\b{b}/\b{a} = \b{b} \cdot \frac{1}{\b{a}}$$ is in a sense "prematurely" tracing over the tensor product in $$\frac{1}{\b{a}} \o \b{b}$$, which causes it to _not_ be an inverse: the result is that we get a scalar that's a "pseudoinverse" rather than a rank-2 tensor that is a true "inverse". But I think this is worth doing, and worthy of the notation. You can always write $$\b{b} \o \frac{1}{\b{a}}$$ if you want to use the more general object.
+When we define $$\b{b}/\b{a} = \b{b} \cdot \frac{1}{\b{a}}$$, we are in a sense "prematurely" tracing over the tensor product in $$\frac{1}{\b{a}} \o \b{b}$$, which causes it to _not_ be an inverse. The result is that we get a scalar that's a "pseudoinverse" (potentially losing information) instead of a rank-2 tensor which inclues all of the information in $$\b{a}^{-1} \o \b{a}$$. But I think this is worth doing, and worthy of the notation. You can always write $$\b{b} \o \frac{1}{\b{a}}$$ if you want to use the more general object.
 
-The other issue is that inverses are supposed to be unique, and this is not: $$1/\b{a} + \b{c}$$ has the same property for any $$\b{c}$$ which has $$\b{c} \cdot \b{a} = 0$$. This is general property of pseudoinverses that we have to live with. They select _some_ element that pseudo-inverts the operation, rather than _the_ element that totally inverts it.
+The other reason it's not an inverse is that inverses are supposed to be unique, and this is not: $$1/\b{a} + \b{c}$$ has the same property for any $$\b{c}$$ which has $$\b{c} \cdot \b{a} = 0$$, because $$\b{a} \cdot (1/\b{a} + \b{c}) = 1$$. This is general property of pseudoinverses that we have to live with. They select _some_ element that pseudo-inverts the operation, rather than _the_ element that totally inverts it.
 
 One reason to think that this is still a good generalization of scalar division is that it does work like scalar division _if_ both arguments are parallel:
 
@@ -116,7 +129,7 @@ Picture a two or three vectors emerging from a single point in space which rotat
 
 Okay, fine, a frame is basically a matrix. But I prefer the word "frame" when it's being thought of as a list of vectors rather than as a linear transformation. A frame can be written as a matrix in the same way that a vector can be written as a matrix: neither _are_ matrices, but matrices are one convenient representation for them. In my opinion many equations that involve matrices are better thought of as involving frames because they have a more explicit and visualizable geometric meaning: they're a group of vectors that move around and transform together.[^frame]
 
-[^frame]: This notion of a frame is essentially the same notion as a [Moving Frame](https://en.wikipedia.org/wiki/Moving_frame) in differential geometry; you can also have frame fields (e.g. [1](https://en.wikipedia.org/wiki/Tetrad_formalism)) and frame-valued functions and things like that and there's a whole (somewhat-obscure) theory about it. It is not quite the same as [this other notion](https://en.wikipedia.org/wiki/Frame_(linear_algebra)) of a frame, which refers to a generalization of a basis for a vector space that is allowed to be linearly dependent. That article is unfortunately titled "Frame (linear algebra)" as though it is fundamental or something. The moving-frame concept is actually fundamental, IMO, while the linearly-dependent-basis concept is comparatively niche. Hmph.
+[^frame]: This notion of a frame is essentially the same notion as a [moving frame](https://en.wikipedia.org/wiki/Moving_frame) in differential geometry. You can also have frame fields (e.g. [tetrads](https://en.wikipedia.org/wiki/Tetrad_formalism)) and frame-valued functions and things like that; there's a whole (somewhat-obscure) theory about it. It is not quite the same as [this other notion](https://en.wikipedia.org/wiki/Frame_(linear_algebra)) of a frame, which refers to a generalization of a basis for a vector space that is allowed to be linearly dependent. (That article is unfortunately titled "Frame (linear algebra)" as though it is fundamental or something. The moving-frame concept is actually fundamental, IMO, while the linearly-dependent-basis concept is comparatively niche. Hmph.)
 
 Nevertheless we'll operate on $$A$$ using matrix multiplication notation. Right-multiplication becomes a dot product with the list index of the frame, as though we are taking a dot product between the "vector" $$A$$ and the vector $$\vec{x}$$:
 
@@ -126,7 +139,7 @@ Left-multiplication becomes an "internal" dot product which happens elementwise:
 
 $$\b{y}^T A = 
 (y_1 \; y_2 \; \ldots) (\b{a}_1 \; \b{a}_2 \; \ldots) =
-(\b{y} \cdot \b{a}_1 \; \b{y} \cdot \b{a}_2 \; \ldots)$$
+(\b{y} \cdot \b{a}_1 \;\; \b{y} \cdot \b{a}_2 \; \; \ldots)$$
 
 I don't actually like the matrix multiplication notation so I'm kind of annoyed to be using it, but I had previously written all of this without it and it was, admittedly, more confusing. Oh well.
 
@@ -149,9 +162,9 @@ $$A \vec{x} = \b{b}$$
 
 But this is not generally possible, for several reasons. One is that $$\b{b}$$ may not be in $$\text{\span}(\{ \b{a}_i \})$$, that is, the column space $$\text{col}(A)$$. Another is that if the vectors in $$A$$ are not linearly independent, then there may be more than one way to do it. 
 
-For now now let's ignore the second problem: we'll assume that the $$A$$ is linearly-independent and we'll address the case where it is not afterwards.
+For now now let's ignore the second problem: we'll assume that the $$A$$ is linearly-independent and we'll address the case where it is not later.
 
-Since $$\b{b} \in \text{col}(A)$$ is not guaranteed, the best we can do is solve 
+For the first problem, since $$\b{b} \in \text{col}(A)$$ is not guaranteed, the best we can do is solve 
 
 $$A \vec{x} = \b{b}_A$$
 
@@ -159,13 +172,19 @@ Where $$\b{b}_A = \proj_{A} \b{b}$$, the projection of $$\b{b}$$ into the column
 
 $$
 \begin{aligned}
-\frac{\b{b}}{A} &= b_A
+\frac{\b{b}}{A} &= b_A = (b_1, b_2, \ldots)
 \end{aligned}
 $$
 
 And multiplying by $$A$$ again produces the projection
 
-$$A \frac{\b{b}}{A} = \b{b}_A$$
+$$
+\begin{aligned}
+A \frac{\b{b}}{A} &= \b{b}_A \\
+&= b_1 \b{a}_1 + b_2 \b{a}_2 + \ldots \\
+&= \b{b} - \b{b}_{\perp A}
+\end{aligned}
+$$
 
 Which is exactly what happened with the vector division in the previous section - well, it had to be, because it's the $$k=1$$ case of this. Note that now that $$b_A$$ is not a scalar, we have to be careful to left-multiply by $$A$$. Matrix multiplication notation is kinda annoying.
 
@@ -175,7 +194,7 @@ Now we'll construct some frame inverses.
 
 ### Orthogonal frames
 
-First consider the very simple case where the vectors of $$A$$ are mutually orthogonal, so $$\b{a}_i \cdot \b{a}_j = 1_{i = j}$$. Then division happens componentwise:
+In the simpelst case where the vectors of $$A$$ are mutually orthogonal, that is ,where $$\b{a}_i \cdot \b{a}_j = 1_{i = j}$$, then division happens componentwise:
 
 $$
 \begin{aligned}
@@ -197,7 +216,7 @@ $$
 
 The fact that there's a division step inside each coefficient helps one keep track of the correct coordinate-variance of the components. Under a coordinate change where e.g. $$\b{z} \mapsto 2 \b{z}$$, the coefficient $$b_z$$ becomes $$b_z/2$$, simply due to the fact that it's given by $$b_z = \b{b}/(2\b{z})$$, so it has the $$2$$ in the denominator instead of the numerator. More on this later.
 
-It is nice to think of the tuple $$(b_x, b_y, b_z)$$ as being the "$$xyz$$" component of $$\b{b}$$ (and also let's write the frame more succintly, without commas):
+It is also nice to view the tuple $$(b_x, b_y, b_z)$$ as being the "$$xyz$$" component of $$\b{b}$$ (and also let's write the frame more succintly, without commas):
 
 $$\b{b} = \frac{\b{b}}{(\b{xyz})}\cdot(\b{xyz}) =  b_{xyz} (\b{xyz})$$
 
@@ -225,11 +244,11 @@ we can still "divide through" by $$A$$, but it's no longer the case that the div
 
 $$\frac{\b{b}}{A} \neq (\frac{\b{b}}{\b{a}_1}, \frac{\b{b}}{\b{a}_2}, \ldots)$$
 
-The problem is easily illustrated with the frame $$A = (\b{a}_1, \b{a}_2) = (\b{x}, \b{x} + \b{y})$$. If $$\b{b} = \b{x} + \b{y}$$, then its component along $$\b{a}_1$$ is _not_ $$1$$, even though it contains one factor of $$\b{a}_1$$, because its component along $$\b{a}_2$$ has to be $$1$$ instead; the correct expansion is $$\b{b} = 0 \b{a}_1 + 1 \b{a}_2$$. We need each of the componentwise divisions to somehow divide only by a direction that is _totally unique to $$\b{a}_i$$_.
+The problem is easily illustrated with the frame $$A = (\b{a}_1, \b{a}_2) = (\b{x}, \b{x} + \b{y})$$ and the vector $$\b{b} = \b{x} + \b{y}$$. Its component along $$\b{a}_1$$ is _not_ $$1$$, even though it contains one factor of $$\b{a}_1$$, because its component along $$\b{a}_2$$ has to be $$1$$ instead; the correct expansion is $$\b{b} = 0 \b{a}_1 + 1 \b{a}_2$$. We need each of the componentwise divisions to somehow divide only by a direction that is _totally unique to $$\b{a}_i$$_.
 
 The simplest way to think about this is that we want what's called a [dual basis](https://en.wikipedia.org/wiki/Dual_basis) to the vectors of $$A$$, which is a separate frame of vectors $$A^+ = \{ \b{a}_i^* \}$$ which are all $$\in \text{col}(A)$$ and have[^plus]
 
-[^plus]: The fact that the standard symbol for this is $$A^+$$ is irritating, because it doesn't invoke "division" at all. Why couldn't it be $$A^{\div}$$? Meh. I guess I can use it for now.
+[^plus]: The fact that the standard symbol for this is $$A^+$$ is irritating, because it doesn't invoke "division" at all. Meh. I guess I can use it for now. I'd prefer to write it as $$A^*$$, honestly, but the Hermitian conjugate is too well-known to overload also.
 
 $$\b{a}_i^* \cdot \b{a}_j = 1_{i=j}$$
 
@@ -244,9 +263,9 @@ $$
 \end{aligned}
 $$
 
-The dual basis was defined so that everything cancels out perfectly.
+The dual basis is defined so that everything cancels out perfectly.
 
-For the preceding example, a natural dual basis is
+For the preceding example, the dual basis is
 
 $$A^+ = (\b{a}_1^*, \b{a}_2^*) = (\b{x} - \b{y}, \b{y})$$
 
@@ -261,13 +280,15 @@ $$
 
 With the orthogonal frames in the previous section, it _was_ the case that $$A^+ = (1/\b{a}_1, 1/\b{a}_2, \ldots)$$, which is why things worked out so simply. But in the general case they are not. Note that while $$A^+$$ is the inverse of $$A$$ as a frame, the individual vectors $$\b{a}_i^*$$ can't be interpreted as the inverses of the $$\b{a}_i$$ as individual vectors, so we don't want to write them as $$\b{a}_i^{-1}$$ or $$\b{a}_i^+$$. They are only meaningful as the components of the larger division of $$A$$.
 
-However we obtain $$A^+$$, we can use it to solve $$A \b{x} = \b{b}_A$$. The whole expansion is given by $$A^+ \b{b}$$; note that we need to transpose $$A^+$$ as a matrix for this to work out. That's the definition of division for non-orthogonal frames:
+However we obtain $$A^+$$, we can use it to solve $$A \b{x} = \b{b}_A$$. The whole expansion is given by $$A^+ (\b{b})$$. Note that we need to transpose $$A^+$$ as a matrix for this to work out I don't want to write $$(A^+)^T$$ everywhere, though, so I'm going to let it be implied: a dual frame is considered to be innately transposed when written as a matrix. (Privately, my solution to this is to just not use matrix multipication notation at all.)
+
+Therefore this is the definition of division for non-orthogonal frames:
 
 $$
 \begin{aligned}
 \frac{\b{b}}{A} &= A^+ (\b{b}) \\ 
 &= \begin{pmatrix} \b{a}_1^* \\ \b{a}_2^* \\ \vdots \end{pmatrix} (b_1 \b{a}_1 + b_2 \b{a}_2 + \ldots + \b{a}_{\perp A}) \\ 
-&= (b_1, b_2, \ldots)^T \\
+&= \begin{pmatrix} b_1 \\ b_2 \\ \vdots \end{pmatrix} \\
 \end{aligned}
 $$
 
@@ -275,7 +296,7 @@ Dividing and multiplying again gives the same projection as before:
 
 $$
 \begin{aligned}
-A \frac{\b{b}}{A} &= (\b{a}_1, \b{a}_2, \ldots) (b_1, b_2, \ldots)^T \\
+A \frac{\b{b}}{A} &= (\b{a}_1, \b{a}_2, \ldots) \begin{pmatrix} b_1 \\ b_2 \\ \vdots \end{pmatrix} \\
 &= b_1 \b{a}_1 + b_2 \b{a}_2 + \ldots \\
 &= \b{b}_A
 \end{aligned}
@@ -283,9 +304,9 @@ $$
 
 Now, where do we get $$A^+$$?
 
-If $$A$$ is $$n \times n$$, then it is invertible, because we have already assumped the rows are linearly independent, which is equivalent to $$\det A \neq 0$$. Then the dual basis is given by the elements of $$A^{-1}$$, and the dual basis condition $$\b{a}_i^* \cdot \b{a}_j = 1_{i=j}$$ simply says that $$A^{-1} A = I$$. 
+If $$A$$ is $$n \times n$$, then it is invertible, because we have already assumed the rows are linearly independent, which is equivalent to $$\det A \neq 0$$. Then the dual basis is given by the elements of $$A^{-1}$$, and the dual basis condition $$\b{a}_i^* \cdot \b{a}_j = 1_{i=j}$$ simply says that $$A^{-1} A = I$$. 
 
-But a dual basis also exists for non-square matrices. In that case it is given by the rows of the [pseudoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse), which instead of $$A^{-1} A = A A^{-1} = I$$ has $$A A^+ = I_{A}$$ and $$ A^+ A = I_{A^T}$$. The latter is easier to see:
+But a dual basis also exists for non-square matrices. In that case it is given by the rows of the [pseudoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse), which instead of $$A^{-1} A = A A^{-1} = I$$ has $$A A^+ = I_{A}$$, the identity on the column space of $$A$$ and $$ A^+ A = I_{A^T}$$, the identity on the rowspace. The latter is easier to see, because it's the identity in the basis given by the $$\b{a}_i$$s:
 
 $$
 \begin{pmatrix}
@@ -301,11 +322,11 @@ $$
 0 & 0 & \cdots & 1 \end{pmatrix}}_{k \times k}
 $$
 
-For the former, we could talk about the rows of $$A$$ and the columns of $$A^+$$, but it gets confusing. It's better to change basis into an orthogonal normal spanned by $$A$$ and another $$n-k$$ vectors that span the space. We can call it $$P = \{ \b{a}_1, \b{a}_2, \ldots \b{a}_k, \underbrace{A_{\perp}}_{n-k \text{ terms}} \}$$. Then
+For the former, we could talk about the rows of $$A$$ and the columns of $$A^+$$, but it gets confusing. It's better to change basis into an orthogonal basis spanned by $$A$$ and another $$n-k$$ vectors that span the space. We can call it $$P = \{ \b{a}_1, \b{a}_2, \ldots \b{a}_k, \underbrace{A_{\perp}}_{n-k \text{ terms}} \}$$. Then
 
 $$
 \begin{aligned}
-A A^+ = P \begin{pmatrix} 
+A^{} A^+ = P \begin{pmatrix} 
 I_k &  \\ & 0_{n-k}
 \end{pmatrix} P^{-1} = P \begin{pmatrix} 
 1 & \cdots & 0 & & &  \\
@@ -318,18 +339,20 @@ I_k &  \\ & 0_{n-k}
 \end{aligned}
 $$
 
+(This is a special case of the SVD; it's simpler because of the assumption that $$A$$ is linearly independent.)
+
 That is, they are the identity but only on the column space of $$A$$. The effect is a projection $$I_A \b{b} = \b{b}_A$$. This property means that solves the equation when you substitute in $$\b{x} = A^+(\b{b})$$
 
 $$
 \begin{aligned}
 A \b{x} &= \b{b}_A \\ 
-(A (A^+ \b{b}) &= \b{b}_A \\
+A (A^+ \b{b}) &= \b{b}_A \\
 \underbrace{A A^+}_{\text{identity on }A} \b{b} &= \b{b}_A \\
 \b{b}_A &= \b{b}_A
 \end{aligned}
 $$
 
-I will leave a discussion of actually computing the pseudoinverse and dual basis for later because it is less interesting and kind of messy. For now I just want to establish that the meaning of
+I will leave a discussion of actually computing the pseudoinverse and dual basis in generality for later because it is less interesting and kind of messy. For now I just want to establish that the meaning of
 
 $$\frac{\b{b}}{A} = A^+ (\b{b})$$
 
@@ -345,9 +368,7 @@ That's all for actually defining this division notation. But here are a couple o
 
 ### Coordinate changes
 
-(disclaimer: this section is a lot more sketchy, and I'm too exhausted to be careful now. So here's some less-hinged speculation for you.)
-
-You can even divide a frame by another frame, which is of course a reinterpretation of matrix multiplication. You can take one basis to another by operating componentwise. If $$A = (\b{a}_1, \b{a}_2)$$ and $$B = (\b{b}_1, \b{b}_2)$$
+You can even divide a frame by another frame, which is a reinterpretation of matrix multiplication. You can take one basis to another by operating componentwise. If $$A = (\b{a}_1, \b{a}_2)$$ and $$B = (\b{b}_1, \b{b}_2)$$
 
 $$
 \begin{aligned}
@@ -364,7 +385,7 @@ $$\b{x}_A = \frac{\b{x}}{A} A = \vec{x} \cdot (\frac{B}{A} A) = x_1 (\b{b}_1)_{A
 
 $$B/A$$ is the change-of-basis matrix between the two bases but expressed in a way that makes it actually kinda work like that. I haven't really figure out how this works if the bases don't span the same subspaces, and probably the notation could be improved a bit, but it's still a neat way of thinking about it.
 
-Incidentally this might be more familiar in multivariable calculus. I'm not quite confident in this part yet, but it looks cool at least:
+This might be more familiar in multivariable calculus:
 
 If you change coordinate systems from $$X = (\b{x}_1, \b{x}_2, \b{x}_3)$$ to $$Y = (\b{y}_1, \b{y}_2, \b{y}_3)(\b{x}_1, \b{x}_2, \b{x}_3)$$, the first derivative (unfortunately called the Jaobian) is a matrix that's better interpreted as the division of two frames, $$dY$$ and $$dX$$:
 
@@ -424,7 +445,7 @@ The reason I have found myself writing this article at all is that I _so often_ 
 
 I should mention how this works on multivectors briefly, since I just used it without explanation in the previous section.
 
-(Note: I use "multivector" to refer to a single-grade element of some $$\^^k V \in \^ V$$; I'm _not_ talking about mixed-grade multivectors like Geometric Algebra uses... yet.)
+(Note: I use "multivector" to refer to a single-grade element of some $$\^^k V \in \^ V$$; I'm _not_ talking about mixed-grade multivectors like Geometric Algebra uses.)
 
 For a regular multivector it is the same as on a vector. After all they are both vectors, just in different vector spaces.
 
