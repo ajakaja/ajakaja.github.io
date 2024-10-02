@@ -1,18 +1,16 @@
 ---
 layout: article
-title: about
+title: about this
 ---
 
-### about this:
+Hi, I like to write articles about math and physics on the internet.
 
-Hi, I'm Alex. I like to write articles about math and physics and sometimes programming. I started doing this because it's the only way I can remember anything: I need to convert things into a form I find intuitive to understand it, and I need to write the intuitions down to remember them later. These articles are mostly things I wish I had come across myself so that I would not have had to study them for so long, so I've put them online in case anyone else is looking for the same thing.
+Most of what's on here is my own weird perspectives on standard material that you probably won't find anywhere else. I write these because I find a lot of standard material to be philosophically unsatisfying, and I accumulate these big piles of half-baked thoughts and speculations as I'm learning them. They were driving me crazy until I started writing them down in a public place. I don't know why it helps, but it does. Even though it's kind of embarrassing at the same time. 
 
-I am not a mathematician or physicist, just a guy who likes math. Please double-check anything I write instead of believing it. My brain seems to only be able to do things intuitively, not rigorously, so I put these things up and just hope they're right. 
+Everything I write here could easily be wrong---I am not a professional mathematician or physicist, I'm just a guy who likes math, and my brain seems to be only able to do things intuitively, not rigorously. So please take anything you read on here with a grain of salt. If something seems dangerously unrigorous or confused or just wrong, sorry, I did my best. But please do let me know so I can fix it up also.
 
-I know that's kind of silly, and I'm kinda embarrassed about it. But I figure, there's nothing wrong with trying to find better explanations for things, and if it all seems dangerously unrigorous or confused or just wrong, sorry, I did my best. But please do let me know so I can fix it up.
+**About me:**
 
-### About me:
+I'm Alex. I live in Durham, North Carolina. I used to live in Seattle, where I worked as a software engineer at Amazon and Dropbox. I wasn't especially happy at either because it wasn't what I wanted to be doing, but there were good parts too. During Covid it got too depressing to be in Seattle so I left and moved back near home. For the time being I guess my hobby is writing essays about math.
 
-I live in Durham, North Carolina. I used to live in Seattle, where I worked as a software engineer at Amazon and Dropbox. I wasn't especially happy at either but there were good parts too. But during Covid Seattle got too depressing so I left and moved back near home. For the time being I guess my hobby is writing essays about math.
-
-If for some reason you want to contact me, please do, I'd appreciate it. I'm at <alex.kritchevsky@gmail.com>. I also have a Twitter account that I don't really use but feel free to message me there also: [@ajkish](https://twitter.com/ajkish).
+If for some reason you want to contact me, please do, I'd appreciate it. I'm at <alex.kritchevsky@gmail.com>. I also have a Twitter account that I don't really use but feel free to do things there also: [@ajkish](https://twitter.com/ajkish).

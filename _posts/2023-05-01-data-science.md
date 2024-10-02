@@ -1,13 +1,12 @@
 ---
 layout: blog
-title: "Data Science Mostly... Isn't"
+title: "Data Science Isn't"
 tags: tech
-summary: What "science" means at tech companies.
 ---
 
-<!--more-->
-
 A classic use of data science at a technology company is a feature A/B test to improve revenue or engagement metrics.
+
+<!--more-->
 
 It goes like this:
 
