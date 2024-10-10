@@ -7,21 +7,22 @@ footnotes: true
 aside: true
 ---
 
-While there are four standard ways of multiplying vectors and each has its own notation ($$\cdot$$, $$\times$$, $$\^$$, $$\o$$), there is no generally-agreed-upon definition or notation for dividing vectors. That's mostly because it doesn't really exist as a concept, and is maybe also kinda silly. But I think it should be a thing. Or rather, I suspect it should be: there are too many clues that it does make sense to ignore. There's an operation that acts a lot _like_ division which it would be useful to have an operation for, and it comes up more often than you might notice if you weren't looking for it, and it does, in a sense, generalize scalar division. So why not?
+While there are four standard ways of multiplying vectors and each has its own notation ($$\cdot$$, $$\times$$, $$\^$$, $$\o$$), there is no generally-agreed-upon definition or notation for dividing vectors. That's mostly because it's not a thing. But there are times when I wish it was a thing. Or rather, there are too many times where a notion of division _would_ be useful to ignore. There's an operation which acts a lot _like_ division, and which comes up more often than you might notice if you weren't looking for it. And it does, in a sense, generalize scalar division. So why not?
 
-This article describes what I belief the notation $$\b{b} / \b{a}$$ should mean. I'm writing it out primarily because I keep wanting to I use it in other articles I have something to link to instead of defining it inline. I don't mean to claim that this "is" division. Rather it's a thing that is sufficiently common that it makes sense to generalize the division notation for.
+This article describes what I would kinda like the notation $$\b{b} / \b{a}$$ should mean. I'm writing it out primarily because I keep wanting to refer to it in other articles; this way I have something to link to instead of defining it inline each time. I don't mean to claim that this "is" vector division. Rather it's a thing that is sufficiently common that it makes sense to generalize the notation of division for.
 
 <!--more-->
 
-My definition writes division is a shorthand for the [matrix pseudoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse), which allows dividing by a list of $$k$$ vectors at once, in a certain sense. Vector division is the $$k=1$$ case. The matrix inverse is the $$k=n$$ case. Scalar division is the $$k=n=1$$ case. The pseudoinverse is not really obscure, and writing it as an inverse is not that weird. Most of the text is about the update you have to make to your intuition about division in order to use the pseudoinverse like an inverse.
 
-As always take this with a heaping pile of salt, 'cause it's still just the semi-informed opinions of some guy on the internet.
+My definition writes division $$\b{b}/\b{a}$$ as a shorthand for the [matrix pseudoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse), which allows dividing by a list of $$k$$ vectors at once, in a certain sense. Vector division is the $$k=1$$ case. The matrix inverse is the $$k=n$$ case. Scalar division is the $$k=n=1$$ case. The pseudoinverse is not really obscure, and writing it as an inverse is not that weird. Most of the text is about the update you have to make to your intuition about what division is, in order to use the pseudoinverse like an inverse in this way.
+
+As always take this with a heaping pile of grains of salt, 'cause it's still just the semi-informed opinions of some guy on the internet.
 
 ---------
 
 # 1. TLDR
 
-For vectors, the inverse notation will mean an inverse with respect to the dot product, and the fraction notation implies a dot product between the numerator and denominator:
+For vectors, the inverse notation will creates the pseudoinverse with respect to the dot product, which is just the vector divided by its magnitude squared. The fraction notation implies a dot product between the numerator and denominator:
 
 $$
 \begin{aligned}
@@ -30,7 +31,7 @@ $$
 \end{aligned}
 $$
 
-It's not a true "inverse", but it's still a useful thing: $$(\b{b}/\b{a}) \b{a} = \b{b}_a = \proj_{\b{a}}(\b{b})$$ gives the vector projection of $$\b{b}$$ onto $$\b{a}$$. There are various other things that the division notation could mean, but I think this is the most useful one.
+It's not a true inverse, but it's still a useful thing: $$(\b{b}/\b{a}) \b{a} = \b{b}_a = \proj_{\b{a}}(\b{b})$$ gives the vector projection of $$\b{b}$$ onto $$\b{a}$$. There are various other things that the division notation could mean, but I think this is the most useful one.
 
 For matrices $$A = (\b{a}_1, \b{a}_2, \ldots)$$, where the vectors $$\{ \b{a}_i \}$$ are linearly independent, division means
 
@@ -40,9 +41,21 @@ $$A^{+}$$ is the Moore-Penrose pseudoinverse of $$A$$, which equals the actual m
 
 $$A (\b{b}/A) = \b{b}_A = b_1 \b{a}_1 + b_2 \b{a}_2 + \ldots$$
 
-We don't bother to extend division for the case where the vectors of $$A$$ are not linearly independent, just like we disallow dividing by zero for scalars. It is possible to talk about the pseudoinverse of a non-linearly-independent matrix as well, and it's interesting, but generally less useful.
+We don't bother to extend division for the case where the vectors of $$A$$ are not linearly independent, just like we disallow dividing by zero for scalars. It is possible to talk about the pseudoinverse of a non-linearly-independent matrix as well, and it's interesting, but... less interesting, for our purposes.
 
-We think of the operation of "expanding a vector into components in a basis" as being fundamentally a division operation: the components of $$\b{x}$$ in the basis $$A = \{ \b{a}_i \}$$ are given by the vector $$x_A = \b{x}/A$$, and its representation in that basis is given by $$A x_A = x_{a_1} \b{a}_1 + x_{a_2} \b{a}_2 + \ldots\, $$. A change of basis to another basis $$B = \{ \b{b}_j \}$$ is given by cancelling out a fraction:
+We think of the division operation as fundamentally meaning "expanding a vector into components in a basis." In $$\bb{R}^1$$ there's only one direction so the only component is the result of regular scalar division:
+
+$$\frac{b \b{x}}{a \b{x}} = \frac{b}{a}$$
+
+Which tells you how many copies of $$a \b{x}$$ you need to make $$b \b{x}$$:
+
+$$\frac{b \b{x}}{a \b{x}} (a \b{x}) = b \b{x}$$
+
+In $$\bb{R}^{>1}$$ dividing by a list of vectors $$A = \{ \b{a}_i \}$$ gives $$b_A= \b{b}/A = \{ b_{a_1}, b_{a_2}, \ldots \}^T$$, which tells you how to reconstruct as much of $$\b{b}$$ as possible in the basis $$A$$:
+
+$$\b{b}_A = A b_A = A (\b{b}/A)= b_{a_1} \b{a}_1 + b_{a_2} \b{a}_2 + \ldots\, $$
+
+This is particularly nice because a change of basis to another basis $$B = \{ \b{b}_j \}$$ is given by cancelling out a fraction:
 
 $$
 \begin{aligned}
