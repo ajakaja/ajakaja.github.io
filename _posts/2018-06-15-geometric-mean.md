@@ -17,7 +17,7 @@ I was trying to help her understand these, but it took a lot of work to find eas
 
 <!--more-->
 
-    fyi: I think there is something in this that is defined incorrectly (a couple people emailed me about it) but I haven't had a chance to go back and fix it because I need to dig up some sources again. It's probably still useful for intuition but definitely double-check the facts.
+(fyi: I think there is something in this that is defined incorrectly (a couple people emailed me about it) but I haven't had a chance to go back and fix it because I need to dig up some sources again. It's probably still useful for intuition but definitely double-check the facts.)
 
 ---------------
 

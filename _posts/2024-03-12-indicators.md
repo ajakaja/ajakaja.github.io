@@ -34,7 +34,7 @@ $$
 \end{aligned}
 $$
 
-An indicator function $$1_{P}(x)$$ is equal to $$1$$ anywhere that the predicate $$P(x)$$ is true, even if we omit the $$(x)$$. For instance $$1_{x = a}$$ is $$1$$ if $$x=a$$ and $$0$$ otherwise. We'll also omit the $$x$$ in the predicate and just write this as $$1_a$$ to mean the indicator for the point $$x=a$$. We also generalize this and allow the subscript to be other types of surfaces, like a generic surface $$A$$
+An indicator function $$1_{P}(x)$$ is equal to $$1$$ anywhere that the predicate $$P(x)$$ is true, even if we omit the $$(x)$$. For instance $$1_{x = a}$$ is $$1$$ if $$x=a$$ and $$0$$ otherwise. We'll also omit the $$x$$ in the predicate and just write this as $$1_a$$ to mean the indicator for the point $$x=a$$.
 
 $$
 \begin{aligned}
@@ -75,11 +75,11 @@ Finally, know that I am going to be using the words "function" and "distribution
 
 # 1. Integrating with Distributions
 
-You are probably aware that a delta function can be "used" to evaluate a function at a point:
+A delta function is used to evaluate a function at a point:
 
 $$\int_{\bb{R}} \delta_a f \d x \equiv \int_{\bb{R}} \delta(x-a) f(x) \d x = f(a)$$
 
-It turns out that a lot of other operations can be converted into integrals against distributions. For instance, an integral over a finite range $$(a,b)$$ can be written as integration against the indicator function for that range:
+A lot of other operations can be converted into integrals against distributions in a similar way. An integral over a finite range $$(a,b)$$ can be written as integration against the indicator function for that range:
 
 $$\int_a^b f' \d x  = \int_{\bb{R}} \theta_{(a,b)} f' \d x = f(b) - f(a)$$
 
@@ -97,9 +97,7 @@ $$
 
 This only works using the "oriented" indicator function that's given by $$\theta_{(a,b)}$$; $$1_{(a,b)}$$ would be incorrect because it doesn't respect the sign of the interval.
 
-Another way of getting the result is by moving the derivative over onto the indicator function with integration-by-parts.
-
-Recall that $$\int_I u v' \d x = (u v) \|_{\p I} - \int_I u' v \d x$$. Here $$I = \bb{R}$$, so $$\p I = (-\infty, + \infty)$$, and the boundary terms vanish because $$\theta_{(a,b)}$$ is $$0$$ at $$\pm \infty$$.
+Another way to get the same answer is by moving the derivative over onto the indicator function with integration-by-parts. Recall that $$\int_I u v' \d x = (u v) \|_{\p I} - \int_I u' v \d x$$. Here $$I = \bb{R}$$, so $$\p I = (-\infty, + \infty)$$, and the boundary terms vanish because $$\theta_{(a,b)}$$ is $$0$$ at $$\pm \infty$$.
 
 $$
 \begin{aligned}
@@ -112,7 +110,7 @@ $$
 
 The $$f' = \p_x f$$ passes its derivative over to $$(-\p_x) \theta_{(a,b)}$$, and the boundary terms vanish because $$\theta_{(a,b)}$$ is $$0$$ at $$\pm \infty$$. The result is a pair of delta functions defined on the boundary of the underlying oriented surface $$\p(a,b) = (b) - (a)$$. Note that the order of $$b$$ and $$a$$ switch because of the negative sign from the integration-by-parts: $$(-\p)(\theta_b - \theta_a) = \delta_a - \delta_b$$.[^boundary]
 
-[^boundary]: It seems like the distribution for the range $$(a,b)$$ is $$\theta_a - \theta_b$$, and the distribution for the boundary is $$\delta_b - \delta_a$$, created by the $$-\p$$ operator, rather than $$+\p$$ as you might guess. Why? I think it's because, for a function like $$\delta_a$$ or $$\theta_a$$, the point $$a$$ actually enters with a negative sign, in $$\theta(x-a)$$. So if you wanted to take a derivative "with regard to the point $$a$$", you would really want the object $$\p_a \theta_a$$. It just happens that $$\p_a \theta_a = (-\p_x) \theta_a$$, so the negative derivative $$-\p_x$$ does the same thing as the positive derivative $$+\p_a$$.
+[^boundary]: It seems like the distribution for the range $$(a,b)$$ is $$\theta_a - \theta_b$$, and the distribution for the boundary is $$\delta_b - \delta_a$$, created by the $$-\p$$ operator, rather than $$+\p$$ as you might guess. Why? It's basically because in e.g. $$\theta(x-a)$$ the point $$a$$ is entering with a negative sign. So if you wanted to take a derivative "with regard to the point $$a$$", you would really want the object $$\p_a \theta_a$$. It just happens that $$\p_a \theta_a = (-\p_x) \theta_a$$, so the negative derivative $$-\p_x$$ does the same thing as the positive derivative $$+\p_a$$.
 
 This is all pretty neat to me. It's intuitive if you think about it, but I didn't notice it for a long time after I learned about $$\delta$$. It turns out that a lot of properties of integration can be moved into the integrand itself by writing them as distributions. We'll be doing a lot more of that in a minute.
 
@@ -159,25 +157,25 @@ d \theta_a = \theta(x-a + dx) - \theta(x-a) = \begin{cases} + 1 & x < a, x + dx 
 \end{aligned}
 $$
 
-When integrating it extracts only the value at that single point, but _not_ times any $$dx$$ term, because that canceled out---which is why it gives a finite answer instead of something vanishly small. 
+When integrating it extracts only the value at that single point, but _not_ times any $$dx$$ term, because that canceled out---which is why it gives a finite answer instead of something vanishingly small. 
 
 $$\int_\bb{R} f \d \theta_a = f(a)$$
 
-So $$\frac{d \theta_a}{dx}$$ makes perfect sense if you don't to replace it with $$\delta(x)$$ and just leave it as is. But $$d \theta_a$$ is still a bit awkward. It's an indicator function except it has a plus or minus sign? We can arrange it into this form:
+So $$d \theta_a / dx$$ makes perfect sense if you don't to replace it with $$\delta(x)$$ and just leave it as is--as long as the integral is interpreted correctly.
+
+But $$d \theta_a$$ is still a bit awkward. It's an indicator function except it has a plus or minus sign? It's a bit hard to deal with algebraically. I find that it gets easier to work with when rearranged into this form:
 
 $$\delta_a = \frac{1_a}{\| dx \|}$$
 
-That's the relationship between a delta function and an indicator for the same point: a delta function is the indicator divided by the absolute value of a differential. 
-
-The idea is that when integrating against the delta function, the only term that is left is the "sign" of the differential:
+That's the relationship between a delta function and an indicator for the same point: a delta function is the indicator divided by the absolute value of the differential. The idea is that when integrating against the delta function, the only term that is left is the "sign" of the differential:
 
 $$\int \delta_a f \d x = \int \frac{1_a}{\| dx \|} f \d x = \int 1_a f \frac{dx}{\| dx \|} = \int \delta_a \widehat{dx}$$
 
-$$\widehat{dx}$$ is an object which evaluates to $$\pm 1$$ depending on whether the integration direction is positive or negative, like the unit vector version of a differential. $$d \theta_a = 1_a \widehat{dx}$$ together become the "oriented" indicator function: $$+1$$ if the integration crosses $$x=a$$ in the positive direction, $$-1$$ if crossing in the negative direction, and $$0$$ everywhere else. Since it is only nonzero on a single partition, the sum converges.
+$$\widehat{dx}$$ is a made-up notation for, I think, a sensible object: it's a differential which evaluates to $$\pm 1$$ depending on whether the integration direction is positive or negative (instead of $$\pm \| dx \|$$). It's like the unit vector version of a differential. $$d \theta_a = 1_a \widehat{dx}$$ together become the "oriented" indicator function: $$+1$$ if the integration crosses $$x=a$$ in the positive direction, $$-1$$ if crossing in the negative direction, and $$0$$ everywhere else. Since it is only nonzero on a single partition, the sum converges.
 
-Of the two forms $$d \theta_a/dx$$ and $$1_a/\| dx \|$$, I find the latter easier to think about, so I'll usually use that.
+Of the two forms $$d \theta_a/dx$$ and $$1_a/\| dx \|$$, I find the latter easier to think about, even though it's definitely weirder. I'm going to prefer to use it for the rest of this.
 
-Regardless of whether you use the $$1_a/\| dx \|$$ form or the $$ d\theta_a/dx$$ form, I find it really helpful to think about delta functions in these ways: they're _exact_ representations of the thing that you can use in algebra. What we're saying is that in general a differential $$df$$ is a function of _two_ arguments, $$df(x, x + dx)$$, which _might_ have a linear approximation, but might not. When we perform an integral on a bunch of sufficiently-small partitions, maybe it will be useful to be able to replace $$df(x, x + dx)$$ with $$f'(x) dx$$, or maybe not. For distributions like $$\theta$$, it is not: just leave it as $$d \theta/ dx$$; it _doesn't need_ to be approximated as a derivative. It works a lot better that way.
+Regardless of whether you use the $$1_a/\| dx \|$$ form or the $$ d\theta_a/dx$$ form, I find it really helpful to think about delta functions in these ways. They're actually _exact_ representations of a thing that you can use in algebra; they're not magical "distributions" that don't obey normal rules and have to be handled with caution. They're everyday objects that we just weren't thinking about in a clean way. What we're saying is that in general a differential $$df$$ is a function of _two_ arguments, $$df(x, x + dx)$$, which _might_ have a linear approximation, but might not. When we perform an integral on a bunch of sufficiently-small partitions, maybe it will be useful to be able to replace $$df(x, x + dx)$$ with $$f'(x) dx$$, or maybe not. For distributions like $$\theta$$, it is not: just leave it as $$d \theta/ dx$$; it _doesn't need_ to be approximated as a derivative. It works a lot better that way.
 
 For example, this construction makes some of the common disclaimers about $$\delta(x)$$ really trivial:
 
@@ -185,7 +183,7 @@ For example, this construction makes some of the common disclaimers about $$\del
 2. $$\delta(x)$$ doesn't have a value at $$x=0$$ because it depends on that invisible variable, $$1/dx$$. The value is not exactly infinite: it's "whatever is required to cancel out a $$dx$$".
 3. You can't multiply two delta functions in the same variable by each other, like $$\delta(x) \delta(x) = \frac{1_{x=0} 1_{x=0}}{\| dx \|^2 }$$, because the two copies of $$\| dx \|$$ aren't going to cancel out a single $$dx$$ in the numerator and will leave an overall factor of $$1/\| dx \|$$ that you have no way to integrate.
 
-Also, compare this construction to a typical "nascent delta function" construction. Delta functions are often defined as the limit of a series of smooth functions whose properties integrals go, in the limit, to the behavior of a delta function. Usually the smooth functions are a Gaussian, square cutoffs, or some other $$\e \eta(x/\e)$$ for an integrable $$\eta$$ that has $$\int \eta \d x = 1$$. But these, I think, are trying to express exactly the idea of $$\frac{1_a}{\| dx \|}$$. They want to make something whose (1) integral, in the limit, converges to being nonzero at exactly a single point, and which (2) perfectly cancels out the value of $$dx$$ at that point, except for its sign, integrating to $$\pm 1$$. Well why not just write that directly? (Well, it does not solve for the main reason you might be using nascent delta constructions, which is that you are demanding things be rigorously constructed out of classical functions for some reason. But I'm not concerned about that.)
+Also, compare this construction to a typical "nascent delta function" construction. Delta functions are often defined as the limit of a series of smooth functions whose properties integrals go, in the limit, to the behavior of a delta function. Usually the smooth functions are a Gaussian, square cutoffs, or some other $$\e \eta(x/\e)$$ for an integrable $$\eta$$ that has $$\int \eta \d x = 1$$. But these, I think, are trying to express exactly the idea of $$\frac{1_a}{\| dx \|}$$. They want to make something whose (1) integral, in the limit, converges to being nonzero at exactly a single point, and which (2) perfectly cancels out the value of $$dx$$ at that point, except for its sign, integrating to $$\pm 1$$. Well why not just write that directly? (Well, it does not solve for the main reason you might be using nascent delta constructions, which is that you are demanding things be rigorously constructed out of classical functions for some reason---maybe because you have a class of functions whose properties are preserved in the limits of series? But I'm not concerned about that.)
 
 Also, it makes $$\delta$$'s change-of-variable rules obvious. For instance $$\delta(-(x-a)) = \delta(x-a)$$ is given by
 
@@ -265,7 +263,7 @@ $$
 
 I don't exactly see _why_ it works this way, but it seems to be how it works. 
 
-September 2024 edit: It is a lot like the [vector division]({% post_url 2024-09-11-vector-division %}) that I play with sometimes, actually, and that's probably what it is. Well, I wrote that afterwards, partly based on this, but may as well have a forward link anyway. This kinda tells me how division on multivectors ought to work, if it's going to work:
+(September 2024 edit: It is a lot like the [vector division]({% post_url 2024-09-11-vector-division %}) that I play with sometimes, actually, and that's probably what it is. Well, I wrote that afterwards, partly based on this, but may as well have a forward link anyway. I feel like this is telling us how division on multivectors ought to work, if it's going to work at all.)
 
 The confusing part is that you can't divide through by the magnitudes _individually_. It's _not_ this
 
@@ -351,9 +349,9 @@ And, defining $$\Vert dg \Vert = \| \del g \|$$ as the _actual_ magnitude of a d
 
 $$dg \^ \star dg = \Vert dg \Vert^2 d^3 \b{x} = \| \del g \|^2 d^3 \b{x}$$
 
-Example of these: $$\star dx = dy \^ dz$$, so $$dx \^ \star dx = d^3 \b{x}$$ and $$(a \d x) \^ \star (a \d x) = a^2 d^3 \b{x}$$.
+Example of these: $$\star dx = dy \^ dz$$, so $$dx \^ \star dx = d^3 \b{x}$$ and $$(a \d x) \^ \star (a \d x) = a^2 d^3 \b{x}$$. Yes, it is awkward that $$\Vert dg \Vert$$ and $$\| \del g \|$$ sorta mean the same thing? I'm not sure what to do about that. Basically I'm using them like this: $$\Vert dg \Vert$$ is my new weird thing, but when possible I will distill it down to $$\| \del g \|$$, the magnitude of a standard vector, which is a normal and not-weird thing.
 
-So we can write
+Using this we can write
 
 $$
 \begin{aligned}
@@ -365,7 +363,7 @@ $$
 
 Where $$\star \widehat{dg}$$ is the two-form which is the Hodge dual of $$\widehat{dg}$$.
 
-I have no idea how to do that integral in general, but we can try it out on an easy surface that we know the parameterization for. $$\delta(r-R)$$ describes the surface of a sphere in $$\bb{R}^3$$. Then $$dr$$ is the differential for that surface, and $$\star dr = d \Omega = r^2 \sin \theta \d\theta \^ d \phi$$, because $$dr \^ d \Omega = d^3 \b{x}$$. Helpfully, $$\Vert dr \Vert = \| \del r \| = 1$$ (I had to double-check). Therefore:
+I have no idea how to do that integral in general, but we can try it out on an easy surface that we know the parameterization for. $$\delta(r-R)$$ describes the surface of a sphere in $$\bb{R}^3$$. Then $$dr$$ is the differential for that surface, and $$\star dr = d \Omega = r^2 \sin \theta \d\theta \^ d \phi$$, because $$dr \^ d \Omega = d^3 \b{x}$$. Helpfully, $$\Vert dr \Vert = \| \del r \| = 1$$ (Which makes sense, but I doubted myself so I work it out to double-check...). Therefore:
 
 $$
 \begin{aligned}
@@ -450,13 +448,13 @@ And we can describe the $$2$$-surface $$\p V$$ by its negative derivative
 
 $$(-\del) \theta(g(\b{x})) = - (\del g) \delta(g(\b{x})) = \| \del g \| \b{n} \,  \delta(g(\b{x}))$$
 
-The divergence theorem says
+The standard divergence theorem says
 
 $$\int_{V} \del \cdot \b{F} \d V = \oint_{\p V} (\b{F} \cdot \b{n}) \d A$$
 
-Where $$\b{F}$$ here is a vector field. Its divergence is $$d \b{F} = (\p_x F_{x} + \p_y F_{y} + \p_z F_{z}) d^3 \b{x} = (\del \cdot \b{F}) d^3 \b{x}$$.
+Where $$\b{F}$$ here is a vector field and the divergence is given by $$d \b{F} = (\p_x F_{x} + \p_y F_{y} + \p_z F_{z}) d^3 \b{x} = (\del \cdot \b{F}) d^3 \b{x}$$. 
 
-Then
+Now we'll do this with our distribution notations. We get:
 
 $$
 \begin{aligned}
@@ -469,9 +467,9 @@ $$
 \end{aligned}
 $$
 
-Which (as far as I can tell? this stuff is tricky) should be the correct area element on the surface. As always, not very helpful but I thought it was cool that it works. (I used the fact that integration by parts works with a scalar function times a vector field: $$G (\del \cdot F) = -\del G \cdot F$$ so long as $$\del(GF)$$ is zero at infinity, which it is because $$\theta(g) = 0$$ outside of $$V$$.)
+Which should be the correct area element on the surface, albeit in a funny notation. As always, not very helpful but I thought it was cool that it works. (I used the fact that integration by parts works with a scalar function times a vector field: $$G (\del \cdot F) = -\del G \cdot F$$ so long as $$\del(GF)$$ is zero at infinity, which it is because $$\theta(g) = 0$$ outside of $$V$$.)
 
-That's the classical version. The exterior calculus version is somewhat more elegant. In this, we treat $$F$$ as a bivector field rather than a vector field, and we're trying to get
+That's the classical version. The exterior calculus version is somewhat more elegant (although I am about to explain it in an inelegant way, but, um, it's elegant when you leave all the details out...). In this, we treat $$F$$ as a bivector field rather than a vector field, and we're trying to get
 
 $$\int_{g > 0} dF = \int_{g =0} F$$
 
@@ -498,7 +496,7 @@ $$
 
 (Where'd the negative sign go? Well, $$dg$$ points into the surface, not out of it, so I removed it when integrating over $$\widehat{dg}$$ for consistency with the assumed orientation of $$du \^ dv$$.)
 
-Although to be honest I get really lost in some these exterior calculus computations so I wouldn't vouch too heavily for this. But I do think this trick of "inventing coordinates for a surface, then writing down delta and step functions for it" is suspiciously powerful.
+Although to be honest I get really lost in some these exterior calculus computations so I wouldn't vouch too heavily for this. But I do think this trick of "inventing coordinates for a surface, then writing down delta and step functions for it" is suspiciously powerful. (We could also have done all this with a $$d \Omega = du  \^ dv$$ and made it more powerful, but... that's for another article.)
 
 Incidentally, this type of integration is discussed on the Wikipedia page [Laplacian of the Indicator](https://en.wikipedia.org/wiki/Laplacian_of_the_indicator). It turns out that in some contexts it's useful to take further derivatives of $$\delta(g)$$ to produce $$\delta'(g)$$ functions on surfaces.
 
@@ -510,6 +508,6 @@ The same basic derivation should work for the other types of Stokes' theorem, su
 
 # 6. Summary
 
-Although my goal was to justify the funny-looking formula $$\delta(x) = \frac{1_a}{\| dx \|}$$, but I ended up getting somewhat sidetracked playing around with using it to manipulate integrals in 3d. I guess the point is to just show that everywhere I've tried to use that notation, it is has proven rather natural and intuitive, so long as you remember that funny rule: that the differentials in the denominator combine with the wedge product, and are used to turn differentials in the numerator into "unit" differentials like $$\widehat{dg}$$.
+Although my goal was to justify the funny-looking formula $$\delta(x) = 1_a / \| dx \|$$, but I ended up getting somewhat sidetracked playing around with using it to manipulate integrals in 3d. I guess the point is to just show that everywhere I've tried to use that notation, it is has proven rather natural and intuitive, so long as you remember that funny rule: that the differentials in the denominator combine with the wedge product, and are used to turn differentials in the numerator into "unit" differentials like $$\widehat{dg}$$.
 
 No idea if there's any rigorous basis for any of it, of course. But I'm just glad to know how to produce some of the delta function identities more quickly now.

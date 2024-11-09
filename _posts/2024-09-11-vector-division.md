@@ -59,16 +59,26 @@ This is particularly nice because a change of basis to another basis $$B = \{ \b
 
 $$
 \begin{aligned}
-\b{x}_A &= A x_A \\
-\b{x}_B &= B x_B \\
-&= A (\frac{B}{A} x_A) \\
-x_B &= \frac{B}{A} x_A
+\b{x}_A &= A x_A = A \frac{\b{x}}{A} \\
+\b{x}_B &= B x_B = B \frac{\b{x}}{B} \\
+
 \end{aligned}
 $$
 
-When the matrices are invertible then this is just generic linear algebra. When they're not, it produces various projection operations, so $$\b{x}_A = A x_A$$ and $$\b{x}_B = B x_B$$ are not necessarily the same vector.
+When the vectors of $$B$$ span the space then $$\b{x}_B = \b{x}$$ and you can do stuff like this:
 
-All of this is discussed to death below. At the end we also compare this sense of division to the division in Clifford Algebras and tensor algebras. I hope I didn't mess anything up. My brain hurts.
+$$
+\begin{aligned}
+\b{x}_A &= A \frac{\b{x}}{A} \\
+&= A \frac{B}{A} \frac{\b{x}}{B} \\
+&= A \frac{B}{A} x_B \\
+x_A &= \frac{B}{A} x_B \\
+\end{aligned}
+$$
+
+Which I think is pretty cool. It's just another notation for matrix algebra, sure, but it means something geomtrically the whole time, and seems to obey some simple rules such that you could actually just do algebraic manipulations like we do with one-dimensional variables. I mean, maybe. Probably there are some more complexities $$B$$ doesn't span and probably they're pretty interesting and cool also. I ran out of steam at about this point so I'll figure it out later. My brain hurts.
+
+All of this is discussed to death below. At the end we also compare this sense of division to the division in Clifford Algebras and tensor algebras.
 
 ---------
 
@@ -276,7 +286,13 @@ $$
 \end{aligned}
 $$
 
-The dual basis is defined so that everything cancels out perfectly.
+The dual basis is defined so that everything cancels out perfectly.[^dual]
+
+[^dual]: I've found references sporadically in the literature which treat dual bases in this fundamental way (for instance [Winitzki](https://sites.google.com/site/winitzki/linalg)), but it generally seems comparatively obscure in "classical" linear algebra? (On the other hand it's ubiquitous in differential geometry but usually not by name: the dual basis is just the covector basis.)
+    
+    Incidentally I first became aware of the concept being used in this way because of a [1974 comment](https://pubs.aip.org/aapt/ajp/article-abstract/42/1/85/1049571/Comment-on-Geometric-Nature-of-Lagrange-s) on a [1971 paper](https://pubs.aip.org/aapt/ajp/article-abstract/40/11/1636/1042836/Geometric-Nature-of-Lagrange-s-Equations) about Lagrangian mechanics which pointed out that the ideas therein were originally found in a [1965 textbook](https://onlinebooks.library.upenn.edu/webbin/book/lookupid?key=olbp38482) by Housner, which I read, and it indeed does a lot of mechanics using dual bases heavily? So now I'm wondering if they were more common in the past and have faded out of usage for some reason.
+    
+    I mention all of this because I thought it was kinda funny. I haven't looked into the history any further, though.
 
 For the preceding example, the dual basis is
 
@@ -573,7 +589,7 @@ $$
 \end{aligned}
 $$
 
-So that actually is an inverse also, and I suspect that in a sense it's the "minimal" inverse: it prefers only the information in $$\b{a}^{-1} \o \b{b}$$ required to produce $$\b{b}$$ again. Actually I suspect that this _is_ the reason that the geometric product works and why so many operations do seem to work from it. But I don't feel ready to make that argument in detail right now. I'm too tired.
+So that actually is an inverse also, and I suspect that in a sense it's the "minimal" inverse: it prefers only the information in $$\b{a}^{-1} \o \b{b}$$ required to produce $$\b{b}$$ again. Actually I suspect that this _is_ the reason that the geometric product works and why so many operations do seem to work from it. But I don't feel ready to make that argument in detail right now.
 
 Anyway, the Clifford product produces a certain type of "actual" division, but what you lose in the process is an object that has a useful interpretation. A scalar plus a bivector is a... what? 
 
