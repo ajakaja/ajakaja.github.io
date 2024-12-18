@@ -204,7 +204,7 @@ $$
 \end{aligned}
 $$
 
-There are ways to construct them from the $$\b{b}_{\perp c}$$ and $$\b{c}_{\perp b}$$ vectors from earlier, which also get their own box:
+There are ways to construct them from the $$\b{b}_{\perp c}$$ and $$\b{c}_{\perp b}$$ vectors from earlier, which also get to go into their own box:
 
 <aside class="toggleable" id="dual" placeholder="<b>Aside</b>: Dual basis vectors <em>(click to expand)</em>">
 
@@ -229,9 +229,9 @@ $$
 \end{aligned}
 $$
 
-Note that $$\b{b}^* \cdot \b{b} = 1$$. An easy way to see this is by using the identity for repeated interior products: 
+Note that $$\b{b} \cdot \b{b}^* = 1$$. An easy way to see this is by using the identity for repeated interior products: 
 
-$$\frac{\b{b} \cdot (- \b{c} \cdot (\b{b} \^ \b{c}))}{\| \b{b} \^ \b{c} \|^2} = \frac{(-\b{c} \^ \b{b}) \cdot (\b{b} \^ \b{c})}{\| \b{b} \^ \b{c} \|^2} = \frac{\| \b{b} \^ \b{c} \|^2}{\| \b{b} \^ \b{c} \|^2} = 1$$
+$$\b{b} \cdot \frac{ (- \b{c} \cdot (\b{b} \^ \b{c}))}{\| \b{b} \^ \b{c} \|^2} = \frac{(-\b{c} \^ \b{b}) \cdot (\b{b} \^ \b{c})}{\| \b{b} \^ \b{c} \|^2} = \frac{\| \b{b} \^ \b{c} \|^2}{\| \b{b} \^ \b{c} \|^2} = 1$$
 
 whereas for $$\b{b}^* \cdot \b{c}$$ you get $$-\b{c} \^ \b{c} = 0$$ in the numerator.
 
@@ -287,7 +287,7 @@ $$\b{a}_{\{ b, c \} } = \proj_{\{ \b{b}, \b{c} \} }(\b{a}) = (\b{b} \o \b{b}^* +
 
 which is essentially equivalent.
 
-You can see that $$\p_v$$ and $$\p_w$$ play exactly the same role for differentials that $$\b{b}^*$$ and $$\b{c}^*$$ do for vectors. Hence, they are effectively "dual basis vectors" to the $$(dv, dw)$$, and the $$(u_v) (v_w) (w_u) = -1$$ identity is _literally_ the same as the $$(a_b) (b_c) (c_a) = -1$$ identity for vectors that obey $$\b{a} + \b{b} + \b{c} = 0$$.
+You can see that $$\p_v$$ and $$\p_w$$ play exactly the same role for differentials that $$\b{b}^*$$ and $$\b{c}^*$$ do for vectors. Hence, they are effectively "dual basis vectors" to the $$(dv, dw)$$, and the $$(u_v) (v_w) (w_u) = -1$$ identity is _literally_ the same as the $$(a_b) (b_c) (c_a) = -1$$ identity for vectors that obey $$\b{a} + \b{b} + \b{c} = 0$$ or $$f_a \b{a} + f_b \b{b} + f_c \b{c} = 0$$.
 
 --------
 
