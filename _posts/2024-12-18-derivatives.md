@@ -7,7 +7,7 @@ aside: true
 tags: notes
 ---
 
-The other day I came back across [this](https://johncarlosbaez.wordpress.com/2021/09/13/the-cyclic-identity-for-partial-derivatives/) article by John Baez, about the following counterintuitive partial derivative identity for a function $$u(v,w)$$:
+I came across [this](https://johncarlosbaez.wordpress.com/2021/09/13/the-cyclic-identity-for-partial-derivatives/) article, about the following counterintuitive partial derivative identity for a function $$u(v,w)$$:
 
 $$
 \begin{aligned}
