@@ -118,7 +118,12 @@ And then we can ask for the "$$\b{b}$$-component of $$\b{a}$$", which we call $$
 
 $$\b{a} = \underbrace{a_b}_{=-1} \b{b} + a_c \b{c}$$
 
-Clearly $$ a_b = -1$$, but it's a bit hard to extract it from $$\b{a}$$ directly. There are a few ways to do it. One is by dotting with a certain vector $$\b{b}_{\perp c} = \b{b} - \proj_{\b{c}}(\b{b}) = \b{b} - \b{b} \cdot \b{c}/\| \b{c} \|^2 \b{c}$$, which has $$\b{b}_{\perp c} \cdot \b{c} = 0$$:
+Clearly $$ a_b = -1$$, but it's a bit hard to extract it from $$\b{a}$$ directly. There are a few normal ways to do it. The details don't matter for our topic, so they're in a box:
+
+<aside class="toggleable" id="Projections" placeholder="<b>Aside</b>: Projections <em>(click to expand)</em>">
+
+
+One way is by dotting with a certain vector $$\b{b}_{\perp c} = \b{b} - \proj_{\b{c}}(\b{b}) = \b{b} - \b{b} \cdot \b{c}/\| \b{c} \|^2 \b{c}$$, which has $$\b{b}_{\perp c} \cdot \b{c} = 0$$:
 
 $$
 \begin{aligned}
@@ -143,6 +148,8 @@ a_c &= \frac{\b{a} \^ \b{b}}{\b{c} \^ \b{b}} = -1
 $$
 
 Where the division is justified by the fact that all the vectors live in the same 1-dimensional subspace and therefore can be divided like scalars.
+
+</aside>
 
 In any case what we're looking for is these three components:
 
@@ -197,7 +204,10 @@ $$
 \end{aligned}
 $$
 
-These can be constructed from the $$\b{b}_{\perp c}$$ and $$\b{c}_{\perp b}$$ vectors from earlier:
+There are ways to construct them from the $$\b{b}_{\perp c}$$ and $$\b{c}_{\perp b}$$ vectors from earlier, which also get their own box:
+
+<aside class="toggleable" id="dual" placeholder="<b>Aside</b>: Dual basis vectors <em>(click to expand)</em>">
+
 
 $$
 \begin{aligned}
@@ -224,6 +234,8 @@ Note that $$\b{b}^* \cdot \b{b} = 1$$. An easy way to see this is by using the i
 $$\frac{\b{b} \cdot (- \b{c} \cdot (\b{b} \^ \b{c}))}{\| \b{b} \^ \b{c} \|^2} = \frac{(-\b{c} \^ \b{b}) \cdot (\b{b} \^ \b{c})}{\| \b{b} \^ \b{c} \|^2} = \frac{\| \b{b} \^ \b{c} \|^2}{\| \b{b} \^ \b{c} \|^2} = 1$$
 
 whereas for $$\b{b}^* \cdot \b{c}$$ you get $$-\b{c} \^ \b{c} = 0$$ in the numerator.
+
+</aside>
 
 We use these to easily extract the coefficients:
 
