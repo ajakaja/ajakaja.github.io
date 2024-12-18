@@ -7,7 +7,7 @@ aside: true
 tags: notes
 ---
 
-The other day I came across [this](https://johncarlosbaez.wordpress.com/2021/09/13/the-cyclic-identity-for-partial-derivatives/) article by John Baez again, about the following counterintuitive partial derivative identity for a function $$u(v,w)$$:
+The other day I came back across [this](https://johncarlosbaez.wordpress.com/2021/09/13/the-cyclic-identity-for-partial-derivatives/) article by John Baez, about the following counterintuitive partial derivative identity for a function $$u(v,w)$$:
 
 $$
 \begin{aligned}
@@ -15,9 +15,9 @@ $$
 \end{aligned}
 $$
 
-Which can be found on Wikipedia under the name [Triple Product Rule](https://en.wikipedia.org/wiki/Triple_product_rule). 
+(which can be found on Wikipedia under the name [Triple Product Rule](https://en.wikipedia.org/wiki/Triple_product_rule)).
 
-The main reason to care about this, besides that it's useful for calculating things sometimes, is that it seems a bit perplexing that the minus sign is there. Shouldn't these fractions "sorta" cancel? Yes, we all know that derivatives aren't really fractions, but they definitely act like fractions more often than they _don't_ act like fractions, and it's odd that in this case they're so very much not like fractions. We'd like to repair our intuition somehow.
+The main reason to care about this, besides that it's sometimes useful for calculating things, is that it seems a bit perplexing that the minus sign is there. Shouldn't these fractions "sorta" cancel? Yes, we all know that derivatives aren't really fractions, but they definitely act like fractions more often than they _don't_ act like fractions, and it's odd that in this case they're so very much not like fractions. We'd like to repair our intuition somehow.
 
 Although Baez's article does explain this identity in a few different ways, there's still something puzzling about it. It's always perturbing to me when there's some fact of basic calculus which is not an artifact of our formalism but nevertheless does not immediately correspond to intuition. So this time I thought I would try to get to the bottom of things. 
 
@@ -27,7 +27,7 @@ Although Baez's article does explain this identity in a few different ways, ther
 
 # 1. A Proof
 
-For brevity from now I'm going to omit the constant $$\|_w$$ symbol because of course it's constant; that's how partial derivatives usually work, and I'm going to write $$u_v \equiv \p u / \p v \equiv \p_u / \p_v \|_w$$. So what we are looking for is the intuition behind
+For brevity from now I'm going to omit the constant $$\|_w$$ symbol because of course it's constant---that's how partial derivatives usually work---and I'm going to write $$u_v$$ for $$\p u / \p v$$. So what we are looking for is the intuition behind
 
 $$(u_v)(v_w)(w_u) = -1$$
 
@@ -37,7 +37,7 @@ If $$u$$ is a function of $$v$$ and $$w$$ then we can write out the relationship
 
 $$f(u,v,w) = u - U(v, w) = 0$$
 
-This implicit function holds for all valid values of $$(u,v,w)$$, meaning that the three variables form an implicit $$2$$-surface in $$\bb{R}^3$$.
+This implicit function holds for all valid values of $$(u,v,w)$$, meaning that in general the three variables form an implicit $$2$$-surface in $$\bb{R}^3$$ (we won't think about degeneracies or singularities in this discussion).
 
 The differential $$df$$ is
 
@@ -84,7 +84,7 @@ $$df = f_u du + f_v dv + f_w dw + f_x dx = 0$$
 
 and
 
-$$du = -\frac{f_v}{f_u} dv - \frac{f_w}{f_u} dw - \frac{f_x}{f_u} du$$
+$$du = -\frac{f_v}{f_u} dv - \frac{f_w}{f_u} dw - \frac{f_x}{f_u} dx$$
 
 And likewise for the other variables. Well, all we need to make a similar identity is some combination of these partials that works out to be $$1$$ or $$-1$$. How about:
 
@@ -204,23 +204,26 @@ $$
 \end{aligned}
 $$
 
-There are ways to construct them from the $$\b{b}_{\perp c}$$ and $$\b{c}_{\perp b}$$ vectors from earlier, which also get to go into their own box:
+There are ways to construct them, which also get to go into their own box:
 
 <aside class="toggleable" id="dual" placeholder="<b>Aside</b>: Dual basis vectors <em>(click to expand)</em>">
 
+Using the $$\b{b}_{\perp c}$$ and $$\b{c}_{\perp b}$$ vectors from the previous box:
 
 $$
 \begin{aligned}
 \b{b}^* 
-&= \frac{\b{b}_{\perp c}}{\b{b} \cdot \b{b}_{\perp c}} 
-= \frac{\b{b} - \frac{\b{b} \cdot \b{c}}{\| \b{c} \|^2} \b{c}}{\b{b} \cdot (\b{b} - \frac{\b{b} \cdot \b{c}}{\| \b{c} \|^2} \b{c})} 
+&= \frac{\b{b}_{\perp c}}{\| \b{b}_{\perp c} \|^2} 
+= \frac{\b{b} - \frac{\b{b} \cdot \b{c}}{\| \b{c} \|^2} \b{c}}{\|\b{b} - \frac{\b{b} \cdot \b{c}}{\| \b{c} \|^2} \b{c} \|^2} 
 = \frac{\b{b}\| \b{c} \|^2 - (\b{b} \cdot \b{c}) \b{c}}{\| \b{b} \|^2 \| \b{c} \|^2 - (\b{b} \cdot \b{c})^2} \\ 
 
-\b{c}^* &= \frac{\b{c}_{\perp b}}{\b{c} \cdot \b{c}_{\perp b}} = \frac{\b{c}\| \b{b} \|^2 - (\b{b} \cdot \b{c}) \b{b}}{\| \b{b} \|^2 \| \b{c} \|^2 - (\b{b} \cdot \b{c})^2}
+\b{c}^* &= \frac{\b{c}_{\perp b}}{\| \b{c}_{\perp b} \|^2} 
+= \frac{\b{c} - \frac{\b{b} \cdot \b{c}}{\| \b{b} \|^2} \b{c}}{\|\b{c} - \frac{\b{b} \cdot \b{c}}{\| \b{b} \|^2} \b{b}\|^2} 
+= \frac{\b{c}\| \b{b} \|^2 - (\b{b} \cdot \b{c}) \b{b}}{\| \b{b} \|^2 \| \b{c} \|^2 - (\b{b} \cdot \b{c})^2}
 \end{aligned}
 $$
 
-Although a better way to write them (using hokey [vector division]({% post_url 2024-09-11-vector-division %}) notation; that article talks about a lot of this by the way) is
+Although a better way to write them is using my hokey [vector division]({% post_url 2024-09-11-vector-division %}) notation (that article talks about a lot of this by the way) is
 
 $$
 \begin{aligned}
@@ -229,11 +232,18 @@ $$
 \end{aligned}
 $$
 
-Note that $$\b{b} \cdot \b{b}^* = 1$$. An easy way to see this is by using the identity for repeated interior products: 
+Note that $$\b{b} \cdot \b{b}^* = 1$$ and $$\b{c} \cdot \b{b}^* = 0$$. An easy way to see this is by using the identity for repeated interior products, which is that $$\b{v} \cdot (\b{u} \cdot \alpha) = (\b{u} \^ \b{v}) \cdot \alpha$$:
 
-$$\b{b} \cdot \frac{ (- \b{c} \cdot (\b{b} \^ \b{c}))}{\| \b{b} \^ \b{c} \|^2} = \frac{(-\b{c} \^ \b{b}) \cdot (\b{b} \^ \b{c})}{\| \b{b} \^ \b{c} \|^2} = \frac{\| \b{b} \^ \b{c} \|^2}{\| \b{b} \^ \b{c} \|^2} = 1$$
-
-whereas for $$\b{b}^* \cdot \b{c}$$ you get $$-\b{c} \^ \b{c} = 0$$ in the numerator.
+$$
+\begin{aligned}
+\b{b} \cdot \frac{ (- \b{c} \cdot (\b{b} \^ \b{c}))}{\| \b{b} \^ \b{c} \|^2} 
+&= \frac{(-\b{c} \^ \b{b}) \cdot (\b{b} \^ \b{c})}{\| \b{b} \^ \b{c} \|^2} 
+= \frac{\| \b{b} \^ \b{c} \|^2}{\| \b{b} \^ \b{c} \|^2} = 1 \\ 
+\b{c} \cdot \frac{ (- \b{c} \cdot (\b{b} \^ \b{c}))}{\| \b{b} \^ \b{c} \|^2} 
+&= \frac{(-\b{c} \^ \b{c}) \cdot (\b{b} \^ \b{c})}{\| \b{b} \^ \b{c} \|^2} 
+= 0
+\end{aligned}
+$$
 
 </aside>
 
@@ -254,9 +264,7 @@ Now, in the differential version we're trying to extract the coefficients from
 
 $$du = u_v dv + u_w dw$$
 
-where $$u_v$$ tells us how $$u$$ changes when we change _only_ $$v$$ and $$u_w$$ tells us $$u$$ changes when we change _only_ $$w$$. But it's just the same problem, and there's a dual basis that handles it. I guess we would call it $$\{ dv^*, dw^*\}$$? But we don't have to. There's a better symbol:
-
-Curiously, this dual basis can be sorta identified with the partial derivative operators themselves:
+where $$u_v$$ tells us how $$u$$ changes when we change _only_ $$v$$ and $$u_w$$ tells us $$u$$ changes when we change _only_ $$w$$. But it's just the same problem, and there's a dual basis that handles it. I guess we would call it $$\{ dv^*, dw^*\}$$? But we don't have to; there's a better symbol. The dual basis can be sorta identified with the partial derivative operators themselves:
 
 $$
 \begin{aligned}
@@ -265,29 +273,31 @@ $$
 \end{aligned}
 $$
 
-That seems weird but hear me out. We can write the factorization of $$\b{a}$$ as
+That seems weird but it turns out to be pretty logical. Note that we can write the factorization of $$\b{a}$$ as an operator acting on $$\b{a}$$:
 
 $$\b{a} = b_a \b{b} + b_c \b{b} = (\b{b} \o \b{b}^* + \b{c} \o \b{c}^*) \cdot (\b{a})$$
 
-(Let's assume that the dot product happens in the second tensor slot. Of course we're free to swap them if we prefer it the other way.) In the calculus case, the equivalent expression is
+In this case we know ahead of time that $$\b{a} \in \span(\b{b}, \b{c})$$, but if it did not, this would instead of a projection onto that plane:
 
-$$du = u_v dv + u_w dw = (dv \o \p_v + dw \o \p_w) \cdot u$$
+$$\b{a}_{bc} = b_a \b{b} + b_c \b{b} = (\b{b} \o \b{b}^* + \b{c} \o \b{c}^*) \cdot (\b{a})$$
 
-Which is.. well, almost the same, but slightly different. In the calculus case the object on the left, $$du$$, is not the same as the object on the right, $$u$$. But there's a good reason for this. The whole point of differential calculus is that we're replacing functions like $$u$$ with their local linearizations, which is basically a projection into a smaller space, the space of things that only grow linearly. Well, the RHS of the above is $$u(v,w)$$ in all its non-linear glory. The LHS is just the linear part, in a particular basis (I'm not sure exactly how to think about that? But it undeniably encodes the relevant information, so let's call it a basis.) We can think of the 
+The equivalent expression for the differentials is
+
+$$du = u_v dv + u_w dw = (dv \o \p_v + dw \o \p_w) u$$
+
+The object on the left acts like a projection of $$u$$ onto some "subspace" of possible functions, namely, the linear ones. Well, sorta. You have to squint a bit to interpret $$du(v,w)$$ as living in a linear subspace of $$u(v,w)$$. I think the right interpretation is that $$du$$ happesn to be written in a different basis than $$u$$: although it _means_ that it is a linearization of $$u$$ at some point $$(v_0, w_0)$$,
+
+$$du(u,v) \equiv u_v \|_{(v_0, w_0)} (v - v_0) + u_w \|_{(v_0, w_0)} (w - w_0)$$
+
+we happen to writing it in a form that has to be algebraically applied in a different way.
+
+In any case you can see that the role of the $$\p_v$$ and $$\p_w$$ symbols is the same as the dual basis dot products $$\b{b}^* \cdot$$ and $$\b{c}^* \cdot$$ acting on $$\b{a}$$: they project out the behaviors along the $$dv$$ and $$dw$$ directions. So in that sense they are serving the role of dual basis "vectors", and the overall $$d$$ symbol is acting like a projection onto that whole subspace
 
 $$d = dv \o \p_v + dw \o \p_w = \proj_{\{du, dv\}}$$
 
-object as a projection onto the subspace of functions that are strictly linear either $$v$$ and $$w$$:
+(at some point $$(u_0, v_0)$$, that is)
 
-$$df = \proj_{\{du, dv\}} f = (dv \o \p_v + dw \o \p_w) f$$
-
-And indeed, if we did not know ahead of time that $$\b{a}$$ lays in the plane of $$\{ \b{b}, \b{c} \}$$, the vector equation above would have to be corrected to say
-
-$$\b{a}_{\{ b, c \} } = \proj_{\{ \b{b}, \b{c} \} }(\b{a}) = (\b{b} \o \b{b}^* + \b{c} \o \b{c}^*) \cdot \b{a}$$
-
-which is essentially equivalent.
-
-You can see that $$\p_v$$ and $$\p_w$$ play exactly the same role for differentials that $$\b{b}^*$$ and $$\b{c}^*$$ do for vectors. Hence, they are effectively "dual basis vectors" to the $$(dv, dw)$$, and the $$(u_v) (v_w) (w_u) = -1$$ identity is _literally_ the same as the $$(a_b) (b_c) (c_a) = -1$$ identity for vectors that obey $$\b{a} + \b{b} + \b{c} = 0$$ or $$f_a \b{a} + f_b \b{b} + f_c \b{c} = 0$$.
+Probably this interpretation isn't perfect and could be improved upon. Still, I think it is fair to say that the $$\p_v$$ and $$\p_w$$ are playing the same role for the differentials that the dual basis vectors played for the vectors. Hence $$(u_v) (v_w) (w_u) = -1$$ identity is the same as the $$(a_b) (b_c) (c_a) = -1$$ identity for vectors that obey $$\b{a} + \b{b} + \b{c} = 0$$ or $$f_a \b{a} + f_b \b{b} + f_c \b{c} = 0$$.
 
 --------
 
