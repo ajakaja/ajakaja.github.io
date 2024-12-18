@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "The Triple Product Rule and Dual Bases"
+title: "Triple Products and Dual Bases"
 footnotes: true
 math: true
 aside: true
