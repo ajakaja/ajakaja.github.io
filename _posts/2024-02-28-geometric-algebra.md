@@ -210,17 +210,17 @@ Which operators on vectors via
 
 $$e^{\theta (\b{xy})}(a \b{x} + b \b{y}) = (a \b{x} + b \b{y}) \cos \theta + (b \b{x} - a\b{y}) \sin \theta$$
 
-But this doesn't work for vectors which don't lie in the $$\b{xy}$$ plane, because $$e^{\theta (\b{xy})} \b{z} = \b{z} \cos \theta + (\b{xyz}) \sin \theta$$. Instead one has to use the [Rodrigues formula](https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula) for rotations in $$>2$$ dimensions. GA accomplishes this the same way quaternions did, which is by which sandwiching a vector between two half-angle rotations instead, which GA calls "rotors":
+But this doesn't work for vectors which don't lie in the $$\b{xy}$$ plane, because $$e^{\theta (\b{xy})} \b{z} = (\b{z}) \cos \theta + (\b{xyz}) \sin \theta$$. Instead one has to use the [Rodrigues formula](https://en.wikipedia.org/wiki/Rodrigues%27_rotation_formula) for rotations in $$>2$$ dimensions. GA accomplishes this the same way quaternions did, which is by which sandwiching a vector between two half-angle rotations instead, which GA calls "rotors":
 
 $$\b{v} \mapsto e^{\theta \b{B}/2} \b{v} e^{-\theta \b{B}/2}$$
 
-This works correctly on $$\b{z}$$:
+Somewhat miraculously, this works correctly on $$\b{z}$$:
 
 $$
 \begin{aligned}
 R_{xy} (\b{z}) &= e^{\theta \b{B}/2} \b{z} e^{-\theta \b{B}/2} \\
-&= [\b{z} \cos (\frac{\theta}{2}) + (\b{xyz}) \sin(\frac{\theta}{2})] [\cos (-\frac{\theta}{2}) + \b{xy} \sin (-\frac{\theta}{2})] \\
-&= \b{z} [ \cos^2 (\frac{\theta}{2}) + \sin^2(\frac{\theta}{2}) ] + \b{xyz} [\sin \frac{\theta}{2} \cos \frac{\theta}{2} - \cos \frac{\theta}{2} \sin \frac{\theta}{2} ]\\
+&= [\b{z} \cos (\theta/2) + (\b{xyz}) \sin(\theta/2)] [\cos (-\theta/2) + \b{xy} \sin (-\theta/2)] \\
+&= \b{z} [ \cos^2 (\theta/2) + \sin^2(\theta/2) ] + \b{xyz} [\sin (\theta/2) \cos (\theta/2) - \cos (\theta/2) \sin (\theta/2) ]\\
 &= \b{z}
 \end{aligned}
 $$
@@ -248,14 +248,14 @@ It's worth comparing this to how its done in a different model. The normal non-G
 $$
 \begin{aligned}
 e^{\theta R_{xy}} (\b{x}) &= (I \cos \theta + R_{xy} \sin \theta) \b{x} \\
-&= I(\b{x}) \cos \theta + R_{xy}(\b{x}) \sin \theta \\
+&= I_{xy}(\b{x}) \cos \theta + R_{xy}(\b{x}) \sin \theta + I_{\perp xy}(\b{x})\\
 &= \b{x} \cos \theta + \b{y} \sin \theta \\
 \end{aligned}
 $$
 
-Where $$I$$ is the identity operator; the sign change compared to GA is just a choice of convention. $$R_{xy}$$ may be written as a matrix:
+Where $$I_{xy}$$ is the identity operator on $$(xy)$$ and $$I_{\perp xy}$$ is the identity on the rest of the space (responsible for keeping the $$z$$-component fixed, say). Note that the sign change compared to GA is just a choice of convention. $$R_{xy}$$ may be written as a matrix:
 
-$$\begin{pmatrix} 0 & 1 & 0 \\ -1 & 0 & 0 \\ 0 & 0 & 1\end{pmatrix}$$
+$$\begin{pmatrix} 0 & 1 & 0 \\ -1 & 0 & 0 \\ 0 & 0 & 0\end{pmatrix}$$
 
 but it's better to leave it as a symbol; the matrix is just a representation of it in a particular basis.
 
@@ -295,6 +295,44 @@ I agree that rewriting the objects in terms of their Clifford Algebra is a good 
 
 (Incidentally, the fact that the Gamma matrices which convert between spinors and real numbers also obey a Clifford algebra is... really weird, isn't it? I have trouble thinking of any kind of possible explanation that would lead to that. Each gamma matrix corresponds to a cardinal direction, their antisymmetric product gives a bivector, but also their symmetric product gives the identity---what could that possibly mean? It feels like it's closely related to the, um Divine Understanding of Spinors, the interpretation that Atiyah was talking about not having when he said "No one fully understands spinors.". Whatever they are, their symmetrization becomes the identity operator. It's so _weird_.)
 
+--------
+
+### Rotors do not explain Spinors
+
+A stray comment online led me to add this section later on.
+
+Okay, fine, suppose you have learned that Rotor-based rotations are a good way to representation rotations of vectors:
+
+$$\b{v} \mapsto e^{\b{B}\theta/2} \b{v} e^{-\b{b} \theta/2}$$
+
+You may have learned this in terms of quaternions, rotation operators, or in terms of a full GA. And it is a good and powerful formula! It clearly expresses _something_ very fundamental about geometry. It is not a coincidence that Euler-style formulas are more awkward in $$\bb{R}^3$$ and above: even though $$e^{R_{xy}\theta}(\b{v})$$ with $$R_{xy}$$ as an operator gives the right answer, trying to use it as an element $$R_{xy} = \b{xy}$$ of a geometric algebra doesn't work due to $$(\b{xy})(\b{z}) \neq 0$$. 
+
+Yet the rotor formula works, and continues to work in higher dimensions. Why? Well, at a mechanical level, it works because by writing the rotation as a sandwich product $$\b{v} \ra R \b{v} R^{-1}$$, any component of $$\b{v}$$ that $$R$$ commutes with gets canceled out: $$R_{xy} \b{z} R_{xy}^{-1} = \b{z} R_{xy} R_{xy}^{-1} = \b{z}$$. But this is not a very enlightening answer.
+
+A slightly better explanation is that it takes the form of the familiar change-of-basis matrices from linear algebra, $$A \mapsto P A P^{-1}$$. Viewed this way, it seems like the vector $$\b{z}$$ that we are rotating is some kind of linear transformation from one space to another.
+
+Elsewhere, in quantum physics say, we learn that _spinors_ in fact transform according to only _one_ of these half-angle rotor operators:
+
+$$\| \chi \> \mapsto e^{R \theta/2} \| \chi \>$$
+
+And one is naturally wonder if a spinor is a sort of "square root" of an operator. After all if $$\b{v}$$ was thought of as the product of two spinors $$\b{v} = \| \chi \> \< \chi \|$$ then its rotation property would be the same: $$R_{\theta}(\b{v}) = e^{R \theta/2} \| \chi \> \< \chi \| e^{- R \theta / 2}$$.
+
+And so sometimes people will say seemingly-profound things about spinors:
+
+* a spinor is a square root of a vector
+* a rotor _is_ a spinor. After all it has the double-cover property, $$R_{2 \pi} = -R$$ and $$R_{4 \pi} = R$$ again.
+* the sandwich product somehow explains spinors and their double-cover property.
+
+These are kind of annoying. On the one hand, yes, there is almost certainly some connection between the two things. But seriously. If you know about rotors, you still don't know much of anything about spinors. 
+
+For one thing you would need to be able to answer the question: if $$e^{R \theta/2}$$ is a spinor, then what is $$e^{R \theta/3}$$ or $$e^{R \theta/k}$$? Are those also physical objects? Because they are triple / $$k$$-covers of $$SO(3)$$, yet they're not important here, and you ought to be able to explain why.
+
+More importantly: the core idea of spinors is that they capture the connectedness of paths in $$SO(3)$$. A loop in $$SO(3)$$ (a full $$2\pi$$-rotation around the $$z$$-axis, say) returns vectors to where they started, but is not homotopic to the identity rotation. Spinors track this information: $$SO(3)$$ has a universal cover $$SU(2)$$, which basically "completes" its path-connectedness, which happens to be a $$2$$ to $$1$$, so it descends to a half-integer projective representation on $$SO(3)$$. And then in physics, it turns out that whatever fermions such as electrons are, they are particles which keep track their path-connectedness, and destructively interfere with themselves if they are on the same side of $$SO(3)$$, and therefore each of their position wavefunctions essentially come in two superposable variants which we call spin-up and spin-down.
+
+So rotors do hint at the underlying algebra here, and if you study them carefully you will find that they do form a path-disonnected space due to the half-angle. But writing down a rotor does not mean you understand spinors. It is just a marginally more coherent way of thinking about them than you had before. Most of the mystery is still there.
+
+(That said, if somebody finds a really _good_ way to think about a vector as a tensor product of spinors $$\b{v} = \| \chi \> \< \chi \|$$, I'd be curious to read it. But as far as I know this is not that enlightening in practice.)
+
 ------------
 
 ### A Proliferation of Operations
@@ -333,7 +371,7 @@ Anyway, if you start with the tensor product, then your pedagogical task is to e
 
 ### Weird Associativity
 
-Here's an objection I've never seen elsewhere: **geometric product's associativity is actually really awkward for doing basic linear algebra**. 
+Here's a really basic objection: **geometric product's associativity is actually really awkward for doing basic linear algebra**. 
 
 A geometric algebra is what you get when you take the tensor algebra on basis vectors $$\{\b{x}, \b{y}, \ldots \}$$ and assert that $$\b{xx} = 1$$ and $$\b{xy} = -\b{yx}$$ everywhere (so, quotienting by relations of those forms)[^definition]. (Or in other metric signatures, that $$\b{xx} = Q(x,x)$$ or whatever.) The geometric product itself is what the tensor product $$\o$$ becomes under this mapping. Naturally it is associative because $$\o$$ is:
 
