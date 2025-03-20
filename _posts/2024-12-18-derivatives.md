@@ -23,7 +23,7 @@ Or, with $$u_v = \p u(v, w)/\p v$$, as:
 
 $$u_v v_w w_u = -1$$
 
-It an be found on Wikipedia under the name [Triple Product Rule](https://en.wikipedia.org/wiki/Triple_product_rule).
+It can be found on Wikipedia under the name [Triple Product Rule](https://en.wikipedia.org/wiki/Triple_product_rule).
 
 The reason to care about this (besides that it's sometimes useful in calculations) is that it seems a bit perplexing that the minus sign is there. Shouldn't these fractions sorta cancel? Yes, we all learned that derivatives aren't really fractions... but they definitely act like fractions a _bit_, certainly more often than they _don't_ act like fractions, and it's odd that in this case they seem to act like the opposite of fractions. We'd like to repair our intuition somehow.
 
