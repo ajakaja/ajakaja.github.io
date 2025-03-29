@@ -185,7 +185,13 @@ small {
   }
 }
 
-.katex { font-size: 1.15em; }
+.katex { 
+  font-size: 1.15em;
+}
+
+.katex .msupsub {
+  font-size: 1.08em;
+}
 
 pre {
   tab-size: 2em;
@@ -238,7 +244,7 @@ h4 {
   font-weight: bold;
 }
 
-.container p {
+.entry > p, aside > p {
   margin: 15px 0;
   line-height: 1.5;
 }
@@ -248,6 +254,7 @@ a {
 	cursor: pointer;
   &:hover, &:active {
     color: var(--link-hover);
+    text-decoration: underline;
   }
   text-decoration: none;
 }
@@ -450,7 +457,7 @@ article {
   }
 }
 
-img.invertible {
+img:not(.noinvert) {
   filter: var(--invert);
 }
 
