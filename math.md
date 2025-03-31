@@ -28,6 +28,7 @@ I'm also playing around with the weird calculus of delta functions, pseudoinvers
 * [The Essence of Lagrange Multipliers]({% post_url 2024-06-10-lagrange-multipliers %})
 * [Notations for Vector Division]({% post_url 2024-09-11-vector-division %})
 * [Triple Products and Dual Bases]({% post_url 2024-12-18-derivatives %})
+* [Weird Takes on Angles]({% post_url 2025-03-21-angles %})
 
 I'm also slowly working through my undergraduate math and physics curriculum and trying to "compress" it in a way that makes sense to me. This is because I want to learn QFT to understand how the universe works, but getting through the math hurts my brain. I think the foundations can be made a lot simpler and then it would be easier.
 
