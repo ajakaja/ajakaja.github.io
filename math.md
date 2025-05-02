@@ -47,6 +47,9 @@ Every once in a while I write other miscellaneous math-related musings.
 * [Aphantasia, or how not to do math in your head]({% post_url 2019-09-15-mental-math %})
 * [A possible derivation of the Born Rule]({% post_url 2019-12-22-many-worlds %})
 * [The Case Against Geometric Algebra]({% post_url 2024-02-28-geometric-algebra %})
+* [Investigations on n-Spheres]({% post_url 2025-04-29-n-spheres %})
+* [Factorial Integrals and √π]({% post_url 2025-05-02-factorials %})
+
 
 
 ------------
