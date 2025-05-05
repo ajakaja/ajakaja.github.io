@@ -1,5 +1,5 @@
 ---
-layout: article
+layout: blog
 title: "Factorial Integrals and √π"
 math: true
 aside: true
