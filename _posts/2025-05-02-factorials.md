@@ -593,19 +593,15 @@ It's clearly possible to generalize all of this to higher-dimensional multifacto
 
 $$F_k(n) = n \times (n-k)$$
 
-(This generalization is on Wikipedia [also](https://en.wikipedia.org/wiki/Double_factorial#Alternative_extension_of_the_multifactorial), but in a different notation. I prefer my way of thinking about it with integrals, though.) 
-
 The values are always considered to be relative to zero:
 
 $$F_k(n) \equiv \prod_0^n d^{\times} F_k(n)$$
 
-But you can divide two of them to make an integral over whatever range you want:
+But you can divide two of them to make an integral over whatever range ouy want:
 
 $$\prod_a^b d^{\times} F_k(n) = F_k(b)/F_k(a)$$
 
-Since it is based on an integral, is probably correct to think of $$F_k(n)$$ as not really having a value on its own, akin to an integration constant $$\int f'(x) \d x = f(x) + c$$, and the division step serves to cancel out the constant. But usually it's safe to think of $$F_k(n) \equiv F_k(n) / F_k(0)$$ since $$F_k(0) = \prod_0^0 d^{\times} F_k(x) = 1$$.
-
-The double factorial identity we found above relates $$F_k$$ and $$F_1$$ like this:
+The identity we found above relates $$F_k$$ and $$F_1$$ like this:
 
 $$F_1(\frac{n}{k}) = \frac{F_k(n)}{k^{n/k}}$$
 
@@ -621,14 +617,6 @@ $$
 \end{aligned}
 $$
 
-Which we assume is valid for any choice of $$k$$. For instance
-
-$$F_1(\frac{n}{3}) = \frac{F_3(n)}{3^{n/3}}$$
-
-It makes sense, anyway:
-
-$$F_1(3) = \frac{F_3(9)}{3^{3}} = \frac{9 \times 6 \times 3}{3 \times 3 \times 3} = 3 \times 2 \times 1$$
-
 Although do keep in mind that the classical value of the double factorial is
 
 $$
@@ -640,7 +628,7 @@ n!! = \begin{cases}
 \end{aligned}
 $$
 
-And the same is true for the classical value of the triple factorial, etc: $$F_3(2) = F_3(2)/F_3(0)$$ is not the same as $$2!!! = F_3(2)/F_3(-1) = 2$$.
+(This generalization is on Wikipedia [also](https://en.wikipedia.org/wiki/Double_factorial#Alternative_extension_of_the_multifactorial), but in a different notation. I prefer my way of thinking about it with integrals, though.) 
 
 --------
 
@@ -648,7 +636,7 @@ The one double-factorial identity that really doesn't translate well to product 
 
 $$(2k)!! (2k-1)!! = (2k)!$$
 
-In product integral notation that becomes
+In our notation that identity becomes
 
 $$
 \begin{aligned}
@@ -656,7 +644,7 @@ $$
 \end{aligned}
 $$
 
-Suppose we went ahead and divided each into its single-factorial representation:
+Suppose we went ahead and divided each into its factorial representation:
 
 $$
 \begin{aligned}
@@ -726,146 +714,7 @@ $$\frac{F_{1/2}(k/2)}{F_{1/2}(0)} = \frac{F_1(k/2)}{F_1(0)} \times \frac{F_1(k/2
 
 The pattern is pretty clear, and as far as I can tell identities like these should hold for any numbers... but I'm not sure what is a good way to succinctly notate them. Although see also the multifactorial stuff on [here](https://en.wikipedia.org/wiki/Double_factorial#Alternative_extension_of_the_multifactorial), which is presumably equivalent.
 
--------
-
-It turns out to also be possible to define a _negative_ factorial. Instead of each term counting down, they count up:
-
-$$F_{-1}(n) = n \times (n+1) \times (n+2) \ldots$$
-
-This is infinite, clearly. But if you divide out $$F_{-1}(0)$$ it's not (another argument for the product integrals):
-
-$$
-\begin{aligned}
-\frac{F_{-1}(n)}{F_{-1}(0)} &= \frac{n \times (n+1) \times (n+2) \times \ldots}{0 \times 1 \times 2 \times \ldots (n-1) \times (n) \times (n+1) \times \ldots} \\
-&= \frac{1}{0 \times (n-1)!}
-\end{aligned}
-$$
-
-Sure, it's infinite, but that's not so bad. The zeroes should cancel out when you actually use them.
-
-$$
-\begin{aligned}
-\frac{F_{-1}(2)}{F_{-1}(3)} &= \frac{2 \times 3 \times \ldots}{3 \times \ldots} \\
-&= \frac{1/(0 \times 1!)}{1/0 \times 2!} \\
-&= 2!
-\end{aligned}
-$$
-
-They're also not infinite if you start at a negative number:
-
-$$
-\begin{aligned}
-\frac{F_{-1}(-n)}{F_{-1}(0)} &= \frac{(-n) \times (-n+1) \times \ldots (-1) \times (0) \times (1) \times \ldots}{0 \times (1) \times (2) \times \ldots} \\
-&= (-1)^n (n!)
-\end{aligned}
-$$
-
-Starting at a non-integer is also okay, conceptually. I suppose you might consider these equal to their antisymptotic values?
-
-$$
-\begin{aligned}
-\frac{F_{-1}(1)}{F_{-1}(\frac{1}{2})} &= \frac{1 \times 2 \times 3 \times \ldots} {\frac{1}{2} \times \frac{3}{2} \times \ldots}\\
-&=  \lim_{n \ra \infty} \frac{(n)!}{(n-1/2)!}\\
-&\?\lim_{n \ra \infty} \sqrt{n}
-\end{aligned}
-$$
-
-Negative factorials mostly obey the same rule $$F_k(kn) = k^n F_1(n)$$ as positive ones:
-
-$$F_{-1}(-n) \? (-1)^n F_1(n)$$
-
-But you have to be careful to interpret everything as relative to $$F_{-1}(0)$$:
-
-$$F_{-1}(-3) = (-3) \times (-2) \times (-1) \times 0 \times \ldots = (-1)^3 F_1(3) \times F_{-1}(0)$$
-
-Hence the rule is actually:
-
-$$\frac{F_{-1}(-n)}{F_{-1}(0)} = (-1)^n \frac{F_1(n)}{F_1(0)}$$
-
-This does manage to make the minus signs work out even for non-integer values:
-
-$$
-\begin{aligned}
-\frac{F_{-1}(\frac{k}{2})}{F_{-1}(\frac{1}{2})} &= \frac{(-\frac{k}{2}) \times \ldots (-\frac{3}{2}) \times (-\frac{1}{2}) \times (\frac{1}{2}) \times \ldots}{(\frac{1}{2}) \times \ldots} \\
-&= \frac{(-1)^{k/2}}{(-1)^{1/2} } \frac{F_1(\frac{k}{2})}{F_1(-\frac{1}{2})} \\
-&= (-1)^{k/2-1/2} \frac{\frac{k}{2} \times \ldots \times \frac{3}{2} \times \frac{1}{2} \times (-\frac{1}{2})}{(-\frac{1}{2} \times \ldots)} \\
-&= (-1)^{k/2-1/2} \big[ \frac{k}{2} \times \ldots \times \frac{3}{2} \times \frac{1}{2} \big]
-\end{aligned}
-$$
-
-It also sorta makes sense for that don't cancel?
-
-$$
-\begin{aligned}
-\frac{F_{-1}(-\frac{k}{2})}{F_{-1}(0)} &=  \frac{(-\frac{k}{2}) \times \ldots (-\frac{1}{2}) \times (\frac{1}{2}) \times (\frac{3}{2}) \times \ldots}{0 \times 1 \times 2 \times \ldots}  \\
-&\?\frac{(-1)^{k/2} F_{1}(\frac{k}{2})}{F_1(0)} \\
-&= (-1)^{k/2} \frac{(\frac{k}{2}) \times \ldots (\frac{1}{2}) \times (-\frac{1}{2}) \times (-\frac{3}{2}) \times \ldots}{0 \times (-1) \times (2) \times \ldots} 
-\end{aligned}
-$$
-
-But only sorta. I think the idea is that there is an extra "half" factor of $$(-1)$$ in the $$F_1(0)$$ series that. But I don't know if it makes any sense to interpret it as $$\sqrt{-1} = i$$.
-
------
-
-Something else that's cute about these is that you can think of a Taylor series like $$e^x = 1 + x + x^2/2! + \ldots$$ as actually containing its negative-integer terms as well:
-
-$$
-\begin{aligned}
-e^x &= \ldots + \frac{x^{-2}}{(-3)!} + \frac{x^{-2}}{(-2)!} + \frac{x^{-1}}{(-1)!} + \frac{x^0}{0!} + \frac{x^1}{1!} + \frac{x^2}{2!} + \ldots \\ 
-&= \ldots + \frac{x^{-3}}{\frac{1}{0(2!)}} + \frac{x^{-2}}{\frac{1}{0(1)!}} + \frac{x^{-1}}{\frac{1}{0(0)!}} + 1 + x + \frac{x^2}{2!} + \ldots\\
-&= \ldots (0) (2!) x^{-3} + (0) (1!) x^{-2} + (0) (0!) x^{-1} + 1 + x + \frac{x^2}{2!} + \ldots
-\end{aligned}
-$$
-
-These are also (except for the factor of $$0$$) the negative derivatives of $$x^{-1}$$, akin to how the positive terms are the integrals $$\p_x^{-n} 1 = x^n/n!$$:
-
-$$
-\begin{aligned}
-(-\p_x) x^{-1} &= \frac{1}{x^2} \\ 
-(-\p_x)^2 x^{-1} &= \frac{2!}{x^3} \\ 
-(-\p_x)^3 x^{-1} &= \frac{3!}{x^4} \\
-\end{aligned}
-$$
-
-Which I'm sure is important and ties into everything else. I mention it here only to demonstrate how the negative factorials clearly do mean something throughout mathematics. But, more on that another time
-
-We also saw the negative factorials earlier when talking about extending double factorials into the negatives. So
-
-$$
-\begin{aligned}
-0!! &= 0 \times (-2) \times (-4) \times (-6)!! \\
-&= 0 \times \frac{F_{-2}(-4)}{F_{-2}(0)} \times F_2(-6) \\
-&= 0 \times \frac{(-1)^2 F_2(4) }{ F_2(0) } \times F_{-2}(6) \\
-&= 0 \times (-1)^2 (4!!) \times \frac{1}{0 \times (-1)^2 \times (4!!)} \\
-&= 1
-\end{aligned}
-$$
-
--------
-
-Apparently the product of all the integers is a factorial times a negative factorial:
-
-$$
-\begin{aligned}
-F_1(0) \times F_{-1}(1) &= (0 \times -1 \times -2  \times \ldots) \times (1 \times 2 \times 3 \times \ldots) \\
-&\? \prod_{k \in \bb{R}} k \\
-\end{aligned}
-$$
-
-I can't imagine that's going to be any use. But it shouldn't matter anyway, since we should be using $$F_{-1}(1)/F_{-1}(0)$$ instead of a bare $$F_{-1}(1)$$ on its own. It is kinda interesting, maybe, to think of a regular factorial as this product divided by a factorial on each side:
-
-$$n! \equiv \frac{\prod_{k \in \bb{R}}k}{F_1(-1) \times F_{-1}(n+1)}$$
-
-Not sure if that's useful. One thing you can do with it, at least, is write the same identity for two factorials
-
-$$F_1(k) F_{-1}(k+1) = F_1(j) F_{-1}(j+1)$$
-
-And then rearrange to get
-
-$$\frac{F_1(k)}{F_1(j)} = \frac{F_{-1}(j+1)}{F_{-1}(k+1)} = \frac{(-1)^{j+1} F_1(-j-1)}{(-1)^{k+1} F_1(-k-1)}$$
-
-Dunno if that's useful, either.
-
-I do suspect there are some interesting "combinatoric" interpretations of all of these---negative factorials, non-integer factorials, etc, and I want to spend some time thinking about that. But, this is all getting long enough.
 
 ------
+
+Okay that's all I have for now. I might come back and add notes to this if I have any more ideas/investigations about factorials, though.
