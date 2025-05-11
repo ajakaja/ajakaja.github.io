@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "Factorial as Multiplicative Integrals"
+title: "Factorials as Multiplicative Integrals"
 math: true
 aside: true
 footnotes: true
