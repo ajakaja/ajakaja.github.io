@@ -706,14 +706,28 @@ $$\frac{F_2(2k)}{F_2(0)} \frac{F_2(2k-1)}{F_2(-1)} = \frac{F_1(2k)}{F_1(0)}$$
 
 The equivalent for integer triple-factorials:
 
-$$\frac{F_3(3k)}{F_3(0)} \times \frac{F_3(3k-1)}{F_3(-1)} \times \frac{F_3(3k-2)}{F_3(-2)} = F_1(3k)$$
+$$\frac{F_3(3k)}{F_3(0)} \times \frac{F_3(3k-1)}{F_3(-1)} \times \frac{F_3(3k-2)}{F_3(-2)} = \frac{F_1(3k)}{F_1(0)}$$
 
 And for half-factorials expands on the $$F_1$$ side:
 
 $$\frac{F_{1/2}(k/2)}{F_{1/2}(0)} = \frac{F_1(k/2)}{F_1(0)} \times \frac{F_1(k/2-1/2)}{F_1(-1/2)}$$
 
+--------
+
 The pattern is pretty clear, and as far as I can tell identities like these should hold for any numbers... but I'm not sure what is a good way to succinctly notate them. Although see also the multifactorial stuff on [here](https://en.wikipedia.org/wiki/Double_factorial#Alternative_extension_of_the_multifactorial), which is presumably equivalent.
 
+By the way: none of these identities are really factorial-specific; they're all true of any family of sequences, such as summations, products, or whatever else. The identity for interleaving double-factorials expresses the same thing, up to some logarithms, as
+
+$$\sum_{i=0, \text{ even}}^{2k} S_i + \sum_{i = -1, \text{ odd}}^{2k-1} S_i = \sum_{i = -1}^{n} S_i$$
+
+So one could factor all of the factorials out of the factorial identities and create a "calculus of series", which the factorials are just one example of. It's going to look a whole lot like differential calculus, I guess. One can mostly interpret "skipping every other number" as a change of variables $$\int d(x) \ra \int d(2x)$$. But summations and products, unlike integrals, can have totally different contributions on the integer vs. non-integer terms, whereas the calculus of smooth functions, at least, cannot. I suppose the general idea is something like:
+
+1. Start with a smooth function $$f(x)$$, and its derivative $$f'(x)$$.
+2. Create another function $$g_k(x) = \int_{x-k}^x f'(x) \d x$$, so each value of $$g_k(x)$$ summarizes the preceding $$k$$-width range of $$f'(x)$$.
+3. Now $$g_k(x)$$ obeys a new calculus: $$f(x) = f(x-k) + g_k(x)$$, and all values of $$f$$ can be written as sums of $$g_k$$ plus some base values.
+4. And all of the above also holds for product integrals or any other iteratable binary operation. In particular, factorials are reconstructed by taking $$f(x) = \Gamma(x+1)$$ and $$g_1(x) = \prod_{x-1}^x \Gamma'(x+1) \d x = \Gamma(x+1)/\Gamma(x) = x$$.
+
+I hope to look into all this a lot more later on, because the factorial theory is clearly harder to understand due to be conflated with this other theory. I expect that it will also be interesting to connect it to the theory of [interpolating infinite sums](https://mpmueller.net/fractional-sums/), coarse-graining (which it is), and generally to the evaluation of divergent series. (Probably there is also a theory of this out there? But I'm not sure how to find it.)
 
 ------
 
