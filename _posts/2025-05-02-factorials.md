@@ -278,11 +278,13 @@ $$\prod_{-1}^{0} d^{\times} (x) \prod_{0}^{1} d^{\times} (x) = \frac{0}{(-1)} \f
 
 I don't know if we'll need that, but I feel like it has to work that way for this to make any sense.[^zero]
 
-[^zero]: The additive equivalent is $$\int_{-1}^0 d(\log x) + \int_0^{1} d(\log x) = \int_{-1}^1 d(\log x)$$. Technically $$1/x$$ is not integrable over $$x=0$$ because the behavior at $$x=0$$ is uncontrolled. But IMO $$d(\log x)$$ is justifiably integrable, because you can say: however we choose to regularize the infinity here, we can guarantee it will cancel out _with itself_. One argument for why $$1/x$$ is not integrable at $$x=0$$ is that you can never really see the exact value of $$x$$, just an approximation of it, so $$1/x$$ might really be $$1/(x + \e f(x))$$ for indetectable $$f(x)$$, and the $$f(x)$$ might do something non-trivial. On the other hand if $$d(\log x)$$ is really $$d(\log x + \e f(x))$$, the $$f(x)$$ will get canceled out regardless of what it is... as long as both integrands come from the same function.
+[^zero]: The additive equivalent is $$\int_{-1}^0 d(\log x) + \int_0^{1} d(\log x) = \int_{-1}^1 d(\log x)$$. Technically $$1/x$$ is not integrable over $$x=0$$ because the behavior at $$x=0$$ is uncontrolled. But IMO $$d(\log x)$$ is justifiably integrable, because you can say: however we choose to regularize the infinity here, we can guarantee it will cancel out _with itself_. One argument for why $$1/x$$ is not integrable at $$x=0$$ is that you can never really see the exact value of $$x$$, just an approximation of it, so $$1/x$$ might really be $$1/(x + \e f(x))$$ for indetectable $$f(x)$$, and the $$f(x)$$ might do something non-trivial. On the other hand if $$d(\log x)$$ is really $$d(\log (x + \e f(x)))$$, the $$f(x)$$ will get canceled out regardless of what it is... as long as both integrands come from the same function.
 
 If the multiplicative integrals seem sketchy, you can always convert them into additive integrals with logarithms:
 
-$$\log \prod_a^b d^{\times}(f) = \int_a^b d \log(f) = \log \frac{f(b)}{f(a)}$$
+$$\log \prod_a^b d^{\times}(f) = \int_a^b d \log(f) = \log f(b) - \log f(a) = \log \frac{f(b)}{f(a)}$$
+
+Note that $$d (\log f) = df/f = f'(x)/f(x) \,d x$$ should not be confused with $$(\log f) \, d x$$. We are never actually taking the logarithm of $$n!$$ when we integrate $$\int d (\log n!)$$.
 
 The value of the actual differential $$d^{\times}(f)$$ may be written as
 
@@ -296,67 +298,54 @@ $$
 \begin{aligned}
 \log \prod_{-a}^a d^{\times} x &= \int_{-a}^a d(\log x)  \\
 &= \log_{-a}^0 d(\log x) + \log_0^a d(\log x) \\
-&= \log a - \log 0 + \log 0 - \log (-a) \\
-&= \log (-1) 
+&= \log a - \cancel{\log 0} + \cancel{\log 0} - \log (-a) \\
+&= - \log (-1) 
 \end{aligned}
 $$
 
 [^entropy]: I am reminded of the sense in which [entropy]({% post_url 2018-02-23-entropy-1 %}) of continuous distributions should be thought of being relative to an infinite "entropy of continuum": $$S[\mathcal{U(0,2)}] = 1 + S[\mathcal{U}(0,1)] = 1 + \log 2^X = 1 + X$$, where $$X$$ is the number of bits to specify a point in a uniform distribution: theoretically infinite, in practice just very large and unspecified.
 
-Note for $$d (\log f) = df/f = f'(x)/f(x) \,d x$$ should not be confused with $$(\log f) \, d x$$. We are never actually taking the logarithm of $$n!$$ when we integrate $$\int d (\log n!)$$.
-
 ------------
 
-The normal factorial function $$n!$$ is therefore thought of as
+So, the normal factorial function $$n!$$ is therefore thought of as
 
 $$n! = \prod_0^n d^{\times}(x!) = \frac{n!}{0!}$$
 
-But the Gamma function reveals that the product must actually extend below $$0$$ for non-integers:
+The Gamma function tells us roughly how to extend this to non-integers and negative numbers (ish). We expect, though, that all the integration still starts at $$0$$, meaning that the negative factorials are negatively-oriented (product) integrals:
 
-$$(n+\e)! = \prod_{a}^n d^{\times}(x!) = \frac{n!}{a!}$$
+$$\int_0^{-1/2} d^{\times}(x!) = \frac{(-\frac{1}{2})!}{0!} = \sqrt{\pi}$$
 
-What is the value of $$a$$, though? Maybe $$-\infty$$? Maybe $$-1$$? I'm not sure it really matters. If all the integrals start at $$0$$, then we know that 
+This means that the positive-oriented integral is the inverse of that:
 
-$$\int_0^{-1/2} d^{\times}(x!) = \frac{(-1/2)!}{0!} = \sqrt{\pi}$$
+$$\int_{-1/2}^0 d^{\times}(x!) = \frac{1}{\sqrt{\pi}}$$
 
-And all the other half-integers are derivable from that. We get
-
-$$
-\begin{aligned}
-(\frac{1}{2})! &= \frac{\sqrt{\pi}}{2} \times 0! \\
-&= \frac{\sqrt{\pi}}{2} \times \frac{1}{\sqrt{\pi}} \times (-\frac{1}{2})! \\ 
-&= \frac{1}{2} \times (-\frac{1}{2})! \\
-0! &= \frac{1}{\sqrt{\pi}} \times (-\frac{1}{2})! \\
-&= 1 \\
-\end{aligned}
-$$
-
-
-Note that we're not trying to define these in terms of infinite products descending to $$-\infty$$. Although it's probably still true that in some sense the infinite products cancel out to give $$\sqrt{\pi}$$:
-
-$$\dfrac{(-\frac{1}{2})!}{0!} = \dfrac{(-\frac{1}{2}) \times (-\frac{3}{2}) \times \ldots}{(0) \times (-1) \times (-2) \times (\ldots)}$$
-
-We aren't basing this on any argument like that. Since we are doing explicit integrals, we can simply use the algebra of integration bounds to cancel things out:
+When we want to come up with values for a factorial like $$(\frac{1}{2})!$$ we can either just take the integral from $$0$$, or we can use the usual $$n! = n \times (n-1)!$$ down to $$-1/2$$, and _then_ go back to zero.
 
 $$
 \begin{aligned}
-\dfrac{(\frac{1}{2})!}{0!} &= \prod_0^{1/2} d^{\times}(x!) \\
-&= \prod_{1/2}^{-1/2} d^{\times}(x!) \prod_0^{-1/2} d^{\times}(x!) \\
-&= \frac{1}{2} \times \sqrt{\pi}
+(\frac{1}{2})! &= \prod_0^{1/2} d^{\times}(x!) \\
+&= \frac{1}{2} \prod_0^{-1/2} d^{\times}(x!) \\
+&= \frac{1}{2} \sqrt{\pi} \\
 \end{aligned}
 $$
 
-That said, it's probably not _wrong_ to write
+Note that the product integral sense of a factorial does not require that we make sense of any infinite products descending to $$-\infty$$. Although it's probably still true that in some sense the infinite products should cancel out to give $$\sqrt{\pi}$$,
 
-$$\frac{n!}{0!} = \dfrac{\prod_{-\infty}^n d^{\times}(x!)}{\prod_{-\infty}^{0} d^{\times}(x!)}$$
+$$
+\begin{aligned}
+\dfrac{(-\frac{1}{2})!}{0!} &= \prod_0^{-1/2} d^{\times}(n!) \? \dfrac{(-\frac{1}{2}) \times (-\frac{3}{2}) \times \ldots}{(0) \times (-1) \times (-2) \times (\ldots)}
+\end{aligned}
+$$
 
-We just don't need it. To make sense of that expressions you're going to have to contend with the divergences---both the fact that the products are infinite, and the fact that $$0! = 0 \times (-1)! \? 0 \times (1/0)$$ seems to requiring multiplying zero times infinity. It is a lot more work to justify. But you can still just cancel the integration bounds without thinking about it too much.
+we aren't basing this on any argument like that. Since we are doing explicit integrals, we can simply use the algebra of integration bounds to cancel things out. That said, it's probably not _wrong_ to write
 
-Note that the classical value $$0!$$ is _not_ the value of $$\prod_{-\infty}^0 d^{\times}(x!)$$, but rather the (trivial) value of $$\prod_0^0 d^{\times}(x!)$$. So far we do not really know anything about $$\prod_{-\infty}^0 d^{\times}(x!)$$, and there's no reason to think that it's going to be finite or convergent at all (since it appears to oscillate between negative and positive values at every integer...). But we will try to compute it explicitly later, after we talk about double factorials in this notation.
+$$\frac{n!}{0!} = \prod_0^{n} d^{\times}(x!) = \dfrac{\prod_{-\infty}^n d^{\times}(x!)}{\prod_{-\infty}^{0} d^{\times}(x!)}$$
 
-Also: we are not going to actually try to use the explicit expression for $$d^{\times}(x!)$$. Actually it is not very helpful anyway. You can look some of explicit product integral forms up [here](https://en.wikipedia.org/wiki/List_of_derivatives_and_integrals_in_alternative_calculi): it says that $$d^{\times}(\Gamma(z)) = e^{\Psi(z)} d^{\times}$$, where $$\Psi(z)$$ is the "digamma function" $$\Psi(z) = \Gamma'(z) / \Gamma(z)$$. But in fact that is just $$e^{\log \Gamma(z) dz}$$, which is already what we would have guessed it would be.
+We just don't need it. To make sense of that expressions you're going to have to contend with the divergences and how the limits get taken---the products are infinite, and $$0! = 0 \times (-1)! \? 0 \times (1/0)$$ seems to requiring multiplying zero times infinity, and if you want to express this as a limit you probably need the numerator and denominator limits to be offset even as they go to infinity. It is a lot more work to justify. But you can still just cancel the integration bounds without thinking about it too much.
 
-Although I do think that this "multiplicative calculus" is exactly as important as the usual additive one (since they are isomorphic...), I don't find the explicit formulae in it to be especially useful. The reason it's helpful here is that it helps us make sense of what factorials were already doing by removing a layer of abstraction.
+Note that the classical value $$0!$$ is _not_ the value of $$\prod_{-\infty}^0 d^{\times}(x!)$$, but rather the (trivial) value of $$\prod_0^0 d^{\times}(x!)$$. So far we do not really know anything about $$\prod_{-\infty}^0 d^{\times}(x!)$$, and there's no reason to think that it's going to be finite or convergent at all (since it appears to oscillate between negative and positive values at every integer...). But we will try to compute it explicitly later.
+
+Also: we are not going to actually try to use the explicit expression for $$d^{\times}(x!)$$. Actually it is not very helpful anyway. You can look some of explicit product integral forms up [here](https://en.wikipedia.org/wiki/List_of_derivatives_and_integrals_in_alternative_calculi): it says that $$d^{\times}(\Gamma(z)) = e^{\Psi(z)} d^{\times}$$, where $$\Psi(z)$$ is the "digamma function" $$\Psi(z) = \Gamma'(z) / \Gamma(z)$$. That is just $$e^{\log \Gamma(z) dz}$$, which is already we would have guessed it would be, and there's nothing to gain by using that expression explicitly. Although I do think that this "multiplicative calculus" is exactly as important as the usual additive one (since they are isomorphic...), I don't find the explicit formulae in it to be especially useful. The reason it's helpful here is that it helps us make sense of what factorials were already doing by removing a layer of abstraction.
 
 -----------
 
@@ -368,11 +357,11 @@ $$\prod_0^n d^{\times}(x!)$$
 
 Which is interpretable as selecting one element, then another, etc, until there are none left. What happens below zero isn't relevant. (Although I would still love a combinatoric interpretation of non-integer or negative factorials.)
 
-Now we want to talk about changing the definition of $$n!!$$ for odd $$n$$. But it doesn't have to affect the combinatoric meaning of $$n!!$$, which is the number of ways of selecting two adjacent elements at a time out of $$n$$, where the first and last elements are counted as adjacent. Selecting two elements at a time out of an odd number of elements expressly stops at $$n=1$$, because you just can't do it anymore:
+Now we want to talk about changing the definition of $$n!!$$ for odd $$n$$. But it doesn't have to affect the combinatoric meaning of $$n!!$$, which is the number of ways of selecting two adjacent elements at a time out of $$n$$ (where the first and last elements are counted as adjacent). Selecting two elements at a time out of an odd number of elements expressly stops at $$n=1$$, because you just can't do it anymore, meaning that the classical double factorial is equivalent to
 
 $$n!! \equiv \prod_{1}^n d^{\times}(x!!)$$
 
-So redefining $$n!!$$ in _other_ situations won't affect the combinatoric meaning at all, as long as these integrals' values doesn't change.
+So redefining $$n!!$$ in other situations won't affect the combinatoric meaning at all, as long as that integral's value doesn't change.
 
 In particular let's consider 
 
@@ -403,8 +392,8 @@ When integrated the two terms just separate into two integrals, equivalent to ho
 $$
 \begin{aligned}
 \prod_{2a}^{2b} d^{\times}[x!!] 
-&= \prod_{2a}^{2b} d^{\times}[2^{x/2}] d[(\frac{x}{2})!] \\
-&= \prod_{a}^{b} d^{\times}[2^{x}] \times \prod_a^b d(x!) \\
+&= \prod_{2a}^{2b} d^{\times}[2^{x/2}] d^{\times}[(\frac{x}{2})!] \\
+&= \prod_{a}^{b} d^{\times}[2^{x}] \times \prod_a^b d^{\times}(x!) \\
 &= 2^{b-a} \prod_{a}^{b} d^{\times}(x!)
 \end{aligned}
 $$
@@ -466,7 +455,7 @@ $$
 
 Now we have one formula for double-factorials of even or odd numbers:
 
-$$n!!_{\text{new}} = \prod_0^{n} d^{\times}(x!!) = 2^{n/2} (x!)$$
+$$n!!_{\text{new}} = \prod_0^{n} d^{\times}(x!!) = 2^{n/2} (n!)$$
 
 And one asymptotic expansion:
 
@@ -502,7 +491,7 @@ $$
 \frac{(2k)!!}{(2k-1)!!} &= \frac{\prod_0^{2k} d^{\times}(x!!)}{\prod_1^{2k-1} d^{\times}(x!!)} \\
 &= \frac{\prod_0^{2k} d^{\times}(x!!)}{\prod_0^{2k-1} d^{\times}(x!!) \times \prod_1^0 d^{\times}(x!!)} \\
 &= \frac{(2k)!!_{\text{new}}}{(2k-1)!!}_{\text{new}} \times \prod_0^1 d^{\times}(x!!) \\
-&= \sqrt{2k} \times \sqrt{\frac{\pi}{2}} \\
+&\approx \sqrt{2k} \times \sqrt{\frac{\pi}{2}} \\
 &= \sqrt{\pi k}
 \end{aligned}
 $$
@@ -547,24 +536,25 @@ $$
 \end{aligned}
 $$
 
-The problem is that $$1!!$$ is not normally given by $$\prod_0^1 d^{\times}(x!!) = 1!!/0!!$$, but instead by $$\prod_1^1 d^{\times}(x!!)$$. That is: extending both factorials to infinity symetrically requires including the missing $$\prod_0^1$$ term as well.
+The problem is that $$1!!$$ is not normally given by $$\prod_0^1 d^{\times}(x!!) = 1!!/0!!$$, but instead by $$\prod_1^1 d^{\times}(x!!)$$. That is: extending both factorials to infinity symmetrically requires including the missing $$\prod_0^1$$ term as well.
 
 $$\frac{1!!}{0!!} = \frac{\prod_1^1}{\prod_0^1} \times \frac{\prod_{-\infty}^0}{\prod_{-\infty}^0} = \frac{\prod_1^0 \prod_{-\infty}^1}{\prod_{-\infty}^0} =  \frac{1}{\sqrt{\pi/2}} \frac{\prod_{-\infty}^1}{\prod_{-\infty}^0}$$
 
-(omitting $$d^{\times}(x!!)$$s for brevity here...)
+(omitting $$d^{\times}(x!!)$$s for brevity here)
 
-The second line is also wrong. We can tell because we know what the partial products should be:
+The deduction between the second and third lines is also wrong: it is not valid to write $$1!! = 1 \times (-1) \times (-3) \times \ldots = \lim_{k \ra \infty} (-1)^k (2k+1)!!$$, because there is always a remainder term. We can tell because we know what the partial products should be:
 
 $$
 \begin{aligned}
-1!! &= \sqrt{\frac{\pi}{2}} \\
-(-1)!! &= (1!!) / (1) = \sqrt{\frac{\pi}{2}} \\
+1!!_{\text{new}} &= \sqrt{\frac{\pi}{2}} \\
+(-1)!! &= (1!!_{\text{new}}) / (1) = \sqrt{\frac{\pi}{2}} \\
 (-3)!! &= (-1)!!/(-1) = -\sqrt{\frac{\pi}{2}} \\
 (-5)!! &= (-3)!!/(-3) = \frac{1}{3!!} \sqrt{\frac{\pi}{2}} \\
+(-7)!! &= (-5)!!/(-5) = -\frac{1}{5!!} \sqrt{\frac{\pi}{2}} \\
 0!! &= 1 \\
-(-2)!! &= (0!!)/(0) \? \infty \\
-(-4)!! &= (-2!!)/(-2) \? -\frac{1}{2!!} \times \infty \\ 
-(-6)!! &= (-4!!)/(-4) \? \frac{1}{4!!} \times \infty \\
+(-2)!! &= (0)!!/(0) \? \infty \\
+(-4)!! &= (-2)!!/(-2) \? -\frac{1}{2!!} \times \infty \\ 
+(-6)!! &= (-4)!!/(-4) \? \frac{1}{4!!} \times \infty \\
 \end{aligned}
 $$
 
@@ -577,13 +567,13 @@ $$
 \end{aligned}
 $$
 
-Which means the actual factorization is
+(Where $$\infty = 1/0$$ is being assumed to be somehow meaningful.) Which means the actual factorization of $$1!!/0!!$$ is
 
 $$
 \frac{1 \times (-1) \times (-3) \times (-5) \ldots}{0 \times (-2) \times (-4) \times (-6) \ldots} = \frac{1}{0} \times \lim_{k \ra \infty} \frac{(2k-1)!!}{(2k)!!} \times \frac{\frac{1}{(2k-1)!!} \sqrt{\frac{\pi}{2}}}{\frac{1}{(2k)!!} \times \infty} = \sqrt{\frac{\pi}{2}}
 $$
 
-So it just doesn't work: whatever partial product you construct, the remainder of the product just serves to cancel it all out again. Boring.
+So it just doesn't work: whatever partial product you construct, the remainder of the product just serves to cancel it all out again. Boring. Evidently, although you _can_ extend factorials and double-factorials to negative infinity, it doesn't really tell you anything you don't already know: the value is fully determined by fixing it at $$n=0$$. I wish I knew what to make of the oscillating infinities, though.
 
 -------
 
@@ -632,7 +622,7 @@ $$
 
 --------
 
-The one double-factorial identity that really doesn't translate well to product integrals is
+The one double-factorial identity that seems to not translate well to product integrals is
 
 $$(2k)!! (2k-1)!! = (2k)!$$
 
