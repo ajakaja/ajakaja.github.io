@@ -7,84 +7,75 @@ footnotes: true
 tag: math
 ---
 
-(This was formerly part of the [previous post]({% post_url 2025-04-29-n-spheres %}) about $$n$$-spheres, but I started adding things to it and decided to split them up.)
+In which we try to figure out what what's going on with double-factorials.
 
-This article: investigations in trying to figure out what what's going on with double-factorials.
+This was formerly part of the [previous post]({% post_url 2025-04-29-n-spheres %}) about $$n$$-spheres, but I started adding things to it and decided to split them up. It is not necessary to read the original previous post first, but this does sort of function as a sequel to it since it's the direction my investigation has gone. Both articles are essentially unwieldy dumps for notes and calculations that I've done and make a record of. But maybe they'll be useful as a survey of various related ideas, if anyone else is curious about this and comes across them.
 
-The interesting thing in here is probably the idea of treating factorials as multiplicative integrals, like
+My main finding is that I now believe we should be thinking of factorials as multiplicative integrals, like this:
 
 $$\frac{n!}{m!} = \prod_m^n d^{\times}(x!)$$
 
-Since this seems to remove some of the ambiguity in the various definitions/analytic continuations of factorials on non-integer numbers (as well as explaining why those definitions don't mess up the usual combinatoric sense of factorials). There's also some observations about the interpretation of fractional derivatives that seemed interesting and are maybe not found elsewhere.
+And in particular, the factorials we're used to have an implicit lower bound on that integral: the value $$n!$$ is really $$\frac{n!}{0!} = \prod_0^n d^{\times}(x!)$$. This means we never really "see the value" of $$0!$$, because $$0!$$ is equivalent to $$0!/0! = 1$$. This interpretation seems to remove a bunch of ambiguity in the various definitions/analytic continuations of factorials on non-integer numbers (as well as explaining why those definitions don't mess up the usual combinatoric sense of factorials).
 
 <!--more-->
 
-It may or may not be helpful to read the previous post also. They're both unwieldy dumps for notes and calculations that I've done. But maybe they'll be useful as a survey of various related ideas, if anyone else is curious about this and comes across them?
-
-_5/10/2025 edit: rewrote most of this after realizing I had made some major errors._
-
 ---------
 
-# 1. Investigations into factorials
+# 1. Investigations into double factorials
 
-We'll need some Gamma function/factorial identities for integer and half-integer values to start unpacking things, and I don't like the ways that anyone else writes them so I need to write them out myself.
+First we will study the double factorial function a bit and see how it interacts with half-integer single-factorials.
 
-I am going to not use the symbol $$\Gamma$$ very much except for connecting things to existing formulas: I prefer to write $$n!$$ for $$\Gamma(n+1)$$, even for non-integers. We're used to analytically extending a function outside of the domain where it makes discrete sense (e.g. $$e^x$$), and I never liked that $$\Gamma$$ is defined to be off-by-one from factorials anyway. (Apparently it's largely a historical accident. But there are [arguments for both ways](https://mathoverflow.net/questions/20960/why-is-the-gamma-function-shifted-from-the-factorial-by-1).)
+We'll need some Gamma function/factorial identities for integer and half-integer values to start unpacking things. I don't care much for the ways that everyone else writes them so here are my preferred versions.
 
-The first few half-integer terms of $$\Gamma$$/factorial are:
+The first few half-integer terms of $$\Gamma(x+1)$$/$$x!$$ are:
+
+$$
+\gdef\arraystretch{1.5}
+\begin{array}{rcccl}
+(-1/2)! &=& \Gamma(1/2) &=& \sqrt{\pi} \\ 
+(1/2)!  &=& \Gamma(3/2) &=& (\frac{1}{2}) \sqrt{\pi} \\
+(3/2)!  &=& \Gamma(5/2) &=& (\frac{3}{2}) (\frac{1}{2}) \sqrt{\pi}
+\end{array}
+$$
+
+All of the structure here arises from $$(-1/2)! = \sqrt{\pi}$$: since $$n! = n (n-1)!$$ continues to hold for non-integers you just find that $$(5/2)! = 5/2 \times 3/2 \times 1/2 \times (-1/2)!$$.
+
+The value of $$(-1/2)!$$ seems essentially connected to the Gaussian integral $$\int_{-\infty}^{\infty} e^{-x^2} \d x = \sqrt{\pi}$$; more on that another time. For now we take it as a given. Incidentally, other non-half-integer fractions of $$\Gamma$$ also take values that sometimes have legible expressions (see [here](https://en.wikipedia.org/wiki/Particular_values_of_the_gamma_function); for instance $$\Gamma(\frac{1}{4})$$ is connected to the [Leminscate](https://en.wikipedia.org/wiki/Lemniscate) in a manner similar to how $$\Gamma(\frac{1}{2})$$ is connected to spheres)... but they are much harder to compute or make sense of.
+
+(After this, I am going to not use the symbol $$\Gamma$$ very much, except for connecting things to existing formulae. I prefer to write $$n!$$ for $$\Gamma(n+1)$$, even for non-integers. After all there's no problem to analytically extending a function outside of the domain where it makes discrete sense (we do it for $$e^x$$ and $$\ln x$$ without much complaint), and I never liked that $$\Gamma(x+1) = x!$$ is defined to be off-by-one from factorials anyway.[^gamma]
+
+It should be mentioned, however that $$\Gamma$$ is not the _only_ interpolation of factorials to non-integers, since that is not sufficient to define it---after all any function which is zero on the integers can be added to it freely. The other ways of doing it are called [Pseudogamma](https://en.wikipedia.org/wiki/Pseudogamma_function) functions. $$\Gamma$$ is the choice that satisfies a certain criteria, the [Bohr-Mollerup conditions](https://en.wikipedia.org/wiki/Bohr%E2%80%93Mollerup_theorem): it is the only "log-convex" interpolation of $$n!$$ to non-integers, whatever that means. In any case, all the other places $$\Gamma$$ shows up proves to me that it is the _correct_ generalization of factorials in some important sense, so I'm happy to say that $$x! \equiv \Gamma(x+1)$$ throughout this article.)
+
+[^gamma]: Apparently it's largely a historical accident, due to Legendre, and around the same time Gauss had introduced $$\Pi(z) = \Gamma(z+1)$$ for the same function. We might want to try to use that: the one advantage of $$\Gamma$$ or $$\Pi$$ is that it uses the standard function notation, meaning we can write things like $$\Pi^{(2)}(z)$$ or $$\Pi_{z}(z)$$ etc.) But I'm gonna stick with $$z!$$ for now. Incidentally there are at least some good reasons to prefer $$\Gamma$$; see see [this](https://mathoverflow.net/questions/20960/why-is-the-gamma-function-shifted-from-the-factorial-by-1). TLDR: it can be interpreted as an integral transform $$\int_0^{\infty} t^z e^{-t} d(\ln t)$$ with respect to what's called the [Haar Measure](https://en.wikipedia.org/wiki/Haar_measure) $$d(\ln t)$$. I'll talk about this in the last section.
+
+The general case for half-integers with **odd** $$n$$: 
 
 $$
 \begin{aligned}
-(-\frac{1}{2})!  &= \sqrt{\pi} \\ 
-&= \Gamma(\frac{1}{2}) \\
-(\frac{1}{2})!  &= (\frac{1}{2}) \sqrt{\pi} \\
-&= \Gamma(\frac{3}{2}) \\
-(\frac{3}{2})! &= (\frac{3}{2}) (\frac{1}{2}) \sqrt{\pi} \\
-&= \Gamma(\frac{5}{2}) 
-\end{aligned}
-$$
-
-All of the structure here arises from $$(-1/2)! = \sqrt{\pi}$$, since $$n! = n (n-1)!$$ continues to hold for non-integers. The value of $$(-1/2)!$$ is essentially connected to the Gaussian integral $$\int_{-\infty}^{\infty} e^{-x^2} \d x = \sqrt{\pi}$$; more on that later. Other non-half-integer fractions also take values that sometimes have legible expressions (see [here](https://en.wikipedia.org/wiki/Particular_values_of_the_gamma_function)) but they are much harder to compute or make sense of.
-
-The general case for half-integers with odd $$n$$: 
-
-$$
-\begin{aligned}
-(\frac{n}{2})! &= (\frac{n}{2})(\frac{n-2}{2}) (\frac{n-4}{2}) \ldots (\frac{3}{2}) (\frac{1}{2}) \sqrt{\pi} \\
+(\frac{n}{2})! &= (\frac{n}{2})(\frac{n-2}{2}) (\frac{n-4}{2}) \cdots (\frac{3}{2}) (\frac{1}{2}) \sqrt{\pi} \\[5px]
 &= \frac{n!!}{2^{n/2}} \sqrt{\pi} \\
 \end{aligned}\tag{$n$ odd}
 $$
 
-Whereas for even $$n$$ there are no factors of $$\sqrt{\pi}$$ because the series just terminates at $$n=1$$.
+Whereas for **even** $$n$$ there are no factors of $$\sqrt{\pi}$$ because the series just terminates at $$n=1$$.
 
 $$
 \begin{aligned}
-(\frac{n}{2})!&= (\frac{n}{2})(\frac{n-2}{2}) (\frac{n-4}{2}) \ldots (\frac{6}{2})(\frac{4}{2})(\frac{2}{2}) \\
+(\frac{n}{2})!&= (\frac{n}{2})(\frac{n-2}{2}) (\frac{n-4}{2}) \cdots (\frac{6}{2})(\frac{4}{2})(\frac{2}{2}) \\[5px]
 &= \frac{n!!}{2^{n/2}} \\
 \end{aligned}\tag{$n$ even}
 $$
 
-Here is the value of the half-integer factorial for a single fixed _even_ $$n$$ and, the odd $$n-1$$ below it, and the even $$n-2$$ below that (since we're going to use that in a sec):
+Here is a single value for **even** $$n$$ and the odd $$n-1$$ below it:
 
 $$
 \begin{aligned}
 (\frac{n}{2})! &= \frac{n!!}{2^{n/2}} \\
 (\frac{n-1}{2})! &= \frac{(n-1)!!}{2^{n/2}} \sqrt{\pi} \\
-(\frac{n-2}{2})! &= \frac{(n-2)!!}{2^{(n-2)/2}} \\
 \end{aligned} \tag{$n$ even}
 $$
 
-And the other way around: odd $$n$$, even $$n-1$$, and odd $$n-2$$:
-
-$$
-\begin{aligned}
-(\frac{n}{2})! &= \frac{n!!}{2^{(n+1)/2}} \sqrt{\pi} \\
-(\frac{n-1}{2})! &= \frac{(n-1)!!}{2^{(n-1)/2}} \\
-(\frac{n-2}{2})! &= \frac{(n-2)!!}{2^{(n-1)/2}} \sqrt{\pi} \\
-\end{aligned} \tag{$n$ odd}
-$$
-
-Finally, the same formulas in terms of $$k = n/2$$ when $$n$$ is even:
+Here are the same formulas in terms of $$k = n/2$$ ($$n$$ is still even)
 
 $$
 \begin{aligned}
@@ -94,25 +85,31 @@ k! &= \frac{(2k)!!}{2^{k}} \\
 \end{aligned}
 $$
 
-The double factorials of two adjacent numbers combine to form one single factorial: $$(n!!)(n-1)!! = n!$$. So, the product of the two half-integers does also, with some coefficients:[^gamma2]
+Note that the product of double factorials of adjacent numbers combine to form one single factorial, for obvious reasons (e.g. $$(5!!) (4!!) = (5 \times 3 \times 1) (4 \times 2) = 5!$$):
 
-[^gamma2]: More on that [here](https://en.wikipedia.org/wiki/Multiplication_theorem#Gamma_function%E2%80%93Legendre_formula), where it is called the "Legendre Duplication Formula". The Gamma function version is $$\Gamma(k) \Gamma(k + \frac{1}{2}) = \Gamma(2k) \sqrt{\pi}/2^{2k-1}$$. It's more elegant with factorials.
+$$(n!!)(n-1)!! = n!$$
+
+The product of the two half-integers does also, with some coefficients:[^gamma2]
+
+[^gamma2]: More on that [here](https://en.wikipedia.org/wiki/Multiplication_theorem#Gamma_function%E2%80%93Legendre_formula), where it is called the "Legendre Duplication Formula". The Gamma function version is $$\Gamma(k) \Gamma(k + \frac{1}{2}) = \Gamma(2k) \sqrt{\pi}/2^{2k-1}$$. If you ask me it's more elegant written with factorials.
 
 $$k! (k-\frac{1}{2})! = \frac{(2k)!}{2^{2k}} \sqrt{\pi}$$
 
-Okay, that should do it.
+Okay, that's all we need.
 
 -------
 
-The surface area and volume of an $$n$$ sphere are:
+Recall that the surface area and volume of an $$n$$-sphere are:
 
 $$
 \begin{aligned}
-S_{n-1} &= \frac{2 \pi^{n/2}}{(\frac{n}{2}-1)!} r^{n-1} & V_n &= \frac{\pi^{n/2}}{(\frac{n}{2})!} r^n
+S_{n-1}(r) &= \frac{2 \pi^{n/2}}{(\frac{n}{2}-1)!} r^{n-1} & V_n(r) &= \frac{\pi^{n/2}}{(\frac{n}{2})!} r^n
 \end{aligned}
 $$
 
-Using the above identities, the general forms of the $$n$$-sphere surface area and volume are, for $$n$$ even:
+These bug me because they make it not-at-all obvious how the factors of $$\pi$$ work. The numerator alone would make you think that odd-dimensional spheres involve fractional powers of $$\pi$$, e.g. $$S_2(r) = S_{3-1}(r) = \frac{2 \pi^{3/2}}{(\frac{1}{2})!} r^2$$. Of course it turns out that the factorial in the denominator has another factor of $$\sqrt{\pi}$$ that cancels out the one in the numerator. But I don't like the formula being written this way: it's disconcerting that the computation is structurally different for even vs. odd integers, and makes me think there must be a better way to do it.
+
+Using the above identities, the general forms of the $$n$$-sphere surface area and volume can be written, for $$n$$ even, as:
 
 $$
 \begin{aligned}
@@ -121,7 +118,7 @@ S_{\text{even, }n-1} &= \frac{2\pi^{n/2}}{\frac{(n-2)!!}{2^{(n-2)/2}}} r^{n-1} &
 \end{aligned}
 $$
 
-and $$n$$ odd:
+and for $$n$$ odd:
 
 $$
 \begin{aligned}
@@ -132,9 +129,9 @@ S_{\text{odd, }n-1} &= \frac{2 \pi^{n/2}}{\frac{(n-2)!!}{2^{(n-1)/2}} \sqrt{\pi}
 \end{aligned}
 $$
 
-Those feel slightly more symmetric to me: the powers of $$2$$ and the factors of $$\pi$$ mostly have the same exponent so it seems meaningful to group them together. But they are still awkward! At least now it's clear how to compute them. But it sucks that there's different formulas for $$n$$ even vs odd. And what's with that stray factor of $$2$$?
+Those feel slightly more symmetric to me: the powers of $$2$$ and the factors of $$\pi$$ mostly have the same exponent so it seems meaningful to group them together. Now it's clear how to compute them, but it still sucks that there's different formulas for $$n$$ even vs odd. And what's with that stray factor of $$2$$ in the odd formulas?
 
-Here they are written in a slightly more symmetric way:
+Here they are written in an even more symmetric way:
 
 $$
 \begin{aligned}
@@ -145,7 +142,9 @@ V_{\text{even, }n} &= \sqrt{\frac{\pi}{2}} \frac{(2) (2\pi)^{(n-1)/2}}{n!!} r^n 
 \end{aligned}
 $$
 
-When written with double-factorials, the formulas for odd $$n$$ are off by a factor of $$\frac{1}{\sqrt{\pi/2}}$$. Isn't that just annoying? Well: I've started to suspect that the "discrepancy" actually comes from **how we've chosen to define the double factorial of an odd number**.[^double] Here are some of the clues. Take a look back at those half-integer factorial identities: 
+When written with double-factorials, the formulas for odd $$n$$ are off by a factor of $$\frac{1}{\sqrt{\pi/2}}$$. Isn't that just annoying? 
+
+After thinking about this for a while I've come to think that the "discrepancy" actually comes from **how we've chosen to define the double factorial of an odd number**.[^double] Do it differently and the difference between the two equations goes away. Some clues arise if we look back at the double-factorial identities.
 
 [^double]: There's some discussion of this on Wikipedia for [double factorial](https://en.wikipedia.org/wiki/Double_factorial) in the part about extending it to all complex numbers... but I think they actually go in a less-good direction with it. So here's my version. See what you think?
 
@@ -161,7 +160,7 @@ They're so similar. But the $$\sqrt{\pi}$$ seems out-of-place. For example here'
 
 $$
 \begin{aligned}
-(2k)!!(2k-1)!! &= [6 \times 4 \times 2 \times 0!] \times [5 \times 3 \times 1!!] \\
+(2k)!!(2k-1)!! &= [6 \times 4 \times 2 \times 0!!] \times [5 \times 3 \times 1!!] \\
 &= 6 \times 5 \times 4 \times 3 \times 2 \times 1!! \times 0!! \\
 &= 6! \\
 & \\
@@ -194,7 +193,7 @@ n!! \sim \begin{cases}
 \end{cases}
 $$
 
-Also, consider these two formulas, but let's write the latter expressly as a function of its argument, $$k-\frac{1}{2}$$:
+Also, consider these two formulas $$(\frac{n}{2})! = \frac{n!!}{2^n}$$ again, but let's write the latter expressly as a function of its argument, $$k-\frac{1}{2}$$, so that the main part has the same form for $$n = 2k, 2k-1$$:
 
 $$
 \begin{aligned}
@@ -204,18 +203,21 @@ k! &= \frac{(2k)!!}{2^{k}} \\
 \end{aligned}
 $$
 
-There it is again! What to do? Well, here's an idea: the factorial of an integer $$k$$ contains $$k+1$$ terms, if you count the $$0!$$ term. The factorial of a half-integer $$k-1/2$$ contains... $$(k-1/2) + 1 + 1/2$$ terms? Meanwhile, the double-factorial of an even $$2k$$ contains $$k+1$$ terms, but the double-factorial of an odd $$k$$ contains $$k$$ terms: one fewer, instead of $$3/2$$ more. And this seems to be where the discrepancy comes from.
+There it is again! What to do? Well, here's an idea. Note how
 
-Suppose we interpreted the factorial of $$k-1/2$$ as containing $$k-1/2$$ terms, whatever that means, times its base-case, by splitting the last $$1/2$$ into two factors of $$1/\sqrt{2}$$:
+1. The factorial of an integer $$k$$ contains $$k$$ terms times the base case (e.g. $$3! = 3 \times 2 \times 1 \times 0!$$), but the factorial of a half-integer $$k-1/2$$ contains... also $$k$$ terms, or should I say, $$(k-1/2) + 1/2$$ terms (e.g. $$(\frac{5}{2})! = \frac{5}{2} \times \frac{3}{2} \times \frac{1}{2} \times (-\frac{1}{2})!$$)
+2. Meanwhile, the double-factorial $$n!! = (2k!!)$$ for an integer $$k$$ contains $$k$$ terms (e.g. $$6!! = 2^3 (3 \times 2 \times 1) \times 0!!$$), but for $$k-1/2$$ also contains $$k$$ terms but with _no_ base case, e.g. $$5!! = 2^{3} (5 \times 3 \times 1)$$.
+
+This seems to where the discrepancy comes from. Suppose we tried to fix this: let's redefine $$x!$$ and $$x!!$$ so that their products involve exactly the _same_ lists of terms. This probably means that we need to somehow interpret the factorial of $$k-1/2$$ as containing $$k-1/2$$ terms, whatever that means, times its base case, by splitting the last $$1/2$$ into two factors of $$1/\sqrt{2}$$, something like this:
 
 $$
 \begin{aligned}
 3! &= \frac{6}{2} \times \frac{4}{2} \times \frac{2}{2} \times 0! \\ 
-(3-\frac{1}{2})! &\? \frac{5}{2} \times \frac{3}{2} \times \frac{\sqrt{1}}{\sqrt{2}} \times \sqrt{\frac{\pi}{2}} \\
+(3-\frac{1}{2})! &\? \frac{5}{2} \times \frac{3}{2} \times \frac{\sqrt{1}}{\sqrt{2}} \times \underbrace{\sqrt{\frac{\pi}{2}}}_{\text{??}} \\
 \end{aligned}
 $$
 
-(Nevermind that the basecase doesn't make a ton of sense, we'll deal with that in a moment.) And then suppose we tried to make the double-factorials match this:
+(Nevermind that the base-case doesn't make a ton of sense, we'll deal with that in a moment.) And then suppose we tried to make the double-factorials match this:
 
 $$
 \begin{aligned}
@@ -236,9 +238,9 @@ I feel like there are enough signs that it has to work _somehow_, and I have a g
 
 # 2. Factorials as multiplicative integrals
 
-Suppose that factorials are thought of like a type of integral: they will be products of numbers in a range with both a start point _and_ an end point, rather than just "all the numbers down to zero". The classical factorial $$n!$$ is the one starts at $$0$$ and ends at $$n$$, which we can write as a [product integral](https://en.wikipedia.org/wiki/Product_integral)[^product] of its multiplicative differential $$d^{\times}(x!)$$:
+Suppose that factorials are thought of as being a type of integral: they will be products of numbers in a range with both a start point _and_ an end point, rather than just "all the numbers down to zero". The classical factorial $$n!$$ is the one starts at $$0$$ and ends at $$n$$. We can write this as a [product integral](https://en.wikipedia.org/wiki/Product_integral)[^product] of its "multiplicative differential" $$d^{\times}(x!)$$:
 
-[^product]: The "geometric integral", on that page. I assume that this investigation of factorials is out there in the literature somewhere also, but I'm making it up for myself here. It seems to make a lot of sense, anyway.
+[^product]: On that page this is what's called the "geometric integral". I assume that this investigation of factorials in terms of it is out there in the literature somewhere also, but I'm making it up for myself here. It seems to make a lot of sense, anyway.
 
 $$n! = \prod_0^n d^{\times}(x!) = \frac{n!}{0!} = n!$$
 
@@ -252,58 +254,78 @@ $$\prod_{-1/2}^n d^{\times(x!)} = \frac{n!}{(-1/2)!} = \frac{n!}{0!} \frac{0!}{(
 
 Varying the endpoints will allow us to account for the discrepancies in the definitions. Throughout this discussion we'll use the factorial symbol to refer to product integrals of $$d^{\times}(x!)$$ which have their basepoint at $$0$$, but as we will see, plenty of factorials are better thought of as having different base-cases than that.
 
-The meaning of $$d^{\times}(f)$$ is the natural one from multiplicative calculus,[^prod] which is a thing, albeit somewhat less-well-known than the usual additive calculus:
+Here is some exposition on the multiplicative calculus. In fact it is completely isomorphic the same thing as the familiar additive calculus, under the substitution 
 
-[^prod]: There are several ways to define product integrals. You can also have the _argument_ be multiplied, like $$d^{\times} f = (f(x \times (1+dx)) - f(x))/(1 +dx)$$, or both, or other things, and there is a coherent calculus for each of them. But the rest are not useful here. (You could distinguish them with $$d^{\times} f/d^+ x$$ vs $$d^+ f / d^{\times} x$$, etc. But we won't.) 
+$$\ln \prod_a^b d^{\times} f = \int_a^b d(\ln f)$$
 
-$$d^{\times} f = \frac{f(x+dx)}{f(x)}$$
+But since everything looks weirder in the multiplicative notation, I will go over a few things.
 
-You could write this with a $$\lim_{dx \ra 0}$$ in front of it. But we're not really interested in doing the "infinitesimal" version of this calculus, and I don't really know or care if the limit exists. We're going to be computing finite-difference derivatives instead, because that's what we know how to do. For instance
+First, note that there are several possible alternative calculi. The one we're talking about here uses
 
-$$d^{\times}(x!)\big|_{n-1}^n = \frac{n!}{(n-1)!} = n$$
+$$d^{\times} f \equiv \frac{f(x+dx)}{f(x)}$$
 
-Which you can think of as the result of an integral of an infinitesimal integral, $$\prod_{n-1}^n d^{\times}(x!) = d^{\times}(x!) \big\vert_{n-1}^n$$, if you want, but it's not necessary.
+Which is to say: given an _additive_ change in the argument $$x \mapsto x + dx$$, produce the _multiplicative_ change in the output of $$f$$. There are other ways to do this, e.g. you could also talk about $$d^{\times}_{\times} f = \frac{f(x \times (1+dx))}{f(x)}$$ or $$d^{+}_{\times} f = f(x \times (1+dx)) - f(x)$$ or whatever you want, and there is a (completely equivalent) theory of calculus for each. But we will only be using this one.
+
+When you go to evaluate such an integral, instead of being a Riemann sum, it's a Riemann "product": a bunch of telescoping fractions, which cancel to produce the ratio of the integrand at the endpoints:
+
+$$
+\begin{aligned}
+\prod_a^b d^{\times} f &= \frac{f(a+dx)}{f(a)} \frac{f(a + 2 \d x)}{f(a+dx)} \cdots \frac{f(b)}{f(b - dx)} \\
+&= \frac{f(b)}{f(a)}
+\end{aligned}
+$$
+
+Therefore the integral of $$d^{\times}(x!)$$ is a ratio of factorials:
+
+$$\prod_a^b d^{\times}(x!) = \frac{b!}{a!}$$
+
 
 Product integrals obey multiplicative identities equivalent to the additive identities of ordinary integrals:
 
 $$[\prod_{0}^a d^{\times}f] [\prod_{a}^b d^{\times}f] = \frac{f(a)}{f(0)} \frac{f(b)}{f(a)} = \frac{f(b)}{f(0)} = \prod_{0}^b d^{\times}f$$
 
-When the range of the product is empty, then the value is simply the multiplicative identity $$1$$. This is the reason why $$0!$$ is $$1$$: it's the product of nothing at all:
+When the range of the product is empty, then the value is simply the multiplicative identity $$1$$. This is the reason why $$0!$$ is $$1$$: it's the product of nothing at all.
 
 $$\prod_0^0 d^{\times}(f)= 1$$
 
-And if two product integrals ever multiply to create $$0/0$$... that's fine, we should probably allow them to cancel out because we know it gives the right answer:
-
-$$\prod_{-1}^{0} d^{\times} (x) \prod_{0}^{1} d^{\times} (x) = \frac{0}{(-1)} \frac{(1)}{0} = \prod_{-1}^{1} d^\times (x)$$
-
-I don't know if we'll need that, but I feel like it has to work that way for this to make any sense.[^zero]
-
-[^zero]: The additive equivalent is $$\int_{-1}^0 d(\log x) + \int_0^{1} d(\log x) = \int_{-1}^1 d(\log x)$$. Technically $$1/x$$ is not integrable over $$x=0$$ because the behavior at $$x=0$$ is uncontrolled. But IMO $$d(\log x)$$ is justifiably integrable, because you can say: however we choose to regularize the infinity here, we can guarantee it will cancel out _with itself_. One argument for why $$1/x$$ is not integrable at $$x=0$$ is that you can never really see the exact value of $$x$$, just an approximation of it, so $$1/x$$ might really be $$1/(x + \e f(x))$$ for indetectable $$f(x)$$, and the $$f(x)$$ might do something non-trivial. On the other hand if $$d(\log x)$$ is really $$d(\log (x + \e f(x)))$$, the $$f(x)$$ will get canceled out regardless of what it is... as long as both integrands come from the same function.
-
-If the multiplicative integrals seem sketchy, you can always convert them into additive integrals with logarithms:
-
-$$\log \prod_a^b d^{\times}(f) = \int_a^b d \log(f) = \log f(b) - \log f(a) = \log \frac{f(b)}{f(a)}$$
-
-Note that $$d (\log f) = df/f = f'(x)/f(x) \,d x$$ should not be confused with $$(\log f) \, d x$$. We are never actually taking the logarithm of $$n!$$ when we integrate $$\int d (\log n!)$$.
-
-The value of the actual differential $$d^{\times}(f)$$ may be written as
-
-$$d^{\times}(f) = e^{d \log(f(x))} = e^{f'/f} e^{dx} = e^{f'/f} d^{\times}(x)$$
-
-If you want to write it out---but it's rarely useful to do so.
-
-When you occasionally do get factors which multiply to $$\pm \infty$$, the logarithm picture splits them out into their own terms. This is just a notational difference, but maybe less upsetting to look at?[^entropy]
+The reason for using the integration notation is purely because we want to represent factorials as having "integration bounds". We are not really concerned with the actual value of $$d^{\times} (x!)$$. If we wanted to, we could rearrange it in terms of the additive differential $$df = f(x+dx) - f(x)$$:
 
 $$
 \begin{aligned}
-\log \prod_{-a}^a d^{\times} x &= \int_{-a}^a d(\log x)  \\
-&= \log_{-a}^0 d(\log x) + \log_0^a d(\log x) \\
-&= \log a - \cancel{\log 0} + \cancel{\log 0} - \log (-a) \\
-&= - \log (-1) 
+d^{\times} f &= \frac{f(x+dx)}{f(x)} \\
+&= 1 + \frac{f(x+dx) - f(x)}{f(x)}  \\
+&= 1 + \frac{df(x)}{f(x)} \\
+&= 1 + d(\ln f(x))
 \end{aligned}
 $$
 
-[^entropy]: I am reminded of the sense in which [entropy]({% post_url 2018-02-23-entropy-1 %}) of continuous distributions should be thought of being relative to an infinite "entropy of continuum": $$S[\mathcal{U(0,2)}] = 1 + S[\mathcal{U}(0,1)] = 1 + \log 2^X = 1 + X$$, where $$X$$ is the number of bits to specify a point in a uniform distribution: theoretically infinite, in practice just very large and unspecified.
+The first-order approximation of this, the equivalent of the limit expression for the derivative, is
+
+$$
+\begin{aligned}
+\lim_{dx \ra 0} \sqrt[dx]{d^{\times} f} &= \lim_{dx \ra 0} [1 + \frac{d(\ln f(x))}{dx} dx]^{1/dx} \\
+&= e^{d\ln f(x) dx} \\
+&= e^{f'(x)/f(x)}
+\end{aligned}
+$$
+
+And you can integrate this by raising it to the $$dx$$'th power inside a product integral. Since $$e^{y \d x} \approx 1 + y \d x$$ to first order it goes back to being a product integral:
+
+$$
+\begin{aligned}
+\prod [e^{f'(x)/f(x)}]^{dx} &= \prod e^{f'(x) dx/f(x)} \\
+&= \prod e^{d \ln f(x)} \\
+&\approx \prod 1 + d \ln f(x) \\
+&= \prod d^{\times} f
+\end{aligned}
+$$
+
+
+You can look some of explicit product integral forms up [here](https://en.wikipedia.org/wiki/List_of_derivatives_and_integrals_in_alternative_calculi). For example it says that 
+
+$$\Gamma^*(x) = \sqrt[dx]{d^{\times}(\Gamma(x))} = e^{\Psi(x)}$$
+
+where $$\Psi(x)$$ is the "digamma function" $$\Psi(z) = \Gamma'(x) / \Gamma(x)$$. But that's trivial: it's $$ e^{f'(x)/f(x)}$$ for $$f = \Gamma$$. So there's nothing gained by using the explicit expression for $$d^{\times}(\Gamma(x))$$. Our only purpose in using $$d^{\times}$$ is express these things as integrals.
 
 ------------
 
@@ -313,11 +335,11 @@ $$n! = \prod_0^n d^{\times}(x!) = \frac{n!}{0!}$$
 
 The Gamma function tells us roughly how to extend this to non-integers and negative numbers (ish). We expect, though, that all the integration still starts at $$0$$, meaning that the negative factorials are negatively-oriented (product) integrals:
 
-$$\int_0^{-1/2} d^{\times}(x!) = \frac{(-\frac{1}{2})!}{0!} = \sqrt{\pi}$$
+$$\prod_0^{-1/2} d^{\times}(x!) = \frac{(-\frac{1}{2})!}{0!} = \sqrt{\pi}$$
 
 This means that the positive-oriented integral is the inverse of that:
 
-$$\int_{-1/2}^0 d^{\times}(x!) = \frac{1}{\sqrt{\pi}}$$
+$$\prod_{-1/2}^0 d^{\times}(x!) = \frac{1}{\sqrt{\pi}}$$
 
 When we want to come up with values for a factorial like $$(\frac{1}{2})!$$ we can either just take the integral from $$0$$, or we can use the usual $$n! = n \times (n-1)!$$ down to $$-1/2$$, and _then_ go back to zero.
 
@@ -329,41 +351,37 @@ $$
 \end{aligned}
 $$
 
-Note that the product integral sense of a factorial does not require that we make sense of any infinite products descending to $$-\infty$$. Although it's probably still true that in some sense the infinite products should cancel out to give $$\sqrt{\pi}$$,
+We do not have to try to make sense of any infinite products descending to $$-\infty$$. Although it's probably still true that in some sense that these two infinite products should "cancel out" to give $$\sqrt{\pi}$$,
 
 $$
 \begin{aligned}
-\dfrac{(-\frac{1}{2})!}{0!} &= \prod_0^{-1/2} d^{\times}(n!) \? \dfrac{(-\frac{1}{2}) \times (-\frac{3}{2}) \times \ldots}{(0) \times (-1) \times (-2) \times (\ldots)}
+\dfrac{(-\frac{1}{2})!}{0!} &= \prod_0^{-1/2} d^{\times}(n!) \\
+&\? \dfrac{(-\frac{1}{2}) \times (-\frac{3}{2}) \times \ldots}{(0) \times (-1) \times (-2) \times (\ldots)} \\
+&= \dfrac{\prod_{-\infty}^n d^{\times}(x!)}{\prod_{-\infty}^{0} d^{\times}(x!)}
 \end{aligned}
 $$
 
-we aren't basing this on any argument like that. Since we are doing explicit integrals, we can simply use the algebra of integration bounds to cancel things out. That said, it's probably not _wrong_ to write
+we aren't going to assume anything like that. It's probably not _wrong_ to write it, but we don't need it: since we are doing explicit integrals, we can simply use the algebra of integration bounds to cancel things out. To make sense of those expressions you're going to have to contend with the divergences and how the limits get taken---the products are infinite, and $$0! = 0 \times (-1)! \? 0 \times (1/0)$$ seems to requiring multiplying zero times infinity, and if you want to express this as a limit you probably need the numerator and denominator limits to be offset even as they go to infinity (e.g. in $$\lim_{n \ra \infty}$$ the numerator still uses $$n - \frac{1}{2}$$ while the denominator uses $$n$$). It is a lot more work to justify. But you can still just cancel the integration bounds without thinking about it too much.
 
-$$\frac{n!}{0!} = \prod_0^{n} d^{\times}(x!) = \dfrac{\prod_{-\infty}^n d^{\times}(x!)}{\prod_{-\infty}^{0} d^{\times}(x!)}$$
-
-We just don't need it. To make sense of that expressions you're going to have to contend with the divergences and how the limits get taken---the products are infinite, and $$0! = 0 \times (-1)! \? 0 \times (1/0)$$ seems to requiring multiplying zero times infinity, and if you want to express this as a limit you probably need the numerator and denominator limits to be offset even as they go to infinity. It is a lot more work to justify. But you can still just cancel the integration bounds without thinking about it too much.
-
-Note that the classical value $$0!$$ is _not_ the value of $$\prod_{-\infty}^0 d^{\times}(x!)$$, but rather the (trivial) value of $$\prod_0^0 d^{\times}(x!)$$. So far we do not really know anything about $$\prod_{-\infty}^0 d^{\times}(x!)$$, and there's no reason to think that it's going to be finite or convergent at all (since it appears to oscillate between negative and positive values at every integer...). But we will try to compute it explicitly later.
-
-Also: we are not going to actually try to use the explicit expression for $$d^{\times}(x!)$$. Actually it is not very helpful anyway. You can look some of explicit product integral forms up [here](https://en.wikipedia.org/wiki/List_of_derivatives_and_integrals_in_alternative_calculi): it says that $$d^{\times}(\Gamma(z)) = e^{\Psi(z)} d^{\times}$$, where $$\Psi(z)$$ is the "digamma function" $$\Psi(z) = \Gamma'(z) / \Gamma(z)$$. That is just $$e^{\log \Gamma(z) dz}$$, which is already we would have guessed it would be, and there's nothing to gain by using that expression explicitly. Although I do think that this "multiplicative calculus" is exactly as important as the usual additive one (since they are isomorphic...), I don't find the explicit formulae in it to be especially useful. The reason it's helpful here is that it helps us make sense of what factorials were already doing by removing a layer of abstraction.
+Note that in this scheme that the classical value $$0!$$ is _not_ the (suspicious) value of $$\prod_{-\infty}^0 d^{\times}(x!)$$, but rather the (trivial) value of $$\prod_0^0 d^{\times}(x!)$$. So far we do not really know anything about $$\prod_{-\infty}^0 d^{\times}(x!)$$, and there's no reason to think that it's going to be finite or convergent at all (since it appears to oscillate between negative and positive values at every integer...). But we will think about it some later.
 
 -----------
 
 # 3. A theory of double factorials
 
-One of the awkwardnesses about generalizing factorials to non-integers is that it seems to conflict with the "combinatorial" interpretation of factorials. $$n!$$ is the number of ways to permute $$n$$ elements; what does that have to do with $$(1/2)!$$ or $$(-1)!$$? Well, maybe there's some kind of answer to that, but it's not a problem for our purposes. The combinatoric process _explicitly_ stops multiplying at $$0$$, because you stop selecting elements at that point. $$n!$$ really does mean
+One of the awkwardnesses about generalizing factorials to non-integers is that it seems to conflict with the "combinatorial" interpretation of factorials. $$n!$$ is the number of ways to permute $$n$$ elements; what does that have to do with $$(1/2)!$$ or $$(-1)!$$? Well, maybe there's some kind of answer to that, but it's not a problem for our purposes. The combinatoric process _explicitly_ stops multiplying at $$0$$, because you stop selecting elements at that point, meaning that $$n!$$ really does mean
 
 $$\prod_0^n d^{\times}(x!)$$
 
 Which is interpretable as selecting one element, then another, etc, until there are none left. What happens below zero isn't relevant. (Although I would still love a combinatoric interpretation of non-integer or negative factorials.)
 
-Now we want to talk about changing the definition of $$n!!$$ for odd $$n$$. But it doesn't have to affect the combinatoric meaning of $$n!!$$, which is the number of ways of selecting two adjacent elements at a time out of $$n$$ (where the first and last elements are counted as adjacent). Selecting two elements at a time out of an odd number of elements expressly stops at $$n=1$$, because you just can't do it anymore, meaning that the classical double factorial is equivalent to
+Now we want to talk about changing the definition of $$n!!$$ for odd $$n$$. But it doesn't have to affect the combinatoric meaning of $$n!!$$, which is the number of ways of selecting two adjacent elements at a time out of $$n$$ (where the first and last elements are counted as adjacent). Selecting two elements at a time out of an odd number of elements expressly stops at $$n=1$$, because you just can't do it anymore, meaning that the classical double factorial of an odd number is equivalent to
 
-$$n!! \equiv \prod_{1}^n d^{\times}(x!!)$$
+$$n!! \equiv \prod_{1}^n d^{\times}(x!!) \tag{odd $n$}$$
 
 So redefining $$n!!$$ in other situations won't affect the combinatoric meaning at all, as long as that integral's value doesn't change.
 
-In particular let's consider 
+Now let's consider 
 
 $$\prod_0^{2k+1} d^{\times} (x!!)$$
 
@@ -371,21 +389,11 @@ Where now the lower bound is zero, not one. For example
 
 $$\prod_0^5 d^{\times}(x!!) = \frac{5!!}{0!!} \? \frac{5 \times 3 \times 1!!}{0!!}$$
 
-How should the numerator behave? We need for it to end at an explicit factor of $$0!!$$ to cancel out the denominator: although it's likely reasonable to define $$0!! = \prod_0^0 d^{\times}(x!!) = 1$$, the same should work if we (divergently) factor $$0!! = 0 \times (-2) \times (-4) \times \ldots$$. We need an _explicit_ factor of $$0!!$$ in the numerator to make this work in all factorizations (which is I guess equivalent to making an equation work "in all coordinate systems").
+How should the numerator behave? We shouldn't try to divide the $$1!!/0!!$$ out. In fact we don't _know_ the value of $$\prod_0^1 d^{\times}(x!!) = 1!!/0!!$$. We've never seen it before; it never comes up.
 
-Based on the clues from before, it seems like a reasonable definition of the double factorial is that it is simply the single factorial times a factor of $$2^n$$:
+Based on the clues from before, we postulate that $$n!!$$ ought to be equivalent to $$(\frac{n}{2})!$$ times a factor of $$2^{n/2}$$:
 
 $$\prod_{2a}^{2b} d^{\times}(x!!) = 2^{b-a} \prod_{a}^{b} d^{\times}(x!)$$
-
-This wasn't quite right due to the $$\sqrt{\pi/2}$$ term, but now we have another way of dealing with that, by changing the product integral bounds. This corresponds to the following calculus:
-
-$$
-\begin{aligned}
-d^{\times}[x!!] &= d^{\times} [2^{x/2} (\frac{x}{2})!] \\
-&= \frac{2^{(x + dx)/2} (\frac{x+dx}{2})!}{2^{x/2} (\frac{x}{2})!} \\
-&= d^{\times}[2^{x/2}] d^{\times}[(\frac{x}{2})!]
-\end{aligned}
-$$
 
 When integrated the two terms just separate into two integrals, equivalent to how you can separate two integrands which are added together in an additive integral:
 
@@ -398,7 +406,18 @@ $$
 \end{aligned}
 $$
 
-Assuming our postule about $$d^{\times}(x!!)$$ is correct, we get
+Note that
+
+$$
+\begin{aligned}
+d^{\times}[x!!] &= d^{\times} [2^{x/2} (\frac{x}{2})!] \\
+&= \frac{2^{(x + dx)/2} (\frac{x+dx}{2})!}{2^{x/2} (\frac{x}{2})!} \\
+&= d^{\times}[2^{x/2}] d^{\times}[(\frac{x}{2})!]
+\end{aligned}
+$$
+
+
+Assuming the postulate about $$d^{\times}(x!!)$$ is correct, we get an explanation for the double factorial discrepancy. The "actual" value of $$x!!$$ when you stop at $$0$$ is
 
 $$
 \begin{aligned}
@@ -409,7 +428,7 @@ $$
 \end{aligned}
 $$
 
-As expected. The difference in the two definitions of the double factorial for odd numbers then is
+As expected. We'll write $$n!!_{\text{new}} = \prod_0^n d^{\times}(n!!)$$ to refer to this "new" definition of the double factorial. The two definitions side-by-side are:
 
 $$
 \begin{aligned}
@@ -418,7 +437,7 @@ $$
 \end{aligned}
 $$
 
-And 
+Although note, it's somewhat arbitrary whether you define $$5!!_{\text{old}}$$ to equal $$\prod_1^5$$ or $$\prod_{-1}^5$$. They have the same value, so I'm not sure which is conceptually correct.
 
 $$1!!_{\text{new}} = \prod_0^1 d^{\times}(x!!) =  2^{1/2} \prod_0^{1/2} d^{\times}(x!)= \sqrt{2} \times \frac{\sqrt{\pi}}{2} = \sqrt{\frac{\pi}{2}}$$
 
@@ -436,7 +455,7 @@ Armed with this new interpretation we can answer the question of why double fact
 
 $$
 \begin{aligned}
-(2k+1)!!_{\text{new}} & \prod_0^{2k+1} d^{\times}(x!!) \\
+(2k+1)!!_{\text{new}} &= \prod_0^{2k+1} d^{\times}(x!!) \\
 &= 2^{k+1/2} \prod_0^{k+1/2} d^{\times}(x!) \\
 &= 2^{k+1/2} (k+1/2)!
 \end{aligned}
@@ -528,7 +547,7 @@ $$
 \end{aligned}
 $$
 
-Writing each factorial as a product integral reveals that this computation was very flawed, however. The very first line says that
+Writing each factorial as a product integral reveals that this computation was very flawed, however. It's incorrect in the very first line
 
 $$
 \begin{aligned}
@@ -536,7 +555,7 @@ $$
 \end{aligned}
 $$
 
-The problem is that $$1!!$$ is not normally given by $$\prod_0^1 d^{\times}(x!!) = 1!!/0!!$$, but instead by $$\prod_1^1 d^{\times}(x!!)$$. That is: extending both factorials to infinity symmetrically requires including the missing $$\prod_0^1$$ term as well.
+The problem is that the classical $$1!!$$ is not $$\prod_0^1 d^{\times}(x!!) = 1!!/0!!$$, but instead $$\prod_1^1 d^{\times}(x!!)$$. Extending both factorials to infinity symmetrically requires including the missing $$\prod_0^1$$ term as well.
 
 $$\frac{1!!}{0!!} = \frac{\prod_1^1}{\prod_0^1} \times \frac{\prod_{-\infty}^0}{\prod_{-\infty}^0} = \frac{\prod_1^0 \prod_{-\infty}^1}{\prod_{-\infty}^0} =  \frac{1}{\sqrt{\pi/2}} \frac{\prod_{-\infty}^1}{\prod_{-\infty}^0}$$
 
@@ -587,15 +606,15 @@ The values are always considered to be relative to zero:
 
 $$F_k(n) \equiv \prod_0^n d^{\times} F_k(n)$$
 
-But you can divide two of them to make an integral over whatever range ouy want:
+But you can divide two of them to make an integral over whatever range you want:
 
-$$\prod_a^b d^{\times} F_k(n) = F_k(b)/F_k(a)$$
+$$\prod_a^b d^{\times} F_k(n) = \frac{F_k(b)}{F_k(a)}$$
 
-The identity we found above relates $$F_k$$ and $$F_1$$ like this:
+The identity we found (or rather, guessed) above relates $$F_k$$ and $$F_1$$ like this:
 
 $$F_1(\frac{n}{k}) = \frac{F_k(n)}{k^{n/k}}$$
 
-e.g.
+such that
 
 $$
 \begin{aligned}
@@ -607,11 +626,22 @@ $$
 \end{aligned}
 $$
 
-Although do keep in mind that the classical value of the double factorial is
+And also things like
 
 $$
 \begin{aligned}
-n!! = \begin{cases} 
+\prod_{0}^{4/3} d^{\times}(x!) &= \frac{4}{3} \times \frac{1}{3} \times (-\frac{2}{3})! \\
+&= \frac{F_3(4)}{3^{4/3}}
+\end{aligned}
+$$
+
+Not that I have any idea what $$(-2/3)!$$ is.
+
+The classical value of the double factorial is written in terms of $$F_k(n)$$ as
+
+$$
+\begin{aligned}
+n!!_{\text{old}} = \begin{cases} 
 \frac{F_2(n)}{F_2(0)} & n \text{ even} \\[1em]
 \frac{F_2(n)}{F_2(1)} & n \text{ odd}
 \end{cases}
@@ -622,15 +652,15 @@ $$
 
 --------
 
-The one double-factorial identity that seems to not translate well to product integrals is
+Generally writing multifactorials in this notation seems to make them easy to understand, compared to using Gamma functions or dealing with all the special cases when e.g. $$4!!!$$ is expected to stop at $$1!!!$$ instead of $$0!!!$$. But, one double-factorial identity seems to translate especially well, which is the one for interleaving two double-factorials into a single-factorial:
 
-$$(2k)!! (2k-1)!! = (2k)!$$
+$$(2k)!!_{\text{old}} (2k-1)!!_{\text{old}} = (2k)!$$
 
-In our notation that identity becomes
+In the new notation that's
 
 $$
 \begin{aligned}
-(2k)!! (2k-1)!! &= \big[ \prod_0^{2k} d^{\times}(x!!)\big] \big[ \prod_{-1}^{2k-1} d^{\times}(x!!) \big] \\
+(2k)!!_{\text{old}} (2k-1)!!_{\text{old}} &= \big[ \prod_0^{2k} d^{\times}(x!!)\big] \big[ \prod_{-1}^{2k-1} d^{\times}(x!!) \big] \\
 \end{aligned}
 $$
 
@@ -638,7 +668,7 @@ Suppose we went ahead and divided each into its factorial representation:
 
 $$
 \begin{aligned}
-(2k)!! (2k-1)!! = 2^{2k} [\prod_0^{k} d^{\times}(x!)] [\prod_{-1/2}^{k-1/2} d^{\times}(x!)] 
+(2k)!!_{\text{old}} (2k-1)!!_{\text{old}} = 2^{2k} [\prod_0^{k} d^{\times}(x!)] [\prod_{-1/2}^{k-1/2} d^{\times}(x!)] 
 \end{aligned}
 $$
 
@@ -646,25 +676,23 @@ Now how do we make that equal to $$(2k)!$$? Consider an example:
 
 $$
 \begin{aligned}
-(6!!)(5!!) &= (6 \times 4 \times 2) \times (5 \times 3 \times 1) \\ 
-&= 2^3 (3 \times 2 \times 1) \times 2^{5/2} (\frac{5}{2} \times \frac{3}{2} \times \frac{1}{2}) \\
+(6!!_{\text{old}})(5!!_{\text{old}}) &= (6 \times 4 \times 2) \times (5 \times 3 \times 1) \\ 
+&= 2^3 (3 \times 2 \times 1) \times 2^{3} (\frac{5}{2} \times \frac{3}{2} \times \frac{1}{2}) \\
 &\? 2^{6} (\frac{6}{2} \times \frac{5}{2} \times \frac{4}{2} \times \frac{3}{2} \times \frac{2}{2} \times \frac{1}{2})
 \end{aligned}
 $$
 
-But what are we supposed to do with that?
-
-Well: it's a _half_ factorial! Just like there are double factorials $$n!! = (n-2)!!$$ and triple factorials $$n!!! = (n-3)!!!$$, why shouldn't there be half-factorials?
+But what are we supposed to do with that? Well: it's a _half_ factorial! There are double factorials $$n!! = n \times (n-2)!!$$ and triple factorials $$n!!! = n \times (n-3)!!!$$, so why shouldn't there be half-factorials that have $$F_{1/2}(n) = n \times F_{1/2}(n-\frac{1}{2})$$?
 
 The relationship is:
 
-$$\prod_{a/2}^{b/2} d^{\times}(x!^{1/2}) = (\frac{1}{2})^{b-a} \prod_a^b \d^{\times}(x!)$$
+$$\prod_{a/2}^{b/2} d^{\times}(F_{1/2}(x)) = (\frac{1}{2})^{b-a} \prod_a^b \d^{\times}(F_{1}(x))$$
 
 In this case:
 
 $$
 \begin{aligned}
-\frac{6}{2} \times \frac{5}{2} \times \frac{4}{2} \times \frac{3}{2} \times \frac{2}{2} \times \frac{1}{2} &= \prod_{0/2}^{6/2} d^{\times}(x!^{1/2}) \\
+\frac{6}{2} \times \frac{5}{2} \times \frac{4}{2} \times \frac{3}{2} \times \frac{2}{2} \times \frac{1}{2} &= \prod_{0/2}^{6/2} d^{\times}(F_{1/2}(x)) \\
 &= 2^{-6} \prod_0^6 d^{\times}(x!) \\
 &= 2^{-6} (6!)
 \end{aligned}
@@ -676,7 +704,7 @@ $$
 \begin{aligned}
 (6!!) \times (5!!) &= \prod_0^6 d^{\times}(x!!) \times \prod_{-1}^5 d^{\times}(x!!) \\
 &= 2^3 \prod_0^3 d^{\times}(x!) \times 2^3 \prod_{-1/2}^{5/2} d^{\times}(x!) \\
-&= 2^6 \prod_{0}^{6/2} d^{\times}(x!^{1/2}) \\
+&= 2^6 \prod_{0}^{6/2} d^{\times}(F_{1/2}(x)) \\
 &= 2^6 \times 2^{-6} \prod_0^6 d^{\times}(x!) \\
 &= 6!
 \end{aligned}
@@ -719,6 +747,6 @@ So one could factor all of the factorials out of the factorial identities and cr
 
 I hope to look into all this a lot more later on, because the factorial theory is clearly harder to understand due to be conflated with this other theory. I expect that it will also be interesting to connect it to the theory of [interpolating infinite sums](https://mpmueller.net/fractional-sums/), coarse-graining (which it is), and generally to the evaluation of divergent series. (Probably there is also a theory of this out there? But I'm not sure how to find it.)
 
-------
+---------
 
 Okay that's all I have for now. I might come back and add notes to this if I have any more ideas/investigations about factorials, though.

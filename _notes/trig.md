@@ -3,20 +3,23 @@ layout: article
 title: "Trigonometric Identities"
 math: true
 footnotes: true
-tag: math
+category: reference
 ---
 
 <style>.equation { line-height: 3em; }</style>
 
+1. test
 {:toc}
 
-## Definitions
+------
+
+# Definitions
 
 Sine and Cosine give the y- and x- coordinates of angles:
 
-$$\sin \theta  = \frac{opposite}{hypotenuse} = e^{i\theta}\cdot \mathbf{\hat{y}}$$
+$$\sin \theta  = \frac{\text{opposite}}{\text{hypotenuse}} = e^{i\theta}\cdot \mathbf{\hat{y}}$$
 
-$$\cos \theta = \frac{adjacent}{hypotenuse} = e^{i\theta}\cdot \mathbf{\hat{x}}$$
+$$\cos \theta = \frac{\text{adjacent}}{\text{hypotenuse}} = e^{i\theta}\cdot \mathbf{\hat{x}}$$
 
 $$\tan \theta  = \frac{\sin\theta}{\cos\theta}$$
 
@@ -36,9 +39,7 @@ $$\sin^{2} \theta + \cos^{2} \theta = 1$$
 
 of course $$\sin \theta = \pm \sqrt{1 - \cos^{2} \theta}$$ and vice-versa. Also, $$1 + \tan^{2} \theta = \sec^{2} \theta$$ and $$1 + \cot^{2} \theta = \csc^{2} \theta$$.
 
------
-
-## Symmetries and Translation Formulas
+# Symmetries and Translation Formulas
 
 $$\sin -\theta = -\sin \theta$$ (sine is odd)
 
@@ -56,9 +57,7 @@ $$\sin (-\theta) = -\cos (-\theta - \frac{\pi}{2}) = -\sin (-\theta - \pi) = \co
 
 Both of these are just statements that the graphs of $$\sin \theta$$, $$\cos \theta$$, $$\sin -\theta$$, and $$\cos -\theta$$ look the same but are translated differently.
 
--------
-
-## Angle formulas
+# Angle addition formulas
 
 Angle addition formulas:
 
@@ -72,7 +71,7 @@ Double-angle formulas:
 
 $$\sin 2a = 2\sin a \cos a$$
 
-$$\cos 2a = \cos^{2} a - \sin^{2} a$$
+$$\cos 2a = cos^{2} a - \sin^{2} a$$
 
 $$\tan 2a = \frac{2 \tan a}{1 - \tan^{2} a}$$
 
@@ -118,9 +117,7 @@ $$\cos^{2} a = \frac{1}{2}(1+\cos 2a)$$
 
 $$\sin^{2} a \cos^{2} a = \frac{1}{8}(1 - \cos 4a)$$
 
--------
-
-## Geometric identities
+# Geometric identities
 
 For a triangle with angles $$a, b, c$$ and side lengths $$A, B, C$$:
 
@@ -146,7 +143,7 @@ On spheres with radius R, the Pythagorean Theorem becomes
 
 $$\cos \frac{C}{R} = \cos \frac{A}{R} \cos \frac{B}{R}$$
 
-(as $$R \rightarrow \infty$$, $$\cos \frac{x}{R} \rightarrow 1 - \frac{1}{2} (\frac{x}{R})^{2}$$, so this becomes $$1 - \frac{C^{2}}{2R^{2}} = 1 - \frac{A^{2}}{2R^{2}} - \frac{B^{2}}{2R^{2}} - o(R^{4}) \rightarrow C^{2} = A^{2} + B^{2}$$
+(as $$R \rightarrow \infty$$, $$\cos \frac{x}{R} \rightarrow 1 - \frac{1}{2} (\frac{x}{R})^{2}$$, so this becomes $$1 - \frac{C^{2}}{2R^{2}} = 1 - \frac{A^{2}}{2R^{2}} - \frac{B^{2}}{2R^{2}} - o(R^{4}) \rightarrow C^{2} = A^{2} + B^{2}$$)
 
 And the Law of Cosines becomes:
 
@@ -156,9 +153,9 @@ or
 
 $$\cos c = -\cos a \cos b + \sin a \sin b \cos \frac{C}{R}$$
 
---------
+-------
 
-## Inverse functions
+# Inverse functions
 
 It's really antiquated to call these $$\arcsin$$ instead of $$\sin^{-1}$$, in my opinion, but whatever.
 
@@ -168,11 +165,11 @@ Inverse trig functions require some fanangling with their domains to keep things
 
 $$\arctan x$$ gives real results for all real inputs (since the range of tangent is all reals) and typically has range $$(-\frac{\pi}{2}, \frac{\pi}{2})$$
 
-There's also $$\text{atan2 } x$$, the oriented / two-argument / sign-preserved arctan [function](https://en.wikipedia.org/wiki/Atan2), which I don't feel like going into here. It is usually what you actually want in code.
+Note there's also $$\text{atan2 } x$$, the oriented / two-argument / sign-preserved arctan [function](https://en.wikipedia.org/wiki/Atan2), which actually inverts $$\tan$$.
 
--------
+------------
 
-### Symmetries
+# Symmetries
 
 These are, unsurprisingly, inverted forms of the regular trigonometric symmetry identities above.
 
@@ -196,11 +193,11 @@ $$\arccos x = 2\arctan \frac{\sqrt{1 - x^{2}}}{1 + x}, x \in (-1, 1]$$
 
 --------
 
-### Other Formulas
+# Other Formulas
 
 Inversions:
 
-Relationships between trig and inverse trig functions can be thought of as relationships between parts of a triangle. For example, $$\arcsin x$$ is "the angle that gives $$\frac{opposite}{hypotenuse}$$ ratio x". Then $$\cos \arcsin x$$ must be the $$\frac{adjacent}{hypotenuse}$$ ratio such a triangle. If $$\frac{o}{h}=x$$, then let $$h=1$$, so $$o = x$$ and $$a = \sqrt{1-x^{2}}$$.
+Relationships between trig and inverse trig functions can be thought of as relationships between parts of a triangle. For example, $$\arcsin x$$ is "the angle that gives $$\frac{opposite}{hypotenuse}$$ ratio x", and therefore $$\cos \arcsin x$$ is the $$\frac{adjacent}{hypotenuse}$$ ratio such a triangle. If $$\frac{o}{h}=x$$, then let $$h=1$$, so $$o = x$$ and $$a = \sqrt{1-x^{2}}$$.
 
 $$ \sin \arccos x = \cos \arcsin x = \sqrt{1-x^{2}}$$
 
@@ -218,19 +215,13 @@ $$\arccos x = i \ln (x - i\sqrt{1-x^{2}})$$
 
 $$\arctan x = \frac{i}{2} \ln \frac{i+x}{i-x}$$
 
---------
-
-## Calculus
-
 Limits:
 
 $$\lim_{x\rightarrow 0} \frac{\sin x}{x} = 1$$
 
 $$\lim_{x\rightarrow 0} \frac{1 - \cos x}{x} = 0$$
 
----------
-
-### Derivatives:
+# Derivatives:
 
 $$\sin' = \cos, \cos' = -\sin$$
 
@@ -240,12 +231,16 @@ $$\tan' = \sec^{2}, \cot' = -\csc^{2}$$
 
 $$\sec' = \tan \sec, \csc' = -\csc \cot$$
 
-Inverse function derivatives (defined except where denominators would be 0):
+$$(\arcsin x)' = -(\arccos x)' = \frac{1}{\sqrt{1- x^{2}}}$$
+
+$$(\arctan x)' = -(\text{arccot } x)' = \frac{1}{1 + x^{2}}$$
+
+
+Inverse function derivatives (defined except where denominators would be 0)
 
 $$(\arcsin z)' = \frac{1}{\sqrt{1-x^{2}}} = -(\arccos z)'$$
 
 $$(\arctan z)' = \frac{1}{1+z^{2}} = -(\text{arccot } z)'$$
-
 
 Inverse functions can also be defined as integrals:
 
@@ -255,15 +250,19 @@ $$\arccos x = \int_{x}^{1} \frac{1}{\sqrt{1-z^{2}}} dz$$
 
 $$\arctan x = \int_{0}^{x} \frac{1}{1+z^{2}} dz$$
 
-----------
+And in fact written as logarithms (cf [here](https://math.stackexchange.com/questions/414248/why-does-arctanx-frac12i-log-left-fracx-ixi-rightk))
 
-### Non-trivial integrals:
+$$\arctan x = \frac{1}{2i} \log \frac{x+i}{x-i} \pm \frac{\pi}{2}$$
 
-$$\int \arcsin x dx = x \arcsin x + \sqrt{1-x^{2}} + C$$
+-------
 
-$$\int \arccos x dx = x \arccos x - \sqrt{1-x^{2}} + C$$
+# Non-trivial integrals
 
-$$\int \arctan x dx = x \arctan x - \frac{1}{2} \ln (1+x^{2}) + C$$
+$$\int \arcsin x \d x = x \arcsin x + \sqrt{1-x^{2}} + C$$
+
+$$\int \arccos x \d x = x \arccos x - \sqrt{1-x^{2}} + C$$
+
+$$\int \arctan x \d x = x \arctan x - \frac{1}{2} \ln (1+x^{2}) + C$$
 
 $$\int \frac{dx}{\sqrt{a^{2} - x^{2}}} = \sin^{-1}(\frac{x}{a}) + C$$
 
@@ -271,9 +270,9 @@ $$\int \frac{dx}{a^{2} + x^{2}} = \frac{1}{a}\tan^{-1}(\frac{x}{a}) + C$$
 
 $$\int \frac{dx}{x\sqrt{a^{2} - x^{2}}} = \frac{1}{a}\sec^{-1}\vert \frac{x}{a} \vert + C$$
 
---------
+---------
 
-### Taylor Series:
+# Taylor Series:
 
 $$\sin x = x - \frac{x^{3}}{3!} \ldots = \sum \frac{(-1)^{n}}{(2n+1)!}x^{2n+1}$$
 
@@ -297,9 +296,7 @@ $$\cos x = \prod_{n=1}^{\infty} (1- \frac{x^{2}}{\pi^{2}(n-\frac{1}{2})^{2}})$$
 
 $$\sin x = x\prod \cos \frac{x}{2^{n}}$$
 
--------
-
-## Hyperbolic functions
+# Hyperbolic functions
 
 Hyperbolic trig functions are defined on hyperbolic angles the same way regular trig functions are defined on circular angles, with the *unit hyperbola* as the graph of the function $$x^{2} - y^{2} =1$$.
 
