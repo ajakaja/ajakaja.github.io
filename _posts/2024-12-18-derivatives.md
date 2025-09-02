@@ -65,7 +65,7 @@ $$
 
 Note the minus signs. This tells us how the constraint $$f(u,v,w) = 0$$ requires $$u$$ to change as we vary $$v$$ and $$w$$, and it's ultimately where the minus signs come from. They're _not_ from some relationship between generic partial derivatives, but from the constraint that has to hold between them between them. 
 
-Hence $$u_v = -f_v/f_u$$ and $$u_w = -f_w/f_u$$. Solving for $$dv$$ ad $$dw$$ gives $$v_w = - f_w / f_u$$ and $$w_u = -f_u/f_w$$, and so
+Hence $$u_v = -f_v/f_u$$ and $$u_w = -f_w/f_u$$. Solving for $$dv$$ and $$dw$$ gives $$v_w = - f_w / f_u$$ and $$w_u = -f_u/f_w$$, and so
 
 $$
 \begin{aligned}
@@ -254,8 +254,10 @@ Another way to write these is using my [vector division]({% post_url 2024-09-11-
 
 $$
 \begin{aligned}
-\b{b}^* &= \frac{- \b{c} \cdot (\b{b} \^ \b{c})}{\| \b{b} \^ \b{c} \|^2}\\ 
-\b{c}^* &= \frac{+\b{b} \cdot (\b{b} \^ \b{c})}{\| \b{b} \^ \b{c} \|^2}
+\b{b}^* &= \frac{-\b{c}}{\b{b} \^ \b{c}} \\[10pt]
+&= \frac{- \b{c} \cdot (\b{b} \^ \b{c})}{\| \b{b} \^ \b{c} \|^2} \\[10pt]
+\b{c}^* &= \frac{+\b{b}}{\b{b} \^ \b{c}} \\[10pt]
+&= \frac{\b{b} \cdot (\b{b} \^ \b{c})}{\| \b{b} \^ \b{c} \|^2}
 \end{aligned}
 $$
 
@@ -302,7 +304,7 @@ $$
 
 That seems weird but it turns out to be pretty logical. Note that we can write the factorization of $$\b{a}$$ as an operator acting on $$\b{a}$$:
 
-$$\b{a} = b_a \b{b} + b_c \b{b} = (\b{b} \o \b{b}^* + \b{c} \o \b{c}^*) \cdot (\b{a})$$
+$$\b{a} = a_b \b{b} + a_c \b{c} = (\b{b} \o \b{b}^* + \b{c} \o \b{c}^*) \cdot (\b{a})$$
 
 In this case we know ahead of time that $$\b{a} \in \span(\b{b}, \b{c})$$, but if it did not, this would instead of a projection onto that plane:
 

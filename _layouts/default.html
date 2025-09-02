@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>{{ page.title }}</title>
+  <title>{{ page.title }}</title>
 {% include meta.html %}
   {% if page.math %}<script type="text/javascript" src="/js/katex.min.js"></script>
   <script type="text/javascript" src="/js/auto-render.min.js"></script>
@@ -38,11 +38,15 @@
 {% if page.footnotes %}<script>
 $(document).ready(function() {
   $.inlineFootnotes({columnWidth: 1000});
-  {% if page.code %}
-  hljs.highlightAll();
-  {% endif %}
 });
 </script>{% endif %}
+{% if page.code %}
+<script>
+$(document).ready(function() {
+  hljs.highlightAll();
+});
+</script>
+{% endif %}
 {% include dark.html %}
 {% for js in page.js %}<script type="text/javascript" src="{{ js }}"/></script>{% endfor %}
 {% if page.math %}{% include katex.html %}{% endif %}
