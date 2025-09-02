@@ -33,3 +33,5 @@ collections:
     output: true
   misc:
     output: true
+  code:
+    output: true
