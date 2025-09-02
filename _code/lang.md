@@ -51,7 +51,7 @@ and regex
 z = /[a-z]+/;
 ```
 
-The symbols ", ', and /` are interpolated as "language calls" that kick you over into a new syntax (which may or may not allow interleaving expressions in the host language). 
+The symbols ", ', and /` are interpolated as "language calls" that kick you over into a new syntax (which may or may not allow interleaving expressions in the host language).
 
 Another familiar example is invocations of other programs, which usually have a special syntax for their calling parameters:
 
@@ -67,7 +67,24 @@ db.exec("select * from foo");
 db.selectAll.from("foo");
 ```
 
-In each case, what is _attempting_ to be implemented is a embedding one language inside another. The argument goes: this pattern shows up everywhere, but in an ad-hoc and janky way. We should formalize it as a basic construction that you can extend with your own languages and syntaxes. The argument should be _an actual program in the other language_, just, hosted by the language you're working in. (Or, if you prefer, a program in some other language you made up to make things easier for yourself.)
+In fact all sorts of specialized language syntaxes may be seen as "sublanguages". A list comprehension in Python is a temporary "other language" that you jump into to compactly represent a list:
+
+```python
+[x for x in foo if x % 2 = 0]
+```
+
+And a `for` loop is a "function" that takes a list-comprehension-like condition plus a code block and uses the list to run the block.
+
+```js
+for (x in y) {
+  foo(x)
+}
+```
+
+
+In each case, what is sort of happening is that one language is being embedded inside another. 
+
+So the argument goes: this pattern shows up everywhere, but in an ad-hoc and janky way that you can't implement yourself; it only works if the language provides the syntax for you. Therefore we should formalize it as a basic construction that you can extend with your own languages and syntaxes. The arguments to a function should be able to be _an actual program in the other language_, just, hosted by the language you're working in. And that program could be a known language, like SQL, or it could be some DSL you made up yourself.
 
 In languages a construction like regex or string interpolation usually looks like special nodes in the grammar that kick you into what might be called a "sublanguage". For instance, Regex form a sublanguage of Javascript, Python, or C, with their own grammar, parser, typechecker, and runtime. We would like to be able to implement the same construction in user code. (This is somewhat similar to languages with powerful macro systems (like Lisp), or with powerful template systems (C++), or which otherwise that allow you to extend their syntax at runtime (e.g. Scala, although I don't know much about that)).
 
@@ -97,15 +114,31 @@ The core idea: most of the time you should be inventing DSLs or DSL-evaluators t
 
 I like to use the word "Slang" for a "function-specific programming language". If you write a function so that it accepts a DSL, and then write a syntax for that DSL, then call it using that DSL, then that's a Slang. 
 
-The trick of course is making this all easy, ergonomic, typesafe, etc. I don't know how to do that.
+The trick of course is making this all easy, ergonomic, typesafe, etc. I don't know how to do that yet (although see below). It is clear that you need a way for the type systems and data structures of the languages to interop with each other. It seems likely that what happens is, in order to implement these structures, you have to provide some kind of mapping (implemented as code) between the two languages: program `b \in B` gets translated to some abstract construct `b_A \in A` in order to be used by the host. 
+
+Here's sortof a way of thinking about that...
 
 ------
 
 # 2. Coordinates
 
-Programming languages are to programs as coordinates are to functions. The program, after all, is a function from inputs to outputs. The fully _covariant_ specification of it only knows about its effects and not how it is run, but also it doesn't know about how it is _called_ or _implemented_ or _who runs it_. 
+Programming languages are to programs as coordinates are to functions. In math if a function $$f: X \ra Y$$ is defined on a particular coordinate system $$(x)$$ for $$X$$, then it assigns to each value $$x$$ a value $$f(x) = y \in Y$$. But, there is something fundamentally arbitrary about the coordinate system: you can map it to another coordinate system $$x'$$, and the function should do the exact same thing, meaning that it gets a new definition $$f'(x')$$ defined by
 
-This means that conceptually we can call a function with another function `foo(bar)` and one function could be in principle written in a different language. Runtimes and compilers function as transformations from one coordinate system to another: "given this code, run it in this setting". they are generally very restricted at this, but they don't have to be.
+$$f'(x') = f(x)$$
+
+If $$x' = Ax$$ (for some transformation $$A$$; you can think of $$A$$ as a matrix or something, for example, maybe it rotates the coordinate system $$x$$) then
+
+$$f'(x') = f(A^{-1}(x')) = f(A^{-1} A x) f(x)$$
+
+The function $$f$$ is said to be coordinate _invariant_ (since the choice of $$x$$ or $$x'$$ doesn't affect its result). When the coordinates vary $$x \ra Ax$$, the function is said to be _contravariant_, because it "contravaries", that is, it varies according to the inverse transformation $$f' \equiv f \circ A^{-1}$$. (One can also write down objects that are _covariant_, meaning that they vary $$g' = A g$$). The general rule is that functions that map _into_ the $$x$$ coordinates have covariant representations in coordinates, and functions that map _out of_ the $$x$$ coordinates have contravariant representations in coordinates. 
+
+(Even though the "contravariant" is often the correct term for what functions arewe generally say that representing an object in either of these ways is called being "covariant" or "generally covariant"---basically, covariant objects are ones that "adapt themselves" to changes of coordinate system. This idea is perhaps the most concept in physics; see [general covariance](https://en.wikipedia.org/wiki/General_covariance). Essentially: physics predicts things about reality and only incidentally uses any particular representation in math to do so. Therefore any mathematical representation of a physical system must be generally covariant: switching representations must not change the predictions the theory makes..)
+
+All of this can be translated to programming. A program, after all, is a function from inputs to outputs. The fully covariant model of a program views it only in terms of its externally-visible effects, not how it is implemented. In full generality we think of the program as being invariant with respect to how it is written, how it is called, or who runs it. Essentially: the actual text of a program, and to some extent the details of its runtime, are a choice of (arbitrary) "coordinates" for the program itself. (This is a bit leaky as an abstraction, since you can e.g. get an error or attach a debugger and interact with a program in a way that reveals details of its underlying syntax, and of course the implementation details and runtime determine things like the layout in memory or ordering of internal operations. But it is still useful to think of the program's behavior as being more 'fundamental' than these implementation-specific details.)
+
+All sorts of odd ideas pop up when you start thinking about program this way. Off the top of head:
+
+Conceptually we should be able to call a function from another function with one function could be in principle written in a different language. The two programs are just coordinates for behaviors, after all. Runtimes and compilers function as transformations from one coordinate system to another: "given this code, run it in this setting". At present they are generally very restricted at this, but they don't have to be. In a code block `foo(){ bar() }`, as long as we have 'a' way to run `bar` it shouldn't matter that it is a program in the same language as `foo`. If there are interoperability problems, there should be a general way to fix them.
 
 in particular it should be possible to update the syntax of a language and rewrite all the old code in the new syntax. As long as the underlying functionality is the same, it's the same _program_. This should be generally automatic.
 
@@ -116,12 +149,13 @@ To get to that we need for:
 
 In LOP you expect to write new syntax down all the time. But you will need, eventually, to update that syntax: maybe somebody else implemented the same idea and you want for there to be only one version of it. To do this you want to be able to automatically transform your syntax into theirs (assuming it obeys all the same types). 
 
-A simple example of this: if you copy-paste a data structure from one programming language to another, it should be possible to automatically reformat it as you go. I just had an example of this: I copy-pasted a JSON representation of a CSS style into a CSS document. Although the CSS doc is key-value just like Json, the format is different, I had to remove quotes, replace commas with semicolons, etc. This is fundamentally wrong, though. It should be possible to get it go like this:
+A simple example of this: if you copy-paste a data structure from one programming language to another, it should be possible to automatically reformat it as you go. I just had an example of this: I copy-pasted a JSON representation of a CSS style into a CSS document. (For some reason that example is prompted me to write this whole set of notes.) Although the CSS doc is key-value just like Json, the format is different, so I had to remove quotes, replace commas with semicolons, etc. This is fundamentally wrong. It should be possible to get it go like this:
 
 1. The JS representation of the style is 1:1 with the style (of course)
-2. When copied, instead of the JS _text_, the thing that is copied is "the style itself"
-3. when pasted into CSS, the style gets rendered into the format the CSS file happens to use for that object (which happens to be CSS itself)
+2. When copied, instead of the JS _text_, the thing that is copied is "the style itself", a representation in "abstract CSS".
+3. when pasted into a CSS file, the style gets rendered into the format the CSS file happens to use for that object (which happens to be the CSS text format itself)
 4. had we pasted it somewhere else --- Python, say -- it would get rendered into Python instead.
+5. sublanguages (say, if we have some CSS extension that lets us include variables in it) should "come along for the ride" in this translation.
 
 That is: in each case, the textual representation is "coordinates" for the actual object, and the thing that is modeled is the object itself.
 
@@ -129,7 +163,7 @@ That is: in each case, the textual representation is "coordinates" for the actua
 
 # 3. Universal Programming
 
-Obviously the above "copy-pasting" process requires a lot of pieces to work together in a clockwork fashion: all the grammars and text-transformers for each language have to be able to talk to each other. Probably that's an intractable engineering problem. But I can't help but imagine that in a greenfield ecosystem it should be possible to solve it up front: 
+Obviously the above "copy-pasting" process requires a lot of pieces to work together in a clockwork fashion: all the grammars and text-transformers for each language have to be able to talk to each other. Probably that's an intractable engineering problem. But I can't help but imagine that in a greenfield ecosystem it should be possible to solve it up front (in a language-oriented-programming paradigm)
 
 1. the equivalent of the CSS language was defined by its grammar in the first place
 2. the scripting language that represents it _uses CSS directly_ instead of a data-structure representation _of_ CSS
@@ -145,39 +179,49 @@ Actually that's an interesting example. Keeping with the theme of thinking of "c
 }
 ```
 
-There's an good way to think of this in terms of lienar algebra. You can think of this as a mathematical object in a space $$j \in J$$, which factors into two "orthogonal" pieces, the "Lang" piece plus the "Free" piece.
+There's a way to think of this in terms of linear algebra. You can think of this as a mathematical object $$j$$ in a space $$J$$, which factors into two "orthogonal" pieces, the "Lang" piece plus the "Free" piece.
 
 $$J = L \oplus F$$
 
-Meaning that the code $$j$$ can be written as $$j = (j_L, j_F)$$.
+And then the code $$j$$ can be factored as $$j = (j_L, j_F)$$.
 
-$$j_L$$ represents the part of the code that specifies a concept in the language's internal model. In this case, upon parsing, the program constructs a projection $$j \ra j_l$$ of the _relevant_ pieces of information in $$j$$: the names of the keys and the values on each key. _Maybe_, depending on the implementation, it could also keep track of the order of the keys, if it wants to enforce a contract of adding the elements in exactly the same order (although it should not; JSON is expressly unordered).
+$$j_L$$ represents the part of the code that specifies a concept in the language's internal model. In this case, upon parsing, the program constructs a projection $$J \ra L$$ of the _relevant_ pieces of information in $$j$$: the names of the keys and the values on each key. (Let's assume that this is all it uses. JSON might sometimes include other details like the order of the keys, (although it shouldn't). But this is just an example.)
 
-Any time a projection occurs there is always a kernel: the $$F$$-component of $$j$$, $$j_F = j - j_L$$, consisting of "all the information in $$j$$ that was not in $$j_L$$". In this case: the order of the keys, whether single or double quotes were used, whether the concluding comma occurred, etc.
+Any time a projection occurs there is always a kernel: the $$F$$-component of $$j$$, $$j_F = j - j_L$$, consisting of "all the information in $$j$$ that was not used in $$j_L$$". In this case: the order of the keys, whether single or double quotes were used, whether the concluding comma was there; how the numbers were specified, etc.
+
+Note that we do not have a representation for $$j_L$$ or $$j_F$$. There is not (a priori) a _text_ format for them. Instead, $$j_L$$ is "the stuff that affects the results" and $$j_F$$ is "the stuff that doesn't. We _could_ invent a syntax for them, but that's a completely separate problem.
 
 The idea then is:
 
-1. is that when we copy $$j \in J$$, what we actually want to paste is the data in $$j_L$$
-2. there is a parser that functions as map $$F: J \ra L$$.
-3. the parser should be _pseudoinvertible_: $$L^{-1}L = I_{J_L}$$, so $$L^{-1}$$ produces _one_ piece of code that has $$F \circ L^{-1} = I_L$$
-4. $$L^{-1} \circ L$$ can then be used "code formatter" (like `gofmt`) for the language: by parsing and unparsing the same code, you produce an invariant form.
-5. All of the other variation in $$J$$ therefore lives in $$F = L_{\perp}$$
+1. when we copy $$j \in J$$, what we actually want to paste is the data in $$j_L$$
+2. therefore the parser that functions as map $$P: J \ra L$$
+3. (in practice the actual thing it produces is a data representation $$D$$, such as an AST (at parse time) or in memory (at runtime) for the value of $$j_L$$. We'll ignore this and say that it just produces the behavior, abstractly; we don't care what happens on the other side of parsing.)
+4. The parser should be _pseudoinvertible_: inverting the parsing should produce _one_ piece of code $$P^{-1}(j_L)$$ that has $$P(P^{-1}(j_L)) = j_L$$.
+5. A pseudoinverse produces projections: $$P P^{-1} = I_L$$, the projection onto $$L$$---$$I_L (j) = j_L$$. This gives a textual representation for $$j_L$$: it's a subspace of the overall programming language $$J$$, which has a single unique representation for all programs that map to the same output.
+6. Therefore $$L$$ has a textual representation as a subspace of $$J$$.
+7. $$P^{-1} \circ P$$ can then be used "code formatter" (like `gofmt`) for the language: by parsing and unparsing the same code, you produce an invariant form.
+8. All of the other variation in $$J$$ therefore lives in $$F = L_{\perp}$$, which is the kernel of $$P$$. If two programs with different text have the same behavior, $$P(j_1) = P(j_2)$$, then they have the same $$L$$ coordinate but different $$F$$ coordinates: $$j_1 = (j_{L}, j_{1F}) \neq j_2 = (j_L, j_{2F})$$
 
-Something to note is that the actual "data" of $$j_L$$ and $$j_F$$ does not have to come in a form you recognize. You can use any "coordinate system" for them you want---what's important about them is their definition:
+Note that even though $$P^{-1} P (j) = j_L$$ produces a textual representation of the space $$L$$, this should still be seen as _coordinates_ for $$L$$, rather than the space itself. The space itself is completely abstract, and refers only to the behavior.
 
-1. $$j_L$$ labels the image of $$L(j)$$. All vectors $$j_i$$ which have $$L(j_i) = L(j)$$ have the same $$j_L$$ component. 
+(aside: much of actual linear algebra, and also non-linear algebra for that matter can be understood in the same way, and it's a very valuable perspective---every function may be viewed as factoring its input into a "sum" of a component that does something and a component that doesn't)
 
-  The value of the coordinate _is_ $$L(j)$$, is my point: it's not like a vector $$\b{a} = 3 \x + 5 \y$$ which has an $$\x$$ coordinate. Instead it's a vector $$\b{a}$$ which has $$L(\b{a}) = 3 \x$$, therefore you _say_ it has the $$\x$$ coorddinate of $$a_x = 3$$, and if $$L(\b{b}) = 3 \x$$ also then you say $$b_x = a_x$$. But it could just as easily be $$L(\b{a}) = $$\< some impenetrable binary representation of $$\b{a}$$\>; it is the same concept of a "coordinate". And it's completely possible that somebody else with a slightly different implementation of $$L$$, call it $$L'$$< will find out that $$L'(\b{b}) \neq L'(\b{a})$$, even though they are the same for you.
+1. $$j_L$$ labels the nontrivial part of the image of $$P(j)$$. All vectors $$j_i$$ which have $$L(j_i) = L(j)$$ have the same $$j_L$$ component. 
+
+  The value of the component _is_ $$P(j)$$, which we can represent with $$j_L$$. In the linear algebra picture: it's not like a vector $$\b{a} = 3 \x + 5 \y$$ which "has" an $$\x$$ coordinate. Instead it's a vector $$\b{a}$$ combined with a function $$X(\b{a}) = 3 \x$$, therefore you _say_ it has the $$\x$$ coorddinate of $$a_x = 3$$, and if $$X(\b{b}) = 3 \x$$ also then you say $$b_x = a_x$$. But it could just as easily be that $$X(\b{a}) = $$ produces some other object, not a number. We would still call this the "coordinate" associated with $$X$$. Two objects whose image under $$X$$ are the same are said to have the same $$X$$ coordinate, and if two people have different definitions of $$X$$, they may "see" different $$X$$ coordinates on different objects where we would see the same ones.
 2. $$j_F = j_{\perp L}$$ labels "everything else in $$j$$". The only fully general way to represent this is as $$j - j_L$$, which is to say: store the value of $$j$$ (as text) plus the value of $$j_L$$, treat the result as coordinates on $$j_F$$. Obviously this overspecifies things a bit, but that's what compression is for. 
   For example, suppose the only "degrees of freedom" in the value of $$j$$ are the things mentioned before:
   * the order of the keys
   * single vs double quotes on each key and value
   * whether there's a trailing comma
-  Then you could use just this data as coordinates on $$F$$ and therefore store the result in a reduced form. But if someone comes along and adds another degree of freedom (e.g. how many trailing zeroes in each number `3.14000...`) then that piece of information becomes a coordinate as well. No matter how the information is _represented_, the full data of $$L \oplus F$$ is exactly $$J$$.
+  Then you could use just this data as coordinates on $$F$$ and therefore store the result in a reduced form. But if someone comes along and adds another degree of freedom (e.g. how many trailing zeroes in each number `3.14000...`) then that piece of information becomes a coordinate as well. No matter how the information is _represented_, the full data of $$L \oplus F$$ is exactly $$J$$. Probably it will be very useful to find a compact representation of $$F$$, but it's not necessary: you can always include the full text of $$j$$, and treat all the differences between it and $$j_L$$ as the coordinates for $$j_F$$.
+3. My hunch is that it should be possible to write a parser in a way that allows storing the free parameters in a very compact way. If the only possible variation in JSON is the order of the keys, then you can store, for instance, $$j = (j_L, \sigma)$$ where $$\sigma$$ is a permutation of the keys. That would then be completely isomorphic to $$j$$ because it is possible to reconstruct the full text of $$j$$ from those two pieces of data.
 
-You might have to decide, for each language, which degrees of freedom you _care_ about. For example, in JSON, order of keys might be useful for readability, while the trailing comma, or indent levels, or tabs vs spaces, is something you decide you don't care about. You can "factor" $$F$$ apart like this:
+You might have to decide, for each language, which degrees of freedom you care about. For example, in JSON, order of keys might be useful for readability, while the trailing comma, or indent levels, or tabs vs spaces, is something you decide you don't care about. You can "factor" $$F$$ apart like this:
 
 $$F(j) = [f_1, f_2, f_3, \ldots](j)$$
+
+where each term is one "fact" about $$j$$---maybe $$f_1$$ is the order of the keys, $$f_1$$ is whether there's a single vs double quote vs neither on each key and value, etc.
 
 Once you've done this, you can additionally decide that you want some of the information on $$F$$ to be included in $$L$$ instead. For example, maybe you decide that the order of keys is useful, and should be preserved by the formatter. Suppose $$f_1(j)$$ refers to the order of the keys in $$j$$. Then you can think about "preserving" the order as updating your language $$L$$ to a new language $$L'$$. Originally
 
@@ -189,7 +233,7 @@ $$(L', F')(j) = [(L, f_1) \oplus (f_2, \ldots)](j) = [L \oplus f_1, F \ominus f_
 
 Now $$L$$ is parsing your code but making note of the order of the keys in each object in order to be able to reproduce them. Now, if you copy-paste this object into another _language_, you can paste a version that has the keys in the same order, even though that is not part of the original invariant representation $$L(j)$$.
 
-In a full general programming setting, there is not going to be a single $$L$$ or $$F$$. Instead there's a whole pipeline of translations, each of which has its own instance of the same linear algebra. In a simple model suppose you are thinking of a block of code $$j$$ as being run by a single language $$L$$, so the resulting space is $$L(j)$$. Well, it may turn out that $$L = A \circ B \circ C$$. Each individual step will have its own projection operation, inverse, and kernel. Our job is to model each stage correctly. It should be possible, upon each step of transformation $$j_i \ra j_{i+1} = L_i (j_i)$$, to use a **common format** for understanding the "gestalt" of the value of $$j_{i+1}$$---that is, to agree on a coordinate system. Every language has most of the same data structures, after all. A list is a list.
+In a full general programming setting, there is not going to be a single $$L$$ or $$F$$. Instead there's a whole pipeline of translations, each of which has its own instance of the same linear algebra. In a simple model suppose you are thinking of a block of code $$j$$ as being run by a single language $$L$$, so the resulting space is $$L(j)$$. Well, it may turn out that $$L = A \circ B \circ C$$. Each individual step will have its own projection operation, inverse, and kernel. Our job is to model each stage correctly. It should be possible, upon each step of transformation $$j_i \ra j_{i+1} = L_i (j_i)$$, to use a **common format** for understanding the "gestalt" of the value of $$j_{i+1}$$---that is, to agree on a coordinate system. Every language has most of the same data structures, after all. A list is a list, regardless of whether you use square brackets or parens, or whether you represent default to representing it internally by a linkedlist or an arraylist or something else.
 
 And even in cases where the structures aren't the same, they usually should be. Suppose there are three different languages that each represent, say, a block of CSS. In CSS itself some value might be in CSS-specific units like `10px`, which show up in the grammar of CSS itself---the string `10xp` might literally not parse at all in this language. In Json, the units are stored as a string, and `10p` and `10px` are equally allowed. Maybe there is a third representation in a parser: maybe you have a parser which reads the Json and transforms `10px` into (a data structure represented by) `Unit(10, PIXEL)` but turns `10p` into `Error('<some string', line 10, pos 5)`. 
 
