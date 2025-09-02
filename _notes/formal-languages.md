@@ -4,6 +4,7 @@ title: "Formal Languages"
 math: true
 footnotes: true
 tag: tech
+code: true
 ---
 
 An outline of formal language concepts and cached intuitions, for my reference.

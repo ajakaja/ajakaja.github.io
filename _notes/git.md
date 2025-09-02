@@ -4,6 +4,7 @@ title: "A Very Brief Shell and Git Reference"
 math: true
 footnotes: true
 tag: tech
+code: true
 ---
 
 For non-technical Mac users who want to dip their toes in being technical.

@@ -8,7 +8,6 @@
 @import "reset";
 @import "variables";
 @import "jquery.inline-footnotes";
-@import "highlights";
 
 // Syntax highlighting @import is at the bottom of this file
 
@@ -32,7 +31,8 @@
   --header: #333;
   --subheader: #666;
   --divider: #999;
-  --code-background: #efefef;
+  --code-background: #eee;
+  --code-color: #424;
   --sidebar:  linear-gradient(to bottom, var(--border) 0 300px, transparent 500px);
   --invert: "";
 }
@@ -524,6 +524,21 @@ footer {
   text-align: left;
   font-style: italic;
   font-size: 0.9em;
+}
+
+code {
+  font-family: monospace;
+  line-height: 1.5;
+}
+
+// inline code
+code:not(.hljs) {
+  border: 1px solid transparent;
+  background-color: var(--code-background);
+  color: var(--code-color);
+  padding: 3px;
+  border-radius: 6px;
+  line-height: 1.7;
 }
 
 code.language-plaintext {

@@ -2,6 +2,7 @@
 layout: blog
 title: "Data Science Isn't"
 tags: tech
+code: true
 ---
 
 A classic use of data science at a technology company is a feature A/B test to improve revenue or engagement metrics.

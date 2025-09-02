@@ -4,6 +4,7 @@ title: "Lang"
 math: true
 aside: true
 footnotes: true
+code: true
 ---
 
 collection of ideas, loosely connected. Not written in a particular order.
@@ -15,12 +16,14 @@ collection of ideas, loosely connected. Not written in a particular order.
 
 I imagine an alternate programming paradigm in which the basic object is not "functions" but "languages". In places were you would normally call a function `f(x)`, the behavior of `f()` is instead open a context in which you can run code in another language. So if you are writing code in language $$A$$, the arguments to the function is a block of code in $$B$$, which may be related or totally unrelated to $$A$$:
 
+
+ 
 ```js
 // example language A
 const x = 2 + 2;
 foo(
   // example language B
-  // notice this uses the value of x (somehow translated into a format B can yuse)
+  // notice this uses the value of x (somehow translated into a format B can use)
   // syntax highlighting and typechecking should work in language B here
   <div>x</div>
   // it may also make sense for A and B to be interleaved
@@ -51,7 +54,7 @@ and regex
 z = /[a-z]+/;
 ```
 
-The symbols ", ', and /` are interpolated as "language calls" that kick you over into a new syntax (which may or may not allow interleaving expressions in the host language).
+The symbols `"`, `'`, and `/` are interpolated as "language calls" that kick you over into a new syntax (which may or may not allow interleaving expressions in the host language).
 
 Another familiar example is invocations of other programs, which usually have a special syntax for their calling parameters:
 
@@ -253,8 +256,6 @@ Of course we cannot say that there is "only one" CSS grammar. Specs change, impl
 In full generality, we might say that "it's parsers all the way down". All code functions as coordinates, all transformations from one representation to another function as parsers, and it _should_ be possible to leverage this universality to get rid of a lot of the muck out there. "Universal programming" is my word for this idea: that there is an incredible amount of redundancy in the way programming works, and by stepping out and mathematically modeling what's going on, we might be able to eliminate 99% of the complexity.
 
 After all I just wanted to copy a list of keys and values from one file to another. There is no reason why that should be hard!
-
-
 
 ------
 

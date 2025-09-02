@@ -3,6 +3,7 @@ layout: blog
 title: "An Interesting List of React Mistakes"
 tags: tech
 footnotes: true
+code: true
 ---
 
 Look, a list of simple things that you and your colleagues should know to avoid, but which you will still do by accident from time-to-time and eventually spend months of your life, in total, tracking down.

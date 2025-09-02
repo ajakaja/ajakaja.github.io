@@ -3,13 +3,15 @@ description: Math Rants and More
 author: Alex Kritchevsky
 markdown: kramdown
 timezone: utc
-highlighter: rouge
+highlighter: nil
 kramdown:
  parse_block_html: true
  input: GFM
  math_engine: mathjax
  hard_wrap: true
- syntax_highlighter: rouge
+ syntax_highlighter: nil
+ syntax_highlighter_opts:
+   disable : true
 
 # github pages enforces these, may as well use them locally
 lsi: false
