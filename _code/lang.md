@@ -13,57 +13,91 @@ collection of ideas, loosely connected. Not written in a particular order.
 
 # 1. Context/Language Oriented Programming
 
-The basic object is not "functions" but "languages". The default operation is not calling a function `f(x)`,  but rather running code in the context of a function: `f( x() )`. a variable `x` in a function means "fetch the value of `x`", and then this operation may be inlined to produce the function evoked with a particular value--but it could also come from a context, class body, environment, etc. Most functions are going to just be regular functions, of course, but you have the option of doing whatever you want here. For example you may run function with various substitutions made:
+I imagine an alternate programming paradigm in which the basic object is not "functions" but "languages". In places were you would normally call a function `f(x)`, the behavior of `f()` is instead open a context in which you can run code in another language. So if you are writing code in language $$A$$, the arguments to the function is a block of code in $$B$$, which may be related or totally unrelated to $$A$$:
 
-```
+```js
+// example language A
+const x = 2 + 2;
 foo(
- arg1=x,
- arg2=y
- network=(stub)
+  // example language B
+  // notice this uses the value of x (somehow translated into a format B can yuse)
+  // syntax highlighting and typechecking should work in language B here
+  <div>x</div>
+  // it may also make sense for A and B to be interleaved
+  <div>{x+1}</div>
 )
 ```
 
-All of the function's dependencies are either resolved by you or by the context you're running in. Often it will be desirable for functions to _not_ resolve dependencies from your context automatically: for example, to run a function in a "sandbox", disable its access to anything except its explicit imports, and require any external functionality be provided by the caller. It should be easy to do this. Also gives an easy way to create unit tests.
+This may be seen as a generalization of constructions like JSX, which interops Javascript with something like HTML.
 
-The concept of running a function is therefore a special case of running a subprogram. In many cases you really do want "call a function", so there should be a simple syntax for that... but you always have the option of running it as a subprogram instead. (e.g. you can run it async, run it in a time-sliced way, run it one step at a time, run it in a debugger, run it in a time-traveling way, etc).
+The "function" `foo()` here may be interpreted as a translation from the syntax and internal AST of HTML to the syntax/AST of JS. It doesn't necessarily need to be implemented as such---maybe it is just a placeholder, and the compiler takes care of the translation. But it functions that way.
 
-This provides an interpretation of e.g. command line tools with their flags: `foo --bar` means "run `foo` but with the value of `bar` specified. it doesn't have to be an _argument_ to `foo`, instead it is a value used in the language `foo` that takes a default "unset" value but is therefore exported by the interface. naturally in many cases the options you pass in may be functions instead of flags.
+A regular function call is therefore a trivial language in which the allowed language $$B$$ is "expressions in $$A$$"
 
-The core idea: most of the time you should be inventing syntax that directly and elegantly captures the intension of your code. I call this "language-oriented programming" or LOP.
+```js
+const x = foo(2 + 2);
+```
 
-Related: it needs to be very easy to write new syntax and new languages embedded in the one you're already using.
+Other familiar examples of this construct include string formatters and interpolations
 
-Most of the time you should not be writing _runtime code_ for anything other than the core runtime logic of your program. Instead, your program should do exactly what it wants to do, and delegate to other "syntax" for anything that it needs to do that. Then _those_ get implemented in such a way that they could run at runtime or compile time or whatever you want.
+```js
+x = "a + \\b";
+y = `a + ${2+2}`;
+```
 
-"Comingling" levels is not okay because it breaks this abstraction. For example, a function should never refer to an environment variable in the course of doing something. Instead, it should refer to an _ambient_ variable, and then someone else explains that that ambient variable comes from the environment. A general principle:
+and regex
 
-* no procedure should both use a value and explain where it comes from
+```js
+z = /[a-z]+/;
+```
 
-(not all of the ideas here are part of LOP or coupled to it. "Context-oriented" programming might be the better word, since it captures the whole list more effectively.)
+The symbols ", ', and /` are interpolated as "language calls" that kick you over into a new syntax (which may or may not allow interleaving expressions in the host language). 
 
-In the extreme case, the language for a function may be unrelated to the language that the parent is in. For example, RegEx are a separate language that is often embedded in other programs. It should be possible to write your _own_ syntax for regex (which parses to the same internal structure) and then use that instead.
+Another familiar example is invocations of other programs, which usually have a special syntax for their calling parameters:
 
-Examples of DSLs that are often embedded in larger programs:
+```js
+z = exec("ls -a");
+```
 
-* regex
-* grammars
-* markup formats (like markdown)
-* file formats
-* config file layouts
-* format strings
-* SQL and other query languages
-* subcommands, such as invoking Awk or Curl or etc from a script
-* producing one language in another, e.g. emitting HTML from Python
-* passing configurations to another program. For instance if `foo()` calls `bar()`, then it might take `foo(bar_options={})`---these
+and also the various ways of creating queries like SQL commands at runtime
 
-The commonality across all languages is: some other piece of code (or equipment) is going to process this and produce a series of instructions that _it_ understands. Well: it should not matter how you _format_ that series of instructions; what's important is what it translates into. So the right export in a DSL is
+```js
+db.exec("select * from foo");
+// or
+db.selectAll.from("foo");
+```
 
-1. the commands it actually runs
-2. a convenient syntax for specifying those commands
+In each case, what is _attempting_ to be implemented is a embedding one language inside another. The argument goes: this pattern shows up everywhere, but in an ad-hoc and janky way. We should formalize it as a basic construction that you can extend with your own languages and syntaxes. The argument should be _an actual program in the other language_, just, hosted by the language you're working in. (Or, if you prefer, a program in some other language you made up to make things easier for yourself.)
 
-And these should be factored apart: the function only cares about the commands; the syntax is there to make it easier to use.
+In languages a construction like regex or string interpolation usually looks like special nodes in the grammar that kick you into what might be called a "sublanguage". For instance, Regex form a sublanguage of Javascript, Python, or C, with their own grammar, parser, typechecker, and runtime. We would like to be able to implement the same construction in user code. (This is somewhat similar to languages with powerful macro systems (like Lisp), or with powerful template systems (C++), or which otherwise that allow you to extend their syntax at runtime (e.g. Scala, although I don't know much about that)).
 
-I like to use the word "Slang" for a "function-specific programming language". If you write a function so that it accepts a DSL, and then write a syntax for that DSL, then call it using that DSL... that's a Slang. 
+In this paradigm still have the option of calling a function in the classic sense: `foo()` can still mean "go execute the text of the function `foo`", and `foo(x)` can still mean "go execute `foo()` with the value of its first argument set to `x`". In those cases the "program" is trivial, while the "interpreter" (i.e. the function) does all the work.
+
+But, if "invoking languages" is treated as more primitive than calling functions, then we may think of ways to extend the `foo(x)` syntax. We interpret `foo(x)` as being a sugar for `eval(foo, [x]))`. We have the option of swapping out the choice of the function `eval`: instead of running the function the normal way---line by line, with `x` substituted for its argument---we could run it some other way. We could
+
+* replace all of its imports with stubs (as in a unit test)
+* run it in an async manner, blocking on I/O
+* run it in a sandbox that doesn't have access to anything except an explicit list of dependencies
+* run it with only some of its arguments filled out, producing some kind object that represents a partially-completed computation
+* run it until one of its arguments is actually used, then pause waiting for that argument to be provided
+* record every state change it makes as it goes and have the option of playing them all back later
+* provide a function `x()` instead of a value, which returns a different value every time it is invoked
+* or whatever else 
+
+We end up thinking about `foo(x)` like this:
+
+1. The caller of this function is _already_ a language, running in some sort of `eval()` function
+2. The default meaning of `foo(x)` is: "tell my own language to jump over to running `foo` with the value `x` substituted into its arguments, then replaced this value with the return value of that function"
+3. The meaning of `(x)` is that it is a very simple DSL for producing the one-element list `[x]`. We could easily assign variables by name instead, however
+3. But other meanings of `eval` are also possible, which we should have the option of writing out explicitly.
+
+The goal here is to make a programming paradigm that makes all of this _possible_, in order to get away from the "linear, imperative" mode of programming. Actually writing a debugger should be as simple as replacing the default `eval` with another one; actually writing a unit test should be as simple as running a function in a sandbox; these things should not be seen as large technical undertakings but throwaway tasks you could implement in fifteen minutes.
+
+The core idea: most of the time you should be inventing DSLs or DSL-evaluators that directly and elegantly captures the intension of your code. I call this "language-oriented programming" or LOP.
+
+I like to use the word "Slang" for a "function-specific programming language". If you write a function so that it accepts a DSL, and then write a syntax for that DSL, then call it using that DSL, then that's a Slang. 
+
+The trick of course is making this all easy, ergonomic, typesafe, etc. I don't know how to do that.
 
 ------
 
