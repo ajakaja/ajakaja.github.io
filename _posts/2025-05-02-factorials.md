@@ -550,7 +550,7 @@ $$
 
 # 4. Infinite negative factorials
 
-Another interesting thing that this cleared up for me is why a naive attempt at defining _negative_ double factorials as divergent products fails. 
+Another interesting thing that this cleared up for me is why a naive attempt at defining _negative_ double factorials as divergent products fails. To describe this let's first talk about trying to make sense of negative integer factorials.
 
 One can "sorta" define the factorials of negative numbers, if you're willing to ignore the fact that the definition seems absurd. Using $$0! = 0 \times (-1)! = 0 \times (-1) \times (-2)!$$, etc, you get
 
@@ -558,7 +558,7 @@ $$(-n)! = \frac{0!}{0 \times (-1) \times \ldots (-n+1)} = \frac{(-1)^{n-1}}{0 \t
 
 If $$(n)$$ consists of $$n$$ multiplications in the $$+1$$ direction starting at (the edge of) $$0!$$, then for whatever reason this definition $$(-n)!$$ consists of $$n$$ divisions in the opposite direction: first divide by $$0$$, then by $$1$$, etc, until you get $$(-1)^{n-1}/(0 \times (n-1)!)$$.
 
-I don't know what that means exactly or how to reckon with the infinity or whether the number of negative signs is correct (should the zero contribute one also?). But I do suspect the value should turn out to somehow be meaningful, because it closely matches the coefficients you get on iterated derivatives. Recall that the $$k$$th antiderivative of $$1$$ is
+I don't know what that means exactly or how to reckon with the infinity or whether the number of negative signs is correct (should the zero contribute one also?). But I do suspect the value should turn out to somehow be meaningful, because it closely matches the coefficients you get on iterated derivatives. Recall that the $$k$$'th antiderivative of $$1$$ is
 
 $$D^{-k} (1) = \frac{x^k}{k!}$$
 
@@ -568,9 +568,11 @@ It seems like not a coincidence that the $$k$$'th derivative of $$\ln (x)$$ (so 
 
 $$\p^{k} (\ln x) = \frac{(-1)^{k-1} (k-1)!}{x^k} \? \frac{1}{0} \times \frac{x^{-k}}{(-k)!}$$
 
-Nothing rigorous, but the similarity is too strong to not mean _something_.[^deriv] If nothing else, this justifies poking around with what happens when we extend the products in factorials into the negative numbers like $$1! \? 1 \times 0 \times (-1) \times (-2)!$$. Also, here is a not-so-disagreeable interpretation of why it's a division by zero: it's purely due to the fact that 
+(Or maybe it is better to talk about the $$k$$'th derivative of $$1/x$$ and then make $$(-k)!$$ off-by-one from $$(+k)!$$? I dunno.)
 
-[^deriv]: It has something to do with the fact that $$(-\p)$$ is adjoint to $$(\p)$$, i.e. $$\< f, \p g \> = \int f \p g \d x = \< - \p f, g \>$$ (for functions which vanish at the endpoints). Meaning 
+Nothing rigorous, but the similarity is too strong to not mean _something_. If nothing else, this justifies poking around with what happens when we extend the products in factorials into the negative numbers like $$1! \? 1 \times 0 \times (-1) \times (-2)!$$. 
+
+Also, here is a not-so-disagreeable interpretation of why there's a division by zero: it's purely due to the fact that 
 
 $$n! \equiv \prod_0^n d^{\times}(n!)$$
 
@@ -578,9 +580,23 @@ Which means if $$n$$ is negative it's really ending up as a denominator:
 
 $$(-n)! \equiv \prod_0^{-n} d^{\times}(n!) = \frac{1}{\prod_{-n}^0 d^{\times}(n!)}$$
 
-So if you were to instead keep all you integration-ranges positively oriented you never have to deal with the division-by-zero (just the fact that the whole product is zero, I guess). It is a bit odd, though, that it only goes down to $$(n-1)!$$ when inverted. I guess the idea is that $$n! 1 \times 2 \times \ldots$$ kinda starts on the right "edge" of $$0$$--it is the thing that you multiply $$0!$$ to get to $$n!$$. So $$(-n)!$$ should also start on the right edge; the first term is division by $$0$$, the second division by $$-1$$, etc. It ends up seeming, oddly, like $$(1/2)$$ is the origin of the whole thing.
+So if you were to instead keep all you integration ranges positively-oriented then you would never have to deal with the division-by-zero (just the fact that the whole product is zero, I guess). 
 
-Anyway, when you try to do this same expansion with double-factorials, you quickly run into problems, which might make you think that the whole idea should be tossed out. One advantage of the product-integral interpretation of factorials is that it seems to fix the problems that arise, leaving intact the hunch that negative-integer factorials might be a valid concept.
+Once you think of factorials as integrals, it starts to make more sense to see all of these definitions and identities as having more to do with the algebra of integration ranges---that is, [chains](https://en.wikipedia.org/wiki/Chain_(algebraic_topology)) of simplexes---rather than having anything to do with the factorial function at all.
+
+{% include image.html filename="2025-05-02-factorials/negative.png" width="600px" %}
+
+So we are interpolating a function that we only know one thing about---that going from $$n-1$$ to $$n$$ involves multiplying by $$n$$---and then we basically extrapolate from that fact, plus some assumptions, what it should do everywhere else. Since the integration range "starts" at $$0$$ when going up, it "ends" at $$0$$ going down, and we have to include the $$\times 0$$ somewhere to go into the negatives, assuming the pattern holds. Since the integration range "ends" at $$\times n$$ going up, it "ends" at $$\times (-n)$$ going down, but since that's the left side of an interval instead of the right side, we don't include the $$\times (-n)$$ in the product, which is why $$(-n)!$$ seems to make sense starting with the factor $$\times (-n+1)$$ (or $$\times \frac{1}{(-n+1)}$$, if you are doing the integral backwards, like the factorial seems to imply).
+
+Note that it is probably also possible to identify $$n! \equiv \prod_{-\infty}^n d^{\times}(n!)$$ and $$(-n)! \equiv \prod_{-\infty}^{-n} d^{\times}(n!)$$, if you assume that $$0! \equiv \prod_{-\infty}^0 d^{\times}(0!) = 1$$ in some sense. But I would rather not try to not to assign a value to $$0!$$ without having some geometric interpretation of what it's supposed to mean in terms of permutation.
+
+Also, just for the record, if ever we _do_ have an interpretation in terms of permutations, it could certainly turn out to be the case that this generalization to $$(-n)!$$ is wrong. There's really no way to say without having a sense of what it is actually supposed to be counting.
+
+---------
+
+# 5. Negative Double Factorials
+
+When you try to do that same expansion with double-factorials you quickly run into problems, which might make you think that the whole idea should be tossed out. One advantage of the product-integral interpretation of factorials is that it seems to fix the problems that arise, leaving intact the hunch that negative-integer factorials might be a valid concept.
 
 Specifically, it seems like it should be true in some sense that $$1!! = 1 \times (-1) \times (-3) \times \ldots$$ to infinity. Yet it is easy to find expressions using this that are clearly false based on this, for instance
 
@@ -645,7 +661,7 @@ I wish I knew what to make of the oscillating $$1/0 = \infty$$ terms, though. My
 
 -------
 
-# 5. Multifactorials in general
+# 6. Multifactorials in general
 
 It's clearly possible to generalize all of this to higher-dimensional multifactorials, such as the triple factorial $$n!!! = n \times (n-3) \times \ldots$$, the quadruple factorial $$n!!!!$$, etc. Suppose we define $$F_1(x) = x!$$ and $$F_2(x) = x!!$$ and continue from there. We define that for all positive integers $$k$$:
 
@@ -678,7 +694,7 @@ $$\frac{F_k(b)}{F_k(a)} = \prod_a^b d^{\times} F_k(n)$$
 
 The difference between $$F_k(n)$$ and $$n!!^{(k) \text{ times}}$$, however, is the extrapolation of the difference between $$(n!!)_{\text{old}}$$ and $$(n!!)_{\text{new}}$$, which is that the "classical" double-factorial's integration bound is offset
 
-$$(kn+a)!!^{(k)} \equiv \frac{F_k(kn+a)}{F_k(a-k)}$$
+$$(kn+a)!!^{(k \text{ times})} \equiv \frac{F_k(kn+a)}{F_k(a-k)}$$
 
 For instance
 
@@ -767,7 +783,7 @@ None of this matters that much. I really do suspect that there's some valid mean
 
 ------
 
-# 6. Euler's Construction of $$\Gamma$$
+# 7. Euler's Construction of $$\Gamma$$
 
 One thing that I like about this $$F_k$$ notation is that it organizes exactly what the "unusual" parts of multi-factorials are, after which the rest of their properties are trivial. In particular, other than the difference between $$1!! = F_{2}(1) / F_2(-1)$$ and $$2!! = F_2(2)/F_2(0)$$, multifactorials of all orders are exactly the same as rescaled single-factorials via $$F_k(n) = k^{n/k} F_1(n/k)$$. So all of the behavior of $$F_k(n)$$ for all $$k$$ and $$n$$ is fully defined by the values of $$F_1(x)$$ on $$x \in (-1, 0)$$, or equivalently, by $$\Gamma(z)$$ for $$\text{Re}(z) \in (0,1)$$.
 
@@ -818,7 +834,7 @@ I dunno. Maybe? I don't find this construction much more philosophically satisfy
 
 -----
 
-# 7. Interleaving Products
+# 8. Interleaving Products
 
 One other avenue of investigation.
 
@@ -970,7 +986,7 @@ The factor $$2 \pi / \sqrt{3}$$ is the only interesting/ non-trivial part of it.
 
 --------
 
-# 8. Ending
+# 9. Ending
 
 This is all very tedious, of course. The reason for going through it at all is that there is some kind of curious structure here that I'm trying to tease out. It is weird, of course, that $$(-1/2)! = \sqrt{\pi}$$. But it also weird that products of more fractions, such as $$(-1/3)!(-2/3)!$$, end up proportional to $$2\pi^{(k-1)/2}$$. Whatever mysterious interpretation is out there for fractional factorials that connects them (presumably) to fractional 'sets' and fractional 'permutations'... it needs to explain this behavior. Why do products of fractions cancel out to give factors of $$\pi$$? In what way are we "factoring" spheres when we evaluate $$x!$$ on a fraction? These are questions that as far as I know are unanswered, and are possibly silly, but they don't seem _that_ silly; there has got to be some kind of geometric structure underlying this that is more satisfying than "it is the log-convex interpolation of $$x!$$" or "it is the analytic continuation of $$x!$$" or "it's what you get by manipulating a bunch of infinite products" or whatever.
 
