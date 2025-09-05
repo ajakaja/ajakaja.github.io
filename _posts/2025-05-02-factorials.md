@@ -19,6 +19,17 @@ And in particular, the factorials we're used to have an implicit lower bound on 
 
 <!--more-->
 
+Among other things, we find that the double-factorial function's annoying asymptotic properties are entirely due to the fact that, for odd numbers, the integral stops at $$1$$ instead of $$0$$, so one piece is missing:
+
+$$\prod_0^1 d^{\times}(n!!) = \sqrt{2} \prod_0^{1/2} d^{\times}(n!) = \sqrt{2} (\frac{1}{2})!= \sqrt{\frac{\pi}{2}}$$
+
+Other than that, $$n!!$$ is just a rescaled version of $$n!$$: 
+
+$$n!! =2^{n/2} n! \times  (\sqrt{\frac{\pi}{2}})^{n \text{ odd}} $$
+
+Of course, factorials aren't _really_ integrals over continuous ranges, because they're only defined on positive integers, so this is all hand-waving. We can't claim to really know what the integrand $$d^{\times}(n!)$$ actually "is" at a sub-integer level: $$\Gamma(n+1)$$ is _one_ interpolation that has some nice properties, but there is still something arbitrary about it, so we shouldn't get too sure of ourselves; when we say that $$(\frac{1}{2})! = \frac{\sqrt{\pi}}{2}$$, we're really claiming something about our favorite choice of interpolation for $$n!$$, not about $$n!$$ itself. There are good reasons for it, but it is still a choice until we have an argument otherwise. More on that towards the end, and maybe more in the future.
+
+
 ---------
 
 # 1. Investigations into double factorials
@@ -307,7 +318,7 @@ The first-order approximation of this, the equivalent of the limit expression fo
 $$
 \begin{aligned}
 \lim_{dx \ra 0} \sqrt[dx]{d^{\times} f} &= \lim_{dx \ra 0} [1 + \frac{d(\ln f(x))}{dx} dx]^{1/dx} \\
-&= e^{d\ln f(x) dx} \\
+&= e^{d\ln f(x)/dx} \\
 &= e^{f'(x)/f(x)}
 \end{aligned}
 $$
@@ -324,11 +335,11 @@ $$
 $$
 
 
-You can look some of explicit product integral forms up [here](https://en.wikipedia.org/wiki/List_of_derivatives_and_integrals_in_alternative_calculi). For example it says that 
+You can look some of explicit product integral forms up [here](https://en.wikipedia.org/wiki/List_of_derivatives_and_integrals_in_alternative_calculi). For example it says that (in our notation)
 
-$$\Gamma^*(x) = \sqrt[dx]{d^{\times}(\Gamma(x))} = e^{\Psi(x)}$$
+$$d^{\times}\Gamma(x)^{1/dx}  = e^{\Psi(x)}$$
 
-where $$\Psi(x)$$ is the "digamma function" $$\Psi(z) = \Gamma'(x) / \Gamma(x)$$. But that's trivial: it's $$ e^{f'(x)/f(x)}$$ for $$f = \Gamma$$. So there's nothing gained by using the explicit expression for $$d^{\times}(\Gamma(x))$$. Our only purpose in using $$d^{\times}$$ is express these things as integrals.
+where $$\Psi(x)$$ is the "digamma function" $$\Psi(z) = \Gamma'(x) / \Gamma(x)$$. But that's trivial: it's $$ e^{d \ln f/dx}$$ for $$f(x) = \Gamma(x)$$. So there's nothing gained by using the explicit expression for $$d^{\times}(\Gamma(x))$$. Our only purpose in using $$d^{\times}$$ is express these things as integrals.
 
 ------------
 
@@ -929,29 +940,35 @@ Which an equation for the interleaved $$1$$-factorials offset by $$\frac{1}{k}$$
 
 $$F_1(n) F_1(n-\frac{1}{3}) F_1(n- \frac{2}{3}) = \frac{(3n)!}{3^{3n}} F_1(-\frac{1}{3}) F_1(-\frac{2}{3})$$
 
-So once again, all of the structure of $$x!$$ / $$F_k(x)$$ seems to come from the values in that interval. The general case takes products of $$k$$ factorials to a single $$(kn)$$ factorial times some coefficients:
+So once again, all of the structure of $$x!$$ and $$F_k(x)$$ seems to come from the values in that interval. The general case takes products of $$k$$ factorials to a single $$(kn)$$ factorial times some coefficients:
 
 $$\prod_{j=0}^{k-1} F_1(n - \frac{j}{k}) = \frac{(kn)!}{k^{kn}} \prod_{j=0}^{k-1} F_1(-\frac{j}{k})$$
 
-It is possible to simplify this further by finding the value of the product on the RHS, but the technique is rather arcane and doesn't use any of the basic properties of factorials that we've looked at so far. It's not very satisfying, but I'll include it for completeness. This version comes from Artin, which I've translate from $$\Gamma$$ back to factorials (which makes it a bit simpler, also...); some other proofs can be found [here](https://math.stackexchange.com/questions/752895/ahlfors-prove-the-formula-of-gauss).
+It is possible to simplify this further by finding the value of the product on the RHS giving the "[Gauss Multiplication Formula](https://en.wikipedia.org/wiki/Multiplication_theorem#Gamma_function%E2%80%93Legendre_formula)", but the technique is much less simple than the algebraic manipulations we've been doing so far. It's not very satisfying, but I'll include it for completeness. This version comes from Artin's tiny book on the Gamma function. I've translated the notation from $$\Gamma$$ back to factorials (which makes it a bit simpler to read, also...); some other proofs can be found [here](https://math.stackexchange.com/questions/752895/ahlfors-prove-the-formula-of-gauss).
 
 However you define $$x!$$, it must be that
 
 $$(x+m)! = x! (x+1)(x+2) \cdots (x+m)$$
 
-Hence
+And also that
 
-$$x! \approx \frac{(x+m)!}{(x+1)(x+2) \cdots (x+m)}$$
+$$(x+m)! = m! (m+1) (m+2) \cdots (m+x)$$
 
-As in the previous section, this is valid as $$m \ra \infty$$, in which case we can then approximate $$(x+m)! \approx m^x m!$$ because $$m \gg x$$:
-
-$$F_1(x) = x! = \lim_{m \ra \infty} \frac{m^x m!}{(x+1)(x+2) \cdots (x+m)}$$
-
-In this form we can compute that product, because when we multiply this together for every $$F_1(-\frac{j}{k})$$, the denominators interleave to form a single giant factorial, and the numerators can be grouped together via $$\prod m^{-j/k} = m^{-[0+1+2+\ldots+k-1]/k} = m^{-k(k-1)/2k} = m^{-(k-1)/2}$$:
+Since both hold as $$m \ra \infty$$ and (we postulate) should hold for non-integer $$x$$, we rearrange things to get an approximation for a non-integer factorial $$x!$$ in terms of an integer factorial $$m!$$ when $$m \gg x$$. We use the approximation $$(m+x)! \approx m^x m! $$:
 
 $$
 \begin{aligned}
-\prod_{j=0}^{k-1}  F_1(-\frac{j}{k}) &= 
+x! &\approx \frac{(x+m)!}{(x+1)(x+2) \cdots (x+m)} \\[2ex] 
+&\approx \frac{m^x m!}{(x+1)(x+2) \cdots (x+m)} \\[2ex] 
+&= \lim_{m \ra \infty} \frac{m^x m!}{(x+1)(x+2) \cdots (x+m)}
+\end{aligned}
+$$
+
+In this form we can compute that product, because when we multiply this together for every $$F_1(-\frac{j}{k})$$, the denominators interleave to form a single giant factorial, and the numerators can be grouped together via $$\prod m^{-j/k} = m^{-[0+1+2+\ldots+k-1]/k} = m^{-k(k-1)/2k} = m^{-(k-1)/2}$$. The algebra is hard to watch:
+
+$$
+\begin{aligned}
+\prod_{j=0}^{k-1} (-\frac{j}{k})! &= 
 \lim_{m \ra \infty} \prod_{j=0}^{k-1}  \frac{m^{-j/k} m!}{(-\frac{j}{k}+1)(-\frac{j}{k}+2) \cdots (-\frac{j}{k}+m)} \\
 &= 
 \lim_{m \ra \infty} \prod_{j=0}^{k-1} \frac{k^m m^{-j/k} m!}{(-j+k)(-j+2k) \cdots (-j+km)} \\
@@ -959,22 +976,23 @@ $$
 \end{aligned}
 $$
 
-Plugging in Stirling's approximation again miraculously cancels out all the $$m$$s, as it must:
+But eventually plugging in Stirling's approximation miraculously cancels out all the $$m$$s, as it ought to:
 
 $$
 \begin{aligned}
-\prod_{j=0}^{k-1}  F_1(-\frac{j}{k}) &= 
+\prod_{j=0}^{k-1}  (-\frac{j}{k})! &= 
 \lim_{m \ra \infty} \frac{\cancel{k^{km}} m^{-(k-1)/2} (\sqrt{2 \pi m})^k \cancel{(m/e)^{km}}}{\sqrt{2 \pi k m} \cancel{(km/e)^{km}}} \\
 &= \lim_{m \ra \infty} \frac{m^{1/2 - k/2 + k/2 - 1/2} (2\pi)^{k/2 - 1/2}}{k^{1/2}} \\
 &= (2 \pi)^{(k-1)/2} k^{-1/2}
 \end{aligned}
 $$
 
-Which finally gives the general rule for interleaved factorials, the [Gauss Multiplication Formula](https://en.wikipedia.org/wiki/Multiplication_theorem#Gamma_function%E2%80%93Legendre_formula) (which is normally written slightly differently, of course)
+Which finally gives the general rule for interleaved factorials, the Gauss Multiplication Formula (which is normally written slightly differently, of course)
 
 $$
 \begin{aligned}
-\prod_{j=0}^{k-1} F_1(n - \frac{j}{k}) &=  (2 \pi)^{\frac{k-1}{2}} k^{-kn -\frac{1}{2}} (kn)!
+\prod_{j=0}^{k-1} (n-\frac{j}{k})! &=  (2 \pi)^{\frac{k-1}{2}} k^{-kn -\frac{1}{2}} (kn)! \\
+&= \frac{(2 \pi)^{\frac{k-1}{2}}}{\sqrt{k}} \frac{(kn)!}{k^{kn}}
 \end{aligned}
 $$
 
@@ -982,13 +1000,13 @@ For the $$k=3$$ example, this is
 
 $$n!!! \times (n - \frac{1}{3})!!! \times (n-\frac{2}{3})!!! = \frac{2 \pi}{\sqrt{3}}  \frac{(3n)!}{3^{3n}}$$
 
-The factor $$2 \pi / \sqrt{3}$$ is the only interesting/ non-trivial part of it.
+The $$2 \pi / \sqrt{3}$$ factor is the only non-trivial part; the other term just comes from $$F_k(n) = k^{n/k} F_1(n/k)$$.
 
 --------
 
 # 9. Ending
 
-This is all very tedious, of course. The reason for going through it at all is that there is some kind of curious structure here that I'm trying to tease out. It is weird, of course, that $$(-1/2)! = \sqrt{\pi}$$. But it also weird that products of more fractions, such as $$(-1/3)!(-2/3)!$$, end up proportional to $$2\pi^{(k-1)/2}$$. Whatever mysterious interpretation is out there for fractional factorials that connects them (presumably) to fractional 'sets' and fractional 'permutations'... it needs to explain this behavior. Why do products of fractions cancel out to give factors of $$\pi$$? In what way are we "factoring" spheres when we evaluate $$x!$$ on a fraction? These are questions that as far as I know are unanswered, and are possibly silly, but they don't seem _that_ silly; there has got to be some kind of geometric structure underlying this that is more satisfying than "it is the log-convex interpolation of $$x!$$" or "it is the analytic continuation of $$x!$$" or "it's what you get by manipulating a bunch of infinite products" or whatever.
+This is all very tedious. The reason for going through it at all is that there is some kind of curious structure here that I'm trying to tease out. It is weird, of course, that $$(-1/2)! = \sqrt{\pi}$$. But it also weird that products of more fractions, such as $$(-1/3)!(-2/3)!$$, end up proportional to $$2\pi^{(k-1)/2}$$. Whatever mysterious interpretation is out there for fractional factorials that connects them (presumably) to fractional 'sets' and fractional 'permutations'... it needs to explain this behavior. Why do products of fractions cancel out to give factors of $$\pi$$? In what way are we "factoring" spheres when we evaluate $$x!$$ on a fraction? These are questions that as far as I know are unanswered, and are possibly silly, but they don't seem _that_ silly; there has got to be some kind of geometric structure underlying this that is more satisfying than "it is the log-convex interpolation of $$x!$$" or "it is the analytic continuation of $$x!$$" or "it's what you get by manipulating a bunch of infinite products" or whatever.
 
 In any case it is clear that multifactorials are closely related to regular factorials/Gamma functions, times some coefficients, and all the interesting behavior shows up in the definitions of $$x!$$ on $$(-1, 0)$$, or equivalently $$\Gamma$$ on $$(0,1)$$. (See also the multifactorial stuff on [here](https://en.wikipedia.org/wiki/Double_factorial#Alternative_extension_of_the_multifactorial), which is presumably equivalent to how I've done things here.)
 
@@ -996,23 +1014,24 @@ By the way: a lot of these identities are not really factorial-specific; they're
 
 $$\sum_{i=0, \text{ even}}^{2k} S_i + \sum_{i = -1, \text{ odd}}^{2k-1} S_i = \sum_{i = -1}^{n} S_i$$
 
-So one could factor all of the factorials out of the factorial identities and create a "calculus of series", which the factorials are just one example of. It's going to look a whole lot like differential calculus, I guess. One can mostly interpret "skipping every other number" as a change of variables $$\int d(x) \ra \int d(2x)$$. But summations and products, unlike integrals, can have totally different contributions on the integer vs. non-integer terms, whereas the calculus of smooth functions, at least, cannot. I suppose the general idea is something like:
+And the general operation of interpolating sequences to non-integers is not really factorial-specific either. starting with $$f(n)$$ defined on non-integers, to compute $$f(x)$$ for non-integer $$x$$ you:
 
-1. Start with a smooth function $$f(x)$$, and its derivative $$f'(x)$$.
-2. Create another function $$g_k(x) = \int_{x-k}^x f'(x) \d x$$, so each value of $$g_k(x)$$ summarizes the preceding $$k$$-width range of $$f'(x)$$.
-3. Now $$g_k(x)$$ obeys a new calculus: $$f(x) = f(x-k) + g_k(x)$$, and all values of $$f$$ can be written as sums of $$g_k$$ plus some base values.
-4. And all of the above also holds for product integrals or any other iteratable binary operation. In particular, factorials are reconstructed by taking $$f(x) = \Gamma(x+1)$$ and $$g_1(x) = \prod_{x-1}^x \Gamma'(x+1) \d x = \Gamma(x+1)/\Gamma(x) = x$$.
+1. Find the asymptotic behavior $$\lim_{n \ra \infty} f(n)$$
+2. Assume that the asymptotics hold for $$f(n+x)$$
+3. Compute $$f(x) = f(n)^{-1} \circ f(n+x)$$ and call this the value of $$f(x)$$, where the inverse could be addition, multiplication, or whatever you want.
 
-I hope to look into all this a lot more later on, because the factorial theory is clearly harder to understand due to be conflated with this other theory. I expect that it will also be interesting to connect it to the theory of [interpolating infinite sums](https://mpmueller.net/fractional-sums/), coarse-graining (which it is), and generally to the evaluation of divergent series. (Probably there is also a theory of this out there? But I'm not sure how to find it.) If nothing else, it will be good to factor the interpolation of sums / recursions out of the rest of the theory, to identify which parts are truly unique to the factorial function.
+As far as I can tell this is what $$\Gamma$$ is doing, and when you put it like this it's kind of a hard sell to say that it means something at all, given that the result you get is very specific on how you parameterize $$f$$ (changes of variables will give different answers, I mean). Except, of course, for the fact that the $$n$$-spheres have $$\Gamma$$s in their volumes! That's really what ties it all together---we have "experimental evidence" (of a sort) that this process gives something meaningful in the case of $$n!$$, so we're forced to take it seriously. Curious.
 
-The one thing I have not looking into here is "reflection" identity for $$\Gamma$$,
+Incidentally this way of interpolation has been studied; I'm aware of a somewhat-obscure theory of [interpolating infinite sums](https://mpmueller.net/fractional-sums/) and there are plenty of other references to people looking into it. I hope to study it in more detail later but this is long enough and my brain hurts.
+
+By the way, the most important thing that I have not looked into yet is the "reflection" identity for $$\Gamma$$,
 
 $$\Gamma(z) \Gamma(1-z) = \frac{\pi}{\sin \pi z}$$
 
-I do think that this might be the key to unlocking everything. There is a nice way to rewrite it (once you drop the $$\Gamma$$s---I keep feeling like $$\Gamma(z) = (z-1)!$$ is just getting in the way of everything) as
+And I do think that this might be the key to unlocking everything. There is a nice way to rewrite it (...once you drop the $$\Gamma$$ notation. I keep feeling like thy're just getting in the way of everything...) as
 
 $$(z)! (-z)! = \frac{\pi z}{\sin \pi z} = i \frac{(\pi z) - (-\pi z)}{e^{i \pi z} - e^{-i \pi z}}$$
 
-Which seems to imply some structure: it's the ratio of (a difference of translations by $$\pi z$$) to (a difference of rotations by $$\pi z$$). This feels like a hint. Perhaps it is also related to the interpretation of $$\Gamma$$ as an integral transform against the Haar measure $$d(\ln x)$$. If a factorial is (something like) a change-of-basis coefficient between $$\bb{R}^+$$ and $$\bb{R}^{\times}$$, but then we interpolate $$\bb{R}^{\times}$$ into rotations, then... I don't know... maybe that explains how it ends up dealing with $$\sqrt{\pi}$$ or factorizations of it? Gosh, I have no idea, I'm completely lost.
+Which seems to imply some structure: it's the ratio of (a difference of translations by $$\pi z$$) to (a difference of rotations by $$\pi z$$). Which feels like an important clue. Perhaps it is also related to the interpretation of $$\Gamma$$ as an integral transform against the Haar measure $$d(\ln x)$$. If a factorial is (something like) a change-of-basis coefficient between $$\bb{R}^+$$ and $$\bb{R}^{\times}$$, but then we interpolate $$\bb{R}^{\times}$$ into rotations, then... I don't know... maybe that explains how it ends up dealing with $$\sqrt{\pi}$$ or factorizations of it? Gosh, I have no idea, I'm completely lost.
 
-One thing is for sure. No numbers of complex-analytic factoids about $$\Gamma$$ are going to settle all this. Some kind of philosophical model of what it means to interpolate between permutations is going to have to show up, eventually, somewhere, and that probably means contending with something that acts like a fractional set.
+One thing is for sure. No number of complex-analytic factoids about the continuation of $$\Gamma$$ are going to settle all this. Some kind of philosophical model of what it means to interpolate between permutations is going to have to show up, eventually, somewhere, and that probably means contending with something that acts like a fractional set.
