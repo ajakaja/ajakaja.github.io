@@ -189,7 +189,7 @@ You are free to assume that this exists as long as $$\b{b}$$ and $$\b{c}$$ are l
 
 <aside class="toggleable" id="Projections" placeholder="<b>Aside</b>: Dual basis constructions <em>(click to expand)</em>">
 
-Suppose we want to extract the $$a_b$$ comonent in 
+Suppose we want to extract the $$a_b$$ component in 
 
 $$\b{a} = a_b \b{b} + a_c \b{c}$$
 
