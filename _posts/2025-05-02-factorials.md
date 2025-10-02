@@ -53,9 +53,10 @@ All of the structure here arises from $$(-1/2)! = \sqrt{\pi}$$: since $$n! = n (
 
 The value of $$(-1/2)!$$ seems essentially connected to the Gaussian integral $$\int_{-\infty}^{\infty} e^{-x^2} \d x = \sqrt{\pi}$$; more on that another time. For now we take it as a given. Incidentally, other non-half-integer fractions of $$\Gamma$$ also take values that sometimes have legible expressions (see [here](https://en.wikipedia.org/wiki/Particular_values_of_the_gamma_function); for instance $$\Gamma(\frac{1}{4})$$ is connected to the [Leminscate](https://en.wikipedia.org/wiki/Lemniscate) in a manner similar to how $$\Gamma(\frac{1}{2})$$ is connected to spheres)... but they are much harder to compute or make sense of.
 
-(After this, I am going to not use the symbol $$\Gamma$$ very much, except for connecting things to existing formulae. I prefer to write $$n!$$ for $$\Gamma(n+1)$$, even for non-integers. After all there's no problem to analytically extending a function outside of the domain where it makes discrete sense (we do it for $$e^x$$ and $$\ln x$$ without much complaint), and I never liked that $$\Gamma(x+1) = x!$$ is defined to be off-by-one from factorials anyway.[^gamma]
+Aside: After this, I am going to not use the symbol $$\Gamma$$ very much, except for connecting things to existing formulae. I prefer to write $$n!$$ for $$\Gamma(n+1)$$, even for non-integers. After all there's no problem to analytically extending a function outside of the domain where it makes discrete sense (we do it for $$e^x$$ and $$\ln x$$ without much complaint), and I never liked that $$\Gamma(x+1) = x!$$ is defined to be off-by-one from factorials anyway.[^gamma]
 
-It should be mentioned, however that $$\Gamma$$ is not the _only_ interpolation of factorials to non-integers, since that is not sufficient to define it---after all any function which is zero on the integers can be added to it freely. The other ways of doing it are called [Pseudogamma](https://en.wikipedia.org/wiki/Pseudogamma_function) functions. $$\Gamma$$ is the choice that satisfies a certain criteria, the [Bohr-Mollerup conditions](https://en.wikipedia.org/wiki/Bohr%E2%80%93Mollerup_theorem): it is the only "log-convex" interpolation of $$n!$$ to non-integers, whatever that means. In any case, all the other places $$\Gamma$$ shows up proves to me that it is the _correct_ generalization of factorials in some important sense, so I'm happy to say that $$x! \equiv \Gamma(x+1)$$ throughout this article.)
+It should be mentioned, however that $$\Gamma$$ is not the _only_ interpolation of factorials to non-integers, since that is not sufficient to define it---after all any function which is zero on the integers can be added to it freely. The other ways of doing it are called [Pseudogamma](https://en.wikipedia.org/wiki/Pseudogamma_function) functions. $$\Gamma$$ is the choice that satisfies a certain criteria, the [Bohr-Mollerup conditions](https://en.wikipedia.org/wiki/Bohr%E2%80%93Mollerup_theorem): it is the only "log-convex" interpolation of $$n!$$ to non-integers, whatever that means. In any case, all the other places $$\Gamma$$ shows up proves to me that it is the _correct_ generalization of factorials in some important sense, so I'm happy to say that $$x! \equiv \Gamma(x+1)$$ throughout this article. (End of aside.)
+
 
 [^gamma]: Apparently it's largely a historical accident, due to Legendre, and around the same time Gauss had introduced $$\Pi(z) = \Gamma(z+1)$$ for the same function. We might want to try to use that: the one advantage of $$\Gamma$$ or $$\Pi$$ is that it uses the standard function notation, meaning we can write things like $$\Pi^{(2)}(z)$$ or $$\Pi_{z}(z)$$ etc.) But I'm gonna stick with $$z!$$ for now. Incidentally there are at least some good reasons to prefer $$\Gamma$$; see see [this](https://mathoverflow.net/questions/20960/why-is-the-gamma-function-shifted-from-the-factorial-by-1). TLDR: it can be interpreted as an integral transform $$\int_0^{\infty} t^z e^{-t} d(\ln t)$$ with respect to what's called the [Haar Measure](https://en.wikipedia.org/wiki/Haar_measure) $$d(\ln t)$$. I'll hopefully look at this more in a subsequent article.
 
@@ -265,13 +266,9 @@ $$\prod_{-1/2}^n d^{\times(x!)} = \frac{n!}{(-1/2)!} = \frac{n!}{0!} \frac{0!}{(
 
 Varying the endpoints will allow us to account for the discrepancies in the definitions. Throughout this discussion we'll use the factorial symbol to refer to product integrals of $$d^{\times}(x!)$$ which have their basepoint at $$0$$, but as we will see, plenty of factorials are better thought of as having different base-cases than that.
 
-Here is some exposition on the multiplicative calculus. In fact it is completely isomorphic the same thing as the familiar additive calculus, under the substitution 
+Here is some exposition on the multiplicative calculus. In fact it is completely isomorphic to the familiar additive calculus, under the substitution $$\ln \prod_a^b d^{\times} f = \int_a^b d(\ln f)$$. But since everything looks weirder in the multiplicative notation, I will go over a few things.
 
-$$\ln \prod_a^b d^{\times} f = \int_a^b d(\ln f)$$
-
-But since everything looks weirder in the multiplicative notation, I will go over a few things.
-
-First, note that there are several possible alternative calculi. The one we're talking about here uses
+First, note that there are several possible multiplicative calculi (calcula? calculuses?). The one we're talking about here uses
 
 $$d^{\times} f \equiv \frac{f(x+dx)}{f(x)}$$
 
@@ -589,17 +586,17 @@ $$n! \equiv \prod_0^n d^{\times}(n!)$$
 
 Which means if $$n$$ is negative it's really ending up as a denominator:
 
-$$(-n)! \equiv \prod_0^{-n} d^{\times}(n!) = \frac{1}{\prod_{-n}^0 d^{\times}(n!)}$$
+$$(-n)! \equiv \prod_0^{-n} d^{\times}(n!) = \frac{1}{\prod_{-n}^0 d^{\times}(n!)} = \frac{1}{\frac{0!}{(-n)!}}$$
 
-So if you were to instead keep all you integration ranges positively-oriented then you would never have to deal with the division-by-zero (just the fact that the whole product is zero, I guess). 
+So if you were to instead keep all you integration ranges positively-oriented, considering $$\prod_{-n}^0$$ instead of $$\prod_0^{-n}$$, then you would never have to deal with the division-by-zero (just the fact that the whole product is zero, I guess). 
 
-Once you think of factorials as integrals, it starts to make more sense to see all of these definitions and identities as having more to do with the algebra of integration ranges---that is, [chains](https://en.wikipedia.org/wiki/Chain_(algebraic_topology)) of simplexes---rather than having anything to do with the factorial function at all.
+In fact, once you think of factorials as integrals, it starts to make more sense to see all of these definitions and identities as having more to do with the algebra of integration ranges---that is, [chains](https://en.wikipedia.org/wiki/Chain_(algebraic_topology)) of simplexes---rather than having anything to do with the factorial function at all.
 
 {% include image.html filename="2025-05-02-factorials/negative.png" width="600px" %}
 
 So we are interpolating a function that we only know one thing about---that going from $$n-1$$ to $$n$$ involves multiplying by $$n$$---and then we basically extrapolate from that fact, plus some assumptions, what it should do everywhere else. Since the integration range "starts" at $$0$$ when going up, it "ends" at $$0$$ going down, and we have to include the $$\times 0$$ somewhere to go into the negatives, assuming the pattern holds. Since the integration range "ends" at $$\times n$$ going up, it "ends" at $$\times (-n)$$ going down, but since that's the left side of an interval instead of the right side, we don't include the $$\times (-n)$$ in the product, which is why $$(-n)!$$ seems to make sense starting with the factor $$\times (-n+1)$$ (or $$\times \frac{1}{(-n+1)}$$, if you are doing the integral backwards, like the factorial seems to imply).
 
-Note that it is probably also possible to identify $$n! \equiv \prod_{-\infty}^n d^{\times}(n!)$$ and $$(-n)! \equiv \prod_{-\infty}^{-n} d^{\times}(n!)$$, if you assume that $$0! \equiv \prod_{-\infty}^0 d^{\times}(0!) = 1$$ in some sense. But I would rather not try to not to assign a value to $$0!$$ without having some geometric interpretation of what it's supposed to mean in terms of permutation.
+Note that it is probably also possible to identify $$n! \equiv \prod_{-\infty}^n d^{\times}(n!)$$ and $$(-n)! \equiv \prod_{-\infty}^{-n} d^{\times}(n!)$$, if you assume that $$0! \equiv \prod_{-\infty}^0 d^{\times}(0!) = 1$$ in some sense. But I would rather not try to not to assign a value to $$0!$$ without having some geometric interpretation of what it's supposed to mean in terms of permutations.
 
 Also, just for the record, if ever we _do_ have an interpretation in terms of permutations, it could certainly turn out to be the case that this generalization to $$(-n)!$$ is wrong. There's really no way to say without having a sense of what it is actually supposed to be counting.
 
@@ -998,9 +995,13 @@ $$
 
 For the $$k=3$$ example, this is
 
-$$n!!! \times (n - \frac{1}{3})!!! \times (n-\frac{2}{3})!!! = \frac{2 \pi}{\sqrt{3}}  \frac{(3n)!}{3^{3n}}$$
+$$n! \times (n - \frac{1}{3})! \times (n-\frac{2}{3})! = \frac{2 \pi}{\sqrt{3}}  \frac{(3n)!}{3^{3n}}$$
 
-The $$2 \pi / \sqrt{3}$$ factor is the only non-trivial part; the other term just comes from $$F_k(n) = k^{n/k} F_1(n/k)$$.
+The $$2 \pi / \sqrt{3}$$ factor is the only non-trivial part; the other term just comes from $$F_k(n) = k^{n/k} F_1(n/k)$$. That is, all we have really learned is that
+
+$$0! \times (-\frac{1}{3})! \times (-\frac{2}{3})! = \frac{2 \pi}{\sqrt{3}}$$
+
+So Gauss's multiplication identity is entirely a statement about the relations between the values of $$x!$$ for $$x \in (-1, 0)$$, and although asymptotic expansions are used in the proof, they really have nothing to do with the actual value.
 
 --------
 
@@ -1028,10 +1029,10 @@ By the way, the most important thing that I have not looked into yet is the "ref
 
 $$\Gamma(z) \Gamma(1-z) = \frac{\pi}{\sin \pi z}$$
 
-And I do think that this might be the key to unlocking everything. There is a nice way to rewrite it (...once you drop the $$\Gamma$$ notation. I keep feeling like thy're just getting in the way of everything...) as
+And I do think that this might be the key to unlocking everything. There is a nice way to rewrite it (...once you drop the $$\Gamma$$ notation. I keep feeling like it's just getting in the way of everything...) as
 
 $$(z)! (-z)! = \frac{\pi z}{\sin \pi z} = i \frac{(\pi z) - (-\pi z)}{e^{i \pi z} - e^{-i \pi z}}$$
 
 Which seems to imply some structure: it's the ratio of (a difference of translations by $$\pi z$$) to (a difference of rotations by $$\pi z$$). Which feels like an important clue. Perhaps it is also related to the interpretation of $$\Gamma$$ as an integral transform against the Haar measure $$d(\ln x)$$. If a factorial is (something like) a change-of-basis coefficient between $$\bb{R}^+$$ and $$\bb{R}^{\times}$$, but then we interpolate $$\bb{R}^{\times}$$ into rotations, then... I don't know... maybe that explains how it ends up dealing with $$\sqrt{\pi}$$ or factorizations of it? Gosh, I have no idea, I'm completely lost.
 
-One thing is for sure. No number of complex-analytic factoids about the continuation of $$\Gamma$$ are going to settle all this. Some kind of philosophical model of what it means to interpolate between permutations is going to have to show up, eventually, somewhere, and that probably means contending with something that acts like a fractional set.
+One thing is for sure: no number of complex-analysis factoids about the analytic continuation of $$\Gamma$$ are going to settle this satisfactorily. Some kind of philosophical model of what it means to interpolate between permutations is going to have to show up, eventually, somewhere, and that probably means contending with something that acts like a fractional set. Which I've just spent like a month trying to do and I'm legitimately worried I broke something in my brain by wandering too far into unknown waters. So that will have to wait for some indefinite point in the future.
