@@ -9,25 +9,34 @@ tag: math
 
 In which we try to figure out what what's going on with double-factorials.
 
-This was formerly part of the [previous post]({% post_url 2025-04-29-n-spheres %}) about $$n$$-spheres, but I started adding things to it and decided to split them up. It is not necessary to read the original previous post first, but this does sort of function as a sequel to it since it's the direction my investigation has gone. Both articles are essentially unwieldy dumps for notes and calculations that I've done and make a record of. But maybe they'll be useful as a survey of various related ideas, if anyone else is curious about this and comes across them.
+This was formerly part of the [previous post]({% post_url 2025-04-29-n-spheres %}) about $$n$$-spheres, but I started adding things to it and decided to split them up. It is not necessary to read the original previous post first, but it is sort of a sequel, since it's the direction my investigation has gone. Both articles are essentially unwieldy dumps for notes and calculations that I've done and wanted a record of, but maybe they'll be useful as a survey if anyone else is curious about the same stuff and happens to come across this.
 
 My main finding is that I now believe we should be thinking of factorials as multiplicative integrals, like this:
 
 $$\frac{n!}{m!} = \prod_m^n d^{\times}(x!)$$
 
-And in particular, the factorials we're used to have an implicit lower bound on that integral: the value $$n!$$ is really $$\frac{n!}{0!} = \prod_0^n d^{\times}(x!)$$. This means we never really "see the value" of $$0!$$, because $$0!$$ is equivalent to $$0!/0! = 1$$. This interpretation seems to remove a bunch of ambiguity in the various definitions/analytic continuations of factorials on non-integer numbers (as well as explaining why those definitions don't mess up the usual combinatoric sense of factorials).
+And in particular, the factorials we're used to have an implicit lower bound on that integral: the value $$n!$$ is really $$\frac{n!}{0!} = \prod_0^n d^{\times}(x!)$$. This means we never really "see the value" of $$0!$$, because $$0!$$ is equivalent to $$0!/0! = 1$$. This interpretation seems to remove a bunch of ambiguity in the various definitions/analytic continuations of factorials on non-integer numbers, as well as explaining why those definitions don't mess up the usual combinatoric sense of factorials. It also completely tidies up the arguments for why $$0! = 1$$.
 
 <!--more-->
 
-Among other things, we find that the double-factorial function's annoying asymptotic properties are entirely due to the fact that, for odd numbers, the integral stops at $$1$$ instead of $$0$$, so one piece is missing:
+Among other things, we find that the double-factorial function's annoying asymptotic properties are entirely due to the fact that, for odd numbers, the double factorial's integral form stops at $$1$$ instead of $$0$$:
+
+$$
+n!! \equiv \begin{cases}
+\prod_0^n d^{\times}(n!!) & n \text{ even} \\[1em]
+\prod_1^n d^{\times}(n!!) & n \text{ odd} \\
+\end{cases}
+$$
+
+And in particular, the "missing" piece of the odd double factorial is
 
 $$\prod_0^1 d^{\times}(n!!) = \sqrt{2} \prod_0^{1/2} d^{\times}(n!) = \sqrt{2} (\frac{1}{2})!= \sqrt{\frac{\pi}{2}}$$
 
-Other than that, $$n!!$$ is just a rescaled version of $$n!$$: 
+Other than this discrepancy $$n!!$$ is just a rescaled version of $$n!$$: 
 
-$$n!! =2^{n/2} n! \times  (\sqrt{\frac{\pi}{2}})^{n \text{ odd}} $$
+$$n!! = 2^{n/2} n! \times  (\sqrt{\frac{\pi}{2}})^{n \text{ odd}} $$
 
-Of course, factorials aren't _really_ integrals over continuous ranges, because they're only defined on positive integers, so this is all hand-waving. We can't claim to really know what the integrand $$d^{\times}(n!)$$ actually "is" at a sub-integer level: $$\Gamma(n+1)$$ is _one_ interpolation that has some nice properties, but there is still something arbitrary about it, so we shouldn't get too sure of ourselves; when we say that $$(\frac{1}{2})! = \frac{\sqrt{\pi}}{2}$$, we're really claiming something about our favorite choice of interpolation for $$n!$$, not about $$n!$$ itself. There are good reasons for it, but it is still a choice until we have an argument otherwise. More on that towards the end, and maybe more in the future.
+Of course, this is hand-waving, because factorials aren't _really_ integrals over continuous ranges: they're only defined on positive integers. It is more accurate to say that $$\Gamma(x+1)$$ is _one_ interpolation that has some nice properties, but we can't claim to really know what the integrand $$d^{\times}(x!)$$ actually "is" at a sub-integer level: when we say that $$(\frac{1}{2})! = \frac{\sqrt{\pi}}{2}$$, we're really claiming something about our favorite choice of interpolation for $$n!$$, not about $$n!$$ itself. But this line of investigation gives a counterpoint: since the value of $$n!!$$ turns out to be related to the value of $$(\frac{1}{2})!$$, this gives an argument for why $$\Gamma(x)$$ turns out to be canonical (and equivalently triple factorials, etc, give relations between values of $$\Gamma(p/q)$$ for other values of $$q$$). More on that towards the end, and maybe more in the future.
 
 
 ---------
@@ -708,7 +717,7 @@ For instance
 
 $$4!!!_{\text{old}} = (4) \times (1) \equiv \frac{4 \times 1 \times (-2)!!!}{(-2)!!!} = \prod_{-2}^4 d^{\times} F_3(x) = \frac{F_3(4)}{F_3(-2)}$$
 
-Which means that $$F_k(n)$$ and $$(n)!!^{(k)}_{\text{old}}$$ differ by a value of $$F_k(a)$$ with $$a = n \mod k - k \in (-k, 0)$$:
+Which means that $$F_k(n)$$ and $$(n)!!^{(k)}_{\text{old}}$$ differ by a value of $$F_k(a)$$ with $$a = n \text{ mod } k - k \in (-k, 0)$$:
 
 $$(kn+a)!!^{(k)}_{\text{old}} = \frac{F_k(kn+a)}{F_k(a - k)}$$
 
@@ -752,9 +761,9 @@ $$
 \end{aligned}
 $$
 
-Note that we don't _have_ to have $$F_k(0) = 1$$ or any value at all really: the only thing we ever see are the relative values $$F_k(n)/F_k(0)$$ anyway. All we have done here is follow the mindless construction of replacing a function $$f_k(x) = x!!!^{(k)}$$ with $$F_k(x) = \prod_0^n d^{\times}(f+k(x)(x))$$, which can be done for any function really, it has nothing to do with factorials per se. The argument for doing so is that the it compartmentalizes the odd behavior of the double-factorial: the discrepancy between $$x!!$$ on even and odd numbers was completely and entirely due to the difference between $$F_2(-1)$$ and $$F_2(0)$$; other than that is it simply and mindlessly found by $$F_k(x) = k^{x/k} F_(x)$$.
+Note that we don't _have_ to have $$F_k(0) = 1$$ or any value at all really: the only thing we ever see are the relative values $$F_k(n)/F_k(0)$$ anyway. All we have done here is follow the mindless construction of replacing a function $$f_k(x) = x!!!^{(k)}$$ with $$F_k(x) = \prod_0^n d^{\times}(f_k(x))$$, which can actually be done for any function---it has nothing to do with factorials per se. The argument for doing so is that the it compartmentalizes the odd behavior of the double-factorial: the discrepancy between $$x!!$$ on even and odd numbers was completely and entirely due to the difference between $$F_2(-1)$$ and $$F_2(0)$$; other than that is it simply $$F_k(x) = k^{x/k} F_1(x)$$.
 
-(This generalization is on Wikipedia [also](https://en.wikipedia.org/wiki/Double_factorial#Alternative_extension_of_the_multifactorial), but in a different notation. I prefer my way of thinking about it with integrals, though.) 
+(This generalization is on Wikipedia [also](https://en.wikipedia.org/wiki/Double_factorial#Alternative_extension_of_the_multifactorial), but in a different notation. I find it all much more natural in terms of integrals, though.) 
 
 Armed with this $$F_k(x)$$, we can immediately write down such silly generalizations of the factorial as the "half"-factorial:
 
@@ -781,9 +790,9 @@ F_{-1}(n) &\? n \times (n+1) \times (n+2) \times \ldots \\
 \end{aligned}
 $$
 
-It depends whether you interpret $$F_k(n)$$ as "start at $$n$$ and go down $$k$$ at a time" versus "start at $$0$$ and go up $$k$$ at a time", and then additionally, whether things should be off by one if you're going in the opposite direction. Maybe a reasonable thing to do is to attempt to get $$F_k(n) = k^{n/k} F_1(n/k)$$ still hold. 
+It depends whether you interpret $$F_k(n)$$ as "start at $$n$$ and go down $$k$$ at a time" versus "start at $$0$$ and go up $$k$$ at a time", and then additionally, whether things should be off by one if you're going in the opposite direction. 
 
-But $$F_{-1}(n) = (-1)^{-n} F_1(-n)$$ is kinda weird too, since $$F_1(-n) \? (-1)^{n-1}/(0 \times (n-1)!)$$ is supposed to be that weird infinite negative factorial, which implies $$F_{-1}(n) = -1/(0 \times (n-1)!)$$. The negative sign seems wrong, which makes me suspect this is not the right answer (although it seems to be there because we're not considering the $$0$$ as negative, which, it could be, because the whole thing is erroneously multiplying zero anyway). And even if you get over that, you'll run into trouble with the other negatives: $$F_{-2}(n) = (-1)^{-n/2} F_1(-2n)$$ is going to be multiplying each term by $$\pm i$$, I suppose? What could that possible mean?
+Maybe a reasonable thing to do is to attempt to get $$F_k(n) = k^{n/k} F_1(n/k)$$ still hold? But $$F_{-1}(n) = (-1)^{-n} F_1(-n)$$ is kinda weird too, since $$F_1(-n) \? (-1)^{n-1}/(0 \times (n-1)!)$$ is supposed to be that weird infinite negative factorial, which implies $$F_{-1}(n) = -1/(0 \times (n-1)!)$$. The negative sign seems wrong, which makes me suspect this is not the right answer (although it seems to be there because we're not considering the $$0$$ as negative, which, it could be, because the whole thing is erroneously multiplying zero anyway). And even if you get over that, you'll run into trouble with the other negatives: $$F_{-2}(n) = (-1)^{-n/2} F_1(-2n)$$ is going to be multiplying each term by $$\pm i$$, I suppose? What could that possible mean?
 
 None of this matters that much. I really do suspect that there's some valid meaning to $$(-1)!$$ and $$F_{-1}(1)$$ and the others... but without an actual _model_ of what these objects are supposed to be, it's all just numerology. In every setting factorials are implicitly or explicitly connected to the cardinalities of permutations. For $$(-1)!$$ to be taken seriously, there must be an interpretation as the cardinality of a permutation of, like, a set with a negative number of elements, or something like that, and I'm not aware of such a thing.[^neg]
 
@@ -823,11 +832,11 @@ But it can also be taken as a limiting expression, which ends up matching a comm
 
 $$(n + a)! \approx (n+1)^a n! \approx n^a n!$$
 
-(Everyone writes this with $$(n+1)^a$$; I suppose that just makes it slightly more accurate.) Then we postulate that this ought to also hold for non-integer $$a$$, in particular
+(For reasons I'm not sure about, people usually proceed using the middle $$(n+1)^a$$ term. I suppose that just makes it slightly more accurate? But we only need the $$n^a$$ version for this.) Then we postulate that this ought to also hold for non-integer $$a$$, in particular
 
-$$(n+\frac{1}{2})! \approx (n+1)^{1/2} n! \approx (\sqrt{n}) n!$$
+$$F_1(n + \frac{1}{2}) = (n+\frac{1}{2})! \approx n^{1/2} n! =  (\sqrt{n}) n!$$
 
-Then we define $$(-1/2)!$$ by approximating that denominator, and in the limit $$k \ra \infty$$ it should become exact:
+We then _define_ $$(-1/2)!$$ by using this approximation in the denominator. In the limit $$k \ra \infty$$ it should become exact:
 
 $$
 \begin{aligned}
@@ -846,34 +855,36 @@ I dunno. Maybe? I don't find this construction much more philosophically satisfy
 
 One other avenue of investigation.
 
-As mentioned above, two double factorials can be interleaved to give one single-factorial.
+As mentioned earlier, two double factorials on integers can clearly be interleaved to give one single factorial.
 
 $$(2k)!!_{\text{old}} (2k-1)!!_{\text{old}} = (2k)!$$
 
-Obviously this is also possible for (standard) multifactorials of any order:
+And this should obviously also be possible for (standard) multifactorials of any order:
 
 $$(4!!!)(3!!!)(2!!!) = (4 \times 1) (3) (2) = 4!$$
 
-How do we understand this in terms of $$F_2(n)$$? In the new notation it becomes
+How do we understand this in terms of $$F_k(n)$$? In the new notation the interleaving of double factorials becomes
 
 $$
 \begin{aligned}
 (2k)!!_{\text{old}} (2k-1)!!_{\text{old}} &= \big[ \prod_0^{2k} d^{\times}(x!!)\big] \big[ \prod_{-1}^{2k-1} d^{\times}(x!!) \big] \\
-&= 2^{2k} [\prod_0^{k} d^{\times}(x!)] [\prod_{-1/2}^{k-1/2} d^{\times}(x!)] 
+&= 2^{2k} [\prod_0^{k} d^{\times}(x!)] [\prod_{-1/2}^{k-1/2} d^{\times}(x!)] = \prod_0^k d^{\times}(x!) \\
+\frac{F_2(2k)}{F_2(0)} \frac{F_2(2k-1)}{F_2(-1)} &= 2^{2k} \frac{F_1(k)}{F_1(0)} \frac{F_1(k-1/2)}{F_1(-1/2)} = \frac{F_1(k)}{F_1(0)}
 \end{aligned}
 $$
 
-To figure out how to make equal to $$(2k)!$$, consider an example:
+So there are three things here: the interleaving double factorials at even and odd integers,, the interleaved _single_ factorials at integers and half-integers, and the non-interleaved single factorial. Here's an example:
 
 $$
 \begin{aligned}
 (6!!_{\text{old}})(5!!_{\text{old}}) &= (6 \times 4 \times 2) \times (5 \times 3 \times 1) \\ 
 &= 2^3 (3 \times 2 \times 1) \times 2^{3} (\frac{5}{2} \times \frac{3}{2} \times \frac{1}{2}) \\
-&= 2^{6} (\frac{6}{2} \times \frac{5}{2} \times \frac{4}{2} \times \frac{3}{2} \times \frac{2}{2} \times \frac{1}{2})
+&= 2^{6} (\frac{6}{2} \times \frac{5}{2} \times \frac{4}{2} \times \frac{3}{2} \times \frac{2}{2} \times \frac{1}{2}) \\
+&= 6!
 \end{aligned}
 $$
 
-Which is a "half" factorial. So double factorials interleave to give single factorials, or single factorials interleave to give half factorials (times an awkward extra factor). Fine.
+So double factorials interleave to give single factorials, or single factorials interleave to give half factorials (times an awkward extra factor). Fine.
 
 $$
 \begin{aligned}
@@ -895,7 +906,7 @@ $$\frac{F_2(n)}{F_2(0)} \frac{F_2(n-1)}{F_2(-1)} = \frac{F_1(n)}{F_1(0)}$$
 And the half-factorial version:
 
 $$
-\frac{F_1(n)}{F_1(0)} \frac{F_1(n-\frac{1}{2})}{F_1(-\frac{1}{2})} = \frac{F_{1/2}(n)}{F_{1/2}(0)}
+\frac{F_1(k)}{F_1(0)} \frac{F_1(k-\frac{1}{2})}{F_1(-\frac{1}{2})} = \frac{F_{1/2}(k)}{F_{1/2}(0)}
 $$
 
 Plugging in $$F_k(n) = k^{n/k} F_1(n/k)$$ recovers the [Legendre duplication formula](https://en.wikipedia.org/wiki/Multiplication_theorem#Gamma_function%E2%80%93Legendre_formula) again:
@@ -941,9 +952,9 @@ So once again, all of the structure of $$x!$$ and $$F_k(x)$$ seems to come from 
 
 $$\prod_{j=0}^{k-1} F_1(n - \frac{j}{k}) = \frac{(kn)!}{k^{kn}} \prod_{j=0}^{k-1} F_1(-\frac{j}{k})$$
 
-It is possible to simplify this further by finding the value of the product on the RHS giving the "[Gauss Multiplication Formula](https://en.wikipedia.org/wiki/Multiplication_theorem#Gamma_function%E2%80%93Legendre_formula)", but the technique is much less simple than the algebraic manipulations we've been doing so far. It's not very satisfying, but I'll include it for completeness. This version comes from Artin's tiny book on the Gamma function. I've translated the notation from $$\Gamma$$ back to factorials (which makes it a bit simpler to read, also...); some other proofs can be found [here](https://math.stackexchange.com/questions/752895/ahlfors-prove-the-formula-of-gauss).
+It is possible to simplify this further by finding the value of the product on the RHS, giving the "[Gauss Multiplication Formula](https://en.wikipedia.org/wiki/Multiplication_theorem#Gamma_function%E2%80%93Legendre_formula)". The technique is much less simple than the algebraic manipulations we've been doing so far, and IMO not very satisfying, but I'll include it for completeness. This version comes from Artin's (tiny) book on the Gamma function. I've translated the notation from $$\Gamma$$ back to factorials (which makes it a bit simpler to read, also...); some other proofs can be found [here](https://math.stackexchange.com/questions/752895/ahlfors-prove-the-formula-of-gauss).
 
-However you define $$x!$$, it must be that
+However you define $$x!$$, it should be that
 
 $$(x+m)! = x! (x+1)(x+2) \cdots (x+m)$$
 
@@ -961,7 +972,7 @@ x! &\approx \frac{(x+m)!}{(x+1)(x+2) \cdots (x+m)} \\[2ex]
 \end{aligned}
 $$
 
-In this form we can compute that product, because when we multiply this together for every $$F_1(-\frac{j}{k})$$, the denominators interleave to form a single giant factorial, and the numerators can be grouped together via $$\prod m^{-j/k} = m^{-[0+1+2+\ldots+k-1]/k} = m^{-k(k-1)/2k} = m^{-(k-1)/2}$$. The algebra is hard to watch:
+Instead of computing this directly, we multiply it together for the values of $$(-j/k) \in (-1, 0)$$. The denominators interleave to form a single giant factorial, and the numerators can be grouped together via $$\prod m^{-j/k} = m^{-[0+1+2+\ldots+k-1]/k} = m^{-k(k-1)/2k} = m^{-(k-1)/2}$$. Like so:
 
 $$
 \begin{aligned}
@@ -973,7 +984,7 @@ $$
 \end{aligned}
 $$
 
-But eventually plugging in Stirling's approximation miraculously cancels out all the $$m$$s, as it ought to:
+Plugging in Stirling's approximation miraculously cancels out all the $$m$$s:
 
 $$
 \begin{aligned}
@@ -984,7 +995,7 @@ $$
 \end{aligned}
 $$
 
-Which finally gives the general rule for interleaved factorials, the Gauss Multiplication Formula (which is normally written slightly differently, of course)
+This gives the "base" value for the interleaved factorials, the product of all the factorials with denominator $$k$$ in $$(-1, 0)$$. Multiplying this by all the values of $$F_1(n-j/k)/F_1(-j/k)$$ gives the general rule for interleaved factorials, the Gauss Multiplication Formula:
 
 $$
 \begin{aligned}
@@ -992,6 +1003,8 @@ $$
 &= \frac{(2 \pi)^{\frac{k-1}{2}}}{\sqrt{k}} \frac{(kn)!}{k^{kn}}
 \end{aligned}
 $$
+
+(Of course it is normally written slightly differently.)
 
 For the $$k=3$$ example, this is
 
