@@ -804,27 +804,26 @@ None of this matters that much. I really do suspect that there's some valid mean
 
 One thing that I like about this $$F_k$$ notation is that it organizes exactly what the "unusual" parts of multi-factorials are, after which the rest of their properties are trivial. In particular, other than the difference between $$1!! = F_{2}(1) / F_2(-1)$$ and $$2!! = F_2(2)/F_2(0)$$, multifactorials of all orders are exactly the same as rescaled single-factorials via $$F_k(n) = k^{n/k} F_1(n/k)$$. So all of the behavior of $$F_k(n)$$ for all $$k$$ and $$n$$ is fully defined by the values of $$F_1(x)$$ on $$x \in (-1, 0)$$, or equivalently, by $$\Gamma(z)$$ for $$\text{Re}(z) \in (0,1)$$.
 
-Flipping that around: one might argue that the values of $$z!$$ for $$z \in (-1, 0)$$ would be _defined_ by the asymptotic properties of the multifactorials. "What is $$(-\frac{1}{2})! = \Gamma(1/2)$$", you wonder? Well, it could be _defined_ in order to make the multifactorials work out. Remember that 
+Flipping that around: one might argue that the values of $$z!$$ for $$z \in (-1, 0)$$ would be _defined_ by the asymptotic properties of the multifactorials. "What is $$(-\frac{1}{2})! = \Gamma(1/2)$$", you wonder? Well, it could be _defined_ in order to make the multifactorials work out. We start from
 
-$$F_2(-1) \equiv \frac{(2k+1)!!_{\text{old}}}{(2k+1)!!_{\text{new}}} = \frac{(2k+1)!!_{\text{old}}}{F_2(2k+1)}$$
+$$\prod_0^{-1} d^{\times} (x!!) = F_2(-1) \equiv \frac{\prod_0^{2k+1} d^{\times}(x!!)}{\prod_1^{2k=1} d^{\times}(x!!)} = \frac{F_2(2k+1)}{(2k+1)!!_{\text{old}}}$$
 
-If we interpret things in this way, then the definition of $$(-\frac{1}{2})!$$ could be said to be
+And then say that the _definition_ of $$(-\frac{1}{2})!$$ could be
 
 $$
 \begin{aligned}
 (-\frac{1}{2})! &= F_1(-\frac{1}{2}) \\
 &\equiv 2^{1/2} F_2(-1) \\
-&= 2^{1/2} \frac{(2k+1)!!_{\text{old}}}{F_2(2k+1)} \\
+&= 2^{1/2} \frac{F_2(2k+1)}{(2k+1)!!_{\text{old}}}\\
 \end{aligned}
 $$
 
-Of course, this is circular, since $$F_2(2k+1)$$ is defined in terms of $$F_1(k+1/2)$$ again
+This is a bit circular, since $$F_2(2k+1)$$ is defined in terms of $$F_1(k+1/2)$$ again:
 
 $$
 \begin{aligned}
-&\Ra 2^{1/2} \frac{(2k+1)!!_{\text{old}}}{F_2(2k+1)} \\
-&= 2^{1/2} \frac{(2k+1)!!_{\text{old}}}{2^{k+1/2} F_1(k+1/2)} \\
-&= \frac{(2k+1)!!_{\text{old}}}{2^k F_1(k+1/2)} \\
+&= 2^{1/2} \frac{2^{k+1/2} F_1(k+1/2)}{(2k+1)!!_{\text{old}}} \\
+&= \frac{2^{k+1} (k+1/2)!}{(2k+1)!!_{\text{old}}} \\
 \end{aligned}
 $$
 
@@ -840,12 +839,12 @@ We then _define_ $$(-1/2)!$$ by using this approximation in the denominator. In 
 
 $$
 \begin{aligned}
-(-\frac{1}{2})! &\approx \frac{(2k+1)!!}{2^k (k+1/2)!}  \\
-&= \lim_{k \ra \infty} \frac{(2k+1)!!}{2^k k! \sqrt{k}}
+(-\frac{1}{2})! &\approx \frac{2^{k+1} (k+1/2)!} {(2k+1)!!} \\
+&= \lim_{k \ra \infty} \frac{2^{k+1} k! \sqrt{k}}{(2k+1)!!}
 \end{aligned}
 $$
 
-Which turns out to be $$\sqrt{\pi}$$ (due to the [Stirling's Approximation](https://en.wikipedia.org/wiki/Stirling%27s_approximation); the $$\sqrt{\pi}$$ ultimately shows up due to the [Wallis Product](https://en.wikipedia.org/wiki/Wallis_product), which I suppose is connected to $$n$$-spheres again).
+Which turns out to be $$\sqrt{\pi}$$ when you plug in [Stirling's Approximation](https://en.wikipedia.org/wiki/Stirling%27s_approximation). Although, this is still basically circular: applying Stirling's approximation to $$(2k+1)!!$$ requires knowing that it is _almost_ proportional to $$(k+1/2)!$$, except that the $$\sqrt{\pi}$$ term is removed. But I suppose you can also work it out from the [Wallis Product](https://en.wikipedia.org/wiki/Wallis_product) without using that directly (which is also basically where the non-trivial part Stirling's formula, the $$\sqrt{\pi}$$, comes from anyway).
 
 I dunno. Maybe? I don't find this construction much more philosophically satisfying than the others. It certainly doesn't really "explain" how the $$\sqrt{\pi}$$ gets there, it just phrases in terms of other things. But maybe it is a useful step to see it in this way: that the interpolated values of the factorial at fractions are explicitly equivalent to the ratio of a double factorial to a (rescaled) single-factorial. Maybe, then, the value comes fundamentally from something like "the ratio between a sphere of dimension $$2k+1$$ and a tetrahedron of dimension $$k$$". A "ratio of shapes"-type argument at least starts to suggest why the factors of $$\pi$$ start to show up.
 
@@ -853,7 +852,7 @@ I dunno. Maybe? I don't find this construction much more philosophically satisfy
 
 # 8. Interleaving Products
 
-One other avenue of investigation.
+Here's one other thing that's we should frame in terms of $$F_k$$.
 
 As mentioned earlier, two double factorials on integers can clearly be interleaved to give one single factorial.
 
