@@ -36,8 +36,6 @@ Big disclaimer: I'm not a professional mathematician, and this is _not_ going to
 
 First I am going to describe my understanding of what GA is, how it got to be that way, and where it lives in relation to the rest of math and physics. This will be useful in order to pinpoint exactly what we're disagreeing about here. As far as I know the whole story isn't really documented anywhere else, so I'm just going off what I've picked up over the years. But I am no historian and don't really know how to check it against reality; I'd be happy to be corrected on anything in here.
 
-### Where GA lives in mathematics
-
 [Geometric Algebra](https://en.wikipedia.org/wiki/Geometric_algebra) is both a social movement and a branch of mathematics.
 
 As a social movement, it's a group of people who believe that (a) mathematics research and pedagogy ought to be reformulated to be more useful, especially to its users who are not research mathematicians, and (b) this reformulation ought to be done in terms of a particular set of new primitives, which is the branch of mathematics side. The argument for doing this is that it would make a lot of math simpler, easier to understand, and easier to use for practical purposes.
@@ -76,7 +74,7 @@ That said, this is all shifting over time, especially as the GA movement and the
 
 ----------
 
-### An Approximate History of GA
+# 2. An Approximate History of GA
 
 GA is mostly less well-known in mathematics and physics than EA. Yet has a strangely large number of people advocated for it, particularly online in communities, articles, videos, and conference talks. Why? Well, here's a basic history that sort-of explains why it was unknown in the first place, and why it is increasingly not.
 
@@ -137,7 +135,7 @@ So GA is probably onto something. Probably geometry deserves more a more intuiti
 
 ----------
 
-# 2. The Actual Case Against GA
+# 3. An Actual Case Against GA
 
 As I wrote above: _Exterior Algebra_ is clearly valuable and widely used already in graduate-level math and physics. _Clifford Algebra_ is clearly widely used in theoretical mathematics and anything that has to do with spin. _Geometric Algebra_ ought to be evaluated on what it adds on top of those.
 
@@ -470,7 +468,7 @@ Anyway, I am just trying to make the case that GA's notion of vector division is
 
 -----------
 
-# 3. Summary
+# 4. Summary
 
 I have given a lot of reasons why I think GA is problematic: the Geometric Product is a bad operation for most purposes. It really implements operator composition and is not a very fundamental or intuitive thing. Using a Clifford Algebra to implement geometry is an implementation detail, appropriate for some problems but not for general understandings of vector algebra and all of geometry. Giving it first-class status and then bizarrely acting like _that is not weird_ is weird and alienating to people who can see through this trick. 
 
