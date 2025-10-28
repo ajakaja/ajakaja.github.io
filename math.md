@@ -1,6 +1,7 @@
 ---
 layout: article
 title: "Math and Physics"
+math: true
 ---
 
 ## Articles
@@ -30,7 +31,14 @@ I'm also playing around with the weird calculus of delta functions, pseudoinvers
 * [Triple Products and Dual Bases]({% post_url 2024-12-18-derivatives %})
 * [Weird Takes on Angles]({% post_url 2025-03-21-angles %})
 
-I'm also slowly working through my undergraduate math and physics curriculum and trying to "compress" it in a way that makes sense to me. This is because I want to learn QFT to understand how the universe works, but getting through the math hurts my brain. I think the foundations can be made a lot simpler and then it would be easier.
+I'm also down a rabbit hole trying to make sense of fractional permutations and the identity $$(-\frac{1}{2})! = \sqrt{\pi}$$.
+
+{:class="bare"}
+* [Investigations on n-Spheres]({% post_url 2025-04-29-n-spheres %})
+* [Factorials as Multiplicative Integrals]({% post_url 2025-05-02-factorials %})
+* [More on √π]({% post_url 2025-10-28-sqrt-pi %})
+
+I'm slowly working through my undergraduate math and physics curriculum and trying to "compress" it in a way that makes sense to me. This is because I want to learn QFT to understand how the universe works, but getting through the math hurts my brain. I think the foundations can be made a lot simpler and then it would be easier.
 
 {:class="bare"}
 * [Some Intuition For Entropy]({% post_url 2018-02-23-entropy-1 %})
@@ -39,7 +47,7 @@ I'm also slowly working through my undergraduate math and physics curriculum and
 * [The Essence of Complex Analysis]({% post_url 2020-08-10-complex-analysis %})
 * [The Essence of Quantum Mechanics]({% post_url 2020-07-24-qm %})
 
-Every once in a while I write other miscellaneous math-related musings.
+And every once in a while I write other miscellaneous math-related musings.
 
 {:class="bare"}
 * [Meditation on Taylor Series]({% post_url 2018-03-30-taylor-series %})
@@ -47,9 +55,6 @@ Every once in a while I write other miscellaneous math-related musings.
 * [Aphantasia, or how not to do math in your head]({% post_url 2019-09-15-mental-math %})
 * [A possible derivation of the Born Rule]({% post_url 2019-12-22-many-worlds %})
 * [The Case Against Geometric Algebra]({% post_url 2024-02-28-geometric-algebra %})
-* [Investigations on n-Spheres]({% post_url 2025-04-29-n-spheres %})
-* [Factorial Integrals and √π]({% post_url 2025-05-02-factorials %})
-
 
 
 ------------
