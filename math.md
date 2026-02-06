@@ -37,6 +37,7 @@ I'm also down a rabbit hole trying to make sense of fractional permutations and 
 * [Investigations on n-Spheres]({% post_url 2025-04-29-n-spheres %})
 * [Factorials as Multiplicative Integrals]({% post_url 2025-05-02-factorials %})
 * [More on √π]({% post_url 2025-10-28-sqrt-pi %})
+* [Locating the Lemniscate]({% post_url 2025-11-03-gamma %})
 
 I'm slowly working through my undergraduate math and physics curriculum and trying to "compress" it in a way that makes sense to me. This is because I want to learn QFT to understand how the universe works, but getting through the math hurts my brain. I think the foundations can be made a lot simpler and then it would be easier.
 
@@ -55,7 +56,7 @@ And every once in a while I write other miscellaneous math-related musings.
 * [Aphantasia, or how not to do math in your head]({% post_url 2019-09-15-mental-math %})
 * [A possible derivation of the Born Rule]({% post_url 2019-12-22-many-worlds %})
 * [The Case Against Geometric Algebra]({% post_url 2024-02-28-geometric-algebra %})
-
+* [Further Meditation on Taylor Series]({% post_url 2026-02-05-series %})
 
 ------------
 
@@ -66,7 +67,7 @@ Here are some references which, dunno, could be useful to somebody else. These a
 {:class="bare"}
 * [Bayesian Inference]({% link _notes/bayes.md %})
 * [A particular calculation for the Pauli Hamiltonian in QM]({% link _notes/dirac.md %})
-* [A long WIP reference on Fourier transforms]({% link _notes/fourier.md %})
+* [A long half-finished reference on Fourier transforms]({% link _notes/fourier.md %})
 * [Some notes on Survival Analysis]({% link _notes/hazard.md %})
 * [Quaternions]({% link _notes/quaternions.md %})
 * [The various forms of the Triangle Inequality]({% link _notes/triangle-inequality.md %})

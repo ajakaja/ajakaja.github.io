@@ -50,11 +50,7 @@ f(x) &= f(0) + \int_0^x dx_1 f'(x_1) \\
 &= f(0) + x f'(0) + \frac{x^2}{2} f''(0) + \frac{x^3}{3!} f'''(0) + \ldots
 \end{aligned}$$
 
-This basically makes sense as soon as you understand integration, plus it makes obvious that the series only works when all of the integrals are actually equal to the values of the previous function (so you can't take a series of $$\frac{1}{1-x}$$ which passes $$x=1$$, because you can't exactly integrate past it (though there are tricks))
-
-... plus it makes sense in pretty much any space you can integrate over.
-
-... _plus_ it makes it obvious how to truncate the series, how to create the remainder term, and it even shows you how you could -- if you were so inclined -- have each derivative be evaluated at a different point, such as $$f(x) = f(0) + \int_1^x f'(x_1) dx_1 =f(0) + (x-1) f'(1)  + \frac{(x-1)(x-2)}{2} f''(2) + \ldots$$, which I've never even seen done before (except for [here?](https://en.wikipedia.org/wiki/Finite_difference#Newton's_series)), though good luck with figuring out convergence if you do that.
+This basically makes sense as soon as you understand integration, plus it makes obvious that the series only works when all of the integrals are actually equal to the values of the previous function (so you can't take a series of $$\frac{1}{1-x}$$ which passes $$x=1$$, because you can't exactly integrate past it (although there are tricks)). Plus it makes sense in pretty much any space you can integrate over.
 
 -----
 

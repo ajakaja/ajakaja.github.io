@@ -136,7 +136,7 @@ Yes, that sounds weird and made up. I'm happy with it mostly I realized that it 
 By the way, there is some information about all of this on the Wikipedia article for [Newtonian potential](https://en.wikipedia.org/wiki/Newtonian_potential). They call the function which is the fundamental solution to $$\del^2 f = \delta$$ in $$\bb{R}^d$$ the "Newtonian Kernel" $$\Gamma$$, and write
 
 $$\Gamma(x) = \begin{cases} 
-2 \pi \log r & d = 2 \\ 
+\frac{1}{2\pi} \log r & d = 2 \\ 
 \frac{1}{d(2-d) V_d} r^{2 - d} & d \neq 2
 \end{cases}$$
 
