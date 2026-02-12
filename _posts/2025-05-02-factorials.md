@@ -9,6 +9,13 @@ tag: math
 
 In which we try to figure out what what's going on with double-factorials.
 
+Part two of a series where I am trying to chase down exactly what $$(-\frac{1}{2})! = \sqrt{\pi}$$ could mean:
+
+1. [Investigations on n-Spheres]({% post_url 2025-04-29-n-spheres %})
+2. Factorials as Multiplicative Integrals
+3. [More on √π]({% post_url 2025-10-28-sqrt-pi %})
+4. [Locating the Lemniscate]({% post_url 2025-11-03-gamma %})
+
 This was formerly part of the [previous post]({% post_url 2025-04-29-n-spheres %}) about $$n$$-spheres, but I started adding things to it and decided to split them up. It is not necessary to read the original previous post first, but it is sort of a sequel, since it's the direction my investigation has gone. Both articles are essentially unwieldy dumps for notes and calculations that I've done and wanted a record of, but maybe they'll be useful as a survey if anyone else is curious about the same stuff and happens to come across this.
 
 My main finding is that I now believe we should be thinking of factorials as multiplicative integrals, like this:
