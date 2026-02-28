@@ -9,13 +9,6 @@ tag: math
 
 In which we try to figure out what what's going on with double-factorials.
 
-Part two of a series where I am trying to chase down exactly what $$(-\frac{1}{2})! = \sqrt{\pi}$$ could mean:
-
-1. [Investigations on n-Spheres]({% post_url 2025-04-29-n-spheres %})
-2. Factorials as Multiplicative Integrals
-3. [More on √π]({% post_url 2025-10-28-sqrt-pi %})
-4. [Locating the Lemniscate]({% post_url 2025-11-03-gamma %})
-
 This was formerly part of the [previous post]({% post_url 2025-04-29-n-spheres %}) about $$n$$-spheres, but I started adding things to it and decided to split them up. It is not necessary to read the original previous post first, but it is sort of a sequel, since it's the direction my investigation has gone. Both articles are essentially unwieldy dumps for notes and calculations that I've done and wanted a record of, but maybe they'll be useful as a survey if anyone else is curious about the same stuff and happens to come across this.
 
 My main finding is that I now believe we should be thinking of factorials as multiplicative integrals, like this:
@@ -582,29 +575,27 @@ $$(-n)! = \frac{0!}{0 \times (-1) \times \ldots (-n+1)} = \frac{(-1)^{n-1}}{0 \t
 
 If $$(n)$$ consists of $$n$$ multiplications in the $$+1$$ direction starting at (the edge of) $$0!$$, then for whatever reason this definition $$(-n)!$$ consists of $$n$$ divisions in the opposite direction: first divide by $$0$$, then by $$1$$, etc, until you get $$(-1)^{n-1}/(0 \times (n-1)!)$$.
 
-I don't know what that means exactly or how to reckon with the infinity or whether the number of negative signs is correct (should the zero contribute one also?). But I do suspect the value should turn out to somehow be meaningful, because it closely matches the coefficients you get on iterated derivatives. Recall that the $$k$$'th antiderivative of $$1$$ is
+I don't know what that means exactly or how to reckon with the infinity or whether the number of negative signs is correct (should the zero contribute one also?). But I do believe that they are meaningful, because they end up exactly matching the coefficients you get on iterated derivatives:
 
-$$D^{-k} (1) = \frac{x^k}{k!}$$
+One place that factorials show up 'in nature' is in the Taylor expansion $$f(x) = \sum f^{(k)} \frac{x^k}{k!}$$, where each of those terms is an iteration of antiderivatives of $$1$$
 
-It seems like not a coincidence that the $$k$$'th derivative of $$\ln (x)$$ (so $$1/x$$, $$-1/x^2$$, $$+2/x^3$$, etc) is[^roman]
+$$D^{-k} (1) = \int_0^x \int_0^{x'} \cdots (1) \cdots dx'' \, dx' = \frac{x^k}{k!}$$
 
-[^roman]: This term, without the $$1/0$$, is sometimes called a [Roman factorial](https://mathworld.wolfram.com/RomanFactorial.html). See also [Roman coefficient](https://mathworld.wolfram.com/RomanCoefficient.html), a generalization of binomial coefficients that obeys the same identities for negative numbers.
+Well, the iterated _derivatives_ of $$\p^k \ln(x) = \{ \frac{1}{x}, \frac{-1}{x^2}, \frac{+2}{x^3}, \ldots\}$$ obey a similar pattern:[^roman]
 
-$$\p^{k} (\ln x) = \frac{(-1)^{k-1} (k-1)!}{x^k} \? \frac{1}{0} \times \frac{x^{-k}}{(-k)!}$$
+[^roman]: These terms (without the $$1/0$$) are apparently sometimes called the [Roman factorials](https://mathworld.wolfram.com/RomanFactorial.html). See also [Roman coefficient](https://mathworld.wolfram.com/RomanCoefficient.html), which are a generalization of binomial coefficients that obeys the same identities for negative numbers.
 
-(Or maybe it is better to talk about the $$k$$'th derivative of $$1/x$$ and then make $$(-k)!$$ off-by-one from $$(+k)!$$? I dunno.)
+$$\p^k \ln (x) =  \frac{(-1)^{k-1} (k-1)!}{x^k} \? \frac{1}{0} \times \frac{x^{-k}}{(-k)!} $$
 
-Nothing rigorous, but the similarity is too strong to not mean _something_. If nothing else, this justifies poking around with what happens when we extend the products in factorials into the negative numbers like $$1! \? 1 \times 0 \times (-1) \times (-2)!$$. 
+The minus signs and the fact that the factorial is off-by-one from the exponent are taken care of by the apparent definition of $$((-k)!)$$.
 
-Also, here is a not-so-disagreeable interpretation of why there's a division by zero: it's purely due to the fact that 
+The $$1/0$$ is still weird, but there are other places where it seems to be meaningful as well. In particular the binomial expansion of a negative power $$(1+x)^{-1} = \sum_0^{\infty} \binom{-1}{k} x^k = 1 - x + x^2 - \ldots$$ involves terms like $$\binom{-1}{k} = \frac{(-1)!}{(-1-k)!(k!)}$$, and these work out exactly if factorials of negatives are defined as we have done above. It is also compelling that in the _regular_ binomial expansion $$\binom{n}{k} = \frac{n!}{k!(n-k)!}$$ that the reason why terms with $$k<0$$ or $$k>n$$ disappear is precisely because they have a factor of zero: $$\binom{n}{-1} = \frac{n!}{(-1)!(n+1)!} = \frac{n!}{(1/0) (n+1)!} = 0 \frac{n!}{(n+1)!} = 0$$. Stuff like that. I believe I have seen other examples of the same thing: in every case it seems like the negative signs and in particular the $$1/0$$ really does mean _something_, even if it is hard to say quite what it is.
 
-$$n! \equiv \prod_0^n d^{\times}(n!)$$
+Anyway, thinking of factorials as integrals like we have been doing gives an even simpler explanation of why the division by zero is there. Maybe it's purely due to the fact that the negative factorials are awkwardly expressing negatively-oriented integrals:
 
-Which means if $$n$$ is negative it's really ending up as a denominator:
+$$(-n)! \equiv \prod_0^{-n} d^{\times}(n!) = \frac{1}{\prod_{-n}^0 d^{\times}(n!)} = \frac{1}{\frac{0!}{(-n)!}} = \frac{(-n)!}{0 \times (-1)!}$$
 
-$$(-n)! \equiv \prod_0^{-n} d^{\times}(n!) = \frac{1}{\prod_{-n}^0 d^{\times}(n!)} = \frac{1}{\frac{0!}{(-n)!}}$$
-
-So if you were to instead keep all you integration ranges positively-oriented, considering $$\prod_{-n}^0$$ instead of $$\prod_0^{-n}$$, then you would never have to deal with the division-by-zero (just the fact that the whole product is zero, I guess). 
+So if you were to instead keep all you integration ranges positively-oriented, considering $$\prod_{-n}^0$$ instead of $$\prod_0^{-n}$$, then you would never have to deal with the division-by-zero. What you _really_ mean is just that $$\prod_{-n}^0 d^{\times}(n!) = 0$$, I guess.
 
 In fact, once you think of factorials as integrals, it starts to make more sense to see all of these definitions and identities as having more to do with the algebra of integration ranges---that is, [chains](https://en.wikipedia.org/wiki/Chain_(algebraic_topology)) of simplexes---rather than having anything to do with the factorial function at all.
 
@@ -620,9 +611,9 @@ Also, just for the record, if ever we _do_ have an interpretation in terms of pe
 
 # 5. Negative Double Factorials
 
-When you try to do that same expansion with double-factorials you quickly run into problems, which might make you think that the whole idea should be tossed out. One advantage of the product-integral interpretation of factorials is that it seems to fix the problems that arise, leaving intact the hunch that negative-integer factorials might be a valid concept.
+When you try to consider the negative version of double-factorials you quickly run into some problems which might make you think that the whole idea should be tossed out. But again the product-integral interpretation seems to fix everything.
 
-Specifically, it seems like it should be true in some sense that $$1!! = 1 \times (-1) \times (-3) \times \ldots$$ to infinity. Yet it is easy to find expressions using this that are clearly false based on this, for instance
+We would like for $$1!! = 1 \times (-1) \times (-3) \times \ldots$$ to make some kind of sense. Yet it is easy to find expressions using this that are clearly false based on this, for instance
 
 $$
 \begin{aligned}
@@ -634,7 +625,7 @@ $$
 \end{aligned}
 $$
 
-Writing each factorial as a product integral reveals that this computation was very flawed, however. It's incorrect in the very first line
+Which seems bad. But writing each factorial as a product integral reveals that this computation was very flawed, however. In fact it was incorrect from the very first line:
 
 $$
 \begin{aligned}
@@ -658,9 +649,9 @@ $$
 (-5)!! &= (-3)!!/(-3) = \frac{1}{3!!} \sqrt{\frac{\pi}{2}} \\
 (-7)!! &= (-5)!!/(-5) = -\frac{1}{5!!} \sqrt{\frac{\pi}{2}} \\
 0!! &= 1 \\
-(-2)!! &= (0)!!/(0) \? \infty \\
-(-4)!! &= (-2)!!/(-2) \? -\frac{1}{2!!} \times \infty \\ 
-(-6)!! &= (-4)!!/(-4) \? \frac{1}{4!!} \times \infty \\
+(-2)!! &= (0)!!/(0) \? \frac{1}{0} \\
+(-4)!! &= (-2)!!/(-2) \? -\frac{1}{2!!} \times \frac{1}{0} \\ 
+(-6)!! &= (-4)!!/(-4) \? \frac{1}{4!!} \times \frac{1}{0} \\
 \end{aligned}
 $$
 
@@ -669,34 +660,34 @@ $$
 $$
 \begin{aligned}
 (-2k-1)!! &= \frac{(-1)^k}{(2k-1)!!} \sqrt{\frac{\pi}{2}} \\
-(-2k-2)!! &= \frac{(-1)^k}{(2k)!!} \times \infty
+(-2k-2)!! &= \frac{(-1)^k}{(2k)!!} \times \frac{1}{0}
 \end{aligned}
 $$
 
 Which means the actual factorization of $$1!!/0!!$$ is
 
 $$
-\frac{1 \times (-1) \times (-3) \times (-5) \ldots}{0 \times (-2) \times (-4) \times (-6) \ldots} = \frac{1}{0} \times \lim_{k \ra \infty} \frac{(2k-1)!!}{(2k)!!} \times \frac{\frac{1}{(2k-1)!!} \sqrt{\frac{\pi}{2}}}{\frac{1}{(2k)!!} \times \infty} = \sqrt{\frac{\pi}{2}}
+\frac{1 \times (-1) \times (-3) \times (-5) \ldots}{0 \times (-2) \times (-4) \times (-6) \ldots} = \frac{1}{0} \times \lim_{k \ra \infty} \frac{(2k-1)!!}{(2k)!!} \times \frac{\frac{1}{(2k-1)!!} \sqrt{\frac{\pi}{2}}}{\frac{1}{(2k)!!} \times \frac{1}{0}} = \sqrt{\frac{\pi}{2}}
 $$
 
-So it just doesn't work: whatever partial product you construct, the remainder of the product just serves to cancel it all out again. Boring. Evidently, although you _can_ extend factorials and double-factorials to negative infinity, it doesn't really tell you anything you don't already know: the value is fully determined by fixing it at $$n=0$$. 
+So it just doesn't work: whatever partial product you construct, the remainder of the product just serves to cancel it all out again. Boring. Evidently, although you _can_ extend factorials and double-factorials to negative infinity, it doesn't really tell you anything you don't already know: the value is fully determined by fixing it at $$n=0$$. Still, once again thinking of factorials as product integrals makes things seem to make more sense. I do wish I knew how to interpret the $$1/0$$ factors, though.
 
-I wish I knew what to make of the oscillating $$1/0 = \infty$$ terms, though. My belief is that they are somehow perfectly meaningful, but I haven't managed to find an interpretation that makes good sense of them yet. More on that later, maybe.
+
 
 -------
 
 # 6. Multifactorials in general
 
-It's clearly possible to generalize all of this to higher-dimensional multifactorials, such as the triple factorial $$n!!! = n \times (n-3) \times \ldots$$, the quadruple factorial $$n!!!!$$, etc. Suppose we define $$F_1(x) = x!$$ and $$F_2(x) = x!!$$ and continue from there. We define that for all positive integers $$k$$:
+It's clearly possible to generalize all of this to higher-dimensional multifactorials, such as the triple factorial $$n!!! = n \times (n-3) \times \ldots$$, the quadruple factorial $$n!!!! = n \times (n-4) \times \ldots$$, etc. Suppose we define $$F_1(x) = x!$$ and $$F_2(x) = x!!$$ and continue from there. So we want that, for all positive integers $$k$$,
 
 $$
 \begin{aligned}
-F_k(x) &= x \times (x-k) \\
+F_k(x) &= x \times F_k(x-k) \\
 F_k(0) &= 1 \\
 \end{aligned}
 $$
 
-This does not fully define $$F_k(x)$$ completely on its own, of course, because knowing $$F_2(2)$$, say, does not tell you anything about $$F_2(1)$$ much less about $$F_2(3/2)$$. But, extrapolating from the identity defining $$x!!_{\text{new}}$$, we can also ask that $$F_k$$ generally scales in $$k$$ analogously:
+Of course this does not fully define $$F_k(x)$$ completely on its own, because knowing $$F_2(2)$$, say, does not tell you anything about $$F_2(1)$$, much less about $$F_2(3/2)$$. But, extrapolating from the identity defining $$x!!_{\text{new}}$$, we can also ask that $$F_k$$ scales analogously in $$k$$ :
 
 $$\boxed{F_k(x) = k^{x/k} F_1(\frac{x}{k})}$$
 
@@ -708,27 +699,30 @@ F_2(5) = 5!!_{\text{new}} = 2^{5/2} (\frac{5}{2})! = 2^{5/2} F_1(\frac{5}{2}) \\
 \end{aligned}
 $$
 
-We can of course write any such function as an integral of its own derivative
+We can write any such function as an integral of its own derivative
 
 $$F_k(n) = \frac{F_k(n)}{F_0(n)} \equiv \prod_0^n d^{\times} F_k(n)$$
 
-Which means that the factorial over any range may be written as a ratio:
+And so the multifactorial over any range may be written as a ratio:
 
 $$\frac{F_k(b)}{F_k(a)} = \prod_a^b d^{\times} F_k(n)$$
 
-The difference between $$F_k(n)$$ and $$n!!^{(k) \text{ times}}$$, however, is the extrapolation of the difference between $$(n!!)_{\text{old}}$$ and $$(n!!)_{\text{new}}$$, which is that the "classical" double-factorial's integration bound is offset
+Just as with double factorials, $$F_k(n)$$ is _not_ the same thing as $$n!!^{(k) \text{ times}}$$, because the basepoint othe integral is different.
 
-$$(kn+a)!!^{(k \text{ times})} \equiv \frac{F_k(kn+a)}{F_k(a-k)}$$
+$$
+\begin{aligned}
+F_k(n) &= \prod_0^n d^{\times} F_k(n) = \frac{F_k(n)}{F_k(0)} \\
+n!!^{(k) \text{ times}} &= \prod_{n \text{ mod } k - k}^n F_k(n) = \frac{F_k(n)}{F_k(n \text{ mod } k - k)}
+\end{aligned}
+$$
 
-For instance
-
-$$4!!!_{\text{old}} = (4) \times (1) \equiv \frac{4 \times 1 \times (-2)!!!}{(-2)!!!} = \prod_{-2}^4 d^{\times} F_3(x) = \frac{F_3(4)}{F_3(-2)}$$
-
-Which means that $$F_k(n)$$ and $$(n)!!^{(k)}_{\text{old}}$$ differ by a value of $$F_k(a)$$ with $$a = n \text{ mod } k - k \in (-k, 0)$$:
-
-$$(kn+a)!!^{(k)}_{\text{old}} = \frac{F_k(kn+a)}{F_k(a - k)}$$
+Which is a bit awkward to write. The idea is that since the last term in the product $$n!!^{(k) \text{ times}}$$ should be positive, we have to extend the integral one further to include a negative basepoint, as in $$5!!_{\text{old}} = (5 \times 3 \times 1 \times (-1)!!)/(-1)!! = F_2(5)/F_2(-1)$$.
 
 For example,
+
+$$4!!!= (4) \times (1) \equiv \frac{4 \times 1 \times (-2)!!!}{(-2)!!!} = \prod_{-2}^4 d^{\times} F_3(x) = \frac{F_3(4)}{F_3(-2)}$$
+
+Here are a few values side-by-side:
 
 $$
 \begin{aligned}
@@ -738,7 +732,7 @@ $$
 \end{aligned}
 $$
 
-Meaning that:
+Evidently the values of $$3$$-factorials are determined by the values of $$F_3(0)$$, $$F_3(-1)$$, and $$F_3(-2)$$, which are themselves determined by the values of $$n! = F_1(n)$$ at various fractions.
 
 $$
 \begin{aligned}
@@ -768,9 +762,9 @@ $$
 \end{aligned}
 $$
 
-Note that we don't _have_ to have $$F_k(0) = 1$$ or any value at all really: the only thing we ever see are the relative values $$F_k(n)/F_k(0)$$ anyway. All we have done here is follow the mindless construction of replacing a function $$f_k(x) = x!!!^{(k)}$$ with $$F_k(x) = \prod_0^n d^{\times}(f_k(x))$$, which can actually be done for any function---it has nothing to do with factorials per se. The argument for doing so is that the it compartmentalizes the odd behavior of the double-factorial: the discrepancy between $$x!!$$ on even and odd numbers was completely and entirely due to the difference between $$F_2(-1)$$ and $$F_2(0)$$; other than that is it simply $$F_k(x) = k^{x/k} F_1(x)$$.
+Note that we don't really need to have $$F_k(0) = 1$$ or any value at all really---the only thing we ever see are the relative values $$F_k(n)/F_k(0)$$. All we have done here is followed the mindless construction of replacing a function $$f_k(x) = x!!!^{(k)}$$ with $$F_k(x) = \prod_0^n d^{\times}(f_k(x))$$, which can really be done for any function; it has nothing to do with factorials per se. The argument for doing so is that the it compartmentalizes the odd behavior of the double-factorial: the discrepancy between $$x!!$$ on even and odd numbers was completely and entirely due to the difference between $$F_2(-1)$$ and $$F_2(0)$$, and other than that is it simply $$F_k(x) = k^{x/k} F_1(x)$$.
 
-(This generalization is on Wikipedia [also](https://en.wikipedia.org/wiki/Double_factorial#Alternative_extension_of_the_multifactorial), but in a different notation. I find it all much more natural in terms of integrals, though.) 
+(This generalization is on Wikipedia [also](https://en.wikipedia.org/wiki/Double_factorial#Alternative_extension_of_the_multifactorial), but in a different notation. I find it a lot easier in mine, though.) 
 
 Armed with this $$F_k(x)$$, we can immediately write down such silly generalizations of the factorial as the "half"-factorial:
 
@@ -822,27 +816,20 @@ $$
 (-\frac{1}{2})! &= F_1(-\frac{1}{2}) \\
 &\equiv 2^{1/2} F_2(-1) \\
 &= 2^{1/2} \frac{F_2(2k+1)}{(2k+1)!!_{\text{old}}}\\
-\end{aligned}
-$$
-
-This is a bit circular, since $$F_2(2k+1)$$ is defined in terms of $$F_1(k+1/2)$$ again:
-
-$$
-\begin{aligned}
 &= 2^{1/2} \frac{2^{k+1/2} F_1(k+1/2)}{(2k+1)!!_{\text{old}}} \\
-&= \frac{2^{k+1} (k+1/2)!}{(2k+1)!!_{\text{old}}} \\
+(-\frac{1}{2})! &= \frac{2^{k+1} (k+1/2)!}{(2k+1)!!_{\text{old}}} \\
 \end{aligned}
 $$
 
-But it can also be taken as a limiting expression, which ends up matching a common construction of $$\Gamma$$ due to Euler (see [here](https://en.wikipedia.org/wiki/Gamma_function#Euler's_definition_as_an_infinite_product)). The argument goes: since for integers
+This is maybe a bit circular, since $$F_2(2k+1)$$ is defined in terms of $$F_1(k+1/2)$$ again. But in this form it can be regarded as a limiting expression for $$(-1/2)!$$, which ends up matching a common construction of $$\Gamma$$ due to Euler (see [here](https://en.wikipedia.org/wiki/Gamma_function#Euler's_definition_as_an_infinite_product)). The argument goes: since for integers
 
 $$(n + a)! \approx (n+1)^a n! \approx n^a n!$$
 
-(For reasons I'm not sure about, people usually proceed using the middle $$(n+1)^a$$ term. I suppose that just makes it slightly more accurate? But we only need the $$n^a$$ version for this.) Then we postulate that this ought to also hold for non-integer $$a$$, in particular
+perhaps this ought to also hold for non-integer $$a$$. In particular
 
 $$F_1(n + \frac{1}{2}) = (n+\frac{1}{2})! \approx n^{1/2} n! =  (\sqrt{n}) n!$$
 
-We then _define_ $$(-1/2)!$$ by using this approximation in the denominator. In the limit $$k \ra \infty$$ it should become exact:
+So we define $$(-1/2)!$$ by plugging this approximation in the numerator from before. In the limit $$k \ra \infty$$ it should become exact:
 
 $$
 \begin{aligned}
