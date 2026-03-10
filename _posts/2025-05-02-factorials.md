@@ -805,42 +805,45 @@ None of this matters that much. I really do suspect that there's some valid mean
 
 One thing that I like about this $$F_k$$ notation is that it organizes exactly what the "unusual" parts of multi-factorials are, after which the rest of their properties are trivial. In particular, other than the difference between $$1!! = F_{2}(1) / F_2(-1)$$ and $$2!! = F_2(2)/F_2(0)$$, multifactorials of all orders are exactly the same as rescaled single-factorials via $$F_k(n) = k^{n/k} F_1(n/k)$$. So all of the behavior of $$F_k(n)$$ for all $$k$$ and $$n$$ is fully defined by the values of $$F_1(x)$$ on $$x \in (-1, 0)$$, or equivalently, by $$\Gamma(z)$$ for $$\text{Re}(z) \in (0,1)$$.
 
-Flipping that around: one might argue that the values of $$z!$$ for $$z \in (-1, 0)$$ would be _defined_ by the asymptotic properties of the multifactorials. "What is $$(-\frac{1}{2})! = \Gamma(1/2)$$", you wonder? Well, it could be _defined_ in order to make the multifactorials work out. We start from
-
-$$\prod_0^{-1} d^{\times} (x!!) = F_2(-1) \equiv \frac{\prod_0^{2k+1} d^{\times}(x!!)}{\prod_1^{2k=1} d^{\times}(x!!)} = \frac{F_2(2k+1)}{(2k+1)!!_{\text{old}}}$$
-
-And then say that the _definition_ of $$(-\frac{1}{2})!$$ could be
+Flipping that around: one might argue that the values of $$z!$$ for $$z \in (-1, 0)$$ would be _defined_ by the asymptotic properties of the multifactorials. That is: we define $$(-\frac{1}{2})! = \Gamma(1/2)$$ in order to make the multifactorials work out. We start from
 
 $$
 \begin{aligned}
 (-\frac{1}{2})! &= F_1(-\frac{1}{2}) \\
-&\equiv 2^{1/2} F_2(-1) \\
-&= 2^{1/2} \frac{F_2(2k+1)}{(2k+1)!!_{\text{old}}}\\
-&= 2^{1/2} \frac{2^{k+1/2} F_1(k+1/2)}{(2k+1)!!_{\text{old}}} \\
-(-\frac{1}{2})! &= \frac{2^{k+1} (k+1/2)!}{(2k+1)!!_{\text{old}}} \\
+&= 2^{1/2} F_2(-1) \\
+&= 2^{1/2} \prod_0^{-1} d^{\times} (x!!) \\
+&\equiv  2^{1/2} \frac{\prod_0^{2k+1} d^{\times}(x!!)}{\prod_{-1}^{2k+1} d^{\times}(x!!)} \\
+&= 2^{1/2} \frac{F_2(2k+1)}{(2k+1)!!_{\text{old}}} \\
+&= 2^{1/2} \frac{2^{k+1/2} (k+\frac{1}{2})!}{(2k+1)!!_{\text{old}}}
 \end{aligned}
 $$
 
-This is maybe a bit circular, since $$F_2(2k+1)$$ is defined in terms of $$F_1(k+1/2)$$ again. But in this form it can be regarded as a limiting expression for $$(-1/2)!$$, which ends up matching a common construction of $$\Gamma$$ due to Euler (see [here](https://en.wikipedia.org/wiki/Gamma_function#Euler's_definition_as_an_infinite_product)). The argument goes: since for integers
+That might seem a bit circular, since $$(k+1/2)!$$ is defined in terms of $$(-1/2)!$$ again. But in this form it can be regarded as a limiting expression as $$k \ra \infty$$ instead. This ends up matching a common construction of $$\Gamma$$ due to Euler (see [here](https://en.wikipedia.org/wiki/Gamma_function#Euler's_definition_as_an_infinite_product)). The argument goes: since for integers
 
 $$(n + a)! \approx (n+1)^a n! \approx n^a n!$$
 
 perhaps this ought to also hold for non-integer $$a$$. In particular
 
-$$F_1(n + \frac{1}{2}) = (n+\frac{1}{2})! \approx n^{1/2} n! =  (\sqrt{n}) n!$$
+$$(n+\frac{1}{2})! \approx n^{1/2} n! =  (\sqrt{n}) n!$$
 
 So we define $$(-1/2)!$$ by plugging this approximation in the numerator from before. In the limit $$k \ra \infty$$ it should become exact:
 
 $$
 \begin{aligned}
 (-\frac{1}{2})! &\approx \frac{2^{k+1} (k+1/2)!} {(2k+1)!!} \\
-&= \lim_{k \ra \infty} \frac{2^{k+1} k! \sqrt{k}}{(2k+1)!!}
+&= \lim_{k \ra \infty} \frac{2^{k+1} k! \sqrt{k}}{(2k+1)!!} \\
 \end{aligned}
 $$
 
-Which turns out to be $$\sqrt{\pi}$$ when you plug in [Stirling's Approximation](https://en.wikipedia.org/wiki/Stirling%27s_approximation). Although, this is still basically circular: applying Stirling's approximation to $$(2k+1)!!$$ requires knowing that it is _almost_ proportional to $$(k+1/2)!$$, except that the $$\sqrt{\pi}$$ term is removed. But I suppose you can also work it out from the [Wallis Product](https://en.wikipedia.org/wiki/Wallis_product) without using that directly (which is also basically where the non-trivial part Stirling's formula, the $$\sqrt{\pi}$$, comes from anyway).
+Which does indeed equal $$\sqrt{\pi}$$ when you plug in [Stirling's Approximation](https://en.wikipedia.org/wiki/Stirling%27s_approximation). Although, this is still basically circular: applying Stirling's approximation to $$(2k+1)!!$$ requires knowing that it is _almost_ proportional to $$(k+1/2)!$$, except that the $$\sqrt{\pi}$$ term is removed. But I suppose you can also work it out from the [Wallis Product](https://en.wikipedia.org/wiki/Wallis_product) without using that directly (which is also basically where the non-trivial part Stirling's formula, the $$\sqrt{\pi}$$, comes from anyway).
 
-I dunno. Maybe? I don't find this construction much more philosophically satisfying than the others. It certainly doesn't really "explain" how the $$\sqrt{\pi}$$ gets there, it just phrases in terms of other things. But maybe it is a useful step to see it in this way: that the interpolated values of the factorial at fractions are explicitly equivalent to the ratio of a double factorial to a (rescaled) single-factorial. Maybe, then, the value comes fundamentally from something like "the ratio between a sphere of dimension $$2k+1$$ and a tetrahedron of dimension $$k$$". A "ratio of shapes"-type argument at least starts to suggest why the factors of $$\pi$$ start to show up.
+Another way of writing the above which is perhaps simpler:
+
+$$(\frac{1}{2})! = \lim_{k \ra \infty} \frac{(2k)!! \sqrt{k}}{(2k+1)!!}$$
+
+I don't find this construction much more philosophically satisfying than the others, but there is maybe something interesting about it. It doesn't "explain" how the $$\sqrt{\pi}$$ gets there, but it does define the fractional factorials entirely in terms of things that we already know. I suppose the essence of the trick is the approximation $$(n+1/2)! \approx n! \sqrt{n}$$. Once you have that, everything else follows, basically by working backwards. 
+
+(Incidentally this is a specific case of a more general trick for interpolating things to non-integers; [here](https://mpmueller.net/fractional-sums/) is a whole set of papers on it. As far as I know it's the same idea: to find the value of $$f(1/2)$$ for a function defined only on integers, perform something like $$T^{-n} T^n f(1/2) = T^{-n}f(n+1/2)$$ but plug in an asymptotic value for $$f(n)$$.)
 
 -----
 
@@ -1028,8 +1031,6 @@ And the general operation of interpolating sequences to non-integers is not real
 3. Compute $$f(x) = f(n)^{-1} \circ f(n+x)$$ and call this the value of $$f(x)$$, where the inverse could be addition, multiplication, or whatever you want.
 
 As far as I can tell this is what $$\Gamma$$ is doing, and when you put it like this it's kind of a hard sell to say that it means something at all, given that the result you get is very specific on how you parameterize $$f$$ (changes of variables will give different answers, I mean). Except, of course, for the fact that the $$n$$-spheres have $$\Gamma$$s in their volumes! That's really what ties it all together---we have "experimental evidence" (of a sort) that this process gives something meaningful in the case of $$n!$$, so we're forced to take it seriously. Curious.
-
-Incidentally this way of interpolation has been studied; I'm aware of a somewhat-obscure theory of [interpolating infinite sums](https://mpmueller.net/fractional-sums/) and there are plenty of other references to people looking into it. I hope to study it in more detail later but this is long enough and my brain hurts.
 
 By the way, the most important thing that I have not looked into yet is the "reflection" identity for $$\Gamma$$,
 
