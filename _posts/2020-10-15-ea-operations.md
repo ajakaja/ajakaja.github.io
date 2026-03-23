@@ -511,9 +511,134 @@ This is only defined for $$\| a \| \neq 0$$ (remember, since GA has elements wit
 
 --------
 
-Cut for lack of time or knowledge:
+## 12. The Exterior Power
 
-* Exterior derivative and codifferential 
-* [Cup and cap product](https://en.wikipedia.org/wiki/Cap_product) from algebraic topology. As far as I can tell these essentially implement $$\^$$ and $$\vee$$ on co-chains, which are more-or-less isomorphic to multivectors.
+(added much later, in 2026, for completeness. Caveat: I'm very rusty on this stuff now so there may be a few mistakes... but it should be mostly correct.)
+
+There are two things which get called the "exterior power". First there is the exterior of a multivector
+
+$$\alpha^{\^ k} = \underbrace{\alpha \^ \alpha \^ \cdots}_{\text{$k$ times}}$$
+
+(I like to generally use the notation $$a^{\ast k}$$ to refer to the operation $$\ast$$ applied $$k$$ times.) For many choices of $$\alpha$$ and $$k$$ this will be zero, but for a few it is not. For instance if $$\alpha = \b{w} \^ \x + \y \^ \z \in \^^2 \bb{R}^4$$ then 
+
+$$\alpha^{\^ 2} = \alpha \^ \alpha = 2 \b{w} \^ \x \^ \y \^ \z$$
+
+This $$\alpha$$ also happens to be the canonical example of a non-decomposable bivector, meaning that it cannot be written as the product of two vectors: $$\alpha \neq \b{u} \^ \b{v}$$.
+
+This version of the exterior power does not seem very interesting to me. After all all odd-grade vectors have $$\alpha^{\^ 2} = 0$$. An operation which only works non-trivially on half the space seems kinda of pointless.
+
+The other meaning of "exterior" power refers to a couple things at once. First there is the exterior power _of a vector space_ $$U$$, which of course is just $$\^^k U$$. We can think of this as an operator on a basis for $$U$$. For example if $$U = (\x, \y, \z)$$ then
+
+$$U^{\^2} = (\x, \y, \z) \^ (\x, \y, \z) = (\x \^ \y, \y \^ \z, \z \^ \x)$$
+
+Where I am abusing notation slightly because this is not really intended to be thought of as a literal binary operation. (I believe that the best way to think about it is that $$(\x \^ \y, \y \^ \z, \z \^ \x)$$ is a basis for the three-dimensional subspace of $$U \o U$$ of antisymmetric tensors, so it is a projection out of the binary operation $$\o$$ but is not exactly itself a binary operation.)
+
+Then, related to this, there is the functorial extension of a linear transformation $$A: U \ra V$$ to an exterior power space, which is called the exterior power of the transformation, $$A^{\^ k}: \^^k U \ra \^^V$$, given by the action of $$A$$ on the elements of $$\^^k U$$. In coordinates:
+
+$$A^{\^k}(\b{u}^1 \^ \b{u}^2 \^ \cdots \^ \b{u}^k) = (A \b{u}^1) \^ (A \b{u}^2) \^ \cdots \^ (A \b{u}^k)$$
+
+And written out fully:
+
+$$(A^{\^ k})^{j_1 \^ j_2 \^ \ldots}_{i_1 \^ i_2 \^ \ldots} = \sum_{\sigma \in S_k} (-1)^{\| \sigma\|} A^{i_1}_{j_{\sigma(1)}} A^{i_2}_{j_{\sigma(2)}} \cdots A^{i_k}_{j_{\sigma(k)}}$$
+
+Where $$\| \sigma \|$$ means is the number of transpositions in $$\sigma$$. This is written more concisely with multi-indexes $$I = (i_1, i_2, \ldots)$$ and $$\b{u}^{\^ I} = \b{u}^{i_1} \^ \b{u}^{i_2} \^ \cdots \b{u}^{i_k}$$ as an index for the basis of $$\^^k U$$. The action of $$A^{\^k}$$ on this basis is then
+
+$$A^{\^ I} = A (\b{u}^{\^I})$$
+
+Then the coordinates of this on the basis $$\b{v}^{\^ J}$$ are extracted with
+
+$$A^{\^ I}_{\^ J} = \b{v}_{\^ J} A^{\^ k} (\b{u}^{\^ I}) $$
+
+For example,
+
+$$(A^{\^2})_{x \^ y}^{y \^ z} = A_x^y A_y^z - A_x^z A_y^y$$
+
+Each term is the determinant of a minor of $$A$$.
+
+
+In particular the determinant of a linear transformation between two vector spaces of dimension $$n$$ is given by 
+
+$$\det A = A^{\^^n}: \^^n U \ra \^^n V$$
+
+(or the trace of that, if you prefer) and each $$A^{\^k}$$ is in coordinates a matrix of the determinants of the $$k \times k$$ minors of $$A$$. Also, the rank of $$A$$ is the largest $$r$$ such that 
+
+$$A^{\^ r} \neq 0$$
+
+Because that means that there is an $$r$$-dimensional subspace whose $$r$$-volume is not mapped to $$0$$, hence the images of each vector in a basis for that subspaces under $$A$$ are linearly independent.
+
+
+This exterior power operation is a bit clunky to use. For example, since it is a "power" it ought to correspond to some sort of repeated application of an operation, like $$A^{\^ 2} = A \^ A$$, and then this operation should also be well-defined among non-identical arguments like $$A \^ B$$. But the way we defined it for $$A^{\^k}$$ doesn't work
+
+$$(A \^ B)(\x \^ \y) \? (A \x ) \^ (B \y)$$
+
+That is definitely not what you want, since it _should_ be the action of $$(A \o B)$$ on the bivector $$\x \^ \y$$. To get it right you need to instead unpack the $$\x \^ \y = \x \o \y - \y \o \x$$ bivector:
+
+$$(A \^ B) (\x \^ \y) = (A \x) \o (B \y) - (A \y) \o (B \x)$$
+
+That's something you can get used to, but it is a bit awkward. It means that the above definition of $$A^{\^ k}$$ is not really generalizable. 
+
+The other problem, of course, is that this meaning of $$A \^ A$$ or $$A \^ B$$ is just not even the same operation as the wedge product of vectors. After all we can think of matrices / linear transformations $$U \ra V$$ as vectors $$A \in U^* \o V$$, given by
+
+$$A = A^i_j (\b{u}_i \o \b{v}^j)$$
+
+Now one might think that the meaning of $$A \^ B$$ is some sort of wedge product on the tensor basis, with terms like $$(\b{u}_1 \o \b{v}^2) \^ (\b{u}_2 \o \b{v}^3)$$. But the meaning is really
+
+$$A \^ B = A^i_j B^k_l (\b{u}_i \^ \b{u}_k) \o (\b{v}^j \^ \b{v}^l)$$
+
+So rather than being a wedge product of the 'vectors' $$A, B$$ on their one 2-tensor index, it is more like _two_ wedge products of the tensors $$A, B$$ on each of their matching pairs of indexes. Something like that.
+
+-----
+
+## 13. The Box Product
+
+The "Box Product" is an obscure (as far as I know) operation that seems to be more fundamental than the exterior power of a linear transformation, in a certain sense. I learned about it from a random [youtube video](https://www.youtube.com/watch?v=bb0nYuRABwc), but I have no idea where I found the link to that, and I don't recall hearing about it anywhere else. I do think that it is worth mentioning though, because it fixes some of the clunkiness about the exterior power.
+
+The basic idea is that it repairs the non-identity $$(A \^ B)(\x \^ \y) \? (A \x ) \^ (B \y)$$ in a different way: by antisymmetrizing on the left side
+
+$$
+\begin{aligned}
+(A \box B)(\x \^ \y) &= (A \x) \^ (B \y) - (A \y) \^ (B \x) \\
+&= A_x \o B_y - B_y \o A_x - A_y \o B_x + B_x \o A_y \\
+\end{aligned}
+$$
+
+Note that in the case where $$A = B$$, this gives $$(A \box A) = 2 A_x \o A_y - A_y \o A_x = 2 A_x \^ A_y$$.
+
+More generally,
+
+$$
+\begin{aligned}
+A_1 \box A_2 \box \cdots \box A_k = \sum_{\sigma, \tau \in S_k} (-1)^{\| \sigma \| \| \tau \|} A_{\sigma(1)}^{\tau(1)} A_{\sigma(2)}^{\tau(2)} \cdots A_{\sigma(k)}^{\tau(k)}
+\end{aligned}
+$$
+
+Using this we can define
+
+$$A^{\^ k} = \frac{1}{k!} A^{\box k}$$
+
+The box product is generally better behaved than the exterior power operation or the janky version of $$A \^ B$$ that it is based on. For example it is commutative:
+
+$$A \box B = B \box A$$
+
+And it obeys a binomial theorem:
+
+$$
+\begin{aligned}
+(A + B)^{\^k} &= \frac{1}{k!} (A+B)^{\box k} \\
+&=\sum_{p+q = k} \frac{A^{\box p}}{p!} \box \frac{B^{\box q}}{q!} \\
+(A + B)^{\box k} &= \sum_{p=0}^k \binom{k}{p} A^{\box p} \box B^{\box k-p}
+\end{aligned}
+$$
+
+In particular
+
+$$\det (A+B) = \sum_{k=0}^n A^{\^k} \box B^{\^n-k}$$
+
+and
+
+$$\det (A - \lambda I) = \sum_{k=0}^n A^{\^k} \Box I^{\^ n-k} (-\lambda)^k$$
+
+On the other hand the box product is very inefficient to compute. In a sense the reason its algebraic properties are simple is that it massively overcomputes: it is equivalent to computing the determinant not with a sum over permutations of rows or columns, but over both at once followed by dividing by $$n!$$ to account for the overcounting. Still, the fact that it behaves so similarity to normal algebra makes me think that it is worth considering.
+
 
 {% include ea.html %}
