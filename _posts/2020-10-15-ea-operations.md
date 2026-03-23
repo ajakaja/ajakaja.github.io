@@ -593,7 +593,7 @@ So rather than being a wedge product of the 'vectors' $$A, B$$ on their one 2-te
 
 The "Box Product" is an obscure (as far as I know) operation that seems to be more fundamental than the exterior power of a linear transformation, in a certain sense. I learned about it from a random [youtube video](https://www.youtube.com/watch?v=bb0nYuRABwc), but I have no idea where I found the link to that, and I don't recall hearing about it anywhere else. I do think that it is worth mentioning though, because it fixes some of the clunkiness about the exterior power.
 
-The basic idea is that it repairs the non-identity $$(A \^ B)(\x \^ \y) \? (A \x ) \^ (B \y)$$ in a different way: by antisymmetrizing on the left side
+The basic idea is that it repairs the non-identity $$(A \^ B)(\x \^ \y) \? (A \x ) \^ (B \y)$$ in a different way: by antisymmetrizing on the right side a second time
 
 $$
 \begin{aligned}
@@ -602,7 +602,7 @@ $$
 \end{aligned}
 $$
 
-Note that in the case where $$A = B$$, this gives $$(A \box A) = 2 A_x \o A_y - A_y \o A_x = 2 A_x \^ A_y$$.
+Note that in the case where $$A = B$$, this gives $$(A \box A) = 2 A_x \o A_y - 2 A_y \o A_x = 2 A_x \^ A_y$$.
 
 More generally,
 
