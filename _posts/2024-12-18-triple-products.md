@@ -187,7 +187,9 @@ $$
 You are free to assume that this exists as long as $$\b{b}$$ and $$\b{c}$$ are linearly independent. There are also procedures for constructing them, which will go into a box because they're verbose:
 
 
-<aside class="toggleable" id="Projections" placeholder="<b>Aside</b>: Dual basis constructions <em>(click to expand)</em>">
+<aside>
+
+### Aside: Dual Basis Constructions
 
 Suppose we want to extract the $$a_b$$ component in 
 
