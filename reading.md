@@ -28,6 +28,7 @@ So, here are good blogs and forums that I am aware of.
 * [WorryDream](http://worrydream.com/) --- Bret Victor has a vision for the future which I don't exactly agree with but at least he's walking the right direction while everyone else is circling the origin. Also, his site is very neat.
 * [Hidden Phenomena](https://hidden-phenomena.com/) --- a new blog about math which I am enjoying so far.
 * [Neurotic Gradient Descent](https://neuroticgradientdescent.blogspot.com/) --- a rather-practical and non-spiritual take on Buddhist meditation practices that somewhat resonates with me. [This](https://neuroticgradientdescent.blogspot.com/2020/01/mistranslating-buddha.html) one is a good starting point.
+* [Idle Words](https://idlewords.com/) --- Just good reading. I particularly loved [this article](https://idlewords.com/2010/03/scott_and_scurvy.htm) about science struggling to figure out the cause of scurvy while repeatedly thinking they had.
 
 
 Also, just in case you don't know about these: the trick to doing your own education in a world of closed-access papers and 100$ textbooks is to 'borrow' them. You can look these up yourself.
