@@ -14,61 +14,35 @@ Some connections between things, which I have not seen elsewhere. Maybe they mea
 
 # 1. The Baseless Logarithm
 
-A preliminary:
-
 Normally one writes a logarithm with a base, $$\log_b (x)$$, to mean
 
 $$y = \log_b (x) \Lra b^y = x$$
 
-And then, for instance, you can change the base of the logarithm with
+And then you can change the base of the logarithm with
 
 $$\log_b (x) = \frac{\log_a (x)}{\log_a(b)}$$
 
-Which just follows from rearranging $$\log_a (x) = \log_a (b^{\log_b x}) = \log_b (x) \times \log_a (b)$$.
+Which follows from rearranging $$\log_a (x) = \log_a (b^{\log_b x}) = \log_b (x) \times \log_a (b)$$.
 
-One way of thinking about what it is saying is that it is a change of units for the logarithm. For example suppose we want to measure the size of some computer memory in either $$\text{bits}$$ or $$\text{bytes}$$. We would change between the two units like
+One way of thinking about what this formula does is that it is a change of units. Similar to writing $$2 \text{ km} = 2000 \text{ m} / (1000 \text{ m}/1 \text{ km})$$ or $$5 \text{ bytes} = 40 \text{ bits}/(8 \text{ bytes}/1\text{ bit})$$. It says: how many copies of $$b$$ are in $$x$$? It's the number of copies of $$a$$ in $$x$$, divided by the number of copies of $$a$$ that are in $$b$$. 
 
-$$40 \text{ bits} \times \frac{1 \text{ byte}}{8 \text{ bits}} = 5 \text{ bytes}$$
+This is perfectly simple, but for some reason it's hard to think about logarithms that way. The notation kind of... obfuscates things? It is hard to read $$\log_b x$$ as "how many copies of $$b$$ are in $$x$$, because that English expression should correspond to the notation $$x/b$$, not $$\log_b x$$.
 
-which is no different from equivalences like $$1000 \text{ meters} = 1 \text{ km}$$ in physics. 
-
-But, we can also view this change of units as changing the base of a logarithm. The value "$$1 \text{ bit}$$" is a way of describing something which has $$2^1$$ states, while "$$1 \text{ byte}$$" describes something with $$2^8$$ states. So
-
-$$
-\begin{aligned}
-5 \text{ bytes} 
-&= \frac{1 \text{ byte}}{8 \text{ bits}} \times 40 \text{ bits}\\
-&= \frac{1 \text{ byte}}{\log_2 2^{8 \text{ bits}}} \times \log_2 2^{40 \text{ bits}}\\
-&= (1 \text{ byte}) \times \frac{\log_2 2^{40 \text{ bits}}}{\log_2 2^{8 \text{ bits}}}  \\
-&= (1 \text{ byte}) \times \log_{2^{8 \text{ bits}}} 2^{40 \text{ bits}} \\
-
-
-\end{aligned}
-$$
-
-Not that that says anything new. But I think it's interesting to think that these two operations are the same thing. Presumably the same holds for any other change of units in any setting: you can always talk about "log meters" instead of "meters", and then think if the change from meters to kilometers and a change of basis. But my point is not really that we ought to think of changes of units as changing bases of logarithms. Rather it's the other way around: we should think of changes of logarithm bases as changes of units. That the _meaning_ of the 
-
-$$\log_b (x) = \frac{\log_a (x)}{\log_a(b)}$$
-
-rule is that it is a change of units, that's all, no different from
-
-$$10^2 \text{ m} = [\frac{10^3 \text{ m}}{1 \text{ km}}] 10^{-1} \text{ km} = [\frac{1 \text{ m}}{10^{2} \text{ cm}}] 10^4 \text{ cm}$$
-
--------
-
-In fact there's a more elegant way to say this, but you have to allow a sort of odd object: a _baseless logarithm_. The idea is that we treat the "baseless logarithm"
+I found a way of thinking about logarithms which makes this clearer, but you have to allow a sort of odd object, which I am calling a _baseless logarithm_. It is simply a logarithm without a base:
 
 $$\log N$$
 
-as an abstract object, not a number, and then write our normal "based" logarithm as a ratio of two baseless logarithms:
+which we regard as an abstract object, not a number, and then we write our normal "based" logarithm as a ratio of two of these baseless logarithms:
 
 $$\log_2 N = \frac{\log N}{\log 2}$$
 
-Then we interpret $$\log 2$$ as _being_ the unit "bits". So the operation of writing $$\log N$$ in bits follows algebraically:
+Note, this is already sort of a thing people colloquially do, e.g. leaving out the base of logarithms in asymptotic formulas. I'm arguing that it is useful to regard it more literally than that, as an actual algebraic object.
+
+We interpret $$\log 2$$ as _being_ the unit "bits". To write $$\log N$$ in bits is to factor it as a multiple of $$\log 2$$:
 
 $$\log N = \frac{\log N}{\log 2} \log 2 = \log_2 (N) \log 2 = \log_2 (N) \text{ bits}$$
 
-And the change-of-base for logarithms follows from just writing the same geometric quantity in different units. For example $$\log e$$ as a unit is sometimes called "nats":
+Then the change-of-base for logarithms follows from just writing the same geometric quantity in different units. For example $$\log e$$ as a unit is sometimes called "nats":
 
 $$
 \begin{aligned}
@@ -76,7 +50,7 @@ $$
 \end{aligned}
 $$
 
-I'll admit that the baseless $$\log N$$ quantity is a bit strange at first. But as I've played with it I've started to think that it's the right way to think about things. 
+Regarding the baseless $$\log N$$ as a real mathematical object is a bit strange at first. But I've been coming to think that it's the right way to do things, as the rest of the article will elaborate on.
 
 You might ask: if we have a baseless logarithm $$\log N$$, do we also have a "baseless exponential"? Normally $$b^{\log_b N}$$ can be written as something like $$b^{\log_b N} = b^{\ln N / \ln b} = e^{\ln N} = N$$; is there any way to do this without actually choosing a base? I think the answer has to be "no". All we can say is that we have split the one object, a logarithm $$\log_b N$$ which is the solution of $$b^y = N$$, into two objects, $$\log N$$ and $$\log b$$, each of which on their own are without "units" and so have no numerical meaning. It is similar to how we can have a vector without any coordinates: we can talk about the vector's meaning in context, such as the displacement it describes, but we can't compare it to anything else, or ask what its length is, without something by which to measure it.
 
@@ -87,61 +61,44 @@ In fact it is exactly like that:
 
 # 2. Logarithms are Vectors
 
-When doing vector algebra and differential geometry in a properly covariant way, we distinguish between abstract vectors and vectors in a particular coordinate system. I like to call the abstract vectors "geometric vectors" and always write them in bold, $$\v$$, whereas their values in coordinates are written with an arrow, $$\vec{v} = (v_x, v_y, v_z)$$. This lets us talk about a coordinate _frame_ $$X$$ as a coordinate vector of geometric vectors $$X = (\x, \y, \z)$$ such that
+When doing vector algebra and differential geometry in a properly covariant way, we distinguish between abstract vectors and vectors in a particular coordinate system. My personal convention for this is to refer to the abstract vectors as "geometric" vectors and always write them in bold, $$\v$$, whereas "coordinate" vectors, tuples of their values in coordinates, are written with an arrow over them like $$\vec{v} = (v_x, v_y, v_z)$$. Boldface geometric vectors are always coordinate-free, whereas coordinate vectors are just collections of numbers or other objects. The geometric vector $$\b{v}$$ can be written as a dot product of its coordinates with a 'frame' $$X = (\x, \y, \z)$$ of basis vectors
 
-$$\v = v_x \x + v_y \y + v_z \z = \vec{v} \cdot X$$
+$$\b{v} = \vec{v} \cdot X = (v_x, v_y, v_z) \cdot (\x, \y, \z) = v_x \x + v_y \y + v_z \z$$
 
-The projection of $$\v$$ onto a coordinate $$\x$$ is then given by 'measuring' the vector against the coordinate. I like to write this as division because it acts a lot like division (although it's technically [pseudodivision](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse) instead):
+The projection of $$\v$$ onto a basis vector $$\x$$ is then given by 'measuring' the vector against the basis vector (which does not have to be of unit length). I like to write this as division because it acts a lot like division (although it's technically [pseudodivision](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse) instead):
 
 $$\frac{\v}{\x} = v_x$$
 
-That's in my own [very nonstandard notation]({% post_url 2024-09-11-vector-division %})[^notation] for vector division here. The more common way to write this is to project a component of a differential
-
-$$df = f_x dx + f_y dy + f_z dz$$
-
-with a partial derivative, which is also the pseudodivision operation (incidentally the reason that it 'kinda' works like division but not really):
+That's in my own [very nonstandard notation]({% post_url 2024-09-11-vector-division %})[^notation] for vector division here. The more common way to write this is to project a component of a differential $$df = f_x dx + f_y dy + f_z dz$$ with a partial derivative, which is also the pseudodivision operation (which is incidentally the sense in which partial derivatives kinda work like division but not really):
 
 $$\frac{\p f}{\p x} = f_x$$
 
-I will write things in both forms. I prefer my vector-division version because it avoids muddling things with all the irrelevant references to differential calculus, but since the latter is actually standard I ought to include it for comparison.
+I will write things in both forms to make it easy to translate between them; I do prefer my vector-division version because it avoids bringing in the irrelevant notations of differential calculus, but since the latter is actually standard I ought to include it for comparison.
 
 [^notation]: I hope to write a better standalone article about this notation soon. I've been trying to do so for a few years now but I seem to start losing my sanity whenever I try to work on it so it hasn't happened yet. When I do finally manage to do it I'll update this.
 
-We think of $$\x$$ as a measuring stick that we hold up to the value $$\v$$ to measure its length (along the $$\x$$ vector). Assuming that $$\v$$ points in the $$\x$$ direction, we can recover its "geometric" object, which is coordinate-invariant, by multiplying by the vector again:
+Suppose $$\b{v}$$ is one-dimensional, $$\b{v} = v_x \x$$. Then the projection onto a 'measuring stick' $$\b{m} = m \x$$ measures its length in terms of multiples of $$m$$:
+
+$$\frac{\v}{\b{m}} = \frac{v_x \x}{\x} = \frac{v_x}{m}$$
+
+Multiplying by $$\b{m}$$ again is what we mean by "writing $$\b{v}$$ in units of $$\b{m}$$:
+
+$$\frac{\b{v}}{\b{m}} \b{m} = (\frac{v_x}{m}) \text{m} \x$$
+
+(In differentials, this is the differential of $$f$$ restricted to its $$dx$$ component: $$\frac{\p f}{\p x} dx = f_x dx = df \mid_{x}$$, which is a perfectly interesting object (a covariant derivative) that one does not see written in this way very often. By the way, it's not really important here, but is possible to view all measurements of the length of vectors in this way by thinking first of rewriting an arbitrary vector $$\v = v_x \x + v_y \y + v_z \z$$ in a polar form $$\v = v_r \r + v_{\theta} \theta$$ and then projecting onto $$\r$$, $$\| \v \| = \v/\r$$. This tends to be a good way of looking at things.)
+
+The baseless logarithm is performing the same operation on logarithms, where $$\log N$$ is filling the role of the geometric vector $$\v$$ and $$\log 2 = \text{bits}$$ is the unit vector or measuring stick, which takes the role of $$\x$$.
 
 $$
 \begin{aligned}
-\frac{\v}{\x} \x = v_x \x = \v_x
+\frac{\log N}{\log 2} &= \log_2 N  \\
+\frac{\log N}{\log 2} \log 2 &= \log_2 N \text{ bits}
 \end{aligned}
 $$
 
-Where $$\v_x$$ means "the vector projection of $$\v$$ onto $$x$$", which as long as they are both one dimensional, recovers $$\v$$ again. For example, to measure length in meters, we imagine this division operation as using a meter stick $$\b{m}$$ to measure the displacement $$\v$$, literally seeing how many copies of $$\b{m}$$ fit into it. We can think a vectorial length $$\v = v_m \text{ meters}$$ as being the vector projection onto a one-dimensional "meter" vector $$\b{m}$$:
+In this sense baseless logarithms write numbers in coordinates in exactly the same way that measuring sticks write vectors in coordinates.
 
-$$\frac{\v}{\b{m}} \b{m} = \frac{v_m \, \b{m}}{1 \, \b{m}} \b{m} = v_m \b{m} = v_m \text{ meters}$$ 
-
-In differentials, this is the differential of $$f$$ restricted to its $$dx$$ component:
-
-$$\frac{\p f}{\p x} dx = f_x dx = df \mid_{x}$$
-
-You can do the same thing with "frames" of vectors, like $$X = (\x, \y)$$. Then
-
-$$\frac{\v}{X} \cdot  X = \frac{\v}{(x, y)} \cdot (\x, \y) = (v_x, v_y) \cdot (\x, \y) = v_x \x + v_y \y = \v_X$$
-
-Or in differentials, you get the covariant derivative with respect to the $$X$$ frame.
-
-$$\frac{\p f}{\p X} dX = \frac{\p f}{\p(x, y)} (dx, dy) = f_x dx + f_y dy = d_X f$$
-
-As it turns out you can do this with things much more general than single vectors. The general idea is: given a thing $$\v$$ which can be partially written in $$X$$ coordinates as $$v_X (X) + V_{\perp X}$$, you use "pseudodivision by $$X$$" to extract the coordinates $$V/X = v_X$$ and then "multiplication by $$X$$" to reconstruct the projection onto those coordinates: $$(V/X) (X) = v_X X = \v_{X}$$. In general there is no reason to use "division" notation for this; you could choose any algebraic symbol you want; for example, $$\ket{v_X} = \ket{X} \braket{X \| V}$$ is one common choice. But I choose to write it as division because it almost always corresponds to the operation of division in practice. 
-
-The baseless logarithm gives another example. $$\log N$$ is a 'geometric vector' like $$\v$$ or $$dv$$, without a coordinate system. Division by a unit writes it in coordinates relative to that unit
-
-$$\frac{\log N}{\log 2} = \log_2 N$$
-
-So the "unit vector" $$\log 2$$ is what we call the unit "bits", and writing $$\log N$$ in bits
-
-$$\log N = \frac{\log N}{\log 2} \log 2 = \log_2 (N) \log 2 = \log_2 (N) \text{ bits}$$
-
-is equivalent to the expression $$\v = v_x \x$$ on vectors (in the case where $$\v \in \text{span}(\x)$$). The equivalence of logarithms in different units
+The equivalence of logarithms in different units
 
 $$
 \begin{aligned}
@@ -150,12 +107,12 @@ $$
 \end{aligned}
 $$
 
-is the same as the equivalence of geometric vectors in different coordinate systems
+is the same as the equivalence of geometric vectors in different units
 
 $$
 \begin{aligned}
-\v &= \frac{\v}{X} X = v_X X \\[1em]
-&= \frac{\v}{X'} X' = v_{X'} X' \\
+\v &= \frac{\v}{\x} \x = v_x \x \\[1em]
+&= \frac{\v}{\x'} \x' = v_{\x'} \x' \\
 \end{aligned}
 $$
 
@@ -163,12 +120,11 @@ or
 
 $$
 \begin{aligned}
-df &= \frac{\p f}{\p X} dX = f_X dX \\
-&= \frac{\p f}{\p X'} dX' = f_{X'} dX'
+df &= \frac{\p f}{\p x} dx = f_x dx \\
+&= \frac{\p f}{\p x'} dx' = f_{x'} dx'
 \end{aligned}
 $$
 
-(Note that the $$f_x = \p_x f = \p f / \p x$$ notation for partial derivatives is unfortunate; it should be $$(df)_x$$ or $$df_{dx}$$, to indicate that it is the "$$dx$$ component" of the vector $$df$$. For that matter the whole situation with he symbols $$d$$ and $$\p$$ is a mess. I think the ideal notation for differentails is actually $$\p f = \frac{\p f}{\p x} \p x + \frac{\p f}{\p y} \p y$$)
 
 And the change of base formula that computes a ratio of logarithms in different bases
 
@@ -181,11 +137,12 @@ $$
 \end{aligned}
 $$
 
-is exactly like the change of coordinates for a vector, where $$X$$ and $$X'$$ are two coordinate frames for the same subspace. 
+is exactly like the change of coordinates for a vector, where $$\x$$ and $$\x$$ are two units for the same quantity.
 
 $$
 \begin{aligned}
-v_X X &= v_{X'} X' \\  &= \frac{X'}{X} v_{X'} \\
+v_x \x &= v_{x'} \x' \\  
+v_x &= \frac{\x'}{\x} v_{\x'} \\
 \end{aligned}
 $$
 
@@ -193,24 +150,31 @@ or
 
 $$
 \begin{aligned}
-f_X dX &= f_{X'} dX' \\
-f_X &= \frac{dX'}{dX} f_{X'}
+f_x dx &= f_{x'} dx' \\
+f_x &= \frac{dx'}{dx} f_{x'}
 \end{aligned}
 $$
 
-For example, if $$X = (\x, \y, \z)$$ is then the last line gives expresses the components of the differentials in terms of the Jacobian (hate that name) of the coordinate transformations.
+(Note that the $$f_x = \p_x f = \p f / \p x$$ notation for partial derivatives is unfortunate; it should be $$(df)_x$$ or $$df_{dx}$$, to indicate that it is the "$$dx$$ component" of the vector $$df$$. To be honest the whole situation with the symbols $$d$$ and $$\p$$ is a mess. I suspect the ideal notation for differentials is actually $$\p f = \frac{\p f}{\p x} \p x + \frac{\p f}{\p y} \p y$$)
 
-$$(f_x, f_y, f_z) = \frac{\p(x', y', z')}{\p(x, y, z)} (f_{x'}, f_{y'}, f_{z'})$$
+--------
 
-What logarithms don't allow you to do that partial derivatives and vector division do allow to actually talk about a partial derivative operation in isolation. For example, if $$N = 2^a 3^b$$, you can only take the operation of a _total_ derivative:
+
+What logarithms don't allow you to do that partial derivatives and vector division do allow to actually talk about a partial derivative operation in isolation. For example, if $$N = 2^a 3^b$$, you can only talk about the ratio with respect to a single unit $$\log 2$$
 
 $$\frac{\log N}{\log 2} = a \frac{\log 2}{\log 2} + b \frac{\log 3}{\log 2} = a + b \log_2 3$$
 
-is equivalent to
+which is equivalent to writing a vector as a multiple of a _single_ basis vector (like in Clifford/geometric algebra)
 
-$$\frac{df}{dx} = f_x dx + f_y \frac{dy}{dx}$$
+$$\frac{\v}{\x} = v_x + v_y \frac{\y}{\x}$$
 
-But all over the place, people go and invent the projection / partial derivative operation on logarithms _anyway_. For example, the [p-adic valuation](https://en.wikipedia.org/wiki/P-adic_valuation) in number theory
+or to a _total_ derivative
+
+$$\frac{df}{dx} = f_x + f_y \frac{dy}{dx}$$
+
+But there is no direct equivalent of the operation of partial differentiation---there's nothing that acts like $$N \? (\log_2 N) \log 2 + (\log_3 N) \log 3$$.
+
+However, I keep finding that people have gone and invented the projection / partial derivative operation on logarithms _anyway_. For example, the [p-adic valuation](https://en.wikipedia.org/wiki/P-adic_valuation) in number theory
 
 $$\nu_p (n) = \max \{ k \in \bb{N} \mid p^k \mid n \}$$
 
@@ -224,7 +188,7 @@ $$
 \end{aligned}
 $$
 
-Since it is a _projection_ out of the logarithm, it still obeys logarithmic identities like $$\nu_p(m/n) = \nu_p(m) - \nu_p(n)$$. But there is not really a good notation for actually expressing it as a projection out of such a logarithmic 'vector', so sadly it gets a whole separate theory that you have to learn.[^partial]
+Since it is a projection out of the logarithm, it still obeys logarithmic identities like $$\nu_p(m/n) = \nu_p(m) - \nu_p(n)$$. But there is not really a good notation for actually expressing it as a projection out of such a logarithmic 'vector', so sadly it gets a whole separate nomenclature that you have to learn.[^partial]
 
 [^partial]: There is also a thing called an [arithmetic derivative](https://en.wikipedia.org/wiki/Arithmetic_derivative) and a corresponding partial derivative $$D_p(n) = \nu_p(n)/p$$, but as far as I can tell it's not quite the same thing and not what I'm looking for.
 
@@ -240,7 +204,9 @@ since for $$z \approx a$$, $$f(z) \sim f_{-n} (z-a)^{-n}$$ which dominates the o
 
 (I don't know complex analysis very well so that's all I'm going to say about that, but it seems clear that it is basically the same operation.)
 
-In each case, we see that the baseless logarithm operation $$\log n$$ works a _lot_ like a vector $$\v$$ or differential $$df$$, and then expressing a logarithm in a base like $$\log_2 n = \log n / \log 2$$ is a lot like a total derivative $$df/dx$$ or Clifford division $$\v \ast \b{x}^{-1}$$ (minus the anticommutativity, but w/e). What is missing is some equivalent of the partial derivative / projection operator that projects _only_ onto that component... but each field that uses logarithms goes and finds a way to invent that anyway, either in the form of a partial derivative $$\p f/\p x$$, or just by making up the $$p$$-adic valuation $$\nu_p$$, or by the limits $$\lim_{z\ra a} \log f(z) / \log (z-a)$$ in complex analysis. The similiarities are all suspicious, though, and I can't help but think there is some unifying theory here that ties all this together... but I can't see what it is yet.
+In each case, we see that the baseless logarithm operation $$\log n$$ works a _lot_ like a vector $$\v$$ or differential $$df$$, and then expressing a logarithm in a base like $$\log_2 n = \log n / \log 2$$ is a lot like a total derivative $$df/dx$$ or Clifford division $$\v \ast \b{x}^{-1}$$. What is missing is some equivalent of the partial derivative / projection operator that projects _only_ onto that component... but various fields have gone and Found a way to invent that anyway, either in the form of a partial derivative $$\p f/\p x$$, or just by making up the $$p$$-adic valuation $$\nu_p$$, or by the limits $$\lim_{z\ra a} \log f(z) / \log (z-a)$$ in complex analysis. The similiarities are all suspicious, though, and I can't help but think there is some unifying theory here that ties all this together... but I can't see what it is yet.
+
+One thing that we might try in order to invent a $$\log_2 N$$ that acts like $$\p_x f$$ or $$\b{v}/\x$$ is to somehow restrict the values of the logarithms to certain spaces, e.g. integers or rationals. Since the $$\{\log p_i\}$$ are linearly indepedent (which is essentially equivalent to prime factorizations being unique), you would end up with objects like $$\log_2 3 = \log_3/\log_2$$ which have no value in $$\bb{Q}$$; "zeroing" those out then gives something that acts like a partial derivative. But I don't know if that's useful. Certainly it doesn't help in any numeric context.
 
 
 Anyway, onto more things that are logarithms.
@@ -424,23 +390,28 @@ Maybe it is interesting to consider what happens if $$X$$ is not linearly-indepe
 
 ------
 
-# 6. The meaning of a logarithm
+# 6. Everything is Logarithms?
 
-At the end of the day all a logarithm really does is changes the _notation_ we use to refer to something. $$y = \log_b x$$ is just another way of writing $$x$$, which just assumes that when you go and use it you will write $$b^{y}$$ instead of $$x$$ in order to produce the same output.
+At the end of the day all a logarithm really does is changes the _notation_ we use to refer to a number. $$y = \log_b x$$ is just another way of writing $$x$$, which just assumes that when you go and use it you will write $$b^{y}$$ instead of $$x$$ in order to produce the same output. Logarithm-ing $$x$$ is an isomorphism for most purposes and is just used to write it in a form that is more amenable to representation and computation.
 
-There are logarithms in mathematics which are more complicated than this, of course. I'm thinking of the complex logarithm $$\log z = \text{Log } z + 2\pi i k \mid k \in \bb{Z}$$, or its messier cousins like the [logarithm of a matrix](https://en.wikipedia.org/wiki/Logarithm_of_a_matrix). I tend to think that these are a confusion of concepts: what's really going on in the logarithm on $$\bb{C}$$, for instance, is that angles have their values in $$S_1$$, not $$\bb{R}$$, which has a different topology, and so naturally you end up with a redundancy due to the mistake. But anyway that's how things are defined today so you have to deal with it.
+Of course there are logarithms in mathematics which are more complicated than that, such as the complex logarithm $$\log z = \text{Log } z + 2\pi i k \mid k \in \bb{Z}$$, or its messier cousins like the [logarithm of a matrix](https://en.wikipedia.org/wiki/Logarithm_of_a_matrix). But I tend to think that these are a confusion of concepts: what's really going on in the logarithm on $$\bb{C}$$, for instance, is that angles have their values in $$S_1$$, not $$\bb{R}$$, which has a different topology, and so naturally you end up with a redundancy due to the mistake; a different set of conventions would move the problem out of the logarithm and into the definitions of the values themselves. Unfortunately that's not how things are are defined today so you have to deal with it.
 
-The discussion in this article ignores those problems and assumes that $$\log$$ really is just a way of taking something expressed in a multiplicative form and re-expresses it in an additive form. It _happens to be the case_ that this corresponds to many operations that everyone learns in math, such as the $$\dim$$ operator in linear algebra and the $$\nu_p$$ operation in number theory (sorta) and the total derivative in calculus (also sorta). The point here is that all of these things which appear to be different are in fact many instances of the same basis primitives. My strongly-held belief is that math needs to clean this all up: we are missing the forest for the trees by keeping all this redundancy in the notations; actually we are doing the same operations over and over in different notations with slight variations in their implementations, and missing all of the similarities between them, and as a result everything is a lot harder than it needs to be. These things should not be "discoveries"; the material needs to be refactored so that they are trivial and obvious to every student.
+Anyway the discussion in this article ignores those cases and assumes that $$\log$$ really is an isomorphism: it's just a way of taking something expressed in a multiplicative form and re-expresses it in an additive form. This is turns out corresponds to many operations that one learns in math, such as the $$\dim$$ operator in linear algebra and the $$\nu_p$$ operation in number theory (sorta) and the total derivative in calculus (also sorta). 
 
-There is also some kind of philosophical implication to this all that I think math misses but physics has a good grasp on, which is the reason I also emphasize that the 'baseless logarithm', which seems somewhat nonsensical mathematically, is an important object. The idea is closely related to the notion of [general covariance](https://en.wikipedia.org/wiki/General_covariance) in physics: that the properties of objects are independent of the coordinates we use to express them, and so you end up paying over time for any coordinate-dependencies you introduce into your notation: the _meaningful_ theorems end up being those that are independent of coordinate system, but since you work in coordinates you have to figure out how to extract coordinate-free insights afterwards. Sometimes the use of coordinates is helpful or necessary, of course, but experience suggests that we should always aim to have a coordinate-free version of things in the first place. I am in particular interested in covariant notations of _cardinality_ (which gets into concepts like numerosity, mentioned above), since I think that is the answer to my ongoing quest to make sense of permutations over 'fractional sets', as well as the _right_ way to deal with infinite-cardinality objects such that your theorems have any physical validity.
+All of these things which appear to be different are in fact many instances of the same basic primitives. My strongly-held belief is that math needs to clean this all up: we are missing the forest for the trees by keeping all this redundancy in the notations; actually we are doing the same operations over and over in different notations with slight variations in their implementations, and missing all of the similarities between them, and as a result everything is a lot harder than it needs to be. These things should not be "discoveries"; the material needs to be refactored so that they are trivial and obvious to every student.
 
-My personal suspicion is that a lot of basical mathematical objects as misdefined at present, and forcing them to become properly covariant would force one to reckon with these misdefinitions. For example, the notion of a vector space over a field is not covariant with respect to the choice of field, and this is somehow a problem; there is ample evidence (imo) that there is a meaningful concept of a vector space with non-integer dimension over a field, but to actually find the objects in which those statements make sense, you will have to modify the definitions of the words "vector space", "dimension", and "field"... while hopefully preserving the _reasons_ they were defined the way they are at present.
+There is also some kind of philosophical implication to things like this which I think mathematical culture tends to miss but physics has a good grasp on. This is partly why I want to emphasize that the 'baseless logarithm', which seems somewhat nonsensical mathematically, is an important object. The idea is closely related to the notion of [general covariance](https://en.wikipedia.org/wiki/General_covariance) in physics: that the properties of objects are independent of the coordinates we use to express them, and the _meaningful_ theorems end up being those that are independent of coordinate system. Since you work in coordinates you have to figure out how to extract coordinate-free insights afterwards. Sometimes the use of coordinates is helpful or necessary, of course, but experience suggests that we should always aim to have a coordinate-free version of things in the first place. 
 
-In particular, just like $$\log_K K^2 = 2$$ gives the dimension of a basis for $$K^2$$, I believe that $$\log K$$ gives a thing which acts like a basis _for the field $$K$$_. Not the usual sense of 'basis', of course, but an abstract object which refers to a way of writing $$K$$. For example $$\log K / \log 2 = \log_2 K$$ would give some kind of 'binary code' for $$K$$, combined with the rules of algebra such that all of the field operations on $$K$$ have corresponding opeartions on the binary-representations of $$K$$, and $$\log K / \log J$$ would give you something like a way of writing one field in terms of another, even if they are of different sizes.
+I am in particular interested in covariant notations of _cardinality_ (which gets into concepts like numerosity, mentioned above), since I think that is the answer to my ongoing quest to make sense of permutations over 'fractional sets', as well in the right way to deal with infinite-cardinality objects such that your theorems have any physical validity (it definitely does not involve anything like the axiom of choice).
 
-Therefore if mathematical names like $$n \in \bb{N}$$ or $$K \in \text{ Field}$$ refer to specific objects, I think of their baseless logairthms $$\log n$$ or $$\log K$$ as referring, abstractly, to the idea of _representations_ for those objects, but they are not yet bound to a particular coordinate system---and then "division" by another logarithm refers to that step, so $$\log n / \log 2 = \log_2 n$$ means "write the word $$n$$ in terms of the language $$2$$", while $$\log K / \log J$$ means "write the words of $$K$$ in terms of the language of $$J$$". Not that we _have_ to use the symbols for $$\log$$ or division here; we could just as easily write $$\b{v} = f^{-1}(\b{v}) f$$ instead, for any function $$f$$. The choice to overload the meanings of logarithms and division follow from the observation that they so often really do mean that in practice.
+My personal suspicion is that a lot of basic mathematical objects are misdefined at present, and forcing them to become properly covariant would fix their definitions. For example, the notion of a vector space over a field is not covariant with respect to the choice of field, and this is somehow a problem; there is ample evidence (imo) that there is a meaningful concept of a vector space with non-integer dimension over a field, but to actually find the objects in which those statements make sense, you will have to modify the definitions of the words "vector space", "dimension", and "field"... while hopefully preserving the _reasons_ they were defined the way they are at present.
 
-That is all, of course, just speculative handwaving... but I really have come to think that it is at some level philosophically necessary.
+In particular, just like $$\log_K K^2 = 2$$ gives the dimension of a basis for $$K^2$$, I suspect that $$\log K$$ gives a thing which acts like a basis _for the field $$K$$_. Not the usual sense of 'basis', of course, but an abstract object which refers to a way of writing $$K$$. For example $$\log K / \log 2 = \log_2 K$$ would give some kind of 'binary code' for $$K$$, combined with the rules of algebra such that all of the field operations on $$K$$ have corresponding opeartions on the binary-representations of $$K$$, and $$\log K / \log J$$ would give you something like a way of writing one field in terms of another, even if they are of different sizes.
 
-It also happens to lead to what a delightful mathematical pun. The word "logarithm" etymologically comes from _logos_ + _arithmos_ in Greek. _Arithmos_ means 'number', which is expected, but _logos_ can mean _either_ 'proportion' or 'word'; the latter is why it is the root of words like 'neologism' and 'analogy' and 'logic' as well. So you might interpret $$\log n$$ linguistically as meaning something to do with _words_: abstractly, it means "a word for $$n$$", and then $$\log_b n = \log n / \log b$$ means "a word for $$n$$ in terms of the word for $$b$$". Which is of course exactly what it is. Cute, right?
+Therefore if mathematical names like $$n \in \bb{N}$$ or $$K \in \text{ Field}$$ refer to specific objects, I think of their baseless logairthms $$\log n$$ or $$\log K$$ as referring, abstractly, to the idea of their _representations_, unbound to any coordinate system. The division by another logarithm then implements the step of writing them in coordinates. So $$\log n / \log 2 = \log_2 n$$ means "write the word $$n$$ in terms of the language $$2$$", while $$\log K / \log J$$ means "write the words of $$K$$ in terms of the language of $$J$$". In this sense 'everything is logarithms' means: everything has representations in other languages, and logarithms, or something like them, are the operation we use to do that. 
+Of course this is speculative handwaving... but I really have come to think that it is at some level philosophically necessary.
+
+Not that we _have_ to use the symbols for $$\log$$ or division to do this. We could just as easily write $$\b{v} = f^{-1}(\b{v}) f$$ instead, for any function $$f$$. The choice to overload the meanings of logarithms and division follow from the observation that they so often really do mean that in practice.
+
+It also happens to lead to a delightful mathematical pun. The word "logarithm" etymologically comes from _logos_ + _arithmos_ in Greek. _Arithmos_ means 'number', which is expected, but _logos_ can mean either 'proportion' or 'word'; the latter is why it is the root of words like 'neologism' and 'analogy' and 'logic' as well. Since the $$\log n$$ notation does not actually include the -_arithmos_ part, you might interpret it linguistically as meaning something to do with _words_ instead of numbers: abstractly, it could mean "a word for $$n$$", and then $$\log_b n = \log n / \log b$$ means "a word for $$n$$ in terms of the word for $$b$$". Which is of course exactly what it is. Cute, right?
 
