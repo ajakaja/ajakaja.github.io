@@ -200,13 +200,25 @@ $$f(z) = f_{-n} (z-a)^{-n} + f_{-n+1} (z-a)^{-n+1} + \cdots + f_{-1} (z-a)^{-1} 
 
 (that is, the value of $$n$$ such that $$(z-a)^n f(z)$$ is holomorphic around $$a$$). This is extracted with a logarithm:
 
-$$\text{ord}_a f(z) = \lim_{z \ra} \frac{\log f(z)}{\log (z-a)} = -n$$
+$$\text{ord}_a f(z) = \lim_{z \ra a} \frac{\log f(z)}{\log (z-a)} = -n$$
 
-since for $$z \approx a$$, $$f(z) \sim f_{-n} (z-a)^{-n}$$ which dominates the other terms that blow up less quickly. It should be clear that this is a very similar operation: $$\log f(z)$$ is some kind of sum over all of the poles and zeroes of $$f(z)$$ (presumably via the [Weierstrass factorization](https://en.wikipedia.org/wiki/Weierstrass_factorization_theorem)), $$\log f(z) \sim \sum_a f_a \log (z-a)^{\text{ord}_a f(z)}$$ division by $$\log (z-a)$$ removes the coefficient of the $$f_a$$ term, and then the limit serves to cancel out the rest of the terms. Together it serves to implement something akin to the pseudodivision by the basis 'vector' $$\log (z-a)$$, akin to how way partial derivatives do the same thing with their limit definition $$f_x = \lim_{dx \ra 0} f(x+dx)/dx$$.
+since for $$z \approx a$$, $$f(z) \sim f_{-n} (z-a)^{-n}$$ which dominates the other terms that blow up less quickly. If we write $$g(z)$$ for the rest of $$f(z)$$ which has $$\text{ord}_a (g(z)) > -n$$:
 
-(I don't know complex analysis very well so that's all I'm going to say about that, but it seems clear that it is basically the same operation.)
+$$
+\begin{aligned}
+\lim_{z \ra a} \frac{\log f(z)}{\log (z-a)} 
+&= \lim_{z \ra a} \frac{\log (f_{-n} (z-a)^{-n} + g(z))}{\log (z-a)}\\ 
+&= \lim_{z \ra a} \frac{\log f_{-n} (z-a)^{-n} (1  + \frac{g(z)}{f_{-n}} (z-a)^n)}{\log (z-a)} \\
+&= \lim_{z \ra a} \frac{\log f_{-n}}{\log (z-a)} -n \frac{\log (z-a)}{\log (z-a)} +  \frac{\log (1 + c (z-a))}{\log (z-a)} \\
+&= -n
+\end{aligned}
+$$
 
-In each case, we see that the baseless logarithm operation $$\log n$$ works a _lot_ like a vector $$\v$$ or differential $$df$$, and then expressing a logarithm in a base like $$\log_2 n = \log n / \log 2$$ is a lot like a total derivative $$df/dx$$ or Clifford division $$\v \ast \b{x}^{-1}$$. What is missing is some equivalent of the partial derivative / projection operator that projects _only_ onto that component... but various fields have gone and Found a way to invent that anyway, either in the form of a partial derivative $$\p f/\p x$$, or just by making up the $$p$$-adic valuation $$\nu_p$$, or by the limits $$\lim_{z\ra a} \log f(z) / \log (z-a)$$ in complex analysis. The similiarities are all suspicious, though, and I can't help but think there is some unifying theory here that ties all this together... but I can't see what it is yet.
+So this is a very similar operation: the limit $$\lim_{z \ra a} \log (z-b)/\log(z-a) = 1_{a=b}$$ serves to cancel out the rest of the terms, like how $$\p_j dx^i \sim (\p x^i)/(\p x^j) = 1_{i=j}$$ serves to cancel out the terms in a partial derivative, extracting the $$dx$$ component of $$df = f_x dx + f_y dy + \ldots$$.
+
+(I'm not very good at complex analysis so that's all I'm going to say about that. Still, it seems clear that this is basically the same operation.)
+
+We see that the baseless logarithm $$\log n$$ works a _lot_ like a vector $$\v$$ or differential $$df$$, and then expressing a logarithm in a base like $$\log_2 n = \log n / \log 2$$ is a lot like a total derivative $$df/dx$$ or Clifford division $$\v \ast \b{x}^{-1}$$. What is missing is some equivalent of the partial derivative / projection operator that projects _only_ onto that component... but various fields have gone and Found a way to invent that anyway, either in the form of a partial derivative $$\p f/\p x$$, or just by making up the $$p$$-adic valuation $$\nu_p$$, or by the limits $$\lim_{z\ra a} \log f(z) / \log (z-a)$$ in complex analysis. The similiarities are all suspicious, though, and I can't help but think there is some unifying theory here that ties all this together... but I can't see what it is yet.
 
 One thing that we might try in order to invent a $$\log_2 N$$ that acts like $$\p_x f$$ or $$\b{v}/\x$$ is to somehow restrict the values of the logarithms to certain spaces, e.g. integers or rationals. Since the $$\{\log p_i\}$$ are linearly indepedent (which is essentially equivalent to prime factorizations being unique), you would end up with objects like $$\log_2 3 = \log_3/\log_2$$ which have no value in $$\bb{Q}$$; "zeroing" those out then gives something that acts like a partial derivative. But I don't know if that's useful. Certainly it doesn't help in any numeric context.
 
