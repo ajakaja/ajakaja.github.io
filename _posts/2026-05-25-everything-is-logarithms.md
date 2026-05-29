@@ -36,7 +36,7 @@ which we regard as an abstract object, not a number, and then we write our norma
 
 $$\log_2 N = \frac{\log N}{\log 2}$$
 
-Note, this is already sort of a thing people colloquially do, e.g. leaving out the base of logarithms in asymptotic formulas. I'm arguing that it is useful to regard it more literally than that, as an actual algebraic object.
+Note, this is already sort of a thing people colloquially do, e.g. leaving out the base of logarithms in asymptotic formulas. I claim that it is useful to regard it more literally than that, as an actual algebraic object.
 
 We interpret $$\log 2$$ as _being_ the unit "bits". To write $$\log N$$ in bits is to factor it as a multiple of $$\log 2$$:
 
@@ -50,12 +50,11 @@ $$
 \end{aligned}
 $$
 
-Regarding the baseless $$\log N$$ as a real mathematical object is a bit strange at first. But I've been coming to think that it's the right way to do things, as the rest of the article will elaborate on.
+The baseless $$\log N$$ is sort of the multiplicative version of an object that might be familiar from discussions of vectors. It is common with vectors to distinguish between _points_ and _displacements_: a displacement vector $$\b{v}$$ is given by the difference of two points $$\v = (b) - (a)$$. When we write think of points as having coordinates, this involves an explicit choice of origin $$\O$$, such that $$\b{a} \equiv (a) - \O$$ and $$\b{b} \equiv (b) - \O$$. Then a displacement vector is constructed by subtracting off the factors of $$\O$$, $$\b{v} = \b{b} - \b{a} = ((b) - \O) - ((a) - \O) = (b) - (a)$$. The baseless logarithm implemens the same thing but with multiplication: the value $$\log N$$ may be thought of as $$\log N / \log \O$$ for an unspecified choice of origin; turning it into an actual numeric value involves dividing two such logarithms to cancel out the origin, $$\log_M N = \log N / \log M = (\log N / \log \O) / (\log M / \log O)$$. I think of $$\log N$$ as the point corresponding to $$N$$ and $$\log N / \log \O$$ as its corresponding displacement vector once you pick a coordinate system. I prefer to think of the point as more fundamental.
 
-You might ask: if we have a baseless logarithm $$\log N$$, do we also have a "baseless exponential"? Normally $$b^{\log_b N}$$ can be written as something like $$b^{\log_b N} = b^{\ln N / \ln b} = e^{\ln N} = N$$; is there any way to do this without actually choosing a base? I think the answer has to be "no". All we can say is that we have split the one object, a logarithm $$\log_b N$$ which is the solution of $$b^y = N$$, into two objects, $$\log N$$ and $$\log b$$, each of which on their own are without "units" and so have no numerical meaning. It is similar to how we can have a vector without any coordinates: we can talk about the vector's meaning in context, such as the displacement it describes, but we can't compare it to anything else, or ask what its length is, without something by which to measure it.
+You might ask: if we have a baseless logarithm $$\log N$$, do we also have a "baseless exponential"? Normally $$b^{\log_b N}$$ can be written as something like $$b^{\log_b N} = b^{\ln N / \ln b} = e^{\ln N} = N$$; is there any way to do this without actually choosing a base? I think the answer has to be "no". All we can say is that we have split the one object, a logarithm $$\log_b N$$ which is the solution of $$b^y = N$$, into two objects, $$\log N$$ and $$\log b$$, each of which on their own are without "units" and so have no numerical meaning. It is just like a point: a point on its own has no operation of addition and does not have a length. We can subtract points to produce vectors (relative to a symmetry group) but not add them, and the usual operations in coordinates all require a choice of origin.
 
-In fact it is exactly like that:
-
+In fact there are many surprising similarities between logarithms and points and vectors.
 
 -----
 
@@ -422,8 +421,7 @@ My personal suspicion is that a lot of basic mathematical objects are misdefined
 
 In particular, just like $$\log_K K^2 = 2$$ gives the dimension of a basis for $$K^2$$, I suspect that $$\log K$$ gives a thing which acts like a basis _for the field $$K$$_. Not the usual sense of 'basis', of course, but an abstract object which refers to a way of writing $$K$$. For example $$\log K / \log 2 = \log_2 K$$ would give some kind of 'binary code' for $$K$$, combined with the rules of algebra such that all of the field operations on $$K$$ have corresponding opeartions on the binary-representations of $$K$$, and $$\log K / \log J$$ would give you something like a way of writing one field in terms of another, even if they are of different sizes.
 
-Therefore if mathematical names like $$n \in \bb{N}$$ or $$K \in \text{ Field}$$ refer to specific objects, I think of their baseless logairthms $$\log n$$ or $$\log K$$ as referring, abstractly, to the idea of their _representations_, unbound to any coordinate system. The division by another logarithm then implements the step of writing them in coordinates. So $$\log n / \log 2 = \log_2 n$$ means "write the word $$n$$ in terms of the language $$2$$", while $$\log K / \log J$$ means "write the words of $$K$$ in terms of the language of $$J$$". In this sense 'everything is logarithms' means: everything has representations in other languages, and logarithms, or something like them, are the operation we use to do that. 
-Of course this is speculative handwaving... but I really have come to think that it is at some level philosophically necessary.
+Therefore if mathematical names like $$n \in \bb{N}$$ or $$K \in \text{ Field}$$ refer to specific objects, I think of their baseless logairthms $$\log n$$ or $$\log K$$ as referring, abstractly, to the idea of their _representations_, unbound to any coordinate system. The division by another logarithm then implements the step of writing them in coordinates. So $$\log n / \log 2 = \log_2 n$$ means "write the word $$n$$ in terms of the language $$2$$", while $$\log K / \log J$$ means "write the words of $$K$$ in terms of the language of $$J$$". In this sense 'everything is logarithms' means: everything has representations in other languages, and logarithms, or something like them, are the operation we use to do that. Of course this is mostly just speculation... but I have come to believe that it is really somehow necessary.
 
 Not that we _have_ to use the symbols for $$\log$$ or division to do this. We could just as easily write $$\b{v} = f^{-1}(\b{v}) f$$ instead, for any function $$f$$. The choice to overload the meanings of logarithms and division follow from the observation that they so often really do mean that in practice.
 
