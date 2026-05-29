@@ -178,7 +178,7 @@ However, I keep finding that people have gone and invented the projection / part
 
 $$\nu_p (n) = \max \{ k \in \bb{N} \mid p^k \mid n \}$$
 
-Corresponds to extracting the coefficient of $$\log p$$ of an integer (or rational or radical, in which case the coefficients become negative and fractional respectively) in the logarithmic basis 
+corresponds to extracting the coefficient of $$\log p$$ of an natural number in a logarithmic basis 
 
 $$
 \begin{aligned}
@@ -188,7 +188,9 @@ $$
 \end{aligned}
 $$
 
-Since it is a projection out of the logarithm, it still obeys logarithmic identities like $$\nu_p(m/n) = \nu_p(m) - \nu_p(n)$$. But there is not really a good notation for actually expressing it as a projection out of such a logarithmic 'vector', so sadly it gets a whole separate nomenclature that you have to learn.[^partial]
+Each coefficient is a positive integer, and $$\nu_p$$ just takes the component corresponding to $$\log p$$. Clearly $$\log n$$ acts like a vector (although since the coefficients are in $$\bb{N}$$ it is technically a commutative monoid instead of a vector space... nevertheless, it has the familiar structure of a vector). Since $$\nu_p$$ is a 'projection' out of this logarithm, it still obeys logarithmic identities like $$\nu_p(m/n) = \nu_p(m) - \nu_p(n)$$. But there is not really a good notation for actually expressing it as a projection, so sadly it gets a whole separate nomenclature that you have to learn.[^partial]
+
+The same thing also works for rational $$n$$ or radical $$n$$ (meaning it is the product of radicals of prime factors), in which case the coefficients become integers or rationals. (As a bonus the resulting objects live in an actual vector space.)
 
 [^partial]: There is also a thing called an [arithmetic derivative](https://en.wikipedia.org/wiki/Arithmetic_derivative) and a corresponding partial derivative $$D_p(n) = \nu_p(n)/p$$, but as far as I can tell it's not quite the same thing and not what I'm looking for.
 
@@ -291,7 +293,7 @@ The direct sum $$\oplus$$ corresponds to multiplication $$\times$$, which is rea
 
 [^direct]: Apparently the $$\oplus$$ symbol is due to [Bourbaki](https://hsm.stackexchange.com/questions/13894/history-of-direct-sums-and-direct-products) because everything was a mess prior to that. Also it happens to be a coproduct (which came later) and those do correspond to addition on _sets_, so there is at least a connection to addition... but at present I think it is largely a mistake.
 
-I am a bit upset that I never never seen anyone point out that $$\dim$$ is a logarithm, since it's so obviously the case. Maybe I'm missing something and it doesn't work at all? perhaps because I am ignoring infinite-dimensional cases entirely. But I suspect it's mostly just because math likes to stay on more rigorous "solid ground" than this. I, however, love to speculate about underappreciated connections between things, so I have no problem saying: dimension _is_ a logarithm.
+I am a bit upset that I have never seen anyone point out that $$\dim$$ is a logarithm, since it's so obviously the case. Maybe I'm missing something? After all I am ignoring the infinite-dimensional cases entirely. But I suspect it's mostly just because math likes to stay on more rigorous "solid ground" than this. I, however, love to speculate about underappreciated connections between things, so I have no problem saying: dimension _is_ a logarithm.
 
 The simple reason why $$\dim_K$$ acts like $$\log_k$$ in the case of finite $$K$$ is as follows. We need three observations:
 
