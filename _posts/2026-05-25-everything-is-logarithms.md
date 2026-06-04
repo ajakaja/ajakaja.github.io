@@ -52,9 +52,9 @@ $$
 
 The baseless $$\log N$$ is sort of the multiplicative version of an object that might be familiar from discussions of vectors. It is common with vectors to distinguish between _points_ and _displacements_: a displacement vector $$\b{v}$$ is given by the difference of two points $$\v = (b) - (a)$$. When we write think of points as having coordinates, this involves an explicit choice of origin $$\O$$, such that $$\b{a} \equiv (a) - \O$$ and $$\b{b} \equiv (b) - \O$$. Then a displacement vector is constructed by subtracting off the factors of $$\O$$, $$\b{v} = \b{b} - \b{a} = ((b) - \O) - ((a) - \O) = (b) - (a)$$. The baseless logarithm implemens the same thing but with multiplication: the value $$\log N$$ may be thought of as $$\log N / \log \O$$ for an unspecified choice of origin; turning it into an actual numeric value involves dividing two such logarithms to cancel out the origin, $$\log_M N = \log N / \log M = (\log N / \log \O) / (\log M / \log O)$$. I think of $$\log N$$ as the point corresponding to $$N$$ and $$\log N / \log \O$$ as its corresponding displacement vector once you pick a coordinate system. I prefer to think of the point as more fundamental.
 
-You might ask: if we have a baseless logarithm $$\log N$$, do we also have a "baseless exponential"? Normally $$b^{\log_b N}$$ can be written as something like $$b^{\log_b N} = b^{\ln N / \ln b} = e^{\ln N} = N$$; is there any way to do this without actually choosing a base? I think the answer has to be "no". All we can say is that we have split the one object, a logarithm $$\log_b N$$ which is the solution of $$b^y = N$$, into two objects, $$\log N$$ and $$\log b$$, each of which on their own are without "units" and so have no numerical meaning. It is just like a point: a point on its own has no operation of addition and does not have a length. We can subtract points to produce vectors (relative to a symmetry group) but not add them, and the usual operations in coordinates all require a choice of origin.
+You might ask: if we have a baseless logarithm $$\log N$$, do we also have a "baseless exponential"? Normally $$b^{\log_b N}$$ can be written as something like $$b^{\log_b N} = b^{\ln N / \ln b} = e^{\ln N} = N$$; is there any way to do this without actually choosing a base? I think the answer has to be "no". All we can say is that we have split the one object, a logarithm $$\log_b N$$ which is the solution of $$b^y = N$$, into two objects, $$\log N$$ and $$\log b$$, each of which on their own are without "units" and so have no numerical meaning. It is just like points in space: a point on its own has no operation of addition and does not have a length. We can subtract points to produce vectors (relative to a symmetry group) but not add them, and the usual operations in coordinates all require a choice of origin.
 
-In fact there are many surprising similarities between logarithms and points and vectors.
+In fact there are many surprising similarities between logarithms and vectors.
 
 -----
 
@@ -226,7 +226,7 @@ Anyway, onto more things that are logarithms.
 
 ------
 
-# 3. Vectors are Logarithms
+# 3. Vectors are also Logarithms?
 
 In differential geometry one interprets vectors like $$\v = v_x \x + v_y \y $$ being written in a basis of partial derivative operators, $$\v = v_x \p_x + v_y \p_y $$. These can then be used to create discrete translations which move around in the various coordinates,
 
@@ -300,7 +300,7 @@ $$
 \end{aligned}
 $$
 
-The direct sum $$\oplus$$ corresponds to multiplication $$\times$$, which is really just a notational accident, since it is the same as the direct product on finite-dimensional vector spaces; the $$\oplus$$ symbol reflects the fact that it adds _bases_ as sets.[^direct] meanwhile the tensor product $$otimes$$ multiplies bases on sets, but corresponds in arithmetic to a sort of "commutative exponentiation" $$e^{\log_k u \log_k v} = u^{\log_k v}$$ that you don't see very much (sometimes called a [commutative hyperoperation](https://en.wikipedia.org/wiki/Hyperoperation#Commutative_hyperoperations)). 
+The direct sum $$\oplus$$ corresponds to multiplication $$\times$$, which is really just a notational accident, since it is the same as the direct product on finite-dimensional vector spaces; the $$\oplus$$ symbol reflects the fact that it adds _bases_ as sets.[^direct] meanwhile the tensor product $$otimes$$ multiplies bases on sets, but corresponds in arithmetic to a sort of "commutative exponentiation" $$e^{\log_k u \log_k v} = u^{\log_k v}$$ that you don't see very much, sometimes called a [commutative hyperoperation](https://en.wikipedia.org/wiki/Hyperoperation#Commutative_hyperoperations). (The next 'displacement' operation after $$b-a$$ and $$b/a$$ is therefore $$e^{\ln b / \ln a} = b^{1/\ln a}$$.)
 
 [^direct]: Apparently the $$\oplus$$ symbol is due to [Bourbaki](https://hsm.stackexchange.com/questions/13894/history-of-direct-sums-and-direct-products) because everything was a mess prior to that. Also it happens to be a coproduct (which came later) and those do correspond to addition on _sets_, so there is at least a connection to addition... but at present I think it is largely a mistake.
 
@@ -350,80 +350,135 @@ seems to imply that one could take the dimension/logarithm of a vector space wit
 
 $$\dim_{K^2} \? K = \frac{\dim K}{2 \dim K} = \frac{1}{2}$$
 
-This works fine at the level of cardinalities, more or less (if you allow that the rationals are invented precisely to let you make objects like $$1/2$$ which interpolate between ratios of non-divisible integers). But it is hard to imagine how it should work if you want anything like a "field" or a "vector space" with its usual axioms to be meaningful (in particular $$K^2$$ will have zero divisors for most attempts you might make at defining multiplication on it). 
-
-Nevertheless, my intuition is that this is a perfectly valid operation and it is the specific usage of fields and vector spaces that goes wrong. After all it is easy to imagine the vectors in a vector space over  the square of a field: picture writing a vector $$\b{v} \in \bb{R}^4$$ as a vector over $$\bb{R}^2$$ via $$\b{v} = (v_w, v_x) \cdot (\w, \x) + (v_y, v_z) \cdot (\y, \z)$$. A vector space with dimension $$\frac{1}{2}$$ is clearly one which is spanned by 'half' a basis vector over that pseudo-field. Maybe its elements look like $$\u = (u_x, \bullet) \cdot (\x, \bullet)$$? The problem comes in defining versions of the theorems of linear algebra which are compatible with this sort of decomposition. But I think that is largely a failure of imagination and I intend to figure out how it works in a future article. 
+This works fine at the level of cardinalities, more or less (if you allow that the rationals are invented precisely to let you make objects like $$1/2$$ which interpolate between ratios of non-divisible integers). But it is hard to imagine how it should work if you want anything like a "field" or a "vector space" with its usual axioms to be meaningful. Maybe a vector $$\b{v} \in \bb{R}^4$$ is viewed as a vector over $$\bb{R}^2$$ via $$\b{v} = (v_w, v_x) \cdot (\w, \x) + (v_y, v_z) \cdot (\y, \z)$$. But then how does scalar multiplication work? If the scalars are $$\in K^2$$, they have zero divisors, so you are not working in a field anymore. And what is meant by a vector with dimension $$\frac{1}{2}$$ would be spanned by 'half' a basis vector over that pseudo-field? Maybe its elements look like $$\u = (u_x, \bullet) \cdot (\x, \bullet)$$? One must attempt to define versions of the theorems of linear algebra which are compatible with this sort of decomposition. No idea how to do that at the moment, but I suspect it can be done, with sufficient imagination, I hope to attempt it in a future article.
 
 ------
 
 # 5. Bases are Logarithms
 
-(This section is talking about the plural of 'basis', not 'base'. Unfortunately the only distinction between the two in English is their pronunciations. Since I'm not going to start writing 'basees' or 'basises' it's just going to be awkward.)
-
-The dimension of a vector space is the cardinality of its basis. But just like we use expressions like $$B^A$$ for functions between sets because they are respected at the level of cardinalities $$\| B \|^{\| A \|}$$, we may as well interpret the $$\dim$$ operator in the same way: if $$\dim$$ returns the cardinality of the basis, then let's say that $$\log$$ returns _the basis itself_, which happens to have that cardinality.[^set] For instance if a vector space $$V \simeq K^3$$ has basis $$(\x, \y, \z)$$, we might write
-
-[^set]: Another example: if you have sets $$A = \{ a, b \}$$ and $$X = \{ x, y \}$$, then $$(a+b)^{(x+y)} = a^x b^x + a^x b^y + a^y b^x + a^y b^y$$ is true at the level of cardinalities, since the number of functions $$X \ra A$$ is in fact $$4$$. But it is also true at the level of sets: each term in the expanded sum is one of the four possible functions. There are examples of these 'setified' or 'categorified' identities all over algebra, and I think it's wise to assume that every algebraic equation has a perfectly good interpretation as a literal equation on sets (or whatever else).
+The dimension of a vector space is the cardinality of its basis. But just like we use expressions like $$B^A$$ for functions between sets because they are respected at the level of cardinalities $$\| B \|^{\| A \|}$$, we may as well interpret the $$\dim$$ operator in the same way: if $$\dim$$ returns the cardinality of the basis, then let's say that $$\log$$ returns _the basis itself_, which happens to have that cardinality. For instance if a vector space $$V \simeq K^3$$ has basis $$(\x, \y, \z)$$, we might write
 
 $$
 \begin{aligned}
 \log_K V &= (\x, \y, \z) \\ 
+\end{aligned}
+$$
+
+And then define $$\dim_K$$ as the cardinality of this:
+
+$$
+\begin{aligned}
 \dim_K V &= \| \log_K V \| \\
 &= \| (\x, \y, \z) \| \\
 &= 3
 \end{aligned}
 $$
 
-After all, $$(\x, \y, \z)$$ is a thing which in some sense literally has $$K^{(\x, \y, \z)} \simeq V$$.
+Why not? $$(\x, \y, \z)$$ is an object for which $$K^{(\x, \y, \z)} \simeq V$$, sorta, therefore $$\log K^{(\x, \v, \y)} = (\x, \v, \y)$$. (One could also just let $$\dim_K$$ refer to both operations, perhaps, or maybe write capital $$\text{Dim}_K V$$ for the same thing.) Perpaps it's a bit weird to treat $$K^{(\x, \y, \z)}$$ as a set exponentiation when the exponent is an tuple / Cartesian product, but it should be easy to adjust things to make it work.
 
-There is some weirdness to this. Some small problems have to do with the fact that,although it is the case that $$V \simeq K^{(\x, \y, \z)}$$ as sets, it is not really obvious that it's valid as a vector space. The exponent is an ordered tuple, not a set, which is not the usual meaning of the set-exponentiation notation but is not hard to imagine adapting it. Other than that, since the function elements of $$K^{(\x, \y, \z)}$$ are isomorphic to vectors $$\b{v} \in V$$ one can view it just as a change of notation and adapt the theorems acoordingly. Not a big deal.
+There is an obvious issue, though. Why would _this_ particular choice of basis be the value of $$\log_K V$$, since $$V$$ has very many possibly valid bases and no reason to choose one a particular one?
 
-The larger issue is, why would _this_ particular choice of basis be the value of $$\log_K V$$? There are two ways out:
+Maybe it is more correct to $$\log_K V$$ as really being an object which refers to all possible bases of $$V$$ at once (I'm not sure what it's called. Sort of a frame bundle but with only one base point?) We can give it coordinates: the space $$X = \log_K V$$ is parameterizable by coordinates $$(X_0, \Lambda)$$, where $$X_0 = (\x, \y, \z)$$ is an arbitrary 'origin' frame and $$\Lambda$$ is an arbitrary linear transformation $$\in GL(V)$$, the automorphisms of $$V$$.[^torsor]  I guess we can should just write 
 
-One, we think of $$\log_K V$$ as really being an object which refers to all possible bases of $$V$$ at once. I like to call such an object a 'surface', even though there is probably a better word for it, just because I think of that as a generic term for a thing which can have coordinates on it (a common example is the preimage / generalized inverse of any function $$f^{-1}(x)$$). I'm sure it has other names (it is sort of the frame bundle of a single point) but I don't really care what they are right now. In any case, if we do things this way we think of $$\log_K V$$ as being parameterizable by a pair of coordinates $$(X, \Lambda)$$: a single 'origin' frame $$X = (\x, \y, \z)$$, plus an arbitrary linear transformation $$\Lambda \in GL(\dim_K V, K)$$, such that the expression $$\log_K V = X$$ is really the composition with a projection
+$$X = \{ \Lambda X_0 \mid \Lambda \in GL(V) \}$$
 
-$$X = \pi_X \log_K (V) = \pi_X (X, \Lambda)$$
+[^torsor]: The technical term is that it is a $$GL(V)$$-[torsor](https://en.wikipedia.org/wiki/Torsor_(algebraic_geometry)) since the choice of origin $$X$$ is arbitrary. The concept is easier to understand from [Baez](https://math.ucr.edu/home/baez/torsors.html). This is one of those mathematical terms which I don't like because it is so simple that it should not really have a special name (nor such a technical Wikipedia article).
 
-The other way of doing this is to think of that projection as being encoded somehow in the logarithm itself. We know that $$\log K^2 = (\x) \times \log K + (\y) \times \log K$$ must be true at the level of sets, since $$\log $$ is an isomorphism that just changes the way we write things. But the subsequent step, of dividing by $$ \log K$$, does not have to mean the same thing as algebraic division. On the level of sets division corresponds to quotienting by an equivalence relation, but we should have freedom in _what_ equivalence relation we use. Any choice that amounts to collapsing sets of cardinality $$\log K$$ into sets of cardinality $$1$$ will correspond to the same underlying division operation on cardinalities. And since any choice of basis must give an isomorphic expression, e.g. $$\log K^2 = (\x) \log K + (\y) \log K \simeq (\x + \y) \log K + (\y) \log K $$, it must be that each choice of $$\Lambda$$ corresponds to a choice of viable quotient $$\log K^2 / \log K$$. And really that is all a basis ever is, even if you ignore the logarithm stuff: it is an accounting of all the possible images of $$\b{2} = \{ 1, 2 \}$$ in the functions $$V \simeq \{ \b{v}: \b{2} \mapsto K\} \simeq \{ v(1) \x + v(2) \y \}$$.
+and then the dimension itself is the cardinality of the quotient of this by $$\Lambda$$, which will be a sort of generic object that represents the size of any choice of basis.
 
-(This is a sketch of an argument, I suppose. I there is a much tighter version of the same idea that isn't so sketchy, but I can't seem to find it right now so this is what you get.)
+$$\dim_K V = \| \frac{\log_K V}{\Lambda} \| = \| \frac{X}{\Lambda} \|$$
 
-If $$\log_K V$$ is an operation which returns a basis for $$V$$, it stands to reason that there's a dual operation of exponentiation which takes a basis back to $$V$$:
+If $$\log_K V = X$$, then there ought to be an operation which goes the other way, that reconstructs a vector space from its basis. We may as well equate this with the linear span operation;
 
-$$K^{\log K} = V$$
+$$\span(X) = K^X = V$$
 
-This happens to correspond very nicely to the linear span operator:
+This is not quite how span is normally defined. Usually it's something like: "$$\span(\x, \y, \z)$$ is subspace of the (ambient) vector space $$V$$  over the (ambient) field $$K$$ which contains the vectors $$(\x, \y, \z)$$ and is of minimal dimension". To interpret it algebraically, though we don't really want to make reference to an "ambient" vector space or field, because it should just be an operation on the vectors itself. For this we need to at least explicitly indicate the underlying field, by writing $$\span_K$$ with a subscript:
 
-$$\span(\x, \y, \z) = K^{(\x, \y, \z)} = V$$
+$$\span_K(X) = K^X = V$$
 
-although $$\span$$ is usually defined in a fairly technical way ('the smallest vector subspace of an ambient vector space $$V$$ over an ambient field $$K$$ which contains the vectors $$(\x, \y, \z)$$ or something), probably this definition was just a bit confused. Instead we will simply define a new operation, the $$K$$-span, which rebuilds a vector space back from its basis
+All of this is definitely rife with abuses of notation, and I'm not sure that it's quite the best way to think about things. But I still wanted to mention it because it's nice to think of the operators $$\dim$$ and $$\span$$ as being linear algebra analogues of $$\log$$ and $$\exp$$.
 
-$$\span_K(X) = K^X$$
+It is also interesting consider what might be meant by the baseless logarithm in the sense of bases. In the expression
 
-Maybe it is interesting to consider what happens if $$X$$ is not linearly-independent, but let's save that for another day.
+$$\log_K K^X = \frac{\log K^X}{\log K} = \frac{X \log K}{\log K}$$
+
+what would be meant by $$X \log K$$ as a 'basis'? Presumably the division by $$\log K$$ corresponds to some sort of quotient... but we will need a way of interpreting $$\log K$$ itself. Perhaps as a "basis for $$K$$"? I'm not sure. I do think there's something here, but it gets much more speculative so I will leave it for another time. 
+
+However I do want to investigate the meaning more generally because it seems pretty general.
 
 ------
 
-# 6. Everything is Logarithms?
+# 6. Functions are Logarithms?
 
-At the end of the day all a logarithm really does is changes the _notation_ we use to refer to a number. $$y = \log_b x$$ is just another way of writing $$x$$, which just assumes that when you go and use it you will write $$b^{y}$$ instead of $$x$$ in order to produce the same output. Logarithm-ing $$x$$ is an isomorphism for most purposes and is just used to write it in a form that is more amenable to representation and computation.
+Treating $$\log_K K^n = n$$ as returning a basis for $$K^n$$ as a set is an example of a general procedure which doesn't quite have a name as far as I know. It is sort of like [categorification](https://en.wikipedia.org/wiki/Categorification), but not quite. Rather than locating categories for set operations, we're locating sets for algebraic operations, and not making any reference to categories really. So I'm not sure. Maybe 'setification'? Or 'structurization'? I dunno.
 
-Of course there are logarithms in mathematics which are more complicated than that, such as the complex logarithm $$\log z = \text{Log } z + 2\pi i k \mid k \in \bb{Z}$$, or its messier cousins like the [logarithm of a matrix](https://en.wikipedia.org/wiki/Logarithm_of_a_matrix). But I tend to think that these are a confusion of concepts: what's really going on in the logarithm on $$\bb{C}$$, for instance, is that angles have their values in $$S_1$$, not $$\bb{R}$$, which has a different topology, and so naturally you end up with a redundancy due to the mistake; a different set of conventions would move the problem out of the logarithm and into the definitions of the values themselves. Unfortunately that's not how things are are defined today so you have to deal with it.
+The standard example of this 'setification' is to treat arithmetic operations on natural numbers like $$A+B$$, $$AB$$ and $$B^A$$ as being projections out of set operations $$A \sqcup B$$, $$A \times B$$, and $$B^A$$ (the functions $$A \ra B$$). This works nicely for finite sets because the operations respect cardinalities. (As mentioned earlier, I think you have to replace 'cardinality' with something like 'numerosity' to make this work elegantly on infinite sets, and I don't want to get into that.) 
+
+A compelling reason for thinking this way is that the setified arithmetic operations in fact explicitly enumerate the sets they describe. For example, given you have sets $$A = \{ a, b \}$$ and $$X = \{ x, y \}$$, then you can expand $$A^X$$ algebraically (presupposing all the variables will equal $$1$$ later):
+
+$$(a+b)^{x+y} = (a+b)^x (a+b)^y = (a^x + b^x)(a^y + b^y) = a^x b^x + a^x b^y + a^y b^x + a^y b^y$$
+
+Then upon setting the variables to $$1$$ this correctly describes the relationship in cardinalities, $$2^2 = 1 + 1 + 1 + 1$$, since the number of functions $$X \ra A$$ is in fact $$4$$. But it also describes the sets themselves: each term in the expanded sum is one of the four possible functions $$X \ra A$$ exactly when we interpret $$a^x b^y$$ as the function which maps $$x \ra a$$ and $$y \ra b$$. Also, evaluation of these variables corresponds to evaluating the functions, e.g. setting e.g. $$x=1$$ and $$y=0$$ to get $$a^x b^y \mapsto a^1 b^0 = a$$. Setting one variable but leaving the other gives restriction, e.g. $$y=0$$ sets $$a^x b^y \mapsto a^x$$. All of this basically also works if the variables have values other than $$1$$, in which case they represent unlabeled sets of whatever cardinality; however, the algebraic manipulations $$(a+b)^x = a^x + b^x$$ are not valid and you have to use a binomial expansion instead.
+
+You can do similar constructions with a lot of combinatoric objects, although they don't always so cleanly correspond to algebraic manipulations. Factorials are
+
+$$
+\begin{aligned}
+(a+b+c)! &= a^a b^b c^c + a^a b^c c^b + a^b b^a c^c + a^b b^c c^a + a^c b^b c^a + a^c b^a c^b
+\end{aligned}
+$$
+
+which enumerates the $$3! = 6$$ permutations of $$3$$ elements. Combinations
+
+$$
+\begin{aligned}
+\binom{a+b+c}{x+y} &= \frac{1}{x+y}[ a^x b^y + a^y b^x + a^x c^y + a^y c^x + b^x c^y + b^y c^x] \\
+&= a^{q} b^q + b^q c^q + c^q a^q
+\end{aligned}
+$$
+
+
+enumerate the $$\binom{3}{2} = 3$$ $$2$$-element combinations of $$3$$ elements. Here the $$\frac{1}{x+y}$$ corresponds to the quotient $$x \sim y$$ that avoids double counting, and $$q$$ is a new variable that represents carrying out this quotient (I'm not sure the best way to write this). Note that although all these variables will end up equalling $$1$$, by leaving them as independent variables they track meaningful information from step to step.
+
+I suspect that every arithmetic identity has some equivalent setified expression like this (this is the spirit of my ongoing quest to make sense of fractional permutations). I also notice that a lot of information is lost when you map these set expressions back onto arithmetic: for example you elide the distinctions between all possible quotients that lead to the same cardinality. Probably there is a lot of interesting structure there.
+
+Anyway, for our purposes, I want to observe one thing about these. When thinking of functions as sets we usually picture them as 'relations': a function $$f: X \ra A$$ is modeled as the set
+
+$$
+\begin{aligned}
+f = \{ (x, f(x)) \mid x \in X \} \subset X \times A \\
+\end{aligned}
+$$
+
+
+Or $$\{ (x,a), (y, b) \} = xa + yb$$ in our example. This set happens to have the cardinality $$\| f \| = \| X \|$$, although it's not clear what use that is.
+
+Now consider $$(a+b)^{x+y} = a^x b^x + a^x b^y + a^y b^x + a^y b^y$$ from earlier.  If $$a^x b^y$$ is supposed to describe a single function from $$X = \{ x, y\}$$ to $$A = \{ a,b \}$$ , then why doesn't it setify to something like $$\{ (x, a), (y, b) \}$$, with cardinality $$2$$? 
+
+Maybe you see where I'm going with this. $$f = a^x b^y$$ has cardinality $$1$$, because it's one function. Its logarithm, however, looks more like the relation model:
+
+$$\log f \? x \log (a) + y \log (b)$$
+
+This looks a _lot_ like $$xa + yb$$, but it's also suspiciously different. Also, it doesn't have a cardinality since we need to divide by a base, but when we do it seems like any choice we make has to give the cardinality $$\log_b f = \log f / \log b = x \log_b a + y \log_b b = x (0) + y(0) = 0$$. What do we make of this?
+
+After thinking this for a while I still don't really feel like I have a good explanation for it, but I think we are supposed to think of it as equivalent to $$x a + yb$$, just with the $$a$$ and $$b$$ written in a different basis, so it is more like a comparison between $$a \o x + b \o y$$ and $$a \o \log x + b \o \log y$$ than between numeric expressions. The cardinality being $$0$$ doesn't matter, because it's not meaningful to talk about the cardinality of a function. And the role of $$\log x$$ is just to change algebras for $$x$$ from multiplicative to additive, but the two objects are supposed to be isomorphic and regarded as the same, at least in this case where the cardinality doesn't mean anything.
+
+I'm not sure about this part, and might come back and rewrite it later if I find a better interpretation. In any case I think it is interesting (or amusing, maybe) that $$\log f = \log a^x b^y$$ gives something that at least resembles the function's representation as a relation. Everything is logarithms?
+
+--------
+
+# 7. Everything is Logarithms
+
+What we have been discussing is the most simple and well-behaved version of a logarithm in mathematics, the isomorphism between the additive real algebra $$(\bb{R}, +)$$ and the multiplicative one $$(\bb{R}^{\geq 0}, \times)$$. Of course there are logarithms in mathematics which are more complicated than that, such as the complex logarithm $$\log z = \text{Log } z + 2\pi i k \mid k \in \bb{Z}$$, or its messier cousins like the [logarithm of a matrix](https://en.wikipedia.org/wiki/Logarithm_of_a_matrix). But I suspect these are a confusion of concepts. What's really going on in the logarithm on $$\bb{C}$$, for instance, is that angles really take their values $$\in S_1$$, not $$\bb{R}$$, which has a different topology, and the weird behavior follows from not respecting this. A different set of conventions would move the problem out of the logarithm and into the definitions of the values themselves. Unfortunately that's not how things are are defined today so you have to deal with it---but, still, it doesn't seem like the logarithm's fault to me.
 
 Anyway the discussion in this article ignores those cases and assumes that $$\log$$ really is an isomorphism: it's just a way of taking something expressed in a multiplicative form and re-expresses it in an additive form. This is turns out corresponds to many operations that one learns in math, such as the $$\dim$$ operator in linear algebra and the $$\nu_p$$ operation in number theory (sorta) and the total derivative in calculus (also sorta). 
 
-All of these things which appear to be different are in fact many instances of the same basic primitives. My strongly-held belief is that math needs to clean this all up: we are missing the forest for the trees by keeping all this redundancy in the notations; actually we are doing the same operations over and over in different notations with slight variations in their implementations, and missing all of the similarities between them, and as a result everything is a lot harder than it needs to be. These things should not be "discoveries"; the material needs to be refactored so that they are trivial and obvious to every student.
+All of these things which appear to be very different seem to in some way be instances of the same basic primitives. And although these associations arise from my sort of... numerology... I can't shake the feeling that it's all too clean to not matter. Perhaps math needs to clean this all up: we are somehow missing the forest for the trees by keeping all this redundancy buried in the notations; actually there are only a few basic operations which are being written differently everywhere, and with all the patterns disguised everything is a lot harder than it needs to be. I suspect the patterns I've written about in this article should not feel like things I had to rediscover for myself. They follow naturally from the material that everybody learns.
 
-There is also some kind of philosophical implication to things like this which I think mathematical culture tends to miss but physics has a good grasp on. This is partly why I want to emphasize that the 'baseless logarithm', which seems somewhat nonsensical mathematically, is an important object. The idea is closely related to the notion of [general covariance](https://en.wikipedia.org/wiki/General_covariance) in physics: that the properties of objects are independent of the coordinates we use to express them, and the _meaningful_ theorems end up being those that are independent of coordinate system. Since you work in coordinates you have to figure out how to extract coordinate-free insights afterwards. Sometimes the use of coordinates is helpful or necessary, of course, but experience suggests that we should always aim to have a coordinate-free version of things in the first place. 
+I also keep finding that the math of physics seems to end up at a lot of the same structure. I first noticed these patterns in the operator formulation of quantum mechanics because it seems to insist on a certain ontology for its mathematics. I wonder if this is because physics is telling us how things "should be done". Since in physics the mathematics is a human lens through which we view reality, the math must not impose its own views on how things are done, and any views you accidentally impose eventually clash with the requirements of the physics.
 
-I am in particular interested in covariant notations of _cardinality_ (which gets into concepts like numerosity, mentioned above), since I think that is the answer to my ongoing quest to make sense of permutations over 'fractional sets', as well in the right way to deal with infinite-cardinality objects such that your theorems have any physical validity (it definitely does not involve anything like the axiom of choice).
+This is the idea behind the concept [general covariance](https://en.wikipedia.org/wiki/General_covariance), that the properties of objects are independent of the coordinates we use to express them, and so the meaningful theorems about reality end up being expressed in coordinate-free ways. The same philosophy applied to linear algebra or differential geometry leads to their covariant formulations that are indisputably 'better' than the forms in coordinates.  
 
-My personal suspicion is that a lot of basic mathematical objects are misdefined at present, and forcing them to become properly covariant would fix their definitions. For example, the notion of a vector space over a field is not covariant with respect to the choice of field, and this is somehow a problem; there is ample evidence (imo) that there is a meaningful concept of a vector space with non-integer dimension over a field, but to actually find the objects in which those statements make sense, you will have to modify the definitions of the words "vector space", "dimension", and "field"... while hopefully preserving the _reasons_ they were defined the way they are at present.
+The baseless logarithm, which seems somewhat nonsensical mathematically, is an example of this applied on purely mathematical terms. It basically says that the isomorphism from multiplicative to additive algebraic representations of the same thing is separate from the choice of units on those algebras, but most of its properties are unrelated to the units. Just like how the concept of a geometric vector is distinct from its projection onto a particular coordinate system. Meanwhile a bunch of other things with other notations are basically the same operation as the logarithm, or closely related to it.
 
-In particular, just like $$\log_K K^2 = 2$$ gives the dimension of a basis for $$K^2$$, I suspect that $$\log K$$ gives a thing which acts like a basis _for the field $$K$$_. Not the usual sense of 'basis', of course, but an abstract object which refers to a way of writing $$K$$. For example $$\log K / \log 2 = \log_2 K$$ would give some kind of 'binary code' for $$K$$, combined with the rules of algebra such that all of the field operations on $$K$$ have corresponding opeartions on the binary-representations of $$K$$, and $$\log K / \log J$$ would give you something like a way of writing one field in terms of another, even if they are of different sizes.
-
-Therefore if mathematical names like $$n \in \bb{N}$$ or $$K \in \text{ Field}$$ refer to specific objects, I think of their baseless logairthms $$\log n$$ or $$\log K$$ as referring, abstractly, to the idea of their _representations_, unbound to any coordinate system. The division by another logarithm then implements the step of writing them in coordinates. So $$\log n / \log 2 = \log_2 n$$ means "write the word $$n$$ in terms of the language $$2$$", while $$\log K / \log J$$ means "write the words of $$K$$ in terms of the language of $$J$$". In this sense 'everything is logarithms' means: everything has representations in other languages, and logarithms, or something like them, are the operation we use to do that. Of course this is mostly just speculation... but I have come to believe that it is really somehow necessary.
-
-Not that we _have_ to use the symbols for $$\log$$ or division to do this. We could just as easily write $$\b{v} = f^{-1}(\b{v}) f$$ instead, for any function $$f$$. The choice to overload the meanings of logarithms and division follow from the observation that they so often really do mean that in practice.
-
-It also happens to lead to a delightful mathematical pun. The word "logarithm" etymologically comes from _logos_ + _arithmos_ in Greek. _Arithmos_ means 'number', which is expected, but _logos_ can mean either 'proportion' or 'word'; the latter is why it is the root of words like 'neologism' and 'analogy' and 'logic' as well. Since the $$\log n$$ notation does not actually include the -_arithmos_ part, you might interpret it linguistically as meaning something to do with _words_ instead of numbers: abstractly, it could mean "a word for $$n$$", and then $$\log_b n = \log n / \log b$$ means "a word for $$n$$ in terms of the word for $$b$$". Which is of course exactly what it is. Cute, right?
-
+When you take general covariance to its extreme you end up asking that all of your mathematics be formulated in a covariant way, as explicit relations between one thing you measure to another thing you measure. For example we think of say having a certain cardinality, but in fact cardinality is a property of the set that we measure, and we have to be clear about how we do that because it's all relative to the "coordinate system" for those measurements. Such a formulation is necessary to find the answers to _why_ questions about how mathematics works, about what is 'actually' going on independent of the human definitions and frameworks of set or category theory or whatever. The observations in this article are not very deep, but they seem to me to be among the many clues which point towards that formulation. I still can't see it, though. 
