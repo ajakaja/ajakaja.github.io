@@ -472,13 +472,13 @@ which enumerates the $$3! = 6$$ permutations of $$3$$ elements. Combinations
 
 $$
 \begin{aligned}
-\binom{a+b+c}{x+y} &= \frac{1}{x+y}[ a^x b^y + a^y b^x + a^x c^y + a^y c^x + b^x c^y + b^y c^x] \\
+\binom{a+b+c}{x+y} &= \frac{1}{x^x y^y+x^y y^x}[ a^x b^y + a^y b^x + a^x c^y + a^y c^x + b^x c^y + b^y c^x] \\
 &= a^{q} b^q + b^q c^q + c^q a^q
 \end{aligned}
 $$
 
 
-enumerate the $$\binom{3}{2} = 3$$ $$2$$-element combinations of $$3$$ elements. Here the $$\frac{1}{x+y}$$ corresponds to the quotient $$x \sim y$$ that avoids double counting, and $$q$$ is a new variable that represents carrying out this quotient (I'm not sure the best way to write this). Note that although all these variables will end up equalling $$1$$, by leaving them as independent variables they track meaningful information from step to step.
+enumerate the $$\binom{3}{2} = 3$$ $$2$$-element combinations of $$3$$ elements. Here the $$\frac{1}{x^x y^y+x^y y^x}$$ corresponds to $$(x+y)!$$. Dividing through by the number of permutations implements the quotient $$x \sim y$$ that avoids double counting, and $$q$$ is a new variable that represents carrying out this quotient (I'm not sure if this is the best way to write this). Note that although all these variables will end up equalling $$1$$, by leaving them as independent variables they track meaningful information from step to step.
 
 I suspect that every arithmetic identity has some equivalent setified expression like this (this is the spirit of my ongoing quest to make sense of fractional permutations). I also notice that a lot of information is lost when you map these set expressions back onto arithmetic: for example you elide the distinctions between all possible quotients that lead to the same cardinality. Probably there is a lot of interesting structure there.
 
