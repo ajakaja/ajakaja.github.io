@@ -269,11 +269,51 @@ And then we can write $$\v = \log_T T^{\v} = \log T^{\v} / \log T$$. This is equ
 
 So vectors in differential geometry may also be thought of as logarithms, specifically, the logarithms of translation operators. 
 
+--------
 
+# 4. Logarithms are Derivatives?
+
+This part doesn't really matter, I just thought I would mention it so that this article contains every fun fact about logarithms that I know.
+
+One way of defining the natural logarithm is
+
+$$\ln x = \lim_{a \ra 0} \frac{x^a - 1}{a}$$
+
+I find this formula neat for a few reasons. Mostly it explains where a lot of the behaviors of $$\ln$$ in calculus comes from.
+
+It follows from substituting $$x^a = e^{a \ln x}$$ and then Taylor expanding:
+
+$$\frac{x^a - 1}{a} = \frac{e^{a \ln x} - 1}{a} = \frac{(1 + a \ln x + \ldots) - 1}{a} \stackrel{a \ra 0}{=} \ln x$$
+
+Plugging in $$(1+x)$$ also gives the Taylor series for $$\ln$$:
+
+$$
+\begin{aligned}
+\ln (1+x) &= \frac{(1+x)^a -1}{a} \\
+&= \frac{\sum \binom{a}{k} 1^{n-k} x^k - 1}{a} \\
+&= \frac{(1 + ax + \frac{a(a-1)}{2} x^2 + \ldots) - 1}{a} \\
+&\stackrel{a \ra 0}{=}  x - \frac{1}{2} x^2 + \frac{1}{3} x^3 - \ldots
+\end{aligned}
+$$
+
+
+The $$\lim_{a \ra 0} (x^a - 1)/a$$ formula for $$\ln x$$ resembles a derivative. To make it explicit, we can write it as
+
+$$\ln x = \lim_{dy \ra 0} \frac{x^{y + dy} - x^y}{dy} \mid_{y=0} = \p_{y} x^y \mid_{y =0}$$
+
+This form also shows how there is sort of a connection between $$\ln x$$ and the polynomials $$x^k$$, which maybe explains the otherwise-somewhat-mysterious fact that $$\int x^{k} = \ln x$$ for $$k=-1$$, whereas it is a polynomial for all other values of $$k$$. Why is a logarithm like a polynomial? Well, it's because in a lot of ways $$\ln x$$ acts like $$x^0$$. More specifically, it acts the 'interesting' part of $$x^0$$, that is, its first order approximation around $$x=1$$
+
+$$\ln x \sim \frac{x^0 - 1}{0}$$
+
+Just for fun, try using $$\p_x x^k = k x^{k-1}$$ on it:
+
+$$\p_x \ln x = \p_x \frac{x^0 - 1}{0} = \frac{0 x^{-1}}{0} = \frac{1}{x}$$
+
+That's all I really have to say about this. But I wonder if some of the other ideas on this page would benefit from being interpreted via the $$\ln x = \p_y x^y \mid_{y=0}$$ form.
 
 --------
 
-# 4. Dimensions are Logarithms
+# 5. Dimensions are Logarithms
 
 Another thing which clearly acts like a logarithm is the dimension operator $$\dim$$ in linear algebra. 
 
@@ -354,7 +394,7 @@ This works fine at the level of cardinalities, more or less (if you allow that t
 
 ------
 
-# 5. Bases are Logarithms
+# 6. Bases are Logarithms
 
 The dimension of a vector space is the cardinality of its basis. But just like we use expressions like $$B^A$$ for functions between sets because they are respected at the level of cardinalities $$\| B \|^{\| A \|}$$, we may as well interpret the $$\dim$$ operator in the same way: if $$\dim$$ returns the cardinality of the basis, then let's say that $$\log$$ returns _the basis itself_, which happens to have that cardinality. For instance if a vector space $$V \simeq K^3$$ has basis $$(\x, \y, \z)$$, we might write
 
@@ -408,7 +448,7 @@ However I do want to investigate the meaning more generally because it seems pre
 
 ------
 
-# 6. Functions are Logarithms?
+# 7. Functions are Logarithms?
 
 Treating $$\log_K K^n = n$$ as returning a basis for $$K^n$$ as a set is an example of a general procedure which doesn't quite have a name as far as I know. It is sort of like [categorification](https://en.wikipedia.org/wiki/Categorification), but not quite. Rather than locating categories for set operations, we're locating sets for algebraic operations, and not making any reference to categories really. So I'm not sure. Maybe 'setification'? Or 'structurization'? I dunno.
 
@@ -467,7 +507,7 @@ I'm not sure about this part, and might come back and rewrite it later if I find
 
 --------
 
-# 7. Everything is Logarithms
+# 8. Everything is Logarithms
 
 What we have been discussing is the most simple and well-behaved version of a logarithm in mathematics, the isomorphism between the additive real algebra $$(\bb{R}, +)$$ and the multiplicative one $$(\bb{R}^{\geq 0}, \times)$$. Of course there are logarithms in mathematics which are more complicated than that, such as the complex logarithm $$\log z = \text{Log } z + 2\pi i k \mid k \in \bb{Z}$$, or its messier cousins like the [logarithm of a matrix](https://en.wikipedia.org/wiki/Logarithm_of_a_matrix). But I suspect these are a confusion of concepts. What's really going on in the logarithm on $$\bb{C}$$, for instance, is that angles really take their values $$\in S_1$$, not $$\bb{R}$$, which has a different topology, and the weird behavior follows from not respecting this. A different set of conventions would move the problem out of the logarithm and into the definitions of the values themselves. Unfortunately that's not how things are are defined today so you have to deal with it---but, still, it doesn't seem like the logarithm's fault to me.
 
