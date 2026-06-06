@@ -24,19 +24,19 @@ $$\log_b (x) = \frac{\log_a (x)}{\log_a(b)}$$
 
 Which follows from rearranging $$\log_a (x) = \log_a (b^{\log_b x}) = \log_b (x) \times \log_a (b)$$.
 
-One way of thinking about what this formula does is that it is a change of units. Similar to writing $$2 \text{ km} = 2000 \text{ m} / (1000 \text{ m}/1 \text{ km})$$ or $$5 \text{ bytes} = 40 \text{ bits}/(8 \text{ bytes}/1\text{ bit})$$. It says: how many copies of $$b$$ are in $$x$$? It's the number of copies of $$a$$ in $$x$$, divided by the number of copies of $$a$$ that are in $$b$$. 
+One way of thinking about what this formula does is that it is a change of units. Similar to writing $$2 \text{ km} = 2000 \text{ m} / \frac{1000 \text{ m}}{1 \text{ km}}$$ or $$5 \text{ bytes} = 40 \text{ bits}/\frac{8 \text{ bits}}{1\text{ byte}}$$. It says: how many copies of $$b$$ are in $$x$$? It's the number of copies of $$a$$ in $$x$$, divided by the number of copies of $$a$$ that are in $$b$$. 
 
-This is perfectly simple, but for some reason it's hard to think about logarithms that way. The notation kind of... obfuscates things? It is hard to read $$\log_b x$$ as "how many copies of $$b$$ are in $$x$$, because that English expression should correspond to the notation $$x/b$$, not $$\log_b x$$.
+This is perfectly simple, but for some reason it's hard to think about logarithms that way. The notation kind of... obfuscates things? Specifically it is hard to read $$\log_b x$$ as "how many copies of $$b$$ are in $$x$$", because that English expression should correspond to the notation $$x/b$$, not $$\log_b x$$.
 
-I found a way of thinking about logarithms which makes this clearer, but you have to allow a sort of odd object, which I am calling a _baseless logarithm_. It is simply a logarithm without a base:
+I found a way of thinking about logarithms which I think makes this clearer, but you have to allow a sort of odd object that I am call the _baseless logarithm_. It is simply a logarithm without a base:
 
 $$\log N$$
 
-which we regard as an abstract object, not a number, and then we write our normal "based" logarithm as a ratio of two of these baseless logarithms:
+which we regard as an abstract object, not a number. Then we write our normal "based" logarithm as a ratio of two of these baseless logarithms:
 
 $$\log_2 N = \frac{\log N}{\log 2}$$
 
-Note, this is already sort of a thing people colloquially do, e.g. leaving out the base of logarithms in asymptotic formulas. I claim that it is useful to regard it more literally than that, as an actual algebraic object.
+Note, this is already sort of a thing people colloquially do, e.g. leaving out the base of logarithms in asymptotic formulas. But I do not mean it as a shorthand. It is useful to regard it as an actual algebraic object.
 
 We interpret $$\log 2$$ as _being_ the unit "bits". To write $$\log N$$ in bits is to factor it as a multiple of $$\log 2$$:
 
@@ -478,7 +478,7 @@ $$
 $$
 
 
-enumerate the $$\binom{3}{2} = 3$$ $$2$$-element combinations of $$3$$ elements. Here the $$\frac{1}{x^x y^y+x^y y^x}$$ corresponds to $$(x+y)!$$. Dividing through by the number of permutations implements the quotient $$x \sim y$$ that avoids double counting, and $$q$$ is a new variable that represents carrying out this quotient (I'm not sure if this is the best way to write this). Note that although all these variables will end up equalling $$1$$, by leaving them as independent variables they track meaningful information from step to step.
+enumerate the $$\binom{3}{2} = 3$$ $$2$$-element combinations of $$3$$ elements. Here the $$\frac{1}{x^x y^y+x^y y^x}$$ corresponds to $$(x+y)!$$. Dividing through by the number of permutations implements the quotient $$x \sim y$$ that avoids double counting, and $$q$$ is a new variable that represents carrying out this quotient (I'm not sure if this is the best way to write this). Note that although all these variables will end up equaling $$1$$, by leaving them as independent variables they track meaningful information from step to step.
 
 I suspect that every arithmetic identity has some equivalent setified expression like this (this is the spirit of my ongoing quest to make sense of fractional permutations). I also notice that a lot of information is lost when you map these set expressions back onto arithmetic: for example you elide the distinctions between all possible quotients that lead to the same cardinality. Probably there is a lot of interesting structure there.
 
