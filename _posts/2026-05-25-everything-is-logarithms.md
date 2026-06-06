@@ -78,7 +78,7 @@ I will write things in both forms to make it easy to translate between them; I d
 
 Suppose $$\b{v}$$ is one-dimensional, $$\b{v} = v_x \x$$. Then the projection onto a 'measuring stick' $$\b{m} = m \x$$ measures its length in terms of multiples of $$m$$:
 
-$$\frac{\v}{\b{m}} = \frac{v_x \x}{\x} = \frac{v_x}{m}$$
+$$\frac{\v}{\b{m}} = \frac{v_x \x}{m \x} = \frac{v_x}{m}$$
 
 Multiplying by $$\b{m}$$ again is what we mean by "writing $$\b{v}$$ in units of $$\b{m}$$:
 
