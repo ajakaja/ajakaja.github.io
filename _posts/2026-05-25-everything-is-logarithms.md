@@ -145,7 +145,7 @@ v_x &= \frac{\x'}{\x} v_{\x'} \\
 \end{aligned}
 $$
 
-or
+or[^diff]
 
 $$
 \begin{aligned}
@@ -154,7 +154,7 @@ f_x &= \frac{dx'}{dx} f_{x'}
 \end{aligned}
 $$
 
-(Note that the $$f_x = \p_x f = \p f / \p x$$ notation for partial derivatives is unfortunate; it should be $$(df)_x$$ or $$df_{dx}$$, to indicate that it is the "$$dx$$ component" of the vector $$df$$. To be honest the whole situation with the symbols $$d$$ and $$\p$$ is a mess. I suspect the ideal notation for differentials is actually $$\p f = \frac{\p f}{\p x} \p x + \frac{\p f}{\p y} \p y$$)
+[^diff]: The $$f_x = \p_x f = \p f / \p x$$ notation for partial derivatives is unfortunate; it should be $$df_{dx}$$, to indicate that it is the "$$dx$$ component" of the vector $$df$$, or $$d_x f$$, meaning the $$x$$ component of $$d$$ acting on $$f$$. Better yet it would be $$(\p f)_{\p x} = \p_x f$$ and the $$d$$ symbol would be retired, but that seems like a tall order.
 
 --------
 
