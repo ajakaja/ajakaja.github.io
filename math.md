@@ -43,6 +43,7 @@ I'm slowly working through my undergraduate math and physics curriculum and tryi
 
 {:class="bare"}
 * [Some Intuition For Entropy]({% post_url 2018-02-23-entropy-1 %})
+* [Notes on Bayesian Inference]({% post_url 2018-11-05-bayes %})
 * [Geometric Mean and Standard Deviation]({% post_url 2018-06-15-geometric-mean %})
 * [All About Taylor Series]({% post_url 2018-12-28-taylor-series %})
 * [The Essence of Complex Analysis]({% post_url 2020-08-10-complex-analysis %})
@@ -65,9 +66,6 @@ And every once in a while I write other miscellaneous math-related musings.
 Here are some references which, dunno, could be useful to somebody else. These are generally less polished and might just be wrong in places, watch out.
 
 {:class="bare"}
-* [Bayesian Inference]({% link _notes/bayes.md %})
-* [A particular calculation for the Pauli Hamiltonian in QM]({% link _notes/dirac.md %})
-* [A long half-finished reference on Fourier transforms]({% link _notes/fourier.md %})
 * [Some notes on Survival Analysis]({% link _notes/hazard.md %})
 * [Quaternions]({% link _notes/quaternions.md %})
 * [The various forms of the Triangle Inequality]({% link _notes/triangle-inequality.md %})

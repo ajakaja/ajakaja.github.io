@@ -3,7 +3,6 @@ layout: blog
 title: "Infinite Summations and You"
 math: true
 footnotes: true
-date: 2018-11-01 14:00
 tags: math
 ---
 
