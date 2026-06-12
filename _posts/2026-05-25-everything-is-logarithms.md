@@ -269,6 +269,12 @@ And then we can write $$\v = \log_T T^{\v} = \log T^{\v} / \log T$$. This is equ
 
 So vectors in differential geometry may also be thought of as logarithms, specifically, the logarithms of translation operators. 
 
+Regular multiplication can even be viewed as an example of this. A product like $$xa$$ can be rewritten as "translation" in the $$\ln a$$ coordinate:
+
+$$xa = e^{\ln x} e^{\ln a} = e^{(\ln x) \p_{\, \ln a}} a = x^{\p_{\, \ln a}} a$$
+
+I'm not sure how that would be ever be useful but maybe it's a bit interesting?
+
 --------
 
 # 4. Logarithms are Derivatives?
@@ -295,7 +301,6 @@ $$
 &\stackrel{a \ra 0}{=}  x - \frac{1}{2} x^2 + \frac{1}{3} x^3 - \ldots
 \end{aligned}
 $$
-
 
 The $$\lim_{a \ra 0} (x^a - 1)/a$$ formula for $$\ln x$$ resembles a derivative. To make it explicit, we can write it as
 
