@@ -7,16 +7,18 @@ footnotes: true
 aside: true
 ---
 
-While there are four standard ways of multiplying vectors and each has its own notation ($$\cdot$$, $$\times$$, $$\^$$, $$\o$$), there is no generally-agreed-upon definition or notation for dividing vectors. That's mostly because it's not a thing. But there are times when I wish it was a thing. Or rather, there are too many times where a notion of division _would_ be useful to ignore. There's an operation which acts a lot _like_ division, and which comes up more often than you might notice if you weren't looking for it. And it does, in a sense, generalize scalar division. So why not?
+While there are ~four standard ways of multiplying vectors and each has its own notation ($$\cdot$$, $$\times$$, $$\^$$, $$\o$$), there is no generally-agreed-upon definition or notation for dividing vectors. That's mostly because it's not a thing: these operations are not classically invertible, so there is no reason to write down an inverse or come up with a notation for it.
 
-This article describes what I would kinda like the notation $$\b{b} / \b{a}$$ should mean. I'm writing it out primarily because I keep wanting to refer to it in other articles; this way I have something to link to instead of defining it inline each time. I don't mean to claim that this "is" vector division. Rather it's a thing that is sufficiently common that it makes sense to generalize the notation of division for.
+However, I have noticed that there are lots of places where something _almost_ like division shows up, and I've come to believe that it would be very useful to just use the same notation for it. And it does happen to recover scalar division when your vectors are one-dimensional, so it is not absurd to consider it as an appropriate generalization of the concept.
+
+This article describes what I would like the notation $$\b{b} / \b{a}$$ to mean. To be  extra clear, though, I don't mean to claim that this "is" vector division. Rather it's a thing that is sufficiently common that it makes sense to generalize the notation of division for.
 
 <!--more-->
 
 
 My definition writes division $$\b{b}/\b{a}$$ as a shorthand for the [matrix pseudoinverse](https://en.wikipedia.org/wiki/Moore%E2%80%93Penrose_inverse), which allows dividing by a list of $$k$$ vectors at once, in a certain sense. Vector division is the $$k=1$$ case. The matrix inverse is the $$k=n$$ case. Scalar division is the $$k=n=1$$ case. The pseudoinverse is not really obscure, and writing it as an inverse is not that weird. Most of the text is about the update you have to make to your intuition about what division is, in order to use the pseudoinverse like an inverse in this way.
 
-As always take this with a heaping pile of grains of salt, 'cause it's still just the semi-informed opinions of some guy on the internet.
+*(Updated June 2026 to be consistent with my later discussions of the subject.)*
 
 ---------
 
@@ -31,17 +33,13 @@ $$
 \end{aligned}
 $$
 
-It's not a true inverse, but it's still a useful thing: $$(\b{b}/\b{a}) \b{a} = \b{b}_a = \proj_{\b{a}}(\b{b})$$ gives the vector projection of $$\b{b}$$ onto $$\b{a}$$. There are various other things that the division notation could mean, but I think this is the most useful one.
+It's not a true inverse, but it's still a useful thing: $$(\b{b}/\b{a}) \b{a} = \b{b}_a = \proj_{\b{a}}(\b{b})$$ gives the vector projection of $$\b{b}$$ onto $$\b{a}$$. The symbol $$1$$ in $$1/\b{a}$$ is meant a bit metaphorically: although it does invert $$1$$ in the sense that $$1 = \b{a} \cdot (1/\b{a})$$, we don't need to think of it as literally "one divided by $$\b{a}$$".
 
-For matrices $$A = (\b{a}_1, \b{a}_2, \ldots)$$, where the vectors $$\{ \b{a}_i \}$$ are linearly independent, division means
+For linear transformations written as matrices $$A = (\b{a}_1, \b{a}_2, \ldots)$$, where the vectors $$\{ \b{a}_i \}$$ are linearly independent, division means
 
 $$\frac{\b{b}}{A} \equiv A^{+} (\b{b}) = \begin{pmatrix} b_1 \\ b_2 \\ \vdots \end{pmatrix}$$
 
-$$A^{+}$$ is the Moore-Penrose pseudoinverse of $$A$$, which equals the actual matrix inverse when $$A$$ is invertible. This gives the components of the expansion of $$\b{b}_A$$, the projection of $$\b{b}$$ onto $$\text{col}(A)$$, in terms of the vectors of $$A$$:
-
-$$A (\b{b}/A) = \b{b}_A = b_1 \b{a}_1 + b_2 \b{a}_2 + \ldots$$
-
-We don't bother to extend division for the case where the vectors of $$A$$ are not linearly independent, just like we disallow dividing by zero for scalars. It is possible to talk about the pseudoinverse of a non-linearly-independent matrix as well, and it's interesting, but... less interesting, for our purposes.
+$$A^{+}$$ is the Moore-Penrose pseudoinverse of $$A$$, which equals the actual matrix inverse when $$A$$ is invertible and otherwise acts like its "invertible part", with any linear dependence in its elements erased.
 
 We think of the division operation as fundamentally meaning "expanding a vector into components in a basis." In $$\bb{R}^1$$ there's only one direction so the only component is the result of regular scalar division:
 
@@ -51,42 +49,38 @@ Which tells you how many copies of $$a \b{x}$$ you need to make $$b \b{x}$$:
 
 $$\frac{b \b{x}}{a \b{x}} (a \b{x}) = b \b{x}$$
 
-In $$\bb{R}^{>1}$$ dividing by a list of vectors $$A = \{ \b{a}_i \}$$ gives $$b_A= \b{b}/A = \{ b_{a_1}, b_{a_2}, \ldots \}^T$$, which tells you how to reconstruct as much of $$\b{b}$$ as possible in the basis $$A$$:
+In $$\bb{R}^{>1}$$ dividing by a list of vectors $$A = ( \b{a}_i )$$ gives $$b_A= \b{b}/A = ( b_{a_1}, b_{a_2}, \ldots )^T$$, where the notation is meant to imply that this is the  "$$A$$-coordinate of $$b$$".  tells you how to reconstruct as much of $$\b{b}$$ as possible in the basis $$A$$:
 
-$$\b{b}_A = A b_A = A (\b{b}/A)= b_{a_1} \b{a}_1 + b_{a_2} \b{a}_2 + \ldots\, $$
+$$\b{b}_A = A b_A = A (\b{b}/A)= \begin{pmatrix} \b{a}_1 & \b{a}_2 & \cdots \end{pmatrix} \begin{pmatrix} b_{a_1} \\ b_{a_2} \\ \vdots \end{pmatrix} = b_{a_1} \b{a}_1 + b_{a_2} \b{a}_2 + \ldots\, $$
 
-This is particularly nice because a change of basis to another basis $$B = \{ \b{b}_j \}$$ is given by cancelling out a fraction:
+This is particularly nice because a change of basis to another basis $$C = \{ \b{c}_j \}$$ is given by cancelling out a fraction:
 
 $$
 \begin{aligned}
-\b{x}_A &= A x_A = A \frac{\b{x}}{A} \\
-\b{x}_B &= B x_B = B \frac{\b{x}}{B} \\
+\b{b}_A &= A b_A = A \frac{\b{b}}{A} \\
+\b{b}_C &= C b_C = C \frac{\b{b}}{C} \\
 
 \end{aligned}
 $$
 
-When the vectors of $$B$$ span the space then $$\b{x}_B = \b{x}$$ and you can do stuff like this:
+When $$\b{b} \in \text{span}(A) = \text{span}(C)$$ then $$\b{b}_A = \b{b}_C = \b{b}$$ and you can do stuff like this:
 
 $$
 \begin{aligned}
-\b{x}_A &= A \frac{\b{x}}{A} \\
-&= A \frac{B}{A} \frac{\b{x}}{B} \\
-&= A \frac{B}{A} x_B \\
-x_A &= \frac{B}{A} x_B \\
+\b{b}_A &= A \frac{\b{b}}{A} \\
+&= A \frac{C}{A} \frac{\b{b}}{C} \\
+&= A \frac{C}{A} b_C \\
+b_A &= \frac{C}{A} b_C \\
 \end{aligned}
 $$
 
-Which I think is pretty cool. It's just another notation for matrix algebra, sure, but it means something geomtrically the whole time, and seems to obey some simple rules such that you could actually just do algebraic manipulations like we do with one-dimensional variables. I mean, maybe. Probably there are some more complexities $$B$$ doesn't span and probably they're pretty interesting and cool also. I ran out of steam at about this point so I'll figure it out later. My brain hurts.
+Which I think is pretty cool. It's just another notation for matrix algebra, sure, but it means something geomtrically the whole time, and seems to obey some simple rules such that you could actually just do algebraic manipulations like we do with one-dimensional variables. 
 
-All of this is discussed to death below. At the end we also compare this sense of division to the division in Clifford Algebras and tensor algebras.
+All of this is elaborated on at length below. At the end we also compare this sense of division to the division in Clifford Algebras and tensor algebras.
 
 ---------
 
 # 2. Exposition
-
-Here is a longer expository version of the stuff in the TLDR. It is basically be a bunch of material from introductory linear algebra presented in an upside-down way.
-
-### Vectors
 
 We define the multiplicative inverse of a vector to be
 
@@ -100,9 +94,7 @@ The notation makes some sense because
 
 $$\b{a} \cdot \frac{1}{\b{a}} = 1$$
 
-But it is certainly not a _true_ inverse, in the sense of $$f(f^{-1}) = I$$, the identity of a group / multiplicative unit in a ring. There are a few reasons:
-
-One is that we're not talking about a single algebra with a single multiplication operation. Were there only one way to multiply vectors, we could ask if it has an inverse (probably not, in the group/ring sense). But instead we're just talking about vectors as a concept, with all of their operations. 
+but it is certainly not a true inverse, in the sense of $$f(f^{-1}) = I$$, the identity of a group / multiplicative unit in a ring. Of course it ins't, because we're not talking about a single algebra with a single multiplication operation. Were there only one way to multiply vectors, we could ask if it has an inverse (probably not, in the group/ring sense). But instead we're just talking about vectors as a concept, with all of their operations. 
 
 That said, roughly speaking this is trying to "undo" the tensor product, because $$\b{a} \cdot (\frac{1}{\b{a}} \o \b{b}) = \b{b}$$ holds. It's just that it doesn't actually multiply using the tensor product again---it's not like a group where $$a^{-1} a b = b$$ is three instances of the same group operation. Instead our notion of division uses a separate operation, the dot product / trace.
 
@@ -141,30 +133,26 @@ There are many ways you could define vector division, and various versions of al
 
 --------
 
-### Frames
 
-
-The word "frame" refers to a list of $$k \leq n$$ vectors, such as 
+The word "frame" refers to a list of $$k \leq n$$ vectors in a vector space $$V$$, such as 
 
 $$A = (\b{a}_1, \b{a}_2, \ldots, \b{a}_k)$$
 
 Picture a two or three vectors emerging from a single point in space which rotate and transform as a unit.
 
-Okay, fine, a frame is basically a matrix. But I prefer the word "frame" when it's being thought of as a list of vectors rather than as a linear transformation. A frame can be written as a matrix in the same way that a vector can be written as a matrix: neither _are_ matrices, but matrices are one convenient representation for them. In my opinion many equations that involve matrices are better thought of as involving frames because they have a more explicit and visualizable geometric meaning: they're a group of vectors that move around and transform together.[^frame]
+A frame is basically a linear transformation $$\cal{I}_A \ra A \subset V$$, where $$\cal{I}_A$$ is the vector space of components for vectors in the frame (I like to call it the "index space" because it fills the same role as an index in index notation). Its action on a vector of components $$\vec{i} = (i_1, i_2, \ldots, i_k)^T$$ is to produce the vector $$\in V$$ which is represented by those coordinates, $$A \vec{i} = i_1 \b{a}_1 + i_2 \b{a}_2 + \ldots + i_k \b{a}_k$$. Although frames, linear transformations, and matrices are pretty much the same, I find it most intuitive to think of frames as the most basic object of the three. Just like a vector abstract refers to a magnitude and a direction in a space, a frame refers to $k$$ magnitudes and directions in a space, but without reference to a choice of coordinate system on that space.
 
-[^frame]: This notion of a frame is essentially the same notion as a [moving frame](https://en.wikipedia.org/wiki/Moving_frame) in differential geometry. You can also have frame fields (e.g. [tetrads](https://en.wikipedia.org/wiki/Tetrad_formalism)) and frame-valued functions and things like that; there's a whole (somewhat-obscure) theory about it. It is not quite the same as [this other notion](https://en.wikipedia.org/wiki/Frame_(linear_algebra)) of a frame, which refers to a generalization of a basis for a vector space that is allowed to be linearly dependent. (That article is unfortunately titled "Frame (linear algebra)" as though it is fundamental or something. The moving-frame concept is actually fundamental, IMO, while the linearly-dependent-basis concept is comparatively niche. Hmph.)
+This notion of a frame is essentially the same notion as a [moving frame](https://en.wikipedia.org/wiki/Moving_frame) in differential geometry. You can also have frame fields (e.g. [tetrads](https://en.wikipedia.org/wiki/Tetrad_formalism)) and frame-valued functions and things like that. It is not quite the same as [this other notion](https://en.wikipedia.org/wiki/Frame_(linear_algebra)) of a frame, which refers to a generalization of a basis for a vector space that is allowed to be linearly dependent. (That article is unfortunately titled "Frame (linear algebra)" as though it is fundamental or something. The moving-frame concept is actually fundamental, IMO, while the linearly-dependent-basis concept is comparatively niche.)
 
-Nevertheless we'll operate on $$A$$ using matrix multiplication notation. Right-multiplication becomes a dot product with the list index of the frame, as though we are taking a dot product between the "vector" $$A$$ and the vector $$\vec{x}$$:
+In practice we think of frames as equivalent to their matrix representations, either the full row-column representation $$A_{ij}$$ or as a row vector of vectors $$(\b{a}_1, \b{a}_2, \ldots)$$. Right-multiplication by a vector $$\vec{b} \in \cal{I}_A$$ becomes a dot product with the component index of the frame, as though we are taking a dot product between the "vector" $$A$$ (or vectors) and the component vector $$\vec{b}$$:
 
-$$A \vec{x} =  (\b{a}_1 \; \b{a}_2 \; \ldots) \begin{pmatrix} x_1 \\ x_2 \\ \vdots \end{pmatrix} = x_1 \b{a}_1 + x_2 \b{a}_2 + \ldots$$
+$$A \vec{b} =  (\b{a}_1 \; \b{a}_2 \; \ldots) \begin{pmatrix} b_1 \\ b_2 \\ \vdots \end{pmatrix} = b_1 \b{a}_1 + b_2 \b{a}_2 + \ldots$$
 
-Left-multiplication becomes an "internal" dot product which happens elementwise:
+Left-multiplication becomes an elementwise dot product in the vector space $$\b{v}$$:
 
 $$\b{y}^T A = 
 (y_1 \; y_2 \; \ldots) (\b{a}_1 \; \b{a}_2 \; \ldots) =
 (\b{y} \cdot \b{a}_1 \;\; \b{y} \cdot \b{a}_2 \; \; \ldots)$$
-
-I don't actually like the matrix multiplication notation so I'm kind of annoyed to be using it, but I had previously written all of this without it and it was, admittedly, more confusing. Oh well.
 
 Note that a frame $$A$$ has its two indices that always live in different spaces: the individual elements of "geometric" vectors in space, while the $$k$$ tuple indices are a sort of abstract "list" index that has no geometric meaning. I prefer to write geometric vectors in bold, like $$\b{a}_i$$, while I write list vectors with an overarrow like $$\vec{x}$$, to distinguish between the two. This makes it a little easier to keep track of which space they live in. We could also write $$\vec{\b{A}}$$ instead of $$A$$, I guess, since a frame is both... but I don't think it's necessary.
 
@@ -177,11 +165,11 @@ $$\vec{x} = \frac{\b{b}}{A}$$
 
 Is that it is _almost_ the vector $$\vec{x}$$ which gives the coefficients of $$\b{b}$$ in terms of the vectors in the frame:
 
-$$\b{b} \? x_1 \b{a}_1 + x_2 \b{a}_2 + \ldots$$
+$$\b{b} \? b_1 \b{a}_1 + b_2 \b{a}_2 + \ldots$$
 
 That is, we would like it to be the solution to the normal linear system of equations
 
-$$A \vec{x} = \b{b}$$
+$$A \vec{b} = \b{b}$$
 
 But this is not generally possible, for several reasons. One is that $$\b{b}$$ may not be in $$\text{\span}(\{ \b{a}_i \})$$, that is, the column space $$\text{col}(A)$$. Another is that if the vectors in $$A$$ are not linearly independent, then there may be more than one way to do it. 
 
@@ -292,8 +280,6 @@ The dual basis is defined so that everything cancels out perfectly.[^dual]
     
     Incidentally I first became aware of the concept being used in this way because of a [1974 comment](https://pubs.aip.org/aapt/ajp/article-abstract/42/1/85/1049571/Comment-on-Geometric-Nature-of-Lagrange-s) on a [1971 paper](https://pubs.aip.org/aapt/ajp/article-abstract/40/11/1636/1042836/Geometric-Nature-of-Lagrange-s-Equations) about Lagrangian mechanics which pointed out that the ideas therein were originally found in a [1965 textbook](https://onlinebooks.library.upenn.edu/webbin/book/lookupid?key=olbp38482) by Housner, which I read, and it indeed does a lot of mechanics using dual bases heavily? So now I'm wondering if they were more common in the past and have faded out of usage for some reason.
     
-    I mention all of this because I thought it was kinda funny. I haven't looked into the history any further, though.
-
 For the preceding example, the dual basis is
 
 $$A^+ = (\b{a}_1^*, \b{a}_2^*) = (\b{x} - \b{y}, \b{y})$$
