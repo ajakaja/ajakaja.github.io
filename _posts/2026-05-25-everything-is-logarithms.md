@@ -24,9 +24,9 @@ $$\log_b (x) = \frac{\log_a (x)}{\log_a(b)}$$
 
 Which follows from rearranging $$\log_a (x) = \log_a (b^{\log_b x}) = \log_b (x) \times \log_a (b)$$.
 
-One way of thinking about what this formula does is that it is a change of units. Similar to writing $$2 \text{ km} = 2000 \text{ m} / \frac{1000 \text{ m}}{1 \text{ km}}$$ or $$5 \text{ bytes} = 40 \text{ bits}/\frac{8 \text{ bits}}{1\text{ byte}}$$. It says: how many copies of $$b$$ are in $$x$$? It's the number of copies of $$a$$ in $$x$$, divided by the number of copies of $$a$$ that are in $$b$$. 
+One way of thinking about what this formula does is that it is a change of units, akin to writing $$2 \text{ km} = 2000 \text{ m} / \frac{1000 \text{ m}}{1 \text{ km}}$$ or $$5 \text{ bytes} = 40 \text{ bits}/\frac{8 \text{ bits}}{1\text{ byte}}$$. It says: how many copies of $$b$$ are in $$x$$? It's the number of copies of $$a$$ in $$x$$, divided by the number of copies of $$a$$ that are in $$b$$. 
 
-This is perfectly simple, but for some reason it's hard to think about logarithms that way. The notation kind of... obfuscates things? Specifically it is hard to read $$\log_b x$$ as "how many copies of $$b$$ are in $$x$$", because that English expression should correspond to the notation $$x/b$$, not $$\log_b x$$.
+This is perfectly simple, but for some reason it's hard to think about logarithms that way. The notation kind of... obfuscates things? Specifically it is hard to read $$\log_b x$$ as "how many copies of $$b$$ are in $$x$$", because that English expression should correspond to the notation $$x/b$$, not $$\log_b x$$. "How many factors of $$b$$ are in $$x$$" is a bit better, but it still feels off.
 
 I found a way of thinking about logarithms which I think makes this clearer, but you have to allow a sort of odd object that I am call the _baseless logarithm_. It is simply a logarithm without a base:
 
@@ -36,7 +36,7 @@ which we regard as an abstract object, not a number. Then we write our normal "b
 
 $$\log_2 N = \frac{\log N}{\log 2}$$
 
-Note, this is already sort of a thing people colloquially do, e.g. leaving out the base of logarithms in asymptotic formulas. But I do not mean it as a shorthand. It is useful to regard it as an actual algebraic object.
+Note, this is already a thing people do colloquially, e.g. leaving out the base of logarithms in asymptotic formulas. But I do not mean it as a shorthand; it is more useful to regard it as an actual algebraic object.
 
 We interpret $$\log 2$$ as _being_ the unit "bits". To write $$\log N$$ in bits is to factor it as a multiple of $$\log 2$$:
 
@@ -50,17 +50,21 @@ $$
 \end{aligned}
 $$
 
-The baseless $$\log N$$ is sort of the multiplicative version of an object that might be familiar from discussions of vectors. It is common with vectors to distinguish between _points_ and _displacements_: a displacement vector $$\b{v}$$ is given by the difference of two points $$\v = (b) - (a)$$. When we write think of points as having coordinates, this involves an explicit choice of origin $$\O$$, such that $$\b{a} \equiv (a) - \O$$ and $$\b{b} \equiv (b) - \O$$. Then a displacement vector is constructed by subtracting off the factors of $$\O$$, $$\b{v} = \b{b} - \b{a} = ((b) - \O) - ((a) - \O) = (b) - (a)$$. The baseless logarithm implemens the same thing but with multiplication: the value $$\log N$$ may be thought of as $$\log N / \log \O$$ for an unspecified choice of origin; turning it into an actual numeric value involves dividing two such logarithms to cancel out the origin, $$\log_M N = \log N / \log M = (\log N / \log \O) / (\log M / \log O)$$. I think of $$\log N$$ as the point corresponding to $$N$$ and $$\log N / \log \O$$ as its corresponding displacement vector once you pick a coordinate system. I prefer to think of the point as more fundamental.
+The baseless $$\log N$$ is sort of the multiplicative version of an object that might be familiar from discussions of vectors. It is common with vectors to distinguish between _points_ and _displacements_: a displacement vector $$\b{v}$$ is given by the difference of two points $$\v = (b) - (a)$$. When we write think of points as having coordinates, this involves an explicit choice of origin $$\O$$, such that $$\b{a} \equiv (a) - \O$$ and $$\b{b} \equiv (b) - \O$$. Then a displacement vector is constructed by subtracting off the factors of $$\O$$, $$\b{v} = \b{b} - \b{a} = ((b) - \O) - ((a) - \O) = (b) - (a)$$. The baseless logarithm implements the same thing but with multiplication: the value $$\log N$$ may be thought of as $$\log N / \log \O$$ for an unspecified choice of origin; turning it into an actual numeric value involves dividing two such logarithms to cancel out the origin, $$\log_M N = \log N / \log M = (\log N / \log \O) / (\log M / \log O)$$. I think of $$\log N$$ as the point corresponding to $$N$$ and $$\log N / \log \O$$ as its corresponding displacement vector once you pick a coordinate system. The point version is more fundamental.[^torsor]
 
-You might ask: if we have a baseless logarithm $$\log N$$, do we also have a "baseless exponential"? Normally $$b^{\log_b N}$$ can be written as something like $$b^{\log_b N} = b^{\ln N / \ln b} = e^{\ln N} = N$$; is there any way to do this without actually choosing a base? I think the answer has to be "no". All we can say is that we have split the one object, a logarithm $$\log_b N$$ which is the solution of $$b^y = N$$, into two objects, $$\log N$$ and $$\log b$$, each of which on their own are without "units" and so have no numerical meaning. It is just like points in space: a point on its own has no operation of addition and does not have a length. We can subtract points to produce vectors (relative to a symmetry group) but not add them, and the usual operations in coordinates all require a choice of origin.
+[^torsor]: The technical term for this is that vectors and logarithms are both [torsors](https://math.ucr.edu/home/baez/torsors.html). I'm not very good with that terminology yet. 
 
-In fact there are many surprising similarities between logarithms and vectors.
+You might ask: if we have a baseless logarithm $$\log N$$, do we also have a "baseless exponential"? Normally $$b^{\log_b N}$$ can be written as something like $$b^{\log_b N} = b^{\ln N / \ln b} = e^{\ln N} = N$$; is there any way to do this without actually choosing a base, like $$(\ast)^{\log N}$$ or something? I think the answer has to be "no", because I can't think of a way to make it mean anything. All we can say is that we have split the one object, a logarithm $$\log_b N$$ which is the solution of $$b^y = N$$, into two objects, $$\log N$$ and $$\log b$$, each of which on their own are without "units" and so have no numerical meaning.
+
+So logarithms act kinda like multiplicative vectors, in the sense that they have have to defined relative to an 'origin', a choice of base. In fact there are many surprising similarities between logarithms and vectors, which I had fun expositing about:
 
 -----
 
 # 2. Logarithms are Vectors
 
-When doing vector algebra and differential geometry in a properly covariant way, we distinguish between abstract vectors and vectors in a particular coordinate system. My personal convention for this is to refer to the abstract vectors as "geometric" vectors and always write them in bold, $$\v$$, whereas "coordinate" vectors, tuples of their values in coordinates, are written with an arrow over them like $$\vec{v} = (v_x, v_y, v_z)$$. Boldface geometric vectors are always coordinate-free, whereas coordinate vectors are just collections of numbers or other objects. The geometric vector $$\b{v}$$ can be written as a dot product of its coordinates with a 'frame' $$X = (\x, \y, \z)$$ of basis vectors
+When doing vector algebra and differential geometry in a properly covariant way, we distinguish between abstract vectors and vectors in a particular coordinate system.
+
+My personal convention for this is to refer to the abstract vectors as "geometric" vectors and always write them in bold, $$\v$$, whereas "coordinate" vectors, tuples of their values in coordinates, are written with an arrow over them like $$\vec{v} = (v_x, v_y, v_z)$$. Boldface geometric vectors are always coordinate-free, whereas coordinate vectors are just collections of numbers or other objects. The geometric vector $$\b{v}$$ can be written as a dot product of its coordinates with a 'frame' $$X = (\x, \y, \z)$$ of basis vectors
 
 $$\b{v} = \vec{v} \cdot X = (v_x, v_y, v_z) \cdot (\x, \y, \z) = v_x \x + v_y \y + v_z \z$$
 
@@ -80,11 +84,13 @@ Suppose $$\b{v}$$ is one-dimensional, $$\b{v} = v_x \x$$. Then the projection on
 
 $$\frac{\v}{\b{m}} = \frac{v_x \x}{m \x} = \frac{v_x}{m}$$
 
-Multiplying by $$\b{m}$$ again is what we mean by "writing $$\b{v}$$ in units of $$\b{m}$$:
+Multiplying by $$\b{m}$$ again is what we mean by "writing $$\b{v}$$ in units of $$\b{m}$$":
 
-$$\frac{\b{v}}{\b{m}} \b{m} = (\frac{v_x}{m}) \text{m} \x$$
+$$\frac{\b{v}}{\b{m}} \b{m} = (\frac{v_x}{m}) (m \x)$$
 
-(In differentials, this is the differential of $$f$$ restricted to its $$dx$$ component: $$\frac{\p f}{\p x} dx = f_x dx = df \mid_{x}$$, which is a perfectly interesting object (a covariant derivative) that one does not see written in this way very often. By the way, it's not really important here, but is possible to view all measurements of the length of vectors in this way by thinking first of rewriting an arbitrary vector $$\v = v_x \x + v_y \y + v_z \z$$ in a polar form $$\v = v_r \r + v_{\theta} \theta$$ and then projecting onto $$\r$$, $$\| \v \| = \v/\r$$. This tends to be a good way of looking at things.)
+Here $$m$$ is the unit "meters" and $$v_x/m$$ is the value of $$v_x$$ written in meters. Of course to actually compute $$v_x/m$$ you have to have it in units in the first place---but clearly it's the same kind of thing as in the logarithm case, where you can think of $$\b{v}$$ and $$\b{m}$$ as "unitless" concepts that are compared geometrically, and then $$v_x/m$$ as their projections into an aribtrary coordinate system.[^covariant]
+
+[^covariant]: In differentials, this operation the differential of $$f$$ but restricted to its $$dx$$ component: $$\frac{\p f}{\p x} dx = f_x dx = df \mid_{x}$$. This is a perfectly interesting object, a covariant derivative on the foliations of the $$x$$ coordinate, I believe (if I have that right), but it's not normally written this way.
 
 The baseless logarithm is performing the same operation on logarithms, where $$\log N$$ is filling the role of the geometric vector $$\v$$ and $$\log 2 = \text{bits}$$ is the unit vector or measuring stick, which takes the role of $$\x$$.
 
@@ -159,7 +165,7 @@ $$
 --------
 
 
-What logarithms don't allow you to do that partial derivatives and vector division do allow to actually talk about a partial derivative operation in isolation. For example, if $$N = 2^a 3^b$$, you can only talk about the ratio with respect to a single unit $$\log 2$$
+What logarithms don't allow that vector division and differential notations easily do is to talk about a _partial_ projection operation or a _partial_ derivative in isolation. For example, if $$N = 2^a 3^b$$, you can only talk about the "total" logarithm, the ratio with respect to a single unit $$\log 2$$
 
 $$\frac{\log N}{\log 2} = a \frac{\log 2}{\log 2} + b \frac{\log 3}{\log 2} = a + b \log_2 3$$
 
@@ -171,7 +177,9 @@ or to a _total_ derivative
 
 $$\frac{df}{dx} = f_x + f_y \frac{dy}{dx}$$
 
-But there is no direct equivalent of the operation of partial differentiation---there's nothing that acts like $$N \? (\log_2 N) \log 2 + (\log_3 N) \log 3$$.
+But there is no equivalent of the operation of partial differentiation, a "partial logarithm", which would let you factor a number like
+
+$$N \? (\log_{\p 2} N) \log 2 + (\log_{\p 3} N) \log 3$$
 
 However, I keep finding that people have gone and invented the projection / partial derivative operation on logarithms _anyway_. For example, the [p-adic valuation](https://en.wikipedia.org/wiki/P-adic_valuation) in number theory
 
