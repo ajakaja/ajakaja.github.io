@@ -246,9 +246,9 @@ which is true at the level Taylor expansions as well. I often find it easier to 
 
 $$e^{v_x \p_x + v_y \p_y} (x, y) = (x + v_x, y + v_y)$$
 
-(You can also think of this acting on the function $$f(x) = x$$ also, but that feels like overkill.)
+(You can think of this acting on the function $$f(x,y) = (x,y)$$ also, but that feels like overkill.)
 
-In any case, all this is really doing (in flat space, at least) is changing the additive vector $$\b{v}$$ into a multiplicative form $$T^{\b{v}}$$ which corresponds to the same operation, but whose terms are multiplied instead of added, and whose scalar coefficients are applied via exponentiation instead of multiplication. The basis is now translation operators in each coordinate:[^polar]
+In any case, all this is really doing (in flat space, at least) is rewriting the additive vector $$\b{v}$$ into a multiplicative form $$T^{\b{v}}$$ which corresponds to the same operation. Things are just being written differently: its terms are multiplied instead of added, and scalar coefficients are applied via exponentiation instead of multiplication. A basis for the vector space now consists of translation operators in each coordinate:[^polar]
 
 [^polar]: If you happen to have a vector in a polar form like $$\b{v} = v_r e^{R v_{\theta}}$$, that refers to a _second_ layer of exponential representation, via $$T^{\v} = T^{v_r e^{\p_{\theta} v_{\theta}}(\p_x)}$$, where $$\p_x$$ is a choice of origin for the rotational $$\theta$$ coordinate (which may be multidimensional as well).
 
@@ -256,7 +256,7 @@ $$T^{\v} = e^{v_x \p_x} e^{v_y \p_y}  = T_x^{v_x} T_y^{v_y} $$
 
 (In non-flat space this is not so simple because the translations in different coordinates may not commute; you can still write it in this form but it's a lot more complicated.)
 
-What this means for us is: look, vectors are logarithms too
+What this means for us is: look, vectors are logarithms too!
 
 $$
 \begin{aligned}
@@ -279,25 +279,23 @@ Regular multiplication can even be viewed as an example of this. A product like 
 
 $$xa = e^{\ln x} e^{\ln a} = e^{(\ln x) \p_{\, \ln a}} a = x^{\p_{\, \ln a}} a$$
 
-I'm not sure how that would be ever be useful but maybe it's a bit interesting?
+I mention this because it's cute, but I can't imagine how it would ever be useful.
 
 --------
 
 # 4. Logarithms are Derivatives?
 
-This part doesn't really matter, I just thought I would mention it so that this article contains every fun fact about logarithms that I know.
+This part doesn't really connect to the rest; I just thought I would mention it so that this article contains every fun fact about logarithms that I know.
 
 One way of defining the natural logarithm is
 
 $$\ln x = \lim_{a \ra 0} \frac{x^a - 1}{a}$$
 
-I find this formula neat for a few reasons. Mostly, because it explains where a lot of the behaviors of $$\ln$$ in calculus comes from by connecting $$\ln x$$ with $$x^0$$.
-
-The formula can be found by rewriting $$x^a = e^{a \ln x}$$ and then Taylor expanding:
+Which can be found by rewriting $$x^a = e^{a \ln x}$$ and then Taylor expanding:
 
 $$\frac{x^a - 1}{a} = \frac{e^{a \ln x} - 1}{a} = \frac{(1 + a \ln x + \ldots) - 1}{a} \stackrel{a \ra 0}{=} \ln x$$
 
-And plugging in $$(1+x)$$ reproduces the Taylor series for $$\ln$$:
+Plugging in $$(1+x)$$ reproduces the Taylor series for $$\ln$$:
 
 $$
 \begin{aligned}
@@ -312,7 +310,7 @@ The $$\lim_{a \ra 0} (x^a - 1)/a$$ formula for $$\ln x$$ resembles a derivative.
 
 $$\ln x = \lim_{dy \ra 0} \frac{x^{y + dy} - x^y}{dy} \mid_{y=0} = \p_{y} x^y \mid_{y =0}$$
 
-We see that there is a connection between $$\ln x$$ and the polynomials $$x^k$$ as $$k \ra 0$$. This helps explain the otherwise-somewhat-mysterious fact that $$\int x^{k} = \ln x$$ for $$k=-1$$, whereas it is a polynomial for all other values of $$k$$. Why is a logarithm like a polynomial? Because in a lot of ways $$\ln x$$ acts like $$x^0$$. Sspecifically, it acts the 'interesting' part of $$x^0$$, that is, its first order approximation around $$x=1$$:
+What I like about this form is that it explains what $$\ln$$ is doing in calculus comes from by connecting $$\ln x$$ with $$x^0$$. It always struck me as strange that $$\int x^{k} = \ln x$$ for $$k=-1$$, whereas it is a polynomial for all other values of $$k$$. Why is a logarithm like a polynomial? Turns out it's because in a lot of ways $$\ln x$$ acts like $$x^0$$. Specifically it's the 'interesting' part of $$x^0$$, its first order approximation around $$x=1$$:
 
 $$\ln x \sim \frac{x^0 - 1}{0}$$
 
