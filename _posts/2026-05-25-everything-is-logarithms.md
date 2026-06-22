@@ -291,13 +291,13 @@ One way of defining the natural logarithm is
 
 $$\ln x = \lim_{a \ra 0} \frac{x^a - 1}{a}$$
 
-I find this formula neat for a few reasons. Mostly it explains where a lot of the behaviors of $$\ln$$ in calculus comes from.
+I find this formula neat for a few reasons. Mostly, because it explains where a lot of the behaviors of $$\ln$$ in calculus comes from by connecting $$\ln x$$ with $$x^0$$.
 
-It follows from substituting $$x^a = e^{a \ln x}$$ and then Taylor expanding:
+The formula can be found by rewriting $$x^a = e^{a \ln x}$$ and then Taylor expanding:
 
 $$\frac{x^a - 1}{a} = \frac{e^{a \ln x} - 1}{a} = \frac{(1 + a \ln x + \ldots) - 1}{a} \stackrel{a \ra 0}{=} \ln x$$
 
-Plugging in $$(1+x)$$ also gives the Taylor series for $$\ln$$:
+And plugging in $$(1+x)$$ reproduces the Taylor series for $$\ln$$:
 
 $$
 \begin{aligned}
@@ -312,7 +312,7 @@ The $$\lim_{a \ra 0} (x^a - 1)/a$$ formula for $$\ln x$$ resembles a derivative.
 
 $$\ln x = \lim_{dy \ra 0} \frac{x^{y + dy} - x^y}{dy} \mid_{y=0} = \p_{y} x^y \mid_{y =0}$$
 
-This form also shows how there is sort of a connection between $$\ln x$$ and the polynomials $$x^k$$, which maybe explains the otherwise-somewhat-mysterious fact that $$\int x^{k} = \ln x$$ for $$k=-1$$, whereas it is a polynomial for all other values of $$k$$. Why is a logarithm like a polynomial? Well, it's because in a lot of ways $$\ln x$$ acts like $$x^0$$. More specifically, it acts the 'interesting' part of $$x^0$$, that is, its first order approximation around $$x=1$$
+We see that there is a connection between $$\ln x$$ and the polynomials $$x^k$$ as $$k \ra 0$$. This helps explain the otherwise-somewhat-mysterious fact that $$\int x^{k} = \ln x$$ for $$k=-1$$, whereas it is a polynomial for all other values of $$k$$. Why is a logarithm like a polynomial? Because in a lot of ways $$\ln x$$ acts like $$x^0$$. Sspecifically, it acts the 'interesting' part of $$x^0$$, that is, its first order approximation around $$x=1$$:
 
 $$\ln x \sim \frac{x^0 - 1}{0}$$
 
@@ -351,11 +351,11 @@ $$
 \end{aligned}
 $$
 
-The direct sum $$\oplus$$ corresponds to multiplication $$\times$$, which is really just a notational accident, since it is the same as the direct product on finite-dimensional vector spaces; the $$\oplus$$ symbol reflects the fact that it adds _bases_ as sets.[^direct] meanwhile the tensor product $$otimes$$ multiplies bases on sets, but corresponds in arithmetic to a sort of "commutative exponentiation" $$e^{\log_k u \log_k v} = u^{\log_k v}$$ that you don't see very much, sometimes called a [commutative hyperoperation](https://en.wikipedia.org/wiki/Hyperoperation#Commutative_hyperoperations). (The next 'displacement' operation after $$b-a$$ and $$b/a$$ is therefore $$e^{\ln b / \ln a} = b^{1/\ln a}$$.)
+The direct sum $$\oplus$$ corresponds to multiplication $$\times$$, which is really just a notational accident, since it is the same as the direct product on finite-dimensional vector spaces; the $$\oplus$$ symbol reflects the fact that it adds _bases_ as sets.[^direct] Meanwhile the tensor product $$otimes$$ multiplies bases on sets, but corresponds in arithmetic to a sort of "commutative exponentiation" $$e^{\log_k u \log_k v} = u^{\log_k v}$$ that you don't see very much, sometimes called a [commutative hyperoperation](https://en.wikipedia.org/wiki/Hyperoperation#Commutative_hyperoperations). (The next 'displacement' operation after $$b-a$$ and $$b/a$$ is therefore $$e^{\ln b / \ln a} = b^{1/\ln a}$$.)
 
 [^direct]: Apparently the $$\oplus$$ symbol is due to [Bourbaki](https://hsm.stackexchange.com/questions/13894/history-of-direct-sums-and-direct-products) because everything was a mess prior to that. Also it happens to be a coproduct (which came later) and those do correspond to addition on _sets_, so there is at least a connection to addition... but at present I think it is largely a mistake.
 
-I am a bit upset that I have never seen anyone point out that $$\dim$$ is a logarithm, since it's so obviously the case. Maybe I'm missing something? After all I am ignoring the infinite-dimensional cases entirely. But I suspect it's mostly just because math likes to stay on more rigorous "solid ground" than this. I, however, love to speculate about underappreciated connections between things, so I have no problem saying: dimension _is_ a logarithm.
+I am a bit upset that I have never seen anyone point out that $$\dim$$ is a logarithm, since it's so obviously the case. Maybe I'm missing something? After all I am ignoring the infinite-dimensional cases entirely. But I suspect it's just that math likes to stay on more solid rigorous ground than I do, and this is all too handwavey to be precise. I have no such qualms and I love to speculate about underappreciated connections between things, so I have no problem saying: dimension _is_ a logarithm.
 
 The simple reason why $$\dim_K$$ acts like $$\log_k$$ in the case of finite $$K$$ is as follows. We need three observations:
 
@@ -367,9 +367,9 @@ Three: applying that to a vector space $$V \simeq K^n$$, we can interpret $$K^n$
 
 $$\dim_K V = \log_{\| K \|} \| V \| = \log_{\| K \|} \|K \|^{\dim_K V}$$
 
-This is literally true in the case where $$V$$ is finite dimensional and the field $$K$$ is also finite. It's less solid if either is infinite; however, I tend to think that expressions of this form are _also_ literally true in the case of infinite dimensions, if you define things in a slightly better way. In particular you have to use a concept other than "cardinality" to measure if you want infinite expressions like $$\log_{\| \bb{R} \|} \| \bb{R}^2 \| = 2$$ to make any sense. I am pretty sure the right choice is what's sometimes called [numerosity](https://en.wikipedia.org/wiki/Numerosity_(mathematics)), although I don't know how compatible that is with the rest of linear algebra. More on that some other day.
+This is literally true in the case where $$V$$ is finite dimensional and the field $$K$$ is also finite. It's less solid if either is infinite; however, I tend to think that expressions of this form are _also_ literally true in the case of infinite dimensions, if you define things in a slightly better way. In particular you have to use a concept other than cardinality to measure the size of things if you want infinite expressions like $$\log_{\| \bb{R} \|} \| \bb{R}^2 \| = 2$$ to make any sense. I am pretty sure the right choice is what's sometimes called [numerosity](https://en.wikipedia.org/wiki/Numerosity_(mathematics)), although I don't know how compatible that is with the rest of linear algebra. More on that some other day.
 
-Anyway, even if you only take this as meaningful on cardinalities of finite-dimensional sets over finite fields, I think it's strange that it never really comes up, since it is such a natural construction! Or maybe it does and I've missed it. But anyway, I like it, and I happen to think the correspondence here is much stronger and more significant than what I've just described. 
+Anyway, even if you only take this as meaningful on cardinalities of finite-dimensional sets over finite fields, I think it's strange that it never really comes up. It is such a natural construction! Or maybe it does and I've missed it. But anyway, I like it, and I happen to think the correspondence here is much stronger and more significant than what I've just described. 
 
 If we repeat the above with 'baseless' logarithms, we get expressions like
 
@@ -379,7 +379,7 @@ such that
 
 $$\dim_K V = \frac{\dim V}{\dim K}$$
 
-The one place we have to be careful is in the definition of a tensor product. We want it to be the case that
+This seems mostly fine to me. The one place we have to be careful is in the definition of a tensor product. We want it to be the case that
 
 $$\dim_K K^a \o K^b = \dim_K K^a \times \dim_K K^b = a \times b$$
 
@@ -401,7 +401,7 @@ seems to imply that one could take the dimension/logarithm of a vector space wit
 
 $$\dim_{K^2} \? K = \frac{\dim K}{2 \dim K} = \frac{1}{2}$$
 
-This works fine at the level of cardinalities, more or less (if you allow that the rationals are invented precisely to let you make objects like $$1/2$$ which interpolate between ratios of non-divisible integers). But it is hard to imagine how it should work if you want anything like a "field" or a "vector space" with its usual axioms to be meaningful. Maybe a vector $$\b{v} \in \bb{R}^4$$ is viewed as a vector over $$\bb{R}^2$$ via $$\b{v} = (v_w, v_x) \cdot (\w, \x) + (v_y, v_z) \cdot (\y, \z)$$. But then how does scalar multiplication work? If the scalars are $$\in K^2$$, they have zero divisors, so you are not working in a field anymore. And what is meant by a vector with dimension $$\frac{1}{2}$$ would be spanned by 'half' a basis vector over that pseudo-field? Maybe its elements look like $$\u = (u_x, \bullet) \cdot (\x, \bullet)$$? One must attempt to define versions of the theorems of linear algebra which are compatible with this sort of decomposition. No idea how to do that at the moment, but I suspect it can be done, with sufficient imagination, I hope to attempt it in a future article.
+This works fine at the level of cardinalities, more or less (if you allow that the rationals are invented precisely to let you make objects like $$1/2$$ which interpolate between ratios of non-divisible integers). But it is hard to imagine how it should work if you want anything like a "field" or a "vector space" with its usual axioms to be meaningful. Maybe a vector $$\b{v} \in \bb{R}^4$$ is viewed as a vector over $$\bb{R}^2$$ via $$\b{v} = (v_w, v_x) \cdot (\w, \x) + (v_y, v_z) \cdot (\y, \z)$$? But then how does scalar multiplication work? If the scalars are $$\in K^2$$, they have zero divisors, so you are not working in a field anymore. And what is meant by a vector with dimension $$\frac{1}{2}$$ would be spanned by 'half' a basis vector over that pseudo-field? Maybe its elements look like $$\u = (u_x, \bullet) \cdot (\x, \bullet)$$? One must attempt to define versions of the theorems of linear algebra which are compatible with this sort of decomposition. No idea how to do that at the moment, but I suspect it can be done, with sufficient imagination, and I hope to attempt it in a future article.
 
 ------
 
@@ -425,7 +425,7 @@ $$
 \end{aligned}
 $$
 
-Why not? $$(\x, \y, \z)$$ is an object for which $$K^{(\x, \y, \z)} \simeq V$$, sorta, therefore $$\log K^{(\x, \v, \y)} = (\x, \v, \y)$$. (One could also just let $$\dim_K$$ refer to both operations, perhaps, or maybe write capital $$\text{Dim}_K V$$ for the same thing.) Perpaps it's a bit weird to treat $$K^{(\x, \y, \z)}$$ as a set exponentiation when the exponent is an tuple / Cartesian product, but it should be easy to adjust things to make it work.
+Why not? $$(\x, \y, \z)$$ is an object for which $$K^{(\x, \y, \z)} \simeq V$$, sorta, therefore $$\log K^{(\x, \y, \z)} = (\x, \y, \z)$$. (One could also just let $$\dim_K$$ refer to both operations, perhaps, or maybe write capital $$\text{Dim}_K V$$ for the same thing.) Perpaps it's a bit weird to treat $$K^{(\x, \y, \z)}$$ as a set exponentiation when the exponent is an tuple / Cartesian product, but it should be easy to adjust things to make it work.
 
 There is an obvious issue, though. Why would _this_ particular choice of basis be the value of $$\log_K V$$, since $$V$$ has very many possibly valid bases and no reason to choose one a particular one?
 
@@ -455,23 +455,23 @@ $$\log_K K^X = \frac{\log K^X}{\log K} = \frac{X \log K}{\log K}$$
 
 what would be meant by $$X \log K$$ as a 'basis'? Presumably the division by $$\log K$$ corresponds to some sort of quotient... but we will need a way of interpreting $$\log K$$ itself. Perhaps as a "basis for $$K$$"? I'm not sure. I do think there's something here, but it gets much more speculative so I will leave it for another time. 
 
-However I do want to investigate the meaning more generally because it seems pretty general.
-
 ------
 
 # 7. Functions are Logarithms?
 
 Treating $$\log_K K^n = n$$ as returning a basis for $$K^n$$ as a set is an example of a general procedure which doesn't quite have a name as far as I know. It is sort of like [categorification](https://en.wikipedia.org/wiki/Categorification), but not quite. Rather than locating categories for set operations, we're locating sets for algebraic operations, and not making any reference to categories really. So I'm not sure. Maybe 'setification'? Or 'structurization'? I dunno.
 
-The standard example of this 'setification' is to treat arithmetic operations on natural numbers like $$A+B$$, $$AB$$ and $$B^A$$ as being projections out of set operations $$A \sqcup B$$, $$A \times B$$, and $$B^A$$ (the functions $$A \ra B$$). This works nicely for finite sets because the operations respect cardinalities. (As mentioned earlier, I think you have to replace 'cardinality' with something like 'numerosity' to make this work elegantly on infinite sets, and I don't want to get into that.) 
+The standard example of this 'setification' is to treat arithmetic operations on natural numbers like $$A+B$$, $$AB$$ and $$B^A$$ as being projections out of set operations $$A \sqcup B$$, $$A \times B$$, and $$B^A$$ (the functions $$A \ra B$$). This works nicely for finite sets because the operations respect cardinalities. (As mentioned earlier, I think you have to replace 'cardinality' with something like 'numerosity' to make this work elegantly on infinite sets, and I don't know how that works yet.) 
 
-A compelling reason for thinking this way is that the setified arithmetic operations in fact explicitly enumerate the sets they describe. For example, given you have sets $$A = \{ a, b \}$$ and $$X = \{ x, y \}$$, then you can expand $$A^X$$ algebraically (presupposing all the variables will equal $$1$$ later):
+A compelling reason for thinking this way is that the setified arithmetic operations in fact explicitly enumerate the sets they describe. For example, given sets $$A = \{ a, b \}$$ and $$X = \{ x, y \}$$, you can expand $$A^X$$ algebraically, the fact that all the variables will later equal $$1$$:
 
 $$(a+b)^{x+y} = (a+b)^x (a+b)^y = (a^x + b^x)(a^y + b^y) = a^x b^x + a^x b^y + a^y b^x + a^y b^y$$
 
-Then upon setting the variables to $$1$$ this correctly describes the relationship in cardinalities, $$2^2 = 1 + 1 + 1 + 1$$, since the number of functions $$X \ra A$$ is in fact $$4$$. But it also describes the sets themselves: each term in the expanded sum is one of the four possible functions $$X \ra A$$ exactly when we interpret $$a^x b^y$$ as the function which maps $$x \ra a$$ and $$y \ra b$$. Also, evaluation of these variables corresponds to evaluating the functions, e.g. setting e.g. $$x=1$$ and $$y=0$$ to get $$a^x b^y \mapsto a^1 b^0 = a$$. Setting one variable but leaving the other gives restriction, e.g. $$y=0$$ sets $$a^x b^y \mapsto a^x$$. All of this basically also works if the variables have values other than $$1$$, in which case they represent unlabeled sets of whatever cardinality; however, the algebraic manipulations $$(a+b)^x = a^x + b^x$$ are not valid and you have to use a binomial expansion instead.
+Then upon actually setting the variables to $$1$$ this correctly describes the relationship in cardinalities: $$2^2 = 1 + 1 + 1 + 1$$, so the number of functions $$X \ra A$$ is $$4$$. What's interesting is that it also describes the sets themselves. Each term in the expanded sum is one of the four possible functions $$X \ra A$$ exactly when we interpret $$a^x b^y$$ as the function which maps $$x \ra a$$ and $$y \ra b$$.  Also, evaluation of these variables corresponds to evaluating the functions, e.g. setting e.g. $$x=1$$ and $$y=0$$ to get $$a^x b^y \mapsto a^1 b^0 = a$$, and setting one variable but leaving the other gives restriction, e.g. $$y=0$$ sets $$a^x b^y \mapsto a^x$$.
 
-You can do similar constructions with a lot of combinatoric objects, although they don't always so cleanly correspond to algebraic manipulations. Factorials are
+All of this basically also works if the variables have values other than $$1$$, in which case they represent unlabeled sets of whatever cardinality; however, the algebraic manipulations $$(a+b)^x = a^x + b^x$$ are not valid and you have to use a binomial expansion instead.
+
+You can do similar constructions with a lot of combinatoric objects, although they don't always so cleanly correspond to algebraic manipulations. Factorials look like
 
 $$
 \begin{aligned}
@@ -479,7 +479,7 @@ $$
 \end{aligned}
 $$
 
-which enumerates the $$3! = 6$$ permutations of $$3$$ elements. Combinations
+which enumerates the $$3! = 6$$ permutations of $$3$$ elements. Combinations looke like
 
 $$
 \begin{aligned}
@@ -488,10 +488,9 @@ $$
 \end{aligned}
 $$
 
+which enumerates the $$\binom{3}{2} = 3$$ $$2$$-element combinations of $$3$$ elements; here the $$\frac{1}{x^x y^y+x^y y^x}$$ corresponds to the quotient by $$(x+y)!$$. Dividing through by the number of permutations implements the quotient $$x \sim y$$ that avoids double counting, and $$q$$ is a new variable that represents carrying out this quotient (I'm not sure if this is the best way to write this). Note that although all these variables will end up equaling $$1$$, by leaving them as independent variables they track meaningful information from step to step.
 
-enumerate the $$\binom{3}{2} = 3$$ $$2$$-element combinations of $$3$$ elements. Here the $$\frac{1}{x^x y^y+x^y y^x}$$ corresponds to $$(x+y)!$$. Dividing through by the number of permutations implements the quotient $$x \sim y$$ that avoids double counting, and $$q$$ is a new variable that represents carrying out this quotient (I'm not sure if this is the best way to write this). Note that although all these variables will end up equaling $$1$$, by leaving them as independent variables they track meaningful information from step to step.
-
-I suspect that every arithmetic identity has some equivalent setified expression like this (this is the spirit of my ongoing quest to make sense of fractional permutations). I also notice that a lot of information is lost when you map these set expressions back onto arithmetic: for example you elide the distinctions between all possible quotients that lead to the same cardinality. Probably there is a lot of interesting structure there.
+I suspect that every arithmetic identity has some equivalent set-ified expression like this. I also notice that a lot of information is lost when you map these set expressions back onto arithmetic. For example, you elide the distinctions between all possible quotients that lead to the same cardinality. Probably there is a lot of interesting structure there.
 
 Anyway, for our purposes, I want to observe one thing about these. When thinking of functions as sets we usually picture them as 'relations': a function $$f: X \ra A$$ is modeled as the set
 
@@ -502,15 +501,15 @@ f = \{ (x, f(x)) \mid x \in X \} \subset X \times A \\
 $$
 
 
-Or $$\{ (x,a), (y, b) \} = xa + yb$$ in our example. This set happens to have the cardinality $$\| f \| = \| X \|$$, although it's not clear what use that is.
+E.g. $$\{ (x,a), (y, b) \} = xa + yb$$ in our example. This set happens to have the cardinality $$\| f \| = \| X \|$$, although it's not clear what use that is.
 
 Now consider $$(a+b)^{x+y} = a^x b^x + a^x b^y + a^y b^x + a^y b^y$$ from earlier.  If $$a^x b^y$$ is supposed to describe a single function from $$X = \{ x, y\}$$ to $$A = \{ a,b \}$$ , then why doesn't it setify to something like $$\{ (x, a), (y, b) \}$$, with cardinality $$2$$? 
 
-Maybe you see where I'm going with this. $$f = a^x b^y$$ has cardinality $$1$$, because it's one function. Its logarithm, however, looks more like the relation model:
+Maybe you see where I'm going with this. $$f = a^x b^y$$ has cardinality $$1$$, because it's one function. Its logarithm, however, looks closer to its representation as a relation:
 
 $$\log f \? x \log (a) + y \log (b)$$
 
-This looks a _lot_ like $$xa + yb$$, but it's also suspiciously different. Also, it doesn't have a cardinality since we need to divide by a base, but when we do it seems like any choice we make has to give the cardinality $$\log_b f = \log f / \log b = x \log_b a + y \log_b b = x (0) + y(0) = 0$$. What do we make of this?
+It's a lot like $$xa + yb$$, but it's also suspiciously different. Also, it doesn't have a cardinality since we need to divide by a base, but when we do it seems like any choice we make has to give the cardinality $$\log_b f = \log f / \log b = x \log_b a + y \log_b b = x (0) + y(0) = 0$$. What do we make of this?
 
 After thinking this for a while I still don't really feel like I have a good explanation for it, but I think we are supposed to think of it as equivalent to $$x a + yb$$, just with the $$a$$ and $$b$$ written in a different basis, so it is more like a comparison between $$a \o x + b \o y$$ and $$a \o \log x + b \o \log y$$ than between numeric expressions. The cardinality being $$0$$ doesn't matter, because it's not meaningful to talk about the cardinality of a function. And the role of $$\log x$$ is just to change algebras for $$x$$ from multiplicative to additive, but the two objects are supposed to be isomorphic and regarded as the same, at least in this case where the cardinality doesn't mean anything.
 
