@@ -183,21 +183,22 @@ However, I keep finding that people have gone and invented the projection / part
 
 $$\nu_p (n) = \max \{ k \in \bb{N} \mid p^k \mid n \}$$
 
-corresponds to extracting the coefficient of $$\log p$$ of an natural number in a logarithmic basis 
+corresponds to extracting the coefficient of $$\log p$$ of a natural number in a logarithmic basis 
 
 $$
 \begin{aligned}
 \log n &= \log 2^{n_2} 3^{n_3} 5^{n_5} \cdots \\
 &= n_2 \log 2 + n_3 \log 3 + n_5 \log 5 + \ldots \\
+&= \sum n_p \log p \\
 \nu_p (n) &= n_p
 \end{aligned}
 $$
 
-Each coefficient is a positive integer, and $$\nu_p$$ just takes the component corresponding to $$\log p$$. Clearly $$\log n$$ acts like a vector (although since the coefficients are in $$\bb{N}$$ it is technically a commutative monoid instead of a vector space... nevertheless, it has the familiar structure of a vector). Since $$\nu_p$$ is a 'projection' out of this logarithm, it still obeys logarithmic identities like $$\nu_p(m/n) = \nu_p(m) - \nu_p(n)$$. But there is not really a good notation for actually expressing it as a projection, so sadly it gets a whole separate nomenclature that you have to learn.[^partial]
+Each coefficient is a positive integer times a $$\log p$$ factor and $$\nu_p$$ just extracts the component corresponding to $$\log p$$. Clearly $$\log n$$ is like a vector (well since the coefficients are in $$\bb{N}$$ it is not technically a vector, more like a commutative monoid or something... but it has the familiar structure of a vector). Also, since $$\nu_p$$ is some kind of 'projection' out of this logarithm, it still obeys logarithmic identities like $$\nu_p(m/n) = \nu_p(m) - \nu_p(n)$$. But there is not really a good notation for actually expressing it as a projection, so sadly it gets a whole separate nomenclature that you have to learn.[^partial]
 
-The same thing also works for rational $$n$$ or radical $$n$$ (meaning it is the product of radicals of prime factors), in which case the coefficients become integers or rationals. (As a bonus the resulting objects live in an actual vector space.)
+The same thing also works for rational $$n$$ or radical $$n$$, meaning it is the product of radicals of prime factors, with the coefficients becoming integers or rationals respectively. In the case where the coefficients are rational the logarithms are actual vectors in a vector space.
 
-[^partial]: There is also a thing called an [arithmetic derivative](https://en.wikipedia.org/wiki/Arithmetic_derivative) and a corresponding partial derivative $$D_p(n) = \nu_p(n)/p$$, but as far as I can tell it's not quite the same thing and not what I'm looking for.
+[^partial]: There is a somewhat-related thing called an [arithmetic derivative](https://en.wikipedia.org/wiki/Arithmetic_derivative) $$D(n)$$ which has $$D(p^k) = k p^{k-1}$$ in analogy to a regular derivative and obeys the product rule $$D(mn) = D(m) n + m D(n)$$. It has a corresponding partial derivative $$\p_p(n) = \nu_p(n)/p$$ which does extract the $$\nu_p$$ coefficient, albeit in a roundabout way. I find it unsettling because I can't see a way to interpret $$D(n)$$ as an actual differential a (the derivative $$D(2^k) = k 2^{k-1}$$ would have to be something like $$ (2+\e)^k - 2^k$$, which is... odd). There is also a logarithmic version $$\text{ld}(2^a 3^b \cdots) = a/2 + b/3 + \ldots$$ which acts a lot like $$\log n$$ with $$\log 2 \mapsto 1/2$$... I dunno what to make of any of these, but they do seem to live in the same region of mysterious-connection-space as everything else.
 
 Another example of these logarithmic projections: in complex analysis the "order of vanishing" $$\text{ord}_a f(z)$$ of a meromorphic function $$f(z)$$ at a point $$z=a$$ is the order of the [pole or zero](https://en.wikipedia.org/wiki/Zeros_and_poles) at a point (where zeroes are like negative poles). That is, it is the degree $$n$$ of the lowest-degree term in the Laurent series of the function around the point $$z=a$$,
 
