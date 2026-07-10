@@ -30,6 +30,7 @@ I'm also playing around with the weird calculus of delta functions, pseudoinvers
 * [Notations for Vector Division]({% post_url 2024-09-11-vector-division %})
 * [Triple Products and Dual Bases]({% post_url 2024-12-18-triple-products %})
 * [Weird Takes on Angles]({% post_url 2025-03-21-angles %})
+* [Linear Algebra With Frames]({% post_url 2026-07-10-frames %})
 
 I'm also down a rabbit hole trying to make sense of fractional permutations and the identity $$(-\frac{1}{2})! = \sqrt{\pi}$$.
 
