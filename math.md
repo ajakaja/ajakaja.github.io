@@ -38,7 +38,7 @@ I'm also down a rabbit hole trying to make sense of fractional permutations and 
 * [Investigations on n-Spheres]({% post_url 2025-04-29-n-spheres %})
 * [Factorials as Multiplicative Integrals]({% post_url 2025-05-02-factorials %})
 * [More on √π]({% post_url 2025-10-28-sqrt-pi %})
-* [Locating the Lemniscate]({% post_url 2025-11-03-gamma %})
+* [Locating the Lemniscate]({% post_url 2025-11-03-lemniscate %})
 
 I'm slowly working through my undergraduate math and physics curriculum and trying to "compress" it in a way that makes sense to me. This is because I want to learn QFT to understand how the universe works, but getting through the math hurts my brain. I think the foundations can be made a lot simpler and then it would be easier.
 

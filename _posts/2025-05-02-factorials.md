@@ -9,7 +9,12 @@ tag: math
 
 In which we try to figure out what what's going on with double-factorials.
 
-This was formerly part of the [previous post]({% post_url 2025-04-29-n-spheres %}) about $$n$$-spheres, but I started adding things to it and decided to split them up. It is not necessary to read the original previous post first, but it is sort of a sequel, since it's the direction my investigation has gone. Both articles are essentially unwieldy dumps for notes and calculations that I've done and wanted a record of, but maybe they'll be useful as a survey if anyone else is curious about the same stuff and happens to come across this.
+1. [Investigations on n-Spheres]({% post_url 2025-04-29-n-spheres %})
+2. Factorials as Multiplicative Integrals
+3. [More on √π]({% post_url 2025-10-28-sqrt-pi %})
+4. [Locating the Lemniscate]({% post_url 2025-11-03-lemniscate %})
+
+This was formerly part of the [previous post]({% post_url 2025-04-29-n-spheres %}) about $$n$$-spheres, but I started adding so many things to it that it made more sense to split them up. It is not necessary to read the original previous post first, but it is sort of a sequel, since it's the direction my investigation has gone. Both articles are essentially unwieldy dumps for notes and calculations that I've done and wanted a record of, but maybe they'll be useful as a survey if anyone else is curious about the same stuff and happens to come across this.
 
 My main finding is that I now believe we should be thinking of factorials as multiplicative integrals, like this:
 
@@ -37,7 +42,6 @@ Other than this discrepancy $$n!!$$ is just a rescaled version of $$n!$$:
 $$n!! = 2^{n/2} n! \times  (\sqrt{\frac{\pi}{2}})^{n \text{ odd}} $$
 
 Of course, this is hand-waving, because factorials aren't _really_ integrals over continuous ranges: they're only defined on positive integers. It is more accurate to say that $$\Gamma(x+1)$$ is _one_ interpolation that has some nice properties, but we can't claim to really know what the integrand $$d^{\times}(x!)$$ actually "is" at a sub-integer level: when we say that $$(\frac{1}{2})! = \frac{\sqrt{\pi}}{2}$$, we're really claiming something about our favorite choice of interpolation for $$n!$$, not about $$n!$$ itself. But this line of investigation gives a counterpoint: since the value of $$n!!$$ turns out to be related to the value of $$(\frac{1}{2})!$$, this gives an argument for why $$\Gamma(x)$$ turns out to be canonical (and equivalently triple factorials, etc, give relations between values of $$\Gamma(p/q)$$ for other values of $$q$$). More on that towards the end, and maybe more in the future.
-
 
 ---------
 

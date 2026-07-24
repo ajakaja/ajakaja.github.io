@@ -162,7 +162,7 @@ An LLM informs me that in the case where $$X = D^2$$, the $$2$$-disc (that is, t
 
 $$D^{2k} = \text{Sym}^k(D^2) = \frac{(D^2)^k}{S_k}$$ 
 
-That is: the $$2k$$-disc (which has volume $$V_{2k}$$) is exactly what you get if you quotient $$k$$ copies of of the $$2$$-disc (with volume $$V_2$$) by the symmetric group on $$k$$ elements.
+That is: the $$2k$$-disc (which has volume $$V_{2k}$$) is exactly what you get if you quotient $$k$$ copies of the $$2$$-disc (each with volume $$V_2$$) by the symmetric group on $$k$$ elements.
 
 I have no idea how valid to take a "volume" of this, but since $$V^{2k} = V_2^k/k!$$ holds, I'm assuming it works in some sense. (Despite this the construction is not as simple as it looks. Apparently the boundary of this turns out to be $$\p \text{Sym}^k(\p D^2) = \text{Sym}^k(S^1) \cong S^1$$ rather than $$\p D^{2k} = S^{2k-1}$$, so the sense of "equivalence" here is a bit subtle.)
 
@@ -223,21 +223,23 @@ Put differently: the reason that balls let us interpolate to half-integers is be
 
 $$w^4 + x^4 + y^4 + z^4 < S^4$$
 
-These are the "$$n$$-balls in other norms" ([ref](https://en.wikipedia.org/wiki/Volume_of_an_n-ball#Balls_in_Lp_norms)). In this case the $$L_4$$ norm $$\| x \| = \sqrt[4]{\sum x_i^4}$$. The volume should now be proportional to $$S^4$$, since it defines a four-dimensional figure, although I don't know the proportionality constant without looking it up. However, we can try to figure it out.
+These are the "$$n$$-balls in other norms" ([ref](https://en.wikipedia.org/wiki/Volume_of_an_n-ball#Balls_in_Lp_norms)), in this case the $$L_4$$ norm $$\| x \| = \sqrt[4]{\sum x_i^4}$$. The volume should now be proportional to $$S^4$$, since it defines a four-dimensional figure, although I don't know the proportionality constant without looking it up. However, we can try to figure it out.
 
-Suppose we define $$W_4(S) = cS^4$$ to be the volume of the region satisfying that constraint, where $$c$$ is a constant akin to $$\pi$$ that we don't know yet. Then we postulate that a similar formula will hold as for spheres:
+Suppose we define $$W_4(S) = cS^4$$ to be the volume of the region satisfying that constraint, where $$c$$ is a constant akin to $$\pi$$ that we don't know yet. Then we deduce that a similar formula works for these $$L_4$$-spheres as worked for regular spheres:
 
-$$W_{4k}(S) \? \frac{W_4(S)^k}{k!}$$
+$$W_{4k}(S) = \frac{W_4(S)^k}{k!}$$
 
-And this is trivially the case for integer $$k$$, since the constraint is equivalent to
+This is definitely true for integer $$k$$, since the constraint is equivalent to
 
 $$c \sum_{i=1}^k x_{i1}^4 + x_{i2}^4 + x_{i3}^4 + x_{i4}^4 = \sum_{i=1}^k cs_k^4 = \sum_{i=1}^k W_4(s_i) = cS^4$$
 
-For example,
+and by symmetry this is $$1/k!$$ of the volume if the individual $$W_4(s_i)$$ volumes were unconstrained. For example,
 
 $$x_1^4 + x_2^4 + x_3^4 + x_4^4 + y_1^4 + y_2^4 + y_3^4 + y_4^4 = cW_4(s_1) + cW_4(s_2) < cS^4$$
 
-Which puts it in the same linear form as for the spheres and gives the volume $$W_{4k}(S) = W_4(S)^{k}/k!$$.
+which is in the same linear form as for the spheres and gives the volume $$W_{8}(S) = W_4(S)^{2}/2!$$. 
+
+Our postulate, then, is that this also makes sense for fractional values of $$k$$.
 
 To find the value of $$c$$ we could try integrating over four variables, which is hard, or we can assume that our interpolation formula works and plug in $$k=1/2$$. Then the constraint is
 
@@ -252,7 +254,7 @@ $$
 \end{aligned}
 $$
 
-We can find this among the identities for the lemniscate constant ([ref](https://en.wikipedia.org/wiki/Lemniscate_constant)), which afterall is just a name given to the volume of a particular region, which can be defined by an integral. Just like $$\pi$$ could be defined by $$\pi \equiv 4 \int_0^1 \sqrt{1-x^2} dx$$, it turns out that $$\varpi = 2 \sqrt{2} \int_0^1 \sqrt[4]{1-x^4} \d x$$, so
+We can find this among the identities for the lemniscate constant ([ref](https://en.wikipedia.org/wiki/Lemniscate_constant)), which after all is just a name given to the volume of a particular region, which can be defined by an integral. Just like $$\pi$$ could be defined by $$\pi \equiv 4 \int_0^1 \sqrt{1-x^2} dx$$, it turns out that $$\varpi = 2 \sqrt{2} \int_0^1 \sqrt[4]{1-x^4} \d x$$, so
 
 $$\text{vol}(x^4 + y^4 < S^4) = 4S^2 \frac{\varpi}{2 \sqrt{2}} = \sqrt{2} S^2 \varpi$$
 
@@ -304,33 +306,33 @@ Therefore we can write $$V_{2k}(R) = W_{4k}(\sqrt{\sqrt{2} R/\varpi})$$. For ins
 
 ## 4. The General Case
 
-This seems to lend some credence to this sense of interpolation: we picked $$W_4$$ based on the pattern set by $$V_2$$ and came up with the right answer with a (relatively) simple argument. Not a proof, but I think it's pretty convincing. It seems clear that what we did here should work for any $$L_p$$ norm: to interpolate to $$(1/k)!$$, define the figure $$x_1^k + x_2^k + \ldots + x_k^k < R^k$$ which has volume $$V^{(k)}_k$$, and then extrapolate to non-integer values. Not that there's any new material here; it's just a rephrasing of what we already know about $$\Gamma$$. But I think this way of proceeding through things sheds some light on what's going on, and I haven't seen anything like this really described anywhere else (everyone seems very nervous about trying to literally talk about permutations of fractional dimensions since they seem so nonsensical). Apparently:
+That everything worked up there seems to lend credence to this sense of interpolation---we picked $$W_4$$ based on the pattern set by $$V_2$$ and came up with the right answer with a (relatively) simple argument. Not a proof, but I think it's pretty convincing. It seems clear that what we did here should work for any $$L_p$$ norm: to interpolate to $$(1/k)!$$, define the figure $$x_1^k + x_2^k + \ldots + x_k^k < R^k$$ which has volume $$V^{(k)}_k$$, and then extrapolate to non-integer values. Not that there's any new material here; it's just a rephrasing of what we already know about $$\Gamma$$. But I think this way of proceeding through things sheds some light on what's going on, and I haven't seen anything like this really described anywhere else (everyone seems very nervous about trying to literally talk about permutations of fractional dimensions since they seem so nonsensical). Apparently:
 
 1. To construct half-integer permutations, we interpolate sets of $$k$$ elements with balls of $$2k$$-dimensions
 2. To construct quarter-integer permutations, we interpolate those $$(2k)$$-balls with $$(4k)$$-$$L_4$$-balls (whatever you call those). 
 3. Presumably this continues to hold for all the other rationals: $$V^{(ab)}$$ balls are used to interpolate $$b$$ values between each of the $$V^{(a)}$$ balls.
 4. Indeed, the regular permutations $$n!$$ at integers may be seen as (proportional to) the volumes of $$L_1$$-balls, which are defined by $$\| x \| = \sum \| x_i \| < R$$ and are therefore given by copies of standard simplexes rotated around the origin. (Specifically, $$n!! = 2^n n!$$ is $$L_1$$-ball in $$n$$ dimensions, since the ball is within $$[-1,1]^n$$ instead of $$[0, 1]^n$$.)
 
-Writing $$V_n^p$$ for the volume of a unit $$n$$-ball in the $$p$$-norm, we extrapolate to a formula for all rationals $$m/k$$:
+Writing $$V_n^{(p)}$$ for the volume of a unit $$n$$-ball in the $$p$$-norm (so the spheres $$V_n$$ become $$V_n^{(2)}$$), we extrapolate to a formula for all rationals $$m/k$$:
 
-$$V_{m}^k =\frac{(V^k_k)^{m/k}}{(\dfrac{m}{k})!}$$
+$$V_{m}^{(k)} =\frac{(V^{(k)}_k)^{m/k}}{(\dfrac{m}{k})!}$$
 
 Since in all norms the $$1$$-ball has volume $$2$$, we can write
 
 $$
 \begin{aligned}
-2 = V^k_1  &= \frac{\sqrt[k]{V^k_k}}{(\dfrac{1}{k})!} \\
-V^k_k &= (2 (\dfrac{1}{k})!)^k \\[1.5em]
+2 = V^{(k)}_1  &= \frac{\sqrt[k]{V^{(k)}_k}}{(\dfrac{1}{k})!} \\
+V^{(k)}_k &= (2 (\dfrac{1}{k})!)^k \\[1.5em]
 \end{aligned}
 $$
 
 Giving the general $$V^k_m$$ volume as
 
-$$V_m^k = \frac{ (2 (\dfrac{1}{k})!)^{m/k}}{(\dfrac{m}{k})!}$$
+$$V_m^{(k)} = \frac{ (2 (\dfrac{1}{k})!)^{m/k}}{(\dfrac{m}{k})!}$$
 
 And conversely the factorial as
 
-$$(\frac{m}{k})! = \frac{ (2 (\dfrac{1}{k})!)^{m/k}}{V_m^k} = \frac{(V^k_k)^{m/k}}{V_m^k}$$
+$$(\frac{m}{k})! = \frac{ (2 (\dfrac{1}{k})!)^{m/k}}{V_m^{(k)}} = \frac{(V^{(k)}_k)^{m/k}}{V_m^{(k)}}$$
 
 These relations are all well-known (see [Wikipedia](https://en.wikipedia.org/wiki/Volume_of_an_n-ball#Balls_in_Lp_norms) or [this](https://math.stackexchange.com/questions/301506/hypervolume-of-a-n-dimensional-ball-in-p-norm) SE question); I just like my way of finding them.
 
@@ -343,16 +345,16 @@ $$
 \Gamma(1+x) &= \int_0^{\infty} e^{-y^{1/x}} \d y \\
 \Gamma(1+\frac{1}{k}) &= \int_0^{\infty} e^{-y^k} \d y \\
 \Gamma(1+\frac{1}{k})^k &= \frac{1}{2^k} \int_{\bb{R}^k} e^{-y_1^k - y_2^k - \ldots - y_k^k} \d y\\
-&= \frac{1}{2^k} V^k_k \int_{0}^{\infty} r^{k-1} e^{-r^k} \d r \\
-(\frac{1}{k})!^k &= \frac{1}{2^k} V^k_k
+&= \frac{1}{2^k} V^{(k)}_k \int_{0}^{\infty} r^{k-1} e^{-r^k} \d r \\
+(\frac{1}{k})!^k &= \frac{1}{2^k} V^{(k)}_k
 \end{aligned}
 $$
 
-One other interesting form follows from the fact that we know how to write $$V_2^k$$ as an integral:
+One other interesting form follows from the fact that we know how to write $$V_2^{(k)}$$ as an integral:
 
-$$V_2^k = 4 \int_0^1 \int_0^{\sqrt[k]{1-x^k}} \d y \d x = \int_0^1 \sqrt[k]{1 - x^k} dx$$
+$$V_2^{(k)} = 4 \int_0^1 \int_0^{\sqrt[k]{1-x^k}} \d y \d x = \int_0^1 \sqrt[k]{1 - x^k} dx$$
 
-Which after plugging into $$V_2^k = (V_k^k)^{2/k} / (\frac{2}{k})!$$ gives
+Which after plugging into $$V_2^{(k)} = (V_k^{(k)})^{2/k} / (\frac{2}{k})!$$ gives
 
 $$
 \begin{aligned}
@@ -360,7 +362,7 @@ $$
 \end{aligned}
 $$
 
-This shows that the algebraic relationship between $$(1/k)!$$ and $$(2/k)!$$ is non-trivial, since it always involves the value of this elliptic integral. Similar arguments would work for $$V_3^k = 2^3 \int_0^1 \int_0^{\sqrt[k]{1-z^k}} \int_0^{\sqrt[k]{1-z^k-y^k}} \d x \d y \d z$$, etc, but I don't think there's much point in writing them all out.
+This shows that the algebraic relationship between $$(1/k)!$$ and $$(2/k)!$$ is non-trivial, since it always involves the value of this elliptic integral. Similar arguments would work for $$V_3^{(k)} = 2^3 \int_0^1 \int_0^{\sqrt[k]{1-z^k}} \int_0^{\sqrt[k]{1-z^k-y^k}} \d x \d y \d z$$, etc, but I don't think there's much point in writing them all out.
 
 Suffice to say, the general relationship between $$(\frac{a}{k})!$$ and $$(\frac{a+1}{k})!$$ is _nested integration_. Maybe that works as a concise explanation of why the values of the factorial function are so complicated. It also gives way of making sense why $$\Gamma$$ shows up in the fractional calculus: $$\p_x^{-2} f(x) = \int \int f(x) \d x \d x$$ was already a nested integral; turns out when you fractionalize $$\p_x$$ you have to split each single integral into more integrals to do it; in fact the factorial is interpolating between integers in the same way.
 
