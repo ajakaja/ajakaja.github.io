@@ -109,7 +109,7 @@ is the same as the equivalence of geometric vectors in different units
 $$
 \begin{aligned}
 \v &= \frac{\v}{\x} \x = v_x \x \\[1em]
-&= \frac{\v}{\x'} \x' = v_{\x'} \x' \\
+&= \frac{\v}{\x'} \x' = v_{x'} \x' \\
 \end{aligned}
 $$
 
@@ -139,7 +139,7 @@ is exactly like the change of coordinates for a vector, where $$\x$$ and $$\x$$ 
 $$
 \begin{aligned}
 v_x \x &= v_{x'} \x' \\  
-v_x &= \frac{\x'}{\x} v_{\x'} \\
+v_x &= \frac{\x'}{\x} v_{x'} \\
 \end{aligned}
 $$
 
@@ -177,7 +177,7 @@ However, I keep finding that people have gone and invented the projection / part
 
 $$\nu_p (n) = \max \{ k \in \bb{N} \mid p^k \mid n \}$$
 
-corresponds to extracting the coefficient of $$\log p$$ of a natural number in a logarithmic basis 
+corresponds to extracting the coefficient of $$\log p$$ of a natural number in a logarithmic basis:
 
 $$
 \begin{aligned}
@@ -192,7 +192,7 @@ Each coefficient is a positive integer times a $$\log p$$ factor and $$\nu_p$$ j
 
 The same thing also works for rational $$n$$ or radical $$n$$, meaning it is the product of radicals of prime factors, with the coefficients becoming integers or rationals respectively. In the case where the coefficients are rational the logarithms are actual vectors in a vector space.
 
-[^partial]: There is a somewhat-related thing called an [arithmetic derivative](https://en.wikipedia.org/wiki/Arithmetic_derivative) $$D(n)$$ which has $$D(p^k) = k p^{k-1}$$ in analogy to a regular derivative and obeys the product rule $$D(mn) = D(m) n + m D(n)$$. It has a corresponding partial derivative $$\p_p(n) = \nu_p(n)/p$$ which does extract the $$\nu_p$$ coefficient, albeit in a roundabout way. I find it unsettling because I can't see a way to interpret $$D(n)$$ as an actual differential a (the derivative $$D(2^k) = k 2^{k-1}$$ would have to be something like $$ (2+\e)^k - 2^k$$, which is... odd). There is also a logarithmic version $$\text{ld}(2^a 3^b \cdots) = a/2 + b/3 + \ldots$$ which acts a lot like $$\log n$$ with $$\log 2 \mapsto 1/2$$... I dunno what to make of any of these, but they do seem to live in the same region of mysterious-connection-space as everything else.
+[^partial]: There is a somewhat-related thing called an [arithmetic derivative](https://en.wikipedia.org/wiki/Arithmetic_derivative) $$D(n)$$ which has $$D(p^k) = k p^{k-1}$$ in analogy to a regular derivative and obeys the product rule $$D(mn) = D(m) n + m D(n)$$. It has a corresponding partial derivative $$\p_p(n) = \nu_p(n)/p$$ which does extract the $$\nu_p$$ coefficient, albeit in a roundabout way. I find this unsettling, because I can't see a way to interpret $$D(n)$$ as an actual differential---the derivative $$D(2^k) = k 2^{k-1}$$ would have to be something like $$ (2+\e)^k - 2^k$$, which seems weird? There is also a version of the logarithmic derivative $$\text{ld}(2^a 3^b \cdots) = a/2 + b/3 + \ldots$$ which acts a lot like $$\log n$$ with $$\log 2 \mapsto 1/2$$... I dunno what to make of any of these, but they do seem to live in the same region of mysterious-connection-space as everything else.
 
 Another example of these logarithmic projections: in complex analysis the "order of vanishing" $$\text{ord}_a f(z)$$ of a meromorphic function $$f(z)$$ at a point $$z=a$$ is the order of the [pole or zero](https://en.wikipedia.org/wiki/Zeros_and_poles) at a point (where zeroes are like negative poles). That is, it is the degree $$n$$ of the lowest-degree term in the Laurent series of the function around the point $$z=a$$,
 
@@ -218,7 +218,7 @@ So this is a very similar operation: the limit $$\lim_{z \ra a} \log (z-b)/\log(
 
 (I'm not very good at complex analysis so that's all I'm going to say about that. Still, it seems clear that this is basically the same operation.)
 
-We see that the baseless logarithm $$\log n$$ works a _lot_ like a vector $$\v$$ or differential $$df$$, and then expressing a logarithm in a base like $$\log_2 n = \log n / \log 2$$ is a lot like a total derivative $$df/dx$$ or Clifford division $$\v \ast \b{x}^{-1}$$. What is missing is some equivalent of the partial derivative / projection operator that projects _only_ onto that component... but various fields have gone and Found a way to invent that anyway, either in the form of a partial derivative $$\p f/\p x$$, or just by making up the $$p$$-adic valuation $$\nu_p$$, or by the limits $$\lim_{z\ra a} \log f(z) / \log (z-a)$$ in complex analysis. The similiarities are all suspicious, though, and I can't help but think there is some unifying theory here that ties all this together... but I can't see what it is yet.
+We see that the baseless logarithm $$\log n$$ works a _lot_ like a vector $$\v$$ or differential $$df$$, and then expressing a logarithm in a base like $$\log_2 n = \log n / \log 2$$ is a lot like a total derivative $$df/dx$$ or Clifford division $$\v \ast \b{x}^{-1}$$. What is missing is some equivalent of the partial derivative / projection operator that projects _only_ onto that component... but various fields have gone and found a way to invent that anyway, either in the form of a partial derivative $$\p f/\p x$$, or just by making up the $$p$$-adic valuation $$\nu_p$$, or by the limits $$\lim_{z\ra a} \log f(z) / \log (z-a)$$ in complex analysis. The similiarities are all suspicious, though, and I can't help but think there is some unifying theory here that ties all this together... but I can't see what it is yet.
 
 One thing that we might try in order to invent a $$\log_2 N$$ that acts like $$\p_x f$$ or $$\b{v}/\x$$ is to somehow restrict the values of the logarithms to certain spaces, e.g. integers or rationals. Since the $$\{\log p_i\}$$ are linearly indepedent (which is essentially equivalent to prime factorizations being unique), you would end up with objects like $$\log_2 3 = \log_3/\log_2$$ which have no value in $$\bb{Q}$$; "zeroing" those out then gives something that acts like a partial derivative. But I don't know if that's useful. Certainly it doesn't help in any numeric context.
 
@@ -321,8 +321,7 @@ That's all I really have to say about this. But I wonder if some of the other id
 
 Another thing which clearly acts like a logarithm is the dimension operator $$\dim$$ in linear algebra. 
 
-
-Compare:
+Let $$\dim_K V$$ be the dimension of $$V$$ as a vector space over the base field $$K$$, and assume we're only talking about finite-dimensional spaces here. Now compare:
 
 $$
 \begin{aligned}
@@ -333,7 +332,7 @@ $$
 \end{aligned}
 $$
 
-(where $$\dim_K V$$ means its dimension as a vector space over the base field $$K$$, and assume we're only talking about finite-dimensional spaces here) with
+and
 
 $$
 \begin{aligned}
@@ -344,7 +343,7 @@ $$
 \end{aligned}
 $$
 
-The direct sum $$\oplus$$ corresponds to multiplication $$\times$$, which is really just a notational accident, since it is the same as the direct product on finite-dimensional vector spaces; the $$\oplus$$ symbol reflects the fact that it adds _bases_ as sets.[^direct] Meanwhile the tensor product $$otimes$$ multiplies bases on sets, but corresponds in arithmetic to a sort of "commutative exponentiation" $$e^{\log_k u \log_k v} = u^{\log_k v}$$ that you don't see very much, sometimes called a [commutative hyperoperation](https://en.wikipedia.org/wiki/Hyperoperation#Commutative_hyperoperations). (The next 'displacement' operation after $$b-a$$ and $$b/a$$ is therefore $$e^{\ln b / \ln a} = b^{1/\ln a}$$.)
+The direct sum $$\oplus$$ corresponds to multiplication $$\times$$, which is really just a notational accident, since it is the same as the direct product on finite-dimensional vector spaces; the $$\oplus$$ symbol reflects the fact that it adds _bases_ as sets.[^direct] Meanwhile the tensor product $$\otimes$$ multiplies bases on sets, but corresponds in arithmetic to a sort of "commutative exponentiation" $$e^{\log_k u \log_k v} = u^{\log_k v}$$ that you don't see very much, sometimes called a [commutative hyperoperation](https://en.wikipedia.org/wiki/Hyperoperation#Commutative_hyperoperations). (The next 'displacement' operation after $$b-a$$ and $$b/a$$ is therefore $$e^{\ln b / \ln a} = b^{1/\ln a}$$.)
 
 [^direct]: Apparently the $$\oplus$$ symbol is due to [Bourbaki](https://hsm.stackexchange.com/questions/13894/history-of-direct-sums-and-direct-products) because everything was a mess prior to that. Also it happens to be a coproduct (which came later) and those do correspond to addition on _sets_, so there is at least a connection to addition... but at present I think it is largely a mistake.
 
@@ -352,15 +351,15 @@ I am a bit upset that I have never seen anyone point out that $$\dim$$ is a loga
 
 The simple reason why $$\dim_K$$ acts like $$\log_k$$ in the case of finite $$K$$ is as follows. We need three observations:
 
-One, the dimension of a vector space is defined as the cardinality of its basis. An individual vector $$\b{v} = v_1 \x_1 + v_2 \x_2 + \ldots + v_n \x_n \in K^n \simeq V$$ can be thought of as a choice of function $$\dim_K V \ra K$$, since it assigns a coefficient $$v_i \in K$$ to each basis vector $$\x_i$$. 
+One, the dimension of a vector space is defined as the cardinality of its basis. An individual vector $$\b{v} = v_1 \x_1 + v_2 \x_2 + \ldots + v_n \x_n \in K^n \simeq V$$ can be thought of as a choice of function $$\{\x_1, \x_2, \ldots, \x_n \} \ra K$$, since it assigns a coefficient $$v_i \in K$$ to each basis vector $$\x_i$$. 
 
 Two, the cardinality of the functions between sets $$B \ra A$$ is given by $$\| A \|^{\| B \|}$$, which is why we use the symbol $$A^B$$ for the sets $$B \ra A$$. For example the powerset of $$A$$, that is, the set of all possible subsets of $$A$$, is notated $$2^A$$ because it is equivalent to the functions $$A \ra \{ 0, 1 \} \equiv \b{2}$$, where a given subset is identified with the elements that map to $$1$$. 
 
-Three: applying that to a vector space $$V \simeq K^n$$, we can interpret $$K^n$$ as describing the set of functions from $$\b{n} = \{ \x_1, \x_2, \ldots, \x_n \}$$ from a choice of basis into the underlying field $$K$$, which naturally has cardinality $$\| V \| = \|K\|^{\| \dim_K V \|}$$. Therefore the logarithm of this is the dimension of $$V$$ over $$K$$:
+Three: applying that to a vector space $$V \simeq K^n$$, we can interpret $$K^n$$ as describing the literal set of functions from a particular choice of basis $$\b{n} = \{ \x_1, \x_2, \ldots, \x_n \}$$ into the underlying field $$K$$, which naturally has cardinality $$\| V \| = \|K\|^{\| \dim_K V \|}$$. Therefore the logarithm of this is the dimension of $$V$$ over $$K$$:
 
 $$\dim_K V = \log_{\| K \|} \| V \| = \log_{\| K \|} \|K \|^{\dim_K V}$$
 
-This is literally true in the case where $$V$$ is finite dimensional and the field $$K$$ is also finite. It's less solid if either is infinite; however, I tend to think that expressions of this form are _also_ literally true in the case of infinite dimensions, if you define things in a slightly better way. In particular you have to use a concept other than cardinality to measure the size of things if you want infinite expressions like $$\log_{\| \bb{R} \|} \| \bb{R}^2 \| = 2$$ to make any sense. I am pretty sure the right choice is what's sometimes called [numerosity](https://en.wikipedia.org/wiki/Numerosity_(mathematics)), although I don't know how compatible that is with the rest of linear algebra. More on that some other day.
+This is literally true in the case where $$V$$ is finite dimensional and the field $$K$$ is also finite. It's less solid if either is infinite; however, I tend to think that expressions of this form are _also_ literally true in the case of infinite dimensions, if you define things in a slightly better way. In particular you have to use a concept other than cardinality to measure the size of things if you want infinite expressions like $$\log_{\| \bb{R} \|} \| \bb{R}^2 \| = 2$$ to make any sense. I have thoughts on this, but they're for some other day.
 
 Anyway, even if you only take this as meaningful on cardinalities of finite-dimensional sets over finite fields, I think it's strange that it never really comes up. It is such a natural construction! Or maybe it does and I've missed it. But anyway, I like it, and I happen to think the correspondence here is much stronger and more significant than what I've just described. 
 
@@ -378,13 +377,13 @@ $$\dim_K K^a \o K^b = \dim_K K^a \times \dim_K K^b = a \times b$$
 
 But the naive approach has an extra factor of $$\dim K$$:
 
-$$\dim_K (K^a \o K^b) = \frac{\dim K^a \dim K^b}{\dim K} = \frac{a \dim K b \dim K}{\dim K} = ab (\dim K)$$
+$$\dim_K (K^a \o K^b) = \frac{\dim K^a \dim K^b}{\dim K} = \frac{(a \dim K) (b \dim K)}{\dim K} = ab (\dim K)$$
 
-The problem is that the definition of the tensor product is a bit more complicated than just multiplying bases. A vector $$\b{u} \o \b{v} \in K^a \o K^b$$ is not the Cartesian product of vectors $$\b{u}$$ and $$\b{v}$$, but rather the Cartesian product modulo a quotient on its scalar coefficient which combines two scalars $$(k_1, k_2)$$ into one $$(k_1 k_2)$$. Since this divides out a factor of $$K$$, we have to do the same with our $$\o$$ operation in order to make the cardinalities work out. This is done by specifying an $$\o_K$$ operation, the "tensor product with respect to the field $$K$$", as
+The problem is that the definition of the tensor product is a bit more complicated than just multiplying bases. A vector $$\b{u} \o \b{v} \in K^a \o K^b$$ is not the Cartesian product of vectors $$\b{u}$$ and $$\b{v}$$, but rather the Cartesian product modulo a quotient on its scalar coefficient which combines two scalars $$(k_1, k_2)$$ into one $$(k_1 \times k_2)$$. Since this divides out a factor of $$K$$, we have to do the same with our $$\o$$ operation in order to make the cardinalities work out. This is done by specifying an $$\o_K$$ operation, the "tensor product with respect to the field $$K$$", as
 
 $$U \o_K V = K^{\dim_K U \dim_K V} = K^{\dim U \dim V / \dim K}$$
 
-which allows $$\dim_K K^a \o_K K^b \dim_K K^{ab} = ab$$ to work. (I suspect sometimes that the quotient in the definition of $$\o_K$$ is not actually needed for most purposes, which would have the nice side effect of making this all work out more simply, but let's not get into that.)
+which allows $$\dim_K K^a \o_K K^b = \dim_K K^{ab} = ab$$ to work. (I suspect sometimes that the quotient in the definition of $$\o_K$$ is not actually needed for most purposes, which would have the nice side effect of making this all work out more simply, but let's not get into that.)
 
 The definition
 
@@ -392,9 +391,9 @@ $$\dim_K K^a = \frac{\dim K^a}{\dim K} = \frac{a \dim K}{\dim K}$$
 
 seems to imply that one could take the dimension/logarithm of a vector space with respect to a _different_ underlying object, not the field $$K$$, and get a meaningful result. For example it is my dream to be able to say that this is how you construct a vector space with a "fractional dimension" of $$\frac{1}{2}$$:
 
-$$\dim_{K^2} \? K = \frac{\dim K}{2 \dim K} = \frac{1}{2}$$
+$$\dim_{K^2} K \? \frac{\dim K}{2 \dim K} = \frac{1}{2}$$
 
-This works fine at the level of cardinalities, more or less (if you allow that the rationals are invented precisely to let you make objects like $$1/2$$ which interpolate between ratios of non-divisible integers). But it is hard to imagine how it should work if you want anything like a "field" or a "vector space" with its usual axioms to be meaningful. Maybe a vector $$\b{v} \in \bb{R}^4$$ is viewed as a vector over $$\bb{R}^2$$ via $$\b{v} = (v_w, v_x) \cdot (\w, \x) + (v_y, v_z) \cdot (\y, \z)$$? But then how does scalar multiplication work? If the scalars are $$\in K^2$$, they have zero divisors, so you are not working in a field anymore. And what is meant by a vector with dimension $$\frac{1}{2}$$ would be spanned by 'half' a basis vector over that pseudo-field? Maybe its elements look like $$\u = (u_x, \bullet) \cdot (\x, \bullet)$$? One must attempt to define versions of the theorems of linear algebra which are compatible with this sort of decomposition. No idea how to do that at the moment, but I suspect it can be done, with sufficient imagination, and I hope to attempt it in a future article.
+This works fine at the level of cardinalities, more or less (if you allow that the rationals are invented precisely to let you make objects like $$1/2$$ which interpolate between ratios of non-divisible integers). But it is hard to imagine how it should work if you want anything like a "field" or a "vector space" with its usual axioms to be meaningful. Maybe a vector $$\b{v} \in \bb{R}^4$$ is viewed as a vector over $$\bb{R}^2$$ via $$\b{v} = (v_w, v_x) \cdot (\w, \x) + (v_y, v_z) \cdot (\y, \z)$$? But then how does scalar multiplication work? If the scalars are $$\in K^2$$, they have zero divisors, so you are not working in a field anymore. And what is meant by a vector with dimension $$\frac{1}{2}$$? Is it spanned by 'half' a basis vector over that pseudo-field? Maybe its elements look like $$\u = (u_x, \bullet) \cdot (\x, \bullet)$$? One must attempt to define versions of the theorems of linear algebra which are compatible with this sort of decomposition. No idea how to do that at the moment, but I suspect it can be done, with sufficient imagination, and I hope to attempt it in a future article.
 
 ------
 
@@ -418,11 +417,11 @@ $$
 \end{aligned}
 $$
 
-Why not? $$(\x, \y, \z)$$ is an object for which $$K^{(\x, \y, \z)} \simeq V$$, sorta, therefore $$\log K^{(\x, \y, \z)} = (\x, \y, \z)$$. (One could also just let $$\dim_K$$ refer to both operations, perhaps, or maybe write capital $$\text{Dim}_K V$$ for the same thing.) Perpaps it's a bit weird to treat $$K^{(\x, \y, \z)}$$ as a set exponentiation when the exponent is an tuple / Cartesian product, but it should be easy to adjust things to make it work.
+Why not? After all $$(\x, \y, \z)$$ is an object for which $$K^{(\x, \y, \z)} \simeq V$$, sorta, therefore $$\log K^{(\x, \y, \z)} = (\x, \y, \z)$$. (One could also just let $$\dim_K$$ refer to both operations, perhaps, or maybe write capital $$\text{Dim}_K V$$ for the same thing.) Perpaps it's a bit weird to treat $$K^{(\x, \y, \z)}$$ as a set exponentiation when the exponent is an tuple / Cartesian product, but it should be easy to adjust things to make it work.
 
 There is an obvious issue, though. Why would _this_ particular choice of basis be the value of $$\log_K V$$, since $$V$$ has very many possibly valid bases and no reason to choose one a particular one?
 
-Maybe it is more correct to $$\log_K V$$ as really being an object which refers to all possible bases of $$V$$ at once (I'm not sure what it's called. Sort of a frame bundle but with only one base point?) We can give it coordinates: the space $$X = \log_K V$$ is parameterizable by coordinates $$(X_0, \Lambda)$$, where $$X_0 = (\x, \y, \z)$$ is an arbitrary 'origin' frame and $$\Lambda$$ is an arbitrary linear transformation $$\in GL(V)$$, the automorphisms of $$V$$.[^torsor]  I guess we can should just write 
+Maybe it is more correct to $$\log_K V$$ as really being an object which refers to all possible bases of $$V$$ at once (I'm not sure what it's called. Sort of a frame bundle but with only one base point?) We can give it coordinates: the space $$X = \log_K V$$ is parameterizable by coordinates $$(X_0, \Lambda)$$, where $$X_0 = (\x, \y, \z)$$ is an arbitrary 'origin' frame and $$\Lambda$$ is an arbitrary linear transformation $$\in GL(V)$$, the automorphisms of $$V$$.[^torsor]  I guess we should just write 
 
 $$X = \{ \Lambda X_0 \mid \Lambda \in GL(V) \}$$
 
@@ -456,13 +455,15 @@ Treating $$\log_K K^n = n$$ as returning a basis for $$K^n$$ as a set is an exam
 
 The standard example of this 'setification' is to treat arithmetic operations on natural numbers like $$A+B$$, $$AB$$ and $$B^A$$ as being projections out of set operations $$A \sqcup B$$, $$A \times B$$, and $$B^A$$ (the functions $$A \ra B$$). This works nicely for finite sets because the operations respect cardinalities. (As mentioned earlier, I think you have to replace 'cardinality' with something like 'numerosity' to make this work elegantly on infinite sets, and I don't know how that works yet.) 
 
-A compelling reason for thinking this way is that the setified arithmetic operations in fact explicitly enumerate the sets they describe. For example, given sets $$A = \{ a, b \}$$ and $$X = \{ x, y \}$$, you can expand $$A^X$$ algebraically, the fact that all the variables will later equal $$1$$:
+A compelling reason for thinking this way is that the setified arithmetic operations in fact explicitly enumerate the sets they describe. For example, given sets $$A = \{ a, b \}$$ and $$X = \{ x, y \}$$, you can expand $$A^X$$ algebraically, using the fact that all the variables will later equal $$1$$:
 
 $$(a+b)^{x+y} = (a+b)^x (a+b)^y = (a^x + b^x)(a^y + b^y) = a^x b^x + a^x b^y + a^y b^x + a^y b^y$$
 
-Then upon actually setting the variables to $$1$$ this correctly describes the relationship in cardinalities: $$2^2 = 1 + 1 + 1 + 1$$, so the number of functions $$X \ra A$$ is $$4$$. What's interesting is that it also describes the sets themselves. Each term in the expanded sum is one of the four possible functions $$X \ra A$$ exactly when we interpret $$a^x b^y$$ as the function which maps $$x \ra a$$ and $$y \ra b$$.  Also, evaluation of these variables corresponds to evaluating the functions, e.g. setting e.g. $$x=1$$ and $$y=0$$ to get $$a^x b^y \mapsto a^1 b^0 = a$$, and setting one variable but leaving the other gives restriction, e.g. $$y=0$$ sets $$a^x b^y \mapsto a^x$$.
+Then upon actually setting the variables to $$1$$ this correctly describes the relationship in cardinalities: $$2^2 = 1 + 1 + 1 + 1$$, so the number of functions $$X \ra A$$ is $$4$$. 
 
-All of this basically also works if the variables have values other than $$1$$, in which case they represent unlabeled sets of whatever cardinality; however, the algebraic manipulations $$(a+b)^x = a^x + b^x$$ are not valid and you have to use a binomial expansion instead.
+What's interesting is that it also describes the sets themselves. Each term in the expanded sum is one of the four possible functions $$X \ra A$$ exactly when we interpret $$a^x b^y$$ as the function which maps $$x \ra a$$ and $$y \ra b$$.  Also, evaluation of these variables corresponds to evaluating the functions, e.g. setting e.g. $$x=1$$ and $$y=0$$ to get $$a^x b^y \mapsto a^1 b^0 = a$$, and setting one variable but leaving the other gives restriction, e.g. $$y=0$$ sets $$a^x b^y \mapsto a^x$$.
+
+All of this basically also works if the variables have values other than $$1$$, in which case they represent unlabeled sets of whatever cardinality; however, the algebraic manipulation $$(a+b)^x = a^x + b^x$$ is not valid and you have to use a binomial expansion instead.
 
 You can do similar constructions with a lot of combinatoric objects, although they don't always so cleanly correspond to algebraic manipulations. Factorials look like
 
@@ -481,7 +482,7 @@ $$
 \end{aligned}
 $$
 
-which enumerates the $$\binom{3}{2} = 3$$ $$2$$-element combinations of $$3$$ elements; here the $$\frac{1}{x^x y^y+x^y y^x}$$ corresponds to the quotient by $$(x+y)!$$. Dividing through by the number of permutations implements the quotient $$x \sim y$$ that avoids double counting, and $$q$$ is a new variable that represents carrying out this quotient (I'm not sure if this is the best way to write this). Note that although all these variables will end up equaling $$1$$, by leaving them as independent variables they track meaningful information from step to step.
+which enumerates the $$\binom{3}{2} = 3$$ possible $$2$$-element combinations of $$3$$ elements; here the $$\frac{1}{x^x y^y+x^y y^x}$$ corresponds to the quotient by $$(x+y)!$$. Dividing through by the number of permutations implements the quotient $$x \sim y$$ that avoids double counting, and $$q$$ is a new variable that represents carrying out this quotient (I'm not sure if this is the best way to write this). Note that although all these variables will end up equaling $$1$$, by leaving them as independent variables they track meaningful information from step to step.
 
 I suspect that every arithmetic identity has some equivalent set-ified expression like this. I also notice that a lot of information is lost when you map these set expressions back onto arithmetic. For example, you elide the distinctions between all possible quotients that lead to the same cardinality. Probably there is a lot of interesting structure there.
 
