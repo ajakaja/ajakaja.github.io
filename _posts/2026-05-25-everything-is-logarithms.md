@@ -28,7 +28,7 @@ One way of thinking about what this formula does is that it is a change of units
 
 This is perfectly simple, but for some reason it's hard to think about logarithms that way. The notation kind of... obfuscates things? Specifically it is hard to read $$\log_b x$$ as "how many copies of $$b$$ are in $$x$$", because that English expression should correspond to the notation $$x/b$$, not $$\log_b x$$. "How many factors of $$b$$ are in $$x$$" is a bit better, but it still feels off.
 
-I found a way of thinking about logarithms which I think makes this clearer, but you have to allow a sort of odd object that I am call the _baseless logarithm_. It is simply a logarithm without a base:
+I found a way of thinking about logarithms which I think makes this clearer, but you have to allow a sort of odd object that I will call the _baseless logarithm_. It is simply a logarithm without a base:
 
 $$\log N$$
 

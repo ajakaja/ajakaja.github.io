@@ -22,7 +22,7 @@
     #f2f2f2 30px,
     #ded 40px
   );
-  --text-color: #000;
+  --text-color: #111;
   --selection: #eee;
   --shadow: 0 0 5px 5px #dfe0e5;
 
@@ -45,7 +45,7 @@
     #1a1a1a 30px,
     rgb(35, 50, 35) 40px
   );
-  --text-color: #eee;
+  --text-color: #ccc;
   --shadow: none;
 
   --green-color: #92a961;
@@ -115,6 +115,7 @@ sup, sub {
   };
   p {
     text-align: left;
+    line-height: 1.45;
   }
 }
 
@@ -246,7 +247,7 @@ h4 {
 
 .entry > p, aside > p {
   margin: 15px 0;
-  line-height: 1.5;
+  line-height: 1.45;
 }
 
 a {
@@ -297,6 +298,21 @@ ul#markdown-toc {
 .sidebar ul {
   list-style-type: none;
   line-height: 1.2em;
+}
+
+.wip-overlay {
+  background-color: rgba(0, 100, 0, 0.05);
+  position: absolute;
+  width: 100%;
+  pointer-events: None;
+  bottom: 0;
+}
+
+.wip-placeholder {
+  width: 100%;
+  border-top: 1px;
+  border-color: rgba(0,0,0, 0.3);
+  text-align: center;
 }
 
 li br {
