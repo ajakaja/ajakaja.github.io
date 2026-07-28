@@ -50,9 +50,7 @@ $$
 \end{aligned}
 $$
 
-The baseless $$\log N$$ is sort of the multiplicative version of an object that might be familiar from discussions of vectors. It is common with vectors to distinguish between _points_ and _displacements_: a displacement vector $$\b{v}$$ is given by the difference of two points $$\v = (b) - (a)$$. When we write think of points as having coordinates, this involves an explicit choice of origin $$\O$$, such that $$\b{a} \equiv (a) - \O$$ and $$\b{b} \equiv (b) - \O$$. Then a displacement vector is constructed by subtracting off the factors of $$\O$$, $$\b{v} = \b{b} - \b{a} = ((b) - \O) - ((a) - \O) = (b) - (a)$$. The baseless logarithm implements the same thing but with multiplication: the value $$\log N$$ may be thought of as $$\log N / \log \O$$ for an unspecified choice of origin; turning it into an actual numeric value involves dividing two such logarithms to cancel out the origin, $$\log_M N = \log N / \log M = (\log N / \log \O) / (\log M / \log O)$$. I think of $$\log N$$ as the point corresponding to $$N$$ and $$\log N / \log \O$$ as its corresponding displacement vector once you pick a coordinate system. The point version is more fundamental.
-
-You might ask: if we have a baseless logarithm $$\log N$$, do we also have a "baseless exponential"? Normally $$b^{\log_b N}$$ can be written as something like $$b^{\log_b N} = b^{\ln N / \ln b} = e^{\ln N} = N$$; is there any way to do this without actually choosing a base, like $$(\ast)^{\log N}$$ or something? I think the answer has to be "no", because I can't think of a way to make it mean anything. All we can say is that we have split the one object, a logarithm $$\log_b N$$ which is the solution of $$b^y = N$$, into two objects, $$\log N$$ and $$\log b$$, each of which on their own are without "units" and so have no numerical meaning.
+The baseless $$\log N$$ is sort of the multiplicative version of an object that might be familiar from discussions of vectors. It is common with vectors to distinguish between _points_ and _displacements_: a displacement vector $$\b{v}$$ is given by the difference of two points $$\v = (b) - (a)$$. When we write think of points as having coordinates, this involves an explicit choice of origin $$\O$$, such that $$\b{a} \equiv (a) - \O$$ and $$\b{b} \equiv (b) - \O$$. Then a displacement vector is constructed by subtracting off the factors of $$\O$$, $$\b{v} = \b{b} - \b{a} = ((b) - \O) - ((a) - \O) = (b) - (a)$$. The baseless logarithm implements the same thing but with multiplication: the value $$\log N$$ may be thought of as $$\log N / \log \O$$ for an unspecified choice of origin; turning it into an actual numeric value involves dividing two such logarithms to cancel out the origin, $$\log_M N = \log N / \log M = (\log N / \log \O) / (\log M / \log O)$$. I think of $$\log N$$ as the point corresponding to $$N$$ and $$\log N / \log \O$$ as its corresponding displacement vector once you pick a coordinate system. So these 'points' $$\log N$$ are the more fundamental object, from which their 'displacements' $$\log N / \log \0$$ are built.
 
 So logarithms act kinda like multiplicative vectors, in the sense that they have have to defined relative to an 'origin', a choice of base. In fact there are many surprising similarities between logarithms and vectors, which I had fun expositing about:
 
@@ -60,9 +58,7 @@ So logarithms act kinda like multiplicative vectors, in the sense that they have
 
 # 2. Logarithms are Vectors
 
-When doing vector algebra and differential geometry in a properly covariant way, we distinguish between abstract vectors and vectors in a particular coordinate system.
-
-My personal convention for this is to refer to the abstract vectors as "geometric" vectors and always write them in bold, $$\v$$, whereas "coordinate" vectors, tuples of their values in coordinates, are written with an arrow over them like $$\vec{v} = (v_x, v_y, v_z)$$. Boldface geometric vectors are always coordinate-free, whereas coordinate vectors are just collections of numbers or other objects. The geometric vector $$\b{v}$$ can be written as a dot product of its coordinates with a 'frame' $$X = (\x, \y, \z)$$ of basis vectors
+When doing vector algebra and differential geometry in a properly covariant way, we distinguish between abstract vectors and vectors in a particular coordinate system. My personal convention for this is to refer to the abstract vectors as "geometric" vectors and always write them in bold, $$\v$$, whereas "coordinate" vectors, tuples of their values in coordinates, are written with an arrow over them like $$\vec{v} = (v_x, v_y, v_z)$$. Boldface geometric vectors are always coordinate-free, whereas coordinate vectors are just collections of numbers or other objects. The geometric vector $$\b{v}$$ can be written as a dot product of its coordinates with a 'frame' $$X = (\x, \y, \z)$$ of basis vectors
 
 $$\b{v} = \vec{v} \cdot X = (v_x, v_y, v_z) \cdot (\x, \y, \z) = v_x \x + v_y \y + v_z \z$$
 
@@ -70,13 +66,12 @@ The projection of $$\v$$ onto a basis vector $$\x$$ is then given by 'measuring'
 
 $$\frac{\v}{\x} = v_x$$
 
-That's in my own [very nonstandard notation]({% post_url 2024-09-11-vector-division %})[^notation] for vector division here. The more common way to write this is to project a component of a differential $$df = f_x dx + f_y dy + f_z dz$$ with a partial derivative, which is also the pseudodivision operation (which is incidentally the sense in which partial derivatives kinda work like division but not really):
+That's in my own [very nonstandard notation]({% post_url 2024-09-11-vector-division %}) for vector division here. The more common way to write this is to project a component of a differential $$df = f_x dx + f_y dy + f_z dz$$ with a partial derivative, which is also the pseudodivision operation (which is incidentally the sense in which partial derivatives kinda work like division but not really):
 
 $$\frac{\p f}{\p x} = f_x$$
 
 I will write things in both forms to make it easy to translate between them; I do prefer my vector-division version because it avoids bringing in the irrelevant notations of differential calculus, but since the latter is actually standard I ought to include it for comparison.
 
-[^notation]: I hope to write a better standalone article about this notation soon. I've been trying to do so for a few years now but I seem to start losing my sanity whenever I try to work on it so it hasn't happened yet. When I do finally manage to do it I'll update this.
 
 Suppose $$\b{v}$$ is one-dimensional, $$\b{v} = v_x \x$$. Then the projection onto a 'measuring stick' $$\b{m} = m \x$$ measures its length in terms of multiples of $$m$$:
 
