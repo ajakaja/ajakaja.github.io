@@ -377,9 +377,9 @@ So on the one hand we know that $$\sum_1^N k = \frac{N (N+1)}{2}$$ and there is 
 
 I have no idea. Sorry. But $$-1/12$$ is not the value of $$T$$ or the constant term of $$T_N$$, that's for sure.
 
-Well---actually, I do have one idea. As soon as I wrote thouht I thought of a dubious argument that might work.
+Well---actually, I do have one idea. As soon as I wrote thought I thought of a dubious argument that might work.
 
-Consider that as $$N \ra \infty$$ the constant terms from the each of the non-oscillating parts of the $$T_N = R_N + 4 T_{\lfloor N/2 \rfloor}$$ recurrence, which looks like
+Consider that as $$N \ra \infty$$ what happens to the $$T_N = R_N + 4 T_{\lfloor N/2 \rfloor}$$ recurrence:
 
 $$T_N = R_N + 4 R_{\lfloor N/2 \rfloor} + 4^2 R_{\lfloor (\lfloor N/2 \rfloor)/2 \rfloor} + \ldots$$
 
@@ -393,7 +393,7 @@ T_N &\sim \frac{1}{4} + 4 \frac{1}{4} + 4^2 \frac{1}{4} + \ldots \\
 \end{aligned}
 $$
 
-If we then apply divergent series summation trickery to _this_ sum, we get
+If we then apply divergent series summation trickery to _this_ sum, we get what we're looking for:
 
 $$(1 + 4 + 4^2 + \ldots) (\frac{1}{4}) \? \frac{1}{1 - 4} (\frac{1}{4}) = -(\frac{1}{3}) (\frac{1}{4}) = -\frac{1}{12}$$
 
