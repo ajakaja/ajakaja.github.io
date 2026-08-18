@@ -60,6 +60,7 @@ And every once in a while I write other miscellaneous math-related musings.
 * [The Case Against Geometric Algebra]({% post_url 2024-02-28-geometric-algebra %})
 * [Further Meditation on Taylor Series]({% post_url 2026-02-05-series %})
 * [Everything is Logarithms]({% post_url 2026-05-25-everything-is-logarithms %})
+* [Exact Divergent Series]({% post_url 2018-11-01-summations %})
 
 
 ------------
