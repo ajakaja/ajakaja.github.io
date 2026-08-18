@@ -277,7 +277,7 @@ such that every sum terminates on exactly the $$N$$th term of $$1-2+3-4 +\ldots$
 
 $$
 \begin{aligned}
-Q_N - Q_{N-1} + Q_{N-2}-Q_{N-3}  &= \begin{cases}
+Q_N - Q_{N-1} + Q_{N-2}-Q_{N-3} + \ldots \mp Q_N &= \begin{cases}
 -\frac{N}{2} & N \text{ even} \\[0.5em]
 \frac{N+1}{2} & N \text{ odd}
 \end{cases} \\
