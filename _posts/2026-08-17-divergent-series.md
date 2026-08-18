@@ -312,7 +312,7 @@ $$\sum_{k=1}^N k = \frac{N(N+1)}{2}$$
 
 which decidedly does not contain a $$-\frac{1}{12}$$ term. So where did that value come from?
 
-To get a closed form for $$T_N$$ we will attempt to duplicate the summation logic while carefully tracking the length of the partial sums. The 'spacing out' step requires including only the terms up to exactly the $$N$$th term of $$T$$. For this we $$T_{N/2}$$, if $$N$$ is even, or $$T_{(N-1)/2}$$ if $$N$$ is odd, making for some unwieldy case statements.
+To get a closed form for $$T_N$$ we will attempt to duplicate the summation logic while carefully tracking the length of the partial sums. The 'spacing out' step requires including only the terms up to exactly the $$N$$th term of $$T$$. For this we need to use $$T_{N/2}$$ if $$N$$ is even or $$T_{(N-1)/2}$$ if $$N$$ is odd.
 
 $$
 \begin{aligned}
@@ -323,7 +323,7 @@ T_N - 4 T_{(N-1)/2} & N \text{ odd} \\
 \end{aligned}
 $$
 
-Or, more concisely:
+More concisely:
 
 $$R_n = T_N - 4 T_{\lfloor N/2 \rfloor}$$
 
@@ -333,17 +333,15 @@ $$
 T_N = \frac{1}{4}  - (-1)^N \frac{2N+1}{4} + 4 T_{\lfloor N/2 \rfloor}
 $$
 
-For whatever that's worth (with $$T_0 = 0$$).
+(with $$T_0 = 0$$). It is not too hard to check that $$T_N = N(N+1)/2$$ obeys this relation. For example if $$N$$ is even then $$N(N+1)/2 = \frac{N^2}{2} + \frac{N}{2} = -\frac{N}{2} + (N + \frac{N^2}{2}) = -\frac{N}{2} + 4(\frac{(N/2)(N/2+1)}{2})$$.
 
-It is not too hard to check that $$T_N = N(N+1)/2$$ obeys this relation. For example if $$N$$ is even then $$N(N+1)/2 = \frac{N^2}{2} + \frac{N}{2} = -\frac{N}{2} + (N + \frac{N^2}{2}) = -\frac{N}{2} + 4(\frac{(N/2)(N/2+1)}{2})$$.
-
-Okay, fine. But then where does the $$-1/12$$ come from?
+Okay, fine. But then where does the $$-1/12$$ come from? 
 
 Back to the fake derivation. The $$-3$$ factor shows up because of this manipulation:
 
 $$T - 4T = R$$
 
-Which is simply not valid if you're tracking partial sums, since $$T_N - 4T_N \? R_N$$ is false; the actual relationship is $$T_N - 4T_{\lfloor N/2 \rfloor} = R_N$$. What we can do, though, is track the remainder and see what it does. The math is annoying but it's for a good cause. We get
+Which is simply not valid if you're tracking partial sums, since $$T_N - 4T_N \? R_N$$ is false; the actual relationship is $$T_N - 4T_{\lfloor N/2 \rfloor} = R_N$$. What we can do, though, is track the remainder and see what it does. We get
 
 $$T_N - 4 T_N = -3 T_N = R_N - 4 [T_N - T_{\lfloor N/2 \rfloor } ]$$
 
@@ -375,11 +373,7 @@ I guess you can't tell anything about the asymptotic behavior from this, but it 
 
 So on the one hand we know that $$\sum_1^N k = \frac{N (N+1)}{2}$$ and there is no constant term, and we have demonstrated that correctly doing algebra with $$T_N$$ does not produce a $$-1/12$$, and _incorrectly_ doing algebra produces one because the term that should cancel it out is being swept under the rug as a missing remainder in $$T - 4T = R \;\; (+ [-4 T_N - T_{\lfloor N/2 \rfloor }])$$. And yet---Tao's mollifier arguments, and all the graphs on Wikipedia that show that a parabola approximation to the discrete sum goes through $$y=-1/12$$, must also be correct. And then there's those people who claim this sum shows up in quantum field theory and the $$-1/12$$ means something. How do we reconcile these facts?
 
-I have no idea. Sorry. But $$-1/12$$ is not the value of $$T$$ or the constant term of $$T_N$$, that's for sure.
-
-Well---actually, I do have one idea. As soon as I wrote thought I thought of a dubious argument that might work.
-
-Consider what happens to the $$T_N = R_N + 4 T_{\lfloor N/2 \rfloor}$$ recurrence as $$N$$ gets large:
+I have one idea. Consider what happens to the $$T_N = R_N + 4 T_{\lfloor N/2 \rfloor}$$ recurrence as $$N$$ gets large:
 
 $$T_N = R_N + 4 R_{\lfloor N/2 \rfloor} + 4^2 R_{\lfloor (\lfloor N/2 \rfloor)/2 \rfloor} + \ldots$$
 
@@ -406,9 +400,9 @@ Giving the overall form of $$T_N$$ as
 
 $$\lim_{N \ra \infty} T_N \sim -\frac{1}{12} + \frac{N^2}{3} + \text{(a bunch of oscillating terms)}$$
 
-if I did not screw up my arithmetic anywhere. So I guess that's why the $$-\frac{1}{12}$$ shows up: it is really there, but really _only_ when you consider the series for large $$N$$, whereupon the overall shape of the partial sums starts to force this dominant term to appear in any e.g. parabolic approximation. I don't know enough to say that this is rigorous, but I think it's right.
+if I did not screw up my arithmetic anywhere. So I guess that's why the $$-\frac{1}{12}$$ shows up: it is really there, but really only when you consider the series for large $$N$$, whereupon the overall shape of the partial sums starts to force this dominant term to appear in any e.g. parabolic approximation. I don't know enough to say that this is rigorous, but I think it's right. 
 
-Amusingly, this means that the reason the $$T - 4T = R$$ manipulation worked is that it was sort of actually computing
+Amusingly, the reason the $$T - 4T = R$$ manipulation worked is that it was sort of actually computing
 
 $$
 \begin{aligned}
@@ -418,6 +412,8 @@ T - 4T &= (R_N + 4 R_{\lfloor N/2 \rfloor} + 4^2 R_{\lfloor (\lfloor N/2 \rfloor
 $$
 
 Which, while completely invalid in general, _is_ valid if you only consider the constant terms of each of the $$R$$, since they are all $$\frac{1}{4}$$ with no $$N$$-dependence.
+
+I still am not quite sure how to reconcile this expansion with the fact that $$T_N = \frac{N(N+1)}{2}$$ though. It seems like the $$-\frac{1}{12}$$ version is somehow talking about a constant term specifically with respect to the $$(-1)^N$$ oscillations that are introduced by the $$R_N$$s, which $$\frac{N(N+1)}{2}$$ glosses over and therefore does not detect. But I don't know how to think about it really.
 
 -----
 
