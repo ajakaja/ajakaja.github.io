@@ -61,7 +61,7 @@ S(2) &= -1
 \end{aligned}
 $$
 
-One might interpret this to mean that although the result is not a number, it still 'containS_{\infty} the data $$-1$$ somehow, maybe in a form like $$-1 + O(\infty)$$? This is an explanation I saw online a while ago. People will often link [Tao's article](https://terrytao.wordpress.com/2010/04/10/the-euler-maclaurin-formula-bernoulli-numbers-the-zeta-function-and-real-variable-analytic-continuation/) on the subject which shows how you can think of these sums as showing up more clearly when you smooth out the sum so that does not have discrete jumps at each integer anymore.
+One might interpret this to mean that, although the result is not a number, it still contains the data $$-1$$ somehow---maybe in a form like $$-1 + O(\infty)$$? This is an explanation I saw a lot online a while ago. People will often link [Tao's article](https://terrytao.wordpress.com/2010/04/10/the-euler-maclaurin-formula-bernoulli-numbers-the-zeta-function-and-real-variable-analytic-continuation/) on the subject which shows how you can think of these sums as showing up more clearly when you smooth out the sum so that does not have discrete jumps at each integer anymore.
 
 But I've since come to think that all of those explanations are making things too complicated. There is a very simple way of thinking about this that is completely satisfactory for intuition, which is as follows. Depending on your background it might be a bit elementary, so I feel weird making a big deal about it, but I think it is the only way to stay sane.
 
