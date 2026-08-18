@@ -379,7 +379,7 @@ I have no idea. Sorry. But $$-1/12$$ is not the value of $$T$$ or the constant t
 
 Well---actually, I do have one idea. As soon as I wrote thought I thought of a dubious argument that might work.
 
-Consider that as $$N \ra \infty$$ what happens to the $$T_N = R_N + 4 T_{\lfloor N/2 \rfloor}$$ recurrence:
+Consider what happens to the $$T_N = R_N + 4 T_{\lfloor N/2 \rfloor}$$ recurrence as $$N$$ gets large:
 
 $$T_N = R_N + 4 R_{\lfloor N/2 \rfloor} + 4^2 R_{\lfloor (\lfloor N/2 \rfloor)/2 \rfloor} + \ldots$$
 
@@ -389,7 +389,7 @@ $$
 \begin{aligned}
 T_N &\sim \frac{1}{4} + 4 \frac{1}{4} + 4^2 \frac{1}{4} + \ldots \\
 &= 
-(\underbrace{1 + 4 + 4^2 + \ldots}_{\approx \, \log_2 N + 1 \text{ terms}}) \frac{1}{4}
+(\underbrace{1 + 4 + 4^2 + \ldots}_{\approx \, \log_2 N + 1 \text{ terms}}) (\frac{1}{4})
 \end{aligned}
 $$
 
