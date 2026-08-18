@@ -50,9 +50,13 @@ $$
 \end{aligned}
 $$
 
-The baseless $$\log N$$ is sort of the multiplicative version of an object that might be familiar from discussions of vectors. It is common with vectors to distinguish between _points_ and _displacements_: a displacement vector $$\b{v}$$ is given by the difference of two points $$\v = (b) - (a)$$. When we write think of points as having coordinates, this involves an explicit choice of origin $$\O$$, such that $$\b{a} \equiv (a) - \O$$ and $$\b{b} \equiv (b) - \O$$. Then a displacement vector is constructed by subtracting off the factors of $$\O$$, $$\b{v} = \b{b} - \b{a} = ((b) - \O) - ((a) - \O) = (b) - (a)$$. The baseless logarithm implements the same thing but with multiplication: the value $$\log N$$ may be thought of as $$\log N / \log \O$$ for an unspecified choice of origin; turning it into an actual numeric value involves dividing two such logarithms to cancel out the origin, $$\log_M N = \log N / \log M = (\log N / \log \O) / (\log M / \log O)$$. I think of $$\log N$$ as the point corresponding to $$N$$ and $$\log N / \log \O$$ as its corresponding displacement vector once you pick a coordinate system. So these 'points' $$\log N$$ are the more fundamental object, from which their 'displacements' $$\log N / \log \O$$ are built.
+The baseless $$\log N$$ is sort of the multiplicative version of an object that might be familiar from doing geometry with vectors. It is common in geometry to distinguish between _points_ and _displacements_ as two different 'kinds' of vectors. A point is represented by a abstract symbol $$(a)$$, which cannot be added to another point: $$(a) + (b)$$ is not defined. Subtraction between points is allowed, however: The result is a displacement vector: $$\v = (b) - (a)$$. We are allowed to add displacement vectors together, $$\b{u} + \b{v}$$, and we are add to displacement vectors to points to produce new points: $$((b) - (a)) + (a) = (b)$$, or $$ ((b) - (a)) + (c) = (d)$$, a new point given by following the vector $$(b) - (a)$$ but starting at $$(c)$$ instead of $$(a)$$. 
 
-So logarithms act kinda like multiplicative vectors, in the sense that they have have to defined relative to an 'origin', a choice of base. In fact there are many surprising similarities between logarithms and vectors, which I had fun expositing about:
+When we actually go and add a coordinate system to our geometry we then choose an explicit origin $$\O$$, whereupon we represent all points as displacement vectors relative to this origin: $$\b{a} \equiv (a) - \O$$ and $$\b{b} \equiv (b) - \O$$. Then a displacement vector is constructed by subtracting off the factors of $$\O$$, $$\b{v} = \b{b} - \b{a} = [(b) - \O] - [(a) - \O] = (b) - (a)$$.
+
+The baseless logarithm implements the same thing but with multiplicative translations instead of additive ones. The value $$\log N$$ may be thought of as $$\log N / \log \O$$ for an unspecified choice of origin. Turning it into an actual numeric value involves dividing two such logarithms to cancel out the origin, $$\log_M N = \log N / \log M = (\log N / \log \O) / (\log M / \log O)$$, exactly like $$(b) - (a) = \b{b} - \b{a}$$ cancels out the origin of vectors to produce a displacement. I think of $$\log N$$ as the point corresponding to $$N$$ and $$\log N / \log \O$$ as its corresponding displacement vector once you pick a coordinate system. So these 'points' $$\log N$$ are the more fundamental object, from which their 'displacements' $$\log N / \log \O$$ are built.
+
+So logarithms act kinda like multiplicative vectors, in the sense that they have to be defined relative to an 'origin', that is, a choice of base, and they follow mostly the same arithmetic as vectors and their origins do, if you replace multiplication with addition. In fact there are many other surprising similarities between logarithms and vectors which we will now talk about.
 
 -----
 
@@ -80,7 +84,7 @@ Multiplying by $$\b{m}$$ again is what we mean by "writing $$\b{v}$$ in units of
 
 $$\frac{\b{v}}{\b{m}} \b{m} = (\frac{v_x}{m}) (m \x)$$
 
-Here $$m$$ is the unit "meters" and $$v_x/m$$ is the value of $$v_x$$ written in meters. Of course to actually compute $$v_x/m$$ you have to have it in units in the first place---but clearly it's the same kind of thing as in the logarithm case, where you can think of $$\b{v}$$ and $$\b{m}$$ as "unitless" concepts that are compared geometrically, and then $$v_x/m$$ as their projections into an aribtrary coordinate system.[^covariant]
+Here $$m$$ is the unit "meters" and $$v_x/m$$ is the value of $$v_x$$ written in meters. Of course to actually compute $$v_x/m$$ you have to have it in units in the first place---but clearly it's the same kind of thing as in the logarithm case, where you can think of $$\b{v}$$ and $$\b{m}$$ as "unitless" concepts that are compared geometrically, and then $$v_x/m$$ as their projections into an arbitrary coordinate system.[^covariant]
 
 [^covariant]: In differentials, this operation the differential of $$f$$ but restricted to its $$dx$$ component: $$\frac{\p f}{\p x} dx = f_x dx = df \mid_{x}$$. This is a perfectly interesting object, a covariant derivative on the foliations of the $$x$$ coordinate, I believe (if I have that right), but it's not normally written this way.
 
@@ -173,7 +177,7 @@ But there is no equivalent of the operation of partial differentiation, a "parti
 
 $$N \? (\log_{\p 2} N) \log 2 + (\log_{\p 3} N) \log 3$$
 
-However, I keep finding that people have gone and invented the projection / partial derivative operation on logarithms _anyway_. For example, the [p-adic valuation](https://en.wikipedia.org/wiki/P-adic_valuation) in number theory
+However I keep finding that people have gone and invented the projection / partial derivative operation on logarithms anyway. For example, the [p-adic valuation](https://en.wikipedia.org/wiki/P-adic_valuation) in number theory
 
 $$\nu_p (n) = \max \{ k \in \bb{N} \mid p^k \mid n \}$$
 
@@ -190,7 +194,7 @@ $$
 
 Each coefficient is a positive integer times a $$\log p$$ factor and $$\nu_p$$ just extracts the component corresponding to $$\log p$$. Clearly $$\log n$$ is like a vector (well since the coefficients are in $$\bb{N}$$ it is not technically a vector, more like a commutative monoid or something... but it has the familiar structure of a vector). Also, since $$\nu_p$$ is some kind of 'projection' out of this logarithm, it still obeys logarithmic identities like $$\nu_p(m/n) = \nu_p(m) - \nu_p(n)$$. But there is not really a good notation for actually expressing it as a projection, so sadly it gets a whole separate nomenclature that you have to learn.[^partial]
 
-The same thing also works for rational $$n$$ or radical $$n$$, meaning it is the product of radicals of prime factors, with the coefficients becoming integers or rationals respectively. In the case where the coefficients are rational the logarithms are actual vectors in a vector space.
+The same thing also works for rational $$n$$ or radical $$n$$, meaning it is the product of radicals of prime factors, with the coefficients becoming integers or rationals respectively. In the case where the coefficients are rational the logarithms are actual vectors in a vector space (over $$\bb{Q}$$).
 
 [^partial]: There is a somewhat-related thing called an [arithmetic derivative](https://en.wikipedia.org/wiki/Arithmetic_derivative) $$D(n)$$ which has $$D(p^k) = k p^{k-1}$$ in analogy to a regular derivative and obeys the product rule $$D(mn) = D(m) n + m D(n)$$. It has a corresponding partial derivative $$\p_p(n) = \nu_p(n)/p$$ which does extract the $$\nu_p$$ coefficient, albeit in a roundabout way. I find this unsettling, because I can't see a way to interpret $$D(n)$$ as an actual differential---the derivative $$D(2^k) = k 2^{k-1}$$ would have to be something like $$ (2+\e)^k - 2^k$$, which seems weird? There is also a version of the logarithmic derivative $$\text{ld}(2^a 3^b \cdots) = a/2 + b/3 + \ldots$$ which acts a lot like $$\log n$$ with $$\log 2 \mapsto 1/2$$... I dunno what to make of any of these, but they do seem to live in the same region of mysterious-connection-space as everything else.
 
@@ -220,7 +224,7 @@ So this is a very similar operation: the limit $$\lim_{z \ra a} \log (z-b)/\log(
 
 We see that the baseless logarithm $$\log n$$ works a _lot_ like a vector $$\v$$ or differential $$df$$, and then expressing a logarithm in a base like $$\log_2 n = \log n / \log 2$$ is a lot like a total derivative $$df/dx$$ or Clifford division $$\v \ast \b{x}^{-1}$$. What is missing is some equivalent of the partial derivative / projection operator that projects _only_ onto that component... but various fields have gone and found a way to invent that anyway, either in the form of a partial derivative $$\p f/\p x$$, or just by making up the $$p$$-adic valuation $$\nu_p$$, or by the limits $$\lim_{z\ra a} \log f(z) / \log (z-a)$$ in complex analysis. The similiarities are all suspicious, though, and I can't help but think there is some unifying theory here that ties all this together... but I can't see what it is yet.
 
-One thing that we might try in order to invent a $$\log_2 N$$ that acts like $$\p_x f$$ or $$\b{v}/\x$$ is to somehow restrict the values of the logarithms to certain spaces, e.g. integers or rationals. Since the $$\{\log p_i\}$$ are linearly indepedent (which is essentially equivalent to prime factorizations being unique), you would end up with objects like $$\log_2 3 = \log_3/\log_2$$ which have no value in $$\bb{Q}$$; "zeroing" those out then gives something that acts like a partial derivative. But I don't know if that's useful. Certainly it doesn't help in any numeric context.
+One thing that we might try in order to invent a $$\log_2 N$$ that acts like $$\p_x f$$ or $$\b{v}/\x$$ is to somehow restrict the values of the logarithms to certain spaces, e.g. integers or rationals. Since the $$\{\log p_i\}$$ are linearly indepedent (which is essentially equivalent to prime factorizations being unique), you would end up with objects like $$\log_2 3 = \log_3/\log_2$$ which have no value in $$\bb{Q}$$. "Zeroing" those out then gives something that acts like a partial derivative but for logarithms. But I don't know if that's useful. Certainly it doesn't help in any numeric context.
 
 
 Anyway, onto more things that are logarithms.
