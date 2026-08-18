@@ -285,7 +285,7 @@ such that every sum terminates on exactly the $$N$$th term of $$1-2+3-4 +\ldots$
 
 $$
 \begin{aligned}
-\underbrace{Q_N - Q_{N-1} + Q_{N-2}-Q_{N-3} + \ldots \mp Q_0}_{N \text{ terms}} &= \begin{Bmatrix}
+\underbrace{Q_N - Q_{N-1} + Q_{N-2}-Q_{N-3} + \ldots \mp Q_1}_{N \text{ terms}} &= \begin{Bmatrix}
 -\frac{N}{2} & N \text{ even} \\[0.5em]
 \frac{N+1}{2} & N \text{ odd}
 \end{Bmatrix} = R_N
