@@ -168,7 +168,7 @@ The first series to consider is ([wiki](https://en.wikipedia.org/wiki/1_+_1_+_1_
 
 $$P = 1 + 1 + 1 + 1 + \ldots$$
 
-A common manipulation shows that $$P$$ equals... any integer you want?
+Which happens to be $$S(1)$$. A common manipulation shows that $$P$$ equals... any integer you want?
 
 $$
 \begin{aligned}
