@@ -373,7 +373,7 @@ $$
 
 I guess you can't tell anything about the asymptotic behavior from this, but it is at least interesting to see how it works. There are a _bunch_ of constant terms, $$1 + \log_2 (N) $$ of them (so only one is actually 'constant'), plus a bunch of 'oscillating' terms with different magnitudes which serve to create all the cancellation necessary to make the result.
 
-So on the one hand we know that $$\sum_1^N k = \frac{N (N+1)}{2}$$ and there is no constant term, and we have demonstrated that correctly doing algebra with $$T_N$$ does not produce a $$-1/12$$, and _incorrectly_ doing with algebra produces one because the term that should cancel it out is being swept under the rug as a missing remainder in $$T - 4T = R \;\; (+ [-4 T_N - T_{\lfloor N/2 \rfloor }])$$. And yet---Tao's mollifier arguments, and all the graphs on Wikipedia that show that a parabola approximation to the discrete sum goes through $$y=-1/12$$, must also be correct. And then there's those people who claim this sum shows up in quantum field theory and the $$-1/12$$ means something. How do we reconcile these facts?
+So on the one hand we know that $$\sum_1^N k = \frac{N (N+1)}{2}$$ and there is no constant term, and we have demonstrated that correctly doing algebra with $$T_N$$ does not produce a $$-1/12$$, and _incorrectly_ doing algebra produces one because the term that should cancel it out is being swept under the rug as a missing remainder in $$T - 4T = R \;\; (+ [-4 T_N - T_{\lfloor N/2 \rfloor }])$$. And yet---Tao's mollifier arguments, and all the graphs on Wikipedia that show that a parabola approximation to the discrete sum goes through $$y=-1/12$$, must also be correct. And then there's those people who claim this sum shows up in quantum field theory and the $$-1/12$$ means something. How do we reconcile these facts?
 
 I have no idea. Sorry. But $$-1/12$$ is not the value of $$T$$ or the constant term of $$T_N$$, that's for sure.
 
@@ -407,6 +407,17 @@ Giving the overall form of $$T_N$$ as
 $$\lim_{N \ra \infty} T_N \sim -\frac{1}{12} + \frac{N^2}{3} + \text{(a bunch of oscillating terms)}$$
 
 if I did not screw up my arithmetic anywhere. So I guess that's why the $$-\frac{1}{12}$$ shows up: it is really there, but really _only_ when you consider the series for large $$N$$, whereupon the overall shape of the partial sums starts to force this dominant term to appear in any e.g. parabolic approximation. I don't know enough to say that this is rigorous, but I think it's right.
+
+Amusingly, this means that the reason the $$T - 4T = R$$ manipulation worked is that it was sort of actually computing
+
+$$
+\begin{aligned}
+T - 4T &= (R_N + 4 R_{\lfloor N/2 \rfloor} + 4^2 R_{\lfloor (\lfloor N/2 \rfloor)/2 \rfloor} + \ldots) - 4(R_N + 4 R_{\lfloor N/2 \rfloor} + 4^2 R_{\lfloor (\lfloor N/2 \rfloor)/2 \rfloor} + \ldots) \\ 
+&\? R_N
+\end{aligned}
+$$
+
+Which, while completely invalid in general, _is_ valid if you only consider the constant terms of each of the $$R$$, since they are all $$\frac{1}{4}$$ with no $$N$$-dependence.
 
 -----
 
