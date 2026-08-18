@@ -218,7 +218,7 @@ $$
 \end{aligned}
 $$
 
-So it is not the case that $$(1-x^2)/(1-x^3)$$ equals this sum: it has an $$N$$-dependent term at the end whose value is $$2/3$$rds. Unsurprisingly you can get a version of $$1-1+1-1+\ldots$$ that equals any rational you want by computing $$(1-x^m)/(1-x^n)$$.
+So it is not the case that $$(1-x^2)/(1-x^3)$$ equals this sum: it has an $$N$$-dependent term at the end whose value is $$2/3$$. No sums of integers had to equal fractions at all. Whew. (It will not be surprising that you can also get a version of $$1-1+1-1+\ldots$$ that equals any rational you want, by computing $$(1-x^m)/(1-x^n)$$ instead.)
 
 ------
 
