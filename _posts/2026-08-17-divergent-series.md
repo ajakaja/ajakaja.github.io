@@ -398,16 +398,15 @@ If we then apply divergent series summation trickery to _this_ sum, we get what 
 
 $$(1 + 4 + 4^2 + \ldots) (\frac{1}{4}) \? \frac{1}{1 - 4} (\frac{1}{4}) = -(\frac{1}{3}) (\frac{1}{4}) = -\frac{1}{12}$$
 
-So I think that may be where the number is actually coming from. Inside the overall series for $$T_N$$ there are a series of $$\log_2 N + 1$$ of these $$4^k \frac{1}{4}$$ terms which on their own can be divergently-summed to $$-\frac{1}{12}$$. The source of them is basically from the fact that $$T^N$$ can be written as a sum of a bunch of $$R_N$$, each of which _does_ have a constant term. Perhaps a way of saying this is that: $$T_N$$ does not have a constant term like $$R_N$$ does for finite $$N$$, but as $$N \ra \infty$$ it does split into a constant term and a term which is proportional to $$4^{\log_2 N} = N^2$$. Indeed, the actual sum of those terms is
+So I think that may be where the number is actually coming from. Inside the overall series for $$T_N$$ there are a series of $$(\log_2 N + 1)$$ of these $$4^k \frac{1}{4}$$ terms which on their own can be have a constant part of $$-\frac{1}{12}$$. The source of them is basically from the fact that $$T_N$$ can be written as a sum of a bunch of $$R_N$$, each of which _does_ have a constant term. Evidently $$T_N$$, with $$N$$ terms, contains another series inside of it with $$(\log_2 N + 1)$$ terms, which has constant part $$-\frac{1}{12}$$. In fact we can use the exact sum for this as well: it is
 
 $$(\frac{1 - 4^{\log_2 N + 1}}{1-4})(\frac{1}{4}) = \frac{4N^2-1}{3} (\frac{1}{4}) = -\frac{1}{12} + \frac{N^2}{3}$$
 
-
-Giving the overall form of $$T_N$$ as
+The overall form of $$T_N$$ is therefore
 
 $$\lim_{N \ra \infty} T_N \sim -\frac{1}{12} + \frac{N^2}{3} + \text{(a bunch of oscillating terms)}$$
 
-if I did not screw up my arithmetic anywhere. So I guess that's why the $$-\frac{1}{12}$$ shows up: it is really there, but really only when you consider the series for large $$N$$, whereupon the overall shape of the partial sums starts to force this dominant term to appear in any e.g. parabolic approximation. I don't know enough to say that this is rigorous, but I think it's right. 
+(if I did not screw up my arithmetic anywhere). So I guess that's why the $$-\frac{1}{12}$$ shows up: it is really there, but only when you ignore all the oscillating contributions from the variable number of $$R_N$$s, giving the partial sums and overall shape of a parabola $$-\frac{1}{12} + \frac{N^2}{3}$$. I don't know enough to say that this is rigorous, but I think it's right. 
 
 Amusingly, the reason the $$T - 4T = R$$ manipulation worked is that it was sort of actually computing
 
@@ -421,7 +420,7 @@ $$
 
 Which, while completely invalid in general, _is_ valid if you only consider the constant terms of each of the $$R$$, since they are all $$\frac{1}{4}$$ with no $$N$$-dependence.
 
-I still am not quite sure how to reconcile this expansion with the fact that $$T_N = \frac{N(N+1)}{2}$$ though. It seems like the $$-\frac{1}{12}$$ version is somehow talking about a constant term specifically with respect to the $$(-1)^N$$ oscillations that are introduced by the $$R_N$$s, which $$\frac{N(N+1)}{2}$$ glosses over and therefore does not detect. But I don't know how to think about it really.
+I still am not quite sure how to reconcile this expansion with the fact that $$T_N = \frac{N(N+1)}{2}$$ though. It seems like the $$-\frac{1}{12}$$ version is somehow talking about a constant term specifically with respect to the $$(-1)^N$$ oscillations that are introduced by the $$R_N$$s, which $$\frac{N(N+1)}{2}$$ glosses over and therefore does not detect. But I don't know how to think about it really. Maybe it's just that $$\frac{N(N+1)}{2}$$ does not give the best parabolic approximation when you include the way that $$T_N$$ 'jumps' at each integer, whereas $$-\frac{1}{12} + \frac{N^2}{3}$$ does? Not sure.
 
 -----
 
