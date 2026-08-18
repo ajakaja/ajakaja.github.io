@@ -117,6 +117,12 @@ $$
 
 which is correct for all $$N$$. When you write $$S(2) = -1$$, it's not that the $$2^{N+1}$$ term cancelled --- you just accidentally dropped it (because your $$1+x+x^2+x^3+\ldots$$ notation made it easy to do so). The mistake results from being too used to thinking of the $$S(x) = 1/(1-x)$$ approximation as being exact. It is simply not. There is always an 'ambient' $$N$$ variable which parameterizes how inexact it is.
 
+The same argument gives $$1 - 2 + 4 - 8 + \ldots$$ as
+
+$$S(-2) = 1 - 2 + 4 - 8 + \ldots = \frac{1}{1-(-2)} + \frac{(-2)^{N+1}}{1-(-2)} = \frac{1}{3} + \frac{1}{3} (-2)^{N+1}$$
+
+which is why divergent sum techniques that drop the $$N$$ dependency give it the value $$\frac{1}{3}$$.
+
 --------
 
 Here is a more complicated example which is resolved by including the $$x^{N+1}$$ terms:
@@ -158,7 +164,7 @@ This is an example of what I would call a [finitist](https://en.wikipedia.org/wi
 
 $$S(x) = 1+x+x^2 +\ldots$$ is admittedly the easiest of the divergent series to figure out what's going on in. Therefore, to prove that this way of thinking works more generally, and also mostly just to have a record of them, I will go through each of the other interesting divergent sums I know and show how this 'finitistic' perspective gives the right answer.
 
-The first series to consider is
+The first series to consider is ([wiki](https://en.wikipedia.org/wiki/1_+_1_+_1_+_1_+_%E2%8B%AF)):
 
 $$P = 1 + 1 + 1 + 1 + \ldots$$
 
@@ -239,7 +245,7 @@ Next up,
 
 $$R = 1 - 2 + 3 - 4 + \ldots$$
 
-with the classic manipulation
+([wiki](https://en.wikipedia.org/wiki/1_%E2%88%92_2_+_3_%E2%88%92_4_+_%E2%8B%AF)) with the classic manipulation
 
 $$
 \begin{aligned}
@@ -296,7 +302,7 @@ So that's good. But it's definitely not what you get from computing $$Q_N^2$$, b
 
 --------
 
-Finally, the [Ramunajan sum](https://en.wikipedia.org/wiki/1_+_2_+_3_+_4_+_%E2%8B%AF)
+Finally we have the [Ramunajan sum](https://en.wikipedia.org/wiki/1_+_2_+_3_+_4_+_%E2%8B%AF)
 
 $$T = 1 + 2 + 3 + 4 + \ldots$$
 
@@ -421,6 +427,7 @@ $$
 Which, while completely invalid in general, _is_ valid if you only consider the constant terms of each of the $$R$$, since they are all $$\frac{1}{4}$$ with no $$N$$-dependence.
 
 I still am not quite sure how to reconcile this expansion with the fact that $$T_N = \frac{N(N+1)}{2}$$ though. It seems like the $$-\frac{1}{12}$$ version is somehow talking about a constant term specifically with respect to the $$(-1)^N$$ oscillations that are introduced by the $$R_N$$s, which $$\frac{N(N+1)}{2}$$ glosses over and therefore does not detect. But I don't know how to think about it really. Maybe it's just that $$\frac{N(N+1)}{2}$$ does not give the best parabolic approximation when you include the way that $$T_N$$ 'jumps' at each integer, whereas $$-\frac{1}{12} + \frac{N^2}{3}$$ does? Not sure.
+
 
 -----
 
