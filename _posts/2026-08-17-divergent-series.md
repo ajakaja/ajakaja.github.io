@@ -380,7 +380,7 @@ T_5 &= \frac{1}{4} - (-1)^5 \frac{2(5)+1}{4} + 4 [ \frac{1}{4} - (-1)^2 \frac{2(
 \end{aligned}
 $$
 
-Note the multiple copies of $$\frac{1}{4}$$. Specifically there are $$\log_2 (N) + 1$$ terms, since that is the number of times you can repeat this $$ N \mapsto \lfloor \frac{N}{2} \rfloor$$ calculation (each one being equivalent to lopping off the lowest digit in binary; we would write $$N \gg 2$$ if we were in a programming context). So what we really have is a series of series:
+Note the multiple copies of $$\frac{1}{4}$$. Specifically there are $$\log_2 (N) + 1$$ terms, since that is the number of times you can repeat this $$ N \mapsto \lfloor \frac{N}{2} \rfloor$$ calculation (each one being equivalent to lopping off the lowest digit in binary; we would write $$N \gg 1$$ if we were in a programming context). So what we really have is a series of series:
 
 $$T_N = \underbrace{R_N + 4 R_{\lfloor N/2 \rfloor} + 4^2 R_{\lfloor (\lfloor N/2 \rfloor)/2 \rfloor} + \ldots}_{\log_2 N + 1 \text{ terms}}$$
 
