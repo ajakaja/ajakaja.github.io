@@ -6,15 +6,15 @@ aside: true
 footnotes: true
 ---
 
-One of my more strongly held mathematical opinions is that results which appear to be surprising or paradoxical (or just overly complex) are in fact bad results, and are often indicators of places that our foundations have gone wrong. To me Banach-Tarski is an indictment of measure theory, not a surprising fact about the universe. The long list of pathological counterexamples in topology is if anything an argument for finitism. Surprising implications of the axiom of choice are reasons to discard the standard forms of set theory as a foundation. That sort of thing. I can't really justify these claims (yet) but I believe them.
+One of my more strongly held mathematical opinions is that results which appear to be surprising or paradoxical (or just overly complex) are in fact bad results, and are often indicators of places that our foundations have gone wrong. For example, to me Banach-Tarski is an indictment of measure theory, not a surprising fact about the universe. The long list of pathological counterexamples in topology is if anything an argument for a version of finitism that excludes them. Surprising implications of the axiom of choice are reasons to discard set theory as a foundation. That sort of thing. I can't really argue convincingly for these claims (yet) but I believe them.
 
-I have long had a vendetta against, in particular, all math explainers who give too much credence to nonsensical divergent series summation results like $$1 + 2 +3 + 4 + \ldots \? -\frac{1}{12}$$. I wrote about that sum in one of my [first]({% post_url 2018-11-01-summations %}) articles, which was inspired by a [Numberphile video](https://www.youtube.com/watch?v=w-I6XTVZXww) which had a very disappointing discourse around it at the time. I felt that people were far too willing to say that it was "in some sense" true, or even literally true, because they were basically unable to bring themselves to say that their mathematical understanding had a hole in it---even though any layperson could clearly see that it did. And if there is one thing that academics should not do it is gaslight the public. Truth is determined by reality, not by fancy techniques inside some formalism we got used to.
+In particular I have long had a vendetta against all the math explainers who give too much credence to nonsensical divergent summation results like $$1 + 2 +3 + 4 + \ldots \? -\frac{1}{12}$$. I wrote about that sum in one of my [first]({% post_url 2018-11-01-summations %}) articles, which was inspired by a [Numberphile video](https://www.youtube.com/watch?v=w-I6XTVZXww) that had a very disappointing discourse around it at the time. People were far too willing to say that the sum equalling $$-1/12$$ was "in some sense" true, or even literally true, basically because they were unable to bring themselves to say that their mathematical understanding had a hole in it---even though any layperson could clearly see that it did. If there is one thing that academics should not do it is gaslight the public. Truth is determined by reality, not by fancy techniques inside some formalism.
 
-I have since found a much more simple and pleasing exposition on divergent series than I had before, which I think dispels all possible objections. I thought I would write it out as a standalone article in case anyone else wants to see this laid to rest (or, I guess, thinks there's something I'm still missing). Nothing in here is particularly deep, and that's kind of the point. It is just a very simple explanation for a simple thing.
+Well, I have since found a much more simple and pleasing exposition on these sorts of sums than I had before, which I think dispels all possible objections. I thought I would write it out as a standalone article in case anyone else wants to see this laid to rest (or, I guess, thinks there's something I'm still missing). Nothing in here is particularly deep, and that's kind of the point. It is just a simple explanation for a simple thing.
 
 <!--more-->
 
-(The first half of this article was previously part of an [earlier piece]({% post_url 2026-02-05-series %}) about Taylor series. I decided to factor out and expand into a standalone post. The rest of that post is more of a pile of unhinged musings, whereas this part is quite concrete and more likely to be useful to someone else, so it seemed better to separate the two. I also wanted to add another section that just didn't belong there. So now it's its own thing.)
+(The first parts of this article were previously part of an [earlier piece]({% post_url 2026-02-05-series %}) about Taylor series. I decided to expand them into a standalone post, because thithey are quite concrete and more likely to be interesting to someone else, whereas the rest of that post is baiscally a pile of unhinged musings. I also wanted to add some more sections that just didn't belong there. So now it's its own thing.)
 
 
 ----
@@ -25,11 +25,11 @@ I like to say that
 
 $$f(x) = \frac{1}{1-x}$$
 
-is my favorite function, because it has the best Taylor series. Around $$x=0$$ it is
+is my favorite function because it has the best Taylor series. Around $$x=0$$ it is
 
 $$S(x) = 1 + x + x^2 + x^3 + \ldots $$
 
-which converges for $$\| x \| < 1$$. For example,[^limit]
+This converges for $$\| x \| < 1$$. For example,[^limit]
 
 [^limit]: This equality holds if the $$1+1/2+1/4+\ldots$$ is regarded as a limit, which is standard. It's equivalent to how $$1.99\overline{9} = 2$$, and in fact it's the same phenomenon exactly, since the statement $$1+\frac{1}{2}+\frac{1}{4} + \ldots = 2$$ becomes $$1.11\overline{1} = 10$$ when written in binary.
 
@@ -93,7 +93,7 @@ $$S(2) = \frac{1}{1-2} - \frac{2^{N+1}}{1-2} = - 1 + 2^{N+1}$$
 
 is _not_ the value of $$\frac{1}{1-2}$$, even though it is indeed the value of $$(1+2+4+\ldots)$$.
 
-The reason that $$S(2) = -1$$ under divergent summation techniques is because the algebraic manipulations used are conveniently erasing the $$x^{N+1}$$ term entirely, even though it should contribute to the result. At the step 
+The reason that $$S(2) \? -1$$ under divergent summation techniques is because the algebraic manipulations are conveniently erasing the $$x^{N+1}$$ term even though it should contribute to the result. At the step 
 
 $$
 \begin{aligned}
@@ -148,7 +148,7 @@ $$
 \end{aligned}
 $$
 
-This time the remainder term that is normally dropped is doing _all_ the work: every other pair of terms cancel, and then the remainder gives the full value $$2/3$$. So in this case erasing the $$N$$-dependence would leave something unusable.
+This time the remainder term that is normally dropped is doing _all_ the work: every other pair of terms cancel, and then the remainder gives the full value $$2/3$$. So in this case erasing the $$N$$-dependence would leave something unusable. (It will not be surprising that you can also get a version of $$1-1+1-1+\ldots$$ which equals any rational you want by computing $$(1-x^m)/(1-x^n)$$ instead.)
 
 ------
 
@@ -156,19 +156,19 @@ This is basically an example of a general way of handling a lot of paradoxes tha
 
 So any normal mathematician will tell you that the above partial sums are true, but might note that they skirt the question of taking the _limit_ as $$N \ra \infty$$, which is what makes $$S(1/2) = 2$$. Indeed, what makes divergent sums mysterious is how they seem to work after taking limits, despite the limits being invalid. Personally I don't buy this. I think the limits don't really matter: what makes $$1+1/2 +1/4+\ldots = 2$$ is that it is _indistinguishable_ from $$2$$ in a practical sense, not that they are literally equal. This is what is meant by the epsilon-delta definition of a limit anyway: for any accuracy (epsilon) you want, I can show a value that is close enough to $$1/2$$ (by delta) to get that close to $$2$$ (by epsilon). Analysis is developed by insisting that this hold for all $$\e$$, but physics (and all practical applications) doesn't care; you just need it to be true for _the $$\e$$ you actually have_, which will necessarily be finite. Therefore one does not need to really consider limits, except insofar as they summarize this approximation process succinctly. If they do not, you pull your $$N$$-dependencies back out---hopefully you did not forget where they are---and keep going.
 
-This is an example of what I would call a [finitist](https://en.wikipedia.org/wiki/Finitism) argument. I consider myself a strong finitist, much stronger than most (although nothing like the [ultrafinitism](https://en.wikipedia.org/wiki/Ultrafinitism) which is silly). I keep finding that if I am sufficiently confident about finitism, very many of the things that are vexing in higher mathematics simply disappear---you can't get surprising results from limits if you don't have limits at all! However there is a downside: much of mainstream theory is essentially unusable from a finistic perspective (in particular, anything adjacent to topology or analysis), so you end up having to figure out how to translate everything into finistic terms yourself to actually learn anything new. Which makes mastering new fields very slow, to say the least. The advantage, on the other hand, is that all of physics is necessarily finitist (in some sense), so if you stick with finitistic math you will never end up having to figure out if mathematical paradoxes have snuck into your physical models.
+This is an example of what I would call a [finitist](https://en.wikipedia.org/wiki/Finitism) argument. I have come to consider myself a strong finitist, moreso than most (although nothing like [ultrafinitism](https://en.wikipedia.org/wiki/Ultrafinitism) which is just silly). I keep finding that when I hold onto finitism, very many of the things which are otherwise vexing in higher mathematics simply disappear---you can't get surprising results from limits if you refuse to take limits at all! However there is a downside: much of mainstream theory is essentially unusable from a finitistic perspective, since topology and analysis are built on the assumption that things can be viewed with 'infinite resolution', so I have to translate everything into finistic terms myself to actually learn anything new. This makes mastering new fields very slow, to say the least. It saves times in learning physics, though: since physics is inherently finitistic (in the sense that you should never have infinite quantities except for coordinate singularities), so if you stick with finitistic math you will never have to worry about mathematical paradoxes are sneaking into your physical models.
 
 ------
 
 # 3
 
-$$S(x) = 1+x+x^2 +\ldots$$ is admittedly the easiest of the divergent series to figure out what's going on in. Therefore, to prove that this way of thinking works more generally, and also mostly just to have a record of them, I will go through each of the other interesting divergent sums I know and show how this 'finitistic' perspective gives the right answer.
+$$S(x) = 1+x+x^2 +\ldots$$ is, admittedly, the easiest divergent series for figuring out what's going on. Therefore, to demonstrate that this way of thinking works more generally, and also mostly just to have a record of these calculations, I will go through each of the other interesting divergent sums I know and show how this 'finitistic' perspective gives the right answer. (Well, most of them. Unfortunately the sums involving primes are beyond me.)
 
 The first series to consider is ([wiki](https://en.wikipedia.org/wiki/1_+_1_+_1_+_1_+_%E2%8B%AF)):
 
 $$P = 1 + 1 + 1 + 1 + \ldots$$
 
-Which happens to be $$S(1)$$. A common manipulation shows that $$P$$ equals... any integer you want?
+Which happens to be $$S(1)$$. An easy manipulation shows that $$P$$ equals... any integer you want?
 
 $$
 \begin{aligned}
@@ -181,13 +181,13 @@ P - P &= 1 + 1 + 1 + 1 + \ldots \\
 \end{aligned}
 $$
 
-Which can't be right.
+That can't be right.
 
-Clearly if we fix $$P$$ to have a finite number of terms $$N$$ then its sum is actually $$P = N$$ (this is also the value of $$S(1)$$---clearly not equal to $$1/(1-1)$$ by the way!). To handle this better, from now on we will label series with a subscript to indicate by how many terms are included in them, like this:[^neg]
+If we fix $$P$$ to have a finite number of terms $$N$$ then its sum is clearly $$P = N$$ To handle this better, we will label the sum with a subscript to indicate by how many terms were included in it, like this:[^index]
 
-[^neg]: We will not try to make sense of negative subscripts!---not today at least.
+[^index]: Note that the indexing is off by one because $$S_N(x) = 1+x+x^2+\ldots+x^N$$ has $$N+1$$ terms whereas $$P_N = 1+1+1+1\ldots = N$$ has $$N$$.
 
-$$P_N = \underbrace{1+1+1+1+\ldots}_{N \text{ times}} = \sum_1^N 1 = N$$
+$$P_N = S_{N-1}(1) = \underbrace{1+1+1+1+\ldots}_{N \text{ times}} = \sum_1^N 1 = N$$
 
 Then we can say concretely:
 
@@ -198,7 +198,7 @@ P_N - P_M &= N - M
 \end{aligned}
 $$
 
-This always works and is basically trivial.
+Which dispels the mystery. You can get any number if you use two un-"correlated" copies of the value, but if you subtract the _same_ value from itself you of course get $$0$$, regardless of how you try to arrange the terms. So this just works and is basically trivial. 
 
 -------
 
@@ -219,7 +219,11 @@ $$
 
 The actual value is clearly
 
-$$Q_N = \frac{1}{2}(1 - (-1)^N)$$
+$$
+\begin{aligned}
+Q_N &= S_{N-1}(-1) = \frac{1}{2}(1 - (-1)^N)
+\end{aligned}
+$$
 
 If we repeat the calculation with the actual value,
 
@@ -237,7 +241,7 @@ $$
 \end{aligned}
 $$
 
-So it is not the case that $$(1-x^2)/(1-x^3)$$ equals this sum: it has an $$N$$-dependent term at the end whose value is $$2/3$$. No sums of integers had to equal fractions at all. Whew. (It will not be surprising that you can also get a version of $$1-1+1-1+\ldots$$ that equals any rational you want, by computing $$(1-x^m)/(1-x^n)$$ instead.)
+So it is not the case that $$(1-x^2)/(1-x^3)$$ equals this sum, because it additionally has an term at the end whose value is $$2/3$$. No sums of integers had to equal fractions at all. Whew.
 
 ------
 
@@ -261,17 +265,17 @@ We already know the value of $$Q$$ is wrong there, and probably so is the value 
 
 $$(1, -1, 2, -2, 3, -3, \ldots)$$
 
-which are a lot like $$(1, \frac{3}{2}, 2, \frac{5}{2}, \ldots)$$, except that every other term is wrong. A bit of thinking reveals that it can be written like this, though:
+It is a bit harder to see how to write this as a closed form. The trick is that it is almost $$(1, \frac{3}{2}, 2, \frac{5}{2}, \ldots)$$, except that every other term is wrong by a certain amount. But once you rewrite it like this
 
 $$(\frac{1}{4} + \frac{3}{4}, \frac{1}{4} - \frac{5}{4}, \frac{1}{4} + \frac{7}{4}, \frac{1}{4} - \frac{9}{4}, \frac{1}{4} + \frac{11}{4}, \frac{1}{4} - \frac{13}{4}, \ldots)$$
 
-Therefore the closed form must be
+the closed form becomes obvious.
 
 $$R_N = \frac{1}{4} - (-1)^N \frac{2N+1}{4}$$
 
-Which is why the invalid computation that canceled out the $$N$$-dependency gave $$R = 1/4$$.
+This is why the invalid computation that canceled out the $$N$$-dependency gave $$R = 1/4$$: was just dropping the $$N$$-dependence again.
 
-Incidentally, another hacky way of getting $$R=1/4$$ is to square $$Q$$ and then arranging the terms in a certain way:
+Another hacky way of getting $$R=1/4$$ that you see sometimes is by squaring $$Q$$ and then arranging the terms in a certain way:
 
 $$
 \begin{aligned}
@@ -283,7 +287,7 @@ Q^2 &= (1-1+1-1+\ldots)(1-1+1-1+\ldots) \\
 \end{aligned}
 $$
 
-This obviously won't do at all once we switch to actually tracking the length of the partial sums: there are going to be a bunch of floating $$\pm 1$$s at the end of each term which don't accumulate to give a term in $$R$$. If we want to use this to compute any particular value of $$R_N$$, we need the sum to actually be
+This obviously won't do at all for getting the $$R_N$$ form. Once we switch to actually tracking the length of the partial sums, there are going to be a bunch of floating $$\pm 1$$s at the end of each term which don't accumulate to give a term in $$R_N$$. But we can fix this method. If it is going to compute a particular value of $$R_N$$, the sum should actually be
 
 $$R_N = Q_N - Q_{N-1} + Q_{N-2}-Q_{N-3} \ldots$$
 
@@ -291,14 +295,14 @@ such that every sum terminates on exactly the $$N$$th term of $$1-2+3-4 +\ldots$
 
 $$
 \begin{aligned}
-\underbrace{Q_N - Q_{N-1} + Q_{N-2}-Q_{N-3} + \ldots \mp Q_1}_{N \text{ terms}} &= \begin{Bmatrix}
+R_N = \underbrace{Q_N - Q_{N-1} + Q_{N-2}-Q_{N-3} + \ldots \mp Q_1}_{N \text{ terms}} &= \begin{Bmatrix}
 -\frac{N}{2} & N \text{ even} \\[0.5em]
 \frac{N+1}{2} & N \text{ odd}
-\end{Bmatrix} = R_N
+\end{Bmatrix}
 \end{aligned}
 $$
 
-So that's good. But it's definitely not what you get from computing $$Q_N^2$$, because the $$N$$-dependent terms are all different. Still, the constant term is valid, which is why $$Q^2 \? \frac{1}{4} \? R$$ seems to work.
+Which happens to be another way of writing $$R_N = \frac{1}{4} - (-1)^N \frac{2N+1}{4}$$. So that's good. The reason $$Q^2 \? R \? \frac{1}{4}$$ seemed to work is because it is equivalent to the constant terms of this calculation: naturally all the $$Q_{N-K}$$s have constant term $$1/2$$, and so did the number of terms in the sum since it oscillated between even and odd numbers.
 
 --------
 
@@ -313,19 +317,19 @@ $$
 T - 4T &= 1 + 2 + 3 + 4 + 5 + 6 + \ldots \\ 
 &- \;\;\;\;4(1 \;\;\;+ \;\;\; 2 \;\;\;+\;\;\; 3 +\ldots) \\
 &= 1 - 2 + 3 -4 + 5 -6 \\
-&= R \\
--3 T &\? \frac{1}{4} \\
+-3 T &= R \\
+&\? \frac{1}{4} \\
 T &= - \frac{1}{12}
 \end{aligned}
 $$
 
-This one uses a new trick, of 'spacing out' a sum in order to cancel out every other term, which we will have to handle. There is also an another problem, which is that we _know_ the closed form of the partial sums for this series. They are
+This one uses a new trick, of 'spacing out' the series in order to act on every other term in the sum, which we will have to handle. There is also an another problem, which is that we _know_ the closed forms of the partial sums for this series. They are
 
 $$\sum_{k=1}^N k = \frac{N(N+1)}{2}$$
 
-which decidedly does not contain a $$-\frac{1}{12}$$ term. So where did that value come from?
+This decidedly does not contain a $$-\frac{1}{12}$$ term. So where does that value come from?
 
-To get a closed form for $$T_N$$ we will attempt to duplicate the summation logic while carefully tracking the length of the partial sums. The 'spacing out' step requires including only the terms up to exactly the $$N$$th term of $$T$$. For this we need to use $$T_{N/2}$$ if $$N$$ is even or $$T_{(N-1)/2}$$ if $$N$$ is odd.
+To get a closed form for $$T_N$$ we will attempt to duplicate the summation logic while carefully tracking the length of the partial sums. The 'spacing out' step requires including only the terms up to exactly the $$N$$th term of $$T$$. For this we need to use $$T_{N/2}$$ if $$N$$ is even or $$T_{(N-1)/2}$$ if $$N$$ is odd, like this:
 
 $$
 \begin{aligned}
@@ -346,31 +350,25 @@ $$
 T_N = \frac{1}{4}  - (-1)^N \frac{2N+1}{4} + 4 T_{\lfloor N/2 \rfloor}
 $$
 
-(with $$T_0 = 0$$). It is not too hard to check that $$T_N = N(N+1)/2$$ obeys this relation. For example if $$N$$ is even then $$N(N+1)/2 = \frac{N^2}{2} + \frac{N}{2} = -\frac{N}{2} + (N + \frac{N^2}{2}) = -\frac{N}{2} + 4(\frac{(N/2)(N/2+1)}{2})$$.
-
-Okay, fine. But then where does the $$-1/12$$ come from? 
-
-Back to the fake derivation. The $$-3$$ factor shows up because of this manipulation:
-
-$$T - 4T = R$$
-
-Which is simply not valid if you're tracking partial sums, since $$T_N - 4T_N \? R_N$$ is false; the actual relationship is $$T_N - 4T_{\lfloor N/2 \rfloor} = R_N$$. What we can do, though, is track the remainder and see what it does. We get
-
-$$T_N - 4 T_N = -3 T_N = R_N - 4 [T_N - T_{\lfloor N/2 \rfloor } ]$$
-
-Expanding:
+(with $$T_0 = 0$$). It is not too hard to check that $$T_N = \frac{N(N+1)}{2}$$ obeys this relation. If $$N$$ is even then 
 
 $$
 \begin{aligned}
-T_N &= -\frac{1}{3} R_N + \frac{4}{3} [T_N - T_{\lfloor N/2 \rfloor } ] \\
-&= -\frac{1}{12} + \frac{1}{3} [(-1)^N \frac{2N+1}{4}] + \frac{4}{3} [\, \boxed{\frac{1}{4}}  - (-1)^N \frac{2N+1}{4} + 4 T_{\lfloor N/2 \rfloor} - T_{\lfloor N/2 \rfloor }] \\
-&= \frac{1}{4} - (-1)^N \frac{2N+1}{4} + 4 T_{\lfloor N/2 \rfloor}
+\frac{N(N+1)}{2} &= \frac{N^2}{2} + \frac{N}{2} \\
+&= -\frac{N}{2} + (N + \frac{N^2}{2}) \\
+&= (\frac{1}{4} -\frac{2N+1}{4}) + 4(\frac{(N/2)(N/2+1)}{2})
 \end{aligned}
 $$
 
-We see that there is another constant term which modifies the leading $$-\frac{1}{12}$$. It come from the $$T_N$$ in the remainder, which was expanded as $$T_N = R_N + 4T_{\lfloor N/2 \rfloor}$$ in the first place. By ignoring this remainder we end up with a 'dangling' $$-\frac{1}{12}$$ which appears to be the constant term in the whole sum.
+And there's something similar for $$N$$ odd.
 
-When we include it we get a $$+\frac{1}{4}$$ constant term instead, which is still not the $$0$$ we expect from the formula $$\sum^N_1 k = \frac{N(N+1)}{2}$$, however. I suppose it must come from including the $$T_{\lfloor N/2 \rfloor}$$ terms as well? For instance if $$N=5$$ and we write the whole sum out,
+Okay, fine. But then where does the $$-1/12$$ come from? Back to the fake derivation. The $$-3$$ factor shows up because of this manipulation:
+
+$$T - 4T = R$$
+
+Which is simply not valid if you're tracking partial sums, since $$T_N - 4T_N \? R_N$$ is false; the actual relationship is $$T_N - 4T_{\lfloor N/2 \rfloor} = R_N$$ But maybe that's sufficient? After all the constant term of $$R_N$$ is going to depend on the constant terms of $$T_N$$ _and_ $$T_{\lfloor N/2 \rfloor}$$, which depends on $$T_{\lfloor \lfloor N/2 \rfloor/2 \rfloor}$$, etc, all the way down to $$T_0 = 0$$. So we need to sum over the whole recurrence to see if this is true.
+
+Put differently: since $$T_N = R_N + 4T_{\lfloor N/2 \rfloor}$$ is defined by a recurrence, there is going to be a _series_ of $$R_N$$s in the resulting sum, and therefore multiple copies of the $$\frac{1}{4}$$ constant term. This is easier to see if you just write out an example calculation for $$T_N$$:
 
 $$
 \begin{aligned}
@@ -382,39 +380,51 @@ T_5 &= \frac{1}{4} - (-1)^5 \frac{2(5)+1}{4} + 4 [ \frac{1}{4} - (-1)^2 \frac{2(
 \end{aligned}
 $$
 
-I guess you can't tell anything about the asymptotic behavior from this, but it is at least interesting to see how it works. There are a _bunch_ of constant terms, $$1 + \log_2 (N) $$ of them (so only one is actually 'constant'), plus a bunch of 'oscillating' terms with different magnitudes which serve to create all the cancellation necessary to make the result.
+Note the multiple copies of $$\frac{1}{4}$$. Specifically there are $$\log_2 (N) + 1$$ terms, since that is the number of times you can repeat this $$ N \mapsto \lfloor \frac{N}{2} \rfloor$$ calculation (each one being equivalent to lopping off the lowest digit in binary; we would write $$N \gg 2$$ if we were in a programming context). So what we really have is a series of series:
 
-So on the one hand we know that $$\sum_1^N k = \frac{N (N+1)}{2}$$ and there is no constant term, and we have demonstrated that correctly doing algebra with $$T_N$$ does not produce a $$-1/12$$, and _incorrectly_ doing algebra produces one because the term that should cancel it out is being swept under the rug as a missing remainder in $$T - 4T = R \;\; (+ [-4 T_N - T_{\lfloor N/2 \rfloor }])$$. And yet---Tao's mollifier arguments, and all the graphs on Wikipedia that show that a parabola approximation to the discrete sum goes through $$y=-1/12$$, must also be correct. And then there's those people who claim this sum shows up in quantum field theory and the $$-1/12$$ means something. How do we reconcile these facts?
+$$T_N = \underbrace{R_N + 4 R_{\lfloor N/2 \rfloor} + 4^2 R_{\lfloor (\lfloor N/2 \rfloor)/2 \rfloor} + \ldots}_{\log_2 N + 1 \text{ terms}}$$
 
-I have one idea. Consider what happens to the $$T_N = R_N + 4 T_{\lfloor N/2 \rfloor}$$ recurrence as $$N$$ gets large:
-
-$$T_N = R_N + 4 R_{\lfloor N/2 \rfloor} + 4^2 R_{\lfloor (\lfloor N/2 \rfloor)/2 \rfloor} + \ldots$$
-
-There are $$\log_2 N + 1$$ of these terms (I think?), and every one of them contributes a copy of $$\frac{1}{4}$$, meaning that the resulting 'constant' part of the sum (which is not actually constant since there are a varying number of them) is
+Each term contributes a copy of $$\frac{1}{4}$$ times a $$4^k$$ coefficient, meaning that the resulting 'constant' part of the overall sum
 
 $$
 \begin{aligned}
 T_N &\sim \frac{1}{4} + 4 \frac{1}{4} + 4^2 \frac{1}{4} + \ldots \\
 &= 
-(\underbrace{1 + 4 + 4^2 + \ldots}_{\approx \, \log_2 N + 1 \text{ terms}}) (\frac{1}{4})
+(\underbrace{1 + 4 + 4^2 + \ldots}_{\approx \, \log_2 N + 1 \text{ terms}}) (\frac{1}{4}) \\
 \end{aligned}
 $$
 
-If we then apply divergent series summation trickery to _this_ sum, we get what we're looking for:
+But we can sum that (divergently!)---it's 
 
-$$(1 + 4 + 4^2 + \ldots) (\frac{1}{4}) \? \frac{1}{1 - 4} (\frac{1}{4}) = -(\frac{1}{3}) (\frac{1}{4}) = -\frac{1}{12}$$
+$$
+\begin{aligned}
+T &\? (1 + 4 + 4^2 + \ldots) (\frac{1}{4}) \\
+&\? \frac{1}{1 - 4} (\frac{1}{4}) \\[0.8em]
+&= -(\frac{1}{3}) (\frac{1}{4}) \\[0.8em]
+&= -\frac{1}{12}
+\end{aligned}
+$$
 
-So I think that may be where the number is actually coming from. Inside the overall series for $$T_N$$ there are a series of $$(\log_2 N + 1)$$ of these $$4^k \frac{1}{4}$$ terms which on their own can be have a constant part of $$-\frac{1}{12}$$. The source of them is basically from the fact that $$T_N$$ can be written as a sum of a bunch of $$R_N$$, each of which _does_ have a constant term. Evidently $$T_N$$, with $$N$$ terms, contains another series inside of it with $$(\log_2 N + 1)$$ terms, which has constant part $$-\frac{1}{12}$$. In fact we can use the exact sum for this as well: it is
 
-$$(\frac{1 - 4^{\log_2 N + 1}}{1-4})(\frac{1}{4}) = \frac{4N^2-1}{3} (\frac{1}{4}) = -\frac{1}{12} + \frac{N^2}{3}$$
+So this is where the number is actually coming from. Inside the overall series for $$T_N$$ there are a series of $$(\log_2 N + 1)$$ of these $$4^k \frac{1}{4}$$ terms which on their own can be have a constant part of $$-\frac{1}{12}$$. The source of them is basically from the fact that $$T_N$$ can be written as a sum of a bunch of $$R_N$$, each of which _does_ have a constant term. Evidently $$T_N$$, with $$N$$ terms, contains another series inside of it with $$(\log_2 N + 1)$$ terms, which has constant part $$-\frac{1}{12}$$. 
 
-The overall form of $$T_N$$ is therefore
+The exact value of the whole $$(1 + 4 + 4^2 + \ldots) (\frac{1}{4})$$ series---the sum of the constant parts of the $$R_N$$s---is
 
-$$\lim_{N \ra \infty} T_N \sim -\frac{1}{12} + \frac{N^2}{3} + \text{(a bunch of oscillating terms)}$$
+$$
+\begin{aligned}
+T_N &\? (1 + 4 + 4^2 + \ldots) (\frac{1}{4})  \\
+&= \frac{1}{4} S_{\log_2 N + 1}(4) \\
+&= (\frac{1}{4})  \frac{1 - 4^{\log_2 N + 1}}{1 - 4} \\
+&=  (\frac{1}{4}) \frac{4N^2-1}{3} \\
+&= -\frac{1}{12} + \frac{N^2}{3} \\
+\end{aligned}
+$$
 
-(if I did not screw up my arithmetic anywhere). So I guess that's why the $$-\frac{1}{12}$$ shows up: it is really there, but only when you ignore all the oscillating contributions from the variable number of $$R_N$$s, giving the partial sums and overall shape of a parabola $$-\frac{1}{12} + \frac{N^2}{3}$$. I don't know enough to say that this is rigorous, but I think it's right. 
+The full expression for $$T_N$$ is that plus all the $$\pm$$ terms that we dropped:
 
-Amusingly, the reason the $$T - 4T = R$$ manipulation worked is that it was sort of actually computing
+$$T_N = -\frac{1}{12} + \frac{N^2}{3} + \text{(a bunch of oscillating terms)}$$
+
+And the reason that the $$T - 4T = R$$ manipulation appeared to work is that it was actually computing
 
 $$
 \begin{aligned}
@@ -424,10 +434,11 @@ T - 4T &= (R_N + 4 R_{\lfloor N/2 \rfloor} + 4^2 R_{\lfloor (\lfloor N/2 \rfloor
 \end{aligned}
 $$
 
-Which, while completely invalid in general, _is_ valid if you only consider the constant terms of each of the $$R$$, since they are all $$\frac{1}{4}$$ with no $$N$$-dependence.
+Which once again is totally invalid in general, but does work if you consider only the constant terms of each of the $$R$$, since they are all $$\frac{1}{4}$$ with no $$N$$-dependence.
 
-I still am not quite sure how to reconcile this expansion with the fact that $$T_N = \frac{N(N+1)}{2}$$ though. It seems like the $$-\frac{1}{12}$$ version is somehow talking about a constant term specifically with respect to the $$(-1)^N$$ oscillations that are introduced by the $$R_N$$s, which $$\frac{N(N+1)}{2}$$ glosses over and therefore does not detect. But I don't know how to think about it really. Maybe it's just that $$\frac{N(N+1)}{2}$$ does not give the best parabolic approximation when you include the way that $$T_N$$ 'jumps' at each integer, whereas $$-\frac{1}{12} + \frac{N^2}{3}$$ does? Not sure.
+So I guess that's why the $$-\frac{1}{12}$$ shows up: it is really there, but only when you divergently sum up the series created by all $$R_N$$'s constant terms, ignoring their actual value. Including those gives the partial sums the overall shape of a parabola $$-\frac{1}{12} + \frac{N^2}{3}$$, and adding back in all the oscillating terms as well gives the full $$T_N = N(N+1)/2$$.
 
+I am still not quite sure how to reconcile this expansion with the fact that the closed form for $$T_N$$ is $$\frac{N(N+1)}{2}$$, though. I guess there's a sense in which these closed forms want to be written as a sum of oscillating- and non-oscillating terms? Wikipedia suggests that the sense in which it is correct is that, as $$N \ra \infty$$, the _best_ parabolic approximation to $$T_N$$ is one which 'smoothes out' the jumps at each integer discontinuity. For whatever reason constructing $$T_N$$ in this way correctly handles that, whereas just writing its value down directly does not.
 
 -----
 
@@ -435,4 +446,4 @@ I still am not quite sure how to reconcile this expansion with the fact that $$T
 
 Okay, that's enough for now. Perhaps later I will come back and add some more worked-out sums on here. I am fairly confident this sort of technique continues to work on most other divergent sum results, but I'll have to try them to be sure.
 
-The point of all this is mostly to demonstrate my philosophy of staying finitist whenever possible. At least for these (comparatively gentle) divergent sums, special 'techniques' like analytic continuation, rules about when you can interchange or respace terms, or smoothing with mollifiers are not necessary: careful math gives the same answers, with less theory, and with no question as to the interpretation of the result. I'd like to say I'm confident that this will hold in general, but of course I'm not. But I do think it is a worthy approach, and far more philosophically sound than the other things I see people trying.
+The main reason for writing this is just to have these calculations set down somewhere so I can not worry about them again. But I also wanted to demonstrate some of the merits of my finitist philosophy. Whenever possible, sticking with finite results lets to say only things which are unobjectionably true. We see that for these (comparatively gentle) divergent sums, all of the special 'techniques' like analytic continuation, rules about when you can interchange or respace terms, or smoothing with mollifiers are not necessary---careful math gives the same answers, with less theory, and with no question as to the interpretation of the result. I can't confidently say that this will work in general since I've tackled only the easiest examples here, but I do think it is a worthy approach, and far more philosophically sound than the other things I see people trying.
