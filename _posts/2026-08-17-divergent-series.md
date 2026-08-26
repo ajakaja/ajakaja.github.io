@@ -20,11 +20,11 @@ I have since found a much more simple and pleasing exposition on these sorts of 
 
 # 1.
 
-I like to say that
+The function
 
 $$f(x) = \frac{1}{1-x}$$
 
-is my favorite function because it has the best Taylor series. Around $$x=0$$ it is
+has the best Taylor series. Around $$x=0$$ it is
 
 $$S(x) = 1 + x + x^2 + x^3 + \ldots $$
 
