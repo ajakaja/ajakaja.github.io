@@ -264,17 +264,17 @@ We already know the value of $$Q$$ is wrong there, and probably so is the value 
 
 $$(1, -1, 2, -2, 3, -3, \ldots)$$
 
-It is a bit harder to see how to write this as a closed form. The trick is that it is almost $$(1, \frac{3}{2}, 2, \frac{5}{2}, \ldots)$$, except that every other term is wrong by a certain amount. But once you rewrite it like this
+It is a bit harder to see how to write this as a closed form. It is almost $$(1, \frac{3}{2}, 2, \frac{5}{2}, \ldots)$$, except that every other term is wrong by a certain amount. Once you rewrite it like this
 
 $$(\frac{1}{4} + \frac{3}{4}, \frac{1}{4} - \frac{5}{4}, \frac{1}{4} + \frac{7}{4}, \frac{1}{4} - \frac{9}{4}, \frac{1}{4} + \frac{11}{4}, \frac{1}{4} - \frac{13}{4}, \ldots)$$
 
-the closed form becomes obvious.
+the closed form becomes obvious:
 
 $$R_N = \frac{1}{4} - (-1)^N \frac{2N+1}{4}$$
 
-This is why the invalid computation that canceled out the $$N$$-dependency gave $$R = 1/4$$: was just dropping the $$N$$-dependence again.
+This is why the invalid computation that canceled out the $$N$$-dependency gave $$R = 1/4$$: it was just dropping the $$N$$-dependence (again).
 
-Another hacky way of getting $$R=1/4$$ that you see sometimes is by squaring $$Q$$ and then arranging the terms in a certain way:
+Another hacky way of getting to $$R=1/4$$ that I've seen around is to square $$Q$$ and then rearrange the terms in a certain way:
 
 $$
 \begin{aligned}
@@ -282,11 +282,12 @@ Q^2 &= (1-1+1-1+\ldots)(1-1+1-1+\ldots) \\
 (\frac{1}{2})^2 &= 1 - 1 + 1 - 1 + \ldots \\ 
 &- \;\;\;\;\;(1-1+1-1+\ldots) \\
 &+ \;\;\;\;\;\;\;\;\;\;\;\;(1-1+1-1+\ldots) \\
- \frac{1}{4} &\? 1 - 2 + 3 - 4 + \ldots\\
+&- \text{(etc)} \\
+\frac{1}{4} &\? 1 - 2 + 3 - 4 + \ldots\\
 \end{aligned}
 $$
 
-This obviously won't do at all for getting the $$R_N$$ form. Once we switch to actually tracking the length of the partial sums, there are going to be a bunch of floating $$\pm 1$$s at the end of each term which don't accumulate to give a term in $$R_N$$. But we can fix this method. If it is going to compute a particular value of $$R_N$$, the sum should actually be
+For getting $$R_N$$ this obviously won't do at all: once we switch to actually tracking the length of the partial sums there are going to be a bunch of floating $$\pm 1$$s at the end of each term which don't accumulate to give a term in $$R_N$$. However, we can fix this method. If it is going to compute a particular value of $$R_N$$, the sum should actually be
 
 $$R_N = Q_N - Q_{N-1} + Q_{N-2}-Q_{N-3} \ldots$$
 
