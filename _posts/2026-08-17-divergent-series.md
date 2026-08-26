@@ -240,7 +240,7 @@ $$
 \end{aligned}
 $$
 
-So it is not the case that $$(1-x^2)/(1-x^3)$$ equals this sum, because it additionally has an term at the end whose value is $$2/3$$. No sums of integers had to equal fractions at all. Whew.
+So it is not the case that $$(1-x^2)/(1-x^3)$$ equals the sum $$1-1+1-1+\ldots$$. Instead it has an additional term at the end, whose value is exactly $$2/3$$. Whew. No "sum of integers equals a fraction" today. 
 
 ------
 
