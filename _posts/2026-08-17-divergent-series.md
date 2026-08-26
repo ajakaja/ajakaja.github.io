@@ -350,29 +350,33 @@ $$
 T_N = \frac{1}{4}  - (-1)^N \frac{2N+1}{4} + 4 T_{\lfloor N/2 \rfloor}
 $$
 
-(with $$T_0 = 0$$). It is not too hard to check that $$T_N = \frac{N(N+1)}{2}$$ obeys this relation. If $$N$$ is even then 
+(with $$T_0 = 0$$). It is not too hard to check that $$T_N = \frac{N(N+1)}{2}$$ obeys this relation: if $$N$$ is even then 
 
 $$
 \begin{aligned}
 \frac{N(N+1)}{2} &= \frac{N^2}{2} + \frac{N}{2} \\
 &= -\frac{N}{2} + (N + \frac{N^2}{2}) \\
-&= (\frac{1}{4} -\frac{2N+1}{4}) + 4(\frac{(N/2)(N/2+1)}{2})
+&= \underbrace{(\frac{1}{4} -\frac{2N+1}{4})}_{R_N} + 4(\underbrace{\frac{(N/2)(N/2+1)}{2}}_{T_{\lfloor N/2 \rfloor}})
 \end{aligned}
 $$
 
-And there's something similar for $$N$$ odd.
+and there's something similar for $$N$$ odd.
 
-Okay, fine. But then where does the $$-1/12$$ come from? Back to the fake derivation. The $$-3$$ factor shows up because of this manipulation:
+Okay, fine. But then where does the $$-1/12$$ come from? Let's go back to the fake derivation. The $$-3$$ factor showed up because of this manipulation:
 
 $$T - 4T = R$$
 
-Which is simply not valid if you're tracking partial sums, since $$T_N - 4T_N \? R_N$$ is false; the actual relationship is $$T_N - 4T_{\lfloor N/2 \rfloor} = R_N$$ But maybe that's sufficient? After all the constant term of $$R_N$$ is going to depend on the constant terms of $$T_N$$ _and_ $$T_{\lfloor N/2 \rfloor}$$, which depends on $$T_{\lfloor \lfloor N/2 \rfloor/2 \rfloor}$$, etc, all the way down to $$T_0 = 0$$. So we need to sum over the whole recurrence to see if this is true.
+This is simply not valid if you're tracking partial sums: $$T_N - 4T_N \? R_N$$ is false; the actual relationship is $$T_N - 4T_{\lfloor N/2 \rfloor} = R_N$$ But maybe that's sufficient? After all the constant term of $$R_N$$ is going to depend on the constant terms of $$T_N$$ _and_ $$T_{\lfloor N/2 \rfloor}$$, which depends on $$T_{\lfloor \lfloor N/2 \rfloor/2 \rfloor}$$, etc, all the way down to $$T_0 = 0$$. So we need to sum over the whole recurrence to see if this is true. It looks like this:
 
-Put differently: since $$T_N = R_N + 4T_{\lfloor N/2 \rfloor}$$ is defined by a recurrence, there is going to be a _series_ of $$R_N$$s in the resulting sum, and therefore multiple copies of the $$\frac{1}{4}$$ constant term. This is easier to see if you just write out an example calculation for $$T_N$$:
+$$T_N = \underbrace{R_N + 4 R_{\lfloor N/2 \rfloor} + 4^2 R_{\lfloor (\lfloor N/2 \rfloor)/2 \rfloor} + \ldots}_{\log_2 N + 1 \text{ terms}}$$
+
+There are $$\log_2 (N) + 1$$ terms, since that is the number of times you can repeat this $$ N \mapsto \lfloor \frac{N}{2} \rfloor$$ calculation (each one being equivalent to lopping off the lowest digit in binary; we would write $$N \gg 1$$ if we were in a programming context). 
+
+So since $$T_N = R_N + 4T_{\lfloor N/2 \rfloor}$$ is defined by a recurrence, there is a _series_ of $$R_N$$s in the resulting sum, and therefore multiple copies of the $$\frac{1}{4}$$ constant term from each $$R_N$$. Here is an example calculation of $$T_5$$ to make it easy to see:
 
 $$
 \begin{aligned}
-T_5 &= \frac{1}{4} - (-1)^5 \frac{2(5)+1}{4} + 4 [ \frac{1}{4} - (-1)^2 \frac{2(2)+1}{4} + 4 [\frac{1}{4} - (-1)^1 \frac{2(1)+1}{4}]] \\
+T_5 &= \boxed{\frac{1}{4}} - (-1)^5 \frac{2(5)+1}{4} +  \boxed{4 [\frac{1}{4}} - (-1)^2 \frac{2(2)+1}{4} +  \boxed{4 [\frac{1}{4}} - (-1)^1 \frac{2(1)+1}{4}]] \\
 &= \frac{1}{4} + (\frac{2(5)+1}{4}) + 1 - 4 \frac{2(2)+1}{4} + 4 + 16 \frac{2(1)+1}{4} \\
 &= \frac{1}{4} + \frac{11}{4} + 1 - 5 + 4 + 12 \\
 &= 15 \\
@@ -380,11 +384,7 @@ T_5 &= \frac{1}{4} - (-1)^5 \frac{2(5)+1}{4} + 4 [ \frac{1}{4} - (-1)^2 \frac{2(
 \end{aligned}
 $$
 
-Note the multiple copies of $$\frac{1}{4}$$. Specifically there are $$\log_2 (N) + 1$$ terms, since that is the number of times you can repeat this $$ N \mapsto \lfloor \frac{N}{2} \rfloor$$ calculation (each one being equivalent to lopping off the lowest digit in binary; we would write $$N \gg 1$$ if we were in a programming context). So what we really have is a series of series:
-
-$$T_N = \underbrace{R_N + 4 R_{\lfloor N/2 \rfloor} + 4^2 R_{\lfloor (\lfloor N/2 \rfloor)/2 \rfloor} + \ldots}_{\log_2 N + 1 \text{ terms}}$$
-
-Each term contributes a copy of $$\frac{1}{4}$$ times a $$4^k$$ coefficient, meaning that the resulting 'constant' part of the overall sum
+The multiple copies of $$\frac{1}{4}$$ form a series that looks like this:
 
 $$
 \begin{aligned}
@@ -394,7 +394,7 @@ T_N &\sim \frac{1}{4} + 4 \frac{1}{4} + 4^2 \frac{1}{4} + \ldots \\
 \end{aligned}
 $$
 
-But we can sum that (divergently!)---it's 
+But we can (divergently) sum that---it's
 
 $$
 \begin{aligned}
@@ -405,10 +405,9 @@ T &\? (1 + 4 + 4^2 + \ldots) (\frac{1}{4}) \\
 \end{aligned}
 $$
 
+Evidently _this_ is where the number is coming from. Inside the overall series for $$T_N$$ there are a series of $$(\log_2 N + 1)$$ of these $$4^k \frac{1}{4}$$ terms which on their own can be have a constant part of $$-\frac{1}{12}$$. They come from the fact that $$T_N$$ can be written as a sum of a bunch of $$R_N$$, each of which has a constant term. Evidently $$T_N$$, with $$N$$ terms, 'contains' another series inside of it with $$(\log_2 N + 1)$$ terms, which has constant part $$-\frac{1}{12}$$. 
 
-So this is where the number is actually coming from. Inside the overall series for $$T_N$$ there are a series of $$(\log_2 N + 1)$$ of these $$4^k \frac{1}{4}$$ terms which on their own can be have a constant part of $$-\frac{1}{12}$$. The source of them is basically from the fact that $$T_N$$ can be written as a sum of a bunch of $$R_N$$, each of which _does_ have a constant term. Evidently $$T_N$$, with $$N$$ terms, contains another series inside of it with $$(\log_2 N + 1)$$ terms, which has constant part $$-\frac{1}{12}$$. 
-
-The exact value of the whole $$(1 + 4 + 4^2 + \ldots) (\frac{1}{4})$$ series---the sum of the constant parts of the $$R_N$$s---is
+The exact value of the whole $$(1 + 4 + 4^2 + \ldots) (\frac{1}{4})$$ series when we use the exact sum instead of the divergent one is
 
 $$
 \begin{aligned}
@@ -420,7 +419,7 @@ T_N &\? (1 + 4 + 4^2 + \ldots) (\frac{1}{4})  \\
 \end{aligned}
 $$
 
-The full expression for $$T_N$$ is that plus all the $$\pm$$ terms that we dropped:
+Therefore a complete expression for $$T_N$$ is that, plus all the $$\pm$$ terms that we dropped:
 
 $$T_N = -\frac{1}{12} + \frac{N^2}{3} + \text{(a bunch of oscillating terms)}$$
 
@@ -434,7 +433,7 @@ T - 4T &= (R_N + 4 R_{\lfloor N/2 \rfloor} + 4^2 R_{\lfloor (\lfloor N/2 \rfloor
 \end{aligned}
 $$
 
-Which once again is totally invalid in general, but does work if you consider only the constant terms of each of the $$R$$, since they are all $$\frac{1}{4}$$ with no $$N$$-dependence.
+Which, again, is definitely invalid in general, but does work if you consider only the constant terms of each of the $$R$$ since they are all $$\frac{1}{4}$$ with no $$N$$-dependence.
 
 So I guess that's why the $$-\frac{1}{12}$$ shows up: it is really there, but only when you divergently sum up the series created by all $$R_N$$'s constant terms, ignoring their actual value. Including those gives the partial sums the overall shape of a parabola $$-\frac{1}{12} + \frac{N^2}{3}$$, and adding back in all the oscillating terms as well gives the full $$T_N = N(N+1)/2$$.
 
