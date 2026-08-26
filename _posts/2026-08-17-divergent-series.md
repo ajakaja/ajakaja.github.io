@@ -32,7 +32,7 @@ This converges for $$\| x \| < 1$$. For example,[^limit]
 
 [^limit]: This equality holds if the $$1+1/2+1/4+\ldots$$ is regarded as a limit, which is standard. It's equivalent to how $$1.99\overline{9} = 2$$, and in fact it's the same phenomenon exactly, since the statement $$1+\frac{1}{2}+\frac{1}{4} + \ldots = 2$$ becomes $$1.11\overline{1} = 10$$ when written in binary.
 
-$$\frac{1}{1-\frac{1}{2}} = 1 + \frac{1}{2} + \frac{1}{4} \ldots = 2$$
+$$\frac{1}{1-\frac{1}{2}} = 1 + \frac{1}{2} + \frac{1}{4} + \ldots = 2$$
 
 We can also write down the Taylor series for $$f(x)$$ around $$x=\infty$$ by expanding around $$1/x = 0$$ instead. It is:
 
