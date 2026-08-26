@@ -23,13 +23,11 @@ Part four in a series:
 
 ## 1. An Interpolation of Spheres
 
-A fruitful explanation for $$\Gamma(\frac{1}{2}) = (-\frac{1}{2})! = \sqrt{\pi}$$ is going to be one that generalizes well: if we can come up with a reason why $$\sqrt{\pi}$$ is the value, it should also give, at minimum, answers to why the other values of $$\Gamma$$ are what they are. For example, 
+A fruitful explanation for $$\Gamma(\frac{1}{2}) = (-\frac{1}{2})! = \sqrt{\pi}$$ is going to be one that generalizes well. Iif we can come up with a reason why $$\sqrt{\pi}$$ is the value, it should also give, at minimum, answers to why the other values of $$\Gamma$$ are what they are. For example, 
 
 $$\Gamma(\frac{1}{4}) = (-\frac{3}{4})! = \sqrt{2 \varpi \sqrt{2 \pi}}$$
 
-Where $$\varpi$$ is the [lemniscate constant](https://en.wikipedia.org/wiki/Lemniscate_constant). The name is because $$2 \varpi$$ is the perimeter of a shape called Bernoulli's lemniscate, defined by the equation $$(x^2 + y^2)^2 = x^2 - y^2$$, similar to $$2 \pi$$ being the perimeter of the circle defined by $$x^2 + y^2 = 1$$. We are only interested in the constant, though, not the shape.
-
-Perhaps it could also simplify some of the nightmarish expressions that are known for other values of $$\Gamma$$, such as
+where $$\varpi$$ is the [lemniscate constant](https://en.wikipedia.org/wiki/Lemniscate_constant). (The name is because $$2 \varpi$$ is the perimeter of a shape called Bernoulli's lemniscate, defined by the equation $$(x^2 + y^2)^2 = x^2 - y^2$$, similar to $$2 \pi$$ being the perimeter of the circle defined by $$x^2 + y^2 = 1$$. We are only interested in the constant, though, not the shape.) Perhaps it could also simplify some of the nightmarish expressions which are known for other values of $$\Gamma$$, such as
 
 $$
 \begin{aligned}
