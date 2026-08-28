@@ -9,7 +9,7 @@ I worked as a React developer (among other things) for several years at Dropbox 
 
 {:class="bare"}
 * [The Zen of React]({% post_url 2022-09-17-react%})
-* [The Point of Hooks]({% post_url 2022-10-12-react-2 %})
+* [The Essence of Hooks]({% post_url 2022-10-12-react-2 %})
 * [An Interesting List of React Mistakes]({% post_url 2023-04-25-react-mistakes %})
 
 Although I came away with little good to say about how Dropbox and publicly-traded companies in general are run.
