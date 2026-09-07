@@ -5,6 +5,7 @@ const macros = {
         "\\D": "\\Delta",
         "\\p": "\\partial",
         "\\b": "\\mathbf",
+        "\\btheta": "\\boldsymbol{\\theta}",
         "\\bb": "\\mathbb",
         "\\tt": "\\texttt",
         "\\cal": "\\mathcal",
@@ -64,6 +65,9 @@ const macros = {
         "\\sslash": "/\\hspace{-0.25em}/",
         "\\box": "\\mathbin{\\Box}",
         "\\card": "\\text{card}",
+        "\\Hom": "\\text{Hom}",
+        "\\nfrac": "#1/#2", // so I can convert \frac{a}{b} into a/b with one character
+        "\\means": "\\stackrel{\\text{means}}{=}",
       };
 
 document.addEventListener("DOMContentLoaded", function() {
@@ -77,6 +81,7 @@ document.addEventListener("DOMContentLoaded", function() {
     macros: macros,
     strict: false,
     minRuleThickness: 0.07,
+    globalGroup: true,
   });
 });
 </script>
