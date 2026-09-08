@@ -151,7 +151,7 @@ $$
 \end{aligned}
 $$
 
-This time the remainder term which is otherwise dropped is doing _all_ the work: every other pair of terms cancel, and then the remainder gives the full value $$2/3$$. So in this case erasing the $$N$$-dependence would leave something unusable. (You can also get a version of $$1-1+1-1+\ldots$$ which equals any rational $$m/n$$ you want (for $$m,n$$ coprime) by computing $$(1-x^m)/(1-x^n)$$ instead.)
+This time the remainder term which is otherwise dropped is doing _all_ the work: every other pair of terms cancel, and then the remainder gives the full value $$2/3$$. So in this case erasing the $$N$$-dependence would leave something unusable. (You can also get a version of $$1-1+1-1+\ldots$$ which equals any rational $$m/n$$ you want by computing $$(1-x^m)/(1-x^n)$$ instead.)
 
 ------
 
@@ -446,7 +446,7 @@ Okay, that's enough for now. Perhaps later I will come back and add some more wo
 
 # 5. A philosophical note
 
-What I have done with each series here demonstrate something that I have found to be a helpful technique for resolving a class of mathematical paradoxes, in particular anything that involves infinites and limits. The general approach: whenever there is a limit $$\lim_{N \ra a}$$ taken in the course of demonstrating some paradoxical outcome, instead of thinking of the value of $$N$$ canceling out, think of it as just going unstated in the rest of the problem. Basically think of it as still being there but you're just electing not to write it anymore. If later on you produce a result which seems paradoxical, go back and restore the $$N$$s throughout the computation and see if they resolve the surprise. Usually they do.
+What I have done with each series here demonstrate something that I have found to be a helpful technique for resolving a class of mathematical paradoxes, in particular anything that involves infinities and limits. The general approach: whenever there is a limit $$\lim_{N \ra a}$$ taken in the course of demonstrating some paradoxical outcome, instead of thinking of the value of $$N$$ canceling out, think of it as just going unstated in the rest of the problem. Basically think of it as still being there but you're just electing not to write it anymore. If later on you produce a result which seems paradoxical, go back and restore the $$N$$s throughout the computation and see if they resolve the surprise. Usually they do.
 
 Although any mathematician will tell you that the above partial sums are correct (assuming I made no algebra errors, I mean), they may object that I have just skirted around the real issue, which is of taking the _limit_ as $$N \ra \infty$$. After all that is what $$S(1/2) = 2$$. Indeed, what makes divergent sums mysterious is how they seem to work _after_ taking limits, despite the limits being invalid.
 
