@@ -253,7 +253,11 @@ I think what's going on is roughly this. If you write each of the delta function
 
 $$\int \frac{d \theta(x)}{dx} \frac{d \theta(x + y)}{d(x+y)} f \, dx \^ dy$$
 
-Then each does cancel out with the $$dx \^ dy$$, but they do it using the interior product of differential forms. So
+Then each does cancel out with the $$dx \^ dy$$, but they do it using the interior product of differential forms. 
+
+$$\frac{1}{\b{v} \cdot d \b{x}} dV = \frac{(\b{v} \cdot d \b{x})}{\| \b{v} \|^2} \cdot dV$$
+
+So
 
 $$
 \begin{aligned}
@@ -267,7 +271,7 @@ I don't exactly see _why_ it works this way, but it seems to be how it works.
 
 (September 2024 edit: It is a lot like the [vector division]({% post_url 2024-09-11-vector-division %}) that I play with sometimes, actually, and that's probably what it is. Well, I wrote that afterwards, partly based on this, but may as well have a forward link anyway. I feel like this is telling us how division on multivectors ought to work, if it's going to work at all.)
 
-The confusing part is that you can't divide through by the magnitudes _individually_. It's _not_ this
+The confusing part is that you can't divide through by the magnitudes individually. It's not this
 
 $$
 \begin{aligned}
