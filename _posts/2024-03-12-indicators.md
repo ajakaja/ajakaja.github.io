@@ -255,8 +255,6 @@ $$\int \frac{d \theta(x)}{dx} \frac{d \theta(x + y)}{d(x+y)} f \, dx \^ dy$$
 
 Then each does cancel out with the $$dx \^ dy$$, but they do it using the interior product of differential forms. 
 
-$$\frac{1}{\b{v} \cdot d \b{x}} dV = \frac{(\b{v} \cdot d \b{x})}{\| \b{v} \|^2} \cdot dV$$
-
 So
 
 $$

@@ -451,7 +451,7 @@ The reason that the $$1_{\alpha}$$ is still in there is because we still have to
 
 In the case where the surface of integration is over the intersection of two volumes $$\alpha, \beta$$ the same applies, except that we use $$1_{\alpha \beta}$$ instead. The term serves to restrict to the subsurface of the two-dimensional surface $$n=0$$ which we're actually trying to integrate over. In something closer to TCAT's notation:
 
-$$\int_{\alpha \beta} f \d A = \int f \, (- \b{n} \cdot \p_{\b{x}} 1_{\alpha}) 1_{\alpha \beta} \d V = \int \delta(n_{\alpha}) f; 1_{\alpha \beta} \d V \tag{A.42}$$
+$$\int_{\alpha \beta} f \d A = \int f \, (- \b{n} \cdot \p_{\b{x}} 1_{\alpha}) 1_{\alpha \beta} \d V = \int \delta(n_{\alpha}) f \; 1_{\alpha \beta} \d V \tag{A.42}$$
 
 In the case where $$\alpha$$ is closed and $$\beta$$ touches the entire boundary of $$\alpha$$ the term can be dropped.
 
@@ -497,4 +497,4 @@ Again, I'm not happy with any of this, but it is a way of thinking about what TC
 
 --------
 
-## 3. Variations of Volume Integrals
+## 3. Variations of Integrals
