@@ -17,20 +17,41 @@ $$\newcommand{\frakr}{\mathfrak{r}}$$
 
 -------
 
-# Appendix A
+# Appendix A - Variational Calculus
+
 
 The notations for variational calculus used here are different than those in physics. However I don't particularly like the physics ones either, because really variational calculus is exactly the same as regular calculus (and it is literally the same if you discretize your functions, e.g. $$F[x(t)] = F[(x_0, x_1, x_2, \ldots, x_N)]$$ for $$N \ra \infty$$; the differences are mostly on the analytical side). So I will write things in my own notations as I go.
 
+The general technique of variational calculus is taking differentials of functionals, that is, functions of other functions:
+
+$$\delta F[\b{f}]$$
+
+which most often come in the form of integrals:
+
+$$F = \int f(\b{x}) \d V$$
+
+Usually the purpose of this is to then set the differentials to zero, $$\delta F = 0$$, in order to find stationary points (maxima and minima). 
+
+Really this is no different from the regular calculus version, of computing $$df = f_x dx + f_y dy + f_z dz = 0$$ to find the maxima/minima of $$f(x,y,z)$$, except that functions have effectively an infinite number of arguments instead of a finite number.  The other thing that shows up is that functionals can depend on derivative operators as well, like $$\delta F = \int \dot{f} dt$$, so you need a way to think about those. 
+
+None of it is very hard, really, and all the results basically follow if you plug in a discrete approximation to $$f$$ and then take a limit to infinite resolution... however, the notations and terminology can be challenging to unpack. The short version is that "variation" means the same thing as "differential" and one just has to translate between all the two different ways of saying the same thing. In particular the chain rule works the same way:
+
+$$\delta f(\b{u}, \b{x}, \e) = f_{\b{u}} \cdot \delta \b{u} + f_{\b{x}} \cdot \delta \b{x} + f_{\e} d \e$$
+
+(where $$f_{\b{u}} = \p_{\b{u}} f = \del_{\b{u}} f$$, $$f_{\b{x}} = \del_{\b{x}} \b{f}$$, and $$f_{\e} = \p_{\e} f$$.)
+
+So $$\delta$$ and $$d$$ really just mean the same thing everywhere. As far as I can tell the reason people use the separate $$\delta$$ symbol for variations is that expressions like $$d [\nfrac{d f(\b{x})}{dt}]$$ get very hard to parse otherwise.
 
 --------
 
 ## 1. Classical Approach to Volume Integrals (A.2 through A.32)
 
-These describe the "classical" approach to varying a volume integral over a _changing_ surface $$F = \int_{\Omega(\b{x})} f(\b{u}(\b{x})) d\Omega$$. 
+
+These describe what is apaprently the "classical" approach to varying a integral. The integrel in question is something like $$F = \int_{\Omega(\b{x})} f(\b{u}(\b{x})) d\Omega$$, and the variation performed is varying the shape of the surface $$\Omega$$ itself. (I was not previously aware that you could vary an integration surface like this, but it's not that surprising---I suppose that, if you can describe a surface as a function, then you ought to be able to vary it.) The target theorem is
 
 $$\delta F = \int_{\Omega} \overline{\delta} f(\b{u}) \, d \frakr + \int_{\Gamma} f(\b{u}) \b{n} \cdot \delta \b{x} \, d \frakr \tag{A.32}$$
 
-Note that the derivation is also basically found on Wikipedia under [Reynolds Transport Theorem](https://en.wikipedia.org/wiki/Reynolds_transport_theorem), although in slightly less generality. The Wiki version is
+Note that the derivation of this is also basically found on Wikipedia under [Reynolds Transport Theorem](https://en.wikipedia.org/wiki/Reynolds_transport_theorem), although in slightly less generality. The Wiki version is
 
 $$
 \begin{aligned}
@@ -40,50 +61,69 @@ $$
 \tag{Reynolds Transport Thm.}
 $$
 
-The difference is that in the Reynolds theorem is talking about how an integral changes as the surface and function $$\b{f}$$ evolve in time, whereas the TCAT version describes arbitrary variations of the path itself (presumably in order to find its equilibria). But they are the same idea.
+The difference is that the Reynolds theorem considers only the differential with respect to time, while the TCAT version considers a more general differential where the surface's form is varied independently of time. The Reynolds version is recovered by projecting the TCAT version onto $$dt$$. The point of generalizing beyond time derivatives is that you can ask questions like "what surface minimizes energy given a certain set of constraints", which asks for an optimum shape without reference to a time variable.
 
 --------
 
-TCAT's $$\overline{\delta}$$ notation is strange. The meaning is that it is the 'independent' variation of an object _not_ due to the variation in $$\b{x}$$. Using their notation of regarding variations as parameterized by an infinitesimal $$\e$$, they write
+TCAT develops their variations with a standard technique: of parameterizing the infinite-dimensional change in the functions $$\b{x}$$ and $$\b{u}$$ by a one-dimensional parameter $$\e$$ such that, for infiniteismal $$\e$$,
+
+
+$$
+\begin{aligned}
+\delta \b{x} &= \b{X}(\b{x}, \e) - \b{X}(\b{x}, 0) \\
+&\approx \p_{\e}\b{X} d \e \\
+\delta \b{u} &= \b{U}(\b{X}, \e) - \b{u}^*(\b{X}, 0) \\
+&\approx (\p_{\e} \b{U}) d \e + (\p_{\b{x}} \b{U}) \delta \b{x} \\
+\end{aligned}
+$$
+
+They then write the $$\b{u}$$ variation as
+
+$$
+\begin{aligned}
+\delta \b{u} = \overline{\delta} \b{u} + \del \b{U} \cdot \delta \b{x}
+\end{aligned}
+$$
+
+which I find very hard to read. But the $$\overline{\delta}$$ notation is confusing. The meaning is that it is the 'independent' variation of an object _not_ due to the variation in $$\b{x}$$, that is, it's the $$\e$$ partial derivative rather than the part that depends on $$\e$$ only indirectly via an $$\x$$ derivative.
 
 $$\overline{\delta} \b{u} = \p_{\e} \b{U}(\b{x}, \e)$$
 
-and
+The same operator can act on functions of $$\b{u}$$ as well:
 
 $$\overline{\delta} f(\b{u}) = f_{\b{u}} \overline{\delta}\b{u}$$
 
-and
-
-$$\delta \b{u} = \overline{\delta} \b{u} + \b{u}_{\b{x}} \delta \b{x}$$
-
-I haven't seen this before, but it corresponds to the $$\b{f}_t$$ in the Reynolds tranport theorem: the derivative of $$\b{f}(\b{x}, t)$$ due to dependent variables other than $$\b{x}$$. I would probably write it as $$\delta_{\perp \b{x}}$$ instead, such that
+I haven't seen this before, but it corresponds to the $$\b{f}_t$$ term in the Reynolds tranport theorem version: the derivative of $$\b{f}(\b{x}, t)$$ due to dependent variables other than $$\b{x}$$. I would prefer to write it as $$\delta_{\perp \b{x}}$$ instead, such that
 
 $$\delta \b{u} = \delta_{\b{x}} \b{u} + \delta_{\perp \b{x}} \b{u} = \b{u}_{\b{x}} \delta \b{x} + \delta_{\perp \b{x}} \b{u}$$
 
-(Notation note: I'm writing $$f_{\b{u}}$$ for the gradient $$\p_{\b{u}} = \del_{\b{u}} f$$ and $$\b{u}_{\b{x}}$$ for the (2-tensor) gradient $$\p_{\b{x}} \b{u} = \del_{\b{x}} \b{x}$$.)
-
 -------
 
-The TCAT paper's derivation of the transport theorem was hard to follow for a few reasons. One, I have not done these continuum mechanics calculations before. Two, anything involving Jacobians and determinants and their derivatives is always confusing. But three, it was hard to figure out what was going on with the $$\Omega^*$$ term, the variation applied to the integration bounds themselves---why did they change? What does that mean?
+Next they derive (A.32) by expanding the variation $$\delta \int_{\Omega} f(\b{u}) d \frakr$$.
 
-I believe the answer comes from figuring out exactly what $$\delta \b{x}$$ means here. We are dealing with an integral over the surface $$\Omega$$ as expressed in [Lagrangian coordinates](https://en.wikipedia.org/wiki/Lagrangian_and_Eulerian_specification_of_the_flow_field), meaning that each point on the surface is parameterized by the point it _started_ at; that's the
+I found  this derivation hard to follow for a few reasons. One, I have not done these continuum mechanics calculations before. Two, anything involving Jacobians and determinants and their derivatives is always confusing. But three, it was hard to figure out what was going on with the $$\Omega^*$$ term, the variation applied to the integration bounds themselves---why did they change? What does that mean?
+
+After staring at it for a while I realized I did not initially understand what $$\x$$ or $$\delta \b{x}$$ were really doing. Although they look like normal position variables that you would integrate over, they are really a (clever) way of describing the shape of the surface $$\Omega$$. Specifically, $$\Omega$$ is being parameterized by what's called [Lagrangian coordinates](https://en.wikipedia.org/wiki/Lagrangian_and_Eulerian_specification_of_the_flow_field), meaning that each point on the surface is parameterized by the point it _started_ at; that's the
 
 $$\b{x}^* = \b{X}(\b{x}, \e)$$
 
-at the start.
+at the start. So if you plug in a value of $$\b{x}$$ here, you find out where it ended up at later after the variation is increased to $$\e$$. When $$\e = 0$$ then $$\b{X}(\b{x}, 0) = \b{x}$$ and nothing is moved.
 
-I don't love the name "Lagrangian coordinates" because it doesn't really tell you what they mean. Also, it overloads the word "Lagrangian" which means a lot of other things already. It would be nice to have a different and more mundane word for it. The best one I could think of was "comoving coordinates", because they're co-moving (with the fluid). This term is also a bit overloaded because it also refers to comoving with a particular reference frame, but I think that's ok. In the same vein, I really prefer "ambient coordinates" to "Eulerian coordinates" for the fixed ambient frame ("background coordinates") would also work.
+(Terminology note: I don't love the name "Lagrangian coordinates" because it doesn't really tell you what they mean. Also, it overloads the word "Lagrangian" which means a lot of other things already. It would be nice to have a different and more mundane word for it. The best one I could think of was "comoving coordinates", because they're co-moving (with the fluid). This term is also a bit overloaded because it also refers to comoving with a particular reference frame, but I think that's ok. In the same vein, I really prefer "ambient coordinates" to "Eulerian coordinates" for the fixed ambient frame ("background coordinates") would also work. But Lagrangian/Eulerian is extremely standard.)
 
-Comoving/Lagrangian coordinates are _normally_ used to talk about the time-evolution of a fluid: you would write $$\b{x}(t) = \b{X}(\b{x}_0, t)$$ for the location that the particle which started at $$\b{x}_0$$ ended up. Then you compute an integral over the body at a time $$t$$ by instead integrating it over the body at time $$0$$, but regarding the motion $$\b{x}_0 \ra \b{x}$$ as a "coordinate change" even though it is actually an active transformation (which is a neat trick I hadn't seen before):
+Comoving/Lagrangian coordinates are _normally_ used to talk about the time-evolution of a fluid: you would write $$\b{x}(t) = \b{X}(\b{x}, t)$$ for the location that the particle which started at $$\b{x}$$ ended up. Then you compute an integral over the body at a time $$t$$ by instead integrating it over the body at time $$0$$, but regarding the motion $$\b{x} \ra \b{x}$$ as a "coordinate change" even though it is actually an active transformation (which is a neat trick I hadn't seen before):
 
-$$\int_{\Omega(t)} f(\b{x}(t)) \, dV = \int_{\Omega_0} f(\b{X}(\b{x}_0, t)) J \d V_0$$
+$$\int_{\Omega(t)} f(\b{x}(t)) \, dV = \int_{\Omega_0} f(\b{X}(\b{x}, t)) J \d V_0$$
 
-So the version in the TCAT paper is doing the same idea, but instead of the comoving evolution equation describing the motion of the fluid in _time_, it's describing our arbitrary variation at a fixed time. This is also why both $$\b{x}$$ and $$\b{u}$$ have their own variations: because we can vary more things than just the position variables.
+with $$J$$ the Jacobian of the transformation,
 
-The reason that $$\Omega^*$$ exists, then, is that when we vary the $$\b{x}$$ coordinates we do necessarily change the position of $$\Omega$$ itself, exactly as if we had moved a fluid forward in time instead. Varying $$\b{x}$$ is essentially varying the shape $$\Omega$$. 
+$$J = \det \frac{\p \b{X}}{\p \b{x}}$$
 
+So the version in the TCAT paper is doing the same idea, but instead of the comoving evolution equation describing the evolution of the fluid in _time_, it's describing an arbitrary variation performed at a _fixed_ time. This is also why $$\b{u}$$ has its own variation: since we are not describing time evolution, we can vary more things than just the position of the surface.
 
-Here's TCAT's dervaition. derivation. We want to compute 
+The reason that $$\Omega^*$$ exists, then, is that when we vary the $$\b{x}$$ coordinates we are changing the position of $$\Omega$$ itself by changing the locations of all the $$\b{x}$$s. Varying the Lagrangian $$\b{x}$$ coordinates is a trick for varying the shape $$\Omega$$. 
+
+Here's TCAT's derivation (with my notational modifications). We want to compute 
 
 $$\delta \int_{\Omega} f(\b{u}) \d V = [\delta_{\perp \b{x}} + \delta_{\b{x}}] \int_{\Omega} f(\b{u}) \d V$$
 
@@ -111,13 +151,21 @@ $$\delta \int_{\Omega} f(\b{u}) dV = \int_{\Omega} \delta_{\perp \b{x}} f(\b{u})
 
 -----
 
-Here's another way heuristic way of thinking about the same calculation. Consider writing
+**A shorter version**
+
+Here's a quicker (unrigorous?) way of thinking about the same calculation. Consider writing the variation of $$\Omega$$ out as addition even though it's a shape, not a function:
 
 $$\Omega^* = \Omega + \delta \Omega$$
 
-Here $$\delta \Omega$$ describes all of the changes in the resulting positions of points (in comoving coordinates). That is, given each point $$\b{x}_0 \in \Omega$$, its resulting position after the variation is $$\b{x}_0 + \delta \b{x}_0$$; the overall variation $$\delta \b{x}$$ describes an 'infinite' vector of these for every choice of $$\b{x}_0$$.
+Here $$\delta \Omega$$ describes all of the changes in the resulting positions of points (in comoving coordinates). That is, given each point $$\b{x} \in \Omega$$, its resulting position after the variation is $$\b{x} + \delta \b{x}$$; the overall variation $$\delta \b{x}$$ describes an 'infinite' vector of these for every choice of $$\b{x}$$.
 
-We can factor $$\delta \Omega$$ into two parts. One consists of "rearrangements" of the positions within $$\Omega$$. Since we end up integrating over $$d V$$ we do not actually care if points "compress" in some locations and "expand" in others. We can write this term as $$\sigma(\Omega)$$, implying that it "permutes" $$\Omega$$ without changing it; the result is that $$\Omega + \sigma(\Omega) = \Omega$$ again (as a set, I guess). The other part consists of how the actual boundary of $$\Omega$$ changes. Since each point on the boundary moves to a new point $$\b{x}_0 \ra \b{x}_0 + \delta \b{x}_0$$, each differential area element $$d \b{A}_0$$ corresponds to a new volume $$\delta \b{x} \cdot d \b{A}_0$$. As a result we can write
+We can split $$\delta \Omega$$ into two parts.
+
+$$\delta \Omega = \sigma(\Omega) + \delta \b{x} \cdot \p \Omega$$
+
+The first part $$\sigma(\Omega)$$ consists of "rearrangements" of the positions within $$\Omega$$. Since we end up integrating over $$d V$$ we do not actually care if points "compress" in some locations and "expand" in others. We might write this as $$\sigma(\Omega)$$, implying that it's a permutation which "permutes" $$\Omega$$ without changing the overall set of points again. So as a set $$\Omega + \sigma(\Omega) = \Omega$$ again (as a set, I guess). (This term would not disappear if we were also concerned with the _density_ of the points of $$\Omega$$, since they could be rearranged in a way that packs them closer or looser together... but we're not, $$\Omega$$ is _just_ an integration region.)
+
+The other part consists of how the actual boundary of $$\Omega$$ changes. Since each point on the boundary moves to a new point $$\b{x} \ra \b{x} + \delta \b{x}$$, each differential area element $$d \b{A} \in \p \Omega$$ is extended to give a new volume $$\delta \b{x} \cdot d \b{A}$$ (the area could move in any kind of strange way, but to first order the change in volume is given by projecting it along its normal $$\b{n} \propto d \b{A}$$). As a result we can write
 
 $$\Omega + \delta \Omega = \Omega + \sigma(\Omega) + \delta \b{x} \cdot \p \Omega = \Omega + \delta \b{x} \cdot \p \Omega$$
 
@@ -126,19 +174,23 @@ Therefore:
 $$
 \begin{aligned}
 \delta_{\b{x}} \int_{\Omega} f(\b{u}) \d V &= \int_{\Omega + \delta \Omega} f(\b{u}) \d V - \int_{\Omega} f(\b{u}) \d V \\
-&= \int_{\Omega + \delta \b{x} \cdot \p \Omega} f(\b{u}) \d V - \int_{\Omega} f(\b{u}) \d V \\
+&= \int_{\Omega + \sigma (\Omega) + \delta \b{x} \cdot \p \Omega} f(\b{u}) \d V - \int_{\Omega} f(\b{u}) \d V \\
 &= \int_{\delta \b{x} \cdot \p \Omega} f(\b{u}) \d V \\
 &= \int_{\p \Omega} f(\b{u}) (\delta \b{x} \cdot \d A)
 \end{aligned}
 $$
 
-This is admittedly a sketchy argument, but I think it's correct. I came to it by staring at the previous argument for a while and trying to make sense of what the integration-by-parts terms "means". 
+And therefore
 
-The answer basically is that, although there is a first-order variation in the value of $$f(\b{u}^*) \approx f(\b{u} + \delta \b{u}) \approx f(\b{u}) + f_{\b{x}} \delta \b{x}$$ throughout $$\Omega$$, it gets cancelled out by the term from the integration-by-parts because none of those contributions actually change the resulting $$\int_{\Omega}$$. In particular, if moving some points causes $$\int f(\b{u})$$ to change at a given point, then moving some _other_ points into the gap left behind will cause it to change by $$-\int f(\b{u})$$ to compensate---except at the changes in the boundary $$ \p \Omega$$, where points can be genuinely added or removed.[^holes]
+$$\delta \int_{\Omega} f \d V  = [\delta_{\perp \b{x}} + \delta_{\b{x}}]\int_{\Omega} f \d V  = \int_{\Omega} \delta_{\perp \b{x}} f \d V  + \int_{\p \Omega} f(\b{u}) (\delta \b{x} \cdot \d A) \tag{A.32}$$
 
-[^holes]: Strictly speaking you can also add/remove points in the interior because $$\delta \Omega$$ is in principle allowed to introduce "holes" in $$\Omega$$. However this won't change the integral to first-order because the holes will have volume $$\sim \e^3$$. I am however confused about how this works if you introduce 2d holes, that is, "cuts", in $$\Omega$$. In that case you are essentially creating a new boundary on the interior somewhere, and it feels like you would want your integral to be over that as well, as it will also end up having a volume which is first-order in $$\e$$. (I think this is solved by requiring $$\delta \b{x}$$ be continuous, which prevents introducing holes because that would be a point at which its values point in opposite directions e.g. a discontinuity.)
+This is a bit of a sketchy argument, but I think it's basically correct. I came to it by staring at the previous argument for a while and trying to make sense of what the integration-by-parts terms "means".  
 
-Before continuing, a few mathematical notes.
+Apparently, although there is a first-order variation in the value of $$f(\b{u}^*) \approx f(\b{u} + \delta \b{u}) \approx f(\b{u}) + f_{\b{x}} \delta \b{x}$$ throughout $$\Omega$$, it gets cancelled out by the term from the integration-by-parts because none of those contributions actually change the resulting $$\int_{\Omega}$$. In particular, if moving some points causes $$\int f(\b{u})$$ to change at a given point, then moving some _other_ points into the gap left behind will cause it to change by $$-\int f(\b{u})$$ to compensate---except at the changes in the boundary $$ \p \Omega$$, where points can be genuinely added or removed.
+
+One thing I'm not clear about is why you can't also "introduce a boundary" on the interior of $$\Omega$$ when you start the variation, which would also contribute to the integral here. Maybe we're assuming that the variation is continuous. Or maybe that is accounted for here since then the $$\p \Omega$$ integral would include it. Not sure.
+
+Before continuing, a few mathematical asides.
 
 ------
 
@@ -148,7 +200,7 @@ In the process of understanding this I learned that the material derivative is q
 
 The comoving coordinate formulation of a field $$f$$ is
 
-$$f(\b{x}, t) = f(\b{X}(\b{x}_0, t), t)$$
+$$f(\b{x}, t) = f(\b{X}(\b{x}, t), t)$$
 
 Therefore its derivative is
 
@@ -158,7 +210,7 @@ The total time derivative is
 
 $$\frac{df}{dt} = f_{\b{x}} \frac{d \b{X}}{dt} + f_t$$
 
-But $$\nfrac{d \b{X}}{dt}$$ is just the velocity $$\b{u}$$ of the fluid packet at position $$\b{x}$$ (which happened to start at position $$\b{x}_0$$, but that doesn't matter). Therefore
+But $$\nfrac{d \b{X}}{dt}$$ is just the velocity $$\b{u}$$ of the fluid packet at position $$\b{x}$$ (which happened to start at position $$\b{x}$$, but that doesn't matter). Therefore
 
 $$\frac{df}{dt} = f_{\b{x}} \cdot \b{u} + f_t$$
 
@@ -172,7 +224,7 @@ $$\frac{df}{dt} = \b{u} \cdot \del f + \frac{\p f}{\p t}$$
 <aside class="toggleable" id="jacobian" placeholder="<b>Aside</b>: Note on Jacobians <em>(click to expand)</em>">
 
 
-Earlier we have this coordinate change $$\b{x} = \b{X}(\b{x}_0, t)$$ and then we have a volume integral transformation
+Earlier we have this coordinate change $$\b{x} = \b{X}(\b{x}, t)$$ and then we have a volume integral transformation
 
 $$\int f \d V = \int f \; J \d V_0$$
 
@@ -184,23 +236,23 @@ $$dV = d^{\^3} \b{x} = dx \^ dy \^ dz$$
 
 The notation $$d^{\^3} \b{x}$$ means that it is the third exterior power of the _frame_; the exterior product of a vector with itself is always zero, but the exterior power of a frame with itself is not zero; instead it contains only of products of unique terms in the frame.
 
-The change of variables is in order to write this in terms of $$d V_0 = d^{\^3} \b{x}_0 = dx_0 \^ dy_0 \^ dz_0$$. We do this by taking the third exterior power of the change of variables $$\b{X}$$:
+The change of variables is in order to write this in terms of $$d V_0 = d^{\^3} \b{x} = dx_0 \^ dy_0 \^ dz_0$$. We do this by taking the third exterior power of the change of variables $$\b{X}$$:
 
 $$
 \begin{aligned}
 dV &= d \b{x}^{\^3} \\
-&= d \b{X}(\b{x}_0) ^{\^3}\\
-&= \frac{d \b{X}^{\^3}}{d \b{x}_0^{\^3}} d\b{x}_0^{\^3} \\
-&= (\frac{d \b{X}}{d \b{x}_0})^{\^ 3} d \b{x}_0^{\^3} \\
+&= d \b{X}(\b{x}) ^{\^3}\\
+&= \frac{d \b{X}^{\^3}}{d \b{x}^{\^3}} d\b{x}^{\^3} \\
+&= (\frac{d \b{X}}{d \b{x}})^{\^ 3} d \b{x}^{\^3} \\
 &= \det (J) d V_0
 \end{aligned}
 $$
 
-Here $$J = \nfrac{d \b{X}}{d \b{x}_0}$$ is the Jacobian of the coordinate transformation (really, it's just the first derivative of $$\b{X}$$), and $$\det J =\frac{d  \b{X}^{\^3}}{d \b{x}_0^{\^3}}= (\frac{d \b{X}}{d \b{x}_0})^{\^ 3}$$ is the Jacobian determinant. (Note, I do not write this as $$\| J \|$$ because it can be negative if the coordinate change swaps orientations, yet the vertical bars visually imply that it's positive). This is generally a much better way to think about what a Jacobian is. The "general rule" here is that if a linear transformation $$Q$$ acts on each term of a $$k$$-wedge product $$\b{a} \^ \b{b} \^ \b{c}$$, you can factor it out into the $$k$$-exterior power:
+Here $$J = \nfrac{d \b{X}}{d \b{x}}$$ is the Jacobian of the coordinate transformation (really, it's just the first derivative of $$\b{X}$$), and $$\det J =\frac{d  \b{X}^{\^3}}{d \b{x}^{\^3}}= (\frac{d \b{X}}{d \b{x}})^{\^ 3}$$ is the Jacobian determinant. (Note, I do not write this as $$\| J \|$$ because it can be negative if the coordinate change swaps orientations, yet the vertical bars visually imply that it's positive). This is generally a much better way to think about what a Jacobian is. The "general rule" here is that if a linear transformation $$Q$$ acts on each term of a $$k$$-wedge product $$\b{a} \^ \b{b} \^ \b{c}$$, you can factor it out into the $$k$$-exterior power:
 
 $$(Q \b{a}) \^ (Q \b{b}) \^ (Q \b{c}) = Q^{\^ 3} (\b{a} \^ \b{b} \^ \b{c})$$
 
-If $$Q$$ is $$n \times n$$ then $$Q^{\^ n} = \det Q$$.[^det]  This identity gives the above with $$Q = \nfrac{d \b{X}}{d \b{x}_0}$$ and $$\b{a} \^ \b{b} \^ \b{c} = dx_0 \^ dy_0 \^ dz_0 = \b{x}_0^{\^3}$$.
+If $$Q$$ is $$n \times n$$ then $$Q^{\^ n} = \det Q$$.[^det]  This identity gives the above with $$Q = \nfrac{d \b{X}}{d \b{x}}$$ and $$\b{a} \^ \b{b} \^ \b{c} = dx_0 \^ dy_0 \^ dz_0 = \b{x}^{\^3}$$.
 
 [^det]: Strictly speaking, if $$Q: V \ra W$$ then $$Q^{\^ n}$$ is a linear transformation $$\^^n V \ra \^^n W$$, so its only _component_ $$\det Q = \tr Q^{\^ n}$$ is the determinant, since the determinant has to be a scalar---but this detail rarely matters and people often fudge it.
 
@@ -214,18 +266,18 @@ d (a \^ b \^ c) &= \p_a (a \^ b \^ c) da + \p_b (a \^ b \^ c) db + \p_c (a \^ b 
 \end{aligned}
 $$
 
-Things are a bit more confusing in our case, because we're starting with $$J = \nfrac{d \b{x}^{\^ 3}}{d \b{x}_0^{\^3}}$$ and then taking the _variational_ derivative of that, for the small approximation $$\b{x} = \b{x}_0 + \delta \b{x}$$. It looks like this:
+Things are a bit more confusing in our case, because we're starting with $$J = \nfrac{d \b{x}^{\^ 3}}{d \b{x}^{\^3}}$$ and then taking the _variational_ derivative of that, for the small approximation $$\b{x} = \b{x} + \delta \b{x}$$. It looks like this:
 
 $$
 \begin{aligned}
-\delta \frac{d \b{x}^{\^3}}{d\b{x}_0^{\^3}} &= \frac{d(\b{x}_0 + \delta \b{x})^{\^3}}{d \b{x}_0^{\^3}} - \frac{d \b{x}^{\^3}}{d\b{x}_0^{\^3}} \\
-&= \frac{d \b{x}_0^{\^2} \^ d \delta \b{x}}{d \b{x}_0^{\^3}} \\ 
-&= \frac{\delta \b{x}}{d \b{x}_0} \\
+\delta \frac{d \b{x}^{\^3}}{d\b{x}^{\^3}} &= \frac{d(\b{x} + \delta \b{x})^{\^3}}{d \b{x}^{\^3}} - \frac{d \b{x}^{\^3}}{d\b{x}^{\^3}} \\
+&= \frac{d \b{x}^{\^2} \^ d \delta \b{x}}{d \b{x}^{\^3}} \\ 
+&= \frac{\delta \b{x}}{d \b{x}} \\
 &= \del \cdot \delta \b{x}
 \end{aligned}
 $$
 
-I definitely can't claim this manipulation is rigorous without working it all out in indexes, but it makes some intuitive sense. (In particular, it's not at all clear that it's valid to cancel out two of the factors of $$d \b{x}_0^{\^2} / d \b{x}_0^{\^3} = 1/d \b{x}_0$$) I have some ideas for doing it symbolically and rigorously at the same time, but I haven't figured out all the details yet.
+I definitely can't claim this manipulation is rigorous without working it all out in indexes, but it makes some intuitive sense. (In particular, it's not at all clear that it's valid to cancel out two of the factors of $$d \b{x}^{\^2} / d \b{x}^{\^3} = 1/d \b{x}$$) I have some ideas for doing it symbolically and rigorously at the same time, but I haven't figured out all the details yet.
 
 By the way, the general identity that $$d \det Q = \det Q \tr (Q^{-1} dQ)$$ is called [Jacobi's formula](https://en.wikipedia.org/wiki/Jacobi%27s_formula). You can see a vestigate of it in the above if you recognize $$Q^{\^2}$$, or more generally $$Q^{\^n-1}$$, as $$Q^{\^n-1} = (\det Q) Q^{-1}$$. It is a little hard to do the computation satisfactorily with just exterior powers though. (Or at least, I'm not happy with it.)
 
@@ -273,15 +325,15 @@ One answer is that you just don't think about them as being defined at all---so 
 
 $$\int 1_{\Omega}(\b{x}) f(\b{x}) \d V$$
 
-over all space, where $$\b{x} = \b{X}(\b{x}_0, \e)$$ is a comoving coordinate for the fluid. This clearly needs to be defined everywhere, not just inside the fluid. Now you might argue that this is not a problem because you can reduce the integral to $$\int_{\Omega}$$ _before_ switching to comoving coordinates... but that feels like the wrong approach. You should be able to instead compute
+over all space, where $$\b{x} = \b{X}(\b{x}, \e)$$ is a comoving coordinate for the fluid. This clearly needs to be defined everywhere, not just inside the fluid. Now you might argue that this is not a problem because you can reduce the integral to $$\int_{\Omega}$$ _before_ switching to comoving coordinates... but that feels like the wrong approach. You should be able to instead compute
 
-$$\int 1_{\Omega}(\b{X}(\b{x}_0, \e)) f(\b{X}(\b{x}_0, \e)) \d V$$
+$$\int 1_{\Omega}(\b{X}(\b{x}, \e)) f(\b{X}(\b{x}, \e)) \d V$$
 
 without doing this. 
 
 Some LLM-querying suggests that this is solved with what's called a "fictitious extension", but then it didn't really turn up anything about that.
 
-Off the top of my head it seems like you can basically imagine that $$\b{x}_0$$ is extended to be defined everywhere, and remaps points as necessary to "stay out of the way" of the fluid, so that $$\b{X}$$ is bijective everywhere, not just on $$\Omega$$. I have no idea if this runs into theoretical problems but I don't see why it would. (I mean: you can have a fluid where everything starts spread out and then gets arbitrarily close together, or vice versa... but you can still have a bijection in each case). 
+Off the top of my head it seems like you can basically imagine that $$\b{x}$$ is extended to be defined everywhere, and remaps points as necessary to "stay out of the way" of the fluid, so that $$\b{X}$$ is bijective everywhere, not just on $$\Omega$$. I have no idea if this runs into theoretical problems but I don't see why it would. (I mean: you can have a fluid where everything starts spread out and then gets arbitrarily close together, or vice versa... but you can still have a bijection in each case). 
 
 </aside>
 
@@ -451,7 +503,7 @@ The reason that the $$1_{\alpha}$$ is still in there is because we still have to
 
 In the case where the surface of integration is over the intersection of two volumes $$\alpha, \beta$$ the same applies, except that we use $$1_{\alpha \beta}$$ instead. The term serves to restrict to the subsurface of the two-dimensional surface $$n=0$$ which we're actually trying to integrate over. In something closer to TCAT's notation:
 
-$$\int_{\alpha \beta} f \d A = \int f \, (- \b{n} \cdot \p_{\b{x}} 1_{\alpha}) 1_{\alpha \beta} \d V = \int \delta(n_{\alpha}) f \; 1_{\alpha \beta} \d V \tag{A.42}$$
+$$\int_{\alpha \beta} f \d A = \int f \, (- \b{n} \cdot \p_{\b{x}} 1_{\alpha}) 1_{\alpha \beta} \d V = \int f \, \delta(n_{\alpha}) 1_{\alpha \beta} \d V \tag{A.42}$$
 
 In the case where $$\alpha$$ is closed and $$\beta$$ touches the entire boundary of $$\alpha$$ the term can be dropped.
 
@@ -474,7 +526,7 @@ $$
 
 Note that all of this also works in 2d (or any other d for that matter), in which case the resulting integral is over a curve instead of a surface, and of course there is only a $$(u)$$ coordinate instead of a $$(u,v)$$ coordinate to parameterize the integration surface.
 
-Comment: I'm not very happy with any of this in the form I've stated it here, but I don't want to go to far afield at the moment. I think there is a better way to think about all of this in terms of "inverse differentials", as I have written about [here](http://localhost:4000/2024/03/12/indicators.html). However, when I wrote that post I had not figured all the details out yet and I think there are a few mistakes in it. I am hoping that after I work through all this stuff I can write a followup which gets it correct.
+Comment: I'm not particularly happy with any of this in the form I've stated it here. I think there is a better way to think about all of this in terms of "inverse differentials", as I have written about [here](http://localhost:4000/2024/03/12/indicators.html). However, when I wrote that post I had not figured all the details out yet and I think there are a few mistakes in it. I am hoping that after I work through all this stuff I can write a followup which gets it correct.
 
 ------
 
@@ -485,16 +537,174 @@ So
 $$
 \begin{aligned}
 \int 1_{\alpha \beta \gamma} f \d V &= \int 1_{\alpha \beta \gamma} \delta_{\alpha} \delta_{\alpha \beta} f \d V \\
-&= \int 1_{\alpha \beta \gamma} (- \b{n}_{\alpha} \cdot \p_{\b{x}} 1_{\alpha}) (- \b{n}_{\alpha \beta} \p_{\b{x}} 1_{\alpha \beta}) f \d V
+&= \int 1_{\alpha \beta \gamma} (- \b{n}_{\alpha} \cdot \p_{\b{x}} 1_{\alpha}) (- \b{n}_{\alpha \beta} \cdot \p_{\b{x}} 1_{\alpha \beta}) f \d V
 \end{aligned} \tag{A.47}
 $$
 
-In imaginary normal coordinates you can think of this as $$(n_{\alpha}, n_{\alpha \beta}, t)$$, where $$n_{\alpha \beta}$$ is basically the normal coordinate for the integration region in $$(u,v)$$ coordinates that is left after you move to $$(n, u, v)$$ coordinates, and $$t \in T$$ is an arbitrary integration range that parameterizes the resulting curve. Then
+In imaginary normal coordinates you can think of this as $$(n_{\alpha}, n_{\alpha \beta}, t)$$, where
+
+* $$n_{\alpha}$$ parameterizes the distance from the boundary of $$\alpha$$ (with $$\beta$$)
+* $$n_{\alpha \beta}$$ is basically the normal coordinate for the boundary region $$\alpha \beta$$ itself (so, for the $$(u,v)$$ coordinates that are left after you move to $$(n, u, v)$$ coordinates), and 
+* $$t \in T$$ is an integration range that parameterizes the common curve between $$\alpha, \beta, \gamma$$. Then
 
 $$\int 1_{\alpha \beta \gamma} f \d V = \int \delta(n_{\alpha}) \delta(n_{\alpha \beta}) 1_{t \in T} f \d V$$
 
-Again, I'm not happy with any of this, but it is a way of thinking about what TCAT is doing.
+This is not the most usable form, but it is easier for me to think about what the integral means when it's written this way.
 
 --------
 
-## 3. Variations of Integrals
+## Variations of Integrals
+
+### 4. Variation of a Volume Integral
+
+Now we proceed to vary the surfaces in the preceding integrals. The derivations get pretty messy but the results make a lot of sense, so I'm going to try to reach them by skipping as many steps as possible.
+
+First we vary
+
+$$F_{\alpha} = \int_{\alpha} f_{\alpha} \d V \tag{A.48}$$
+
+Using $$\delta_{\perp \b{x}} 1_{\alpha} = - \p_{\b{x}} 1_{\alpha} \cdot \delta \b{x}$$
+
+$$
+\begin{aligned}
+\delta F_{\alpha} &= \delta \int_{\alpha} f_{\alpha} \d V  \\
+&= \delta \int f_{\alpha} 1_{\alpha} \d V  \\
+&= \underbrace{\delta_{\perp \b{x}}}_{\text{??}}\int f_{\alpha} 1_{\alpha} \d V \\
+&= \int \delta_{\perp \b{x}}(f_{\alpha} 1_{\alpha}) \d V \\
+&= \int [\delta_{\perp \b{x}} f_{\alpha} 1_{\alpha} + f_{\alpha} \delta_{\perp \b{x}} 1_{\alpha}] \d V \\
+&= \int_{\alpha} \delta_{\perp \b{x}} f_{\alpha} \d V + \int f_{\alpha} [ - \p_{\b{x}} 1_{\alpha} \cdot \delta \b{x}] \d V \\
+&= \int_{\alpha} \delta_{\perp \b{x}} f_{\alpha} \d V + \underbrace{\int_{\p \alpha} f_{\alpha} \b{n} \cdot \delta \b{x} \d A}_{\text{??}}
+\end{aligned} \tag{A.53}
+$$
+
+There are two confusing parts to this derivation which I have indicated with ??s.
+
+First, the reason that we can convert $$\delta$$ to $$\delta_{\perp \b{x}}$$ between lines (2) and (3) is that the integral $$F_{\alpha} = \int_{\alpha} f_{\alpha} \d V$$ is not a function of $$\b{x}$$ _at all_. That is: although the integral proceeds over the $$\b{x}$$ variable internally, the variable ends up "integrated out" and so there is no functional dependency at the end. This is no different from how an integral $$\int_a^b f'(t) dt$$ has no $$t$$ dependency, but it's a bit harder to see due to the multivariable notations. It is somewhat easier to understand if we write the integral as
+
+$$F_{\alpha} = \int_{\alpha} f_{\alpha}(\b{x}) d^{\^3} \b{x}$$
+
+So we are integrated over the values of the $$\b{x}$$ variable. But the variable only depends on the integration _ranges_ of this variables, not the variable itself. When $$\delta \b{x}$$ shows up on the last line, it's because when we vary the shape $$\alpha$$, the variation can be written
+
+$$\delta \alpha = \alpha + \p \alpha \cdot \delta \b{x}$$
+
+(as I was using earlier to rederive (A.32)). Both $$\alpha$$ and $$\p \alpha$$ are fixed by the initial shape of $$\alpha$$, so the entire 'variation' is given by the values of $$\delta \b{x}$$ at each point (/differential area) on the boundary. It would probably be reasonable to write this as $$\delta (\p \alpha)$$ to remove the confusing $$x$$ variable entirely, in which case the final term could be written
+
+$$\int_{\p \alpha} f_{\alpha} \b{n} \cdot \delta \b{x} \d A = \int_{\delta (\p \alpha)} f_{\alpha} d V$$
+
+Speaking of the boundary integral term, the second glaring issue in the derivation of (A.53) is the unjustified transformation between the last two lines:
+
+$$\int f_{\alpha} [ - \p_{\b{x}} 1_{\alpha} \cdot \delta \b{x}] \d V \? \int_{\p \alpha} f_{\alpha} \b{n} \cdot \delta \b{x} \d A$$
+
+TCAT writes "The gradient of the indicator function in the second term is the directional delta function that converts this integral over a volume to an integral over the boundary of $$\Omega_{\alpha}$$.", which does not, in my opinion, actually suffice to justify this step. Not that it isn't correct; it doesn't really explain it adequately. Really it is the same justification that is missing for (A.41) which I already talked about for a while earlier. To recap:
+
+The gradient of an indicator acts like a delta function in the normal direction:
+
+$$
+\begin{aligned}
+- \p_{\b{x}} 1_{\alpha} &= \delta (\b{n} \cdot \b{x}) \b{n} \\
+&= \delta(n) \b{n}
+\end{aligned}
+$$
+
+ Which is why this was true:
+
+$$ - \p_{\b{x}} 1_{\alpha} \cdot d \b{x} =  \delta(n) dn$$
+
+(since $$d \b{x} = (dn, du, dv) = \b{n} \d n+ \b{u} \d u + \b{v} \d v$$ when written as a 'vector')
+
+This time, however, we are contracting it with the variation $$\delta \b{x}$$ instead of the differential $$d \b{x}$$. Still, we can write $$\delta \b{x} = \b{n} \delta n + \b{u} \delta u + \b{v} \delta v$$ on the boundary, such that
+
+$$- \p_{\b{x}} 1_{\alpha} \cdot \delta \b{x} = \delta(n) \delta n$$
+
+(... so sorry for the two different meanings of $$\delta$$; that's supposed to be the delta function in $$n$$ times the variation of $$n$$)
+
+Therefore 
+
+$$\int f_{\alpha} [ - \p_{\b{x}} 1_{\alpha} \cdot \delta \b{x}] \d V = \int f_{\alpha} [\delta(n) \delta n] \d V = \int_{\p \alpha} f_{\alpha} (\delta n) \d A$$
+
+which recovers their version when $$\delta n$$ is written as $$\b{n} \cdot \delta \b{x}$$ again, and the $$dn$$ component of $$dV = dn \^ du \^ dv$$ has been integrated out by the delta function.
+
+I still think my version, writing $$\delta \alpha = \alpha + \p \alpha \cdot \delta \b{x}$$, gives a faster version of this. It is improved further by writing $$\p \alpha \cdot \delta \b{x} = (\p \alpha) (\delta n)$$, because that honestly makes a ton of sense---of course the boundary of alpha times a variation in the normal direction gives a volume.
+
+$$\delta_{\alpha} \int_{\alpha} f_{\alpha} \d V = [\int_{\alpha + \p \alpha \delta n} - \int_{\alpha} ] f_{\alpha} \d V = \int_{(\p \alpha) \delta n} f_{\alpha} \d V = \int_{\p \alpha} f_{\alpha} \delta n \d A$$
+
+Aside: I made a small improvement there of writing $$\delta_{\alpha}$$ instead of $$\delta_{\b{x}}$$, since properly we can't vary with respect to the $$\b{x}$$ variable... so really it makes the most sense to split the variation apart as
+
+$$\delta = \delta_{\alpha} + \delta_{\perp \alpha}$$
+
+(where $$ \delta_{\perp \alpha}$$ is the term TCAT writes as $$\overline{\delta}$$), rather than the $$\delta_{\b{x}} + \delta_{\perp \b{x}}$$ I was using before.
+
+------
+
+### 5. Variation of a Surface Integral
+
+TCAT considers the case where a surface $$\Omega_{\alpha \beta}$$ is defined as the boundary between the surfaces $$\Omega_{\alpha}$$ and $$\Omega_{\beta}$$. The derivation is somewhat long and therefore difficult to follow, but it is mostly methodical. However, it's not very satisfactory to have a long derivation that produces a short result, because there ought to be a less roundabout way to the same result that captures the intuition better. I will try to find it.
+
+We ask: what terms contribute to the variation of $$F_{\alpha \beta} = \int_{\alpha \beta} f_{\alpha \beta} \d A$$?
+
+1. There's a term for the independent variation in $$f$$, $$=\int \overline{\delta} f \d A$$
+2. There's a term for "dilations" of the boundary, where more surface area shows up because of the boundary expanding, which I am not immediately sure how to write.
+3. There's a term for expansion of the boundary _of_ the boundary, $$\delta \Omega_{\alpha \beta} \cdot \delta \b{x}$$
+
+(3) shows up verbatim in the resulting formula (A.64), so it's fine. (1) is almost te same, but they have this $$\overline{\delta}' = \overline{\delta} + \delta \b{x} \cdot \b{n} \b{n} \cdot \del$$ object instead, which they call the "fixed point variation on the surface". And (2) requires some investigation.
+
+Note: TCAT uses the objects $$\del'_{\alpha \beta}$$ and $$I'_{\alpha \beta} = I - \b{n}_{\alpha} \b{n}_{\alpha}$$ to write the second term, which I think requires more explanation than they give. The prime symbol $$'$$ is being used to mean that an operator is of one dimension less than it would normally be, so this is a _surface_ derivative and a _surface_ projection operator rather than volumes. (Similarly $$\del''$$ and $$I''$$ are derivatives/projections for curves). I don't love this notation; the subscript should really already be telling us that. (I guess there is some ambiguity whether $$I_{\alpha \beta}$$ projects _points_ or _vectors_ onto the surface, though.)
+
+Here is how I think about it:
+
+$$I$$ is the identity tensor on vectors in the whole space. Subtracting off the projection onto a particular vector removes that direction from the identity. For the case of the boundary $$(\alpha \beta)$$, you can subtract off the normal $$\b{n}_{\alpha}$$ (or $$=-\b{n}_{\beta}$$) to get 
+
+$$I_{\alpha \beta} = I - \b{n}_{\alpha} \b{n}_{\alpha}$$
+
+Which means $$I - \b{n}_{\alpha} \o \b{n}_{\alpha}$$. (I don't feel like writing $$\b{I}$$ for $$I$$ since it's not really a vector anyway.) If we write this out in terms of $$(\b{n}, \b{u}, \b{v})$$ unit vectors(with the $$\alpha$$ subscripts omitted) then it looks like 
+
+$$I'_{\alpha \beta} = I - \b{nn} = [\b{nn} + \b{uu} + \b{vv}] - \b{nn} = \b{uu} + \b{vv}$$
+
+Note that $$\b{nn} = I_n$$ is the projection operator for the normal direction, so this really says
+
+$$I - I_n = I_{uv} - I_n = I_{uv}$$
+
+A primed derivative is a derivative composed with a projection operator. For example,
+
+$$\del = \b{n} \p_n + \b{u} \p_u + \b{v} \p_v$$
+
+and therefore
+
+$$\del'_{\alpha \beta} = I_{\alpha \beta} \del = (I - \b{nn}) \del =  \b{u} \p_u + \b{v} \p_v$$
+
+Which we could write in $$(u,v)$$ coordinates as $$\del = (\p_n, \p_u, \p_v)$$ and $$\del'_{\alpha \beta} = (0, \p_u, \p_v)$$.
+
+The primed _variation_ is a bit weirder. TCAT writes
+
+$$\overline{\delta}' f = \overline{\delta} + \delta \b{x} \cdot \b{n} \b{n} \cdot \del f$$
+
+To understand this, recall that
+
+$$\delta f = (\delta_{\b{x}} f + \overline{\delta} f) =  \delta \b{x} \cdot \del_{\b{x}} f + \overline{\delta} f$$
+
+Evidently they are factoring the first term as
+
+$$\delta f =  \delta \b{x}  \cdot [\b{u} \p_u + \b{v} \p_v f + \b{n} \p_n f]+ \overline{\delta} f$$
+
+and then consolidating the $$\del_n $$ with the second term:
+
+$$\delta f= \delta \b{x} \cdot [\b{u} \p_u + \b{v} \p_v f] + [(\delta \b{x} \cdot \b{n}) \p_n f + \overline{\delta} f] = \delta \b{x} \cdot \del_{uv} f  + \overline{\delta}' f$$
+
+I'm still kinda confused why these terms are being combined. I guess the justification is something like this:
+
+1. When $$F_{\alpha \beta}$$ is integrated, there are terms due to the way that $$f_{\alpha \beta}$$ and terms due to the way that the integration region itself varies.
+2. All of the terms due to $$f_{\alpha \beta}$$ changing are consolidated into $$\overline{\delta}' f$$. This means both changes due to $$\e$$, and changes due to the surface moving in the $$\b{n}$$ direction and therefore evaluating $$f$$ at a new point, $$f(\b{x} + \delta \b{x}) \ra f + (\p_n f )(\delta n) = f + (\p_n f )(\b{n} \cdot \delta \b{x})$$
+
+-----
+
+For integral (2), we need to make sense of $$\del'_{\alpha \beta} \cdot I'_{\alpha\beta} \cdot \delta \b{x}$$. I already know what this term turns out to be, but I want to see it intuitively. Specifically it is going to turn out to be related to the [mean curvature](https://en.wikipedia.org/wiki/Mean_curvature) via $$2H = - \del \cdot \b{n}$$. So the exact term is 
+
+$$\del' \cdot \b{n}_{\alpha} \b{n}_{\alpha} \cdot \delta \b{x} = (-H/2) \delta n$$
+
+But they've rewritten things in terms of the derivative of the projection $$I_{\alpha \beta}'$$. How does that work?
+
+$$I_{\alpha \beta}' = \b{uu} + \b{vv}$$
+
+we can rewrite this as...
+
+
