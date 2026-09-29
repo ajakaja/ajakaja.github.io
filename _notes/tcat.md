@@ -697,14 +697,242 @@ I'm still kinda confused why these terms are being combined. I guess the justifi
 
 -----
 
-For integral (2), we need to make sense of $$\del'_{\alpha \beta} \cdot I'_{\alpha\beta} \cdot \delta \b{x}$$. I already know what this term turns out to be, but I want to see it intuitively. Specifically it is going to turn out to be related to the [mean curvature](https://en.wikipedia.org/wiki/Mean_curvature) via $$2H = - \del \cdot \b{n}$$. So the exact term is 
+For integral (2), we need to make sense of $$\del'_{\alpha \beta} \cdot I'_{\alpha\beta} \cdot \delta \b{x}$$. I already know what this term turns out to be, but I want to see it intuitively. Specifically it is going to turn out to be related to the [mean curvature](https://en.wikipedia.org/wiki/Mean_curvature) via $$J = 2H = \del \cdot \b{n}$$. So the exact term will turn out to be 
 
-$$\del' \cdot \b{n}_{\alpha} \b{n}_{\alpha} \cdot \delta \b{x} = (-H/2) \delta n$$
+$$(\del' \cdot \b{n}_{\alpha})(\b{n}_{\alpha} \cdot \delta \b{x}) \? J \delta n$$
 
-But they've rewritten things in terms of the derivative of the projection $$I_{\alpha \beta}'$$. How does that work?
+But they've rewritten things in terms of the derivative of the projection $$I_{\alpha \beta}'$$. How does that work? Their actual derivation (in simpler notation) is this:
 
-$$I_{\alpha \beta}' = \b{uu} + \b{vv}$$
+$$
+\begin{aligned}
+(\del' \cdot \b{n})(\b{n} \cdot \delta \b{x}) &= (\del' \cdot \b{nn}) \cdot \delta \b{x} \\
+&= \del' \cdot (I - I'_{\alpha \beta}) \cdot \delta \b{x} \\
+&= - \del' \cdot I'_{\alpha \beta} \cdot \delta \b{x}
+\end{aligned}
+$$
 
-we can rewrite this as...
+Where $$\del' \cdot I = 0$$ because the global identity operator is constant everywhere. This is a wird trick; I guess the only reason for doing it is they want things written out in terms of $$I_{\alpha \beta}'$$.
+
+-----
+
+I had a hard time following the calculus here so here is a ton of computations I did to check everything.
+
+These calculations are easier to do in the orthonormal $$(u,v,n)$$ coordinate system. I like to write the projections and derivatives in terms of it as $$\del_{uv} = \del' = (\b{u} \p_u + \b{v} \p_v)$$ and $$I_{uv} = I' = \b{uu} + \b{vv}$$.
+
+A general rule is that the derivatives of unit vectors are orthogonal to the original unit vectors. Since a unit vector $$\b{v}$$ always has length one, its derivative must move it to a nearby point on the unit sphere and therefore is tangent to that sphere. This means has $$(\p_{\b{a}} \b{v}) \cdot \b{v} = 0$$ along any choice of directional derivative $$\b{a}$$. You can see also from
+
+$$0 = \del(1) = \del (\b{u} \cdot \b{u}) = (\del \b{u}) \cdot \b{u} + \b{u} \cdot (\del \b{u}) = 2 (\b{u} \cdot \del \b{u}) = 2 \del_u \b{u}$$
+ 
+Next, a lot of this stuff is quite a bit easier to follow in index notation. In index notation we usually use the symbol $$\p$$ instead of $$\del$$, but they mean the same thing (I generally prefer the $$\p$$ symbol) The gradient of anything is written[^index]
+
+[^index]: Normally I would write this all out with upper/lower indices, but they're not needed here because all the dot products are in Euclidean space.
+
+$$\del \b{u} \equiv \p \b{u} = \p_i u_j$$
+
+This object is the full gradient of $$\b{u}$$, which is a degree-2 tensor. A directional derivative is given by contracting it with another vector on the $$\p$$ index:
+
+$$\del_{\b{a}} \b{u} \equiv \p_a \b{u} = (a_i \p_i) u_j$$
+
+Meanwhile the fact that $$\b{u} \cdot \del \b{u} = 0$$ is expressed as
+
+$$\p_i (u_j u_j) = 2 (\p_i u_j) u_j = 0$$
+
+Note that the contraction here is with the $$\b{u}$$ index. This object is the gradient of the scalar $$\b{u} \cdot \b{u}$$, which is why it is zero. Naturally its directional derivative $$\b{a} \cdot \p(\b{u} \cdot \b{u}) = 2 a_i (\p_i u_j) u_j = 0$$ also.
+
+Divergence is implemented by contracting the derivative index with the thing it is acting on:
+
+$$\del \cdot \b{u} = \p_i u_i$$
+
+When we take the divergence of a dyadic $$\b{ab}$$ it expands into two terms, but the derivative is contracted only with the left one (by convention). However there is still a product rule involving both:
+
+$$\del \cdot (\b{ab}) = \p_i (a_i b_j) = (\p_i a_i) b_j + a_i (\p_i b_j) = (\del \cdot \b{a}) \b{b} + \del_a \b{b}$$
+
+Another way to write this is as the trace of $$\del \b{u}$$, that is, double-contracting it with the identity $$I$$:
+
+$$\del \cdot \b{u} = I_{ij} \p_i u_j$$
+
+I mention that form because you kinda need it to handle the 'surface divergence'---the thing TCAT writes as $$\del'_{\alpha \beta}$$. I'll write it as $$\del_{uv}$$ because it is the divergence in the $$(uv)$$ plane. Basically we work out the ordinary divergence but using  the identity operator for that plane $$I_{uv} = \b{uu} + \b{vv}$$ instead:
+
+$$\del_{uv} \cdot \b{u} = (I_{uv})_{ij} \p_i u_j = (u_i u_j + v_i v_j) \p_i u_j$$
+
+Since $$u_i \p_i = \p_u$$ we can write this out as
+
+$$
+\begin{aligned}
+\del_{uv} \cdot \b{u} &= (u_i u_j + v_i v_j) \p_i u_j \\
+&= u_j \p_u u_j + v_j \p_v u_j \\
+&= \cancel{\b{u} \cdot \p_u \b{u}} + \b{v} \cdot \p_v \b{u} \\
+&= \b{v} \cdot \p_v \b{u}
+\end{aligned}
+$$
+
+The dot product is kinda ambiguous until you unpack it in index notation: it is specifically contracting with the component on the thing being dfferentiated, _after_ the derivative is taken. The same computation for $$\b{v}$$ gives
+
+$$\del_{uv} \cdot \b{v} = \b{u} \cdot \p_u \b{v}$$
+
+
+------
+
+Now we can work out the identities. The thing that really mystified me at first was: how are these two formulas the same?
+
+$$(\del' \cdot \b{n})(\b{n} \cdot \delta \b{x}) = - \del' \cdot I' \cdot \delta \b{x}$$
+
+Particularly because you can write it like this:
+
+$$\del_{uv} \cdot \b{nn} \cdot \delta \b{x} = -\del_{uv} \cdot (\b{uu} + \b{vv}) \cdot \delta \b{x}$$
+
+and I could not see how the RHS is also proportional to $$\b{n}$$ the way the left side apparently is. Which is why I've got this big digression figuring out how to work it out. So here's the computations in index notation.
+
+$$
+\begin{aligned}
+\del_{uv} \cdot (\b{nn}) &= (u_i u_j \p_i + v_i v_j \p_i) (n_j n_k) \\
+&= u_i u_j (\p_i n_j) n_k + u_i u_j n_j (\p_i n_k) + v_i v_j (\p_i n_j) n_k + v_i v_j n_j (\p_i n_k) \\
+&= \b{u} \cdot (\p_u \b{n}) \b{n} + \cancel{(\b{u} \cdot \b{n})} \p_u \b{n} + \b{v} \cdot (\p_v \b{n})  \b{n}+ \cancel{(\b{v} \cdot \b{n}) \p_v \b{n}} \\
+&= \b{u} \cdot (\p_u \b{n}) \b{n} + \b{v} \cdot (\p_v \b{n}) \b{n}
+\end{aligned}
+$$
+
+where I've used the fact that $$(\b{u}, \b{v}, \b{n})$$ is an orthormal frame.
+
+Now the same computation after the substitution $$\b{nn} = I - I_{uv}$$ and then noting that $$\del_{uv}(I) = 0$$, so the derivative is now acting on $$I_{uv} = (\b{uu} + \b{vv})$$. I'm going to do everything with indexes first, even though it's awful, and then repeat symbolically (I need the indices to make sure I don't do anything illegal).
+
+$$
+\begin{aligned}
+\del_{uv} \cdot (\b{uu} + \b{vv}) &= (u_i u_j \p_i + v_i v_j \p_i) (u_j u_k + v_j v_k) \\ 
+&= u_i u_j \p_i (u_j u_k) + u_i u_j \p_i (v_j v_k)+ v_i v_j \p_i  (u_j u_k)+ v_i v_j \p_i (v_j v_k) \\
+&= \cancel{u_j \p_u (u_j) u_k} + u_j u_j \p_u (u_k) +  u_j \p_u (v_j) v_k + \cancel{u_j v_j \p_u ( v_k)} \\
+& \;\;\;\;\; + v_j \p_v  (u_j)u_k  + \cancel{v_j u_j \p_v (u_k)} +  \cancel{v_j \p_v (v_j) v_k} +  v_j v_j \p_v ( v_k) \\
+&= \p_u (u_k) + u_j \p_u (v_j) v_k + v_j \p_v  (u_j)u_k + \p_v ( v_k) \\
+\end{aligned}
+$$
+
+Now we have $$\p(0) = \p(\b{u} \cdot \b{v}) = u_j \p(v_j) + v_j \p(u_j)$$, so
+
+$$
+\begin{aligned}
+= [\p_u (u_k) - v_j \p_u (u_j) v_k] + [\p_v ( v_k) - u_j \p_v  (v_j) u_k]
+\end{aligned}
+$$
+
+The derivatives $$\p_u (u_k)$$ expand as $$\p_u (u_k) = n_k n_j (\p_u u_j) + v_k v_j (\p_u u_j)$$ because  $$\p_u \b{u} = (\p_u \b{u}) \cdot (\b{uu} + \b{vv} + \b{nn}) $$, but the $$\b{u}$$ term is zero (and likewise for $$\b{v}$$). So the subtracted off terms are removing the $$\b{v}$$ and $$\b{u}$$ components of the $$\p_u \b{u}$$ and $$\b{v}$$ terms. This means
+
+$$
+\begin{aligned}
+&= [n_k n_j (\p_u u_j) + v_k v_j (\p_u u_j) - v_j \p_u (u_j) v_k] + [n^k n_j (\p_v v_j) + u_k u_j (\p_v v_j) - u_j \p_v  (v_j) u_k] \\
+&= n_k n_j (\p_u u_j) + n^k n_j (\p_v v_j) \\
+&= (\b{n} \cdot \p_u \b{u} + \b{n} \cdot \p_v \b{v}) \b{n}
+\end{aligned}
+$$
+
+Finally we have something proportional to $$\b{n}$$ (phew). Finally, we can plug in $$\b{n} \cdot \p_u \b{u} = - \b{u} \cdot \p_u \b{n}$$ to get
+
+$$
+\begin{aligned}
+-(\del_{uv} \cdot (\b{uu} + \b{vv})) &= -((\b{n} \cdot \p_u \b{u} + \b{n} \cdot \p_v \b{v}) \b{n}) \\
+&= -((-\b{u} \cdot \p_u \b{n} + -\b{v} \cdot \p_v \b{n}) \b{n}) \\
+&= \b{u} \cdot (\p_u \b{n}) \b{n} + \b{v} \cdot (\p_v \b{n}) \b{n} \\
+&= \del_{uv} \cdot (\b{nn}) 
+&\checkmark
+\end{aligned}
+$$
+
+I don't know why I did all that. Mostly to make sure I could.
+
+The 'fast' way to do this symbolically is
+
+$$
+\begin{aligned}
+(\del_{uv} \cdot \b{n}) \b{n} &= \del_{uv} \cdot (\b{nn}) - \cancel{(\b{n} \cdot \del_{uv}) \b{n}} \\
+&= (\del_{uv}) \cdot (I - \b{uu} - \b{vv}) \\
+&= -\del_{uv} \cdot I_{uv}
+\end{aligned}
+$$
+
+I was hoping to find something illuminating in the longer version but ... not really. Something is missing here.
+
+---------
+
+**Curvature**
+
+Although TCAT doesn't really discuss it, I want to see how curvature falls out of this. I know by memorization that $$2H = J = \pm \del \cdot \b{n}$$ (can't remember the sign) but it should be more intuitive than that.
+
+There clearly pieces of it in here. The frame $$U = (\b{u}, \b{v}, \b{n})$$ frame is orthornomal, which means its derivative must be a rotation operator acting on it. As a matrix:[^matrix]
+
+[^matrix]: Disclaimer: I get incredibly confused on all this matrix/transpose stuff. Took a long time to figure out and needed ai help to get it right. :(
+
+$$dU = U \Omega$$
+
+We can extract the important part:
+
+$$U^T dU = \Omega$$
+
+This can deduced from $$U^T U = I$$. We have to assume that $$dU = U \Omega$$ holds for *some* choice of $$\Omega$$, but that's okay because $$U$$ spans the space. Then:
+
+$$
+\begin{aligned}
+d(U^T U) &= d(U^T) U + U^T dU \\
+&= (\Omega^T U^T) U + U^T (U \Omega) \\
+0 &= \Omega^T + \Omega \\
+\end{aligned}
+$$
+
+In indices, $$dU = U \Omega$$ becomes $$\p_{\alpha} U_{ij} = U_{il} \Omega_{\alpha lj} $$; however, we can suppress the $$\alpha$$ and write it as $$d U_{jk} = U_{jl} \Omega_{lk}$$. Note also that $$dU^T = d(U_{ji}) = (dU)^T = U_{li} \Omega_{jl} = \Omega^T U^T$$:
+
+$$
+\begin{aligned}
+d(U_{ji} U_{jk}) &= (d U_{ji}) U_{jk} + U_{ji} d U_{jk} \\
+&= (U_{jl} \Omega_{li}) U_{jk} + U_{ji} (U_{jl} \Omega_{lk}) \\
+&= 1_{lk} \Omega_{li} + 1_{il} \Omega_{lk} \\
+&= \Omega_{ki} + \Omega_{ik} \\
+&= 0
+\end{aligned}
+$$
+
+The point is that $$\Omega = U^T dU$$ is antisymmetric. This is basically a compacat way of writing the identities that follow from differentiating the orthogonality conditions $$d(\b{u} \cdot \b{n}) = 0$$ all at once:
+
+$$
+\begin{aligned}
+(\p \b{u}) \cdot \b{v} &= - \b{u} \cdot (\p \b{v}) \\
+(\p \b{u}) \cdot \b{n} &= - \b{u} \cdot (\p \b{n}) \\
+(\p \b{v}) \cdot \b{n} &= - \b{v} \cdot (\p \b{n}) \\
+\end{aligned}
+$$
+
+becomes
+
+$$
+\begin{aligned}
+dU^T \cdot U &= -U^T \cdot dU \\
+\Omega &= - \Omega^T
+\end{aligned}
+$$
+
+
+
+In particular it can be written as a linear combination of three so-called "generators of rotation", which we can conveniently write out in the $$U$$ frame. With $$r_{un} = \b{un} - \b{nu}$$, $$r_{vn} = \b{vn} - \b{nv}$$, and $$r_{uv} = \b{uv} - \b{vu}$$:
+
+$$\Omega = \theta_{un} r_{un} + \theta_{vn} r_{vn} + \theta_{uv} r_{uv} = \vec{\theta} \cdot \vec{r}$$
+
+So the way that $$\Omega = U^{T} dU$$ works is that, for each choice of direction $$d \b{x}$$, it produces some linear combination of these three rotations and that's how $$U$$ rotates in that direction. 
+
+Note that $$\Omega$$ is not itself the derivative of $$U$$. Actually, it is the derivative of the _logarithm_ of $$U$$, in a sense. We can write out displacements of $$U$$ as 
+
+$$U(\b{x} + d \b{x}) = \exp (\vec{r} \cdot \frac{d \theta}{d \b{x}} \cdot d \b{x}) U$$
+
+This can be approximated (where I'm fudging the order of the products since $$\Omega$$ is a three-tensor anyway...)
+
+$$
+\begin{aligned}
+U(\b{x} + d \b{x}) &\approx (I + \vec{r} \cdot \frac{d \theta}{d\b{x}} \cdot d \b{x}) U \\
+&= U + \vec{r} \frac{d \theta}{d\b{x}} \cdot d \b{x} U \\
+&= U + (U \Omega) d\b{x}
+\end{aligned}
+$$
+
+Which is why it the rotation part is extracted via $$U^T dU = U^T (U\Omega) d\b{x} = \Omega$$. But a better way to _think_ of it is that[^note]
+
+[^note]: Note to self--this is a good example of the ideal presentation of math being in terms of intuitive canonical forms.
+
+$$\Omega = \frac{d \log U}{d \b{x}}$$
 
 
