@@ -136,7 +136,7 @@ $$
 \delta_{\b{x}} \int_{\Omega} f(\b{u}) \d V &= \int_{\Omega^*} f(\b{u}^*) \d V^* - \int_{\Omega} f(\b{u}) \d V \\
 &= \int_{\Omega} [f(\b{u}^*) J -  f(\b{u}) ] \d V \\
 &= \int_{\Omega} [(f + f_{\b{x}} \delta \b{x} + \ldots ) (I + \p_{\b{x}} \delta \b{x} + \ldots) - f] \d V \\
-&\approx \int_{\Omega} [ f_{\b{x}} \delta \b{x}  + f \; \p_{\b{x}} \delta \b{x}] \d V \\
+&\approx \int_{\Omega} [ f_{\b{x}} \delta \b{x}  + f \, \p_{\b{x}} \delta \b{x}] \d V \\
 &= \int_{\Omega} [ \cancel{f_{\b{x}} \delta \b{x}}  + \p_{\b{x}} (f \delta \b{x}) - \cancel{f_{\b{x}} \delta \b{x}}] \d V \\ 
 
 &= \int_{\Omega} \p_{\b{x}} (f \delta \b{x}) \d V \\
@@ -226,7 +226,7 @@ $$\frac{df}{dt} = \b{u} \cdot \del f + \frac{\p f}{\p t}$$
 
 Earlier we have this coordinate change $$\b{x} = \b{X}(\b{x}, t)$$ and then we have a volume integral transformation
 
-$$\int f \d V = \int f \; J \d V_0$$
+$$\int f \d V = \int f \, J \d V_0$$
 
 The better way to write this is in terms of exterior algebra (with some of my own modifications). I will write it out even though this won't be sufficient to explain it. Note that this is related to the math of differential forms, but other than the fact that we're doing it in an integral it applies to vectors algebra in general.
 
@@ -801,7 +801,7 @@ $$
 \del_{uv} \cdot (\b{uu} + \b{vv}) &= (u_i u_j \p_i + v_i v_j \p_i) (u_j u_k + v_j v_k) \\ 
 &= u_i u_j \p_i (u_j u_k) + u_i u_j \p_i (v_j v_k)+ v_i v_j \p_i  (u_j u_k)+ v_i v_j \p_i (v_j v_k) \\
 &= \cancel{u_j \p_u (u_j) u_k} + u_j u_j \p_u (u_k) +  u_j \p_u (v_j) v_k + \cancel{u_j v_j \p_u ( v_k)} \\
-& \;\;\;\;\; + v_j \p_v  (u_j)u_k  + \cancel{v_j u_j \p_v (u_k)} +  \cancel{v_j \p_v (v_j) v_k} +  v_j v_j \p_v ( v_k) \\
+& \,\,\,\,\, + v_j \p_v  (u_j)u_k  + \cancel{v_j u_j \p_v (u_k)} +  \cancel{v_j \p_v (v_j) v_k} +  v_j v_j \p_v ( v_k) \\
 &= \p_u (u_k) + u_j \p_u (v_j) v_k + v_j \p_v  (u_j)u_k + \p_v ( v_k) \\
 \end{aligned}
 $$
@@ -852,21 +852,20 @@ I was hoping to find something illuminating in the longer version but ... not re
 
 ---------
 
-**Curvature**
+<aside class="toggleable" id="curvature" placeholder="<b>Aside</b>: Curvature">
 
-Although TCAT doesn't really discuss it, I want to see how curvature falls out of this. I know by memorization that $$2H = J = \pm \del \cdot \b{n}$$ (can't remember the sign) but it should be more intuitive than that.
+Although TCAT doesn't really discuss it yet, I wanted to see how curvature falls out of this. I know by memorization that $$2H = J = \pm \del \cdot \b{n}$$ (can't remember the sign) but it should be more intuitive than that.
 
-There clearly pieces of it in here. The frame $$U = (\b{u}, \b{v}, \b{n})$$ frame is orthornomal, which means its derivative must be a rotation operator acting on it. As a matrix:[^matrix]
+There clearly pieces of it in here. The frame $$U = (\b{u}, \b{v}, \b{n})$$ frame is orthornomal, which means its derivative must be a rotation operator acting on it. As a matrix:
 
-[^matrix]: Disclaimer: I get incredibly confused on all this matrix/transpose stuff. Took a long time to figure out and needed ai help to get it right. :(
 
 $$dU = U \Omega$$
 
 We can extract the important part:
 
-$$U^T dU = \Omega$$
+$$U^T dU = U^T U \Omega = I \Omega = \Omega$$
 
-This can deduced from $$U^T U = I$$. We have to assume that $$dU = U \Omega$$ holds for *some* choice of $$\Omega$$, but that's okay because $$U$$ spans the space. Then:
+We have to assume that $$dU = U \Omega$$ holds for *some* choice of $$\Omega$$, but that's okay because $$U$$ spans the space. Then:
 
 $$
 \begin{aligned}
@@ -876,19 +875,7 @@ d(U^T U) &= d(U^T) U + U^T dU \\
 \end{aligned}
 $$
 
-In indices, $$dU = U \Omega$$ becomes $$\p_{\alpha} U_{ij} = U_{il} \Omega_{\alpha lj} $$; however, we can suppress the $$\alpha$$ and write it as $$d U_{jk} = U_{jl} \Omega_{lk}$$. Note also that $$dU^T = d(U_{ji}) = (dU)^T = U_{li} \Omega_{jl} = \Omega^T U^T$$:
-
-$$
-\begin{aligned}
-d(U_{ji} U_{jk}) &= (d U_{ji}) U_{jk} + U_{ji} d U_{jk} \\
-&= (U_{jl} \Omega_{li}) U_{jk} + U_{ji} (U_{jl} \Omega_{lk}) \\
-&= 1_{lk} \Omega_{li} + 1_{il} \Omega_{lk} \\
-&= \Omega_{ki} + \Omega_{ik} \\
-&= 0
-\end{aligned}
-$$
-
-The point is that $$\Omega = U^T dU$$ is antisymmetric. This is basically a compacat way of writing the identities that follow from differentiating the orthogonality conditions $$d(\b{u} \cdot \b{n}) = 0$$ all at once:
+The point is that $$\Omega = U^T dU$$ is antisymmetric. This is basically a compact way of writing the identities that follow from differentiating the orthogonality conditions $$d(\b{u} \cdot \b{n}) = 0$$ all at once:
 
 $$
 \begin{aligned}
@@ -902,37 +889,169 @@ becomes
 
 $$
 \begin{aligned}
-dU^T \cdot U &= -U^T \cdot dU \\
+U^T \cdot dU &= -dU^T \cdot U \\
 \Omega &= - \Omega^T
 \end{aligned}
 $$
-
-
-
-In particular it can be written as a linear combination of three so-called "generators of rotation", which we can conveniently write out in the $$U$$ frame. With $$r_{un} = \b{un} - \b{nu}$$, $$r_{vn} = \b{vn} - \b{nv}$$, and $$r_{uv} = \b{uv} - \b{vu}$$:
-
-$$\Omega = \theta_{un} r_{un} + \theta_{vn} r_{vn} + \theta_{uv} r_{uv} = \vec{\theta} \cdot \vec{r}$$
-
-So the way that $$\Omega = U^{T} dU$$ works is that, for each choice of direction $$d \b{x}$$, it produces some linear combination of these three rotations and that's how $$U$$ rotates in that direction. 
 
 Note that $$\Omega$$ is not itself the derivative of $$U$$. Actually, it is the derivative of the _logarithm_ of $$U$$, in a sense. We can write out displacements of $$U$$ as 
 
 $$U(\b{x} + d \b{x}) = \exp (\vec{r} \cdot \frac{d \theta}{d \b{x}} \cdot d \b{x}) U$$
 
-This can be approximated (where I'm fudging the order of the products since $$\Omega$$ is a three-tensor anyway...)
+This can be approximated as:
 
 $$
 \begin{aligned}
 U(\b{x} + d \b{x}) &\approx (I + \vec{r} \cdot \frac{d \theta}{d\b{x}} \cdot d \b{x}) U \\
-&= U + \vec{r} \frac{d \theta}{d\b{x}} \cdot d \b{x} U \\
-&= U + (U \Omega) d\b{x}
+&= U + (\vec{r} \cdot \frac{d \theta}{d\b{x}} \cdot d \b{x}) U \\
+U + dU &= U + (U \Omega) \cdot d\b{x} \\
+dU &= (U \Omega) \cdot d\b{x}
 \end{aligned}
 $$
 
-Which is why it the rotation part is extracted via $$U^T dU = U^T (U\Omega) d\b{x} = \Omega$$. But a better way to _think_ of it is that[^note]
+(where I am cheating a bit with the order of the terms, since it needs index notation to really specify what contracts with what). This is why the rotation part is extracted via $$U^T dU = U^T (U\Omega) d\b{x} = \Omega$$. But a better way to write that is
 
-[^note]: Note to self--this is a good example of the ideal presentation of math being in terms of intuitive canonical forms.
+$$\Omega = \frac{d \log U}{d \b{x}} = \vec{r} \cdot \frac{d \theta}{ d \b{x}}$$
 
-$$\Omega = \frac{d \log U}{d \b{x}}$$
+directly. I'm not quite sure what the rules for matrix logarithms are, but in analogy with single variable calculus these should be equivalent because $$d \log U = U^{-1} dU = U^T dU = \Omega$$.
+
+The actual behavior of $$\Omega$$ is that it maps translations $$d \b{x}$$ onto rotation operators that describe how the frame rotates as you move in that direction. In particular 
+
+$$dU = \p_\alpha U_{ai} dx_{\alpha}= U_{aj} {\Omega_{\alpha ji}} dx_{\alpha}$$
+
+so $$\Omega$$ is really a degree-$$3$$ tensor with three indices. The $$\alpha$$ index is the one that is used to make directional derivatives:
+
+$$ \Omega_{\alpha ji}  d x_{\alpha}$$
+
+describes something which, when multiplying by $$U$$, describes how $$U$$ changes as you move in that direction.
+
+Since $$\Omega$$ is antisymmetric it can be written as a linear-combination of antisymmetric matrices in each of the $$(un, vn, uv)$$ planes. These are called the "generators of rotation".
+
+$$
+\begin{aligned}
+r_{vn} &= \b{vn} - \b{nv} \\ 
+r_{nu} &= \b{nu} - \b{un} \\ 
+r_{uv} &= \b{uv} - \b{vu}
+\end{aligned}
+$$
+
+Which we can consolidate into a vector:
+
+$$\vec{r} = (r_{vn}, r_{nu}, r_{uv})$$
+
+Each generator can be written as a [Hodge Star](https://en.wikipedia.org/wiki/Hodge_star_operator) operation in coordinates. For example 
+
+$$r_{nu} = \b{nu} - \b{un} = \star \b{v} = \b{v} \cdot (\x \^ \y \^ \z) = \b{v} \cdot (\b{u} \^ \b{v} \^ \b{n})$$
+
+I like to write this as $$r_{\star v}$$, for short, so 
+
+$$\vec{r} = (r_{\star u}, r_{\star v}, r_{\star n})$$
+
+The full expression for $$\Omega$$ is 
+
+$$\Omega = \omega_{vn} r_{vn} + \omega_{nu} r_{nu} + \omega_{uv} r_{uv} = \begin{pmatrix} 0 & -\omega_{uv} & \omega_{nu} \\ \omega_{uv} & 0 & -\omega_{vn} \\ -\omega_{nu} & \omega_{vn} & 0 \end{pmatrix}$$
+
+Where each $$\omega_{ij} = \omega_{\star k}$$ is itself a one-form. 
+
+$$\omega_{\star k} = d \theta_k = \frac{d \theta_k}{d x_{\alpha}} d x_{\alpha}$$
+
+These are the _curvatures_, the derivatives of the angle in the $$(ij)$$ plane, that is, around the $$k$$ axis, as you travel in the $$\alpha$$ direction (where $$(i,j,k)$$ can be picked from $$(u,v,n)$$ or $$(x,y,z)$$ or whatever you want).
+
+$$d\b{n} = \b{n} \Omega $$ tells us how $$\b{n}$$ specifically rotates as you move in other directions:
+
+$$
+\begin{aligned}
+\b{n} \Omega &= \begin{pmatrix} 0 \\ 0 \\ 1 \end{pmatrix}  \begin{pmatrix} 0 & -\omega_{uv} & \omega_{nu} \\ \omega_{uv} & 0 & -\omega_{vn} \\ -\omega_{nu} & \omega_{vn} & 0 \end{pmatrix} \\
+&= \begin{pmatrix} \omega_{nu} \\ -\omega_{vu} \\ 0 \end{pmatrix} \\
+&= \omega_{nu} \b{u} - \omega_{vn} \b{v}\\
+\end{aligned}
+
+// wip for later
+
+* second fundamental form
+* connection to derivatives
+* should I use $$U^T$$ instead of $$U$$ for the frame so that this all multiplies in the usual direction?
+* principal curvatures
+* mean curvature
+
+-----
+
+</aside>
 
 
+
+-------
+
+
+
+<aside class="toggleable" id="indices" placeholder="<b>Aside</b>: wip - Curvature Part 2, the same computations in indices</em>">
+
+
+Now I want to repeat these calculations with indices, very tediously, because it is the only way I can be sure I know exactly what I'm writing down.
+
+In indices, $$U = (\b{u}, \b{v}, \b{n})$$ has two indices $$U_{ij}$$. It is a bit confusing however because these indices mean different things: one is a 'spatial' index, over $$(\x, \y, \z)$$, for example, while the other is a 'frame' index which iterates over the three elements themselves. To distinguish the two I will use $$(i, j, k \ldots)$$ for frame indices and $$(a,b,c, \ldots)$$ for spatial indices. So $$U = U_{ai}$$, e.g. 
+
+$$U_{a1} = u_a = \b{u}$$
+
+A pretty decent way to think about this is that $$U$$ acts like vector over another vector space $$e_i = (e_1, e_2, e_3)$$, so $$U = \b{u} e_1 + \b{v} e_2 + \b{n} e_3$$. The $$e_i$$ basis vectors don't really mean anything; they're just there to keep track of which vector of the frame is in which position.
+
+The spatial derivative of $$U$$ is 
+
+$$dU_{ai} = \p_{\alpha} U_{ai} = U_{aj} \Omega_{\alpha ji}$$
+
+We'll suppress the $$\alpha$$ coordinate for now since it is just used to form a directional derivative. Therefore $$\p U_{ai} = U_{aj} \Omega_{ji}$$. The effect of $$\Omega$$ is to mix together the frame vectors. For example 
+
+$$d\b{u} = dU_{a1} = U_{a1} \Omega_{11} + U_{a2} \Omega_{21} + U_{a3} \Omega_{31} = \b{u} \Omega_{11} + \b{v} \Omega_{21} + \b{n} \Omega_{31}$$
+
+(and it will turn out that $$\Omega_{11} = 0$$ because it's antisymmetric.) So each derivative of a basis vector is a linear combination of the other basis vectors.
+
+Next, $$U^T U = I$$ translates to $$U^T_{ia} U_{aj} = I_{ij} \equiv e_1 e_1 + e_2 e_2 + e_3 e_3$$. (I'll omit the $$T$$ symbol after this since it is implied by the frame index coming first.) This operator is the identity on the frame index (the space spanned by $$e_i$$). The other way gives $$U U^T = U_{ai} U_{ib} = I_{ab} \equiv \b{uu} + \b{vv} + \b{nn}$$.
+
+We extract $$\Omega$$ with
+
+$$(U^T dU)_{ji} = (U_{ja} dU_{ai}) = U_{ja} U_{ak} \Omega_{ki} = \Omega_{ji}$$
+
+Differentiating $$U^T U$$ gives us the antisymmetry of $$\Omega$$:
+
+$$
+\begin{aligned}
+d (U^T U)_{ij} &= d (U_{i a} U_{aj}) \\
+&= dU_{ia} U_{aj} + U_{ia} dU_{aj} \\
+&= (\Omega^T_{ik} U_{ka}) U_{aj} + U_{ia} (U_{ak} \Omega_{kj}) \\
+0 &= \Omega_{ji} + \Omega_{ij} \\
+\end{aligned}
+$$
+
+
+//
+
+// wip $$U$$ has two indices...
+
+In coordinates this is a Levi-Cevita symbol times a basis vector:
+
+$$r_{ij} = U_k \e_{ijk}$$
+
+for example
+
+$$r_{31} = U_2 \cdot \e_{ijk} (U_i U_j U_k) = \e_{ij2} U_i U_j = U_3 U_1 - U_1 U_3 = \b{n} \b{u} - \b{u} \b{n}$$
+
+(Note, $$\e_{ijk} U_i U_j U_k$$ can be expanded in any basis, for example $$=\e_{ijk} x_i x_j x_k$$ as well, but things work out nicely if we stick with the $$U$$-basis.)
+
+
+</aside>
+
+
+{% include old.html %}
+
+
+
+
+We can choose the $$(u, v, n)$$ frame as a coordinate system for $$d \b{x}$$. So
+
+$$
+\begin{aligned}
+U(u + du, v + dv, n + dn)_{ij} &= \exp(\vec{r} \cdot \frac{d \vec{\theta}}{d(u,v,n)} \cdot (du, dv, dn)) U_{ij}
+\end{aligned}
+$$
+
+///
