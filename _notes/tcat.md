@@ -14,6 +14,7 @@ We start with Appendix A because the mathematical framework has to be understood
 <!--more-->
 
 $$\newcommand{\frakr}{\mathfrak{r}}$$
+$$\newcommand{\odelta}{\overline{\delta}}$$
 
 -------
 
@@ -49,7 +50,7 @@ So $$\delta$$ and $$d$$ really just mean the same thing everywhere. As far as I 
 
 These describe what is apaprently the "classical" approach to varying a integral. The integrel in question is something like $$F = \int_{\Omega(\b{x})} f(\b{u}(\b{x})) d\Omega$$, and the variation performed is varying the shape of the surface $$\Omega$$ itself. (I was not previously aware that you could vary an integration surface like this, but it's not that surprising---I suppose that, if you can describe a surface as a function, then you ought to be able to vary it.) The target theorem is
 
-$$\delta F = \int_{\Omega} \overline{\delta} f(\b{u}) \, d \frakr + \int_{\Gamma} f(\b{u}) \b{n} \cdot \delta \b{x} \, d \frakr \tag{A.32}$$
+$$\delta F = \int_{\Omega} \odelta f(\b{u}) \, d \frakr + \int_{\Gamma} f(\b{u}) \b{n} \cdot \delta \b{x} \, d \frakr \tag{A.32}$$
 
 Note that the derivation of this is also basically found on Wikipedia under [Reynolds Transport Theorem](https://en.wikipedia.org/wiki/Reynolds_transport_theorem), although in slightly less generality. The Wiki version is
 
@@ -81,17 +82,17 @@ They then write the $$\b{u}$$ variation as
 
 $$
 \begin{aligned}
-\delta \b{u} = \overline{\delta} \b{u} + \del \b{U} \cdot \delta \b{x}
+\delta \b{u} = \odelta \b{u} + \del \b{U} \cdot \delta \b{x}
 \end{aligned}
 $$
 
-which I find very hard to read. But the $$\overline{\delta}$$ notation is confusing. The meaning is that it is the 'independent' variation of an object _not_ due to the variation in $$\b{x}$$, that is, it's the $$\e$$ partial derivative rather than the part that depends on $$\e$$ only indirectly via an $$\x$$ derivative.
+which I find very hard to read. But the $$\odelta$$ notation is confusing. The meaning is that it is the 'independent' variation of an object _not_ due to the variation in $$\b{x}$$, that is, it's the $$\e$$ partial derivative rather than the part that depends on $$\e$$ only indirectly via an $$\x$$ derivative.
 
-$$\overline{\delta} \b{u} = \p_{\e} \b{U}(\b{x}, \e)$$
+$$\odelta \b{u} = \p_{\e} \b{U}(\b{x}, \e)$$
 
 The same operator can act on functions of $$\b{u}$$ as well:
 
-$$\overline{\delta} f(\b{u}) = f_{\b{u}} \overline{\delta}\b{u}$$
+$$\odelta f(\b{u}) = f_{\b{u}} \odelta\b{u}$$
 
 I haven't seen this before, but it corresponds to the $$\b{f}_t$$ term in the Reynolds tranport theorem version: the derivative of $$\b{f}(\b{x}, t)$$ due to dependent variables other than $$\b{x}$$. I would prefer to write it as $$\delta_{\perp \b{x}}$$ instead, such that
 
@@ -394,7 +395,7 @@ Therefore:
 
 $$\delta_{\perp \b{x}} 1_{\Omega} = - \p_{\b{x}} 1_{\Omega} \cdot \delta \b{x} \tag{A.36}$$
 
-TCAT writes this as $$\overline{\delta} 1_{\Omega} = \delta \b{x} \cdot \del 1_{\Omega}$$, and if you write it out explicitly in terms of $$\e$$, then $$\overline{\delta} 1_{\Omega} = \p_{\e} 1_{\Omega} \d \e$$.
+TCAT writes this as $$\odelta 1_{\Omega} = \delta \b{x} \cdot \del 1_{\Omega}$$, and if you write it out explicitly in terms of $$\e$$, then $$\odelta 1_{\Omega} = \p_{\e} 1_{\Omega} \d \e$$.
 
 Note that the variation of a surface is not zero respect with ambient coordinates, but that's not an operation we have considered anywhere. For that matter it is not even clear what a variation with respect to ambient coordinates would mean: $$1_{\Omega^*}(\b{x}^*) = 1_{\Omega}(\b{x}^*, \e)$$ is a function of ambient coordinates in the $$\b{x}^*$$ coordinate, but it is _regular_ function of a single ($$\bb{R}^n$$-valued) coordinate, not of a functional, so we would just talk about the derivative with respect to ambient coordinates rather than the variation.
 
@@ -553,9 +554,9 @@ This is not the most usable form, but it is easier for me to think about what th
 
 --------
 
-## Variations of Integrals
+## A.4 - A.6 Variations of Integrals
 
-### 4. Variation of a Volume Integral
+### A.4 Variation of a Volume Integral
 
 Now we proceed to vary the surfaces in the preceding integrals. The derivations get pretty messy but the results make a lot of sense, so I'm going to try to reach them by skipping as many steps as possible.
 
@@ -632,43 +633,55 @@ Aside: I made a small improvement there of writing $$\delta_{\alpha}$$ instead o
 
 $$\delta = \delta_{\alpha} + \delta_{\perp \alpha}$$
 
-(where $$ \delta_{\perp \alpha}$$ is the term TCAT writes as $$\overline{\delta}$$), rather than the $$\delta_{\b{x}} + \delta_{\perp \b{x}}$$ I was using before.
+(where $$ \delta_{\perp \alpha}$$ is the term TCAT writes as $$\odelta$$), rather than the $$\delta_{\b{x}} + \delta_{\perp \b{x}}$$ I was using before.
 
 ------
 
-### 5. Variation of a Surface Integral
+### A.5. Variation of a Surface Integral
 
 TCAT considers the case where a surface $$\Omega_{\alpha \beta}$$ is defined as the boundary between the surfaces $$\Omega_{\alpha}$$ and $$\Omega_{\beta}$$. The derivation is somewhat long and therefore difficult to follow, but it is mostly methodical. However, it's not very satisfactory to have a long derivation that produces a short result, because there ought to be a less roundabout way to the same result that captures the intuition better. I will try to find it.
 
-We ask: what terms contribute to the variation of $$F_{\alpha \beta} = \int_{\alpha \beta} f_{\alpha \beta} \d A$$?
 
-1. There's a term for the independent variation in $$f$$, $$=\int \overline{\delta} f \d A$$
+We ask: what terms should contribute to the variation of $$F_{\alpha \beta} = \int_{\alpha \beta} f_{\alpha \beta} \d A$$?
+
+1. There's a term for the independent variation in $$f$$, $$=\int \odelta f \d A$$.
 2. There's a term for "dilations" of the boundary, where more surface area shows up because of the boundary expanding, which I am not immediately sure how to write.
-3. There's a term for expansion of the boundary _of_ the boundary, $$\delta \Omega_{\alpha \beta} \cdot \delta \b{x}$$
+3. There's a term for expansion of the boundary _of_ the boundary, $$\delta \Omega_{\alpha \beta} \cdot \delta \b{x}$$, which looks like $$\b{n}_{\alpha \beta} \cdot \delta \b{x}$$ where $$\b{n}_{\alpha \beta}$$ is the normal of this boundary-of-boundary.
 
-(3) shows up verbatim in the resulting formula (A.64), so it's fine. (1) is almost te same, but they have this $$\overline{\delta}' = \overline{\delta} + \delta \b{x} \cdot \b{n} \b{n} \cdot \del$$ object instead, which they call the "fixed point variation on the surface". And (2) requires some investigation.
+The formula they come up with is
 
-Note: TCAT uses the objects $$\del'_{\alpha \beta}$$ and $$I'_{\alpha \beta} = I - \b{n}_{\alpha} \b{n}_{\alpha}$$ to write the second term, which I think requires more explanation than they give. The prime symbol $$'$$ is being used to mean that an operator is of one dimension less than it would normally be, so this is a _surface_ derivative and a _surface_ projection operator rather than volumes. (Similarly $$\del''$$ and $$I''$$ are derivatives/projections for curves). I don't love this notation; the subscript should really already be telling us that. (I guess there is some ambiguity whether $$I_{\alpha \beta}$$ projects _points_ or _vectors_ onto the surface, though.)
+$$
+\begin{aligned}
+\delta F_{\alpha \beta} &= \delta \int_{\Omega_{\alpha \beta}} f_{\alpha \beta} d \frakr \\
+&= \underbrace{\int_{\Omega_{\alpha \beta}} \odelta{}' f_{\alpha \beta} \d \frakr}_{1} - \underbrace{\int_{\Omega_{\alpha \beta}} f_{\alpha \beta} \del'_{\alpha \beta} \cdot \b{I}'_{\alpha \beta} \cdot \delta \b{x} \d \frakr}_{2} + \underbrace{\int_{\Gamma_{\alpha \beta}} f_{\alpha \beta} \b{n}_{\alpha \beta} \cdot \delta \b{x} \ d \frakr}_{3}
+\end{aligned} \tag{A.64}
+$$
 
-Here is how I think about it:
+Our (3) shows up verbatim in the resulting formula (A.64), so it's fine. (1) is almost the same, but they have this $$\odelta' = \odelta + \delta \b{x} \cdot \b{n} \b{n} \cdot \del$$ object instead of just $$\odelta$$, which they call the "fixed point variation on the surface". And (2) requires some investigation because it's not obvious why it has the form it does.
 
-$$I$$ is the identity tensor on vectors in the whole space. Subtracting off the projection onto a particular vector removes that direction from the identity. For the case of the boundary $$(\alpha \beta)$$, you can subtract off the normal $$\b{n}_{\alpha}$$ (or $$=-\b{n}_{\beta}$$) to get 
+So we need to investigate why (1) is a bit different and what (2) means.
 
-$$I_{\alpha \beta} = I - \b{n}_{\alpha} \b{n}_{\alpha}$$
+First, TCAT uses the objects $$\del'_{\alpha \beta}$$ and $$\b{I}'_{\alpha \beta} = \b{I} - \b{n}_{\alpha} \b{n}_{\alpha}$$ to write the second term, which I think requires more explanation than they give. The prime symbol $$'$$ is being used to mean that an operator is of one dimension less than it would normally be, so this is a _surface_ derivative and a _surface_ projection operator rather than volumes. (Similarly $$\del''$$ and $$I''$$ are derivatives/projections for curves). I don't love this notation; the subscript should really already be telling us that.
 
-Which means $$I - \b{n}_{\alpha} \o \b{n}_{\alpha}$$. (I don't feel like writing $$\b{I}$$ for $$I$$ since it's not really a vector anyway.) If we write this out in terms of $$(\b{n}, \b{u}, \b{v})$$ unit vectors(with the $$\alpha$$ subscripts omitted) then it looks like 
+Here is how I think about these projections:
 
-$$I'_{\alpha \beta} = I - \b{nn} = [\b{nn} + \b{uu} + \b{vv}] - \b{nn} = \b{uu} + \b{vv}$$
+$$I$$ is the identity tensor on vectors in the whole space. Given any orthonormal frame you can write this out as dyadics over each vector:
 
-Note that $$\b{nn} = I_n$$ is the projection operator for the normal direction, so this really says
+$$I = \b{xx} + \b{yy} + \b{zz} = \b{uu} + \b{vv} + \b{nn}$$
 
-$$I - I_n = I_{uv} - I_n = I_{uv}$$
+Subtracting off the projection onto a particular vector removes that direction from the identity. For the case of the boundary $$(\alpha \beta)$$, you can subtract off the normal $$\b{n}_{\alpha}$$ ($$=-\b{n}_{\beta}$$) to get 
 
-A primed derivative is a derivative composed with a projection operator. For example,
+$$\b{I}'_{\alpha \beta} = I - \b{n}_{\alpha} \b{n}_{\alpha}$$
+
+I will usually just write the normal as $$\b{n}$$ and assume the existence of a $$(\b{u}, \b{v}, \b{n})$$ frame on the boundary. I also like to write $$I_{uv} = \b{uu} + \b{vv}$$ and $$I_n = \b{nn}$$ for the projections onto certain sets of directions. I also don't care about writing $$\b{I}$$ for $$I$$ since it's not really a vector anyway. So I would write their projection onto the surface as
+
+$$\b{I}'_{\alpha \beta} = I - I_n = (\b{uu} + \b{vv} + \b{nn}) - (\b{nn}) = \b{uu} + \b{vv} = I_{uv}$$
+
+Next, a primed derivative is a derivative composed with a projection operator. For example, the full gradient is
 
 $$\del = \b{n} \p_n + \b{u} \p_u + \b{v} \p_v$$
 
-and therefore
+and the primed / surface gradient is
 
 $$\del'_{\alpha \beta} = I_{\alpha \beta} \del = (I - \b{nn}) \del =  \b{u} \p_u + \b{v} \p_v$$
 
@@ -676,32 +689,30 @@ Which we could write in $$(u,v)$$ coordinates as $$\del = (\p_n, \p_u, \p_v)$$ a
 
 The primed _variation_ is a bit weirder. TCAT writes
 
-$$\overline{\delta}' f = \overline{\delta} + \delta \b{x} \cdot \b{n} \b{n} \cdot \del f$$
+$$\odelta{}' f = \odelta + \delta \b{x} \cdot \b{n} \b{n} \cdot \del f$$
 
 To understand this, recall that
 
-$$\delta f = (\delta_{\b{x}} f + \overline{\delta} f) =  \delta \b{x} \cdot \del_{\b{x}} f + \overline{\delta} f$$
+$$\delta f = (\delta_{\b{x}} f + \odelta f) =  \delta \b{x} \cdot \del_{\b{x}} f + \odelta f$$
 
 Evidently they are factoring the first term as
 
-$$\delta f =  \delta \b{x}  \cdot [\b{u} \p_u + \b{v} \p_v f + \b{n} \p_n f]+ \overline{\delta} f$$
+$$\delta f =  \delta \b{x}  \cdot [\b{u} \p_u + \b{v} \p_v f + \b{n} \p_n f]+ \odelta f$$
 
-and then consolidating the $$\del_n $$ with the second term:
+and then consolidating the $$\b{n}$$ component into the second term:
 
-$$\delta f= \delta \b{x} \cdot [\b{u} \p_u + \b{v} \p_v f] + [(\delta \b{x} \cdot \b{n}) \p_n f + \overline{\delta} f] = \delta \b{x} \cdot \del_{uv} f  + \overline{\delta}' f$$
+$$\delta f= \delta \b{x} \cdot [\b{u} \p_u + \b{v} \p_v f] + [(\delta \b{x} \cdot \b{n}) \p_n f + \odelta f] = \delta \b{x} \cdot \del_{uv} f  + \odelta' f$$
 
 I'm still kinda confused why these terms are being combined. I guess the justification is something like this:
 
-1. When $$F_{\alpha \beta}$$ is integrated, there are terms due to the way that $$f_{\alpha \beta}$$ and terms due to the way that the integration region itself varies.
-2. All of the terms due to $$f_{\alpha \beta}$$ changing are consolidated into $$\overline{\delta}' f$$. This means both changes due to $$\e$$, and changes due to the surface moving in the $$\b{n}$$ direction and therefore evaluating $$f$$ at a new point, $$f(\b{x} + \delta \b{x}) \ra f + (\p_n f )(\delta n) = f + (\p_n f )(\b{n} \cdot \delta \b{x})$$
+1. When $$F_{\alpha \beta}$$ is varied, there are terms which change due to the way that $$f_{\alpha \beta}$$ changes the point it is evaluated at, and terms due to the way that the integration region itself changes in size/shape.
+2. All of the terms due to $$f_{\alpha \beta}$$ changing are consolidated into $$\odelta' f$$. This means both changes due to $$\e$$ (the parameter for the variation; remember that $$f = f(\b{u}(\b{x}, \e))$$ ), and changes due to the surface moving in the $$\b{n}$$ direction and thereby evaluating $$f$$ at a new point, $$f(\b{x} + \delta \b{x}) \ra f + (\p_n f )(\delta n) = f + (\p_n f )(\b{n} \cdot \delta \b{x})$$
 
 -----
 
-For integral (2), we need to make sense of $$\del'_{\alpha \beta} \cdot I'_{\alpha\beta} \cdot \delta \b{x}$$. I already know what this term turns out to be, but I want to see it intuitively. Specifically it is going to turn out to be related to the [mean curvature](https://en.wikipedia.org/wiki/Mean_curvature) via $$J = 2H = \del \cdot \b{n}$$. So the exact term will turn out to be 
+For integral (2), we need to make sense of $$\del'_{\alpha \beta} \cdot I'_{\alpha\beta} \cdot \delta \b{x}$$. (This term turns out to be related to the [mean curvature](https://en.wikipedia.org/wiki/Mean_curvature) via $$J = 2H = \del \cdot \b{n}$$, but they don't talk about that in this section.)
 
-$$(\del' \cdot \b{n}_{\alpha})(\b{n}_{\alpha} \cdot \delta \b{x}) \? J \delta n$$
-
-But they've rewritten things in terms of the derivative of the projection $$I_{\alpha \beta}'$$. How does that work? Their actual derivation (in simpler notation) is this:
+Their derivation consists of moving the divergence of $$\b{n}$$ over to a divergence of $$I_{uv}$$:
 
 $$
 \begin{aligned}
@@ -711,11 +722,9 @@ $$
 \end{aligned}
 $$
 
-Where $$\del' \cdot I = 0$$ because the global identity operator is constant everywhere. This is a wird trick; I guess the only reason for doing it is they want things written out in terms of $$I_{\alpha \beta}'$$.
+Where $$\del' \cdot I = 0$$ because the global identity operator is constant everywhere.
 
------
-
-I had a hard time following the calculus here so here is a ton of computations I did to check everything.
+I had a really hard time following this, mostly because I didn't understand what they mean by the divergence of a projection operator. So here are a ton of computations I did to check everything.
 
 These calculations are easier to do in the orthonormal $$(u,v,n)$$ coordinate system. I like to write the projections and derivatives in terms of it as $$\del_{uv} = \del' = (\b{u} \p_u + \b{v} \p_v)$$ and $$I_{uv} = I' = \b{uu} + \b{vv}$$.
 
@@ -755,21 +764,21 @@ I mention that form because you kinda need it to handle the 'surface divergence'
 
 $$\del_{uv} \cdot \b{u} = (I_{uv})_{ij} \p_i u_j = (u_i u_j + v_i v_j) \p_i u_j$$
 
-Since $$u_i \p_i = \p_u$$ we can write this out as
+So
+
+$$\del_{uv} =  (u_i u_j + v_i v_j) \p_i = \b{u} \p_u + \b{v} \p_v$$
+
+which is confused because when it acts on $$\del_{uv} \cdot \b{u}$$, the derivative applies _before_ the contractions with the vectors, which is why the only surviving term is the _second_ one:
 
 $$
 \begin{aligned}
 \del_{uv} \cdot \b{u} &= (u_i u_j + v_i v_j) \p_i u_j \\
 &= u_j \p_u u_j + v_j \p_v u_j \\
 &= \cancel{\b{u} \cdot \p_u \b{u}} + \b{v} \cdot \p_v \b{u} \\
-&= \b{v} \cdot \p_v \b{u}
+&= \b{v} \cdot \p_v \b{u} \\ 
+\del_{uv} \cdot \b{v} &= \b{u} \cdot \p_u \b{v}
 \end{aligned}
 $$
-
-The dot product is kinda ambiguous until you unpack it in index notation: it is specifically contracting with the component on the thing being dfferentiated, _after_ the derivative is taken. The same computation for $$\b{v}$$ gives
-
-$$\del_{uv} \cdot \b{v} = \b{u} \cdot \p_u \b{v}$$
-
 
 ------
 
@@ -850,11 +859,165 @@ $$
 
 I was hoping to find something illuminating in the longer version but ... not really. Something is missing here.
 
+----
+
+**Interlude: Curvature**
+
+I wanted to also think about this in terms of curvature explicitly. With the index notation version as a guide here is $$-\del_{uv} \cdot I_{uv}$$ symbolically.
+
+$$
+\begin{aligned}
+\del_{uv} \cdot I_{uv} &= (\b{u} \p_u + \b{v} \p_v) \cdot (\b{uu} + \b{vv}) \\
+&= \cancel{(\b{u} \cdot \p_u \b{u})} \b{u} + (\b{u} \cdot \p_u \b{v}) \b{v} + (\b{v} \cdot \p_v \b{u}) \b{u} + \cancel{(\b{v} \cdot \p_v \b{v})} \b{v} \\
+&+ (\b{u} \cdot \b{u}) \p_u \b{u} + \cancel{(\b{u} \cdot \b{v})} \p_u \b{v} + \cancel{(\b{v} \cdot \b{i})} \p_v \b{u} + (\b{v} \cdot \b{v}) \p_v \b{v} \\
+&= \p_u \b{u} + (\b{u} \cdot \p_u \b{v}) \b{v} + \p_v \b{v} + (\b{v} \cdot \p_v \b{u}) \b{u} \\
+&= \p_u \b{u} - (\b{v} \cdot \p_u \b{u}) \b{v} + \p_v \b{v} - (\b{u} \cdot \p_v \b{v}) \b{u} \\
+&= [\b{vv} + \b{nn}] \cdot \p_u \b{u} - (\b{vv}) \cdot \p_u \b{u} + [\b{uu} + \b{nn}] \cdot \p_v \b{v} - (\b{uu}) \cdot \p_v \b{v} \\
+&= \b{nn} \cdot \p_u \b{u} + \b{nn} \cdot \p_v \b{v} \\
+&= \b{n}(-\b{u} \cdot \p_u \b{n} - \b{v} \cdot \p_v \b{n}) \\
+&= - (\del_{uv} \cdot \b{n}) \b{n}
+\end{aligned}
+$$
+
+Not so helpful. I guess the version that should be the most intuit-able is
+
+$$\del_{uv} \cdot (\b{nn}) = - \del_{uv} \cdot (\b{uu} + \b{vv})$$
+
+but is this? It is clearly related to $$\b{u} \cdot \p_u \b{v} = - \b{v} \cdot \p_u \b{u}$$ and that sort of thing, but I can't visualize the divergence of an operator at all...
+
+The divergence is conceptually given by integrating a vector field $$f$$ over a boundary $$\int_{\p \sigma} f$$. Then $$(\del \cdot f) dV = df$$ is the thing which has $$\int_{\sigma} df$$ equal to that; therefore $$\del \cdot f = df / dV$$. The $$d$$ here has to be interpreted as the displacement w/r/t a change in _volume_: if we write $$\< f, \p \sigma \>$$ to mean the integral of $$f$$ over $$\p \sigma$$, then
+
+$$df = \< f, \p (\sigma + d \sigma) \> - \< f, \p \sigma \> = \< f, \p d \sigma \>$$
+
+for some infinitesimal dilation $$d \sigma$$ in the volume of $$\sigma$$. In the case of $$\del_{uv} \cdot f$$, the value it computes is the first-order change in $$f$$ as you dilate a $$\sigma$$ _in the $$(uv)$$ plane_, that is, on the surface of $$\alpha \beta$$. In the case of $$\del_{uv}\cdot \b{n}$$, we know that as you move in the $$(u)$$ or $$(v)$$ directions, the only thing that $$\b{n}$$ can do is rotate into $$\b{u}$$ or $$\b{v}$$. The components in these directions look like 
+
+$$
+\begin{aligned}
+d\b{n} &= \b{n}(0 + d \theta_1, 0 + d \theta_2) \\
+&= [\cos (d\theta) \b{n} + \sin (d\theta_1) \b{u}^* + \sin (d\theta_2) \b{v}^* + O(d\theta^2)] - \b{n}\\
+&= d \theta_1 \b{u}^* + d \theta_2 \b{v}^* \\
+&= k_1 \b{u}^* du^* + k_2 \b{v}^* dv^*
+\end{aligned}
+$$
+
+where 
+
+* $$\b{u}^*, \b{v}^*$$ are the principal directions (the directions of maximum and minimum curvature) 
+* $$d\theta$$ is something like the magnitude of $$(d\theta_1, d\theta_2)$$.
+* $$d \theta_1 = k_1 du^*$$ and $$d \theta_2 = k_2 dv^*$$, for $$k_1, k_2$$ the principal curvatures.
+* I don't have any intuition for why you can choose this particular frame for the computation, but apparently you can.
+
+Therefore 
+
+$$
+\begin{aligned}
+\del_{uv} \cdot \b{n} &= \b{u}^* \cdot (\p_{u^*} \b{n}) + \b{v}^* \cdot (\p_{v^*} \b{n}) \\
+&= k_1 + k_2 \\
+&= J
+\end{aligned}
+$$
+
+which is the mean curvature. Now for the divergence of the _operator_ $$\del_{uv} \cdot (\b{nn})$$ we can use the first order expansion of $$\b{n}$$ again:
+
+$$
+\begin{aligned}
+d(\b{nn}) &= (k_1 \b{u}^*  du^* + k_2 \b{v}^* dv^* ) \b{n} + \b{n} (k_1 \b{u}^*  du^* + k_2 \b{v}^* dv^* ) \\
+\del_{uv} \cdot (\b{nn}) &= (\b{u}^* \cdot \p_{u^*} + \b{v}^* \cdot \p_{v^*}) (\b{nn}) \\
+&= \b{u}^* \cdot (k_1 \b{u}^* \b{n} + k_1\b{n}  \b{u}^*) + \b{v}^* \cdot ( k_2 \b{v}^* \b{n} + k_2 \b{n} \b{v}^*) \\
+&= (k_1 + k_2) \b{n}  \\
+\end{aligned}
+$$
+
+For $$I_{uv}$$ we need $$d \b{u}$$ and $$d \b{v}$$. Fortunately if we use the principal frame we get to assume that there's no first-order rotation between $$(\b{u}, \b{v})$$
+
+$$
+\begin{aligned}
+d \b{u}^* &= \b{u}^*(0 + \theta_1, 0 + \theta_2) - \b{u}^* \\
+&= [\cos (d\theta_{1}) \b{u}^* + \sin (d\theta_1) (-\b{n})] - \b{u}^* \\ 
+&= -d \theta_1 \b{n} \\
+&= -k_1 \b{n} d u^* \\
+d \b{v}^* &= [\cos (d\theta_2) \b{v}^* + \sin (d\theta_2) (-\b{n})] - \b{v}^* \\
+&= -d \theta_2 \b{n} \\
+&= -k_2 \b{n} d v^*
+\end{aligned}
+$$
+
+Therefore
+
+$$
+\begin{aligned}
+d(\b{u}^* \b{u}^* + \b{v}^* \b{v}^*) &= (-k_1 \b{n} d u^* ) \b{u}^* + \b{u}^* (-k_1 \b{n} d u^* ) + (-k_2 \b{n} d v^*) \b{v}^* + \b{v}^* (-k_2 \b{n} d v^*) \\ 
+\del_{uv} \cdot (\b{u}^* \b{u}^* + \b{v}^* \b{v}^*) &= (\b{u}^* \cdot \p_{u^*} + \b{v}^* \cdot \p_{v^*}) (\b{u}^* \b{u}^* + \b{v}^* \b{v}^*) \\
+&= \b{u}^* \cdot [-k_1 (\b{n} \b{u}^* + \b{u}^* \b{n})] + \b{v}^* \cdot [-k_2 (\b{n} \b{v}^* + \b{v}^* \b{n})] \\
+&= -(k_1 + k_2) \b{n}
+\end{aligned}
+$$
+
+That was helpful for me at least---getting to use the principal curvature frame simplifies things to the point that the derivation is manageable symbolically. I still cannot really intuit why this whole thing is true in any frame, but that's okay: at least it reduces the overall insight to knowing that a canonical frame _exists_, and then once you have that the rest follows procedurally.
+
+I'd still like a good interpretation of, e.g., $$d (\b{uu}) = (d \b{u}) \b{u} + \b{u} (d \b{u})$$. Of course it tells you how $$\b{uu}$$ varies, but I can't really picture it. In any case the important bit is: once you have chosen the principal frame, $$d \b{u}^*$$ has no $$d v^*$$ component, so it is proportional to $$\b{n}$$, and in $$\b{u}^* \p_{u^*} (\b{u}^* \b{u}^*)$$, only the $$k_1 \b{u}^* \b{n}$$ term survives.
+
+One thing to note is that the final term in the resulting formula (A.64) has this enter with a minus sign:
+
+$$
+\begin{aligned}
+\delta F &= (\ldots) - \int (f) (\del'_{uv} \cdot I'_{uv} \cdot \delta \b{x}) d \frakr + (\ldots) \\
+&= (\ldots) - \int (f) (-J \delta n )\d \frakr + (\ldots) \\
+&= (\ldots) + \int f (J \delta n) \d \frakr + \ldots
+\end{aligned}
+$$
+
+The minus sign is there to make it proportional to $$+J$$, I guess. I still don't have a _great_ picture of why $$\del_{uv} I_{uv}$$ is negative, but I guess it's because we define the curvatures in terms of the motion of $$\b{n}$$, so while $$\b{n}$$ is rotating into $$\b{u}, \b{v}$$, they are themselves rotating into $$-\b{n}$$ by the same amount... anyway it's awkward.
+
+... well, here's a version of the computation. The AI recommended the $$(X_u, X_v)$$ parameterization of the area element which I did not remember was a thing.
+
+Suppose the surface is parameterized as $$X(u,v)$$, such that
+
+$$dA = dX^{\^2} = (X_u du) \^ (X_v dv)$$
+
+Then the variation in just the normal direction is $$X \ra X + \b{n}\delta n $$. Then
+
+$$
+\begin{aligned}
+(dX + \b{n} \delta n)^{\^2} &= [(X_u + \b{n}_u \delta n) du] \^ [(X_v + \b{n}_v \delta n) dv] \\
+&= X^{\^2} + [(\b{n}_u \^ X_v + X_u \^ \b{n}_v ) \delta n] du \^ dv + O(\delta n^2) \\
+\end{aligned}
+$$
+
+Now assuming principal directions: $$\b{n}_u = k_1 \b{u}$$ and $$\b{n}_v = k_2 \b{v}$$. Meanwhile $$X_u = \b{u}$$ and $$X_v = \b{v}$$ (by definition, apparently). So
+
+$$
+\begin{aligned}
+&= dX^{\^2} + (k_1 \b{u} \^ \b{v} + \b{u} \^ k_2 \b{v}) (\delta n) du \^ dv + O(\delta n^2) \\
+&= (1 + (k_1 + k_2) \delta n) dX^{\^2} + O(\delta n^2)\\
+&\approx (1 + J \delta n) dX^{\^2} \\
+&= (1 + J \delta n) dA
+\end{aligned}
+$$
+
+and therefore, when the surface is varied only along its normal, the first-order variation of the surface area element is
+
+$$\delta dA = (J \delta n) dA$$
+
+(Note that although this is also a first-order variation of an integral, $$J$$ is the mean curvature (times two), not the Jacobian, this time...)
+
+Among other things, this gives that the first-order change in the area of a figure when it's dilated is proportional to its mean curvature:
+
+$$\frac{\delta A}{\delta n} = \frac{\delta}{\delta n} \int dA = \int  \frac{\delta dA}{\delta n} = \int J dA$$
+
+Note, variations in other directions than $$n$$ would presumably also affect $$dA$$, but they should integrate out as well (assuming the integrand does not depend on velocity/direction at all?)
+
+It seems like we can think of mean curvature as being given by this derivative:
+
+$$J \d A = \frac{\delta dA}{\delta n}$$
+
+(or even $$J = \frac{\delta \log dA}{\delta n}$$??)
+    
 ---------
 
-<aside class="toggleable" id="curvature" placeholder="<b>Aside</b>: Curvature">
+<aside class="toggleable" id="curvature" placeholder="<b>Aside</b>: wip - calculations">
 
-Although TCAT doesn't really discuss it yet, I wanted to see how curvature falls out of this. I know by memorization that $$2H = J = \pm \del \cdot \b{n}$$ (can't remember the sign) but it should be more intuitive than that.
+Although TCAT doesn't really discuss it such, I wanted to see how curvature falls out of this. I know by memorization that $$2H = J = \pm \del \cdot \b{n}$$ (can't remember the sign) but it should be more intuitive than that.
 
 There clearly pieces of it in here. The frame $$U = (\b{u}, \b{v}, \b{n})$$ frame is orthornomal, which means its derivative must be a rotation operator acting on it. As a matrix:
 
@@ -973,18 +1136,13 @@ $$
 * should I use $$U^T$$ instead of $$U$$ for the frame so that this all multiplies in the usual direction?
 * principal curvatures
 * mean curvature
+* connection between $$(\b{u}, \b{v}, \b{n})$$ and $$(\p_u, \p_v, \p_n)$$ notations
 
 -----
 
 </aside>
 
-
-
--------
-
-
-
-<aside class="toggleable" id="indices" placeholder="<b>Aside</b>: wip - Curvature Part 2, the same computations in indices</em>">
+<aside class="toggleable" id="indices" placeholder="<b>Aside</b>: wip - calculations in indices</em>">
 
 
 Now I want to repeat these calculations with indices, very tediously, because it is the only way I can be sure I know exactly what I'm writing down.
@@ -1040,18 +1198,154 @@ $$r_{31} = U_2 \cdot \e_{ijk} (U_i U_j U_k) = \e_{ij2} U_i U_j = U_3 U_1 - U_1 U
 
 </aside>
 
-
-{% include old.html %}
-
-
-
-
-We can choose the $$(u, v, n)$$ frame as a coordinate system for $$d \b{x}$$. So
+To summarize this section, let me requote the formula TCAT derived and describe its structure again:
 
 $$
 \begin{aligned}
-U(u + du, v + dv, n + dn)_{ij} &= \exp(\vec{r} \cdot \frac{d \vec{\theta}}{d(u,v,n)} \cdot (du, dv, dn)) U_{ij}
+\delta F_{\alpha \beta} &= \delta \int_{\Omega_{\alpha \beta}} f_{\alpha \beta} d \frakr \\
+&= \underbrace{\int_{\Omega_{\alpha \beta}}\odelta{}' f_{\alpha \beta} \d \frakr}_{1} - \underbrace{\int_{\Omega_{\alpha \beta}} f_{\alpha \beta} \del'_{\alpha \beta} \cdot \b{I}'_{\alpha \beta} \cdot \delta \b{x} \d \frakr}_{2} + \underbrace{\int_{\Gamma_{\alpha \beta}} f_{\alpha \beta} \b{n}_{\alpha \beta} \cdot \delta \b{x} \ d \frakr}_{3}
+\end{aligned} \tag{A.64}
+$$
+
+
+1. Is the variation in $$f$$ _plus_ the variation due to just evaluating $$f$$ at different points because the boundary expanded (in the $$\b{n}_{\alpha}$$ direction -- remember $$\odelta{}' f = \odeltaf+ \delta \b{x} \cdot \b{n}_{\alpha} \b{n}_{\alpha} \cdot \del f$$, which we might write as $$\odelta f + \p_n f \delta n$$).
+2. Is the variation due to the area of the boundary changing. $$ \del'_{\alpha \beta} \cdot \b{I}'_{\alpha \beta} \cdot \delta \b{x} = -(J \b{n}) \cdot \delta \b{x} =  -(k_1 + k_2) \delta n$$ is the first-order change in the surface area, so whatever values $$f$$ had at those points are now contributing to the integral more because they're evaluated at slightly-larger patches of area. In particular this term is really $$\int f \, J \delta n \d A$$
+3. There's a term for expansion of the boundary _of_ the boundary, which is zero if one phase encloses the other, and otherwise looks like a line integral $$\int f \; \delta n_{\alpha \beta} \d \ell$$, where $$\delta n_{\alpha \beta}$$ is the variation in the normal to the boundary's boundary (however you're supposed to get that).
+
+So I see now that I could have guessed all three of these with no derivations---at least, if I already knew what I know now about mean curvature. The one thing that I can't intuitive is the $$-\del_{uv} \cdot I_{uv}$$ way of writing the mean curvature, which feels like it obscures the meaning of the term. My version would be
+
+$$\delta \int f \d A = \int_{\Omega} \odelta{}' f \d A + \int_{\Omega} f J \delta n \d A + \int_{\p \Omega} f \delta n_{\alpha \beta} \d s$$
+
+-----
+
+### A.6 Variation of an Integral over a Curve
+
+The integral to be varied is
+
+$$F_{\alpha \beta \gamma} = \int_{\Omega_{\alpha \beta \gamma}} f_{\alpha \beta \gamma} \d \frakr$$
+
+Following the logic of the previous section, I am going to guess the form of the variation without looking.
+
+There are three terms:
+
+1. Variation due to $$f$$ itself, including the fact that it is evaluated at a new point, so there will be an $$\odelta{}''$$ which is defined as $$\odelta + \delta \b{x} \cdot [(\b{n}_{\alpha} \b{n}_{\alpha}) + (\b{n}_{\alpha \beta} \b{n}_{\alpha \beta})] \cdot \del f$$, since those two normals are orthogonal to the line and to each other.
+2. Variation due to the length element changing, which will work out to be proportional to the change in its linear curvature, $$\int f \kappa \delta \b{x} ds$$... something like that
+3. Variation due to the boundary of the curve changing, of the form $$\int_{\p \Omega_{\alpha \beta \gamma}} f  \b{n} \cdot \delta \b{x} = \sum_{\p \Omega} f \b{n} \cdot \delta \b{x}$$
+
+This looks about like what they got, except that the term (2) is in that form I can't intuit:
+
+$$
+\begin{aligned}
+\delta F_{\alpha \beta \gamma} = 
+\underbrace{\int_{\Omega_{\alpha \beta \gamma}} \odelta{}'' f \d \frakr}_{1} 
+-\underbrace{\int_{\Omega_{\alpha \beta \gamma}} f \del'' \cdot I''_{\alpha \beta \gamma} \cdot \delta \b{n} \d \frakr}_{2} + 
++\underbrace{\sum_{m \in \Gamma_{\alpha \beta \gamma}} f \b{n}_{\alpha \beta \gamma} \cdot \delta \b{x} \mid_{\Gamma_{\alpha \beta \gamma_m}}}_{3} \\
+\end{aligned} \tag{A.84}
+$$
+
+Their notation is still very unwieldy. Also, once again it seems clear that the second term 'should' be positive, but it's counting its contribution in an odd way.
+
+Here is the curvature calculation:
+
+An arc length integral can be written
+
+$$\int f ds = \int f \| \gamma'(t) \| dt$$
+
+We want to vary $$\gamma$$ in _both_ normal directions this time, using the same technique as before. Recapping what I know of 1d differential geomtery... the unit tangent vector $$\b{t} = \frac{\gamma'(t)}{\| \gamma'(t) \|}$$ and the [Frenet Frame](https://en.wikipedia.org/wiki/Frenet%E2%80%93Serret_formulas) $$(\b{t}, \b{n}, \b{b})$$ along the curve is related by the curvature $$\kappa$$ and torsion $$\tau$$:
+
+$$
+\begin{aligned}
+\frac{d\b{t}}{ds} &= \kappa \b{n} \\ 
+\frac{d \b{n}}{ds} &= -\kappa \b{t} + \tau \b{b} \\ 
+\frac{d \b{b}}{ds} &= - \tau \b{n}
 \end{aligned}
 $$
 
-///
+We can vary $$\gamma(t) \mapsto \gamma(t) + \b{t} \delta t  + \b{n} \delta n  +  \b{b} \delta b$$. We will see that the components other than the derivative of $$\b{t}$$ drop out. First
+
+$$\delta \gamma' = \b{t}' \delta t  + \b{n}' \delta n  + \b{b}' \delta b  = [\kappa \b{n}\delta t  + (-\kappa \b{t} + \tau \b{b}) \delta n + (-\tau \b{n}) \delta b ] \frac{ds}{dt}$$
+
+Note that
+
+$$\gamma' \cdot \delta \gamma' = (\b{t} \frac{ds}{dt}) \cdot (\ldots) = - \kappa \delta n (\frac{ds}{dt})^2$$
+
+Plugging into the vector norm and using $$\gamma' = \b{t} \frac{ds}{dt}$$:
+
+$$
+\begin{aligned}
+\| (\gamma + \delta \gamma)' \| dt &= \sqrt{(\gamma' + \delta \gamma') \cdot (\gamma + \delta \gamma')} \\
+&= \sqrt{\gamma' \cdot \gamma' + \gamma' \cdot \delta \gamma' + \delta \gamma' \cdot \gamma' + O(\delta \gamma^2)} \\
+&=\sqrt{ (\frac{ds}{dt})^2 (1  - 2 \kappa \delta n + O(\delta \gamma^2))} dt \\
+&= \sqrt{1 - 2 \kappa \delta n} \frac{ds}{dt} dt \\
+&\approx (1 - \kappa \delta n) ds 
+\end{aligned}
+$$
+
+And therefore
+
+$$\delta ds = - \kappa \delta n ds$$
+
+The minus sign is because I did this in terms of the Frenet frame, which writes $$\p_s \b{t} = \kappa \b{n}$$. This means that the choice of normal is towards whichever direction the curve is curving, which means that pushing the curve in that direction closes the circle 'faster' and therefore makes the length element shorter.
+
+In the TCAT term 
+
+$$\int_{\Omega_{\alpha \beta \gamma}} f \del'' \cdot I''_{\alpha \beta \gamma} \cdot \delta \b{n} \d \frakr$$
+
+the tangent derivative $$\del''$$ must equal $$\b{t} \p_t$$, and the projection onto the surface is $$I''_{\alpha \beta \gamma} = \b{tt}$$. So
+
+$$
+\begin{aligned}
+(\b{t} \p_t) \cdot (\b{tt}) &= (\b{t}  \cdot \p_t \b{t}) \b{t} + (\b{t} \cdot \b{t}) \p_t \b{t} \\
+&= 0 + \p_t \b{t} \\
+&= \kappa \b{n}
+-(\b{t} \p_t) \cdot (\b{tt}) \cdot \delta \b{x} &= -\kappa \delta n \\
+\end{aligned}
+$$
+
+Where again the sign is due to this particular arbitrary choice of normal convention.
+
+So I guess we got the same answer: the second term is really 
+
+$$-\int_{\Omega_{\alpha \beta \gamma}} f \kappa \delta n \d \frakr$$
+
+The integral (2) in A.84 is definitely more coordinate-free than this, but I can't say that I love these $$\del'' \cdot I''$$ terms because I can't really think about the divergence of a projection operator at all... 
+
+I don't think it's possible to write this $$\b{n}$$ (or $$\b{b}$$, for that matter) in terms of the surface's normals: the fact that the curve is at the intersection of three surface does not pin down its plane of curvature at all (other than the fact that its tangent is given by $$\b{t} = \pm \b{n}_{\alpha} \times \b{n}_{\alpha \beta}$$)
+
+I am not going through the whole calculation in section A.6 because it's too messy and anyway I was able to guess it up front.
+
+--------
+
+## A.7 Summary
+
+TCAT presents the following summary of the variations of integrals:
+
+$$\delta F_{\alpha} = \int_{\Omega_{\alpha}} \odelta{}^{(n)} f_{\alpha} d \frakr - \int_{\Omega_{\alpha}} f_{\alpha} \del^{(n)} \cdot I^{(n)}_{\alpha} \cdot \delta \b{x} \d \frak r + \int_{\Gamma_{\alpha}} f_{\alpha} \b{n}_{\alpha} \cdot \delta \b{x} \d \frakr \tag{A.86}$$
+
+where $$(n)$$ can refer to 3, 2, or 1 dimensional objects. Which is cute. I am still not happy with it but I don't know how to resolve my further issues. Roughly:
+
+1. I don't see the reason for defining $$\odelta{}^{(n)}$$ at all. Maybe this will become clear elsewhere in the book.
+2. The second term $$-\del^{(n)} \cdot I^{(n)} \cdot \delta \b{x}$$ is opaque. Evidently it has to do with the change in volume due to dilating the volume element, but this is ... not an intuitive way to write it.
+3. The third term is basically fine.
+
+-----
+
+Long ago, I showed that there is a quicker 'non-rigorous' derivation of the variation of a volume integral by writing
+
+$$\Omega \mapsto \Omega + \delta \Omega = \Omega + \sigma(\Omega) + \delta \b{x} \cdot \p \Omega$$
+
+Such that apart from the $$\odelta f$$ term itself, the variation is
+
+$$
+\begin{aligned}
+\delta \int_{\Omega} f \d V &= \int_{\delta \Omega} f \d V \\
+&= \int_{\delta \b{x} \cdot \p \Omega} f \d V \\
+&= \int_{\p \Omega} f (\delta \b{x} \cdot \d A)
+\end{aligned}
+$$
+
+because the base integral cancels out and the $$\sigma(\Omega)$$ just permutes the integral rather than changing its total. Note that $$\delta \b{x} \cdot \p \Omega$$ as a surface means the volume created by $$\delta \b{x} \cdot \d A$$ at each point. (btw $$ (\delta \b{x} \cdot \d A = (\delta \b{x} \cdot \b{n}) dA)$$ is properly $$\delta \b{x} \^ \d A$$)
+
+I suspect this way of thinking is much better for intuition than the complicated derivations shown above. Basically, we should be able to think of the variations of the shapes themselves algebraic objects as independent of the thing we are integrating over them. Then the integral is simply the shape's variation, plugged in.
+
+But, the volume variation was by far the easiest one, because it didn't have any curvature terms involved. So does the same thing work for the others? I am particularly worried about the $$\odelta' f$$ and $$\odelta'' f$$ terms messing this up as they seem to 'conflate' the variation of $$f$$ and the variation of the surface, but maybe not...
