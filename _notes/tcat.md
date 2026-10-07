@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "TCAT notes"
+title: "TCAT-A notes"
 footnotes: true
 math: true
 aside: true
@@ -14,7 +14,7 @@ We start with Appendix A because the mathematical framework has to be understood
 <!--more-->
 
 $$\newcommand{\frakr}{\mathfrak{r}}$$
-$$\newcommand{\odelta}{\overline{\delta}}$$
+$$\newcommand{\odelta}{\overline{\delta}{}}$$
 
 -------
 
@@ -653,7 +653,7 @@ The formula they come up with is
 $$
 \begin{aligned}
 \delta F_{\alpha \beta} &= \delta \int_{\Omega_{\alpha \beta}} f_{\alpha \beta} d \frakr \\
-&= \underbrace{\int_{\Omega_{\alpha \beta}} \odelta{}' f_{\alpha \beta} \d \frakr}_{1} - \underbrace{\int_{\Omega_{\alpha \beta}} f_{\alpha \beta} \del'_{\alpha \beta} \cdot \b{I}'_{\alpha \beta} \cdot \delta \b{x} \d \frakr}_{2} + \underbrace{\int_{\Gamma_{\alpha \beta}} f_{\alpha \beta} \b{n}_{\alpha \beta} \cdot \delta \b{x} \ d \frakr}_{3}
+&= \underbrace{\int_{\Omega_{\alpha \beta}} \odelta' f_{\alpha \beta} \d \frakr}_{1} - \underbrace{\int_{\Omega_{\alpha \beta}} f_{\alpha \beta} \del'_{\alpha \beta} \cdot \b{I}'_{\alpha \beta} \cdot \delta \b{x} \d \frakr}_{2} + \underbrace{\int_{\Gamma_{\alpha \beta}} f_{\alpha \beta} \b{n}_{\alpha \beta} \cdot \delta \b{x} \ d \frakr}_{3}
 \end{aligned} \tag{A.64}
 $$
 
@@ -689,7 +689,7 @@ Which we could write in $$(u,v)$$ coordinates as $$\del = (\p_n, \p_u, \p_v)$$ a
 
 The primed _variation_ is a bit weirder. TCAT writes
 
-$$\odelta{}' f = \odelta + \delta \b{x} \cdot \b{n} \b{n} \cdot \del f$$
+$$\odelta' f = \odelta + \delta \b{x} \cdot \b{n} \b{n} \cdot \del f$$
 
 To understand this, recall that
 
@@ -1203,18 +1203,18 @@ To summarize this section, let me requote the formula TCAT derived and describe 
 $$
 \begin{aligned}
 \delta F_{\alpha \beta} &= \delta \int_{\Omega_{\alpha \beta}} f_{\alpha \beta} d \frakr \\
-&= \underbrace{\int_{\Omega_{\alpha \beta}}\odelta{}' f_{\alpha \beta} \d \frakr}_{1} - \underbrace{\int_{\Omega_{\alpha \beta}} f_{\alpha \beta} \del'_{\alpha \beta} \cdot \b{I}'_{\alpha \beta} \cdot \delta \b{x} \d \frakr}_{2} + \underbrace{\int_{\Gamma_{\alpha \beta}} f_{\alpha \beta} \b{n}_{\alpha \beta} \cdot \delta \b{x} \ d \frakr}_{3}
+&= \underbrace{\int_{\Omega_{\alpha \beta}}\odelta' f_{\alpha \beta} \d \frakr}_{1} - \underbrace{\int_{\Omega_{\alpha \beta}} f_{\alpha \beta} \del'_{\alpha \beta} \cdot \b{I}'_{\alpha \beta} \cdot \delta \b{x} \d \frakr}_{2} + \underbrace{\int_{\Gamma_{\alpha \beta}} f_{\alpha \beta} \b{n}_{\alpha \beta} \cdot \delta \b{x} \ d \frakr}_{3}
 \end{aligned} \tag{A.64}
 $$
 
 
-1. Is the variation in $$f$$ _plus_ the variation due to just evaluating $$f$$ at different points because the boundary expanded (in the $$\b{n}_{\alpha}$$ direction -- remember $$\odelta{}' f = \odeltaf+ \delta \b{x} \cdot \b{n}_{\alpha} \b{n}_{\alpha} \cdot \del f$$, which we might write as $$\odelta f + \p_n f \delta n$$).
+1. Is the variation in $$f$$ _plus_ the variation due to just evaluating $$f$$ at different points because the boundary expanded (in the $$\b{n}_{\alpha}$$ direction -- remember $$\odelta' f = \odelta f+ \delta \b{x} \cdot \b{n}_{\alpha} \b{n}_{\alpha} \cdot \del f$$, which we might write as $$\odelta f + \p_n f \delta n$$).
 2. Is the variation due to the area of the boundary changing. $$ \del'_{\alpha \beta} \cdot \b{I}'_{\alpha \beta} \cdot \delta \b{x} = -(J \b{n}) \cdot \delta \b{x} =  -(k_1 + k_2) \delta n$$ is the first-order change in the surface area, so whatever values $$f$$ had at those points are now contributing to the integral more because they're evaluated at slightly-larger patches of area. In particular this term is really $$\int f \, J \delta n \d A$$
 3. There's a term for expansion of the boundary _of_ the boundary, which is zero if one phase encloses the other, and otherwise looks like a line integral $$\int f \; \delta n_{\alpha \beta} \d \ell$$, where $$\delta n_{\alpha \beta}$$ is the variation in the normal to the boundary's boundary (however you're supposed to get that).
 
 So I see now that I could have guessed all three of these with no derivations---at least, if I already knew what I know now about mean curvature. The one thing that I can't intuitive is the $$-\del_{uv} \cdot I_{uv}$$ way of writing the mean curvature, which feels like it obscures the meaning of the term. My version would be
 
-$$\delta \int f \d A = \int_{\Omega} \odelta{}' f \d A + \int_{\Omega} f J \delta n \d A + \int_{\p \Omega} f \delta n_{\alpha \beta} \d s$$
+$$\delta \int f \d A = \int_{\Omega} \odelta' f \d A + \int_{\Omega} f J \delta n \d A + \int_{\p \Omega} f \delta n_{\alpha \beta} \d s$$
 
 -----
 
@@ -1228,7 +1228,7 @@ Following the logic of the previous section, I am going to guess the form of the
 
 There are three terms:
 
-1. Variation due to $$f$$ itself, including the fact that it is evaluated at a new point, so there will be an $$\odelta{}''$$ which is defined as $$\odelta + \delta \b{x} \cdot [(\b{n}_{\alpha} \b{n}_{\alpha}) + (\b{n}_{\alpha \beta} \b{n}_{\alpha \beta})] \cdot \del f$$, since those two normals are orthogonal to the line and to each other.
+1. Variation due to $$f$$ itself, including the fact that it is evaluated at a new point, so there will be an $$\odelta''$$ which is defined as $$\odelta + \delta \b{x} \cdot [(\b{n}_{\alpha} \b{n}_{\alpha}) + (\b{n}_{\alpha \beta} \b{n}_{\alpha \beta})] \cdot \del f$$, since those two normals are orthogonal to the line and to each other.
 2. Variation due to the length element changing, which will work out to be proportional to the change in its linear curvature, $$\int f \kappa \delta \b{x} ds$$... something like that
 3. Variation due to the boundary of the curve changing, of the form $$\int_{\p \Omega_{\alpha \beta \gamma}} f  \b{n} \cdot \delta \b{x} = \sum_{\p \Omega} f \b{n} \cdot \delta \b{x}$$
 
@@ -1237,7 +1237,7 @@ This looks about like what they got, except that the term (2) is in that form I 
 $$
 \begin{aligned}
 \delta F_{\alpha \beta \gamma} = 
-\underbrace{\int_{\Omega_{\alpha \beta \gamma}} \odelta{}'' f \d \frakr}_{1} 
+\underbrace{\int_{\Omega_{\alpha \beta \gamma}} \odelta'' f \d \frakr}_{1} 
 -\underbrace{\int_{\Omega_{\alpha \beta \gamma}} f \del'' \cdot I''_{\alpha \beta \gamma} \cdot \delta \b{n} \d \frakr}_{2} + 
 +\underbrace{\sum_{m \in \Gamma_{\alpha \beta \gamma}} f \b{n}_{\alpha \beta \gamma} \cdot \delta \b{x} \mid_{\Gamma_{\alpha \beta \gamma_m}}}_{3} \\
 \end{aligned} \tag{A.84}
@@ -1314,6 +1314,17 @@ I don't think it's possible to write this $$\b{n}$$ (or $$\b{b}$$, for that matt
 
 I am not going through the whole calculation in section A.6 because it's too messy and anyway I was able to guess it up front.
 
+The minus sign is still bothering me here. The problem is that, really, the "normal" of a curve is a two-dimensional plane (spanned by $$(\b{n}, \b{b})$$ if you write it in Frenet coordinates). Although it is possible to uniquely specify $$\b{n}$$ as the direction of $$d \b{t}$$, it is not going to generalize very well to higher dimensions ... e.g. a $$(\b{u}, \b{v})$$ plane in 4d will have a 2d normal plane $$(\b{n}_1 \b{n}_2)$$, but the 'derivative' of this plane will involve (a) rotation in $$(uv)$$ which is negligible, (b) rotation in $$(n_1 n_2)$$ which is negligible, and (c) four angles of rotation $$\omega_{u n_1}, \omega_{u n_2}, \omega_{v n_1}, \omega_{v n_2}$$, none of which are going to be 'canonical'.
+
+I have learned from the AI however that in >3 dimensions the mean curvature becomes vector-valued, such that the first-order variation in area is given by
+
+$$\delta A = \int( \b{J} \cdot \delta \b{x}) dA$$
+
+This integrand will expand as a linear combination of variations along each normal direction, e.g. $$ \b{J} \cdot \delta \b{x} =j_1 \delta n_1 + j_2 \delta n_2$$. 
+
+... this is confusing. Conclusion: I should carefully work through a diffgeo book. The book I used in my undergrad class, do Carmo, was confined to 3d, but the internet says O'Neill is good and intuitive more generally. (Also some of this stuff comes up in Weyl's book on Tubes which I apparently started reading at some point? and then lost? Hm.)
+
+
 --------
 
 ## A.7 Summary
@@ -1330,7 +1341,9 @@ where $$(n)$$ can refer to 3, 2, or 1 dimensional objects. Which is cute. I am s
 
 -----
 
-Long ago, I showed that there is a quicker 'non-rigorous' derivation of the variation of a volume integral by writing
+# Ruminations
+
+Much earlier in these notes, I showed that there is a quicker 'non-rigorous' derivation of the variation of a volume integral by writing
 
 $$\Omega \mapsto \Omega + \delta \Omega = \Omega + \sigma(\Omega) + \delta \b{x} \cdot \p \Omega$$
 
@@ -1344,8 +1357,309 @@ $$
 \end{aligned}
 $$
 
-because the base integral cancels out and the $$\sigma(\Omega)$$ just permutes the integral rather than changing its total. Note that $$\delta \b{x} \cdot \p \Omega$$ as a surface means the volume created by $$\delta \b{x} \cdot \d A$$ at each point. (btw $$ (\delta \b{x} \cdot \d A = (\delta \b{x} \cdot \b{n}) dA)$$ is properly $$\delta \b{x} \^ \d A$$)
+because the base integral cancels out and the $$\sigma(\Omega)$$ just permutes the integral rather than changing its total. Note that $$\delta \b{x} \cdot \p \Omega$$ as a surface means the volume created by $$\delta \b{x} \cdot \d A$$ at each point. (btw $$\delta \b{x} \cdot \d A = (\delta \b{x} \cdot \b{n}) dA$$ is properly $$\delta \b{x} \^ \d A$$ but I don't think the distinction matters here)
 
 I suspect this way of thinking is much better for intuition than the complicated derivations shown above. Basically, we should be able to think of the variations of the shapes themselves algebraic objects as independent of the thing we are integrating over them. Then the integral is simply the shape's variation, plugged in.
 
-But, the volume variation was by far the easiest one, because it didn't have any curvature terms involved. So does the same thing work for the others? I am particularly worried about the $$\odelta' f$$ and $$\odelta'' f$$ terms messing this up as they seem to 'conflate' the variation of $$f$$ and the variation of the surface, but maybe not...
+But, the volume variation was by far the easiest one, because it didn't have any curvature terms involved. So does the same thing work for the others? I am particularly worried about the $$\odelta'' f$$ and $$\odelta'' f$$ terms messing this up as they seem to 'conflate' the variation of $$f$$ and the variation of the surface, but maybe not...
+
+For the variation of the surface and curve integrals over a surface $$\Omega$$ the terms are
+
+1. Fixed-point variation of the integrand $$\odelta{f}$$
+2. Variation of $$f$$ due to changing position on the surface, $$\p_n f \, \delta n $$ (which TCAT lumps with (1))
+3. Variation of $$dA$$ due to first-order divergence of normals $$J dA = \delta (dA)/\delta n$$ or $$\kappa ds = \pm \delta (ds)/\delta n$$
+4. Variation of the boundary $$\p \Omega$$ along its normal on the plane of $$\Omega$$
+
+we would like to write something like
+
+$$
+\begin{aligned}
+\delta \Omega &= \delta n \cdot \Omega + \delta r \cdot \p \Omega \\
+&= (??) + (??) + \delta r \cdot \p \Omega
+\end{aligned}
+$$
+
+The terms here all come out of the product rule basically:
+
+$$\delta (f dA 1_{\alpha}) = (\delta f) dA 1_{\alpha} + f (\delta dA) 1_{\alpha}  + f \d A  \delta 1_{\alpha}$$
+
+I guess what is more confusing is why the variations only count in the normal direction each time..?
+
+Also confusing... how do we think of $$dA 1_{\alpha}$$ as the 'simplex' model of the surface? I guess the surface has to be thought of as a bunch of 'areas'?
+
+After thinking about this for a while, I realize:
+
+If we have a 2-surface $$\Omega$$ in 3d, we have to think of its "boundary" as containing _both_
+
+1. its actual boundary as a simplex, $$\p \Omega$$, which expands out in the "radial" $$\delta r$$ direction
+2. its actual faces as a boundary -- if we view it as a infinitesimally-thin 3-volue, for example, it would have a boundary that looks like $$\Omega \b{n}$$ on one side and $$- \Omega \b{n}$$ on the other side.
+
+Now, we happen to integrating against $$dA$$, which means that we can't view it as a $$3$$-surface because it would be of zero volume... but there are a few ways to interpret that
+
+1. $$dA$$ integrates over only one 'normal face' of the volume
+2. $$dA$$ integrates over both 'normal faces', but its value is $$0$$ on one side
+3. $$dA$$ is distributional: it integrates over both faces, but returns negative on the opposite faces despite being infinitesimally far away, so it looks like $$\frac{1}{2} (dA_+ - dA_)$$, which should give the same result unless $$f$$ is _also_ distributional on the surface
+4. same thing, but we can express it as a delta function: $$dA = \delta(n) dV$$
+
+If $$f$$ is classical (=non-distributional, I guess?) then these are all the same. If $$f$$ is non-classical, then (3) and (4) would conceivably give different answers than (1) and (2). But I think we can ignore that case.
+
+The resulting $$dA = \delta(n) dV$$ is the same thing as TCAT's $$(- \b{n} \cdot \del I_{\alpha}) d\frakr$$ but much easier to read.
+
+One other problem is that $$\delta$$ means both 'variation' and "delta function' here. I guess that's one argument for writing $$-\p_n 1_{\Omega}$$ instead. Or $$1_{\p \Omega}$$?.  (Since in 1d $$1_{(a,b)} = \theta(x-a) - \theta(x-b)$$ and it's $$-\p 1_{(a,b)} = \delta_b - \delta_a$$ which represents the 'boundary' it makes sense to write it as $$1_{\p (a,b)} = - \p 1_{(a,b)}$$)
+
+Maybe we should use $$D$$ for the differential in that case? Not sure.
+
+In fact I think we can just do the whole thing like this:
+
+$$
+\begin{aligned}
+D \int f \delta(n) \theta(r) \d V &= \int [D f] \delta(n) \theta(r) dV + \int f [D \delta(n)] \theta(r) dV + \int f \delta(n) [D \theta(r)] dV \\
+&= \int \big[ (f_\b{x} D\b{x}) \delta(n) \theta(r) + f [\delta'(n) Dn] \theta(r) + f \delta(n) [\delta (r) D r] \big] dV
+\end{aligned}
+$$
+
+We have to interpret $$\delta'(n) Dn \d V$$ as the mean curvature term somehow... er, wait, no, we still have to factor out the part that goes on the $$\odelta' f$$. I suppose we have:
+
+$$D \delta(n) = \p_n \delta(n) Dn + \p_{u, v} \delta(n) D(u,v)$$
+
+not that can't be right... it's all on the $$Dn$$ term. The actual value has to be
+
+
+$$D \delta(n) = - [\p_n \delta(n) + J \delta(n)] Dn$$
+
+where the minus sign comes from the fact that it's a derivative with respect to the surface itself, not the $$n$$ coordinate (conceptually: $$\delta(n) = \delta(n - n_0)$$ and then the derivative is on $$n_0$$). but where does the $$J$$ term come from?
+
+Well, here's one (good) way of doing it, although I still want one that doesn't go this way. If we write
+
+$$\delta(n) = \frac{1_{\Omega}}{\| dn \|}$$
+
+> now: I made a mistake here at first and had to come back and rewrite it.
+> I am not sure about some of the 'fractions' here, or about the magnitude $$\| d n \|$$ in the denominator, but I'm leaving them to not get overwhelmed for now.
+
+Normally 
+
+$$dn \? \star dA = dA \cdot dV = (du \^ dv) \cdot (du \^ dv \^ dn)$$
+
+However, there's a subtlety. Those calculations assume that $$dA = \| (X_u du \^ X_v dv) \| = du \^ dv$$ has magnitude $$1$$, which is true on the surface, but *not* after we do a variation. Meanwhile $$dV = (X_u du) \^ (X_v dv) \^ (dn)$$ is supposed to the pseudoscalar $$dx \^ dy \^ dz$$. So we need
+
+$$dn = \frac{1}{dA} dV = \frac{(X_u \^ X_v) du \^ dv}{\|X_u \^ X_v \|^2} \cdot (X_u du \^ X_v dv \^ dn)$$
+
+that is,
+
+$$dn = \star \frac{dA}{\| d A \|^2} = \frac{1}{ \star dA}$$
+
+(where I'm not entirely sure what I mean by all these fractions..)
+
+We could even write
+
+$$\frac{1}{dn} = \frac{1}{dV} dA$$ 
+
+which is nice because it explains how the cancellation in an integral works. Anyway.
+
+Suppose we go with $$dn = \star dA / \| d A \|^2$$.
+
+$$
+\begin{aligned}
+\frac{1}{dn} &= \frac{\| d A \|^2}{\|\star dA} \\
+&= \frac{ \| (X_u du \^ X_v dv) \|^2}{\star X_u du \^ X_v dv} \\
+&= \frac{\| X_u \^ X_v \|^2 }{\| X_u \^ X_v \| \star du \^ dv } \\
+&= \frac{\| X_u \^ X_v \|}{\star (du \^ dv)}
+\end{aligned}
+$$
+
+And thne
+
+$$
+\begin{aligned}
+D \frac{1}{\| dn \|} &=D \frac{\| X_u \^ X_v \|}{ \| \star (du \^ dv) \| } \\
+&= \frac{(X_u \^ X_v + (k_1 + k_2) X_u \^ X_v \|)}{\| \star du \^ dv \| } - \frac{\| X_u \^ X_v \|}{ \| \star du \^ dv \| } \\
+&= \frac{1}{\| dn \|}(1 + (k_1 + k_2) Dn) - \frac{1}{\| dn \|} \\ 
+&= J \frac{1}{\| dn \|} Dn
+\end{aligned}
+$$
+
+
+This is probably not quite the right way to do this computation (the stars and absolute values are suspicious) but I'm going to leave it for now. The important point is that $$\frac{1}{dn}$$ is proportional to $$X_u du \^ X_v dv$$ because it has to be $$\sim dX^{\^2} / dV$$, and therefore the mean curvature that comes out is _positive_.
+
+
+
+
+Therefore
+
+$$
+\begin{aligned}
+D \delta(n) &= D \frac{1_{\Omega}}{ \| dn \| } \\
+&= \frac{D 1_{\Omega}}{\| dn \|} + 1_{\Omega} D \frac{1}{\| dn \|} \\ 
+&= [-\p_n 1_{\Omega} Dn - \p_r 1_{\Omega} Dr] \frac{1}{\| dn \|} + J \delta(n) Dn
+\end{aligned}
+$$
+
+which is definitely what we want. The first term becomes the $$f_n Dn $$ term (the minus sign disappears when the derivative transfers over). The second term is the boundary-of-boundary term, it becomes a $$\delta(r)$$ that produces a line integral. The third term is the curvature term; I am unsure about the sign.
+
+------
+
+I still feel like it should be possible to do this manipulation directly on $$\delta(n)$$ without using my 'inverse differential' trick. How do we compute
+
+$$D (\delta(n)) = - \p_n \delta(n) - J \delta(n)$$
+
+correctly? (That is, $$D (dA) = D [ \delta(n) dV ] = D[\delta(n)] dV$$). We know that it comes from the fact that ~extruding the surface along its normal causes the normals to spread out in proportional with the curvature... but I want to see it algebraically from the definition of $$\delta(n)$$. 
+
+I guess we can write
+
+$$\delta(n) = \delta (\b{n} \cdot (\b{x} - \b{x}_0))$$
+
+For $$\b{x}_0$$ the nearest point on the surface.
+
+But then won't $$D \delta(n) = -\delta' \del_{\b{x}} (\b{n} \cdot \b{x}) \cdot D\b{x}$$? which only has a $$\delta'$$ in it, not a $$\delta$$?
+
+I was stumped by this for a while until I realized that delta functions behave oddly with regard to the chain rule. Recall that delta functions pass their derivatives to arguments in a function:
+
+$$\int \delta'(x) f(x) \d x = - \int \delta(x) f'(x) \d x$$
+
+If a delta function is composed with something else, this derivative term gets passed to the term from the chain rule as well:
+
+$$
+\begin{aligned}
+\int \p_x \delta(g) f \d x &= \int (\delta'(g) g') f \d x \\
+&= -\int \delta(g) \p_x (g' f) \d x \\
+&= -\int \delta(g) [g'' f + g' f'] \d x \\
+\end{aligned}
+$$
+
+I had never really thought about that before.
+
+Incidentally another way this can be seen is by applying the identity
+
+$$\delta(g(x)) = \sum_{x_0 \in g^{-1}(0)} \frac{\delta(x - x_0)}{\| g'(x) \|}$$
+
+Since clearly the derivative of the LHS is going to have two terms on the RHS.
+
+Anyway, we need this to properly differentiate $$\delta(n)$$. It's sort of hellish but I can do it. We have to compute
+
+
+$$
+\begin{aligned}
+D \delta(n) &= D \delta(\b{n} \cdot (\b{x} - \b{x}_0)) \\ 
+&= \del_{\b{x}_0} \delta(\b{n} \cdot (\b{x} - \b{x}_0)) \cdot D \b{x}_0 \\ 
+&= \delta'(n) [\del_{\b{x}_0} (\b{n} \cdot (\b{x} - \b{x}_0))] \cdot D \b{x}_0 \\ 
+&= \delta'(n) [ (\del_{\b{x}_0} \b{n}) \cdot (\b{x} - \b{x}_0) + \b{n} \cdot (- \del_{\b{x}_0} \b{x}_0) ] \cdot D \b{x}_0
+\end{aligned}
+$$
+
+The second term is just 
+
+$$\b{n} \cdot (-\del_{\b{x}_0} \b{x}_0) \cdot D \b{x}_0 = -\b{n} \cdot D \b{x}_0 = -Dn$$
+
+The first term is confusing.
+
+$$[(\del_{\b{x}_0} \b{n}) \cdot (\b{x} - \b{x}_0)] \cdot D \b{x}_0$$
+
+Which is very confusing. What does it mean to differentiate the normal vector with regard to $$\b{x}_0$$, the basepoint on the surface? I'm pretty sure the answer is that it's $$0$$, but I had a ton of trouble understanding why.
+
+(2 hours later...)
+
+Here's the actual calculation:
+
+$$
+\begin{aligned}
+D \delta(n) = \delta'(n) \b{n} \cdot D \b{x}_0 = \delta'(n) Dn
+\end{aligned}
+$$
+
+Easy. The tricky part is that when you integrate the delta by parts, you have to remember that
+
+$$\delta'(n) \stackrel{!}{=} \b{n} \cdot \del \delta(n)$$
+
+And therefore
+
+
+$$
+\begin{aligned}
+-\delta'(n) Dn \, f  &= -[\b{n} \cdot \del \delta(n)] Dn \, f \\ 
+&= \delta(n) \del \cdot (\b{n} Dn \, f) \\ 
+&= \delta(n) [ (\del \cdot \b{n}) Dn \, f + (\b{n} \cdot \del Dn) f + Dn (\b{n} \cdot \del f) ] \\ 
+&= \delta(n) [ J Dn f + Dn \p_n f] \\
+\end{aligned}
+$$
+
+note that $$\p_n Dn = \p_n (\b{n} \cdot D \b{x}) = \b{n} \cdot \del \b{n} \cdot D\b{x}_0 = 0$$ because $$\del \b{n}$$ is defined to only change in $$\b{u}$$ and $$\b{v}$$.[^unit]
+
+[^unit]: I am sort of curious abotu what happens if you do all of this with a frame of _non_ unit vectors such that $$\p_n n$$ could be nonzero ... feels like it might end up being more elegant if you do it right. After all none of the properties of the surface itself should depend on our use of a unit frame.
+
+
+So all in all I have described a bunch of ways of reaching the same conclusion: that 
+
+$$D(dA) = D(\delta(n) dV) = -\delta'(n) Dn$$
+
+Whether we want to write it as
+
+$$dA = \delta(n) dV = \frac{1_{\Omega}}{\| dn \|} dV$$
+
+or anything else, we get the same answer. I guess that's good.
+
+-------
+
+## Conclusion
+
+I've written too much to synthesize it right now but I think there is something good in here that can be consolidated into something useful.
+
+In light of all this, *is* there anything like
+
+$$\Omega \mapsto \Omega + \delta \Omega = \Omega + \sigma(\Omega) + \delta \b{x} \cdot \p \Omega$$
+
+for the surface or line integrals?
+
+I think the closest thing was
+
+$$
+\begin{aligned}
+D \delta(n) &= D \frac{1_{\Omega}}{ \| dn \| } \\
+&= \frac{D 1_{\Omega}}{\| dn \|} + 1_{\Omega} D \frac{1}{\| dn \|} \\ 
+&= [-\p_n 1_{\Omega} Dn - \p_r 1_{\Omega} Dr] \frac{1}{\| dn \|} + J \delta(n) Dn
+\end{aligned}
+$$
+
+(modulo some stuff I'm not sure about in the weird algebra)
+
+At least, this form includes the exact three terms we're looking for.
+
+If we think of this as acting on a single infinitesimal simplex $$\sigma \mapsto \sigma + \delta \sigma$$, then it should be something like... this?
+
+$$
+\begin{aligned}
+\delta [f \d A(\sigma)] &= f \d A(\sigma + \delta \sigma) - dA(\sigma) \\
+&= f \d A(\sigma + \p \sigma \cdot \delta \b{x})  - f \d A(\sigma) \\
+&= f \d A(\sigma + \p_n \sigma \cdot \delta n + \p_r \sigma \cdot \delta r) - f \d A(\sigma) \\
+&= f(\p_n \sigma \cdot \delta n + \p_r \sigma \cdot \delta r) dA + f dA(\p_n \sigma \cdot \delta n + \p_r \sigma \cdot \delta r) \\
+&\? f_n \delta n \d A (\sigma) + \cancel{f_r \delta r \d A (\sigma)} + f dA(\p_n \sigma) \delta(n)  + f dA (\p_r \sigma) \delta r \\
+\end{aligned}
+$$
+
+I think it is also the case that the second term cancels because it is second-order: the size of the $$\b{r}$$ boundary is first-order in area and then the derivative of $$f$$ is also. Whereas the size of the $$\b{n}$$ is zero-th order in area which is why it survives. Something like that....
+
+Not quite there but I guess it's close.
+
+I really want to think of a way to write the mean curvature as a "simplex" object, but I'm not sure how to do it. It really seems to be a proper of $$dA(\delta_n \sigma)$$ rather than just $$\delta_n \sigma$$ itself, is the problem.
+
+------
+
+more rumination:
+
+One idea I had to think of each simplex as being given by something like $$\exp(X^{\^2}) = \exp(X_u \^ X_v)$$ in the first place --- the idea being that they are the image of a path of $$(u,v)$$ space --- and then write their extruded coordinates as $$\delta \sigma = \exp((X_u + \b{n}_u \delta n) \^ (X_v + \b{n}_v  \delta n)) - \exp(X^{\^2})$$ explicitly, viewing ---at least that gives a model of "what we're doing", I guess?---it is just hard to think of the "type" of differential simplexes; they are not quite _volumes_ because they don't have to be closed; instead they're like vector fields along the normals at every point.
+
+
+(I guess it might be possible to think of the surface as being the image of a torus in $$(u,v)$$ space with the same areas and curvatures... somehow... or some kind of twisted product between the $$U$$ and $$V$$ circles...)
+
+or maybe you can think of it as a combination of (1) a rigid translation and (2) a field of "additional" area that has to be added to fill in the gaps that appear with the translation, which is proportional to the mean curvature terms. That's not so bad. But now you need a way to say that you've translated the surface _without_ expanding it. Maybe that's okay?
+
+$$\Omega \ra \Omega + \p \Omega \cdot \delta \b{r} + (\Omega + J \Omega) \cdot \delta \b{n}$$
+
+where $$J \Omega$$ creates / deletes area instead of modifying existing ones. And really 
+
+$$(I + J) \Omega = e^{J} \Omega$$
+
+oguht to be an operator which expands each simplex along its axes as it's translated. (This should work on linear curvature as well so can start there)
+
+aside: it occurs to me that the reason the volume variation is simple was that there was no variation of the _density_ of the points, but that these variations in surface/line integrals are, sort of, modifying density implicitly. It might be interesting to repeat these calculations but explicitly including density. In which case $$dV = dm / \rho(m)$$ is being implicitly used in the case where an integral is only over volume. I wonder how the Lagrangian coordinate trick works when density is involved? Surely that is standard.
+
+Doing $$J \Omega$$ correctly may require thinking of it in terms of a density field. 
