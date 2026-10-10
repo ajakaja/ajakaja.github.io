@@ -1,6 +1,6 @@
 ---
 layout: blog
-title: "TCAT-A notes"
+title: "TCAT notes - Appendix A"
 footnotes: true
 math: true
 aside: true
